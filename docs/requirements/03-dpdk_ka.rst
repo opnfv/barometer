@@ -1,0 +1,124 @@
+DPDK Keep Alive Overview
+=========================
+SFQM aims to enable fault detection within DPDK, the very first feature to
+meet this goal is the DPDK Keep Alive Sample app that is part of DPDK 2.2. 
+
+DPDK Keep Alive or KA is a sample application that acts as a heartbeat/watchdog
+for DPDK packet processing cores, to detect application thread failure. The
+application supports the detection of ‘failed’ DPDK cores and notification to a
+HA/SA middleware. The purpose is to detect Packet Processing Core fails (e.g.
+infinite loop) and ensure the failure of the core does not result in a fault
+that is not detectable by a management entity. 
+
+.. Figure:: dpdk_ka.png
+
+   DPDK Keep Alive Sample Application
+
+Essentially the app demonstrates how to detect 'silent outages' on DPDK packet
+processing cores. The application can be decomposed into two specific parts:
+detection and notification. 
+
+* The detection period is programmable/configurable but defaults to 5ms if no
+  timeout is specified.
+* The Notification support is enabled by simply having a hook function that where this
+  can be 'call back support' for a fault management application with a compliant
+  heartbeat mechanism.
+
+DPDK Keep Alive Sample App Internals
+====================================
+This section provides some explanation of the The Keep-Alive/'Liveliness'
+conceptual scheme as well as the DPDK Keep Alive App. The initialization and
+run-time paths are very similar to those of the L2 forwarding application (see
+`L2 Forwarding Sample Application (in Real and Virtualized Environments)`_ for more
+information).
+
+There are two types of cores: a Keep Alive Monitor Agent Core (master DPDK core)
+and Worker cores (Tx/Rx/Forwarding cores). The Keep Alive Monitor Agent Core
+will supervise worker cores and report any failure (2 successive missed pings).
+The Keep-Alive/'Liveliness' conceptual scheme is:
+
+* DPDK worker cores mark their liveliness as they forward traffic.
+* A Keep Alive Monitor Agent Core runs a function every N Milliseconds to
+  inspect worker core liveliness.
+* If keep-alive agent detects time-outs, it notifies the fault management
+  entity through a call-back function.
+
+**Note:**  Only the worker cores state is monitored. There is no mechanism or agent
+to monitor the Keep Alive Monitor Agent Core. 
+
+DPDK Keep Alive Sample App Code Internals
+=========================================
+The following section provides some explanation of the code aspects that are
+specific to the Keep Alive sample application.
+
+The heartbeat functionality is initialized with a struct rte_heartbeat and the
+callback function to invoke in the case of a timeout.
+
+.. code:: c
+
+    rte_global_keepalive_info = rte_keepalive_create(&dead_core, NULL);
+    if (rte_global_hbeat_info == NULL)
+        rte_exit(EXIT_FAILURE, "keepalive_create() failed");
+
+The function that issues the pings hbeat_dispatch_pings() is configured to run
+every check_period milliseconds.
+
+.. code:: c
+
+    if (rte_timer_reset(&hb_timer,
+            (check_period * rte_get_timer_hz()) / 1000,
+            PERIODICAL,
+            rte_lcore_id(),
+            &hbeat_dispatch_pings, rte_global_keepalive_info
+            ) != 0 )
+        rte_exit(EXIT_FAILURE, "Keepalive setup failure.\n");
+
+The rest of the initialization and run-time path follows the same paths as the
+the L2 forwarding application. The only addition to the main processing loop is
+the mark alive functionality and the example random failures.
+
+.. code:: c
+
+    rte_keepalive_mark_alive(&rte_global_hbeat_info);
+    cur_tsc = rte_rdtsc();
+
+    /* Die randomly within 7 secs for demo purposes.. */
+    if (cur_tsc - tsc_initial > tsc_lifetime)
+    break;
+
+The rte_keepalive_mark_alive() function simply sets the core state to alive.
+
+.. code:: c
+
+    static inline void
+    rte_keepalive_mark_alive(struct rte_heartbeat *keepcfg)
+    {
+        keepcfg->state_flags[rte_lcore_id()] = 1;
+    }
+
+Keep Alive Monitor Agent Core Monitoring Options
+The application can run on either a host or a guest. As such there are a number
+of options for monitoring the Keep Alive Monitor Agent Core through a Local
+Agent on the compute node:
+
+         ======================  ==========  =============
+          Application Location     DPDK KA     LOCAL AGENT
+         ======================  ==========  =============
+                  HOST               X        HOST/GUEST
+                  GUEST              X        HOST/GUEST
+         ======================  ==========  =============
+
+
+For the first implementation of a Local Agent SFQM will enable:
+
+         ======================  ==========  =============
+          Application Location     DPDK KA     LOCAL AGENT
+         ======================  ==========  =============
+                  HOST               X           HOST
+         ======================  ==========  ============= 
+
+Through extending the dpdkstat plugin for collectd with KA functionality, and
+integrating the extended plugin with Monasca for high performing, resilient,
+and scalable fault detection.
+
+.. _L2 Forwarding Sample Application (in Real and Virtualized Environments): http://dpdk.org/doc/guides/sample_app_ug/l2_forward_real_virtual.html
