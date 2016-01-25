@@ -20,4 +20,5 @@ Table of Contents:
      :maxdepth: 4
      :numbered:
 
-     requirements/index
+     requirements/index.rst
+     release/index.rst
