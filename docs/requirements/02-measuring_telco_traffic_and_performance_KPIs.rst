@@ -1,3 +1,7 @@
+.. This work is licensed under a Creative Commons Attribution 4.0 International License.
+.. http://creativecommons.org/licenses/by/4.0
+.. (c) OPNFV, Intel Corporation and others.
+
 Measuring Telco Traffic and Performance KPIs
 ============================================
 This section will look at what SFQM has done to enable Measuring Telco Traffic
