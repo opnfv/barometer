@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Add here any the actions which are required before plugin build
+# like packages building, packages downloading from mirrors and so on.
+# The script should return 0 if there were no errors.
+#!/bin/bash
+
+set -eux
+
+BUILD_FOR=${BUILD_FOR:-ubuntu}
+DIR="$(dirname `readlink -f $0`)"
+
+function build_pkg {
+  case $1 in
+    ubuntu)
+      rm -rf ${DIR}/repositories/ubuntu; mkdir -p ${DIR}/repositories/ubuntu
+      git clone https://github.com/openstack/collectd-ceilometer-plugin
+      cd  collectd-ceilometer-plugin
+      git checkout 3a4a1087566d1f9e8dd2d8d2e0608cb975942446
+      tar cfvz ${DIR}/repositories/ubuntu/collectd-ceilometer.tgz . --exclude=collectd-ceilometer.tgz
+      cd ..; rm -rf collectd-ceilometer-plugin
+      ;;
+    *) echo "Not supported system"; exit 1;;
+  esac
+}
+
+for system in $BUILD_FOR
+do
+  build_pkg $system
+done
