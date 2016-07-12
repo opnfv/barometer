@@ -94,7 +94,7 @@ $(WORK_DIR):
 	$(AT)git clone $(COLLECTD_URL)
 
 $(TAG_DONE_FLAG): $(WORK_DIR)
-	$(AT)cd collectd-with-DPDK; git checkout $(collectd_TAG)
+	$(AT)cd collectd-with-DPDK; git checkout $(COLLECTD_TAG)
 ifneq ($(PATCH_FILE),)
 	$(AT)cd $(WORK_DIR); patch -p1 < ../$(PATCH_FILE)
 endif

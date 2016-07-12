@@ -11,3 +11,6 @@ DPDK_TAG ?= v16.04
 # collectd section
 COLLECTD_URL ?= https://github.com/maryamtahhan/collectd-with-DPDK
 COLLECTD_TAG ?= dpdkstat
+
+COLLECTD_CEILOMETER_URL ?= https://github.com/openstack/collectd-ceilometer-plugin
+COLLECTD_CEILOMETER_TAG ?= master
