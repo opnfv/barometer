@@ -36,5 +36,6 @@ include mk/master.mk
 SUBDIRS =
 SUBDIRS += dpdk
 SUBDIRS += collectd
+SUBDIRS += collectd-ceilometer-plugin
 
 include mk/make-subsys.mk
