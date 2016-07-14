@@ -47,7 +47,7 @@ cat << EOF > /etc/collectd/collectd.conf.d/collectd-ceilometer-plugin.conf
         # # Ceilometer user creds
         OS_USERNAME "$OS_USERNAME"
         OS_PASSWORD "$OS_PASSWORD"
-        OS_TENANT_NAME "service"
+        OS_TENANT_NAME "services"
 
     </Module>
 </Plugin>

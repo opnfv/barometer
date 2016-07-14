@@ -14,11 +14,21 @@ function build_pkg {
   case $1 in
     ubuntu)
       rm -rf ${DIR}/repositories/ubuntu; mkdir -p ${DIR}/repositories/ubuntu
+     
+      rm -rf ${DIR}/build; mkdir -p ${DIR}/build; cd ${DIR}/build;
+  
       git clone https://github.com/openstack/collectd-ceilometer-plugin
       cd  collectd-ceilometer-plugin
       git checkout 3a4a1087566d1f9e8dd2d8d2e0608cb975942446
+      cat << EOF > collectd_ceilometer/__init__.py
+"""Collectd Ceilometer plugin implementation"""
+EOF
       tar cfvz ${DIR}/repositories/ubuntu/collectd-ceilometer.tgz . --exclude=collectd-ceilometer.tgz
-      cd ..; rm -rf collectd-ceilometer-plugin
+
+      cd ${DIR}/build; ../build-collectd.sh
+      cp *.deb ${DIR}/repositories/ubuntu
+
+      rm -rf ${DIR}/build
       ;;
     *) echo "Not supported system"; exit 1;;
   esac
