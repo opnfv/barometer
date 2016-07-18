@@ -11,6 +11,8 @@ OS_PASSWORD=$4
 CEILOMETER_URL_TYPE=${CEILOMETER_URL_TYPE:-internalURL}
 CEILOMETER_TIMEOUT=${CEILOMETER_TIMEOUT:-1000}
 
+apt-get install -y collectd
+
 rm -rf $INSTALL_HOME; mkdir -p $INSTALL_HOME
 cd $INSTALL_HOME
 curl http://$HOST:8080/plugins/fuel-plugin-collectd-ceilometer-0.9/repositories/ubuntu/collectd-ceilometer.tgz | tar xzvf -
@@ -52,3 +54,5 @@ cat << EOF > /etc/collectd/collectd.conf.d/collectd-ceilometer-plugin.conf
     </Module>
 </Plugin>
 EOF
+
+service collectd restart

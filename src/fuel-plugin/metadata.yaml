@@ -18,7 +18,7 @@ homepage: 'https://gerrit.opnfv.org/gerrit/fastpathmetrics'
 # network, storage, storage::cinder, storage::glance, hypervisor
 groups: ['network']
 
-is_hotpluggable: false
+is_hotpluggable: true
 
 # The plugin is compatible with releases in the list
 releases:
