@@ -20,9 +20,6 @@ function build_pkg {
       git clone https://github.com/openstack/collectd-ceilometer-plugin
       cd  collectd-ceilometer-plugin
       git checkout stable/mitaka 
-      cat << EOF > collectd_ceilometer/__init__.py
-"""Collectd Ceilometer plugin implementation"""
-EOF
       tar cfvz ${DIR}/repositories/ubuntu/collectd-ceilometer.tgz . --exclude=collectd-ceilometer.tgz
 
       cd ${DIR}/build; ../build-collectd.sh
