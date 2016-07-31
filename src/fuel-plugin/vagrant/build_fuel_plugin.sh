@@ -4,7 +4,7 @@ sudo apt-get install -y ruby-dev rubygems-integration python-pip rpm createrepo 
 sudo gem install fpm
 sudo pip install fuel-plugin-builder
 cp -r /fuel-plugin /home/vagrant
-cd /home/vagrant/fuel-plugin; 
+cd /home/vagrant/fuel-plugin;
 rm -rf vagrant/.vagrant
 fpb --debug --build .
 cp *.rpm /vagrant

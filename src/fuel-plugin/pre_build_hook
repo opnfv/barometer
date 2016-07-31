@@ -14,9 +14,9 @@ function build_pkg {
   case $1 in
     ubuntu)
       rm -rf ${DIR}/repositories/ubuntu; mkdir -p ${DIR}/repositories/ubuntu
-     
+
       rm -rf ${DIR}/build; mkdir -p ${DIR}/build; cd ${DIR}/build;
-  
+
       git clone https://github.com/openstack/collectd-ceilometer-plugin
       cd  collectd-ceilometer-plugin
       git checkout 3a4a1087566d1f9e8dd2d8d2e0608cb975942446

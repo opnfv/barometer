@@ -2,7 +2,7 @@ plugin-collectd-ceilometer
 =========================
 
 Plugin description
-Installs collectd-ceilometer on base-os node via a fuel plugin.
+Installs collectd-ceilometer on compute via a fuel plugin.
 
 Requirements
 ------------
@@ -56,4 +56,12 @@ a) connection aborted
   root@node-11:~# ceilometer sample-list --meter interface.if_packets
 ('Connection aborted.', BadStatusLine("''",))
 
-  workaround: sudo service ceilometer-api restart
+  workaround:
+  root@node-11:~# sudo service ceilometer-api restart
+
+b) Service Unavailable
+  root@node-11:~# ceilometer sample-list --meter interface.if_packets
+Service Unavailable (HTTP 503)
+
+  workaround:
+  root@node-11:~# sudo service ceilometer-api restart
