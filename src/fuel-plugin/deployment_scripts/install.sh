@@ -26,9 +26,9 @@ cat << EOF > /etc/collectd/collectd.conf.d/collectd-ceilometer-plugin.conf
     ModulePath "$INSTALL_HOME"
     LogTraces true
     Interactive false
-    Import "collectd_ceilometer_plugin"
+    Import "collectd_ceilometer.plugin"
 
-    <Module collectd_ceilometer_plugin>
+    <Module "collectd_ceilometer.plugin">
 
         # Verbosity 1|0
         #VERBOSE 0
