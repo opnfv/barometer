@@ -12,6 +12,7 @@ CEILOMETER_URL_TYPE=${CEILOMETER_URL_TYPE:-internalURL}
 CEILOMETER_TIMEOUT=${CEILOMETER_TIMEOUT:-1000}
 
 apt-get install -y collectd
+service collectd stop
 
 rm -rf $INSTALL_HOME; mkdir -p $INSTALL_HOME
 cd $INSTALL_HOME
@@ -55,4 +56,7 @@ cat << EOF > /etc/collectd/collectd.conf.d/collectd-ceilometer-plugin.conf
 </Plugin>
 EOF
 
-service collectd restart
+#fixme: sleep 3 minutes to wait for ceilometer api ready in controller node
+sleep 180
+
+service collectd start
