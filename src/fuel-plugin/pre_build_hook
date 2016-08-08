@@ -17,7 +17,7 @@ function build_pkg {
       rm -rf ${DIR}/build; mkdir -p ${DIR}/build; cd ${DIR}/build;
       git clone https://github.com/openstack/collectd-ceilometer-plugin
       cd  collectd-ceilometer-plugin
-      git checkout 6c7cb6adf86fcaa6028ca42867ddcb0582111ab1
+      git checkout 73372f2eb86c81f12bc10b392f75050a401107db 
       tar cfvz ${DIR}/repositories/ubuntu/collectd-ceilometer.tgz . --exclude=collectd-ceilometer.tgz
 
       # support collectd with dpdk later
