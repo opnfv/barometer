@@ -21,7 +21,9 @@ Documents
 Build/Deploy/Verify
 -------------------
 
-1) install fuel plugin builder (fpb)
+step 1, 2, 3 may be bypassed if fuel plugin is installed from /opt/opnfv in fuel@opnfv.
+
+1) install fuel plugin builder
     sudo apt-get install -y ruby-dev rubygems-integration python-pip rpm createrepo dpkg-dev
     sudo gem install fpm
     sudo pip install fuel-plugin-builder
@@ -37,9 +39,13 @@ Build/Deploy/Verify
 	fuel plugins --install <plugin-name>.rpm
 
 5) prepare fuel environment
-	on fuel dashboard, go to settings/other
-	enable collectd-ceilometer plugin with checkbox
-	save settings
+  a) enable ceilometer service
+    go to settings/openstack services
+    enable ceilometer plugin with checkbox
+  b) enable collectd-ceilometer
+    go to settings/other
+    enable collectd-ceilometer plugin with checkbox
+  c) save settings
 
 6) add nodes to environment
 
