@@ -23,13 +23,25 @@ assurance) in the data-plane will be mandatory for any Telco grade NFVI
 implementation**.
 
 All developed features will be upstreamed to `DPDK`_ or other Open
-Source projects relevant to telemetry such as `collectd`_ and fault
-management such as `Monasca`_ and/or `Ceilometer`_.
+Source projects relevant to telemetry such as `collectd`_ and
+`Ceilometer`_.
 
 The OPNFV project wiki can be found @ `SFQM`_
 
 Problem Statement
 ==================
+Providing carrier grade Service Assurance is critical in the network
+transformation to a software defined and virtualized network (NFV).
+Medium-/large-scale cloud environments account for between hundreds and
+hundreds of thousands of infrastructure systems.  It is vital to monitor
+systems for malfunctions that could lead to users application service
+disruption and promptly react to these fault events to facilitate improving
+overall system performance. As the size of infrastructure and virtual resources
+grow, so does the effort of monitoring back-ends. SFQM aims to expose as much
+useful information as possible off the platform so that faults and errors in
+the NFVI can be detected promptly and reported to the appropriate fault
+management entity.
+
 The OPNFV platform (NFVI) requires functionality to:
 
 * Create a low latency, high performance packet processing path (fast path)
@@ -39,7 +51,7 @@ The OPNFV platform (NFVI) requires functionality to:
   EMS/OSS systems
 
 Examples of local measurable QoS factors for Traffic Monitoring which impact
-both Quality of Experience and 5’9s availability would be (using Metro Ethernet
+both Quality of Experience and five 9's availability would be (using Metro Ethernet
 Forum Guidelines as reference):
 
 * Packet loss
@@ -117,7 +129,7 @@ that would then determine what actions, including failover, may be triggered.
 
 Consumption Models
 ===================
-Fig 1.1 shows how a sample application will be provided to demonstrate
+Fig 3.1 shows how a sample application will be provided to demonstrate
 usage. In reality many VNFs will have an existing performance or traffic
 monitoring utility used to monitor VNF behavior and report statistics, counters,
 etc.
@@ -137,15 +149,12 @@ existing VNF performance or traffic monitoring utilities also makes it simpler
 for overall interfacing with higher level management components in the VIM, MANO
 and OSS/BSS. The Software Fastpath Service Quality Metrics proposal would be
 complementary to the Fault Management and Maintenance project proposal
-(“Doctor”) which is also in flight, which addresses NFVI Fault Management
+(Doctor), which addresses NFVI Fault Management
 support in the VIM. To that end, the project committers and contributors for the
-Software Fastpath Service Quality Metrics project wish to work in sync with the
-“Doctor” project – to facilitate this, one of the “Doctor” contributors has also
-been added as a contributor to the Software Fastpath Service Quality Metrics
-project.
+Software Fastpath Service Quality Metrics project wish to collaborate with the
+Doctor project to facilitate this.
 
 .. _SFQM: https://wiki.opnfv.org/collaborative_development_projects/opnfv_telco_kpi_monitoring
 .. _DPDK: http://dpdk.org/
 .. _collectd: http://collectd.org/
-.. _Monasca: https://wiki.openstack.org/wiki/Monasca
 .. _Ceilometer: https://wiki.openstack.org/wiki/Telemetry
