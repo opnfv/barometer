@@ -79,6 +79,9 @@ The DPDK interface/API will be updated to support:
 * Exposure of NIC MAC/PHY Level Counters
 * Interface for Time stamp on RX
 * Interface for Time stamp on TX
+* Exposure of DPDK events
+
+Collectd will be updated to support the exposure of DPDK metrics and events.
 
 Specific testing and integration will be carried out to cover:
 
@@ -89,24 +92,16 @@ The following list of features and functionality will be developed:
 
 * DPDK APIs and functions for latency and interface monitoring
 * A sample application to demonstrate usage
+* Collectd plugins
 
-The scope of the project is limited to the DPDK APIs and a sample application to
-demonstrate usage.
-
-.. Figure:: telcokpis_update.png
-
-   Architecture overview (showing provided functionality in green)
-
-In the figure above, the interfaces 1, 2, 3 are implemented along with a sample
-application. The sample application will support monitoring of NIC
-counters/status and will also support measurement of packet latency using DPDK
-provided interfaces.
+The scope of the project involves developing the relavant DPDK APIs, OVS APIs,
+sample applications, as well as the utilities in collectd to export all the
+relavent information to a telemetry and events consumer.
 
 VNF specific processing, Traffic Monitoring, Performance Monitoring and
-Management Agent are out of scope. The scope is limited to Intel 10G Niantic
-support.
+Management Agent are out of scope.
 
-The Proposed MAC/PHY Interface Counters include:
+The Proposed Interface Counters include:
 
 * Packet RX
 * Packet TX
@@ -115,34 +110,29 @@ The Proposed MAC/PHY Interface Counters include:
 
 The Proposed Packet Latency Monitor include:
 
-* Cycle accurate ‘stamping’ on ingress
+* Cycle accurate stamping on ingress
 * Supports latency measurements on egress
-
-Support for additional types of Network Interfaces can be added in the future.
 
 Support for failover of DPDK enabled cores is also out of scope of the current
 proposal. However, this is an important requirement and must-have functionality
 for any DPDK enabled framework in the NFVI. To that end, a second phase of this
-project will be to implement DPDK “Keep Alive” functionality that would address
+project will be to implement DPDK Keep Alive functionality that would address
 this and would report to a VNF-level Failover and High Availability mechanism
 that would then determine what actions, including failover, may be triggered.
 
 Consumption Models
 ===================
-Fig 3.1 shows how a sample application will be provided to demonstrate
-usage. In reality many VNFs will have an existing performance or traffic
-monitoring utility used to monitor VNF behavior and report statistics, counters,
-etc.
+In reality many VNFs will have an existing performance or traffic monitoring
+utility used to monitor VNF behavior and report statistics, counters, etc.
 
-To consume the performance and traffic related information provided within the
-scope of this project should in most cases be a logical extension of any
-existing VNF performance or traffic monitoring utility, in most cases it should
-not require a new utility to be developed. We do not see the Software Fastpath
-Service Quality Metrics data as major additional effort for VNFs to consume,
-this project would be sympathetic to existing VNF architecture constructs. The
-intention is that this project represents a lower level interface for network
-interface monitoring to be used by higher level fault management entities (see
-below).
+The consumption the performance and traffic related information/events provided
+within the scope of this project should be a logical extension of any existing
+VNF monitoring utility. It should not require a new utility to be developed. We
+do not see the Software Fastpath Service Quality Metrics data as major
+additional effort for VNFs to consume; this project would be sympathetic to
+existing VNF architecture constructs. The intention is that this project
+represents a lower level interface for network interface monitoring to be used
+by higher level fault management entities (see below).
 
 Allowing the Software Fastpath Service Quality Metrics data to be handled within
 existing VNF performance or traffic monitoring utilities also makes it simpler
