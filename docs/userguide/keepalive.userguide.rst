@@ -2,8 +2,8 @@
 .. http://creativecommons.org/licenses/by/4.0
 .. (c) OPNFV, Intel Corporation and others.
 
-DPDK Keep Alive Overview
-=========================
+DPDK Keep Alive description
+===========================
 SFQM aims to enable fault detection within DPDK, the very first feature to
 meet this goal is the DPDK Keep Alive Sample app that is part of DPDK 2.2.
 
@@ -29,7 +29,7 @@ detection and notification.
   heartbeat mechanism.
 
 DPDK Keep Alive Sample App Internals
-====================================
+------------------------------------
 This section provides some explanation of the The Keep-Alive/'Liveliness'
 conceptual scheme as well as the DPDK Keep Alive App. The initialization and
 run-time paths are very similar to those of the L2 forwarding application (see
@@ -51,7 +51,7 @@ The Keep-Alive/'Liveliness' conceptual scheme is:
 to monitor the Keep Alive Monitor Agent Core.
 
 DPDK Keep Alive Sample App Code Internals
-=========================================
+-----------------------------------------
 The following section provides some explanation of the code aspects that are
 specific to the Keep Alive sample application.
 
