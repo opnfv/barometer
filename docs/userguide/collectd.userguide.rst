@@ -2,8 +2,15 @@
 .. http://creativecommons.org/licenses/by/4.0
 .. (c) OPNFV, Intel Corporation and others.
 
+collectd plugins description
+============================
+The SFQM collectd plugins enable the ability to monitor DPDK interfaces by
+exposing stats and the relevant events to higher level telemetry and fault
+management applications. The following sections will discuss the SFQM features
+in detail.
+
 Measuring Telco Traffic and Performance KPIs
-============================================
+--------------------------------------------
 This section will discuss the SFQM features that enable Measuring Telco Traffic
 and Performance KPIs.
 
@@ -32,7 +39,7 @@ and Performance KPIs.
     value pairs, improving the overall performance of the API.
 
 Monitoring DPDK interfaces
-===========================
+--------------------------
 With the features SFQM enabled in DPDK to enable measuring Telco traffic and
 performance KPIs, we can now retrieve NIC statistics including error stats and
 relay them to a DPDK user. The next step is to enable monitoring of the DPDK
@@ -41,7 +48,7 @@ the information to a higher level Fault Management entity. To enable this SFQM
 has been enabling a number of plugins for collectd.
 
 collectd
----------
+~~~~~~~~
 collectd is a daemon which collects system performance statistics periodically
 and provides a variety of mechanisms to publish the collected metrics. It
 supports more than 90 different input and output plugins. Input plugins retrieve
@@ -49,8 +56,8 @@ metrics and publish them to the collectd deamon, while output plugins publish
 the data they receive to an end point. collectd also has infrastructure to
 support thresholding and notification.
 
-Statistics and Notifications
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+collectd statistics and Notifications
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Within collectd notifications and performance data are dispatched in the same
 way. There are producer plugins (plugins that create notifications/metrics),
 and consumer plugins (plugins that receive notifications/metrics and do
