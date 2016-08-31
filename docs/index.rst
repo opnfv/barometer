@@ -25,5 +25,6 @@ Table of Contents:
      :numbered:
 
      requirements/index.rst
+     conffiguide/index.rst
      userguide/index.rst
      release/index.rst
