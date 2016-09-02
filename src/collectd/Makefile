@@ -38,6 +38,7 @@ endif
 CONFIG_CMD += --enable-syslog
 CONFIG_CMD += --enable-logfile
 CONFIG_CMD += --with-libdpdk=$(DPDK_DIR)
+CONFIG_CMD += CFLAGS+="-std=c99"
 
 .PHONY: install force_install config force_make
 
