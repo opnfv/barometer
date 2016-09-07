@@ -35,7 +35,7 @@ INSTALL_TARGET = force_make
 
 force_make: $(WORK_DIR)
 	@echo "force make"
-	$(AT)cd $(WORK_DIR) && git pull $(COLLECTD_CEILOMETER_URL) $(COLLECTD_CEILOMETER_TAG)
+	$(AT)cd $(WORK_DIR) && git checkout $(COLLECTD_CEILOMETER_TAG)
 	@echo "Make done"
 
 install:
