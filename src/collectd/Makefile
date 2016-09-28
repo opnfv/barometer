@@ -23,7 +23,7 @@
 include ../mk/master.mk
 include ../package-list.mk
 
-WORK_DIR = collectd-with-DPDK
+WORK_DIR = collectd
 TAG_DONE_FLAG = $(WORK_DIR)/.$(COLLECTD_TAG).done
 BUILD_CMD = ./build.sh
 CONFIG_CMD =
@@ -94,7 +94,7 @@ $(WORK_DIR):
 	$(AT)git clone $(COLLECTD_URL)
 
 $(TAG_DONE_FLAG): $(WORK_DIR)
-	$(AT)cd collectd-with-DPDK; git checkout $(COLLECTD_TAG); git rebase master
+	$(AT)cd $(WORK_DIR); git checkout $(COLLECTD_TAG)
 ifneq ($(PATCH_FILE),)
 	$(AT)cd $(WORK_DIR); patch -p1 < ../$(PATCH_FILE)
 endif
