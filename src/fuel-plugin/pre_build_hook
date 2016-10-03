@@ -20,9 +20,9 @@ function build_pkg {
       git checkout 73372f2eb86c81f12bc10b392f75050a401107db 
       tar cfvz ${DIR}/repositories/ubuntu/collectd-ceilometer.tgz . --exclude=collectd-ceilometer.tgz
 
-      # support collectd with dpdk later
-      #cd ${DIR}/build; ../build-collectd.sh
-      #cp *.deb ${DIR}/repositories/ubuntu
+      # support collectd with dpdk
+      cd ${DIR}/build; ../build-collectd.sh
+      cp *.deb ${DIR}/repositories/ubuntu
 
       rm -rf ${DIR}/build
       ;;
