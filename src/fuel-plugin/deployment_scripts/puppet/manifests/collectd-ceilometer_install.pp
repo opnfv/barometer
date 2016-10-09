@@ -12,7 +12,7 @@ $ceilometer_hash   = hiera_hash('ceilometer', {'user'=>'ceilometer'})
 $auth_user         = 'ceilometer'
 $auth_password     = $ceilometer_hash['user_password']
 
-$exe_url = "http://${master_ip}:8080/plugins/fuel-plugin-collectd-ceilometer-0.9/deployment_scripts/install.sh"
+$exe_url = "http://${master_ip}:8080/plugins/fuel-plugin-collectd-ceilometer-1.0/deployment_scripts/install.sh"
 
 if ($use_ceilometer) {
 
