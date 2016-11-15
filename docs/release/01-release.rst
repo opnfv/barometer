@@ -9,17 +9,17 @@ relevant upstream projects.
 
 .. Figure:: Features_to_date1.png
 
-   SFQM features to date
+   Barometer features to date
 
 .. Figure:: Features_to_date2.png
 
-   SFQM features to date cont.
+   Barometer features to date cont.
 
 Please note the timeline denotes DPDK releases.
 
 Release B
 =========
-The features implemented for OPNFV release B in DPDK include:
+The features implemented for OPNFV release B (as part of SFQM) in DPDK include:
 
 * Callback API to enable TX/RX timestamping to measure latency through DPDK.
 * Extended NIC statistics API for 1GB, 10GB and 40GB NICs to expose detailed
@@ -28,7 +28,7 @@ The features implemented for OPNFV release B in DPDK include:
 
 Release C
 =========
-The features implemented for OPNFV release C include:
+The features implemented for OPNFV release C (as part of SFQM) include:
 
 * DPDK extended NIC stats API improvement; migrate from key value pairs to
   using id value pairs.

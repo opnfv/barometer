@@ -149,18 +149,26 @@ Notifications in collectd are generic messages containing:
 
 collectd plugins
 ----------------
-SFQM has enabled three collectd plugins to date:
+Barometer has enabled the following collectd plugins:
 
-* `dpdkstat plugin`_: A read plugin that retrieve stats from the DPDK extended
+* dpdkstat plugin: A read plugin that retrieve stats from the DPDK extended
    NIC stats API.
 
 * `ceilometer plugin`_: A write plugin that pushes the retrieved stats to
   Ceilometer. It's capable of pushing any stats read through collectd to
   Ceilometer, not just the DPDK stats.
 
-* `hugepages plugin`_:  A read plugin that retrieves the number of available
+* hugepages plugin:  A read plugin that retrieves the number of available
   and free hugepages on a platform as well as what is available in terms of
   hugepages per socket.
+
+* RDT plugin: A read plugin that provides the last level cache utilitzation and
+  memory bandwidth utilization
+
+All the plugins above are available on the collectd master, except for the
+ceilometer plugin as it's a python based plugin and only c plugins are accepted
+by the collectd community. The ceilometer plugin lives in the OpenStack
+repositories.
 
 Other plugins in progress:
 
@@ -172,6 +180,15 @@ Other plugins in progress:
 
 * Open vSwitch events Plugin: A read plugin that retrieves events from OVS.
 
+* mcelog plugin: A read plugin that uses mcelog client protocol to check for
+  memory Machine Check Exceptions and sends the stats for reported exceptions.
+
+* SNMP write: A write plugin that will act as a SNMP subagent and will map
+  collectd metrics to relavent OIDs. Will only support SNMP: get, getnext and
+  walk.
+
+* Legacy/IPMI: A read plugin that will report platform thermals, voltages,
+  fanspeed....
 
 Monitoring Interfaces and Openstack Support
 -------------------------------------------
@@ -197,6 +214,4 @@ References
 [7] https://collectd.org/wiki/index.php/Meta_Data_Interface
 
 .. _SFQM OPNFV Summit demo: https://prezi.com/kjv6o8ixs6se/software-fastpath-service-quality-metrics-demo/
-.. _dpdkstat plugin: https://github.com/maryamtahhan/collectd-with-DPDK/tree/dpdkstat
 .. _ceilometer plugin: https://github.com/openstack/collectd-ceilometer-plugin/tree/stable/mitaka
-.. _hugepages plugin: https://github.com/maryamtahhan/collectd-with-DPDK/tree/hugepages
