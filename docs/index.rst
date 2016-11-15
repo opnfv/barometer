@@ -2,11 +2,11 @@
 .. http://creativecommons.org/licenses/by/4.0
 .. (c) OPNFV, Intel Corporation and others.
 
-******************************************
-Software Fastpath Service Quality Metrics
-******************************************
+**********
+Barometer
+**********
 
-:Project: SFQM, https://wiki.opnfv.org/collaborative_development_projects/opnfv_telco_kpi_monitoring
+:Project: Barometer, https://wiki.opnfv.org/display/fastpath
 :Authors: Maryam Tahhan <maryam.tahhan@intel.com>
 :History:
 
@@ -25,6 +25,6 @@ Table of Contents:
      :numbered:
 
      requirements/index.rst
-     conffiguide/index.rst
+     configguide/index.rst
      userguide/index.rst
      release/index.rst

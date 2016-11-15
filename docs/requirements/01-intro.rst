@@ -4,9 +4,11 @@
 
 Introduction
 ============
+Barometer is the project that renames Software Fastpath service Quality Metrics
+(SFQM) an updates its scope which was networking centric.
 
-The goal of Software Fastpath service Quality Metrics (SFQM) is to
-develop the utilities and libraries in `DPDK`_ to support:
+The goal of SFQM was to develop the utilities and libraries in DPDK to
+support:
 
 * Measuring Telco Traffic and Performance KPIs. Including:
 
@@ -18,15 +20,35 @@ develop the utilities and libraries in `DPDK`_ to support:
 * Detecting and reporting violations that can be consumed by VNFs
   and higher level management systems (through DPDK Keep Alive).
 
-After all **the ability to measure and enforce Telco KPIs (Service
-assurance) in the data-plane will be mandatory for any Telco grade NFVI
-implementation**.
+With Barometer the scope is extended to monitoring the NFVI. The ability to
+monitor the Network Function Virtualization Infrastructure (NFVI) where VNFs
+are in operation will be a key part of Service Assurance within an NFV
+environment, in order to enforce SLAs or to detect violations, faults or
+degradation in the performance of NFVI resources so that events and relevant
+metrics are reported to higher level fault management systems.
+If fixed function appliances are going to be replaced by virtualized appliances
+the service levels, manageability and service assurance needs to remain
+consistent or improve on what is available today. As such, the NFVI needs to
+support the ability to monitor:
 
-All developed features will be upstreamed to `DPDK`_ or other Open
-Source projects relevant to telemetry such as `collectd`_ and
-`Ceilometer`_.
+* Traffic monitoring and performance monitoring of the components that provide
+  networking functionality to the VNF, including: physical interfaces, virtual
+  switch interfaces and flows, as well as the virtual interfaces themselves and
+  their status, etc.
+* Platform monitoring including: CPU, memory, load, cache, themals, fan speeds,
+  voltages and machine check exceptions, etc.
 
-The OPNFV project wiki can be found @ `SFQM`_
+All of the statistics and events gathered must be collected in-service and must
+be capable of being reported by standard Telco mechanisms (e.g. SNMP), for
+potential enforcement or correction actions. In addition, this information
+could be fed to analytics systems to enable failure prediction, and can also be
+used for intelligent workload placement.
+
+
+All developed features will be upstreamed to Open Source projects relevant to
+telemetry such as `collectd`_ and `Ceilometer`_.
+
+The OPNFV project wiki can be found @ `Barometer`_
 
 Problem Statement
 ==================
@@ -69,8 +91,21 @@ All these traffic statistics for Traffic and Performance Monitoring must be
 measured in-service and must be capable of being reported by standard Telco
 mechanisms (e.g. SNMP traps), for potential enforcement actions.
 
-Scope
-======
+Barometer updated scope
+=======================
+The scope of the project is to provide interfaces to support monitoring of the
+NFVI. The project will develop plugins for telemetry frameworks to enable the
+collection of platform stats and events and relay gathered information to fault
+management applications or the VIM. The scope is limited to
+collecting/gathering the events and stats and relaying them to a relevant
+endpoint. The project will not enforce or take any actions based on the
+gathered information.
+
+.. image: barometer_scope.png
+
+Scope of SFQM
+=============
+**NOTE:** The SFQM project has been replaced by Barometer.
 The output of the project will provide interfaces and functions to support
 monitoring of Packet Latency and Network Interfaces while the VNF is in service.
 
@@ -126,25 +161,23 @@ In reality many VNFs will have an existing performance or traffic monitoring
 utility used to monitor VNF behavior and report statistics, counters, etc.
 
 The consumption of performance and traffic related information/events provided
-by this project should be a logical extension of any existing VNF monitoring
-utility. It should not require a new utility to be developed. We do not see the
-Software Fastpath Service Quality Metrics data as major additional effort for
-VNFs to consume; this project would be sympathetic to existing VNF architecture
-constructs. The intention is that this project represents a lower level
-interface for network interface monitoring to be used
-by higher level fault management entities (see below).
+by this project should be a logical extension of any existing VNF/NFVI monitoring
+framework. It should not require a new framework to be developed. We do not see
+the Barometer gathered metrics and evetns as major additional effort for
+monitoring frameworks to consume; this project would be sympathetic to existing
+monitoring frameworks. The intention is that this project represents an
+interface for NFVI monitoring to be used by higher level fault management
+entities (see below).
 
-Allowing the Software Fastpath Service Quality Metrics data to be handled within
-existing VNF performance or traffic monitoring utilities also makes it simpler
-for overall interfacing with higher level management components in the VIM, MANO
-and OSS/BSS. The Software Fastpath Service Quality Metrics proposal would be
-complementary to the Fault Management and Maintenance project proposal
-(Doctor), which addresses NFVI Fault Management
-support in the VIM. To that end, the project committers and contributors for the
-Software Fastpath Service Quality Metrics project wish to collaborate with the
-Doctor project to facilitate this.
+Allowing the Barometer metrics and events to be handled within existing
+telemetry frameoworks makes it simpler for overall interfacing with higher
+level management components in the VIM, MANO and OSS/BSS. The Barometer
+proposal would be complementary to the Doctor project, which addresses NFVI Fault
+Management support in the VIM, and the VES project, which addresses the
+integration of VNF telemetry-related data into automated VNF management
+systems. To that end, the project committers and contributors for the Barometer
+project wish to collaborate with the Doctor and VES projects to facilitate this.
 
-.. _SFQM: https://wiki.opnfv.org/collaborative_development_projects/opnfv_telco_kpi_monitoring
-.. _DPDK: http://dpdk.org/
+.. _Barometer: https://wiki.opnfv.org/display/fastpath
 .. _collectd: http://collectd.org/
 .. _Ceilometer: https://wiki.openstack.org/wiki/Telemetry
