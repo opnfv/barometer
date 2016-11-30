@@ -1,17 +1,19 @@
-Project: Software Fastpath Service Quality Metrics (fastpathmetrics)
+Project: Barometer
 Project Creation Date:
 Project Category:
 Lifecycle State:
 Primary Contact:
 Project Lead: maryam.tahhan@intel.com
-Jira Project Name:  Software Fastpath Service Quality Metrics
-Jira Project Prefix: SFQM
+Jira Project Name: barometer
+Jira Project Prefix: barometer
 Mailing list tag: []
 IRC: Server:freenode.net Channel:#opnfv-
-Repository: fastpathmetrics
+Repository: barometer
 
 Committers:
 christoph.meyer@ericsson.com
 maryam.tahhan@intel.com
+bruce.richardson@intel.com
+thomas.monjalon@6wind.com
 
 Link to TSC approval of the project:
