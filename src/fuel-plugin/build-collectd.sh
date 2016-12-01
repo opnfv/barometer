@@ -64,8 +64,8 @@ sudo apt-get -y install \
 
 cd ${BUILD_HOME}
 rm -rf collectd
-git clone https://github.com/collectd/collectd; cd collectd; git checkout 8acc85b
-git clone https://github.com/collectd/pkg-debian; cd pkg-debian; git checkout e5972da
+git clone https://github.com/collectd/collectd; cd collectd; git checkout 797ed5e5bee9ee89361f12e447ffc6ceb6ef79d2
+git clone https://github.com/collectd/pkg-debian; cd pkg-debian; git checkout 549d3caba74210ad762fe8c556801d9c11ab9876
 mv debian ..
 
 cd ${BUILD_HOME}/collectd
@@ -73,3 +73,4 @@ cd ${BUILD_HOME}/collectd
 debian/rules build || true
 debian/rules build
 fakeroot debian/rules binary
+cp ${BUILD_HOME}/*.deb /build
