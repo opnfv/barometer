@@ -30,12 +30,6 @@ BUILD_CMD = ./build.sh
 CONFIG_CMD =
 CONFIG_CMD += ./configure
 
-# DPDK_DIR is the directory where DPDK shared lib is installed
-DPDK_DIR = $(shell echo $$DPDK_DIR)
-ifeq ($(DPDK_DIR),)
-DPDK_DIR = /usr
-endif
-
 LIBPQOS_DIR = $(shell echo $$LIBPQOS_DIR)
 ifeq ($(LIBPQOS_DIR),)
 LIBPQOS_DIR = /usr
@@ -44,7 +38,6 @@ endif
 
 CONFIG_CMD += --enable-syslog
 CONFIG_CMD += --enable-logfile
-CONFIG_CMD += --with-libdpdk=$(DPDK_DIR)
 CONFIG_CMD += --with-libpqos=$(LIBPQOS_DIR)
 CONFIG_CMD += --with-hugepages
 CONFIG_CMD += --enable-exec
