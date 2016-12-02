@@ -2,9 +2,9 @@
 .. http://creativecommons.org/licenses/by/4.0
 .. (c) OPNFV, Intel Corporation and others.
 
-**********
+=========
 Barometer
-**********
+=========
 
 :Project: Barometer, https://wiki.opnfv.org/display/fastpath/Barometer+Home
 :Authors: Maryam Tahhan <maryam.tahhan@intel.com>
@@ -24,7 +24,7 @@ Table of Contents:
      :maxdepth: 4
      :numbered:
 
-     requirements/index.rst
-     configguide/index.rst
-     userguide/index.rst
-     release/index.rst
+     ./requirements/index.rst
+     ./configguide/index.rst
+     ./userguide/index.rst
+     ./release/index.rst

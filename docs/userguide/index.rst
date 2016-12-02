@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
-   .. http://creativecommons.org/licenses/by/4.0
-      .. (c) <optionally add copywriters name>
+.. http://creativecommons.org/licenses/by/4.0
+.. (c) Intel Corporation and OPNFV
 
 ====================
 Barometer user guide
@@ -16,4 +16,3 @@ Barometer user guide
      :maxdepth: 3
 
      collectd.userguide.rst
-     keepalive.userguide.rst

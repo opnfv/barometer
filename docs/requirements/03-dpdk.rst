@@ -2,8 +2,50 @@
 .. http://creativecommons.org/licenses/by/4.0
 .. (c) OPNFV, Intel Corporation and others.
 
+DPDK Enhancements
+==================
+This section will discuss the Barometer features that were integrated with DPDK.
+
+Measuring Telco Traffic and Performance KPIs
+--------------------------------------------
+This section will discuss the Barometer features that enable Measuring Telco Traffic
+and Performance KPIs.
+
+.. Figure:: stats_and_timestamps.png
+
+   Measuring Telco Traffic and Performance KPIs
+
+* The very first thing Barometer enabled was a call-back API in DPDK and an
+  associated application that used the API to demonstrate how to timestamp
+  packets and measure packet latency in DPDK (the sample app is called
+  rxtx_callbacks). This was upstreamed to DPDK 2.0 and is represented by
+  the interfaces 1 and 2 in Figure 1.2.
+
+* The second thing Barometer implemented in DPDK is the extended NIC statistics API,
+  which exposes NIC stats including error stats to the DPDK user by reading the
+  registers on the NIC. This is represented by interface 3 in Figure 1.2.
+
+  * For DPDK 2.1 this API was only implemented for the ixgbe (10Gb) NIC driver,
+    in association with a sample application that runs as a DPDK secondary
+    process and retrieves the extended NIC stats.
+
+  * For DPDK 2.2 the API was implemented for igb, i40e and all the Virtual
+    Functions (VFs) for all drivers.
+
+  * For DPDK 16.07 the API migrated from using string value pairs to using id
+    value pairs, improving the overall performance of the API.
+
+Monitoring DPDK interfaces
+--------------------------
+With the features Barometer enabled in DPDK to enable measuring Telco traffic and
+performance KPIs, we can now retrieve NIC statistics including error stats and
+relay them to a DPDK user. The next step is to enable monitoring of the DPDK
+interfaces based on the stats that we are retrieving from the NICs, by relaying
+the information to a higher level Fault Management entity. To enable this Barometer
+has been enabling a number of plugins for collectd.
+
 DPDK Keep Alive description
-===========================
+---------------------------
 SFQM aims to enable fault detection within DPDK, the very first feature to
 meet this goal is the DPDK Keep Alive Sample app that is part of DPDK 2.2.
 
@@ -29,7 +71,7 @@ detection and notification.
   heartbeat mechanism.
 
 DPDK Keep Alive Sample App Internals
-------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 This section provides some explanation of the The Keep-Alive/'Liveliness'
 conceptual scheme as well as the DPDK Keep Alive App. The initialization and
 run-time paths are very similar to those of the L2 forwarding application (see
@@ -51,7 +93,7 @@ The Keep-Alive/'Liveliness' conceptual scheme is:
 to monitor the Keep Alive Monitor Agent Core.
 
 DPDK Keep Alive Sample App Code Internals
------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The following section provides some explanation of the code aspects that are
 specific to the Keep Alive sample application.
 

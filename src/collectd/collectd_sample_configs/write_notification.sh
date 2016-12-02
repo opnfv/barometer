@@ -1,6 +1,4 @@
-# Top Makefile to build upstream packages.
-#
-
+#!/bin/bash
 # Copyright 2016 OPNFV
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,29 +12,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-#
-# Contributors:
-#   Aihua Li, Huawei Technologies.
-#   Maryam Tahhan, Intel Corporation.
-
-all clean distclean: subbuilds
-
-subbuilds: $(SUBBUILDS)
-$(SUBBUILDS):
-	$(AT)mkdir -p ../$@/mk
-	$(AT)cp -rf mk/* ../$@/mk
-	$(AT)cp -rf package-list.mk ../$@/
-	$(AT)cp Makefile.$@ ../$@/Makefile
-	$(AT)$(MAKE) -C ../$@ $(MAKECMDGOALS)
-
-with-dpdk:
-export WITH_DPDK
-include mk/master.mk
-SUBDIRS =
-SUBDIRS += dpdk
-SUBDIRS += libpqos
-SUBDIRS += collectd
-SUBDIRS += collectd-ceilometer-plugin
-
-include mk/make-subsys.mk
+rm -f /tmp/notifications
+while read x y
+do
+  echo $x$y >> /tmp/notifications
+done

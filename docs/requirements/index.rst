@@ -7,3 +7,5 @@
      :numbered:
 
      01-intro.rst
+     02-collectd.rst
+     03-dpdk.rst

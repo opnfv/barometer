@@ -24,6 +24,7 @@ include ../mk/master.mk
 include ../package-list.mk
 
 WORK_DIR = collectd
+SAMPLE_CONFIG = $(CURDIR)/collectd_sample_configs
 TAG_DONE_FLAG = $(WORK_DIR)/.$(COLLECTD_TAG).done
 BUILD_CMD = ./build.sh
 CONFIG_CMD =
@@ -35,14 +36,25 @@ ifeq ($(DPDK_DIR),)
 DPDK_DIR = /usr
 endif
 
+LIBPQOS_DIR = $(shell echo $$LIBPQOS_DIR)
+ifeq ($(LIBPQOS_DIR),)
+LIBPQOS_DIR = /usr
+endif
+
+
 CONFIG_CMD += --enable-syslog
 CONFIG_CMD += --enable-logfile
 CONFIG_CMD += --with-libdpdk=$(DPDK_DIR)
+CONFIG_CMD += --with-libpqos=$(LIBPQOS_DIR)
+CONFIG_CMD += --with-hugepages
+CONFIG_CMD += --enable-exec
+CONFIG_CMD += --enable-python
+CONFIG_CMD += --enable-threshold
 
 .PHONY: install force_install config force_make
 
 # install depends on make
-force_install: force_make
+#force_install: force_make
 
 all: force_make
 	@echo "Finished making $(WORK_DIR) "
@@ -56,11 +68,20 @@ INSTALL_TARGET = force_install force_make
 force_make: $(WORK_DIR)/Makefile
 	$(AT)cd $(WORK_DIR) && git pull $(COLLECTD_URL) $(COLLECTD_TAG)
 	@echo "git pull done"
-	$(AT)$(MAKE) -C $(WORK_DIR) $(MORE_MAKE_FLAGS)
+	$(AT) $(MAKE) -C $(WORK_DIR) $(MORE_MAKE_FLAGS)
 	@echo "Make done"
 
 force_install:
-	$(AT)sudo $(MAKE) -C $(WORK_DIR) install
+	$(AT)$(MAKE) -C $(WORK_DIR) install
+	$(AT)cp $(WORK_DIR)/contrib/systemd.collectd.service /etc/systemd/system/
+	$(AT)mv /etc/systemd/system/systemd.collectd.service /etc/systemd/system/collectd.service
+	$(AT)chmod +x /etc/systemd/system/collectd.service
+	$(AT)sed -i -e 's/ExecStart=\/usr\/sbin\/collectd/ExecStart=\/opt\/collectd\/sbin\/collectd/g' /etc/systemd/system/collectd.service
+	$(AT)sed -i -e 's/CapabilityBoundingSet=/CapabilityBoundingSet=CAP_SETUID CAP_SETGID/g' /etc/systemd/system/collectd.service
+	$(AT)systemctl daemon-reload
+	$(AT)sudo mkdir -p /opt/collectd/etc/collectd.conf.d
+	$(AT)sudo cp $(SAMPLE_CONFIG)/* /opt/collectd/etc/collectd.conf.d
+	$(AT)sudo ./include_config.sh
 
 install: $(INSTALL_TARGET)
 

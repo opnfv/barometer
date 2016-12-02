@@ -6,7 +6,10 @@
 # dpdk section
 # DPDK_URL ?= git://dpdk.org/dpdk
 DPDK_URL ?= http://dpdk.org/git/dpdk
-DPDK_TAG ?= v16.04
+DPDK_TAG ?= v16.07
+
+LIBPQOS_URL ?= https://github.com/01org/intel-cmt-cat.git
+LIBPQOS_TAG ?= master
 
 # collectd section
 COLLECTD_URL ?= https://github.com/collectd/collectd
