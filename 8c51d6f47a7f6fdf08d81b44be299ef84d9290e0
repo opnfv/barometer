@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ac10518_0e74b597",
+        "filename": "docs/userguide/collectd.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2016-12-05T15:40:16Z",
+      "side": 1,
+      "message": "thanks for adding this, I\u0027ve been meaning to review some of the plugin code...",
+      "range": {
+        "startLine": 91,
+        "startChar": 6,
+        "endLine": 91,
+        "endChar": 42
+      },
+      "revId": "8c51d6f47a7f6fdf08d81b44be299ef84d9290e0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
