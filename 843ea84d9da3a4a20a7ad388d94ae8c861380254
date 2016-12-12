@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ac10518_ad655ee2",
+        "filename": "src/collectd/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2016-12-12T11:25:19Z",
+      "side": 1,
+      "message": "I think LIBDPDK_CPPFLAGS, LIBDPDK_LDFLAGS should be used instead.",
+      "revId": "843ea84d9da3a4a20a7ad388d94ae8c861380254",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
