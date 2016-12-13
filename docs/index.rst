@@ -7,7 +7,9 @@ Barometer
 =========
 
 :Project: Barometer, https://wiki.opnfv.org/display/fastpath/Barometer+Home
+
 :Authors: Maryam Tahhan <maryam.tahhan@intel.com>
+
 :History:
 
           ========== =====================================================
@@ -16,15 +18,15 @@ Barometer
           16.12.2014 Project creation
           ========== =====================================================
 
-
-Table of Contents:
-==================
-
 .. toctree::
-     :maxdepth: 4
+     :maxdepth: 2
      :numbered:
 
      ./requirements/index.rst
-     ./configguide/index.rst
      ./userguide/index.rst
+     ./configguide/index.rst
      ./release/index.rst
+
+Indices
+=======
+* :ref:`search`
