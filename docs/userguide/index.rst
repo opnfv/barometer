@@ -2,9 +2,9 @@
 .. http://creativecommons.org/licenses/by/4.0
 .. (c) Intel Corporation and OPNFV
 
-====================
+********************
 Barometer user guide
-====================
+********************
 
 .. The feature user guide should provide an OPNFV user with enough information to
 .. use the features provided by the feature project in the supported scenarios.
