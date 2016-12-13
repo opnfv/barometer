@@ -24,7 +24,6 @@ include ../mk/master.mk
 include ../package-list.mk
 
 WORK_DIR = collectd
-SAMPLE_CONFIG = $(CURDIR)/collectd_sample_configs
 TAG_DONE_FLAG = $(WORK_DIR)/.$(COLLECTD_TAG).done
 BUILD_CMD = ./build.sh
 CONFIG_CMD =
@@ -50,13 +49,11 @@ CONFIG_CMD += --enable-threshold
 #force_install: force_make
 
 all: force_make
-	@echo "Finished making $(WORK_DIR) "
+	@echo "Finished making $(WORK_DIR)"
 
 config $(WORK_DIR)/Makefile: $(WORK_DIR)/configure
 	$(AT)cd $(WORK_DIR); $(CONFIG_CMD)
 	@echo "Configure done"
-
-INSTALL_TARGET = force_install force_make
 
 force_make: $(WORK_DIR)/Makefile
 	$(AT)cd $(WORK_DIR) && git pull $(COLLECTD_URL) $(COLLECTD_TAG)
@@ -72,11 +69,11 @@ force_install:
 	$(AT)sed -i -e 's/ExecStart=\/usr\/sbin\/collectd/ExecStart=\/opt\/collectd\/sbin\/collectd/g' /etc/systemd/system/collectd.service
 	$(AT)sed -i -e 's/CapabilityBoundingSet=/CapabilityBoundingSet=CAP_SETUID CAP_SETGID/g' /etc/systemd/system/collectd.service
 	$(AT)systemctl daemon-reload
-	$(AT)sudo mkdir -p /opt/collectd/etc/collectd.conf.d
-	$(AT)sudo cp $(SAMPLE_CONFIG)/* /opt/collectd/etc/collectd.conf.d
 	$(AT)sudo ./include_config.sh
+	@echo "Make install done"
 
-install: $(INSTALL_TARGET)
+install: force_install
+
 
 # hard way to clean and clobber
 clean:
@@ -108,7 +105,7 @@ $(WORK_DIR):
 	$(AT)git clone $(COLLECTD_URL)
 
 $(TAG_DONE_FLAG): $(WORK_DIR)
-	$(AT)cd $(WORK_DIR); git checkout $(COLLECTD_TAG)
+	$(AT)cd collectd; git checkout $(COLLECTD_TAG)
 ifneq ($(PATCH_FILE),)
 	$(AT)cd $(WORK_DIR); patch -p1 < ../$(PATCH_FILE)
 endif

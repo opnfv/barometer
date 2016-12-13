@@ -1,6 +1,9 @@
 #!/bin/bash
 COLLECTD_CONF_FILE=/opt/collectd/etc/collectd.conf
+COLLECTD_CONF_DIR=/opt/collectd/etc/collectd.conf.d
 INCLUDE_CONF="<Include \"/opt/collectd/etc/collectd.conf.d\">"
+CURR_DIR=`pwd`
+SAMPLE_CONF_DIR=$CURR_DIR/collectd_sample_configs/*
 
 function write_include {
     echo $INCLUDE_CONF | sudo tee -a $COLLECTD_CONF_FILE;
@@ -10,3 +13,9 @@ function write_include {
 
 grep -qe '<Include "/opt/collectd/etc/collectd.conf.d">' $COLLECTD_CONF_FILE; [ $? -ne 0 ] && write_include
 
+`mkdir -p $COLLECTD_CONF_DIR`
+
+for F in $SAMPLE_CONF_DIR; do
+   FILE=$(basename $F)
+   [ -f $COLLECTD_CONF_DIR/$FILE ] && echo "File $COLLECTD_CONF_DIR/$FILE exists" || cp $F $COLLECTD_CONF_DIR
+done
