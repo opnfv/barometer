@@ -20,8 +20,6 @@ Barometer has enabled the following collectd plugins:
 * RDT plugin: A read plugin that provides the last level cache utilitzation and
   memory bandwidth utilization
 
-* Open vSwitch events Plugin: A read plugin that retrieves events from OVS.
-
 All the plugins above are available on the collectd master, except for the
 ceilometer plugin as it's a python based plugin and only C plugins are accepted
 by the collectd community. The ceilometer plugin lives in the OpenStack
@@ -31,6 +29,8 @@ Other plugins under development or existing as a pull request into collectd mast
 
 * dpdkevents:  A read plugin that retrieves DPDK link status and DPDK
   forwarding cores liveliness status (DPDK Keep Alive).
+
+* Open vSwitch events Plugin: A read plugin that retrieves events from OVS.
 
 * Open vSwitch stats Plugin: A read plugin that retrieve flow and interface
   stats from OVS.
@@ -48,9 +48,9 @@ Other plugins under development or existing as a pull request into collectd mast
 Building collectd with the Barometer plugins and installing the dependencies
 =============================================================================
 
-All plugins
------------
-The plugins that have been merged to the baromter master branch can all be
+All Upstreamed plugins
+-----------------------
+The plugins that have been merged to the collectd master branch can all be
 built and configured through the barometer repository.
 
 **Note**: sudo permissions are required to install collectd.
@@ -239,6 +239,224 @@ include:
 
 For more information on the plugin parameters, please see:
 https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
+
+Mcelog Plugin:
+--------------
+Repo: https://github.com/maryamtahhan/collectd
+
+Branch: feat_ras
+
+Dependencies: mcelog
+
+Start by installing mcelog. Note: The kernel has to have CONFIG_X86_MCE
+enabled. For 32bit kernels you need at least a 2.6,30 kernel.
+
+On ubuntu:
+
+.. code:: bash
+
+    $ apt-get update && apt-get install mcelog
+
+Or build from source
+
+.. code:: bash
+
+    $ git clone git://git.kernel.org/pub/scm/utils/cpu/mce/mcelog.git
+    $ cd mcelog
+    $ make
+    ... become root ...
+    $ make install
+    $ cp mcelog.service /etc/systemd/system/
+    $ systemctl enable mcelog.service
+    $ systemctl start mcelog.service
+
+Verify you got a /dev/mcelog. You can verify the daemon is running completely
+by running:
+
+.. code:: bash
+
+     $ mcelog --client
+
+This should query the information in the running daemon. If it prints nothing
+that is fine (no errors logged yet). More info @
+http://www.mcelog.org/installation.html
+
+Modify the mcelog configuration file "/etc/mcelog/mcelog.conf" to include or
+enable:
+
+.. code:: bash
+
+    socket-path = /var/run/mcelog-client
+
+Clone and install the collectd mcelog plugin:
+
+.. code:: bash
+
+    $ git clone  https://github.com/maryamtahhan/collectd
+    $ cd collectd
+    $ git checkout feat_ras
+    $ ./build.sh
+    $ ./configure --enable-syslog --enable-logfile --enable-debug
+    $ make
+    $ sudo make install
+
+This will install collectd to /opt/collectd
+The collectd configuration file can be found at /opt/collectd/etc
+To configure the mcelog plugin you need to modify the configuration file to
+include:
+
+.. code:: bash
+
+    <LoadPlugin mcelog>
+      Interval 1
+    </LoadPlugin>
+    <Plugin "mcelog">
+       McelogClientSocket "/var/run/mcelog-client"
+    </Plugin>
+
+For more information on the plugin parameters, please see:
+https://github.com/maryamtahhan/collectd/blob/feat_ras/src/collectd.conf.pod
+
+Simulating a Machine Check Exception can be done in one of 3 ways:
+
+* Running $make test in the mcelog cloned directory - mcelog test suite
+* using mce-inject
+* using mce-test
+
+**mcelog test suite:**
+
+It is always a good idea to test an error handling mechanism before it is
+really needed. mcelog includes a test suite. The test suite relies on
+mce-inject which needs to be installed and in $PATH.
+
+You also need the mce-inject kernel module configured (with
+CONFIG_X86_MCE_INJECT=y), compiled, installed and loaded:
+
+.. code:: bash
+
+    $ modprobe mce-inject
+
+Then you can run the mcelog test suite with
+
+.. code:: bash
+
+    $ make test
+
+This will inject different classes of errors and check that the mcelog triggers
+runs. There will be some kernel messages about page offlining attempts. The
+test will also lose a few pages of memory in your system (not significant)
+**Note this test will kill any running mcelog, which needs to be restarted
+manually afterwards**.
+
+**mce-inject:**
+
+A utility to inject corrected, uncorrected and fatal machine check exceptions
+
+.. code:: bash
+
+    $ git clone https://git.kernel.org/pub/scm/utils/cpu/mce/mce-inject.git
+    $ cd mce-inject
+    $ make
+    $ modprobe mce-inject
+    $ ./mce-inject < test/corrected
+
+**Note: the uncorrected and fatal scripts under test will cause a platform reset.
+Only the fatal script generates the memory errors**. In order to  quickly
+emulate uncorrected memory errors and avoid host reboot following test errors
+from mce-test  suite can be injected:
+
+.. code:: bash
+
+       $ mce-inject  mce-test/cases/coverage/soft-inj/recoverable_ucr/data/srao_mem_scrub
+
+**mce-test:**
+
+In addition an more in-depth test of the Linux kernel machine check facilities
+can be done with the mce-test test suite. mce-test supports testing uncorrected
+error handling, real error injection, handling of different soft offlining
+cases, and other tests.
+
+**Corrected memory error injection:**
+
+To inject corrected memory errors:
+
+* Remove sb_edac and edac_core kernel modules: rmmod sb_edac rmmod edac_core
+* Insert einj module: modprobe einj param_extension=1
+* Inject an error by specifying details (last command should be repeated at least two times):
+
+.. code:: bash
+
+    $ APEI_IF=/sys/kernel/debug/apei/einj
+    $ echo 0x8 > $APEI_IF/error_type
+    $ echo 0x01f5591000 > $APEI_IF/param1
+    $ echo 0xfffffffffffff000 > $APEI_IF/param2
+    $ echo 1 > $APEI_IF/notrigger
+    $ echo 1 > $APEI_IF/error_inject
+
+* Check the MCE statistic: mcelog --client. Check the mcelog log for injected error details: less /var/log/mcelog.
+
+Open vSwitch Plugins
+---------------------
+Repo: https://github.com/maryamtahhan/collectd
+
+Branch: feat_ovs_link, feat_ovs_stats
+
+Dependencies: Open vSwitch, libyajl
+
+On Ubuntu, install the dependencies:
+
+.. code:: bash
+
+    $ sudo apt-get install libyajl-dev openvswitch-switch
+
+Start the Open vSwitch service:
+
+.. code:: bash
+
+    $ sudo service openvswitch-switch start
+
+configure the ovsdb-server manager:
+
+.. code:: bash
+
+    $ sudo ovs-vsctl set-manager ptcp:6640
+
+
+Clone and install the collectd ovs plugin:
+
+.. code:: bash
+
+    $ git clone  https://github.com/maryamtahhan/collectd
+    $ cd collectd
+    $ git checkout $BRANCH
+    $ ./build.sh
+    $ ./configure --enable-syslog --enable-logfile --enable-debug
+    $ make
+    $ sudo make install
+
+Where $BRANCH is feat_ovs_link or feat_ovs_stats.
+
+This will install collectd to /opt/collectd
+The collectd configuration file can be found at /opt/collectd/etc
+To configure the OVS plugins you need to modify the configuration file to
+include:
+
+.. code:: bash
+
+    <LoadPlugin ovs_events>
+      Interval 1
+    </LoadPlugin>
+    <Plugin "ovs_events">
+       Port 6640
+       Socket "/var/run/openvswitch/db.sock"
+       Interfaces "br0" "veth0"
+       SendNotification false
+    </Plugin>
+
+For more information on the plugin parameters, please see:
+https://github.com/maryamtahhan/collectd/blob/feat_ovs_link/src/collectd.conf.pod
+and
+https://github.com/maryamtahhan/collectd/blob/feat_ovs_stats/src/collectd.conf.pod
 
 Installing collectd as a service
 --------------------------------
