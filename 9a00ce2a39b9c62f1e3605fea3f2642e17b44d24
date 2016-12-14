@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5ac10518_cb069120",
+        "filename": "src/fuel-plugin/Dockerfile",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1630
+      },
+      "writtenOn": "2016-12-14T00:16:21Z",
+      "side": 1,
+      "message": "not a typo",
+      "parentUuid": "5ac10518_88388fa1",
+      "range": {
+        "startLine": 8,
+        "startChar": 23,
+        "endLine": 8,
+        "endChar": 25
+      },
+      "revId": "9a00ce2a39b9c62f1e3605fea3f2642e17b44d24",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5ac10518_a83b0b9b",
         "filename": "src/fuel-plugin/build-collectd.sh",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2016-12-13T11:38:05Z",
       "side": 1,
       "message": "I would take 3eda78360090edab0538f3b54c79d27a7fa1ec22 as it includes some DPDK fixes",
+      "range": {
+        "startLine": 67,
+        "startChar": 74,
+        "endLine": 67,
+        "endChar": 114
+      },
+      "revId": "9a00ce2a39b9c62f1e3605fea3f2642e17b44d24",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ac10518_eb010d07",
+        "filename": "src/fuel-plugin/build-collectd.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1630
+      },
+      "writtenOn": "2016-12-14T00:16:21Z",
+      "side": 1,
+      "message": "can rebase later. current plan to enable basic function in fuel@opnfv.",
+      "parentUuid": "5ac10518_a83b0b9b",
       "range": {
         "startLine": 67,
         "startChar": 74,
