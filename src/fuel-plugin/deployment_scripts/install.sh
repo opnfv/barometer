@@ -11,7 +11,7 @@ OS_PASSWORD=$4
 CEILOMETER_URL_TYPE=${CEILOMETER_URL_TYPE:-internalURL}
 CEILOMETER_TIMEOUT=${CEILOMETER_TIMEOUT:-1000}
 
-apt-get install -y collectd
+apt-get install -y collectd python-dev libpython2.7
 
 rm -rf $INSTALL_HOME; mkdir -p $INSTALL_HOME
 cd $INSTALL_HOME
