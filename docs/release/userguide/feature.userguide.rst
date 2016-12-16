@@ -67,6 +67,9 @@ Other plugins existing as a pull request into collectd master:
   fanspeed, current, flow, power etc. Also, the plugin monitors Intelligent
   Platform Management Interface (IPMI) System Event Log (SEL) and sends the
 
+* *virt*: A read plugin that uses virtualization API *libvirt* to gather
+  statistics about virtualized guests on a system directly from the hypervisor,
+  without a need to install collectd instance on the guest.
 
 **Plugins included in the Danube release:**
 
@@ -862,6 +865,142 @@ https://github.com/maryamtahhan/collectd/blob/feat_snmp/src/collectd.conf.pod
 
 For more details on AgentX subagent, please see:
 http://www.net-snmp.org/tutorial/tutorial-5/toolkit/demon/
+
+virt plugin
+^^^^^^^^^^^^
+Repo: https://github.com/maryamtahhan/collectd
+
+Branch: feat_libvirt_upstream
+
+Dependencies: libvirt (https://libvirt.org/), libxml2
+
+On Ubuntu, install the dependencies:
+
+.. code:: bash
+
+    $ sudo apt-get install libxml2-dev
+
+Install libvirt:
+
+libvirt version in package manager might be quite old and offer only limited
+functionality. Hence, building and installing libvirt from sources is recommended.
+Detailed instructions can bet found at:
+https://libvirt.org/compiling.html
+
+Certain metrics provided by the plugin have a requirement on a minimal version of
+the libvirt API. *File system information* statistics require a *Guest Agent (GA)*
+to be installed and configured in a VM. User must make sure that installed GA
+version supports retrieving file system information. Number of *Performance monitoring events*
+metrics depends on running libvirt daemon version.
+
+.. note:: Please keep in mind that RDT metrics (part of *Performance monitoring
+    events*) have to be supported by hardware. For more details on hardware support,
+    please see:
+    https://github.com/01org/intel-cmt-cat
+
+    Additionally perf metrics **cannot** be collected if *Intel RDT* plugin is enabled.
+
+libvirt version can be checked with following commands:
+
+.. code:: bash
+
+    $ virsh --version
+    $ libvirtd --version
+
+.. table:: Extended statistics requirements
+
+    +-------------------------------+--------------------------+-------------+
+    | Statistic                     | Min. libvirt API version | Requires GA |
+    +===============================+==========================+=============+
+    | Domain reason                 | 0.9.2                    | No          |
+    +-------------------------------+--------------------------+-------------+
+    | Disk errors                   | 0.9.10                   | No          |
+    +-------------------------------+--------------------------+-------------+
+    | Job statistics                | 1.2.9                    | No          |
+    +-------------------------------+--------------------------+-------------+
+    | File system information       | 1.2.11                   | Yes         |
+    +-------------------------------+--------------------------+-------------+
+    | Performance monitoring events | 1.3.3                    | No          |
+    +-------------------------------+--------------------------+-------------+
+
+Start libvirt daemon:
+
+.. code:: bash
+
+    $ systemctl start libvirtd
+
+Create domain (VM) XML configuration file. For more information on domain XML
+format and examples, please see:
+https://libvirt.org/formatdomain.html
+
+.. note:: Installing additional hypervisor dependencies might be required before
+    deploying virtual machine.
+
+Create domain, based on created XML file:
+
+.. code:: bash
+
+    $ virsh define DOMAIN_CFG_FILE.xml
+
+Start domain:
+
+.. code:: bash
+
+    $ virsh start DOMAIN_NAME
+
+Check if domain is running:
+
+.. code:: bash
+
+    $ virsh list
+
+Check list of available *Performance monitoring events* and their settings:
+
+.. code:: bash
+
+    $ virsh perf DOMAIN_NAME
+
+Enable or disable *Performance monitoring events* for domain:
+
+.. code:: bash
+
+    $ virsh perf DOMAIN_NAME [--enable | --disable] EVENT_NAME --live
+
+Clone and install the collectd virt plugin:
+
+.. code:: bash
+
+    $ git clone $REPO
+    $ cd collectd
+    $ git checkout $BRANCH
+    $ ./build.sh
+    $ ./configure --enable-syslog --enable-logfile --enable-debug
+    $ make
+    $ sudo make install
+
+Where ``$REPO`` and ``$BRANCH`` are equal to information provided above.
+
+This will install collectd to ``/opt/collectd``. The collectd configuration file
+``collectd.conf`` can be found at ``/opt/collectd/etc``. To load the virt plugin
+user needs to modify the configuration file to include:
+
+.. code:: bash
+
+    LoadPlugin virt
+
+Additionally, user can specify plugin configuration parameters in this file,
+such as connection URI, domain name and much more. By default extended virt plugin
+statistics are disabled. They can be enabled with ``ExtraStats`` option.
+
+.. code:: bash
+
+    <Plugin virt>
+       RefreshInterval 60
+       ExtraStats "cpu_util disk disk_err domain_state fs_info job_stats_background pcpu perf vcpupin"
+    </Plugin>
+
+For more information on the plugin parameters, please see:
+https://github.com/maryamtahhan/collectd/blob/feat_libvirt_upstream/src/collectd.conf.pod
 
 Installing collectd as a service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
