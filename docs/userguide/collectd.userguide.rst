@@ -42,8 +42,10 @@ Other plugins under development or existing as a pull request into collectd mast
   collectd metrics to relavent OIDs. Will only support SNMP: get, getnext and
   walk.
 
-* Legacy/IPMI: A read plugin that will report platform thermals, voltages,
-  fanspeed....
+* Legacy/IPMI: A read plugin that reports platform thermals, voltages,
+  fanspeed, current, flow, power etc. Also, the plugin monitors IPMI System
+  Event Log (SEL) and sends the collectd notification once a new record appears
+  in the SEL.
 
 Building collectd with the Barometer plugins and installing the dependencies
 =============================================================================
@@ -245,6 +247,87 @@ include:
 
 For more information on the plugin parameters, please see:
 https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
+
+IPMI Plugin
+-----------
+Repo: https://github.com/maryamtahhan/collectd
+
+Branch: feat_ipmi_events, feat_ipmi_analog
+
+Dependencies: OpenIPMI library
+
+The IPMI plugin is already implemented in the latest collectd and sensors
+like temperature, voltage, fanspeed, current are already supported there.
+The list of supported IPMI sensors has been extended and sensors like flow,
+power are supported now. Also, a System Event Log (SEL) notification feature
+has been introduced.
+
+* The feat_ipmi_events branch includes new SEL feature support in collectd
+  IPMI plugin. If this feature is enabled, the collectd IPMI plugin will
+  dispatch notifications about new events in System Event Log.
+
+* The feat_ipmi_analog branch includes the support of extended IPMI sensors in
+  collectd IPMI plugin.
+
+On Ubuntu, install the dependencies:
+
+.. code:: bash
+
+    $ sudo apt-get install libopenipmi-dev
+
+Enable IPMI support in the kernel:
+
+.. code:: bash
+
+    $ sudo modprobe ipmi_devintf
+    $ sudo modprobe ipmi_si
+
+**Note**: If HW supports IPMI, the ``/dev/ipmi0`` character device will be
+created.
+
+Clone and install the collectd IPMI plugin:
+
+.. code:: bash
+
+    $ git clone  https://github.com/maryamtahhan/collectd
+    $ cd collectd
+    $ git checkout $BRANCH
+    $ ./build.sh
+    $ ./configure --enable-syslog --enable-logfile --enable-debug
+    $ make
+    $ sudo make install
+
+Where $BRANCH is feat_ipmi_events or feat_ipmi_analog.
+
+This will install collectd to default folder ``/opt/collectd``. The collectd
+configuration file (``collectd.conf``) can be found at ``/opt/collectd/etc``. To
+configure the IPMI plugin you need to modify the file to include:
+
+.. code:: bash
+
+    LoadPlugin ipmi
+    <Plugin ipmi>
+       SELEnabled true # only feat_ipmi_events branch supports this
+    </Plugin>
+
+**Note**: By default, IPMI plugin will read all available analog sensor values,
+dispatch the values to collectd and send SEL notifications.
+
+For more information on the IPMI plugin parameters and SEL feature configuration,
+please see:
+
+https://github.com/maryamtahhan/collectd/blob/feat_ipmi_events/src/collectd.conf.pod
+
+Extended analog sensors support doesn't require addition configuration. The usual
+collectd IPMI documentation can be used.
+
+https://collectd.org/wiki/index.php/Plugin:IPMI
+https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_ipmi
+
+IPMI documentation:
+
+https://www.kernel.org/doc/Documentation/IPMI.txt
+http://www.intel.com/content/www/us/en/servers/ipmi/ipmi-second-gen-interface-spec-v2-rev1-1.html
 
 Mcelog Plugin:
 --------------
@@ -569,13 +652,13 @@ To see this demo in action please checkout: `Barometer OPNFV Summit demo`_
 
 References
 ----------
-[1] https://collectd.org/wiki/index.php/Naming_schema
-[2] https://github.com/collectd/collectd/blob/master/src/daemon/plugin.h
-[3] https://collectd.org/wiki/index.php/Value_list_t
-[4] https://collectd.org/wiki/index.php/Data_set
-[5] https://collectd.org/documentation/manpages/types.db.5.shtml
-[6] https://collectd.org/wiki/index.php/Data_source
-[7] https://collectd.org/wiki/index.php/Meta_Data_Interface
+.. [1] https://collectd.org/wiki/index.php/Naming_schema
+.. [2] https://github.com/collectd/collectd/blob/master/src/daemon/plugin.h
+.. [3] https://collectd.org/wiki/index.php/Value_list_t
+.. [4] https://collectd.org/wiki/index.php/Data_set
+.. [5] https://collectd.org/documentation/manpages/types.db.5.shtml
+.. [6] https://collectd.org/wiki/index.php/Data_source
+.. [7] https://collectd.org/wiki/index.php/Meta_Data_Interface
 
 .. _Barometer OPNFV Summit demo: https://prezi.com/kjv6o8ixs6se/software-fastpath-service-quality-metrics-demo/
 .. _ceilometer plugin: https://github.com/openstack/collectd-ceilometer-plugin/tree/stable/mitaka
