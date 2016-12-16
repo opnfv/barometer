@@ -16,6 +16,24 @@
       "revId": "a7309dbc2a62457ba716ab2122572f7fb48b38c7",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ac10518_51924fa0",
+        "filename": "docs/userguide/collectd.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2016-12-16T17:08:02Z",
+      "side": 1,
+      "message": "yes. The plugin uses Intelligent Platform Management Interface to read the sensor information.",
+      "parentUuid": "5ac10518_51ab2fd6",
+      "revId": "a7309dbc2a62457ba716ab2122572f7fb48b38c7",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
