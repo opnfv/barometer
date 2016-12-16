@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ac10518_51ab2fd6",
+        "filename": "docs/userguide/collectd.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2016-12-16T16:51:14Z",
+      "side": 1,
+      "message": "is IPMI also spelled out above? Intelligent Platform Management Interface (IPMI)",
+      "revId": "a7309dbc2a62457ba716ab2122572f7fb48b38c7",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
