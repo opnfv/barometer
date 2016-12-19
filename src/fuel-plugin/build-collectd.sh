@@ -1,8 +1,13 @@
 #!/bin/bash
 
-BUILD_HOME="$(pwd)"
+BUILD_HOME=/tmp/collectd-build
 
 set -eux
+
+sudo rm -rf $BUILD_HOME
+sudo mkdir -p $BUILD_HOME
+sudo chmod 777 $BUILD_HOME
+
 sudo apt-get -y install build-essential dh-autoreconf fakeroot  devscripts dpkg-dev git wget
 
 sudo apt-get -y install \
@@ -62,15 +67,24 @@ sudo apt-get -y install \
     python-dev
 
 
+
+cd ${BUILD_HOME}
+git clone https://github.com/01org/intel-cmt-cat.git
+cd intel-cmt-cat/
+git checkout c194e3a14d5efc1bd05a8ef7a49cfaf689f66937
+make
+sudo make install PREFIX=/fuel-plugin/build/qpos
+
 cd ${BUILD_HOME}
 rm -rf collectd
-git clone https://github.com/collectd/collectd; cd collectd; git checkout 797ed5e5bee9ee89361f12e447ffc6ceb6ef79d2
+git clone https://github.com/collectd/collectd; cd collectd; git checkout 786a6be461cf58ef2b8c57974cad2a79ba2ee82c
 git clone https://github.com/collectd/pkg-debian; cd pkg-debian; git checkout 549d3caba74210ad762fe8c556801d9c11ab9876
-mv debian ..
+patch -p1 < /fuel-plugin/enable_pqos.diff
+cp -r debian ..
 
 cd ${BUILD_HOME}/collectd
 ./build.sh
 debian/rules build || true
 debian/rules build
 fakeroot debian/rules binary
-cp ${BUILD_HOME}/*.deb /build
+cp ${BUILD_HOME}/*.deb /fuel-plugin/build
