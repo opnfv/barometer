@@ -55,19 +55,3 @@ step 1, 2, 3 may be bypassed if fuel plugin is installed from /opt/opnfv in fuel
 SSH to openstack controller node:
     source openrc
     ceilometer sample-list --meter interface.if_packets
-
-9) known issues
-
-a) connection aborted
-  root@node-11:~# ceilometer sample-list --meter interface.if_packets
-('Connection aborted.', BadStatusLine("''",))
-
-  workaround:
-  root@node-11:~# sudo service ceilometer-api restart
-
-b) Service Unavailable
-  root@node-11:~# ceilometer sample-list --meter interface.if_packets
-Service Unavailable (HTTP 503)
-
-  workaround:
-  root@node-11:~# sudo service ceilometer-api restart
