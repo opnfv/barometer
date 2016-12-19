@@ -13,19 +13,22 @@ DIR="$(dirname `readlink -f $0`)"
 function build_pkg {
   case $1 in
     ubuntu)
-      cd ${DIR}
-      rm -rf ${DIR}/repositories/ubuntu; mkdir -p ${DIR}/repositories/ubuntu
-      rm -rf collectd-ceilometer-plugin
+      rm -rf ${DIR}/build; mkdir -p ${DIR}/build
+
+      cd ${DIR}/build
       git clone https://github.com/openstack/collectd-ceilometer-plugin
       cd  collectd-ceilometer-plugin
       git checkout 73372f2eb86c81f12bc10b392f75050a401107db
-      tar cfvz ${DIR}/repositories/ubuntu/collectd-ceilometer.tgz . --exclude=collectd-ceilometer.tgz
-      cd ..; rm -rf collectd-ceilometer-plugin
 
       # build collectd
       cd ${DIR}
-      sudo docker  build -t collectd_build .
-      sudo docker run -v${DIR}/repositories/ubuntu:/build -t collectd_build /build-collectd.sh
+      sudo docker build -t collectd_build .
+      sudo docker run -v${DIR}:/fuel-plugin -t collectd_build /fuel-plugin/build-collectd.sh
+
+      rm -rf ${DIR}/repositories/ubuntu; mkdir -p ${DIR}/repositories/ubuntu
+      cd ${DIR}/build
+      tar cfvz ${DIR}/repositories/ubuntu/collectd-ceilometer.tgz .
+      cd ..; rm -rf ${DIR}/build
       ;;
     *) echo "Not supported system"; exit 1;;
   esac
