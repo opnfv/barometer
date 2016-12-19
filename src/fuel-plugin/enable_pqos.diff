@@ -1,0 +1,12 @@
+diff --git a/debian/rules b/debian/rules
+index ba7cfc0..281df97 100755
+--- a/debian/rules
++++ b/debian/rules
+@@ -168,6 +168,7 @@ config.status: configure
+ 	
+ 	PKG_CONFIG_PATH="$(CURDIR)/debian/pkgconfig:$$PKG_CONFIG_PATH" \
+ 	./configure $(confflags) CPPFLAGS="$(CPPFLAGS)" CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" \
++		--enable-syslog --enable-logfile --with-libpqos=/opt/pqos/--enable-debug \
+ 		|| ( status=$$?; cat config.log; exit $$status )
+ 
+ build: build-arch build-indep

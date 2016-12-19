@@ -15,6 +15,13 @@ apt-get install -y collectd python-dev libpython2.7
 
 rm -rf $INSTALL_HOME; mkdir -p $INSTALL_HOME
 cd $INSTALL_HOME
+curl http://$HOST:8080/plugins/fuel-plugin-collectd-ceilometer-1.0/repositories/ubuntu/pqos.tgz | tar xzvf -
+cat << EOF > /etc/ld.so.conf.d/pqos.conf
+$INSTALL_HOME/lib
+EOF
+ldconfig
+modprobe msr
+
 curl http://$HOST:8080/plugins/fuel-plugin-collectd-ceilometer-1.0/repositories/ubuntu/collectd-ceilometer.tgz | tar xzvf -
 
 cat << EOF > /etc/collectd/collectd.conf.d/collectd-ceilometer-plugin.conf
