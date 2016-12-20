@@ -442,21 +442,36 @@ Clone and install the collectd ovs plugin:
 
 Where $BRANCH is feat_ovs_link or feat_ovs_stats.
 
-This will install collectd to /opt/collectd
-The collectd configuration file can be found at /opt/collectd/etc
-To configure the OVS plugins you need to modify the configuration file to
+This will install collectd to /opt/collectd. The collectd configuration file
+can be found at /opt/collectd/etc. To configure the OVS events plugin
+(feat_ovs_link branch) you need to modify the configuration file to
 include:
 
 .. code:: bash
 
     <LoadPlugin ovs_events>
-      Interval 1
+       Interval 1
     </LoadPlugin>
     <Plugin "ovs_events">
        Port 6640
        Socket "/var/run/openvswitch/db.sock"
        Interfaces "br0" "veth0"
        SendNotification false
+    </Plugin>
+
+To configure the OVS stats plugin (feat_ovs_stats branch) you need to modify the
+configuration file to include:
+
+.. code:: bash
+
+    <LoadPlugin ovs_stats>
+       Interval 1
+    </LoadPlugin>
+    <Plugin ovs_stats>
+       Port "6640"
+       Address "127.0.0.1"
+       Socket "/var/run/openvswitch/db.sock"
+       Bridges "br0" "br_ext"
     </Plugin>
 
 For more information on the plugin parameters, please see:
