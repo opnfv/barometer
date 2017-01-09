@@ -16,3 +16,4 @@ Barometer user guide
      :maxdepth: 3
 
      collectd.userguide.rst
+     collectd.ves.userguide.rst
