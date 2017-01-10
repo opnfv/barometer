@@ -1,0 +1,7 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+2: Maryam Tahhan <maryam.tahhan@intel.com>
+Submitted-by: Maryam Tahhan <maryam.tahhan@intel.com>
+Submitted-at: Tue, 10 Jan 2017 13:29:58 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/26213
+Project: barometer
+Branch: refs/heads/master
