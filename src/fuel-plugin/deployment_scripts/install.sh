@@ -23,6 +23,8 @@ modprobe msr
 
 apt-get install -y --allow-unauthenticated collectd python-dev libpython2.7
 
+cat << EOF > /etc/collectd/collectd.conf.d/intel-rdt.conf
+
 cat << EOF > /etc/collectd/collectd.conf.d/collectd-ceilometer-plugin.conf
 <LoadPlugin python>
   Globals true
@@ -58,6 +60,16 @@ cat << EOF > /etc/collectd/collectd.conf.d/collectd-ceilometer-plugin.conf
         OS_TENANT_NAME "services"
 
     </Module>
+</Plugin>
+EOF
+
+cat << EOF > /etc/collectd/collectd.conf.d/intel-rdt.conf
+<LoadPlugin intel_rdt>
+  Interval 1
+</LoadPlugin>
+
+<Plugin "intel_rdt">
+  Cores ""
 </Plugin>
 EOF
 
