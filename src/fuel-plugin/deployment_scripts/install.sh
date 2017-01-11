@@ -61,4 +61,14 @@ cat << EOF > /etc/collectd/collectd.conf.d/collectd-ceilometer-plugin.conf
 </Plugin>
 EOF
 
+cat << EOF > /etc/collectd/collectd.conf.d/intel-rdt.conf
+<LoadPlugin intel_rdt>
+  Interval 1
+</LoadPlugin>
+
+<Plugin "intel_rdt">
+  Cores ""
+</Plugin>
+EOF
+
 service collectd restart
