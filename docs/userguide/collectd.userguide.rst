@@ -20,6 +20,11 @@ Barometer has enabled the following collectd plugins:
 * RDT plugin: A read plugin that provides the last level cache utilitzation and
   memory bandwidth utilization
 
+* Open vSwitch events Plugin: A read plugin that retrieves events from OVS.
+
+* mcelog plugin: A read plugin that uses mcelog client protocol to check for
+  memory Machine Check Exceptions and sends the stats for reported exceptions
+
 All the plugins above are available on the collectd master, except for the
 ceilometer plugin as it's a python based plugin and only C plugins are accepted
 by the collectd community. The ceilometer plugin lives in the OpenStack
@@ -30,13 +35,8 @@ Other plugins under development or existing as a pull request into collectd mast
 * dpdkevents:  A read plugin that retrieves DPDK link status and DPDK
   forwarding cores liveliness status (DPDK Keep Alive).
 
-* Open vSwitch events Plugin: A read plugin that retrieves events from OVS.
-
 * Open vSwitch stats Plugin: A read plugin that retrieve flow and interface
   stats from OVS.
-
-* mcelog plugin: A read plugin that uses mcelog client protocol to check for
-  memory Machine Check Exceptions and sends the stats for reported exceptions.
 
 * SNMP write: A write plugin that will act as a SNMP subagent and will map
   collectd metrics to relavent OIDs. Will only support SNMP: get, getnext and
@@ -248,9 +248,9 @@ https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
 
 Mcelog Plugin:
 --------------
-Repo: https://github.com/maryamtahhan/collectd
+Repo: https://github.com/collectd/collectd
 
-Branch: feat_ras
+Branch: master
 
 Dependencies: mcelog
 
@@ -401,11 +401,16 @@ To inject corrected memory errors:
 
 * Check the MCE statistic: mcelog --client. Check the mcelog log for injected error details: less /var/log/mcelog.
 
+
 Open vSwitch Plugins
 ---------------------
-Repo: https://github.com/maryamtahhan/collectd
+OvS Events Repo: https://github.com/collectd/collectd
 
-Branch: feat_ovs_link, feat_ovs_stats
+OvS Stats Repo: https://github.com/maryamtahhan/collectd
+
+OvS Events Branch: master
+
+OvS Stats Branch:feat_ovs_stats
 
 Dependencies: Open vSwitch, libyajl
 
@@ -432,7 +437,7 @@ Clone and install the collectd ovs plugin:
 
 .. code:: bash
 
-    $ git clone  https://github.com/maryamtahhan/collectd
+    $ git clone $REPO
     $ cd collectd
     $ git checkout $BRANCH
     $ ./build.sh
@@ -440,7 +445,9 @@ Clone and install the collectd ovs plugin:
     $ make
     $ sudo make install
 
-Where $BRANCH is feat_ovs_link or feat_ovs_stats.
+where $REPO is one of the repos listed at the top of this section.
+
+Where $BRANCH is master or feat_ovs_stats.
 
 This will install collectd to /opt/collectd
 The collectd configuration file can be found at /opt/collectd/etc
@@ -460,7 +467,7 @@ include:
     </Plugin>
 
 For more information on the plugin parameters, please see:
-https://github.com/maryamtahhan/collectd/blob/feat_ovs_link/src/collectd.conf.pod
+https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
 and
 https://github.com/maryamtahhan/collectd/blob/feat_ovs_stats/src/collectd.conf.pod
 
