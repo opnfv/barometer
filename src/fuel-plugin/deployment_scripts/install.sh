@@ -71,4 +71,16 @@ cat << EOF > /etc/collectd/collectd.conf.d/intel-rdt.conf
 </Plugin>
 EOF
 
+cat << EOF > /etc/collectd/collectd.conf.d/hugepages.conf
+LoadPlugin hugepages
+
+<Plugin hugepages>
+    ReportPerNodeHP  true
+    ReportRootHP     true
+    ValuesPages      true
+    ValuesBytes      false
+    ValuesPercentage false
+</Plugin>
+EOF
+
 service collectd restart
