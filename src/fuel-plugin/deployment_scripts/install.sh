@@ -11,6 +11,9 @@ OS_PASSWORD=$4
 CEILOMETER_URL_TYPE=${CEILOMETER_URL_TYPE:-internalURL}
 CEILOMETER_TIMEOUT=${CEILOMETER_TIMEOUT:-1000}
 
+MCELOG_SOCKET="socket-path = /var/run/mcelog-client"
+MCELOG_CONF="/etc/mcelog/mcelog.conf"
+
 rm -rf $INSTALL_HOME; mkdir -p $INSTALL_HOME
 cd $INSTALL_HOME
 curl http://$HOST:8080/plugins/fuel-plugin-collectd-ceilometer-1.0/repositories/ubuntu/collectd-ceilometer.tgz | tar xzvf -
@@ -21,7 +24,9 @@ EOF
 ldconfig
 modprobe msr
 
-apt-get install -y --allow-unauthenticated collectd python-dev libpython2.7
+apt-get install -y --allow-unauthenticated collectd python-dev libpython2.7 mcelog
+
+echo $MCELOG_SOCKET | sudo tee -a $MCELOG_CONF;
 
 cat << EOF > /etc/collectd/collectd.conf.d/collectd-ceilometer-plugin.conf
 <LoadPlugin python>
@@ -80,6 +85,15 @@ LoadPlugin hugepages
     ValuesPages      true
     ValuesBytes      false
     ValuesPercentage false
+</Plugin>
+EOF
+
+cat << EOF > /etc/collectd/collectd.conf.d/mcelog.conf
+<LoadPlugin mcelog>
+  Interval 1
+</LoadPlugin>
+<Plugin "mcelog">
+   McelogClientSocket "/var/run/mcelog-client"
 </Plugin>
 EOF
 
