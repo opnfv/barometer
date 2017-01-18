@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ac10518_3c4f3494",
+        "filename": "src/fuel-plugin/deployment_scripts/install.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1630
+      },
+      "writtenOn": "2017-01-18T08:49:01Z",
+      "side": 1,
+      "message": "set-manager is risky",
+      "revId": "d389f22c07233c9d57399a7f2561259c0061de1e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
