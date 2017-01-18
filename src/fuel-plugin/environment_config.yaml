@@ -1,0 +1,21 @@
+attributes:
+    enable_mcelog:
+      type: "checkbox"
+      weight: 20
+      value: false
+      label: "Enable collectd for mcelog"
+    enable_intel_rdt:
+      type: "checkbox"
+      weight: 20
+      value: false
+      label: "Enable collectd for Intel RDT"
+    enable_hugepages:
+      type: "checkbox"
+      weight: 20
+      value: false
+      label: "Enable collectd for hugepages"
+    enable_ovs_events:
+      type: "checkbox"
+      weight: 20
+      value: false
+      label: "Enable collectd for Open vSwitch events"
