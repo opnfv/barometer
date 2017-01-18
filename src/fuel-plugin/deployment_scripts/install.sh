@@ -7,6 +7,10 @@ HOST=$1
 OS_AUTH_URL=$2
 OS_USERNAME=$3
 OS_PASSWORD=$4
+enable_mcelog=$5
+enable_intel_rdt=$6
+enable_hugepages=$7
+enable_ovs_events=$8
 
 CEILOMETER_URL_TYPE=${CEILOMETER_URL_TYPE:-internalURL}
 CEILOMETER_TIMEOUT=${CEILOMETER_TIMEOUT:-1000}
@@ -66,7 +70,9 @@ cat << EOF > /etc/collectd/collectd.conf.d/collectd-ceilometer-plugin.conf
 </Plugin>
 EOF
 
-cat << EOF > /etc/collectd/collectd.conf.d/intel-rdt.conf
+if [ $enable_intel_rdt = 'true' ]
+then
+    cat << EOF > /etc/collectd/collectd.conf.d/intel-rdt.conf
 <LoadPlugin intel_rdt>
   Interval 1
 </LoadPlugin>
@@ -75,8 +81,11 @@ cat << EOF > /etc/collectd/collectd.conf.d/intel-rdt.conf
   Cores ""
 </Plugin>
 EOF
+fi
 
-cat << EOF > /etc/collectd/collectd.conf.d/hugepages.conf
+if [ $enable_hugepages = 'true' ]
+then
+    cat << EOF > /etc/collectd/collectd.conf.d/hugepages.conf
 LoadPlugin hugepages
 
 <Plugin hugepages>
@@ -87,7 +96,10 @@ LoadPlugin hugepages
     ValuesPercentage false
 </Plugin>
 EOF
+fi
 
+if [ $enable_mcelog = 'true' ]
+then
 cat << EOF > /etc/collectd/collectd.conf.d/mcelog.conf
 <LoadPlugin mcelog>
   Interval 1
@@ -96,5 +108,6 @@ cat << EOF > /etc/collectd/collectd.conf.d/mcelog.conf
    McelogClientSocket "/var/run/mcelog-client"
 </Plugin>
 EOF
+fi
 
 service collectd restart
