@@ -25,7 +25,7 @@ ldconfig
 modprobe msr
 
 apt-get install -y --allow-unauthenticated collectd python-dev libpython2.7 mcelog
-
+ovs-vsctl set-manager ptcp:6640
 echo $MCELOG_SOCKET | sudo tee -a $MCELOG_CONF;
 
 cat << EOF > /etc/collectd/collectd.conf.d/collectd-ceilometer-plugin.conf
@@ -94,6 +94,15 @@ cat << EOF > /etc/collectd/collectd.conf.d/mcelog.conf
 </LoadPlugin>
 <Plugin "mcelog">
    McelogClientSocket "/var/run/mcelog-client"
+</Plugin>
+EOF
+
+cat << EOF > /etc/collectd/collectd.conf.d/ovs.conf
+<LoadPlugin ovs_events>
+  Interval 1
+</LoadPlugin>
+<Plugin "ovs_events">
+   SendNotification true
 </Plugin>
 EOF
 
