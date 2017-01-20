@@ -3,7 +3,7 @@ name: fuel-plugin-collectd-ceilometer
 # Human-readable name for your plugin
 title: Deploy Collectd Ceilometer Plugin
 # Plugin version
-version: '1.0.0'
+version: '1.0.1'
 # Description
 description: Deploy Collectd Ceilometer Plugin
 # Required fuel version

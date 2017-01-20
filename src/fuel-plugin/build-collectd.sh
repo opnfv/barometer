@@ -77,7 +77,7 @@ sudo make install PREFIX=/fuel-plugin/build/qpos
 
 cd ${BUILD_HOME}
 rm -rf collectd
-git clone https://github.com/collectd/collectd; cd collectd; git checkout 76fb10bf790e35dd6caca13c4bb5d0f86c517370
+git clone https://github.com/collectd/collectd; cd collectd; git checkout 36c657e9864856a10c1dba2519a22ab73d68ce76
 git clone https://github.com/collectd/pkg-debian; cd pkg-debian; git checkout 549d3caba74210ad762fe8c556801d9c11ab9876
 patch -p1 < /fuel-plugin/enable_pqos.diff
 cp -r debian ..
