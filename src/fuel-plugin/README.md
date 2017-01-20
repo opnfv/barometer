@@ -45,6 +45,7 @@ step 1, 2, 3 may be bypassed if fuel plugin is installed from /opt/opnfv in fuel
   b) enable collectd-ceilometer
     go to settings/other
     enable collectd-ceilometer plugin with checkbox
+    enable the barometer plugins using the checkboxes
   c) save settings
 
 6) add nodes to environment
