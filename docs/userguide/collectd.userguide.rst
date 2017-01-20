@@ -214,9 +214,16 @@ Building and installing PQoS/Intel RDT library:
 .. code:: bash
 
     $ git clone https://github.com/01org/intel-cmt-cat.git
-    $ cd intel-cmt-cat.git
+    $ cd intel-cmt-cat
     $ make
     $ make install PREFIX=/usr
+
+You will need to insert the msr kernel module:
+
+.. code:: bash
+
+    $ modprobe msr
+
 
 Building and installing collectd:
 
@@ -364,6 +371,18 @@ A utility to inject corrected, uncorrected and fatal machine check exceptions
     $ cd mce-inject
     $ make
     $ modprobe mce-inject
+
+Modify the test/corrected script to include the following:
+
+.. code:: bash
+
+    CPU 0 BANK 0
+    STATUS 0xcc00008000010090
+    ADDR 0x0010FFFFFFF
+
+Inject the error:
+.. code:: bash
+
     $ ./mce-inject < test/corrected
 
 **Note: the uncorrected and fatal scripts under test will cause a platform reset.
