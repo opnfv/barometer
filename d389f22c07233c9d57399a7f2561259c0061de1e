@@ -16,6 +16,24 @@
       "revId": "d389f22c07233c9d57399a7f2561259c0061de1e",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ac10518_eb647b23",
+        "filename": "src/fuel-plugin/deployment_scripts/install.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-01-20T11:47:43Z",
+      "side": 1,
+      "message": "hmm why is that? it;s the only way we can open the socket for the ovs-collectd plugin?",
+      "parentUuid": "5ac10518_3c4f3494",
+      "revId": "d389f22c07233c9d57399a7f2561259c0061de1e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
