@@ -16,6 +16,24 @@
       "revId": "d5b5c51a34db8ef7a7f8969c62180d1540b027f8",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ac10518_5168e286",
+        "filename": "src/fuel-plugin/metadata.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1630
+      },
+      "writtenOn": "2017-01-22T00:14:35Z",
+      "side": 1,
+      "message": "we don\u0027t need to update version when we update collectd commit id. I just simple map plugin version with fuel version.",
+      "parentUuid": "5ac10518_8685aeae",
+      "revId": "d5b5c51a34db8ef7a7f8969c62180d1540b027f8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
