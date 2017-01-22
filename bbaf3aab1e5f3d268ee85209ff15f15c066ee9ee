@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ac10518_916e4a95",
+        "filename": "src/fuel-plugin/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1630
+      },
+      "writtenOn": "2017-01-22T00:12:19Z",
+      "side": 1,
+      "message": "do you want to change plugin name? If yes, we can change plugin name and update all doc.",
+      "revId": "bbaf3aab1e5f3d268ee85209ff15f15c066ee9ee",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
