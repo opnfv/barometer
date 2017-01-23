@@ -1,11 +1,11 @@
 # Plugin name
 name: fuel-plugin-collectd-ceilometer
 # Human-readable name for your plugin
-title: Deploy Collectd Ceilometer Plugin
+title: Barometer Plugin
 # Plugin version
 version: '1.0.0'
 # Description
-description: Deploy Collectd Ceilometer Plugin
+description: Deploy Barometer Plugin
 # Required fuel version
 fuel_version: ['10.0']
 # Specify license of your plugin

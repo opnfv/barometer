@@ -1,5 +1,5 @@
-plugin-collectd-ceilometer
-=========================
+Barometer Plugin
+================
 
 Plugin description
 Installs collectd-ceilometer on compute via a fuel plugin.
@@ -30,10 +30,10 @@ step 1, 2, 3 may be bypassed if fuel plugin is installed from /opt/opnfv in fuel
 
 2) build plugin
     fpb --build <plugin-dir>
-    e.g.: fpb --build fastpathmetrics/src/fuel-plugin
+    e.g.: fpb --build barometer/src/fuel-plugin
 
 3) copy plugin rpm to fuel master
-	e.g. scp fuel-plugin-collectd-ceilometer-0.9-0.9.0-1.noarch.rpm  <user>@<server-name>:~/
+	e.g. scp fuel-plugin-collectd-ceilometer-1.0-1.0.0-1.noarch.rpm  <user>@<server-name>:~/
 
 4) install plugin
 	fuel plugins --install <plugin-name>.rpm
@@ -41,10 +41,10 @@ step 1, 2, 3 may be bypassed if fuel plugin is installed from /opt/opnfv in fuel
 5) prepare fuel environment
   a) enable ceilometer service
     go to settings/openstack services
-    enable ceilometer plugin with checkbox
+    check 'Install Ceilometer and Aodh' to enable ceilometer
   b) enable collectd-ceilometer
     go to settings/other
-    enable collectd-ceilometer plugin with checkbox
+    enable the barometer plugins using the checkboxes
   c) save settings
 
 6) add nodes to environment
@@ -54,4 +54,7 @@ step 1, 2, 3 may be bypassed if fuel plugin is installed from /opt/opnfv in fuel
 8) verify
 SSH to openstack controller node:
     source openrc
-    ceilometer sample-list --meter interface.if_packets
+    ceilometer sample-list -m interface.if_packets
+    ceilometer sample-list -m hugepages.vmpage_number
+    ceilometer sample-list -m ovs_events.gauge
+    ceilometer sample-list -m mcelog.errors
