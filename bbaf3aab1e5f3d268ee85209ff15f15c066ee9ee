@@ -16,6 +16,24 @@
       "revId": "bbaf3aab1e5f3d268ee85209ff15f15c066ee9ee",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ac10518_802271ff",
+        "filename": "src/fuel-plugin/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-01-23T18:39:31Z",
+      "side": 1,
+      "message": "yeah, a rename and a full update would be great",
+      "parentUuid": "5ac10518_916e4a95",
+      "revId": "bbaf3aab1e5f3d268ee85209ff15f15c066ee9ee",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
