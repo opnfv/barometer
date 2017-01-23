@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ac10518_cc167555",
+        "filename": "docs/userguide/collectd.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2017-01-23T10:05:50Z",
+      "side": 1,
+      "message": "extra line ?",
+      "revId": "cd1e981f45a31edcb3fa662f87e7dc4fa73dfe9f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
