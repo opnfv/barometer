@@ -65,7 +65,6 @@ force_install:
 	$(AT)$(MAKE) -C $(WORK_DIR) install
 	$(AT)cp $(WORK_DIR)/contrib/systemd.collectd.service /etc/systemd/system/
 	$(AT)mv /etc/systemd/system/systemd.collectd.service /etc/systemd/system/collectd.service
-	$(AT)chmod +x /etc/systemd/system/collectd.service
 	$(AT)sed -i -e 's/ExecStart=\/usr\/sbin\/collectd/ExecStart=\/opt\/collectd\/sbin\/collectd/g' /etc/systemd/system/collectd.service
 	$(AT)sed -i -e 's/CapabilityBoundingSet=/CapabilityBoundingSet=CAP_SETUID CAP_SETGID CAP_SYS_RAWIO/g' /etc/systemd/system/collectd.service
 	$(AT)systemctl daemon-reload
