@@ -82,6 +82,11 @@ is /opt/collectd.
 
 Sample configuration files can be found in '/opt/collectd/etc/collectd.conf.d'
 
+**Note**: Exec plugin requires non-root user to execute scripts. By default,
+`collectd_exec` user is used. Barometer scripts do *not* create this user. It
+needs to be manually added or exec plugin configuration has to be changed to use
+other, existing user before starting collectd service.
+
 Please note if you are using any Open vSwitch plugins you need to run:
 
 .. code:: bash
