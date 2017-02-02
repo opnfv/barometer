@@ -21,7 +21,7 @@ index ba7cfc0..d876e12 100755
  	
  	PKG_CONFIG_PATH="$(CURDIR)/debian/pkgconfig:$$PKG_CONFIG_PATH" \
  	./configure $(confflags) CPPFLAGS="$(CPPFLAGS)" CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" \
-+		--enable-syslog --enable-logfile --with-libpqos=/opt/pqos/--enable-debug \
++		--enable-syslog --enable-logfile --with-libpqos=/fuel-plugin/build/pqos --enable-debug \
  		|| ( status=$$?; cat config.log; exit $$status )
  
  build: build-arch build-indep
