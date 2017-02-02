@@ -1,27 +1,30 @@
-diff --git a/debian/changelog b/debian/changelog
-index 88d2293..fa6bce1 100644
---- a/debian/changelog
-+++ b/debian/changelog
-@@ -1,3 +1,10 @@
-+collectd (5.7.0-1) UNRELEASED; urgency=medium
-+
-+  * debian/rules:
-+    - enable ppos
-+
-+ -- Ruijing Guo <ruijing.guo@intel.com>  Thu, 22 Dec 2016 13:24:11 -0500
-+
- collectd (5.5.0-4) UNRELEASED; urgency=medium
- 
-   * debian/collectd-core.overrides:
 diff --git a/debian/rules b/debian/rules
-index ba7cfc0..d876e12 100755
+index ba7cfc0..bbda638 100755
 --- a/debian/rules
 +++ b/debian/rules
+@@ -56,7 +56,7 @@ confflags += --disable-tape
+ confflags += --disable-aquaero
+ 
+ # intel-cmt-cat is required for the intel_rdt plugin
+-confflags += --disable-intel_rdt
++#confflags += --disable-intel_rdt
+ 
+ # libdpdk is required for the dpdkstat plugin
+ confflags += --disable-dpdkstat
 @@ -168,6 +168,7 @@ config.status: configure
  	
  	PKG_CONFIG_PATH="$(CURDIR)/debian/pkgconfig:$$PKG_CONFIG_PATH" \
  	./configure $(confflags) CPPFLAGS="$(CPPFLAGS)" CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" \
-+		--enable-syslog --enable-logfile --with-libpqos=/opt/pqos/--enable-debug \
++		--enable-syslog --enable-logfile --with-libpqos=/opt/pqos/ --enable-debug \
  		|| ( status=$$?; cat config.log; exit $$status )
  
  build: build-arch build-indep
+@@ -286,7 +287,7 @@ binary-arch: build install-arch
+ 	dh_shlibdeps -a -Ncollectd-core -Ncollectd
+ 	dpkg-shlibdeps -Tdebian/collectd.substvars \
+ 		-dDepends debian/collectd-core/usr/lib/collectd/rrdtool.so
+-	dpkg-shlibdeps -Tdebian/collectd-core.substvars \
++	dpkg-shlibdeps --ignore-missing-info -Tdebian/collectd-core.substvars \
+ 		-dDepends debian/collectd-core/usr/sbin/* \
+ 		-dSuggests debian/collectd-core/usr/lib/collectd/*.so
+ 	grep shlibs:Suggests debian/collectd-core.substvars \

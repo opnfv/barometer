@@ -73,7 +73,7 @@ git clone https://github.com/01org/intel-cmt-cat.git
 cd intel-cmt-cat/
 git checkout c194e3a14d5efc1bd05a8ef7a49cfaf689f66937
 make
-sudo make install PREFIX=/fuel-plugin/build/qpos
+sudo make install PREFIX=/fuel-plugin/build/pqos
 
 cd ${BUILD_HOME}
 rm -rf collectd
