@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1acb0d3e_d4166df1",
+        "filename": "docs/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2017-02-03T13:05:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1acb0d3e_7479be92",
+      "range": {
+        "startLine": 7,
+        "startChar": 4,
+        "endLine": 7,
+        "endChar": 12
+      },
+      "revId": "6d9777162960a3ff68bfb8dafd6736dfa582d2ce",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1acb0d3e_146e3aca",
         "filename": "docs/userguide/collectd.ves.userguide.rst",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "1acb0d3e_74d3f938",
+        "filename": "docs/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2017-02-03T13:05:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1acb0d3e_146e3aca",
+      "range": {
+        "startLine": 9,
+        "startChar": 47,
+        "endLine": 9,
+        "endChar": 55
+      },
+      "revId": "6d9777162960a3ff68bfb8dafd6736dfa582d2ce",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1acb0d3e_347336b3",
         "filename": "docs/userguide/collectd.ves.userguide.rst",
         "patchSetId": 3
@@ -59,6 +107,30 @@
       "writtenOn": "2017-01-31T17:30:29Z",
       "side": 1,
       "message": "do you mean address ?",
+      "range": {
+        "startLine": 65,
+        "startChar": 32,
+        "endLine": 65,
+        "endChar": 41
+      },
+      "revId": "6d9777162960a3ff68bfb8dafd6736dfa582d2ce",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1acb0d3e_94d8e554",
+        "filename": "docs/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2017-02-03T13:05:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1acb0d3e_347336b3",
       "range": {
         "startLine": 65,
         "startChar": 32,
