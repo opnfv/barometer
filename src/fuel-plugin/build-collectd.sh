@@ -66,20 +66,10 @@ sudo apt-get -y install \
     protobuf-c-compiler \
     python-dev
 
-
-
-cd ${BUILD_HOME}
-git clone https://github.com/01org/intel-cmt-cat.git
-cd intel-cmt-cat/
-git checkout c194e3a14d5efc1bd05a8ef7a49cfaf689f66937
-make
-sudo make install PREFIX=/fuel-plugin/build/qpos
-
 cd ${BUILD_HOME}
 rm -rf collectd
 git clone https://github.com/collectd/collectd; cd collectd; git checkout 36c657e9864856a10c1dba2519a22ab73d68ce76
 git clone https://github.com/collectd/pkg-debian; cd pkg-debian; git checkout 549d3caba74210ad762fe8c556801d9c11ab9876
-patch -p1 < /fuel-plugin/enable_pqos.diff
 cp -r debian ..
 
 cd ${BUILD_HOME}/collectd

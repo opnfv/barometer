@@ -8,9 +8,8 @@ OS_AUTH_URL=$2
 OS_USERNAME=$3
 OS_PASSWORD=$4
 enable_mcelog=$5
-enable_intel_rdt=$6
-enable_hugepages=$7
-enable_ovs_events=$8
+enable_hugepages=$6
+enable_ovs_events=$7
 
 CEILOMETER_URL_TYPE=${CEILOMETER_URL_TYPE:-internalURL}
 CEILOMETER_TIMEOUT=${CEILOMETER_TIMEOUT:-1000}
@@ -21,12 +20,6 @@ MCELOG_CONF="/etc/mcelog/mcelog.conf"
 rm -rf $INSTALL_HOME; mkdir -p $INSTALL_HOME
 cd $INSTALL_HOME
 curl http://$HOST:8080/plugins/fuel-plugin-collectd-ceilometer-1.0/repositories/ubuntu/collectd-ceilometer.tgz | tar xzvf -
-
-cat << EOF > /etc/ld.so.conf.d/pqos.conf
-$INSTALL_HOME/lib
-EOF
-ldconfig
-modprobe msr
 
 apt-get install -y --allow-unauthenticated collectd python-dev libpython2.7 mcelog
 
@@ -67,19 +60,6 @@ cat << EOF > /etc/collectd/collectd.conf.d/collectd-ceilometer-plugin.conf
     </Module>
 </Plugin>
 EOF
-
-if [ $enable_intel_rdt = 'true' ]
-then
-    cat << EOF > /etc/collectd/collectd.conf.d/intel-rdt.conf
-<LoadPlugin intel_rdt>
-  Interval 1
-</LoadPlugin>
-
-<Plugin "intel_rdt">
-  Cores ""
-</Plugin>
-EOF
-fi
 
 if [ $enable_hugepages = 'true' ]
 then

@@ -4,11 +4,6 @@ attributes:
       weight: 20
       value: false
       label: "Enable collectd for mcelog"
-    enable_intel_rdt:
-      type: "checkbox"
-      weight: 20
-      value: false
-      label: "Enable collectd for Intel RDT"
     enable_hugepages:
       type: "checkbox"
       weight: 20
