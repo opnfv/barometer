@@ -60,36 +60,42 @@ REST resources are of the form:
     {ServerRoot}/eventListener/v{apiVersion}/{topicName}`
     {ServerRoot}/eventListener/v{apiVersion}/eventBatch`
 
-
 **Domain** *"host"*
-* VES domain name. It can be IP address or hostname of VES collector
-(default: `127.0.0.1`)
+  VES domain name. It can be IP address or hostname of VES collector
+  (default: `127.0.0.1`)
 
 **Port** *port*
-* VES port (default: `30000`)
+  VES port (default: `30000`)
 
 **Path** *"path"*
-* Used as the "optionalRoutingPath" element in the REST path (default: `empty`)
+  Used as the "optionalRoutingPath" element in the REST path (default: `empty`)
 
 **Topic** *"path"*
-* Used as the "topicName" element in the REST  path (default: `empty`)
+  Used as the "topicName" element in the REST  path (default: `empty`)
 
 **UseHttps** *true|false*
-* Allow plugin to use HTTPS instead of HTTP (default: `false`)
+  Allow plugin to use HTTPS instead of HTTP (default: `false`)
 
 **Username** *"username"*
-* VES collector user name (default: `empty`)
+  VES collector user name (default: `empty`)
 
 **Password** *"passwd"*
-* VES collector password (default: `empty`)
+  VES collector password (default: `empty`)
 
 **FunctionalRole** *"role"*
-* Used as the 'functionalRole' field of 'commonEventHeader' event (default:
-`Collectd VES Agent`)
+  Used as the 'functionalRole' field of 'commonEventHeader' event (default:
+  `Collectd VES Agent`)
 
 **GuestRunning** *true|false*
-* This option is used if the collectd is running on a guest machine, e.g this
-option should be set to `true` in this case. Defaults to `false`.
+  This option is used if the collectd is running on a guest machine, e.g this
+  option should be set to `true` in this case. Defaults to `false`.
+
+**SendEventInterval** *interval*
+  This configuration option controls how often (sec) collectd data is sent to
+  Vendor Event Listener (default: `20`)
+
+**ApiVersion** *version*
+  Used as the "apiVersion" element in the REST path (default: `1`)
 
 Other collectd.conf configurations
 ----------------------------------
@@ -98,7 +104,6 @@ Please ensure that FQDNLookup is set to false
 .. code:: bash
 
     FQDNLookup   false
-
 
 Please ensure that the virt plugin is enabled and configured as follows. This configuration
 is is required only on a host side ('GuestRunning' = false).
@@ -124,7 +129,11 @@ Please ensure that the cpu plugin is enabled and configured as follows
         ValuesPercentage true
     </Plugin>
 
+**Note**: The `ReportByCpu` option should be set to `true` (default) if VES pugin
+is running on guest machine ('GuestRunning' = true).
+
 Please ensure that the aggregation plugin is enabled and configured as follows
+(required if 'GuestRunning' = true)
 
 .. code:: bash
 
@@ -145,7 +154,9 @@ If plugin is running on a guest side, it is important to enable uuid plugin
 too. In this case the hostname in event message will be represented as UUID
 instead of system host name.
 
-LoadPlugin uuid
+.. code:: bash
+
+  LoadPlugin uuid
 
 If custom UUID needs to be provided, the following configuration is required in collectd.conf
 file:
