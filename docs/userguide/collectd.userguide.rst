@@ -38,9 +38,12 @@ Other plugins under development or existing as a pull request into collectd mast
 * Open vSwitch stats Plugin: A read plugin that retrieve flow and interface
   stats from OVS.
 
-* SNMP write: A write plugin that will act as a SNMP subagent and will map
-  collectd metrics to relavent OIDs. Will only support SNMP: get, getnext and
-  walk.
+* SNMP Agent: A write plugin that will act as a AgentX subagent that receives
+  and handles queries from SNMP master agent and returns the data collected
+  by read plugins. The SNMP Agent plugin handles requests only for OIDs
+  specified in configuration file. To handle SNMP queries the plugin gets data
+  from collectd and translates requested values from collectd's internal format
+  to SNMP format. Supports SNMP: get, getnext and walk requests.
 
 * Legacy/IPMI: A read plugin that reports platform thermals, voltages,
   fanspeed, current, flow, power etc. Also, the plugin monitors Intelligent
@@ -589,6 +592,121 @@ For more information on the plugin parameters, please see:
 https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
 and
 https://github.com/maryamtahhan/collectd/blob/feat_ovs_stats/src/collectd.conf.pod
+
+SNMP Agent Plugin:
+------------------
+Repo: https://github.com/maryamtahhan/collectd/
+
+Branch: feat_snmp
+
+Dependencies: NET-SNMP library
+
+Start by installing net-snmp and dependencies.
+
+On ubuntu:
+
+.. code:: bash
+
+    $ apt-get install snmp snmp-mibs-downloader snmpd libsnmp-dev
+    $ systemctl start snmpd.service
+
+Or build from source
+
+Become root to install net-snmp dependencies
+
+.. code:: bash
+
+    $ apt-get install libperl-dev
+
+Clone and build net-snmp
+
+.. code:: bash
+
+    $ git clone https://github.com/haad/net-snmp.git
+    $ cd net-snmp
+    $ ./configure --with-persistent-directory="/var/net-snmp" --with-systemd --enable-shared --prefix=/usr
+    $ make
+
+Become root
+
+.. code:: bash
+
+    $ make install
+
+Copy default configuration to persistent folder
+
+.. code:: bash
+
+    $ cp EXAMPLE.conf /usr/share/snmp/snmpd.conf
+
+Set library path and default MIB configuration
+
+.. code:: bash
+
+    $ cd ~/
+    $ echo export LD_LIBRARY_PATH=/usr/lib >> .bashrc
+    $ net-snmp-config --default-mibdirs
+    $ net-snmp-config --snmpconfpath
+
+Configure snmpd as a service
+
+.. code:: bash
+
+    $ cd net-snmp
+    $ cp ./dist/snmpd.service /etc/systemd/system/
+    $ systemctl enable snmpd.service
+    $ systemctl start snmpd.service
+
+Add the following line to snmpd.conf configuration file
+"/usr/share/snmp/snmpd.conf" to make all OID tree visible for SNMP clients:
+
+.. code:: bash
+
+    view   systemonly  included   .1
+
+To verify that SNMP is working you can get IF-MIB table using SNMP client
+to view the list of Linux interfaces:
+
+.. code:: bash
+
+    $ snmpwalk -v 2c -c public localhost IF-MIB::interfaces
+
+Clone and install the collectd snmp_agent plugin:
+
+.. code:: bash
+
+    $ git clone  https://github.com/maryamtahhan/collectd
+    $ cd collectd
+    $ git checkout feat_snmp
+    $ ./build.sh
+    $ ./configure --enable-syslog --enable-logfile --enable-debug --enable-snmp --with-libnetsnmp
+    $ make
+    $ sudo make install
+
+This will install collectd to /opt/collectd
+The collectd configuration file can be found at /opt/collectd/etc
+**SNMP Agent plugin is a generic plugin and cannot work without configuration**.
+To configure the snmp_agent plugin you need to modify the configuration file to
+include OIDs mapped to collectd types. The following example maps scalar
+memAvailReal OID to value represented as free memory type of memory plugin:
+
+.. code:: bash
+
+    LoadPlugin snmp_agent
+    <Plugin "snmp_agent">
+      <Data "memAvailReal">
+        Plugin "memory"
+        Type "memory"
+        TypeInstance "free"
+        OIDs "1.3.6.1.4.1.2021.4.6.0"
+      </Data>
+    </Plugin>
+
+For more information on the plugin parameters, please see:
+https://github.com/maryamtahhan/collectd/blob/feat_snmp/src/collectd.conf.pod
+
+For more details on AgentX subagent, please see:
+http://www.net-snmp.org/tutorial/tutorial-5/toolkit/demon/
 
 Installing collectd as a service
 --------------------------------

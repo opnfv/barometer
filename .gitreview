@@ -1,4 +1,0 @@
-[gerrit]
-host=gerrit.opnfv.org
-port=29418
-project=barometer.git
