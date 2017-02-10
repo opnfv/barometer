@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1acb0d3e_3709e631",
+        "filename": "3rd_party/collectd-ves-plugin/ves_plugin/ves_plugin.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2017-02-10T15:54:05Z",
+      "side": 1,
+      "message": "These seem to be the lines that changed, the formula for total_cpu_usage appears to divide the usage (in ns) for all virtual cpus by the number of virtual cpus (from what I can tell). So, total_cpu_usage is the average usage over all virt cpus? Maybe make this averaging clear in the name?",
+      "range": {
+        "startLine": 415,
+        "startChar": 0,
+        "endLine": 416,
+        "endChar": 69
+      },
+      "revId": "d2e04ac659e65d520ef684aa101899a61a2b9c6f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
