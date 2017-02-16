@@ -1,10 +1,10 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. (c) Intel Corporation and OPNFV
+.. (c) Intel and OPNFV
 
-********************
-Barometer user guide
-********************
+=====================
+Barometer User Guide
+=====================
 
 .. The feature user guide should provide an OPNFV user with enough information to
 .. use the features provided by the feature project in the supported scenarios.
@@ -13,7 +13,11 @@ Barometer user guide
 .. by the installer project.
 
 .. toctree::
-     :maxdepth: 3
+   :maxdepth: 1
 
-     collectd.userguide.rst
-     collectd.ves.userguide.rst
+   feature.userguide
+   collectd.ves.userguide.rst
+.. The feature.userguide.rst file should contain the text for this document
+.. additional documents can be added to this directory and added in the right order
+.. to this file as a list below.
+

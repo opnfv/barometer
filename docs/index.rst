@@ -22,11 +22,13 @@ Barometer
      :maxdepth: 3
      :numbered:
 
-     ./requirements/index.rst
-     ./userguide/index.rst
-     ./configguide/index.rst
-     ./release/index.rst
+     ./release/configguide/index.rst
+     ./release/scenarios/index.rst
+     ./release/userguide/index.rst
+     ./release/release-notes/index.rst
+     ./development/requirements/index.rst
 
 Indices
 =======
 * :ref:`search`
+
