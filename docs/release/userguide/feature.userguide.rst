@@ -1,15 +1,33 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. (c) OPNFV, Intel Corporation and others.
+.. (c) <optionally add copywriters name>
 
-collectd plugins
-=================
+===================================
+OPNFV Barometer User Guide
+===================================
+
+.. contents::
+   :depth: 3
+   :local:
+
+Barometer collectd plugins description
+---------------------------------------
+.. Describe the specific features and how it is realised in the scenario in a brief manner
+.. to ensure the user understand the context for the user guide instructions to follow.
+
+collectd is a daemon which collects system performance statistics periodically
+and provides a variety of mechanisms to publish the collected metrics. It
+supports more than 90 different input and output plugins. Input plugins
+retrieve metrics and publish them to the collectd deamon, while output plugins
+publish the data they receive to an end point. collectd also has infrastructure
+to support thresholding and notification.
+
 Barometer has enabled the following collectd plugins:
 
 * dpdkstat plugin: A read plugin that retrieve stats from the DPDK extended
    NIC stats API.
 
-* `ceilometer plugin`_: A write plugin that pushes the retrieved stats to
+* `plugin`_: A write plugin that pushes the retrieved stats to
   Ceilometer. It's capable of pushing any stats read through collectd to
   Ceilometer, not just the DPDK stats.
 
@@ -26,7 +44,7 @@ Barometer has enabled the following collectd plugins:
   memory Machine Check Exceptions and sends the stats for reported exceptions
 
 All the plugins above are available on the collectd master, except for the
-ceilometer plugin as it's a python based plugin and only C plugins are accepted
+plugin as it's a python based plugin and only C plugins are accepted
 by the collectd community. The ceilometer plugin lives in the OpenStack
 repositories.
 
@@ -45,13 +63,27 @@ Other plugins under development or existing as a pull request into collectd mast
 * Legacy/IPMI: A read plugin that reports platform thermals, voltages,
   fanspeed, current, flow, power etc. Also, the plugin monitors Intelligent
   Platform Management Interface (IPMI) System Event Log (SEL) and sends the
-  collectd notification once a new record appears in the SEL.
 
-Building collectd with the Barometer plugins and installing the dependencies
-=============================================================================
+Plugins included in the Danube release:
 
-All Upstreamed plugins
------------------------
+* Hugepages
+* Open vSwitch Events
+* Ceilometer
+* Mcelog
+
+collectd capabilities and usage
+------------------------------------
+.. Describe the specific capabilities and usage for <XYZ> feature.
+.. Provide enough information that a user will be able to operate the feature on a deployed scenario.
+
+**NOTE** Plugins included in the OPNFV D release will be built-in to the fuel
+plugin and available in the /opt/opnfv directory on the fuel master. You don't
+need to clone the barometer/collectd repos to use these, but you can configure
+them as shown in the examples below. Please note, the collectd plugins in OPNFV
+are configured with reasonable defaults, but can be overriden.
+
+Building all upstreamed plugins from scratch
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 The plugins that have been merged to the collectd master branch can all be
 built and configured through the barometer repository.
 
@@ -84,12 +116,13 @@ Sample configuration files can be found in '/opt/collectd/etc/collectd.conf.d'
 
 Please note if you are using any Open vSwitch plugins you need to run:
 
+
 .. code:: bash
 
     $ sudo ovs-vsctl set-manager ptcp:6640
 
 DPDK statistics plugin
------------------------
+^^^^^^^^^^^^^^^^^^^^^^
 Repo: https://github.com/collectd/collectd
 
 Branch: master
@@ -153,9 +186,8 @@ reboot). Pending a merge of https://github.com/collectd/collectd/pull/2073.
 
     $ ./configure LIBDPDK_CPPFLAGS="path to DPDK header files" LIBDPDK_LDFLAGS="path to DPDK libraries"
 
-
 Hugepages Plugin
------------------
+^^^^^^^^^^^^^^^^^
 Repo: https://github.com/collectd/collectd
 
 Branch: master
@@ -201,7 +233,7 @@ For more information on the plugin parameters, please see:
 https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
 
 Intel RDT Plugin
------------------
+^^^^^^^^^^^^^^^^
 Repo: https://github.com/collectd/collectd
 
 Branch: master
@@ -255,7 +287,7 @@ For more information on the plugin parameters, please see:
 https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
 
 IPMI Plugin
------------
+^^^^^^^^^^^^
 Repo: https://github.com/maryamtahhan/collectd
 
 Branch: feat_ipmi_events, feat_ipmi_analog
@@ -281,6 +313,7 @@ On Ubuntu, install the dependencies:
 
     $ sudo apt-get install libopenipmi-dev
 
+Enable IPMI support in the kernel:
 Enable IPMI support in the kernel:
 
 .. code:: bash
@@ -321,22 +354,21 @@ dispatch the values to collectd and send SEL notifications.
 
 For more information on the IPMI plugin parameters and SEL feature configuration,
 please see:
-
 https://github.com/maryamtahhan/collectd/blob/feat_ipmi_events/src/collectd.conf.pod
 
-Extended analog sensors support doesn't require addition configuration. The usual
-collectd IPMI documentation can be used.
+Extended analog sensors support doesn't require additional configuration. The usual
+collectd IPMI documentation can be used:
 
-https://collectd.org/wiki/index.php/Plugin:IPMI
-https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_ipmi
+- https://collectd.org/wiki/index.php/Plugin:IPMI
+- https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_ipmi
 
 IPMI documentation:
 
-https://www.kernel.org/doc/Documentation/IPMI.txt
-http://www.intel.com/content/www/us/en/servers/ipmi/ipmi-second-gen-interface-spec-v2-rev1-1.html
+- https://www.kernel.org/doc/Documentation/IPMI.txt
+- http://www.intel.com/content/www/us/en/servers/ipmi/ipmi-second-gen-interface-spec-v2-rev1-1.html
 
-Mcelog Plugin:
---------------
+Mcelog Plugin
+^^^^^^^^^^^^^^
 Repo: https://github.com/collectd/collectd
 
 Branch: master
@@ -364,6 +396,7 @@ Or build from source
     $ cp mcelog.service /etc/systemd/system/
     $ systemctl enable mcelog.service
     $ systemctl start mcelog.service
+
 
 Verify you got a /dev/mcelog. You can verify the daemon is running completely
 by running:
@@ -442,7 +475,6 @@ runs. There will be some kernel messages about page offlining attempts. The
 test will also lose a few pages of memory in your system (not significant)
 **Note this test will kill any running mcelog, which needs to be restarted
 manually afterwards**.
-
 **mce-inject:**
 
 A utility to inject corrected, uncorrected and fatal machine check exceptions
@@ -502,9 +534,8 @@ To inject corrected memory errors:
 
 * Check the MCE statistic: mcelog --client. Check the mcelog log for injected error details: less /var/log/mcelog.
 
-
 Open vSwitch Plugins
----------------------
+^^^^^^^^^^^^^^^^^^^^^
 OvS Events Repo: https://github.com/collectd/collectd
 
 OvS Stats Repo: https://github.com/maryamtahhan/collectd
@@ -586,7 +617,10 @@ and
 https://github.com/maryamtahhan/collectd/blob/feat_ovs_stats/src/collectd.conf.pod
 
 Installing collectd as a service
---------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+**NOTE**: In an OPNFV installation, collectd is installed and configured as a
+service.
+
 Collectd service scripts are available in the collectd/contrib directory.
 To install collectd as a service:
 
@@ -616,14 +650,11 @@ Reload
     $ sudo systemctl status collectd.service should show success
 
 Additional useful plugins
---------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Exec Plugin
-~~~~~~~~~~~
-
-Can be used to show you when notifications are being generated by calling a
-bash script that dumps notifications to file. (handy for debug). Modify
-/opt/collectd/etc/collectd.conf:
+* **Exec Plugin** : Can be used to show you when notifications are being
+ generated by calling a bash script that dumps notifications to file. (handy
+ for debug). Modify /opt/collectd/etc/collectd.conf:
 
 .. code:: bash
 
@@ -660,10 +691,8 @@ output to /tmp/notifications should look like:
 
     linkstate of "br-ex" interface has been changed to "DOWN"
 
-logfile plugin
-~~~~~~~~~~~~~~~
-Can be used to log collectd activity. Modify /opt/collectd/etc/collectd.conf to
-include:
+* **logfile plugin**: Can be used to log collectd activity. Modify
+  /opt/collectd/etc/collectd.conf to include:
 
 .. code:: bash
 
@@ -675,8 +704,9 @@ include:
         PrintSeverity false
     </Plugin>
 
+
 Monitoring Interfaces and Openstack Support
--------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. Figure:: monitoring_interfaces.png
 
    Monitoring Interfaces and Openstack Support
@@ -689,7 +719,7 @@ and publishing the retrieved stats to Ceilometer through the ceilometer plugin.
 To see this demo in action please checkout: `Barometer OPNFV Summit demo`_
 
 References
-----------
+^^^^^^^^^^^
 .. [1] https://collectd.org/wiki/index.php/Naming_schema
 .. [2] https://github.com/collectd/collectd/blob/master/src/daemon/plugin.h
 .. [3] https://collectd.org/wiki/index.php/Value_list_t
@@ -700,3 +730,4 @@ References
 
 .. _Barometer OPNFV Summit demo: https://prezi.com/kjv6o8ixs6se/software-fastpath-service-quality-metrics-demo/
 .. _ceilometer plugin: https://github.com/openstack/collectd-ceilometer-plugin/tree/stable/mitaka
+
