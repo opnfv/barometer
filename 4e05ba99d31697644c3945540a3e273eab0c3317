@@ -22,6 +22,57 @@
       "revId": "4e05ba99d31697644c3945540a3e273eab0c3317",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dabed58f_8688bb23",
+        "filename": "docs/release/scenarios/os-nosdn-kvm_ovs_dpdk_bar-ha/scenario.description.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2017-02-16T17:22:03Z",
+      "side": 1,
+      "message": "space missing between sentences \".These\"",
+      "revId": "4e05ba99d31697644c3945540a3e273eab0c3317",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dabed58f_a68dbf33",
+        "filename": "docs/release/scenarios/os-nosdn-kvm_ovs_dpdk_bar-ha/scenario.description.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2017-02-16T17:22:03Z",
+      "side": 1,
+      "message": "missing space \".These\"",
+      "revId": "4e05ba99d31697644c3945540a3e273eab0c3317",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dabed58f_2679cf2f",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2017-02-16T17:22:03Z",
+      "side": 1,
+      "message": "duplicate line?",
+      "revId": "4e05ba99d31697644c3945540a3e273eab0c3317",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
