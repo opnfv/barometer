@@ -2,8 +2,9 @@
 .. http://creativecommons.org/licenses/by/4.0
 .. (c) OPNFV, Intel Corporation and others.
 
-collectd VES plugin
-===================
+==============================
+collectd VES plugin User Guide
+==============================
 The Barometer repository contains a python based write plugin for VES.
 
 The plugin currently supports pushing platform relevant metrics through the
