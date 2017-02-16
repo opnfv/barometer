@@ -2,11 +2,12 @@
 .. http://creativecommons.org/licenses/by/4.0
 .. (c) OPNFV, Intel Corporation and others.
 
-************************
-Barometer Release Notes
-************************
-.. toctree::
-     :maxdepth: 3
-     :numbered:
+==================================================
+OPNFV Barometer Release Notes
+==================================================
 
-     01-release.rst
+.. toctree::
+   :maxdepth: 1
+
+   release-notes
+
