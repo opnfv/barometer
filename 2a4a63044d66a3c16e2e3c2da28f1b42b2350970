@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dabed58f_57f82fe5",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 459
+      },
+      "writtenOn": "2017-02-17T10:04:08Z",
+      "side": 1,
+      "message": "trailing whitespaces",
+      "revId": "2a4a63044d66a3c16e2e3c2da28f1b42b2350970",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dabed58f_b7bdeb04",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 459
+      },
+      "writtenOn": "2017-02-17T10:04:08Z",
+      "side": 1,
+      "message": "I think you should return here the value that main() returns. For example, with the exit() function.",
+      "revId": "2a4a63044d66a3c16e2e3c2da28f1b42b2350970",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dabed58f_d7517fd9",
+        "filename": "baro_utils/get_ssh_keys.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 459
+      },
+      "writtenOn": "2017-02-17T10:04:08Z",
+      "side": 1,
+      "message": "maybe for 2 lines is not needed, but I think .sh scripts also need license header... \nhttps://wiki.opnfv.org/display/DEV/Contribution+Guidelines",
+      "revId": "2a4a63044d66a3c16e2e3c2da28f1b42b2350970",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
