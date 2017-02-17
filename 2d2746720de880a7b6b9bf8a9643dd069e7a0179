@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dabed58f_7a2517aa",
+        "filename": "baro_utils/get_ssh_keys.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 459
+      },
+      "writtenOn": "2017-02-17T18:05:48Z",
+      "side": 1,
+      "message": "I would do\n\n    mkdir -p ...\n\nJust to avoid error in case the dir already exists",
+      "revId": "2d2746720de880a7b6b9bf8a9643dd069e7a0179",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dabed58f_1a3adbcd",
+        "filename": "baro_utils/get_ssh_keys.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 459
+      },
+      "writtenOn": "2017-02-17T18:05:48Z",
+      "side": 1,
+      "message": "What is $ssh_opts here?",
+      "revId": "2d2746720de880a7b6b9bf8a9643dd069e7a0179",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
