@@ -2,12 +2,12 @@
 .. http://creativecommons.org/licenses/by/4.0
 .. (c) OPNFV, Intel Corporation and others.
 
-**********************
-Barometer Requirements
-**********************
+=============================
+OPNFV Barometer Requirements
+=============================
+
 .. toctree::
-     :maxdepth: 3
-     :numbered:
+     :maxdepth: 1
 
      01-intro.rst
      02-collectd.rst
