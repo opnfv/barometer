@@ -44,7 +44,7 @@ Barometer has enabled the following collectd plugins:
   memory Machine Check Exceptions and sends the stats for reported exceptions
 
 All the plugins above are available on the collectd master, except for the
-plugin as it's a python based plugin and only C plugins are accepted
+ceilometer plugin as it's a python based plugin and only C plugins are accepted
 by the collectd community. The ceilometer plugin lives in the OpenStack
 repositories.
 
@@ -154,41 +154,93 @@ Building and installing collectd:
 
 This will install collectd to /opt/collectd
 The collectd configuration file can be found at /opt/collectd/etc
-To configure the hugepages plugin you need to modify the configuration file to
+To configure the dpdkstats plugin you need to modify the configuration file to
 include:
 
 .. code:: bash
 
     LoadPlugin dpdkstat
-    <Plugin dpdkstat>
-           Coremask "0xf"
-           ProcessType "secondary"
-           FilePrefix "rte"
-           EnabledPortMask 0xffff
+    <Plugin "dpdkstat">
+        <EAL>
+            Coremask "0x2"
+            MemoryChannels "4"
+            ProcessType "secondary"
+            FilePrefix "rte"
+        </EAL>
+        EnabledPortMask 0xffff
+        PortName "interface1"
+        PortName "interface2"
     </Plugin>
 
 For more information on the plugin parameters, please see:
 https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
-
-Please note if you are configuring collectd with the **static DPDK library**
-you must compile the DPDK library with the -fPIC flag:
-
-.. code:: bash
-
-    $ make EXTRA_CFLAGS=-fPIC
-
-You must also modify the configuration step when building collectd:
-
-.. code:: bash
-
-    $ ./configure CFLAGS=" -lpthread -Wl,--whole-archive -Wl,-ldpdk -Wl,-lm -Wl,-lrt -Wl,-lpcap -Wl,-ldl -Wl,--no-whole-archive"
 
 Please also note that if you are not building and installing DPDK system-wide
 you will need to specify the specific paths to the header files and libraries
 using LIBDPDK_CPPFLAGS and LIBDPDK_LDFLAGS. You will also need to add the DPDK
 library symbols to the shared library path using ldconfig. Note that this
 update to the shared library path is not persistant (i.e. it will not survive a
-reboot). Pending a merge of https://github.com/collectd/collectd/pull/2073.
+reboot).
+
+DPDK events plugin
+^^^^^^^^^^^^^^^^^^^^^^
+Repo: https://github.com/maryamtahhan/collectd
+Branch: dpdkevents_upstream
+Pull Request: https://github.com/collectd/collectd/pull/2157
+Dependencies: DPDK (http://dpdk.org/)
+To build and install DPDK to /usr please see:
+https://github.com/collectd/collectd/blob/master/docs/BUILD.dpdkstat.md
+
+Building and installing collectd:
+
+.. code:: bash
+
+    $ git clone https://github.com/maryamtahhan/collectd.git
+    $ cd collectd
+    $ ./build.sh
+    $ ./configure --enable-syslog --enable-logfile --enable-debug
+    $ make
+    $ sudo make install
+
+This will install collectd to /opt/collectd
+The collectd configuration file can be found at /opt/collectd/etc
+To configure the dpdkevents plugin you need to modify the configuration file to
+include:
+
+.. code:: bash
+
+    LoadPlugin dpdkevents
+    <Plugin "dpdkevents">
+        Interval 1
+        <EAL>
+            Coremask "0x1"
+            MemoryChannels "4"
+            ProcessType "secondary"
+            FilePrefix "rte"
+        </EAL>
+        <Event "link_status">
+            SendEventsOnUpdate true
+            EnabledPortMask 0xffff
+            PortName "interface1"
+            PortName "interface2"
+            SendNotification false
+        </Event>
+        <Event "keep_alive">
+            SendEventsOnUpdate true
+            LCoreMask "0xf"
+            KeepAliveShmName "/dpdk_keepalive_shm_name"
+            SendNotification false
+        </Event>
+    </Plugin>
+
+For more information on the plugin parameters, please see:
+https://github.com/maryamtahhan/collectd/blob/dpdkevents_upstream/src/collectd.conf.pod
+Please also note that if you are not building and installing DPDK system-wide
+you will need to specify the specific paths to the header files and libraries
+using LIBDPDK_CPPFLAGS and LIBDPDK_LDFLAGS. You will also need to add the DPDK
+library symbols to the shared library path using ldconfig. Note that this
+update to the shared library path is not persistant (i.e. it will not survive a
+reboot).
 
 .. code:: bash
 
