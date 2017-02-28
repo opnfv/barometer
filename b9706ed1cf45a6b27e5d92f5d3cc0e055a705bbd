@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dabed58f_19889770",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2017-02-28T12:05:21Z",
+      "side": 1,
+      "message": "new line",
+      "revId": "b9706ed1cf45a6b27e5d92f5d3cc0e055a705bbd",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dabed58f_d9819f4b",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2017-02-28T12:05:21Z",
+      "side": 1,
+      "message": "new line",
+      "revId": "b9706ed1cf45a6b27e5d92f5d3cc0e055a705bbd",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dabed58f_79967396",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2017-02-28T12:05:21Z",
+      "side": 1,
+      "message": "use space instead of tabs. I suppose it should also fix your warnings.",
+      "range": {
+        "startLine": 212,
+        "startChar": 0,
+        "endLine": 232,
+        "endChar": 10
+      },
+      "revId": "b9706ed1cf45a6b27e5d92f5d3cc0e055a705bbd",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
