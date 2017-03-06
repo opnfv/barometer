@@ -1,0 +1,67 @@
+INTEL-BIOS-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+    MODULE-IDENTITY, OBJECT-TYPE
+        FROM SNMPv2-SMI
+
+    hostAssist
+        FROM Intel-SA-MIB
+
+    DisplayString
+        FROM SNMPv2-TC;
+
+--*****************************************************************************
+--
+-- MODULE IDENTITY AND REVISION GROUP
+--
+--*****************************************************************************
+
+intelBios           MODULE-IDENTITY
+    LAST-UPDATED    "201610241700Z" -- coordinated universal time UTC format is YYMMDDHHmmZ
+    ORGANIZATION    "Intel, Server Management Software"
+    CONTACT-INFO    " "
+    DESCRIPTION     "This SNMP MIB module retrieves System Management BIOS (SMBIOS)
+                    information from DMI table using dmidecode.
+
+                    Version:  1.0   10/24/2016
+
+                    Intel copyright information 2016"
+                    ::= { hostAssist 2 }
+
+-------------------------------------------------------------------------------
+-- BIOS scalars
+-------------------------------------------------------------------------------
+
+biosVendor  OBJECT-TYPE
+    SYNTAX      DisplayString (SIZE (0..128))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+            "The textual string describes the bios vendor."
+    ::= { intelBios 1 }
+
+biosVersion  OBJECT-TYPE
+    SYNTAX      DisplayString (SIZE (0..128))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+            "The textual string describes the bios version."
+    ::= { intelBios 2 }
+
+biosReleaseDate  OBJECT-TYPE
+    SYNTAX      DisplayString (SIZE (0..128))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+            "The textual string describes the bios release date."
+    ::= { intelBios 3 }
+
+biosRevision  OBJECT-TYPE
+    SYNTAX      DisplayString (SIZE (0..128))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+            "The textual string describes the bios revision."
+    ::= { intelBios 4 }
+
+END

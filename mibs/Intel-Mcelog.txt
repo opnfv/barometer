@@ -1,0 +1,115 @@
+INTEL-MCELOG-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+    MODULE-IDENTITY, OBJECT-TYPE, Integer32
+        FROM SNMPv2-SMI
+
+    hostAssist
+        FROM Intel-SA-MIB
+
+    DisplayString
+        FROM SNMPv2-TC;
+
+--*****************************************************************************
+--
+-- MODULE IDENTITY AND REVISION GROUP
+--
+--*****************************************************************************
+
+intelMcelog         MODULE-IDENTITY
+    LAST-UPDATED    "201610241700Z" -- coordinated universal time UTC format is YYMMDDHHmmZ
+    ORGANIZATION    "Intel, Server Management Software"
+    CONTACT-INFO    " "
+    DESCRIPTION     "This SNMP MIB module logs and accounts machine memory, IO, and CPU
+                    hardware errors on modern x86 Linux systems.
+
+                    Version:  1.0   10/24/2016
+
+                    Intel copyright information 2016"
+                    ::= { hostAssist 3 }
+
+OneBasedIndex       ::= Integer32(1..2147483647)
+
+-------------------------------------------------------------------------------
+-- Intel Mcelog Table
+-------------------------------------------------------------------------------
+
+memoryTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF MemoryTableEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+            "This Group defines the Intel RDT Groups Table."
+    ::= { intelMcelog 2 }
+
+memoryTableEntry OBJECT-TYPE
+    SYNTAX      MemoryTableEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION "This Group defines the Mcelog Memory Table Entry."
+    INDEX       { memoryGroupIndex }
+    ::= { memoryTable 1 }
+
+MemoryTableEntry                             ::= SEQUENCE {
+    memoryGroupIndex                         OneBasedIndex,
+    memoryGroupDescr                         DisplayString,
+    memoryCorrectedErrors                    Integer32,
+    memoryCorrectedTimedErrors               Integer32,
+    memoryUncorrectedErrors                  Integer32,
+    memoryUncorrectedTimedErrors             Integer32
+}
+
+memoryGroupIndex OBJECT-TYPE
+    SYNTAX      OneBasedIndex
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+            "This attribute defines the index of the Mcelog memory group."
+    ::= { memoryTableEntry 1 }
+
+memoryGroupDescr OBJECT-TYPE
+    SYNTAX      DisplayString (SIZE (0..255))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+            "A textual string containing information about the socket and
+            DMI name (*TODO*)."
+   ::= { memoryTableEntry 2 }
+
+memoryCorrectedErrors OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+            "This counter defines the total number of corrected errors."
+    ::= { memoryTableEntry 3 }
+
+memoryCorrectedTimedErrors OBJECT-TYPE
+    SYNTAX      Integer32
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+            "This counter defines the number of corrected errors in
+            last 24 hours."
+    ::= { memoryTableEntry 4 }
+
+memoryUncorrectedErrors OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+            "This counter defines the total number of uncorrected errors."
+    ::= { memoryTableEntry 5 }
+
+memoryUncorrectedTimedErrors OBJECT-TYPE
+    SYNTAX      Integer32
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+            "This counter defines the number of uncorrected errors in
+            last 24 hours."
+    ::= { memoryTableEntry 6 }
+
+END
