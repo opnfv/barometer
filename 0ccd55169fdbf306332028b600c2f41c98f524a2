@@ -16,6 +16,40 @@
       "revId": "0ccd55169fdbf306332028b600c2f41c98f524a2",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dabed58f_19f969e9",
+        "filename": "mibs/Intel-Rdt.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2017-03-06T22:24:56Z",
+      "side": 1,
+      "message": "This name doesn\u0027t match the description, name includes \"remote\" but description is \"local\".  Also, should Mbm be Mbw for Memory BW?",
+      "revId": "0ccd55169fdbf306332028b600c2f41c98f524a2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dabed58f_b9ddbd72",
+        "filename": "mibs/Intel-Rdt.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2017-03-06T22:24:56Z",
+      "side": 1,
+      "message": "This name doesn\u0027t match the description, name includes \"local\" but description is \"remote\". Also, should Mbm be Mbw for Memory BW?",
+      "revId": "0ccd55169fdbf306332028b600c2f41c98f524a2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
