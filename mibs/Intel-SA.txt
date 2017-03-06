@@ -1,0 +1,10 @@
+Intel-SA-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+    server-management FROM Intel-Common-MIB;
+
+software            OBJECT IDENTIFIER ::= { server-management 3 }
+baseboardGroup      OBJECT IDENTIFIER ::= { software 5 }
+hostAssist          OBJECT IDENTIFIER ::= { baseboardGroup 1 }
+
+END
