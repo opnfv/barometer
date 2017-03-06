@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dabed58f_f6a58404",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-03-06T14:20:25Z",
+      "side": 1,
+      "message": "it got merged to master?\nso repo, and branch need an update I believe",
+      "range": {
+        "startLine": 187,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 60
+      },
+      "revId": "fa7a9b87ac1eb3b8ff3540edfaddab9f8f637a11",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dabed58f_16ab78d9",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-03-06T14:20:25Z",
+      "side": 1,
+      "message": "repo above",
+      "range": {
+        "startLine": 202,
+        "startChar": 16,
+        "endLine": 202,
+        "endChar": 60
+      },
+      "revId": "fa7a9b87ac1eb3b8ff3540edfaddab9f8f637a11",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
