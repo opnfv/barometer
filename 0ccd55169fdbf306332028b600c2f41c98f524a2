@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dabed58f_9655281f",
+        "filename": "mibs/Intel-Common-MIB.mib.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2017-03-06T20:03:15Z",
+      "side": 1,
+      "message": "lots of trailing white spaces",
+      "revId": "0ccd55169fdbf306332028b600c2f41c98f524a2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
