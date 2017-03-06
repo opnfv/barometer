@@ -1,0 +1,128 @@
+INTEL-RDT-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+    MODULE-IDENTITY, OBJECT-TYPE, Integer32, Counter64
+        FROM SNMPv2-SMI
+
+    hostAssist
+        FROM Intel-SA-MIB
+
+    DisplayString
+        FROM SNMPv2-TC;
+
+--*****************************************************************************
+--
+-- MODULE IDENTITY AND REVISION GROUP
+--
+--*****************************************************************************
+
+intelRdt            MODULE-IDENTITY
+    LAST-UPDATED    "201610241700Z" -- coordinated universal time UTC format is YYMMDDHHmmZ
+    ORGANIZATION    "Intel, Server Management Software"
+    CONTACT-INFO    " "
+    DESCRIPTION     "This SNMP MIB module supports the Intel RDT SNMP subagent for monitoring
+                    information provided by monitoring features of Intel Resource Director
+                    Technology (Intel(R) RDT) like Cache Monitoring Technology (CMT),
+                    Memory Bandwidth Monitoring (MBM). These features provide information about
+                    utilization of shared resources like last level cache occupancy, local
+                    memory bandwidth usage, remote memory bandwidth usage, instructions per clock.
+
+                    Version:  1.0   10/24/2016
+
+                    Intel copyright information 2016"
+                    ::= { hostAssist 1 }
+
+OneBasedIndex       ::= Integer32(1..2147483647)
+
+-------------------------------------------------------------------------------
+-- Intel RDT Table
+-------------------------------------------------------------------------------
+
+rdtGroupNumber  OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+            "The number of network interfaces (regardless of their
+            current state) present on this system."
+    ::= { intelRdt 1 }
+
+rdtTable                                    OBJECT-TYPE
+    SYNTAX      SEQUENCE OF RdtTableEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+            "This Group defines the Intel RDT Groups Table."
+    ::= { intelRdt 2 }
+
+rdtTableEntry                               OBJECT-TYPE
+    SYNTAX      RdtTableEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION "This Group defines the Intel RDT Groups Table Entry."
+    INDEX       { rdtGroupIndex }
+    ::= { rdtTable 1 }
+
+RdtTableEntry                                      ::= SEQUENCE {
+    rdtGroupIndex                                  OneBasedIndex,
+    rdtGroupDescr                                  DisplayString,
+    rdtLlc                                         Counter64,
+    rdtIpc                                         Counter64,
+    rdtMbmRemote                                   Counter64,
+    rdtMbmLocal                                    Counter64
+}
+
+rdtGroupIndex OBJECT-TYPE
+    SYNTAX      OneBasedIndex
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+            "This attribute defines the index of the Intel RDT group."
+    ::= { rdtTableEntry 1 }
+
+rdtGroupDescr OBJECT-TYPE
+    SYNTAX      DisplayString (SIZE (0..255))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+            "A textual string containing information about the groups of cores
+             on which to monitor supported events."
+    ::= { rdtTableEntry 2 }
+
+rdtLlc OBJECT-TYPE
+    SYNTAX      Counter64
+    UNITS       "bytes"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+            "This counter defines the last level cache occupancy."
+    ::= { rdtTableEntry 3 }
+
+rdtIpc OBJECT-TYPE
+    SYNTAX      DisplayString
+    UNITS       "ipc"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+            "This counter defines the instructions per clock."
+    ::= { rdtTableEntry 4 }
+
+rdtMbmRemote OBJECT-TYPE
+    SYNTAX      Counter64
+    UNITS       "bytes/sec"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+            "This counter defines the Remote (Socket) memory bandwidth usage."
+    ::= { rdtTableEntry 5 }
+
+rdtMbmLocal OBJECT-TYPE
+    SYNTAX      Counter64
+    UNITS       "bytes/sec"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+            "This counter defines the Local (Socket) memory bandwidth usage."
+    ::= { rdtTableEntry 6 }
+
+END
