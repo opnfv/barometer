@@ -69,8 +69,7 @@ class ConfigServer(object):
         self.__private_key_file = ID_RSA_PATH
         if not os.path.isfile(self.__private_key_file):
             self.__logger.error(
-                "Private key file '{}'".format(self.__private_key_file)
-                + " not found. Please try to run {} script.".format(SSH_KEYS_SCRIPT))
+                "Private key file '{}' not found.".format(self.__private_key_file))
             raise IOError("Private key file '{}' not found.".format(self.__private_key_file))
 
         # get list of available nodes
