@@ -20,8 +20,18 @@ import time
 import logging
 from config_server import *
 from tests import *
+from opnfv.deployment import factory
+from functest.utils import functest_utils
+from functest.utils.constants import CONST
 
 CEILOMETER_NAME = 'ceilometer'
+ID_RSA_SRC = '/root/.ssh/id_rsa'
+ID_RSA_DST_DIR = '/home/opnfv/.ssh'
+ID_RSA_DST = ID_RSA_DST_DIR + '/id_rsa'
+INSTALLER_PARAMS_YAML = os.path.join(CONST.dir_repo_functest, 'functest/ci/installer_params.yaml')
+FUEL_IP = functest_utils.get_parameter_from_yaml('fuel.ip', INSTALLER_PARAMS_YAML)
+FUEL_USER = functest_utils.get_parameter_from_yaml('fuel.user', INSTALLER_PARAMS_YAML)
+FUEL_PW = functest_utils.get_parameter_from_yaml('fuel.password', INSTALLER_PARAMS_YAML)
 
 
 class KeystoneException(Exception):
@@ -386,6 +396,17 @@ def _exec_testcase(
                 res = False
             _process_result(compute_node.get_id(), test_labels[name], res, results)
 
+def get_ssh_keys():
+    if not os.path.isdir(ID_RSA_DST_DIR):
+        os.makedirs(ID_RSA_DST_DIR)
+    if not os.path.isfile(ID_RSA_DST):
+        logger.info("RSA key file {} doesn't exist, it will be downloaded from instaler node.".format(ID_RSA_DST))
+        handler = factory.Factory.get_handler('fuel', FUEL_IP, FUEL_USER, installer_pwd=FUEL_PW)
+        fuel = handler.get_installer_node()
+        fuel.get_file(ID_RSA_SRC, ID_RSA_DST)
+    else:
+        logger.info("RSA key file {} exists.".format(ID_RSA_DST))
+
 
 def main(bt_logger=None):
     """Check each compute node sends ceilometer metrics.
@@ -395,12 +416,14 @@ def main(bt_logger=None):
     """
     logging.getLogger("paramiko").setLevel(logging.WARNING)
     logging.getLogger("stevedore").setLevel(logging.WARNING)
+    logging.getLogger("opnfv.deployment.manager").setLevel(logging.WARNING)
     if bt_logger is None:
         _check_logger()
     else:
         global logger
         logger = bt_logger
-    conf = ConfigServer('10.20.0.2', 'root', logger)
+    get_ssh_keys()
+    conf = ConfigServer(FUEL_IP, FUEL_USER, logger)
     controllers = conf.get_controllers()
     if len(controllers) == 0:
         logger.error('No controller nodes found!')
