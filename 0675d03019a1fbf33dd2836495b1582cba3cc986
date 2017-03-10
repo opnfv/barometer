@@ -22,6 +22,30 @@
       "revId": "0675d03019a1fbf33dd2836495b1582cba3cc986",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dabed58f_268e7d2f",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 6711
+      },
+      "writtenOn": "2017-03-10T20:07:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dabed58f_0606d9ce",
+      "range": {
+        "startLine": 426,
+        "startChar": 24,
+        "endLine": 426,
+        "endChar": 43
+      },
+      "revId": "0675d03019a1fbf33dd2836495b1582cba3cc986",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
