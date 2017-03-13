@@ -1,7 +1,7 @@
 """Executing test of plugins"""
 # -*- coding: utf-8 -*-
 
-#Licensed under the Apache License, Version 2.0 (the "License"); you may
+# Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
 # a copy of the License at
 #
@@ -161,7 +161,7 @@ class CSVClient(object):
                     + "{0}.domain.tld/{1}/{2}-{3}".format(
                         compute_node.get_id(), plugin_subdir, meter_category, date),
                     compute_node.get_ip())
-                #Storing last two values
+                # Storing last two values
                 values = stdout
                 if len(values) < 2:
                     self._logger.error(
@@ -382,8 +382,8 @@ def _exec_testcase(
                     compute_node.get_id(), conf.get_plugin_interval(compute_node, name),
                     logger=logger, client=CeilometerClient(logger),
                     criteria_list=ceilometer_criteria_lists[name],
-                    resource_id_substrings = (ceilometer_substr_lists[name]
-                        if name in ceilometer_substr_lists else ['']))
+                    resource_id_substrings=(ceilometer_substr_lists[name]
+                                            if name in ceilometer_substr_lists else ['']))
             else:
                 res = test_csv_handles_plugin_data(
                     compute_node, conf.get_plugin_interval(compute_node, name), name,
@@ -396,11 +396,75 @@ def _exec_testcase(
                 res = False
             _process_result(compute_node.get_id(), test_labels[name], res, results)
 
+
+def mcelog_install(logger):
+    """Install mcelog on compute nodes.
+
+    Keyword arguments:
+    logger - logger instance
+    """
+    _print_label('Enabling mcelog on compute nodes')
+    handler = factory.Factory.get_handler('fuel', FUEL_IP, FUEL_USER, installer_pwd='')
+    nodes = handler.get_nodes()
+    openstack_version = handler.get_openstack_version()
+    if openstack_version.find('14.') != 0:
+        logger.info('Mcelog will not be installed,'
+                    + ' unsupported Openstack version found ({}).'.format(openstack_version))
+    else:
+        for node in nodes:
+            if node.is_compute():
+                ubuntu_release = node.run_cmd('lsb_release -r')
+                if '16.04' not in ubuntu_release:
+                    logger.info('Mcelog will not be enabled'
+                                + 'on node-{0}, unsupported Ubuntu release found ({1}).'.format(
+                                node.get_dict()['id'], ubuntu_release))
+                else:
+                    logger.info('Checking if  mcelog is enabled on node-{}...'.format(
+                        node.get_dict()['id']))
+                    res = node.run_cmd('ls /root/')
+                    if 'mce-inject_df' and 'corrected' in res:
+                        logger.info('Mcelog seems to be already installed on node-{}.'.format(
+                            node.get_dict()['id']))
+                        res = node.run_cmd('modprobe mce-inject')
+                        res = node.run_cmd('/root/mce-inject_df < /root/corrected')
+                    else:
+                        logger.info('Mcelog will be enabled on node-{}...'.format(
+                            node.get_dict()['id']))
+                        res = node.put_file('/home/opnfv/repos/barometer/baro_utils/mce-inject_df',
+                                            '/root/mce-inject_df')
+                        res = node.run_cmd('chmod a+x /root/mce-inject_df')
+                        res = node.run_cmd('echo "CPU 0 BANK 0" > /root/corrected')
+                        res = node.run_cmd('echo "STATUS 0xcc00008000010090" >> /root/corrected')
+                        res = node.run_cmd('echo "ADDR 0x0010FFFFFFF" >> /root/corrected')
+                        res = node.run_cmd('modprobe mce-inject')
+                        res = node.run_cmd('/root/mce-inject_df < /root/corrected')
+        logger.info('Mcelog is installed on all compute nodes')
+
+
+def mcelog_delete(logger):
+    """Uninstall mcelog from compute nodes.
+
+    Keyword arguments:
+    logger - logger instance
+    """
+    handler = factory.Factory.get_handler('fuel', FUEL_IP, FUEL_USER, installer_pwd='')
+    nodes = handler.get_nodes()
+    for node in nodes:
+        if node.is_compute():
+            output = node.run_cmd('ls /root/')
+            if 'mce-inject_df' in output:
+                res = node.run_cmd('rm /root/mce-inject_df')
+            if 'corrected' in output:
+                res = node.run_cmd('rm /root/corrected')
+            res = node.run_cmd('systemctl restart mcelog')
+    logger.info('Mcelog is deleted from all compute nodes')
+
+
 def get_ssh_keys():
     if not os.path.isdir(ID_RSA_DST_DIR):
         os.makedirs(ID_RSA_DST_DIR)
     if not os.path.isfile(ID_RSA_DST):
-        logger.info("RSA key file {} doesn't exist, it will be downloaded from instaler node.".format(ID_RSA_DST))
+        logger.info("RSA key file {} doesn't exist, it will be downloaded from installer node.".format(ID_RSA_DST))
         handler = factory.Factory.get_handler('fuel', FUEL_IP, FUEL_USER, installer_pwd=FUEL_PW)
         fuel = handler.get_installer_node()
         fuel.get_file(ID_RSA_SRC, ID_RSA_DST)
@@ -439,6 +503,8 @@ def main(bt_logger=None):
     logger.info('computes: {}'.format([('{0}: {1} ({2})'.format(
         node.get_id(), node.get_name(), node.get_ip())) for node in computes]))
 
+    mcelog_install(logger)  # installation of mcelog
+
     ceilometer_running_on_con = False
     _print_label('Test Ceilometer on control nodes')
     for controller in controllers:
@@ -462,7 +528,7 @@ def main(bt_logger=None):
         node_id = compute_node.get_id()
         out_plugins[node_id] = 'CSV'
         compute_ids.append(node_id)
-        #plugins_to_enable = plugin_labels.keys()
+        # plugins_to_enable = plugin_labels.keys()
         plugins_to_enable = []
         _print_label('NODE {}: Test Ceilometer Plug-in'.format(node_id))
         logger.info('Checking if ceilometer plug-in is included.')
@@ -527,6 +593,8 @@ def main(bt_logger=None):
             _print_label('NODE {}: Restoring config file'.format(node_id))
             conf.restore_config(compute_node)
 
+    mcelog_delete(logger)  # uninstalling mcelog from compute nodes
+
     print_overall_summary(compute_ids, plugin_labels, results, out_plugins)
 
     if ((len([res for res in results if not res[2]]) > 0)
@@ -535,5 +603,6 @@ def main(bt_logger=None):
         return 1
     return 0
 
+
 if __name__ == '__main__':
-     sys.exit(main())
+    sys.exit(main())
