@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ab8dda7_fbca776d",
+        "filename": "mibs/Intel-Rdt.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2017-03-14T16:13:56Z",
+      "side": 1,
+      "message": "I usually say \"utilization\" when expressing a percentage of the Max bandwidth. Here I would say \"memory bandwidth usage\".",
+      "range": {
+        "startLine": 116,
+        "startChar": 38,
+        "endLine": 116,
+        "endChar": 84
+      },
+      "revId": "c0cc562985bbb37e4d41954a5ad0cbf5738096a9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ab8dda7_9bc7bb64",
+        "filename": "mibs/Intel-Rdt.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2017-03-14T16:13:56Z",
+      "side": 1,
+      "message": "I usually say \"utilization\" when expressing a percentage of the Max bandwidth. Here I would say \"memory bandwidth usage\".",
+      "range": {
+        "startLine": 125,
+        "startChar": 38,
+        "endLine": 125,
+        "endChar": 82
+      },
+      "revId": "c0cc562985bbb37e4d41954a5ad0cbf5738096a9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
