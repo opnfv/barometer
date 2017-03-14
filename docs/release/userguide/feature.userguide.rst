@@ -551,7 +551,10 @@ OvS Events Branch: master
 
 OvS Stats Branch:feat_ovs_stats
 
-Dependencies: Open vSwitch, libyajl
+OvS Events MIBs: The SNMP OVS interface link status is provided by standard
+IF-MIB (http://www.net-snmp.org/docs/mibs/IF-MIB.txt)
+
+Dependencies: Open vSwitch, Yet Another JSON Library (https://github.com/lloyd/yajl)
 
 On Ubuntu, install the dependencies:
 
@@ -601,6 +604,7 @@ need to modify the configuration file to include:
        Socket "/var/run/openvswitch/db.sock"
        Interfaces "br0" "veth0"
        SendNotification false
+       DispatchValues true
     </Plugin>
 
 To configure the OVS stats plugin you need to modify the configuration file
