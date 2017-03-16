@@ -38,26 +38,23 @@ Barometer has enabled the following collectd plugins:
   and free hugepages on a platform as well as what is available in terms of
   hugepages per socket.
 
-* *RDT plugin*: A read plugin that provides the last level cache utilitzation and
-  memory bandwidth utilization
-
 * *Open vSwitch events Plugin*: A read plugin that retrieves events from OVS.
+
+* *Open vSwitch stats Plugin*: A read plugin that retrieve flow and interface
+  stats from OVS.
 
 * *mcelog plugin*: A read plugin that uses mcelog client protocol to check for
   memory Machine Check Exceptions and sends the stats for reported exceptions
+
+* *RDT plugin*: A read plugin that provides the last level cache utilitzation and
+  memory bandwidth utilization
 
 All the plugins above are available on the collectd master, except for the
 ceilometer plugin as it's a python based plugin and only C plugins are accepted
 by the collectd community. The ceilometer plugin lives in the OpenStack
 repositories.
 
-Other plugins under development or existing as a pull request into collectd master:
-
-* *dpdkevents*:  A read plugin that retrieves DPDK link status and DPDK
-  forwarding cores liveliness status (DPDK Keep Alive).
-
-* *Open vSwitch stats Plugin*: A read plugin that retrieve flow and interface
-  stats from OVS.
+Other plugins existing as a pull request into collectd master:
 
 * *SNMP Agent*: A write plugin that will act as a AgentX subagent that receives
   and handles queries from SNMP master agent and returns the data collected
@@ -69,6 +66,7 @@ Other plugins under development or existing as a pull request into collectd mast
 * *Legacy/IPMI*: A read plugin that reports platform thermals, voltages,
   fanspeed, current, flow, power etc. Also, the plugin monitors Intelligent
   Platform Management Interface (IPMI) System Event Log (SEL) and sends the
+
 
 **Plugins included in the Danube release:**
 
@@ -82,20 +80,22 @@ collectd capabilities and usage
 .. Describe the specific capabilities and usage for <XYZ> feature.
 .. Provide enough information that a user will be able to operate the feature on a deployed scenario.
 
-**NOTE** Plugins included in the OPNFV D release will be built-in to the fuel
-plugin and available in the /opt/opnfv directory on the fuel master. You don't
-need to clone the barometer/collectd repos to use these, but you can configure
-them as shown in the examples below. Please note, the collectd plugins in OPNFV
-are configured with reasonable defaults, but can be overriden.
+.. note:: Plugins included in the OPNFV D release will be built-in to the fuel
+ plugin and available in the /opt/opnfv directory on the fuel master. You don't
+ need to clone the barometer/collectd repos to use these, but you can configure
+ them as shown in the examples below.
+
+ The collectd plugins in OPNFV are configured with reasonable defaults, but can
+ be overriden.
 
 Building all Barometer upstreamed plugins from scratch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 The plugins that have been merged to the collectd master branch can all be
 built and configured through the barometer repository.
 
-**NOTE: sudo permissions are required to install collectd.**
-
-**NOTE: These are instructions for Ubuntu 16.04.**
+.. note::
+ * sudo permissions are required to install collectd.
+ * These are instructions for Ubuntu 16.04
 
 To build and install these dependencies, clone the barometer repo:
 
@@ -116,21 +116,29 @@ To install collectd as a service and install all it's dependencies:
     $ cd barometer/src && sudo make && sudo make install
 
 This will install collectd as a service and the base install directory
-is /opt/collectd.
+will be /opt/collectd.
 
 Sample configuration files can be found in '/opt/collectd/etc/collectd.conf.d'
 
-**Note**: Exec plugin requires non-root user to execute scripts. By default,
-`collectd_exec` user is used. Barometer scripts do *not* create this user. It
-needs to be manually added or exec plugin configuration has to be changed to use
-other, existing user before starting collectd service.
+.. note::
+  - If you plan on using the Exec plugin, the plugin requires non-root
+    user to execute scripts. By default, `collectd_exec` user is used. Barometer
+    scripts do *not* create this user. It needs to be manually added or exec plugin
+    configuration has to be changed to use other, existing user before starting
+    collectd service.
 
-Please note if you are using any Open vSwitch plugins you need to run:
+  - If you don't want to use one of the Barometer plugins, simply remove the
+    sample config file from '/opt/collectd/etc/collectd.conf.d'
 
+  - If you are using any Open vSwitch plugins you need to run:
 
 .. code:: bash
 
     $ sudo ovs-vsctl set-manager ptcp:6640
+
+
+Below is the per plugin installation and configuration guide, if you only want
+to install some/particular plugins.
 
 DPDK statistics plugin
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -138,7 +146,7 @@ Repo: https://github.com/collectd/collectd
 
 Branch: master
 
-Dependencies: DPDK (http://dpdk.org/)
+Dependencies: DPDK (http://dpdk.org/) Min_Version: 16.04
 
 To build and install DPDK to /usr please see:
 https://github.com/collectd/collectd/blob/master/docs/BUILD.dpdkstat.md
@@ -178,12 +186,12 @@ include:
 For more information on the plugin parameters, please see:
 https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
 
-Please also note that if you are not building and installing DPDK system-wide
-you will need to specify the specific paths to the header files and libraries
-using LIBDPDK_CPPFLAGS and LIBDPDK_LDFLAGS. You will also need to add the DPDK
-library symbols to the shared library path using ldconfig. Note that this
-update to the shared library path is not persistant (i.e. it will not survive a
-reboot).
+.. note:: If you are not building and installing DPDK system-wide
+ you will need to specify the specific paths to the header files and libraries
+ using LIBDPDK_CPPFLAGS and LIBDPDK_LDFLAGS. You will also need to add the DPDK
+ library symbols to the shared library path using ldconfig. Note that this
+ update to the shared library path is not persistant (i.e. it will not survive a
+ reboot).
 
 DPDK events plugin
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -240,12 +248,13 @@ include:
 
 For more information on the plugin parameters, please see:
 https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
-Please also note that if you are not building and installing DPDK system-wide
-you will need to specify the specific paths to the header files and libraries
-using LIBDPDK_CPPFLAGS and LIBDPDK_LDFLAGS. You will also need to add the DPDK
-library symbols to the shared library path using ldconfig. Note that this
-update to the shared library path is not persistant (i.e. it will not survive a
-reboot).
+
+.. note:: If you are not building and installing DPDK system-wide
+ you will need to specify the specific paths to the header files and libraries
+ using LIBDPDK_CPPFLAGS and LIBDPDK_LDFLAGS. You will also need to add the DPDK
+ library symbols to the shared library path using ldconfig. Note that this
+ update to the shared library path is not persistant (i.e. it will not survive a
+ reboot).
 
 .. code:: bash
 
