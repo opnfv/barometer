@@ -38,7 +38,7 @@ Barometer has enabled the following collectd plugins:
   and free hugepages on a platform as well as what is available in terms of
   hugepages per socket.
 
-* *RDT plugin*: A read plugin that provides the last level cache utilitzation and
+* *RDT plugin*: A read plugin that provides the last level cache utilization and
   memory bandwidth utilization
 
 * *Open vSwitch events Plugin*: A read plugin that retrieves events from OVS.
@@ -52,9 +52,6 @@ by the collectd community. The ceilometer plugin lives in the OpenStack
 repositories.
 
 Other plugins under development or existing as a pull request into collectd master:
-
-* *dpdkevents*:  A read plugin that retrieves DPDK link status and DPDK
-  forwarding cores liveliness status (DPDK Keep Alive).
 
 * *Open vSwitch stats Plugin*: A read plugin that retrieve flow and interface
   stats from OVS.
@@ -86,7 +83,7 @@ collectd capabilities and usage
 plugin and available in the /opt/opnfv directory on the fuel master. You don't
 need to clone the barometer/collectd repos to use these, but you can configure
 them as shown in the examples below. Please note, the collectd plugins in OPNFV
-are configured with reasonable defaults, but can be overriden.
+are configured with reasonable defaults, but can be overridden.
 
 Building all Barometer upstreamed plugins from scratch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -182,7 +179,7 @@ Please also note that if you are not building and installing DPDK system-wide
 you will need to specify the specific paths to the header files and libraries
 using LIBDPDK_CPPFLAGS and LIBDPDK_LDFLAGS. You will also need to add the DPDK
 library symbols to the shared library path using ldconfig. Note that this
-update to the shared library path is not persistant (i.e. it will not survive a
+update to the shared library path is not persistent (i.e. it will not survive a
 reboot).
 
 DPDK events plugin
@@ -200,7 +197,7 @@ Building and installing collectd:
 
 .. code:: bash
 
-    $ git clone https://github.com/maryamtahhan/collectd.git
+    $ git clone https://github.com/collectd/collectd.git
     $ cd collectd
     $ ./build.sh
     $ ./configure --enable-syslog --enable-logfile --enable-debug
@@ -244,7 +241,7 @@ Please also note that if you are not building and installing DPDK system-wide
 you will need to specify the specific paths to the header files and libraries
 using LIBDPDK_CPPFLAGS and LIBDPDK_LDFLAGS. You will also need to add the DPDK
 library symbols to the shared library path using ldconfig. Note that this
-update to the shared library path is not persistant (i.e. it will not survive a
+update to the shared library path is not persistent (i.e. it will not survive a
 reboot).
 
 .. code:: bash
