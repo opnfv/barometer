@@ -44,6 +44,7 @@ INSTALL_TARGET = force_make
 force_make: $(TAG_DONE_FLAG)
 	$(AT)cd $(WORK_DIR) && git pull $(DPDK_URL) $(DPDK_TAG)
 	$(AT)sed -i -e 's/CONFIG_RTE_BUILD_SHARED_LIB=./CONFIG_RTE_BUILD_SHARED_LIB=y/g' $(CONFIG_FILE_LINUXAPP)
+	$(AT)sed -i -e 's/CONFIG_RTE_EAL_PMD_PATH=.*/CONFIG_RTE_EAL_PMD_PATH=\"\/usr\/lib\/dpdk-pmd\/\"/g' $(CONFIG_FILE_LINUXAPP)
 	$(AT)sed -i -e 's/CONFIG_RTE_LIBRTE_KNI=./CONFIG_RTE_LIBRTE_KNI=n/g' $(CONFIG_FILE_LINUXAPP)
 	$(AT)cd $(WORK_DIR); make config T=$(DPDK_TARGET) -j; make -j
 	$(AT)cd `dirname $(CONFIG_FILE_LINUXAPP)` && git checkout `basename $(CONFIG_FILE_LINUXAPP)` && cd -
@@ -51,6 +52,9 @@ force_make: $(TAG_DONE_FLAG)
 
 install: $(INSTALL_TARGET)
 	$(AT)cd $(WORK_DIR); sudo make -j install prefix=/usr; cd -
+	$(AT)sudo mkdir -p /usr/lib/dpdk-pmd
+	$(AT)find /usr/lib -type f -name 'librte_pmd*' | while read path; do sudo ln -fs $$path /usr/lib/dpdk-pmd/$$(echo $$path | grep -o 'librte_.*so'); done
+	$(AT)sudo echo 0 > /proc/sys/kernel/randomize_va_space
 	$(AT)sudo cp -a $(WORK_DIR)/build/kmod $(INSTALL_DIR)/lib/modules/$(KERNEL_VERSION)
 	@echo "install done"
 
