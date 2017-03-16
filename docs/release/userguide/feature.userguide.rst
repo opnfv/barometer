@@ -46,7 +46,7 @@ Barometer has enabled the following collectd plugins:
 * *mcelog plugin*: A read plugin that uses mcelog client protocol to check for
   memory Machine Check Exceptions and sends the stats for reported exceptions
 
-* *RDT plugin*: A read plugin that provides the last level cache utilitzation and
+* *RDT plugin*: A read plugin that provides the last level cache utilization and
   memory bandwidth utilization
 
 All the plugins above are available on the collectd master, except for the
@@ -86,7 +86,7 @@ collectd capabilities and usage
  them as shown in the examples below.
 
  The collectd plugins in OPNFV are configured with reasonable defaults, but can
- be overriden.
+ be overridden.
 
 Building all Barometer upstreamed plugins from scratch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -190,7 +190,7 @@ https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
  you will need to specify the specific paths to the header files and libraries
  using LIBDPDK_CPPFLAGS and LIBDPDK_LDFLAGS. You will also need to add the DPDK
  library symbols to the shared library path using ldconfig. Note that this
- update to the shared library path is not persistant (i.e. it will not survive a
+ update to the shared library path is not persistent (i.e. it will not survive a
  reboot).
 
 DPDK events plugin
@@ -208,7 +208,7 @@ Building and installing collectd:
 
 .. code:: bash
 
-    $ git clone https://github.com/maryamtahhan/collectd.git
+    $ git clone https://github.com/collectd/collectd.git
     $ cd collectd
     $ ./build.sh
     $ ./configure --enable-syslog --enable-logfile --enable-debug
@@ -253,7 +253,7 @@ https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
  you will need to specify the specific paths to the header files and libraries
  using LIBDPDK_CPPFLAGS and LIBDPDK_LDFLAGS. You will also need to add the DPDK
  library symbols to the shared library path using ldconfig. Note that this
- update to the shared library path is not persistant (i.e. it will not survive a
+ update to the shared library path is not persistent (i.e. it will not survive a
  reboot).
 
 .. code:: bash
