@@ -55,6 +55,8 @@ by the collectd community. The ceilometer plugin lives in the OpenStack
 repositories.
 
 Other plugins existing as a pull request into collectd master:
+=======
+Other plugins under development or existing as a pull request into collectd master:
 
 * *SNMP Agent*: A write plugin that will act as a AgentX subagent that receives
   and handles queries from SNMP master agent and returns the data collected
@@ -664,13 +666,9 @@ To inject corrected memory errors:
 
 Open vSwitch Plugins
 ^^^^^^^^^^^^^^^^^^^^^
-OvS Events Repo: https://github.com/collectd/collectd
+OvS Plugins Repo: https://github.com/collectd/collectd
 
-OvS Stats Repo: https://github.com/maryamtahhan/collectd
-
-OvS Events Branch: master
-
-OvS Stats Branch:feat_ovs_stats
+OvS Plugins Branch: master
 
 OvS Events MIBs: The SNMP OVS interface link status is provided by standard
 IF-MIB (http://www.net-snmp.org/docs/mibs/IF-MIB.txt)
@@ -701,15 +699,11 @@ Clone and install the collectd ovs plugin:
 
     $ git clone $REPO
     $ cd collectd
-    $ git checkout $BRANCH
+    $ git checkout master
     $ ./build.sh
     $ ./configure --enable-syslog --enable-logfile --enable-debug
     $ make
     $ sudo make install
-
-where $REPO is one of the repos listed at the top of this section.
-
-Where $BRANCH is master or feat_ovs_stats.
 
 This will install collectd to /opt/collectd. The collectd configuration file
 can be found at /opt/collectd/etc. To configure the OVS events plugin you
@@ -745,8 +739,6 @@ to include:
 
 For more information on the plugin parameters, please see:
 https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
-and
-https://github.com/maryamtahhan/collectd/blob/feat_ovs_stats/src/collectd.conf.pod
 
 SNMP Agent Plugin
 ^^^^^^^^^^^^^^^^^
