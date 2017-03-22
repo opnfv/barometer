@@ -277,7 +277,7 @@ class VESPlugin(object):
 
     def event_send(self, event):
         """Send event to VES"""
-        server_url = "http{}://{}:{}/{}eventListener/v1{}".format(
+        server_url = "http{}://{}:{}/{}eventListener/v3{}".format(
             's' if self.__plugin_config['UseHttps'] else '', self.__plugin_config['Domain'],
             int(self.__plugin_config['Port']), '{}/'.format(
             '/{}'.format(self.__plugin_config['Path'])) if (len(self.__plugin_config['Path']) > 0) else '',
