@@ -193,6 +193,12 @@ https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
  update to the shared library path is not persistant (i.e. it will not survive a
  reboot).
 
+.. note:: Plugin initialization time depends on read interval. It requires
+ 5 read cycles to set up internal buffers and states. During that time
+ no statistics are submitted. Also if plugin is running and the number of DPDK
+ ports is increased, internal buffers are resized. That requires 3 read cycles
+ and no port statistics are submitted in that time.
+
 DPDK events plugin
 ^^^^^^^^^^^^^^^^^^^^^^
 Repo: https://github.com/collectd/collectd
