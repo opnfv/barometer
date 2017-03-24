@@ -143,13 +143,15 @@ Sample configuration files can be found in '/opt/collectd/etc/collectd.conf.d'
 Below is the per plugin installation and configuration guide, if you only want
 to install some/particular plugins.
 
-DPDK statistics plugin
-^^^^^^^^^^^^^^^^^^^^^^
+DPDK plugins
+^^^^^^^^^^^^^
 Repo: https://github.com/collectd/collectd
 
 Branch: master
 
-Dependencies: DPDK (http://dpdk.org/) Min_Version: 16.04
+Dependencies: DPDK (http://dpdk.org/)
+
+.. note:: DPDK statistics plugin requires DPDK version 16.04 or later
 
 To build and install DPDK to /usr please see:
 https://github.com/collectd/collectd/blob/master/docs/BUILD.dpdkstat.md
@@ -165,9 +167,21 @@ Building and installing collectd:
     $ make
     $ sudo make install
 
+.. note:: If DPDK was installed in a non standard location you will need to
+    specify paths to the header files and libraries using *LIBDPDK_CPPFLAGS* and
+    *LIBDPDK_LDFLAGS*. You will also need to add the DPDK library symbols to the
+    shared library path using *ldconfig*. Note that this update to the shared
+    library path is not persistant (i.e. it will not survive a reboot).
+
+Example of specifying custom paths to DPDK headers and libraries:
+
+.. code:: bash
+
+    $ ./configure LIBDPDK_CPPFLAGS="path to DPDK header files" LIBDPDK_LDFLAGS="path to DPDK libraries"
 
 This will install collectd to /opt/collectd
 The collectd configuration file can be found at /opt/collectd/etc
+
 To configure the dpdkstats plugin you need to modify the configuration file to
 include:
 
@@ -186,46 +200,7 @@ include:
         PortName "interface2"
     </Plugin>
 
-For more information on the plugin parameters, please see:
-https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
 
-.. note:: If you are not building and installing DPDK system-wide
- you will need to specify the specific paths to the header files and libraries
- using LIBDPDK_CPPFLAGS and LIBDPDK_LDFLAGS. You will also need to add the DPDK
- library symbols to the shared library path using ldconfig. Note that this
- update to the shared library path is not persistent (i.e. it will not survive a
- reboot).
-
-.. note:: Plugin initialization time depends on read interval. It requires
- 5 read cycles to set up internal buffers and states. During that time
- no statistics are submitted. Also if plugin is running and the number of DPDK
- ports is increased, internal buffers are resized. That requires 3 read cycles
- and no port statistics are submitted in that time.
-
-DPDK events plugin
-^^^^^^^^^^^^^^^^^^^^^^
-Repo: https://github.com/collectd/collectd
-
-Branch: master
-
-Dependencies: DPDK (http://dpdk.org/)
-
-To build and install DPDK to /usr please see:
-https://github.com/collectd/collectd/blob/master/docs/BUILD.dpdkstat.md
-
-Building and installing collectd:
-
-.. code:: bash
-
-    $ git clone https://github.com/collectd/collectd.git
-    $ cd collectd
-    $ ./build.sh
-    $ ./configure --enable-syslog --enable-logfile --enable-debug
-    $ make
-    $ sudo make install
-
-This will install collectd to /opt/collectd
-The collectd configuration file can be found at /opt/collectd/etc
 To configure the dpdkevents plugin you need to modify the configuration file to
 include:
 
@@ -258,16 +233,34 @@ include:
 For more information on the plugin parameters, please see:
 https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
 
-.. note:: If you are not building and installing DPDK system-wide
- you will need to specify the specific paths to the header files and libraries
- using LIBDPDK_CPPFLAGS and LIBDPDK_LDFLAGS. You will also need to add the DPDK
- library symbols to the shared library path using ldconfig. Note that this
- update to the shared library path is not persistent (i.e. it will not survive a
- reboot).
+.. note:: dpdkstat plugin initialization time depends on read interval. It
+ requires 5 read cycles to set up internal buffers and states. During that time
+ no statistics are submitted. Also if plugin is running and the number of DPDK
+ ports is increased, internal buffers are resized. That requires 3 read cycles
+ and no port statistics are submitted in that time.
+
+The Address-Space Layout Randomization (ASLR) security feature in Linux should be
+disabled, in order for the same hugepage memory mappings to be present in all
+DPDK multi-process applications.
+
+To disable ASLR:
 
 .. code:: bash
 
-    $ ./configure LIBDPDK_CPPFLAGS="path to DPDK header files" LIBDPDK_LDFLAGS="path to DPDK libraries"
+    $ sudo echo 0 > /proc/sys/kernel/randomize_va_space
+
+To fully enable ASLR:
+
+.. code:: bash
+
+    $ sudo echo 2 > /proc/sys/kernel/randomize_va_space
+
+.. warning:: Disabling Address-Space Layout Randomization (ASLR) may have security
+    implications. It is recommended to be disabled only when absolutely necessary,
+    and only when all implications of this change have been understood.
+
+For more information on multi-process support, please see:
+http://dpdk.org/doc/guides/prog_guide/multi_proc_support.html
 
 Hugepages Plugin
 ^^^^^^^^^^^^^^^^^
