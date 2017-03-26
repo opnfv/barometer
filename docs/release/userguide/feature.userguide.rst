@@ -372,7 +372,7 @@ Repo: https://github.com/maryamtahhan/collectd
 
 Branch: feat_ipmi_events, feat_ipmi_analog
 
-Dependencies: OpenIPMI library
+Dependencies: OpenIPMI library (http://openipmi.sourceforge.net/)
 
 The IPMI plugin is already implemented in the latest collectd and sensors
 like temperature, voltage, fanspeed, current are already supported there.
@@ -387,11 +387,60 @@ has been introduced.
 * The feat_ipmi_analog branch includes the support of extended IPMI sensors in
   collectd IPMI plugin.
 
-On Ubuntu, install the dependencies:
+**Install dependencies**
+
+On Ubuntu, the OpenIPMI library can be installed via apt package manager:
 
 .. code:: bash
 
     $ sudo apt-get install libopenipmi-dev
+
+Anyway, it's recommended to use the latest version of the OpenIPMI library as
+it includes fixes of known issues which aren't included in standard OpenIPMI
+library package. The latest version of the library can be found at
+https://sourceforge.net/p/openipmi/code/ci/master/tree/. Steps to install the
+library from sources are described below.
+
+Remove old version of OpenIPMI library:
+
+.. code:: bash
+
+    $ sudo apt-get remove libopenipmi-dev
+
+Download OpenIPMI library sources:
+
+.. code:: bash
+
+    $ git clone https://git.code.sf.net/p/openipmi/code openipmi-code
+    $ cd openipmi-code
+
+Patch the OpenIPMI pkg-config file to provide correct compilation flags
+for collectd IPMI plugin:
+
+.. code:: diff
+
+    diff --git a/OpenIPMIpthread.pc.in b/OpenIPMIpthread.pc.in
+    index 59b52e5..fffa0d0 100644
+    --- a/OpenIPMIpthread.pc.in
+    +++ b/OpenIPMIpthread.pc.in
+    @@ -6,6 +6,6 @@ includedir=@includedir@
+     Name: OpenIPMIpthread
+     Description: Pthread OS handler for OpenIPMI
+     Version: @VERSION@
+    -Requires: OpenIPMI pthread
+    +Requires: OpenIPMI
+     Libs: -L${libdir} -lOpenIPMIutils -lOpenIPMIpthread
+    -Cflags: -I${includedir}
+    +Cflags: -I${includedir} -pthread
+
+Build and install OpenIPMI library:
+
+.. code:: bash
+
+    $ autoreconf --install
+    $ ./configure --prefix=/usr
+    $ make
+    $ sudo make install
 
 Enable IPMI support in the kernel:
 
