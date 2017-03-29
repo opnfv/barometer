@@ -65,7 +65,6 @@ projects.
 
 .. toctree::
      :maxdepth: 3
-     :numbered:
 
      ./release/configguide/index.rst
      ./release/scenarios/index.rst

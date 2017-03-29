@@ -7,7 +7,6 @@ OPNFV Barometer configuration Guide
 ======================================
 
 .. toctree::
-    :numbered:
     :maxdepth: 3
 
    featureconfig
