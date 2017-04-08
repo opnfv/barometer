@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ab8dda7_c493d44d",
+        "filename": "ci/build_rpm.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-04-08T23:22:28Z",
+      "side": 1,
+      "message": "This should be Intel if I\u0027m not mistaken.\n\nsame comment for the other files as well.",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 22
+      },
+      "revId": "66d9f89ca44a8e348921e4872b2e1ffe27fc13d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ab8dda7_04a9ec7a",
+        "filename": "ci/install_dependencies.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-04-08T23:22:28Z",
+      "side": 1,
+      "message": "same as the other WORKSPACE comments.",
+      "range": {
+        "startLine": 34,
+        "startChar": 9,
+        "endLine": 34,
+        "endChar": 20
+      },
+      "revId": "66d9f89ca44a8e348921e4872b2e1ffe27fc13d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ab8dda7_a4b7c0d7",
+        "filename": "ci/utility/collectd_build_rpm.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-04-08T23:22:28Z",
+      "side": 1,
+      "message": "when I tried executing the script you passed earlier, there have been some errors due to not being able to find the files so it is better to use absolute paths to stuff to avoid those issues.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 48
+      },
+      "revId": "66d9f89ca44a8e348921e4872b2e1ffe27fc13d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ab8dda7_c4baf4bf",
+        "filename": "ci/utility/collectd_get_sources.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-04-08T23:22:28Z",
+      "side": 1,
+      "message": "same comment as the others about the use of WORKSPACE",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 2
+      },
+      "revId": "66d9f89ca44a8e348921e4872b2e1ffe27fc13d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ab8dda7_449fe450",
+        "filename": "ci/utility/collectd_get_sources.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-04-08T23:22:28Z",
+      "side": 1,
+      "message": "this line will complain when/if the script is executed more than once due to previous clone",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 64
+      },
+      "revId": "66d9f89ca44a8e348921e4872b2e1ffe27fc13d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ab8dda7_e4adb889",
+        "filename": "ci/utility/intel_cmt_cat_build_install_rpm.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-04-08T23:22:28Z",
+      "side": 1,
+      "message": "this line will complain when/if the script is executed more than once due to previous clone",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 64
+      },
+      "revId": "66d9f89ca44a8e348921e4872b2e1ffe27fc13d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ab8dda7_649a2865",
+        "filename": "ci/utility/package-list.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-04-08T23:22:28Z",
+      "side": 1,
+      "message": "can we avoid cloning stuff into home directory of jenkins user?\n\nit could be something like this\n\n    export COLLECTD_DIR\u003d${WORKSPACE:-~/collectd}\n\nWORKSPACE is jenkins variable that points to the root of the repository clone.\n\nThis also helps us to wipe stuff between builds.",
+      "range": {
+        "startLine": 16,
+        "startChar": 13,
+        "endLine": 16,
+        "endChar": 23
+      },
+      "revId": "66d9f89ca44a8e348921e4872b2e1ffe27fc13d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ab8dda7_849ddc5b",
+        "filename": "ci/utility/package-list.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-04-08T23:22:28Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 17,
+        "startChar": 12,
+        "endLine": 17,
+        "endChar": 26
+      },
+      "revId": "66d9f89ca44a8e348921e4872b2e1ffe27fc13d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ab8dda7_24a430a5",
+        "filename": "ci/utility/package-list.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-04-08T23:22:28Z",
+      "side": 1,
+      "message": "and here",
+      "range": {
+        "startLine": 20,
+        "startChar": 8,
+        "endLine": 20,
+        "endChar": 31
+      },
+      "revId": "66d9f89ca44a8e348921e4872b2e1ffe27fc13d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
