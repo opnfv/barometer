@@ -1,0 +1,39 @@
+#!/bin/bash
+# Copyright 2017 Intel Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source $DIR/package-list.sh
+
+VERSION="VERSION_NOT_SET"
+
+cd $COLLECTD_DIR
+VERSION=$( $COLLECTD_DIR/version-gen.sh | sed "s/\W$//g" )
+$COLLECTD_DIR/build.sh
+$COLLECTD_DIR/configure
+make dist
+
+cp $COLLECTD_DIR/collectd-$VERSION.tar.bz2 $RPM_WORKDIR/SOURCES/
+
+sed	--regexp-extended \
+	--in-place=".bak" \
+	--expression="s/Version:\s+\S+$/Version:       $VERSION/g" \
+	$COLLECTD_DIR/contrib/redhat/collectd.spec
+
+sed	--regexp-extended \
+	--in-place \
+	--expression="s/without_intel_rdt:[0-9]/without_intel_rdt:1/g" \
+	$COLLECTD_DIR/contrib/redhat/collectd.spec
+
+rpmbuild --define "_topdir $RPM_WORKDIR" -bb $COLLECTD_DIR/contrib/redhat/collectd.spec
