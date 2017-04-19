@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ab8dda7_4a5cc1ed",
+        "filename": "mibs/Intel-Hugepages.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2017-04-19T12:18:06Z",
+      "side": 1,
+      "message": "I\u0027d like to make a suggestion on naming here:  The units of this counter are Hugepages, correct? IMO, the object name would be more descriptive if it reflected the units more completely.  Perhaps  hugepagesHPMemoryFree ?? or hugepagesNumHugepagesFree ?? I could make some more suggestions if this sounds reasonable...",
+      "revId": "ccd74db731f688ac170d4eccf550b28e842e6a18",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
