@@ -34,6 +34,24 @@
       "revId": "ccd74db731f688ac170d4eccf550b28e842e6a18",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ab8dda7_8a0959df",
+        "filename": "mibs/Intel-Hugepages.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2017-04-19T12:57:41Z",
+      "side": 1,
+      "message": "yes, thanks.  please check the other counters, too.",
+      "parentUuid": "9ab8dda7_ca6751b6",
+      "revId": "ccd74db731f688ac170d4eccf550b28e842e6a18",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
