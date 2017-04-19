@@ -230,6 +230,17 @@ include:
         </Event>
     </Plugin>
 
+.. note:: Currently, the DPDK library doesn’t support API to de-initialize
+ the DPDK resources allocated on the initialization. It means, the collectd
+ plugin will not be able to release the allocated DPDK resources
+ (locks/memory/pci bindings etc.) correctly on collectd shutdown or reinitialize
+ the DPDK library if primary DPDK process is restarted. The only way to release
+ those resources is to terminate the process itself. For this reason, the plugin
+ forks off a separate collectd process. This child process becomes a secondary
+ DPDK process which can be run on specific CPU cores configured by user through
+ collectd configuration file (“Coremask” EAL configuration option, the
+ hexadecimal bitmask of the cores to run on).
+
 For more information on the plugin parameters, please see:
 https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
 
@@ -261,6 +272,24 @@ To fully enable ASLR:
 
 For more information on multi-process support, please see:
 http://dpdk.org/doc/guides/prog_guide/multi_proc_support.html
+
+**DPDK stats plugin limitations:**
+
+1. The DPDK primary process application should use the same version of DPDK
+   that collectd DPDK plugin is using;
+
+2. L2 statistics are only supported;
+
+3. The plugin has been tested on Intel NIC’s only.
+
+**DPDK stats known issues:**
+
+* DPDK port visibility
+
+  When network port controlled by Linux is bound to DPDK driver, the port
+  will not be available in the OS. It affects the SNMP write plugin as those
+  ports will not be present in standard IF-MIB. Thus addition work is
+  required to be done to support DPDK ports and statistics.
 
 Hugepages Plugin
 ^^^^^^^^^^^^^^^^^
