@@ -872,6 +872,14 @@ memAvailReal OID to value represented as free memory type of memory plugin:
       </Data>
     </Plugin>
 
+**Limitations**
+
+* Object instance with Counter64 type is not supported in SNMPv1. When GetNext
+  request is received, Counter64 type objects will be skipped. When Get
+  request is received for Counter64 type object, the error will be returned.
+* Interfaces that are not visible to Linux like DPDK interfaces cannot be
+  retreived using standard IF-MIB tables.
+
 For more information on the plugin parameters, please see:
 https://github.com/maryamtahhan/collectd/blob/feat_snmp/src/collectd.conf.pod
 
