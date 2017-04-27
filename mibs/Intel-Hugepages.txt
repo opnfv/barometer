@@ -1,0 +1,112 @@
+INTEL-HUGEPAGES-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+    MODULE-IDENTITY, OBJECT-TYPE, Counter64
+        FROM SNMPv2-SMI
+
+    hostAssist
+        FROM Intel-SA-MIB;
+
+--*****************************************************************************
+--
+-- MODULE IDENTITY AND REVISION GROUP
+--
+--*****************************************************************************
+
+intelHugepages      MODULE-IDENTITY
+    LAST-UPDATED    "201703070000Z" -- coordinated universal time UTC format is YYMMDDHHmmZ
+    ORGANIZATION    "Intel, Server Management Software"
+    CONTACT-INFO    " "
+    DESCRIPTION     "This SNMP MIB module supports the Hugepages SNMP subagent for monitoring
+                    hugepages counters per-node for NUMA systems and overall hugepage statistics
+                    for non-NUMA systems.
+
+                    Version:  1.0   03/07/2017
+
+                    Intel copyright information 2017"
+                    ::= { hostAssist 4 }
+
+-------------------------------------------------------------------------------
+-- Intel Hugepages Table
+-------------------------------------------------------------------------------
+
+hugepagesTable                              OBJECT-TYPE
+    SYNTAX      SEQUENCE OF HugepagesTableEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION "This Group defines the Hugepages Table."
+    ::= { intelHugepages 1 }
+
+hugepagesTableEntry                         OBJECT-TYPE
+    SYNTAX      HugepagesTableEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION "This Group defines the Hugepages Table Entry."
+    INDEX       { IMPLIED hugepagesNode }
+    ::= { hugepagesTable 1 }
+
+HugepagesTableEntry                                ::= SEQUENCE {
+    hugepagesNode                                  SnmpAdminString,
+    hugepagesMemoryFree                            Counter64,
+    hugepagesMemoryUsed                            Counter64,
+    hugepagesPageFree                              Counter64,
+    hugepagesPageUsed                              Counter64,
+    hugepagesPercentFree                           Integer32,
+    hugepagesPercentUsed                           Integer32
+}
+
+hugepagesNode   OBJECT-TYPE
+    SYNTAX      SnmpAdminString
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "A textual string containing information about the node and
+                 hugepages size used on this node."
+    ::= { hugepagesTableEntry 1 }
+
+hugepagesMemoryFree OBJECT-TYPE
+    SYNTAX      Counter64
+    UNITS       "kBytes"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "This counter defines the number of free hugepages memory."
+    ::= { hugepagesTableEntry 2 }
+
+hugepagesMemoryUsed OBJECT-TYPE
+    SYNTAX      Counter64
+    UNITS       "kBytes"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "This counter defines the number of used hugepages memory."
+    ::= { hugepagesTableEntry 3 }
+
+hugepagesPagesFree OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "This counter defines the number of free pages."
+    ::= { hugepagesTableEntry 4 }
+
+hugepagesPagesUsed OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "This counter defines the number of used pages."
+    ::= { hugepagesTableEntry 5 }
+
+hugepagesPercentFree OBJECT-TYPE
+    SYNTAX      Integer32 (0..100)
+    UNITS       "%"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "This counter defines the percentage of free memory."
+    ::= { hugepagesTableEntry 6 }
+
+hugepagesPercentUsed OBJECT-TYPE
+    SYNTAX      Integer32 (0..100)
+    UNITS       "%"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "This counter defines the percentage of used memory."
+    ::= { hugepagesTableEntry 7 }
+
+END
