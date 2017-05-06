@@ -42,6 +42,7 @@ CONFIG_CMD += --with-hugepages
 CONFIG_CMD += --enable-exec
 CONFIG_CMD += --enable-python
 CONFIG_CMD += --enable-threshold
+CONFIG_CMD += --disable-perl
 
 .PHONY: install force_install config force_make
 

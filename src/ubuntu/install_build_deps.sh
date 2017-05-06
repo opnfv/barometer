@@ -13,9 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 set -eux
-sudo apt-get -y install build-essential dh-autoreconf fakeroot  devscripts dpkg-dev git wget
+apt-get -y install build-essential dh-autoreconf fakeroot  devscripts dpkg-dev git wget
 
-sudo apt-get -y install \
+apt-get -y install \
     debhelper dpkg-dev po-debconf dh-systemd dh-strip-nondeterminism \
     bison flex autotools-dev libltdl-dev pkg-config \
     iptables-dev \
@@ -70,5 +70,6 @@ sudo apt-get -y install \
     default-jdk \
     protobuf-c-compiler \
     python-dev \
-    openvswitch-switch
+    openvswitch-switch \
+    mcelog
 
