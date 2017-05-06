@@ -1,7 +1,7 @@
 # makefile to manage collectd package
 #
 
-# Copyright 2016 OPNFV
+# Copyright 2016-2017 OPNFV
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -46,6 +46,7 @@ CONFIG_CMD += --with-hugepages
 CONFIG_CMD += --enable-exec
 CONFIG_CMD += --enable-python
 CONFIG_CMD += --enable-threshold
+CONFIG_CMD += --disable-perl
 
 .PHONY: install force_install config force_make
 
