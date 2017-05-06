@@ -100,11 +100,12 @@ built and configured through the barometer repository.
  * sudo permissions are required to install collectd.
  * These are instructions for Ubuntu 16.04
 
-To build and install these dependencies, clone the barometer repo:
+To build all the upstream plugins, clone the barometer repo:
 
 .. code:: c
 
     $ git clone https://gerrit.opnfv.org/gerrit/barometer
+
 
 To install collectd as a service and install all it's dependencies:
 
