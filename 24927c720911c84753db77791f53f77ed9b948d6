@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ab8dda7_70470b1e",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2017-05-18T11:37:56Z",
+      "side": 1,
+      "message": "This extra line can be removed.",
+      "revId": "24927c720911c84753db77791f53f77ed9b948d6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ab8dda7_1056cfd2",
+        "filename": "src/dpdk/Makefile",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2017-05-18T11:37:56Z",
+      "side": 1,
+      "message": "merge conflict",
+      "revId": "24927c720911c84753db77791f53f77ed9b948d6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
