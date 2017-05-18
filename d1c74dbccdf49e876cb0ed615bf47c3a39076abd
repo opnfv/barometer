@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ab8dda7_50de876e",
+        "filename": "systems/ubuntu/16.04/build_base_machine.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2017-05-18T11:30:25Z",
+      "side": 1,
+      "message": "16.04?",
+      "range": {
+        "startLine": 3,
+        "startChar": 34,
+        "endLine": 3,
+        "endChar": 39
+      },
+      "revId": "d1c74dbccdf49e876cb0ed615bf47c3a39076abd",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ab8dda7_b0f7c3f4",
+        "filename": "systems/ubuntu/16.04/build_base_machine.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2017-05-18T11:30:25Z",
+      "side": 1,
+      "message": "Shouldn\u0027t be 2017?",
+      "revId": "d1c74dbccdf49e876cb0ed615bf47c3a39076abd",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
