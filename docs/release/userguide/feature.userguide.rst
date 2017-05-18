@@ -106,17 +106,11 @@ To build and install these dependencies, clone the barometer repo:
 
     $ git clone https://gerrit.opnfv.org/gerrit/barometer
 
-Install the build dependencies
-
-.. code:: bash
-
-    $ ./src/install_build_deps.sh
-
 To install collectd as a service and install all it's dependencies:
 
 .. code:: bash
 
-    $ cd barometer/src && sudo make && sudo make install
+    $ cd barometer && ./systems/build_base_machine.sh
 
 This will install collectd as a service and the base install directory
 will be /opt/collectd.
