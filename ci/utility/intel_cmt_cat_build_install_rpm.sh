@@ -46,5 +46,5 @@ then
 	echo "*** intel-cmt-cat is already installed"
 else
 	RPM_NAME=`ls -1 $RPM_DIR | grep -E "cmt-cat-[0-9]"`
-	rpm -ivf $RPM_DIR/$RPM_NAME
+	sudo rpm -ivf $RPM_DIR/$RPM_NAME
 fi
