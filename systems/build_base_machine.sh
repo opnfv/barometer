@@ -46,13 +46,13 @@ then
     SUDO="sudo -E"
 fi
 
-# If there is version specific dir available then set distro_dir to that
-if [ -d "$OS_NAME/$VERSION_ID" ]; then
-    distro_dir="$OS_NAME/$VERSION_ID"
-else
-    # Fallback - Default distro_dir = OS name
-    distro_dir="$OS_NAME"
+if [ "$1" != "-f" ] && [ -d "/opt/collectd" ] || [ -d "/etc/collectd" ]
+then
+    die "collectd is already installed on this system, if you wish to reinstall please rerun the script with a -f argument"
 fi
+
+# If there is version specific dir available then set distro_dir to that
+distro_dir="$OS_NAME/$VERSION_ID"
 
 # build base system using OS specific scripts
 if [ -d "$distro_dir" ] && [ -e "$distro_dir/build_base_machine.sh" ]; then
