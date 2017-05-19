@@ -37,3 +37,4 @@ sed	--regexp-extended \
 	$COLLECTD_DIR/contrib/redhat/collectd.spec
 
 rpmbuild --define "_topdir $RPM_WORKDIR" -bb $COLLECTD_DIR/contrib/redhat/collectd.spec
+gsutil -m cp -r $RPM_WORKDIR/RPMS/* gs://artifacts.opnfv.org/barometer/rpms
