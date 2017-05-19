@@ -1,0 +1,10 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+1: Bryan Sullivan <bryan.sullivan@att.com>
+Code-Review+1: Taras Chornyi <chornyi.taras@outlook.com>
+Code-Review+1: Al Morton <acmorton@att.com>
+Code-Review+2: Maryam Tahhan <maryam.tahhan@intel.com>
+Submitted-by: Maryam Tahhan <maryam.tahhan@intel.com>
+Submitted-at: Fri, 19 May 2017 10:34:27 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/28429
+Project: barometer
+Branch: refs/heads/master
