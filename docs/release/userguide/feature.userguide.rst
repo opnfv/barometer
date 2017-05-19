@@ -110,7 +110,7 @@ To install collectd as a service and install all it's dependencies:
 
 .. code:: bash
 
-    $ cd barometer && ./systems/build_base_machine.sh
+    $ cd barometer/systems && ./build_base_machine.sh
 
 This will install collectd as a service and the base install directory
 will be /opt/collectd.
