@@ -34,6 +34,10 @@ ifeq ($(LIBPQOS_DIR),)
 LIBPQOS_DIR = /usr
 endif
 
+XDG_CACHE_HOME_DIR = $(shell echo $$XDG_CACHE_HOME)
+ifeq ($(XDG_CACHE_HOME_DIR),)
+XDG_CACHE_HOME_DIR = $(shell echo $$HOME)
+endif
 
 CONFIG_CMD += --enable-syslog
 CONFIG_CMD += --enable-logfile
@@ -66,7 +70,8 @@ force_install:
 	$(AT)cp $(WORK_DIR)/contrib/systemd.collectd.service /etc/systemd/system/
 	$(AT)mv /etc/systemd/system/systemd.collectd.service /etc/systemd/system/collectd.service
 	$(AT)sed -i -e 's/ExecStart=\/usr\/sbin\/collectd/ExecStart=\/opt\/collectd\/sbin\/collectd/g' /etc/systemd/system/collectd.service
-	$(AT)sed -i -e 's/CapabilityBoundingSet=/CapabilityBoundingSet=CAP_SETUID CAP_SETGID CAP_SYS_RAWIO/g' /etc/systemd/system/collectd.service
+	$(AT)sed -i -e 's/CapabilityBoundingSet=/CapabilityBoundingSet=CAP_SETUID CAP_SETGID CAP_SYS_RAWIO CAP_SYS_ADMIN/g' /etc/systemd/system/collectd.service
+	$(AT)sed -i -e 's|Environment=\(.*\)|Environment=XDG_CACHE_HOME='$(XDG_CACHE_HOME_DIR)' \1|g' /etc/systemd/system/collectd.service
 	$(AT)systemctl daemon-reload
 	$(AT)sudo ./include_config.sh
 	@echo "Make install done"
