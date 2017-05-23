@@ -70,7 +70,7 @@ if [ -f ../src/Makefile ] ; then
     cd ../src
     make clobber || die "Make clobber failed"
     make || die "Make failed"
-    make intsall || die "Make install failed"
+    make install || die "Make install failed"
     cd -
 else
     die "Make failed; No Makefile"
