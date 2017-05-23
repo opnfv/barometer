@@ -22,7 +22,9 @@ Version history
 | 2017-02-16         | 0.1.0              | Maryam Tahhan      | First draft        |
 |                    |                    |                    |                    |
 +--------------------+--------------------+--------------------+--------------------+
-
+| 2017-05-23         | 0.1.1              | Maryam Tahhan      | Danube final       |
+|                    |                    |                    | documentation      |
++--------------------+--------------------+--------------------+--------------------+
 Important notes
 -----------------
 None to date.
@@ -50,10 +52,10 @@ Release Data
 | **Repo/commit-ID**                   | barometer/                           |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| **Release designation**              | Danube 1.0                           |
+| **Release designation**              | Danube 3.0                           |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| **Release date**                     |                                      |
+| **Release date**                     |  08 June 2017                        |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
 | **Purpose of the delivery**          | Official OPNFV release               |
@@ -93,9 +95,6 @@ Feature additions
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
 | BAROMETER-48                         | Hugepages Plugin for Collectd        |
-|                                      |                                      |
-+--------------------------------------+--------------------------------------+
-|                                      |                                      |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
 
@@ -175,7 +174,7 @@ System Limitations
 
 Barometer has the same limiations as the fuel project in general as regards
 
-- **Max number of blades*
+- **Max number of blades**
 
 - **Min number of blades**
 
@@ -223,13 +222,7 @@ Barometer@OPNFV Danube RC1 has undergone QA test runs with the following results
 | **TEST-SUITE**                       | **Results:**                         |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-|                                      |                                      |
-|                                      |                                      |
-|                                      |                                      |
-|                                      |                                      |
-|                                      |                                      |
-+--------------------------------------+--------------------------------------+
-|                                      |                                      |
+| BarometerCollectd	               | `Build results`_                     |
 |                                      |                                      |
 |                                      |                                      |
 |                                      |                                      |
@@ -243,3 +236,4 @@ For more information on the OPNFV Danube release, please see:
 
 http://opnfv.org/danube
 
+.. _Build results: https://build.opnfv.org/ci/view/fuel/job/fuel-os-nosdn-kvm_ovs_dpdk_bar-ha-baremetal-daily-danube/
