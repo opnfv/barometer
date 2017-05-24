@@ -251,7 +251,7 @@ class VESPlugin(object):
             'SendEventInterval' : 20.0,
             'FunctionalRole' : 'Collectd VES Agent',
             'GuestRunning' : False,
-            'ApiVersion' : 5.1              
+            'ApiVersion' : 5
         }
         self.__host_name = None
         self.__ves_timer = None
