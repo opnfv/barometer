@@ -12,12 +12,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+DATE=$(date -u +"%Y-%m-%d_%H-%M-%S")
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $DIR/package-list.sh
 
 VERSION="VERSION_NOT_SET"
 
+rm -rf $RPM_WORKDIR
 cd $COLLECTD_DIR
 VERSION=$( $COLLECTD_DIR/version-gen.sh | sed "s/\W$//g" )
 $COLLECTD_DIR/build.sh
@@ -37,4 +39,3 @@ sed	--regexp-extended \
 	$COLLECTD_DIR/contrib/redhat/collectd.spec
 
 rpmbuild --define "_topdir $RPM_WORKDIR" -bb $COLLECTD_DIR/contrib/redhat/collectd.spec
-gsutil -m cp -r $RPM_WORKDIR/RPMS/* gs://artifacts.opnfv.org/barometer/rpms
