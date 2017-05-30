@@ -40,7 +40,8 @@ Installation Instructions:
     </Module>
     </Plugin>
 
-where "/path/to/your/python/modules" is the path to where you cloned this repo
+where "/path/to/your/python/modules" is the path to ves_plugin.py,
+which is located in this repo.
 
 VES python plugin configuration description:
 --------------------------------------------
@@ -87,16 +88,12 @@ REST resources are of the form:
   Used as the 'functionalRole' field of 'commonEventHeader' event (default:
   `Collectd VES Agent`)
 
-**GuestRunning** *true|false*
-  This option is used if the collectd is running on a guest machine, e.g this
-  option should be set to `true` in this case. Defaults to `false`.
-
 **SendEventInterval** *interval*
   This configuration option controls how often (sec) collectd data is sent to
   Vendor Event Listener (default: `20`)
 
 **ApiVersion** *version*
-  Used as the "apiVersion" element in the REST path (default: `1`)
+  Used as the "apiVersion" element in the REST path (default: `5.1`)
 
 Other collectd.conf configurations
 ----------------------------------
@@ -106,8 +103,7 @@ Please ensure that FQDNLookup is set to false
 
     FQDNLookup   false
 
-Please ensure that the virt plugin is enabled and configured as follows. This configuration
-is is required only on a host side ('GuestRunning' = false).
+Please ensure that the virt plugin is enabled and configured as follows.
 
 .. code:: bash
 
@@ -117,7 +113,13 @@ is is required only on a host side ('GuestRunning' = false).
             Connection "qemu:///system"
             RefreshInterval 60
             HostnameFormat uuid
+            PluginInstanceFormat name
+            ExtraStats "cpu_util perf"
     </Plugin>
+
+
+.. note:: For more detailed information on the `virt` plugin configuration,
+  requirements etc., please see the userguide of the collectd virt plugin.
 
 Please ensure that the cpu plugin is enabled and configured as follows
 
@@ -130,36 +132,13 @@ Please ensure that the cpu plugin is enabled and configured as follows
         ValuesPercentage true
     </Plugin>
 
-**Note**: The `ReportByCpu` option should be set to `true` (default) if VES pugin
-is running on guest machine ('GuestRunning' = true).
-
-Please ensure that the aggregation plugin is enabled and configured as follows
-(required if 'GuestRunning' = true)
+To report the host name as a UUID the uuid plugin can be used.
 
 .. code:: bash
 
-    LoadPlugin aggregation
+    LoadPlugin uuid
 
-    <Plugin aggregation>
-        <Aggregation>
-                Plugin "cpu"
-                Type "percent"
-                GroupBy "Host"
-                GroupBy "TypeInstance"
-                SetPlugin "cpu-aggregation"
-                CalculateAverage true
-        </Aggregation>
-    </Plugin>
-
-If plugin is running on a guest side, it is important to enable uuid plugin
-too. In this case the hostname in event message will be represented as UUID
-instead of system host name.
-
-.. code:: bash
-
-  LoadPlugin uuid
-
-If custom UUID needs to be provided, the following configuration is required in collectd.conf
+If a custom UUID needs to be provided, the following configuration is required in collectd.conf
 file:
 
 .. code:: bash
@@ -181,28 +160,29 @@ Please also ensure that the following plugins are enabled:
 VES plugin notification example
 -------------------------------
 
-A good example of collectD notification is monitoring of CPU load on a host or guest using
-'threshold' plugin. The following configuration will setup VES plugin to send 'Fault'
-event every time a CPU idle value is out of range (e.g.: WARNING: CPU-IDLE < 50%, CRITICAL:
-CPU-IDLE < 30%) and send 'Fault' NORMAL event if CPU idle value is back to normal.
+A good example of collectD notification is monitoring of the total CPU usage on a VM
+using the 'threshold' plugin. The following configuration will setup VES plugin to send 'Fault'
+event every time a total VM CPU value is out of range (e.g.: WARNING: VM CPU TOTAL > 50%,
+CRITICAL: VM CPU TOTAL > 96%) and send 'Fault' NORMAL event if the CPU value is back
+to normal. In the example below, there is one VM with two CPUs configured which is running
+on the host with a total of 48 cores. Thus, the threshold value 2.08 (100/48) means that
+one CPU of the VM is fully loaded (e.g.: 50% of total CPU usage of the VM) and 4.0 means
+96% of total CPU usage of the VM. Those values can also be obtained by virt-top
+command line tool.
 
 .. code:: bash
 
     LoadPlugin threshold
 
     <Plugin "threshold">
-         <Plugin "cpu-aggregation">
+        <Plugin "virt">
             <Type "percent">
-              WarningMin    50.0
-              WarningMax   100.0
-              FailureMin    30.0
-              FailureMax   100.0
-              Instance "idle"
-              Hits 1
+                WarningMax    2.08
+                FailureMax    4.0
+                Instance      "virt_cpu_total"
             </Type>
         </Plugin>
     </Plugin>
 
-More detailed information on how to configure collectD thresholds(memory, cpu
-etc.) can be found here at
+More detailed information on how to configure collectD thresholds can be found at
 https://collectd.org/documentation/manpages/collectd-threshold.5.shtml
