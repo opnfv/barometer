@@ -46,6 +46,52 @@
       "revId": "f1781ac756ac72a3a5c7c9f03c24042b6fce05ac",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5aaae553_d31c37c4",
+        "filename": "3rd_party/collectd-ves-plugin/ves_plugin/ves_plugin.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2017-05-30T16:00:13Z",
+      "side": 1,
+      "message": "actually, it\u0027s kibibytes.",
+      "range": {
+        "startLine": 602,
+        "startChar": 28,
+        "endLine": 602,
+        "endChar": 37
+      },
+      "revId": "f1781ac756ac72a3a5c7c9f03c24042b6fce05ac",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5aaae553_33834bce",
+        "filename": "3rd_party/collectd-ves-plugin/ves_plugin/ves_plugin.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2017-05-30T16:00:13Z",
+      "side": 1,
+      "message": "Is this for individual measurements?  If so, we recently concluded it was simpler to report the end-time of a measurement interval. This Would this require a change on the VES side, too (?).",
+      "range": {
+        "startLine": 639,
+        "startChar": 12,
+        "endLine": 639,
+        "endChar": 85
+      },
+      "revId": "f1781ac756ac72a3a5c7c9f03c24042b6fce05ac",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
