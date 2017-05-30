@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5aaae553_f37b7327",
+        "filename": "3rd_party/collectd-ves-plugin/ves_plugin/ves_plugin.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 4807
+      },
+      "writtenOn": "2017-05-30T14:48:07Z",
+      "side": 1,
+      "message": "Can you change this to 5.0? That\u0027s the version that will work with the VES-ONAP demo code. I have a patch https://gerrit.opnfv.org/gerrit/35293 to change back to 5.0, but my patch can be abandoned in favor of this one.",
+      "range": {
+        "startLine": 541,
+        "startChar": 27,
+        "endLine": 541,
+        "endChar": 30
+      },
+      "revId": "f1781ac756ac72a3a5c7c9f03c24042b6fce05ac",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
