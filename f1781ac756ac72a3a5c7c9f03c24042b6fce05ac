@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "5aaae553_9c400658",
+        "filename": "3rd_party/collectd-ves-plugin/ves_plugin/ves_plugin.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-06-06T15:52:44Z",
+      "side": 1,
+      "message": "Yes - the schema will be updated to kibibytes - let\u0027s update this comment",
+      "parentUuid": "5aaae553_932b1eeb",
+      "range": {
+        "startLine": 602,
+        "startChar": 28,
+        "endLine": 602,
+        "endChar": 37
+      },
+      "revId": "f1781ac756ac72a3a5c7c9f03c24042b6fce05ac",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5aaae553_33834bce",
         "filename": "3rd_party/collectd-ves-plugin/ves_plugin/ves_plugin.py",
         "patchSetId": 1
@@ -112,6 +136,53 @@
         "startChar": 12,
         "endLine": 639,
         "endChar": 85
+      },
+      "revId": "f1781ac756ac72a3a5c7c9f03c24042b6fce05ac",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5aaae553_9c17a651",
+        "filename": "3rd_party/collectd-ves-plugin/ves_plugin/ves_plugin.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-06-06T15:52:44Z",
+      "side": 1,
+      "message": "From the collectd side - we are still reporting the end-time at a measurement interval (where it\u0027s supported by the collectd plugins, we need to update some to make sure that they are also doing the same). But I think this is a mismatch in definition, in the VES schema there is\n\n1. \"lastEpochMicrosec\": {\t\t\t\t\t\"description\": \"the latest unix time aka epoch time associated with the event from any component--as microseconds elapsed since 1 Jan 1970 not including leap seconds\",\n\"type\": \"number\"\n}\n\nand\n\n2. \"startEpochMicrosec\": {\n\"description\": \"the earliest unix time aka epoch time associated with the event from any component--as microseconds elapsed since 1 Jan 1970 not including leap seconds\",\n\"type\": \"number\"\n}\n\nwhich is different to the end-of-time of measurement interval",
+      "parentUuid": "5aaae553_33834bce",
+      "range": {
+        "startLine": 639,
+        "startChar": 12,
+        "endLine": 639,
+        "endChar": 85
+      },
+      "revId": "f1781ac756ac72a3a5c7c9f03c24042b6fce05ac",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5aaae553_fc057a14",
+        "filename": "3rd_party/collectd-ves-plugin/ves_plugin/ves_plugin.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 892,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-06-06T15:52:44Z",
+      "side": 1,
+      "message": "these need to be updated to the VM name rather than the host name",
+      "range": {
+        "startLine": 891,
+        "startChar": 0,
+        "endLine": 892,
+        "endChar": 47
       },
       "revId": "f1781ac756ac72a3a5c7c9f03c24042b6fce05ac",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
