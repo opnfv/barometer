@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "5aaae553_9ff8f8e6",
+        "filename": "3rd_party/collectd-ves-plugin/ves_plugin/ves_plugin.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2017-06-06T17:58:18Z",
+      "side": 1,
+      "message": "So, VES has the possibility to indicate either beginning or end (of a measurement interval), but we need to focus on the end for consistency. And we want to see the measurement interval reported or easily available.",
+      "parentUuid": "5aaae553_9c17a651",
+      "range": {
+        "startLine": 639,
+        "startChar": 12,
+        "endLine": 639,
+        "endChar": 85
+      },
+      "revId": "f1781ac756ac72a3a5c7c9f03c24042b6fce05ac",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5aaae553_fc057a14",
         "filename": "3rd_party/collectd-ves-plugin/ves_plugin/ves_plugin.py",
         "patchSetId": 1
