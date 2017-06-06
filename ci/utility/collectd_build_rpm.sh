@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright 2017 Intel Corporation
+# Copyright 2017 Intel Corporation and OPNFV
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ source $DIR/package-list.sh
 
 VERSION="VERSION_NOT_SET"
 
+rm -rf $RPM_WORKDIR
 cd $COLLECTD_DIR
 VERSION=$( $COLLECTD_DIR/version-gen.sh | sed "s/\W$//g" )
 $COLLECTD_DIR/build.sh
@@ -37,4 +38,3 @@ sed	--regexp-extended \
 	$COLLECTD_DIR/contrib/redhat/collectd.spec
 
 rpmbuild --define "_topdir $RPM_WORKDIR" -bb $COLLECTD_DIR/contrib/redhat/collectd.spec
-gsutil -m cp -r $RPM_WORKDIR/RPMS/* gs://artifacts.opnfv.org/barometer/rpms
