@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5aaae553_5f65a0df",
+        "filename": "3rd_party/collectd-ves-plugin/ves_plugin/ves_plugin.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-06-06T17:38:52Z",
+      "side": 1,
+      "message": "Hi Volodymyr\nIn the latest output from the collectd plugin Bryan is seeing something really odd for cpuUsageArray (https://etherpad.opnfv.org/p/ves), it seems to not be in percentage\n\n            \"cpuUsageArray\": [\n                {\n                    \"cpuIdentifier\": \"0\",\n                    \"percentUsage\": 1216362128.69\n                }\n            ],\n\nit looks like it\u0027s nano seconds, any idea why we would be getting nanoseconds here instead of %?",
+      "range": {
+        "startLine": 666,
+        "startChar": 16,
+        "endLine": 666,
+        "endChar": 77
+      },
+      "revId": "1fcee7619e0bcecee906a892f12a55b7b3021a15",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
