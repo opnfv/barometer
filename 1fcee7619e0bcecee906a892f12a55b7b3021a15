@@ -22,6 +22,30 @@
       "revId": "1fcee7619e0bcecee906a892f12a55b7b3021a15",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5aaae553_3f02243f",
+        "filename": "3rd_party/collectd-ves-plugin/ves_plugin/ves_plugin.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2017-06-07T08:47:58Z",
+      "side": 1,
+      "message": "Hi Maryam, Bryan,\n\nThis looks really odd. Would it be possible to provide the collectd configuration file? Also, it would be useful to provide debug logs from collectd (collectd should be compiled with --enable-debug) and \"log\" plugin should be enabled in collectd.\n\nThanks and Regards,\nVolodymyr",
+      "parentUuid": "5aaae553_5f65a0df",
+      "range": {
+        "startLine": 666,
+        "startChar": 16,
+        "endLine": 666,
+        "endChar": 77
+      },
+      "revId": "1fcee7619e0bcecee906a892f12a55b7b3021a15",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
