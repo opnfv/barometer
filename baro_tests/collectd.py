@@ -16,19 +16,20 @@
 import requests
 from keystoneclient.v3 import client
 import os
+import pkg_resources
 import time
 import logging
 from config_server import *
 from tests import *
 from opnfv.deployment import factory
 from functest.utils import functest_utils
-from functest.utils.constants import CONST
 
 CEILOMETER_NAME = 'ceilometer'
 ID_RSA_SRC = '/root/.ssh/id_rsa'
 ID_RSA_DST_DIR = '/home/opnfv/.ssh'
 ID_RSA_DST = ID_RSA_DST_DIR + '/id_rsa'
-INSTALLER_PARAMS_YAML = os.path.join(CONST.dir_repo_functest, 'functest/ci/installer_params.yaml')
+INSTALLER_PARAMS_YAML = pkg_resources.resource_filename(
+    'functest', 'ci/installer_params.yaml')
 FUEL_IP = functest_utils.get_parameter_from_yaml('fuel.ip', INSTALLER_PARAMS_YAML)
 FUEL_USER = functest_utils.get_parameter_from_yaml('fuel.user', INSTALLER_PARAMS_YAML)
 FUEL_PW = functest_utils.get_parameter_from_yaml('fuel.password', INSTALLER_PARAMS_YAML)
