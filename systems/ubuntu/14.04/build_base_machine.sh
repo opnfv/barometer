@@ -13,17 +13,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 set -eux
+apt-get update
 apt-get -y install build-essential dh-autoreconf fakeroot  devscripts dpkg-dev git wget
 
 apt-get -y install \
-    debhelper dpkg-dev po-debconf dh-systemd dh-strip-nondeterminism \
+    debhelper dpkg-dev po-debconf dh-systemd \
     bison flex autotools-dev libltdl-dev pkg-config \
     iptables-dev \
     javahelper \
     libatasmart-dev \
     libcap-dev \
     libcurl4-gnutls-dev \
-    libdbi0-dev \
+    libdbi-dev \
     libesmtp-dev \
     libganglia1-dev \
     libgcrypt11-dev \
@@ -32,12 +33,12 @@ apt-get -y install \
     libhiredis-dev \
     libi2c-dev \
     libldap2-dev \
-    liblua5.3-dev \
+    liblua5.2-dev \
     liblvm2-dev \
     libmemcached-dev \
     libmodbus-dev \
     libmnl-dev \
-    libmosquitto-dev \
+    libmosquitto0-dev \
     libmysqlclient-dev \
     libnotify-dev \
     libopenipmi-dev \
@@ -47,7 +48,7 @@ apt-get -y install \
     libpcap-dev\
     libperl-dev \
     libpq-dev \
-    libprotobuf-c-dev \
+    libprotobuf-c0-dev \
     libriemann-client-dev \
     librdkafka-dev \
     librabbitmq-dev \
@@ -55,7 +56,6 @@ apt-get -y install \
     libsensors4-dev \
     libsigrok-dev \
     libsnmp-dev \
-    libsnmp9-dev \
     perl \
     libtokyocabinet-dev \
     libtokyotyrant-dev \
@@ -71,5 +71,7 @@ apt-get -y install \
     protobuf-c-compiler \
     python-dev \
     openvswitch-switch \
-    mcelog
+    mcelog \
+    libc6-dev \
+    g++-multilib
 
