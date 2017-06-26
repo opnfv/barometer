@@ -17,12 +17,8 @@ WORKSPACE=${WORKSPACE:-`cd && pwd`}
 
 COLLECTD_DIR=$WORKSPACE/collectd
 CMTCAT_DIR=$WORKSPACE/intel-cmt-cat
-RPM_WORKDIR=$WORKSPACE/rpmbuild
 
 CMTCAT_REPO=https://github.com/01org/intel-cmt-cat.git
 CMTCAT_BRANCH=master
 COLLECTD_REPO=https://github.com/collectd/collectd.git
 COLLECTD_BRANCH=master
-
-# Here rpms built could be taken from
-RPM_DIR=$RPM_WORKDIR/RPMS/x86_64/
