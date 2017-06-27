@@ -22,6 +22,30 @@
       "revId": "7dcda31fe01f5fe910033a0ff97eb1ba795ee680",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa4ed85_52828a53",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1630
+      },
+      "writtenOn": "2017-06-27T00:23:33Z",
+      "side": 1,
+      "message": "mcp \u003d mirantis cloud platform. new version of fuel@opnfv use mcp, which is imcompatible with fuel plugin.",
+      "parentUuid": "1aa4ed85_f7cda85e",
+      "range": {
+        "startLine": 7,
+        "startChar": 50,
+        "endLine": 7,
+        "endChar": 53
+      },
+      "revId": "7dcda31fe01f5fe910033a0ff97eb1ba795ee680",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
