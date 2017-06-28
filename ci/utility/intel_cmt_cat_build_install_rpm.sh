@@ -16,7 +16,7 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $DIR/package-list.sh
 
-VERSION="v0.1.5-1"
+VERSION="v1.0.1"
 
 bash $DIR/check_git_repo.sh $CMTCAT_DIR $CMTCAT_REPO
 if [[ $? != 0 ]]

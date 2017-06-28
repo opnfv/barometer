@@ -18,9 +18,8 @@ source $DIR/package-list.sh
 
 VERSION="VERSION_NOT_SET"
 
-rm -rf $RPM_WORKDIR
 cd $COLLECTD_DIR
-VERSION=$( $COLLECTD_DIR/version-gen.sh | sed "s/\W$//g" )
+VERSION=$( $COLLECTD_DIR/version-gen.sh | sed "s/^\W$//g" )
 $COLLECTD_DIR/build.sh
 $COLLECTD_DIR/configure
 make dist
