@@ -30,9 +30,12 @@ Barometer has enabled the following collectd plugins:
 * *dpdkevents plugin*:  A read plugin that retrieves DPDK link status and DPDK
   forwarding cores liveliness status (DPDK Keep Alive).
 
-* `ceilometer plugin`_: A write plugin that pushes the retrieved stats to
-  Ceilometer. It's capable of pushing any stats read through collectd to
-  Ceilometer, not just the DPDK stats.
+* `gnocchi plugin`_: A write plugin that pushes the retrieved stats to
+  Gnocchi. It's capable of pushing any stats read through collectd to
+  Gnocchi, not just the DPDK stats.
+
+* `aodh plugin`_: A notification plugin that pushes events to Aodh, and
+  creates/updates alarms appropriately.
 
 * *hugepages plugin*:  A read plugin that retrieves the number of available
   and free hugepages on a platform as well as what is available in terms of
@@ -50,9 +53,9 @@ Barometer has enabled the following collectd plugins:
   memory bandwidth utilization
 
 All the plugins above are available on the collectd master, except for the
-ceilometer plugin as it's a python based plugin and only C plugins are accepted
-by the collectd community. The ceilometer plugin lives in the OpenStack
-repositories.
+Gnocchi and Aodh plugins as they are Python-based plugins and only C plugins
+are accepted by the collectd community. The Gnocchi and Aodh plugins live in
+the OpenStack repositories.
 
 Other plugins existing as a pull request into collectd master:
 
@@ -1114,9 +1117,13 @@ Monitoring Interfaces and Openstack Support
 The figure above shows the DPDK L2 forwarding application running on a compute
 node, sending and receiving traffic. collectd is also running on this compute
 node retrieving the stats periodically from DPDK through the dpdkstat plugin
-and publishing the retrieved stats to Ceilometer through the ceilometer plugin.
+and publishing the retrieved stats to OpenStack through the
+collectd-ceilometer-plugin.
 
 To see this demo in action please checkout: `Barometer OPNFV Summit demo`_
+
+For more information on configuring and installing OpenStack plugins for
+collectd, check out the `collectd-ceilometer-plugin GSG`_.
 
 References
 ^^^^^^^^^^^
@@ -1129,5 +1136,6 @@ References
 .. [7] https://collectd.org/wiki/index.php/Meta_Data_Interface
 
 .. _Barometer OPNFV Summit demo: https://prezi.com/kjv6o8ixs6se/software-fastpath-service-quality-metrics-demo/
-.. _ceilometer plugin: https://github.com/openstack/collectd-ceilometer-plugin/tree/stable/mitaka
-
+.. _gnocchi plugin: https://github.com/openstack/collectd-ceilometer-plugin/tree/stable/ocata/
+.. _aodh plugin: https://github.com/openstack/collectd-ceilometer-plugin/tree/stable/ocata/
+.. _collectd-ceilometer-plugin GSG: https://github.com/openstack/collectd-ceilometer-plugin/blob/master/doc/source/GSG.rst
