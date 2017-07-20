@@ -1,4 +1,5 @@
-# Copyright 2016 OPNFV
+#!/bin/bash
+# Copyright 2017 OPNFV
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,10 +13,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+export CURRENT_DIR=$(pwd)
 
-LoadPlugin exec
-<Plugin exec>
-     # For OVS PMD stats plugin
-     Exec "user:group" "/opt/collectd/etc/collectd.conf.d/ovs_pmd_stats.sh"
-     NotificationExec "collectd_exec" "/opt/collectd/etc/collectd.conf.d/write_notification.sh"
-</Plugin>
+SERVICE="openvswitch"
+RESULT=`ps -aux | grep $SERVICE | grep -v grep`
+OVS_PMD_STAT_SCRIPT=$CURRENT_DIR/../../3rd_party/ovs_pmd_stats/ovs_pmd_stats.py
+PATH_LOCAL=/usr/local/src/
+
+if [ "${RESULT:-null}" != null ]; then
+  echo "Openvswitch service is running."
+  sudo ovs-vsctl set-manager ptcp:6640
+  cp $OVS_PMD_STAT_SCRIPT $PATH_LOCAL
+else
+  echo "Openvswitch service is not running. Please start before running ovs plugins"
+fi
