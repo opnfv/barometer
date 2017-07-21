@@ -56,6 +56,9 @@ apt-get -y install \
     libsensors4-dev \
     libsigrok-dev \
     libsnmp-dev \
+    snmp \
+    snmp-mibs-downloader \
+    snmpd \
     perl \
     libtokyocabinet-dev \
     libtokyotyrant-dev \
