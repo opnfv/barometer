@@ -52,6 +52,7 @@ gtk2-devel
 libvirt-devel
 mcelog
 wget
+net-snmp-devel
 
 # install epel release required for git-review
 epel-release

@@ -56,6 +56,9 @@ apt-get -y install \
     libsigrok-dev \
     libsnmp-dev \
     libsnmp9-dev \
+    snmp \
+    snmp-mibs-downloader \
+    snmpd \
     perl \
     libtokyocabinet-dev \
     libtokyotyrant-dev \
