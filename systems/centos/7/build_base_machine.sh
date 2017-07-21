@@ -50,6 +50,7 @@ iptables-devel
 libmemcached-devel
 gtk2-devel
 libvirt-devel
+libvirt-daemon
 mcelog
 wget
 
