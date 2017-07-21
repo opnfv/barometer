@@ -34,6 +34,7 @@ kernel-devel
 kernel-modules-extra
 pixman-devel
 openssl-devel
+net-snmp-devel
 
 # tools
 curl
