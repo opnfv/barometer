@@ -42,6 +42,7 @@ autoconf
 libtool
 libpcap-devel
 libnet
+libvirt-daemon
 vim
 wget
 git

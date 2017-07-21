@@ -66,6 +66,7 @@ apt-get -y install \
     libupsclient-dev \
     libvarnishapi-dev \
     libvirt-dev \
+    libvirt-daemon \
     libxen-dev \
     libxml2-dev \
     libyajl-dev \
