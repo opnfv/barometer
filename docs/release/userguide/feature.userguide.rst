@@ -74,6 +74,10 @@ Other plugins existing as a pull request into collectd master:
   statistics about virtualized guests on a system directly from the hypervisor,
   without a need to install collectd instance on the guest.
 
+Third party application in Barometer repository:
+
+* *Open vSwitch PMD stats*: An aplication that retrieves PMD stats from OVS. It is run through exec plugin.
+
 **Plugins included in the Danube release:**
 
 * Hugepages
@@ -121,11 +125,14 @@ will be /opt/collectd.
 Sample configuration files can be found in '/opt/collectd/etc/collectd.conf.d'
 
 .. note::
-  - If you plan on using the Exec plugin, the plugin requires non-root
-    user to execute scripts. By default, `collectd_exec` user is used. Barometer
-    scripts do *not* create this user. It needs to be manually added or exec plugin
-    configuration has to be changed to use other, existing user before starting
-    collectd service.
+  - If you plan on using the Exec plugin (for OVS_PMD_STATS or for executing scripts
+    on notification generation), the plugin requires a non-root
+    user to execute scripts. By default, `collectd_exec` user is used in the exec.conf
+    provided in the sample configurations directory under src/collectd in the Barometer
+    repo. The scripts *DO NOT* create this user. You need to create this user before you
+    run build_base_machine.sh. Or modify configuration in the sample configurations
+    directory under src/collectd to use another existing non root user before running
+    run build_base_machine.sh.
 
   - If you don't want to use one of the Barometer plugins, simply remove the
     sample config file from '/opt/collectd/etc/collectd.conf.d'
@@ -759,6 +766,40 @@ to include:
 
 For more information on the plugin parameters, please see:
 https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
+
+OVS PMD stats
+^^^^^^^^^^^^^^
+Repo: https://gerrit.opnfv.org/gerrit/barometer
+
+Prequistes:
+1. Open vSwitch dependencies are installed.
+2. Open vSwitch service is running.
+3. Ovsdb-server manager is configured.
+You can refer `Open vSwitch Plugins`_ section above for each one of them.
+
+OVS PMD stats application is run through the exec plugin.
+
+To configure the OVS PMD stats application you need to modify the exec plugin configuration
+to include:
+
+.. code:: bash
+
+    <LoadPlugin exec>
+       Interval 1
+    </LoadPlugin
+    <Plugin exec>
+        Exec "user:group" "<path to ovs_pmd_stat.sh>"
+        #NotificationExec "nobody" "/usr/lib/collectd/notify.sh"
+    </Plugin>
+
+.. note:: Exec plugin configuration has to be changed to use appropriate user before starting collectd service.
+
+ovs_pmd_stat.sh calls the script for OVS PMD stats application with its argument:
+
+.. code:: bash
+
+     sudo python /usr/local/src/ovs_pmd_stats.py" "--socket-pid-file"
+     "/var/run/openvswitch/ovs-vswitchd.pid"
 
 SNMP Agent Plugin
 ^^^^^^^^^^^^^^^^^
