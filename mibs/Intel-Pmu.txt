@@ -1,0 +1,409 @@
+INTEL-PMU-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+    MODULE-IDENTITY, OBJECT-TYPE, Integer32, Counter64
+        FROM SNMPv2-SMI
+
+    hostAssist
+        FROM Intel-SA-MIB
+
+    DisplayString
+        FROM SNMPv2-TC;
+
+--*****************************************************************************
+--
+-- MODULE IDENTITY AND REVISION GROUP
+--
+--*****************************************************************************
+
+intelPmu            MODULE-IDENTITY
+    LAST-UPDATED    "201703061700Z" -- coordinated universal time UTC format is YYMMDDHHmmZ
+    ORGANIZATION    "Intel, Server Management Software"
+    CONTACT-INFO    " "
+    DESCRIPTION     "This SNMP MIB module supports the Intel PMU SNMP subagent for getting
+            performance counters data on Intel CPUs.
+
+            Version:  1.0   3/6/2017
+
+            Intel copyright information 2017"
+                    ::= { hostAssist 5 }
+
+OneBasedIndex       ::= Integer32(1..2147483647)
+
+-------------------------------------------------------------------------------
+-- Intel PMU Table
+-------------------------------------------------------------------------------
+
+pmuTable                                    OBJECT-TYPE
+    SYNTAX      SEQUENCE OF PmuTableEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION "This Group defines the Intel PMU Table."
+    ::= { intelPmu 1 }
+
+pmuTableEntry                               OBJECT-TYPE
+    SYNTAX      PmuTableEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION "This Group defines the Intel PMU Table Entry."
+    INDEX       { pmuGroupIndex }
+    ::= { pmuTable 1 }
+
+PmuTableEntry                                      ::= SEQUENCE {
+    pmuGroupIndex                                  OneBasedIndex,
+    pmuGroupDescr                                  DisplayString,
+    pmuL1DCacheLoads                               Counter64,
+    pmuL1DCacheLoadMisses                          Counter64,
+    pmuL1DCacheStores                              Counter64,
+    pmuL1DCacheStoreMisses                         Counter64,
+    pmuL1DCachePrefetches                          Counter64,
+    pmuL1DCachePrefetchMisses                      Counter64,
+    pmuL1ICacheLoads                               Counter64,
+    pmuL1ICacheLoadMisses                          Counter64,
+    pmuL1ICachePrefetches                          Counter64,
+    pmuL1ICachePrefetchMisses                      Counter64,
+    pmuLLCLoads                                    Counter64,
+    pmuLLCLoadMisses                               Counter64,
+    pmuLLCStores                                   Counter64,
+    pmuLLCStoreMisses                              Counter64,
+    pmuLLCPrefetches                               Counter64,
+    pmuLLCPrefetchMisses                           Counter64,
+    pmuDTLBLoads                                   Counter64,
+    pmuDTLBLoadMisses                              Counter64,
+    pmuDTLBStores                                  Counter64,
+    pmuDTLBStoreMisses                             Counter64,
+    pmuDTLBPrefetches                              Counter64,
+    pmuDTLBPrefetchMisses                          Counter64,
+    pmuITLBLoads                                   Counter64,
+    pmuITLBLoadMisses                              Counter64,
+    pmuBranchLoads                                 Counter64,
+    pmuBranchLoadMisses                            Counter64,
+    pmuCpuCycles                                   Counter64,
+    pmuInstructions                                Counter64,
+    pmuCacheReferences                             Counter64,
+    pmuCacheMisses                                 Counter64,
+    pmuBranches                                    Counter64,
+    pmuBranchMisses                                Counter64,
+    pmuBusCycles                                   Counter64,
+    pmuCpuClock                                    Counter64,
+    pmuTaskClock                                   Counter64,
+    pmuContextSwitches                             Counter64,
+    pmuCpuMigrations                               Counter64,
+    pmuPageFaults                                  Counter64,
+    pmuMinorFaults                                 Counter64,
+    pmuMajorFaults                                 Counter64,
+    pmuAlignmentFaults                             Counter64,
+    pmuEmulationFaults                             Counter64
+}
+
+pmuGroupIndex OBJECT-TYPE
+    SYNTAX      OneBasedIndex
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "This attribute defines the index of the CPU cores group."
+    ::= { pmuTableEntry 1 }
+
+pmuGroupDescr OBJECT-TYPE
+    SYNTAX      DisplayString (SIZE (0..255))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "A textual string containing information about the group of cores
+         on which counters are collected."
+    ::= { pmuTableEntry 2 }
+
+pmuL1DCacheLoads OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "L1 DCache Loads"
+    ::= { pmuTableEntry 3 }
+
+pmuL1DCacheLoadMisses OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "L1 DCache Load Misses"
+    ::= { pmuTableEntry 4 }
+
+pmuL1DCacheStores OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "L1 DCache Stores"
+    ::= { pmuTableEntry 5 }
+
+pmuL1DCacheStoreMisses OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "L1 DCache Store Misses"
+    ::= { pmuTableEntry 6 }
+
+pmuL1DCachePrefetches OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "L1 DCache Prefetches"
+    ::= { pmuTableEntry 7 }
+
+pmuL1DCachePrefetchMisses OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "L1 DCache Prefetch Misses"
+    ::= { pmuTableEntry 8 }
+
+pmuL1ICacheLoads OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "L1 ICache Loads"
+    ::= { pmuTableEntry 9 }
+
+pmuL1ICacheLoadMisses OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "L1 ICache Load Misses"
+    ::= { pmuTableEntry 10 }
+
+pmuL1ICachePrefetches OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "L1 ICache Prefetches"
+    ::= { pmuTableEntry 11 }
+
+pmuL1ICachePrefetchMisses OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "L1 ICache Prefetch Misses"
+    ::= { pmuTableEntry 12 }
+
+pmuLLCLoads OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "LLC Loads"
+    ::= { pmuTableEntry 13 }
+
+pmuLLCLoadMisses OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "LLC Load Misses"
+    ::= { pmuTableEntry 14 }
+
+pmuLLCStores OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "LLC Stores"
+    ::= { pmuTableEntry 15 }
+
+pmuLLCStoreMisses OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "LLC Store Misses"
+    ::= { pmuTableEntry 16 }
+
+pmuLLCPrefetches OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "LLC Prefetches"
+    ::= { pmuTableEntry 17 }
+
+pmuLLCPrefetchMisses OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "LLC Prefetch Misses"
+    ::= { pmuTableEntry 18 }
+
+pmuDTLBLoads OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "DTLB Loads"
+    ::= { pmuTableEntry 19 }
+
+pmuDTLBLoadMisses OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "DTLB Load Misses"
+    ::= { pmuTableEntry 20 }
+
+pmuDTLBStores OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "DTLB Stores"
+    ::= { pmuTableEntry 21 }
+
+pmuDTLBStoreMisses OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "DTLB Store Misses"
+    ::= { pmuTableEntry 22 }
+
+pmuDTLBPrefetches OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "DTLB Prefetches"
+    ::= { pmuTableEntry 23 }
+
+pmuDTLBPrefetchMisses OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "DTLB Prefetch Misses"
+    ::= { pmuTableEntry 24 }
+
+pmuITLBLoads OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "ITLB Loads"
+    ::= { pmuTableEntry 25 }
+
+pmuITLBLoadMisses OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "ITLB Load Misses"
+    ::= { pmuTableEntry 26 }
+
+pmuBranchLoads OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Branch Loads"
+    ::= { pmuTableEntry 27 }
+
+pmuBranchLoadMisses OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Branch Load Misses"
+    ::= { pmuTableEntry 28 }
+
+pmuCpuCycles OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "CPU Cycles"
+    ::= { pmuTableEntry 29 }
+
+pmuInstructions OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Instructions"
+    ::= { pmuTableEntry 30 }
+
+pmuCacheReferences OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Cache References"
+    ::= { pmuTableEntry 31 }
+
+pmuCacheMisses OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Cache Misses"
+    ::= { pmuTableEntry 32 }
+
+pmuBranches OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Branches"
+    ::= { pmuTableEntry 33 }
+
+pmuBranchMisses OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Branch Misses"
+    ::= { pmuTableEntry 34 }
+
+pmuBusCycles OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Bus Cycles"
+    ::= { pmuTableEntry 35 }
+
+pmuCpuClock OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "CPU Clock"
+    ::= { pmuTableEntry 36 }
+
+pmuTaskClock OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Task Clock"
+    ::= { pmuTableEntry 37 }
+
+pmuContextSwitches OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Context Switches"
+    ::= { pmuTableEntry 38 }
+
+pmuCpuMigrations OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "CPU Migrations"
+    ::= { pmuTableEntry 39 }
+
+pmuPageFaults OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Page Faults"
+    ::= { pmuTableEntry 40 }
+
+pmuMinorFaults OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Minor Faults"
+    ::= { pmuTableEntry 41 }
+
+pmuMajorFaults OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Major Faults"
+    ::= { pmuTableEntry 42 }
+
+pmuAlignmentFaults OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Alignment Faults"
+    ::= { pmuTableEntry 43 }
+
+pmuEmulationFaults OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Emulation Faults"
+    ::= { pmuTableEntry 44 }
+
+END
