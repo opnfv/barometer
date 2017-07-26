@@ -74,6 +74,7 @@ force_install:
 	$(AT)sed -i -e 's/CapabilityBoundingSet=/CapabilityBoundingSet=CAP_SETUID CAP_SETGID CAP_SYS_RAWIO CAP_SYS_ADMIN/g' /etc/systemd/system/collectd.service
 	$(AT)sed -i -e 's|Environment=\(.*\)|Environment=XDG_CACHE_HOME='$(XDG_CACHE_HOME_DIR)' \1|g' /etc/systemd/system/collectd.service
 	$(AT)systemctl daemon-reload
+	$(AT)sudo ./ovs_pmd_stats_config.sh
 	$(AT)sudo ./include_config.sh
 	@echo "Make install done"
 
