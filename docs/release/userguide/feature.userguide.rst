@@ -52,12 +52,9 @@ Barometer has enabled the following collectd plugins:
 * *RDT plugin*: A read plugin that provides the last level cache utilization and
   memory bandwidth utilization
 
-All the plugins above are available on the collectd master, except for the
-Gnocchi and Aodh plugins as they are Python-based plugins and only C plugins
-are accepted by the collectd community. The Gnocchi and Aodh plugins live in
-the OpenStack repositories.
-
-Other plugins existing as a pull request into collectd master:
+* *virt*: A read plugin that uses virtualization API *libvirt* to gather
+  statistics about virtualized guests on a system directly from the hypervisor,
+  without a need to install collectd instance on the guest.
 
 * *SNMP Agent*: A write plugin that will act as a AgentX subagent that receives
   and handles queries from SNMP master agent and returns the data collected
@@ -66,13 +63,21 @@ Other plugins existing as a pull request into collectd master:
   from collectd and translates requested values from collectd's internal format
   to SNMP format. Supports SNMP: get, getnext and walk requests.
 
+All the plugins above are available on the collectd master, except for the
+Gnocchi and Aodh plugins as they are Python-based plugins and only C plugins
+are accepted by the collectd community. The Gnocchi and Aodh plugins live in
+the OpenStack repositories.
+
+Other plugins existing as a pull request into collectd master:
+
 * *Legacy/IPMI*: A read plugin that reports platform thermals, voltages,
   fanspeed, current, flow, power etc. Also, the plugin monitors Intelligent
   Platform Management Interface (IPMI) System Event Log (SEL) and sends the
+  appropriate notifications based on monitored SEL events.
 
-* *virt*: A read plugin that uses virtualization API *libvirt* to gather
-  statistics about virtualized guests on a system directly from the hypervisor,
-  without a need to install collectd instance on the guest.
+* *PCIe AER*: A read plugin that monitors PCIe standard and advanced errors and
+  sends notifications about those errors.
+
 
 Third party application in Barometer repository:
 
@@ -126,24 +131,36 @@ will be /opt/collectd.
 Sample configuration files can be found in '/opt/collectd/etc/collectd.conf.d'
 
 .. note::
-  - If you plan on using the Exec plugin (for OVS_PMD_STATS or for executing scripts
-    on notification generation), the plugin requires a non-root
-    user to execute scripts. By default, `collectd_exec` user is used in the exec.conf
-    provided in the sample configurations directory under src/collectd in the Barometer
-    repo. The scripts *DO NOT* create this user. You need to create this user before you
-    run build_base_machine.sh. Or modify configuration in the sample configurations
-    directory under src/collectd to use another existing non root user before running
-    run build_base_machine.sh.
+  If you don't want to use one of the Barometer plugins, simply remove the
+  sample config file from '/opt/collectd/etc/collectd.conf.d'
+.. note::
+  If you plan on using the Exec plugin (for OVS_PMD_STATS or for executing scripts
+  on notification generation), the plugin requires a non-root
+  user to execute scripts. By default, `collectd_exec` user is used in the exec.conf
+  provided in the sample configurations directory under src/collectd in the Barometer
+  repo. The scripts *DO NOT* create this user. You need to create this user before you
+  run build_base_machine.sh. Or modify configuration in the sample configurations
+  directory under src/collectd to use another existing non root user before running
+  run build_base_machine.sh.
 
-  - If you don't want to use one of the Barometer plugins, simply remove the
-    sample config file from '/opt/collectd/etc/collectd.conf.d'
-
-  - If you are using any Open vSwitch plugins you need to run:
+.. note::
+  If you are using any Open vSwitch plugins you need to run:
 
 .. code:: bash
 
     $ sudo ovs-vsctl set-manager ptcp:6640
 
+After this, you should be able to start collectd as a service
+
+.. code:: bash
+
+    $ sudo systemctl status collectd
+
+If you want to use granfana to display the metrics you collect, please see:
+`grafana guide`_
+
+For more information on configuring and installing OpenStack plugins for
+collectd, check out the `collectd-ceilometer-plugin GSG`_.
 
 Below is the per plugin installation and configuration guide, if you only want
 to install some/particular plugins.
@@ -479,8 +496,9 @@ Enable IPMI support in the kernel:
     $ sudo modprobe ipmi_devintf
     $ sudo modprobe ipmi_si
 
-**Note**: If HW supports IPMI, the ``/dev/ipmi0`` character device will be
-created.
+.. note::
+  If HW supports IPMI, the ``/dev/ipmi0`` character device will be
+  created.
 
 Clone and install the collectd IPMI plugin:
 
@@ -507,8 +525,9 @@ configure the IPMI plugin you need to modify the file to include:
        SELEnabled true # only feat_ipmi_events branch supports this
     </Plugin>
 
-**Note**: By default, IPMI plugin will read all available analog sensor values,
-dispatch the values to collectd and send SEL notifications.
+.. note:: 
+  By default, IPMI plugin will read all available analog sensor values,
+  dispatch the values to collectd and send SEL notifications.
 
 For more information on the IPMI plugin parameters and SEL feature configuration,
 please see:
@@ -533,8 +552,11 @@ Branch: master
 
 Dependencies: mcelog
 
-Start by installing mcelog. Note: The kernel has to have CONFIG_X86_MCE
-enabled. For 32bit kernels you need at least a 2.6,30 kernel.
+Start by installing mcelog.
+
+.. note:: 
+  The kernel has to have CONFIG_X86_MCE enabled. For 32bit kernels you
+  need at least a 2.6,30 kernel.
 
 On ubuntu:
 
@@ -631,8 +653,10 @@ Then you can run the mcelog test suite with
 This will inject different classes of errors and check that the mcelog triggers
 runs. There will be some kernel messages about page offlining attempts. The
 test will also lose a few pages of memory in your system (not significant)
-**Note this test will kill any running mcelog, which needs to be restarted
-manually afterwards**.
+.. note::
+  This test will kill any running mcelog, which needs to be restarted
+  manually afterwards.
+
 **mce-inject:**
 
 A utility to inject corrected, uncorrected and fatal machine check exceptions
@@ -657,10 +681,11 @@ Inject the error:
 
     $ ./mce-inject < test/corrected
 
-**Note: the uncorrected and fatal scripts under test will cause a platform reset.
-Only the fatal script generates the memory errors**. In order to  quickly
-emulate uncorrected memory errors and avoid host reboot following test errors
-from mce-test  suite can be injected:
+.. note::
+  The uncorrected and fatal scripts under test will cause a platform reset.
+  Only the fatal script generates the memory errors**. In order to  quickly
+  emulate uncorrected memory errors and avoid host reboot following test errors
+  from mce-test  suite can be injected:
 
 .. code:: bash
 
@@ -1181,3 +1206,4 @@ References
 .. _gnocchi plugin: https://github.com/openstack/collectd-ceilometer-plugin/tree/stable/ocata/
 .. _aodh plugin: https://github.com/openstack/collectd-ceilometer-plugin/tree/stable/ocata/
 .. _collectd-ceilometer-plugin GSG: https://github.com/openstack/collectd-ceilometer-plugin/blob/master/doc/source/GSG.rst
+.. _grafana guide: https://wiki.opnfv.org/display/fastpath/Installing+and+configuring+InfluxDB+and+Grafana+to+display+metrics+with+collectd
