@@ -20,10 +20,11 @@ bash $DIR/check_git_repo.sh $COLLECTD_DIR $COLLECTD_REPO
 if [[ $? != 0 ]]
 then
 	rm -rf $COLLECTD_DIR
-	git clone --branch $COLLECTD_BRANCH $COLLECTD_REPO $COLLECTD_DIR
+	git clone $COLLECTD_REPO $COLLECTD_DIR
+	cd $COLLECTD_DIR
 else
 	cd $COLLECTD_DIR
 	git reset HEAD --hard
 	git pull
-	git checkout -f $COLLECTD_BRANCH
 fi
+git checkout -f $COLLECTD_BRANCH
