@@ -1,0 +1,647 @@
+---
+# registration for Mfvs_vXXX
+event: {presence: required, structure: {
+    commonEventHeader: {presence: required, structure: {
+        domain: {presence: required, value: measurementsForVfScaling},
+        eventName: {presence: required, value: Mfvs_vXXX},
+        eventId: {presence: required},
+        eventType: {presence: required},
+        priority: {presence: required, value: Normal},
+        reportingEntityName: {presence: required},
+        sequence: {presence: required},
+        sourceName: {presence: required},
+        startEpochMicrosec: {presence: required},
+        lastEpochMicrosec: {presence: required},
+        version: {presence: required, value: 3.0}
+    }},
+    measurementsForVfScalingFields: {presence: required, structure: {
+        measurementsForVfScalingFieldsVersion: {presence: required, value: 2.0},
+        measurementInterval: {presence: required, default: 20 },
+        cpuUsageArray: {presence: required, array: {
+            cpuUsage: {presence: required, structure: {
+                cpuIdentifier: {presence: required},
+                percentUsage: {presence: required, range: [ 0, 100 ],
+                                action: [ 90, up, CpuUsageHigh, RECO-scaleOut, Tca_vXXX_HighCpuUsage ],
+                                action: [ 25, down, CpuUsageLow, RECO-scaleIn, Tca_vXXX_LowCpuUsage ]
+                }
+            }}
+        }},
+        diskUsageArray: {presence: required, array: {
+            diskUsage: {presence: required, structure: {
+                diskIdentifier: {presence: required},
+                diskOctetsReadLast: {presence: required},
+                diskOctetsWriteLast: {presence: required},
+                diskOpsReadLast: {presence: required},
+                diskOpsWriteLast: {presence: required}
+            }}
+        }},
+        memoryUsageArray: {presence: required, array: {
+            memoryUsage: {presence: required, structure: {
+                vmIdentifier: {presence: required},
+                memoryFree: {presence: required,
+                            action: [ 100, down, FreeMemLow, RECO-scaleOut, Tca_vXXX_LowFreeMemory ],
+                            action: [ 1000, up, FreeMemHigh, RECO-scaleIn, Tca_vXXX_HighFreeMemory ]
+                },
+                memoryUsed: {presence: required}
+            }}
+        }},
+        vNicPerformanceArray: {presence: required, array: {
+            vNicPerformance: {presence: required, structure: {
+                vNicIdentifier: {presence: required},
+                receivedTotalPacketsAccumulated: {presence: required},
+                transmittedTotalPacketsAccumulated: {presence: required},
+                receivedOctetsAccumulated: {presence: required},
+                transmittedOctetsAccumulated: {presence: required},
+                receivedErrorPacketsAccumulated: {presence: required},
+                transmittedErrorPacketsAccumulated: {presence: required},
+                receivedDiscardedPacketsAccumulated: {presence: required},
+                transmittedDiscardedPacketsAccumulated: {presence: required}
+            }}
+        }},
+        additionalMeasurements: {presence: optional, array: {
+            # --- hugepages
+            namedArrayOfFields: {presence: optional, structure: {
+                # hugepages-%plugin_instance%
+                name: {presence: required},
+                arrayOfFields: {presence: required, array: {
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: vmpage_number-free},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: vmpage_number-used},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: memory-free},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: memory-used},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: percent-free},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: percent-used},
+                        value: {presence: required}
+                    }},
+                }},
+            }},
+            # --- intel_pmu
+            namedArrayOfFields: {presence: optional, structure: {
+                # intel_pmu-%plugin_instance%
+                name: {presence: required},
+                arrayOfFields: {presence: required, array: {
+                    # hardware CPU cache events
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-L1-dcache-loads},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-L1-dcache-load-misses},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-L1-dcache-stores},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-L1-dcache-store-misses},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-L1-dcache-prefetches},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-L1-dcache-prefetch-misses},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-L1-icache-loads},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-L1-icache-load-misses},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-L1-icache-prefetches},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-L1-icache-prefetch-misses},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-LLC-loads},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-LLC-load-misses},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-LLC-stores},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-LLC-store-misses},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-LLC-prefetches},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-LLC-prefetch-misses},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-dTLB-loads},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-dTLB-load-misses},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-dTLB-stores},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-dTLB-store-misses},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-dTLB-prefetches},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-dTLB-prefetch-misses},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-iTLB-loads},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-iTLB-load-misses},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-branch-loads},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-branch-load-misses},
+                        value: {presence: required}
+                    }},
+                    # kernel PMU events
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-cpu-cycles},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-instructions},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-cache-references},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-cache-misses},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-branches},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-branch-misses},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-bus-cycles},
+                        value: {presence: required}
+                    }},
+                    # software events
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-cpu-clock},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-task-clock},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-context-switches},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-cpu-migrations},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-page-faults},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-minor-faults},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-alignment-faults},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: counter-emulation-faults},
+                        value: {presence: required}
+                    }},
+                }},
+            }},
+            # --- intel_rdt
+            namedArrayOfFields: {presence: optional, structure: {
+                # intel_rdt-%plugin_instance%
+                name: {presence: required},
+                arrayOfFields: {presence: required, array: {
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: bytes-llc},
+                        value: {presence: required,
+                                action: [ 1000000000, down, LLCLow, RECO-CatAction, null ],
+                                action: [ 10000000000, up, LLCHigh, RECO-CatAction, null ]
+                        }
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: memory_bandwidth-local},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: memory_bandwidth-remote},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: ipc},
+                        value: {presence: required}
+                    }},
+                }},
+            }},
+            # --- mcelog
+            namedArrayOfFields: {presence: optional, structure: {
+                # mcelog-%plugin_instance%
+                name: {presence: required},
+                arrayOfFields: {presence: required, array: {
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: errors-corrected_memory_errors},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: errors-uncorrected_memory_errors},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: errors-corrected_memory_errors_in_24h},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: errors-uncorrected_memory_errors_in_24h},
+                        value: {presence: required}
+                    }},
+                }},
+            }},
+            # --- ovs_events
+            namedArrayOfFields: {presence: optional, structure: {
+                # ovs_events-%plugin_instance%
+                name: {presence: required},
+                arrayOfFields: {presence: required, array: {
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: gauge-link_status},
+                        value: {presence: required, range: [ 0, 1 ]}
+                    }},
+                }},
+            }},
+            # --- ovs_stats
+            namedArrayOfFields: {presence: optional, structure: {
+                # ovs_stats-%plugin_instance%
+                name: {presence: required},
+                arrayOfFields: {presence: required, array: {
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_collisions},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_dropped-rx},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_dropped-tx},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_errors-rx},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_errors-tx},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_multicast-tx_multicast_packets},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_packets-rx},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_packets-tx},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_packets-1_to_64_packets-rx},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_packets-1_to_64_packets-tx},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_packets-1024_to_1522_packets-rx},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_packets-1024_to_1522_packets-tx},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_packets-128_to_255_packets-rx},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_packets-128_to_255_packets-tx},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_packets-1523_to_max_packets-rx},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_packets-1523_to_max_packets-tx},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_packets-256_to_511_packets-rx},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_packets-256_to_511_packets-tx},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_packets-512_to_1023_packets-rx},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_packets-512_to_1023_packets-tx},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_packets-65_to_127_packets-rx},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_packets-65_to_127_packets-tx},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_packets-broadcast_packets-rx},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_packets-broadcast_packets-tx},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_rx_errors-crc},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_rx_errors-frame},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_rx_errors-over},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_rx_errors-rx_fragmented_errors},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_rx_errors-rx_jabber_errors},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_rx_errors-rx_oversize_errors},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_rx_errors-rx_undersized_errors},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_rx_octets},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: if_tx_octets},
+                        value: {presence: required}
+                    }},
+                }},
+            }},
+            # --- virt
+            namedArrayOfFields: {presence: optional, structure: {
+                name: {presence: required, value: perf},
+                arrayOfFields: {presence: required, array: {
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: perf_cmt},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: perf_mbmt},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: perf_mbml},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: perf_cpu_cycles},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: perf_instructions},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: perf_cache_references},
+                        value: {presence: required}
+                    }},
+                    field: {presence: optional, structure: {
+                        name: {presence: required, value: perf_cache_misses},
+                        value: {presence: required}
+                    }},
+                }},
+            }},
+        }},
+    }}
+}}
+...
+---
+# registration for Fault_vXXX_LinkStatus
+event: {presence: required, action: [any, any, linkStatus, RECO-LinkStatusChange],
+    structure: {
+        commonEventHeader: {presence: required, structure: {
+            domain: {presence: required, value: fault},
+            eventName: {presence: required, value: Fault_vXXX_LinkStatus},
+            eventId: {presence: required},
+            priority: {presence: required},
+            reportingEntityName: {presence: required},
+            sequence: {presence: required},
+            sourceName: {presence: required},
+            startEpochMicrosec: {presence: required},
+            lastEpochMicrosec: {presence: required},
+            version: {presence: required, value: 3.0}
+        }},
+        faultFields: {presence: required, structure: {
+            faultFieldsVersion: {presence: required, value: 1.2},
+            alarmCondition: {presence: required},
+            eventSourceType: {presence: required, value: switch},
+            specificProblem: {presence: required},
+            eventSeverity: {presence: required},
+            vfStatus: {presence: required, value: Active},
+            alarmInterfaceA: {presence: required},
+        }}
+    }
+}
+...
+---
+# registration for Fault_vXXX_PcieError
+event: {presence: required
+    structure: {
+        commonEventHeader: {presence: required, structure: {
+            domain: {presence: required, value: fault},
+            eventName: {presence: required, value: Fault_vXXX_PcieError},
+            eventId: {presence: required},
+            priority: {presence: required},
+            reportingEntityName: {presence: required},
+            sequence: {presence: required},
+            sourceName: {presence: required},
+            startEpochMicrosec: {presence: required},
+            lastEpochMicrosec: {presence: required},
+            version: {presence: required, value: 3.0}
+        }},
+        faultFields: {presence: required, structure: {
+            faultFieldsVersion: {presence: required, value: 1.2},
+            alarmCondition: {presence: required},
+            eventSourceType: {presence: required, value: host},
+            specificProblem: {presence: required},
+            eventSeverity: {presence: required},
+            vfStatus: {presence: required, value: Active},
+            alarmInterfaceA: {presence: required},
+        }}
+    }
+}
+...
+---
+# registration for Fault_vXXX_MachineCheckError
+event: {presence: required
+    structure: {
+        commonEventHeader: {presence: required, structure: {
+            domain: {presence: required, value: fault},
+            eventName: {presence: required, value: Fault_vXXX_MachineCheckError},
+            eventId: {presence: required},
+            priority: {presence: required},
+            reportingEntityName: {presence: required},
+            sequence: {presence: required},
+            sourceName: {presence: required},
+            startEpochMicrosec: {presence: required},
+            lastEpochMicrosec: {presence: required},
+            version: {presence: required, value: 3.0}
+        }},
+        faultFields: {presence: required, structure: {
+            faultFieldsVersion: {presence: required, value: 1.2},
+            alarmCondition: {presence: required},
+            eventSourceType: {presence: required, value: host},
+            specificProblem: {presence: required},
+            eventSeverity: {presence: required},
+            vfStatus: {presence: required, value: Active},
+            alarmInterfaceA: {presence: required},
+        }}
+    }
+}
+...
+---
+# registration for Fault_vXXX_Ipmi
+event: {presence: required
+    structure: {
+        commonEventHeader: {presence: required, structure: {
+            domain: {presence: required, value: fault},
+            eventName: {presence: required, value: Fault_vXXX_Ipmi},
+            eventId: {presence: required},
+            priority: {presence: required},
+            reportingEntityName: {presence: required},
+            sequence: {presence: required},
+            sourceName: {presence: required},
+            startEpochMicrosec: {presence: required},
+            lastEpochMicrosec: {presence: required},
+            version: {presence: required, value: 3.0}
+        }},
+        faultFields: {presence: required, structure: {
+            faultFieldsVersion: {presence: required, value: 1.2},
+            alarmCondition: {presence: required},
+            eventSourceType: {presence: required, value: host},
+            specificProblem: {presence: required},
+            eventSeverity: {presence: required},
+            vfStatus: {presence: required, value: Active},
+            alarmInterfaceA: {presence: required},
+        }}
+    }
+}
+...
+---
+# registration for Fault_vXXX_Virt
+event: {presence: required
+    structure: {
+        commonEventHeader: {presence: required, structure: {
+            domain: {presence: required, value: fault},
+            eventName: {presence: required, value: Fault_vXXX_Virt},
+            eventId: {presence: required},
+            priority: {presence: required},
+            reportingEntityName: {presence: required},
+            sequence: {presence: required},
+            sourceName: {presence: required},
+            startEpochMicrosec: {presence: required},
+            lastEpochMicrosec: {presence: required},
+            version: {presence: required, value: 3.0}
+        }},
+        faultFields: {presence: required, structure: {
+            faultFieldsVersion: {presence: required, value: 1.2},
+            alarmCondition: {presence: required},
+            eventSourceType: {presence: required, value: host},
+            specificProblem: {presence: required},
+            eventSeverity: {presence: required},
+            vfStatus: {presence: required, value: Active},
+            alarmInterfaceA: {presence: required},
+        }}
+    }
+}
+...
+---
+# Rules
+
+...
