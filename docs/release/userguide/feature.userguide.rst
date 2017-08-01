@@ -49,6 +49,9 @@ Barometer has enabled the following collectd plugins:
 * *mcelog plugin*: A read plugin that uses mcelog client protocol to check for
   memory Machine Check Exceptions and sends the stats for reported exceptions
 
+* *PMU plugin*: A read plugin that provides performance counters data on
+  Intel CPUs using Linux perf interface.
+
 * *RDT plugin*: A read plugin that provides the last level cache utilization and
   memory bandwidth utilization
 
@@ -354,6 +357,70 @@ include:
         ValuesPages      true
         ValuesBytes      false
         ValuesPercentage false
+    </Plugin>
+
+For more information on the plugin parameters, please see:
+https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
+
+Intel PMU Plugin
+^^^^^^^^^^^^^^^^
+Repo: https://github.com/collectd/collectd
+
+Branch: master
+
+Dependencies:
+
+  * PMU tools (jevents library) https://github.com/andikleen/pmu-tools
+
+To be suitable for use in collectd plugin shared library *libjevents* should be
+compiled as position-independent code. To do this add the following line to
+*pmu-tools/jevents/Makefile* file:
+
+.. code:: bash
+
+    CFLAGS += -fPIC
+
+Building and installing *jevents* library:
+
+.. code:: bash
+
+    $ git clone https://github.com/andikleen/pmu-tools.git
+    $ cd pmu-tools/jevents/
+    $ make
+    $ sudo make install
+
+Building and installing collectd:
+
+.. code:: bash
+
+    $ git clone https://github.com/collectd/collectd.git
+    $ cd collectd
+    $ ./build.sh
+    $ ./configure --enable-syslog --enable-logfile --with-libjevents=/usr/local --enable-debug
+    $ make
+    $ sudo make install
+
+The plugin opens file descriptors which quantity depends on number of monitored
+CPUs and number of monitored counters. Depending on configuration it might be
+required to increase the limit of number of opened file descriptors.
+This can be done using 'ulimit -n' command. If collectd is executed as a
+service 'LimitNOFILE=' directive should be defined in [Service] section of
+*collectd.service* file.
+
+This will install collectd to /opt/collectd
+The collectd configuration file can be found at /opt/collectd/etc
+To configure the PMU plugin you need to modify the configuration file to
+include:
+
+.. code:: bash
+
+    <LoadPlugin intel_pmu>
+      Interval 1
+    </LoadPlugin>
+    <Plugin "intel_pmu">
+      ReportHardwareCacheEvents true
+      ReportKernelPMUEvents true
+      ReportSoftwareEvents true
     </Plugin>
 
 For more information on the plugin parameters, please see:
