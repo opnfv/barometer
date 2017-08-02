@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da33351e_2ac8be73",
+        "filename": "ci/utility/intel_cmt_cat_build_install_rpm.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5499
+      },
+      "writtenOn": "2017-08-02T14:02:19Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "da33351e_8a5d8aec",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 7
+      },
+      "revId": "62e776a07210ee87d4255e075b24cded51cf32c5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_6a05a6c1",
         "filename": "ci/utility/intel_cmt_cat_build_install_rpm.sh",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "da33351e_cacaf26d",
+        "filename": "ci/utility/intel_cmt_cat_build_install_rpm.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5499
+      },
+      "writtenOn": "2017-08-02T14:02:19Z",
+      "side": 1,
+      "message": "intel-cmt-cat-devel depends on intel-cmt-cat, thus it is not possible that intel-cmt-cat is missing if intel-cmt-cat-devel is installed",
+      "parentUuid": "da33351e_6a05a6c1",
+      "range": {
+        "startLine": 43,
+        "startChar": 1,
+        "endLine": 43,
+        "endChar": 33
+      },
+      "revId": "62e776a07210ee87d4255e075b24cded51cf32c5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_aa584efb",
         "filename": "ci/utility/package-list.sh",
         "patchSetId": 2
@@ -59,6 +107,30 @@
       "writtenOn": "2017-08-02T12:42:47Z",
       "side": 1,
       "message": "These values refer to cmtcat-devel branch and cmtcat version right?\nShould the variable names be updated to reflect this and avoid confusion?\n\nAlso, is master correct? Or should a fixed commit be used like for collectd?",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 23
+      },
+      "revId": "62e776a07210ee87d4255e075b24cded51cf32c5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_0ac5fa5a",
+        "filename": "ci/utility/package-list.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5499
+      },
+      "writtenOn": "2017-08-02T14:02:19Z",
+      "side": 1,
+      "message": "these values are for cmt-cat branch and cmt-cat version(tarball release) not we need master, AFAIK collectd scripts will be updated to use master as well",
+      "parentUuid": "da33351e_aa584efb",
       "range": {
         "startLine": 23,
         "startChar": 0,
