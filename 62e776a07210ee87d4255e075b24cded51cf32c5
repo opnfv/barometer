@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "da33351e_4a654244",
+        "filename": "ci/utility/intel_cmt_cat_build_install_rpm.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-08-02T17:00:07Z",
+      "side": 1,
+      "message": "there is one problem here though... the package will be installed on the build system and so will never again be generated and uploaded to artifacts.opnfv.org... which will not work for Apex",
+      "parentUuid": "da33351e_cacaf26d",
+      "range": {
+        "startLine": 43,
+        "startChar": 1,
+        "endLine": 43,
+        "endChar": 33
+      },
+      "revId": "62e776a07210ee87d4255e075b24cded51cf32c5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_aa584efb",
         "filename": "ci/utility/package-list.sh",
         "patchSetId": 2
