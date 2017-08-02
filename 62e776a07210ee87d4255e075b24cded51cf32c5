@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_8a5d8aec",
+        "filename": "ci/utility/intel_cmt_cat_build_install_rpm.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-02T12:42:47Z",
+      "side": 1,
+      "message": "Is there need to redefine VERSION?",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 7
+      },
+      "revId": "62e776a07210ee87d4255e075b24cded51cf32c5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_6a05a6c1",
+        "filename": "ci/utility/intel_cmt_cat_build_install_rpm.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-02T12:42:47Z",
+      "side": 1,
+      "message": "This will only install intel-cmt-cat if intel-cmt-cat-devel was NOT already installed.\n\nIs this the desired behaviour?\ni.e. you assume that if intel-cmt-cat-devel is installed, then intel-cmt-cat is also installed",
+      "range": {
+        "startLine": 43,
+        "startChar": 1,
+        "endLine": 43,
+        "endChar": 33
+      },
+      "revId": "62e776a07210ee87d4255e075b24cded51cf32c5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_aa584efb",
+        "filename": "ci/utility/package-list.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-02T12:42:47Z",
+      "side": 1,
+      "message": "These values refer to cmtcat-devel branch and cmtcat version right?\nShould the variable names be updated to reflect this and avoid confusion?\n\nAlso, is master correct? Or should a fixed commit be used like for collectd?",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 23
+      },
+      "revId": "62e776a07210ee87d4255e075b24cded51cf32c5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
