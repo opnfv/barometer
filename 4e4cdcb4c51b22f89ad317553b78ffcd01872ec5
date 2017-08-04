@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_fe7b3827",
+        "filename": "3rd_party/onap/vXXX_Vnf_v1.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-08-04T12:56:39Z",
+      "side": 1,
+      "message": "the CPU usage array here is for a VNF - for now there\u0027s no HOST specific measurementsForVfScaling... so I don\u0027t think we should specify actions for this",
+      "range": {
+        "startLine": 20,
+        "startChar": 7,
+        "endLine": 28,
+        "endChar": 11
+      },
+      "revId": "4e4cdcb4c51b22f89ad317553b78ffcd01872ec5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_de78f42d",
+        "filename": "3rd_party/onap/vXXX_Vnf_v1.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-08-04T12:56:39Z",
+      "side": 1,
+      "message": "these are also for the VM - the policy for this will be set elsewhere",
+      "range": {
+        "startLine": 42,
+        "startChar": 28,
+        "endLine": 43,
+        "endChar": 100
+      },
+      "revId": "4e4cdcb4c51b22f89ad317553b78ffcd01872ec5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_3e76403f",
+        "filename": "3rd_party/onap/vXXX_Vnf_v1.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-08-04T12:56:39Z",
+      "side": 1,
+      "message": "CPU, memory and load are missing here. \nwe can specify actions for these",
+      "range": {
+        "startLine": 61,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 30
+      },
+      "revId": "4e4cdcb4c51b22f89ad317553b78ffcd01872ec5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_7e8f2824",
+        "filename": "3rd_party/onap/vXXX_Vnf_v1.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-08-04T12:56:39Z",
+      "side": 1,
+      "message": "we might want to recommend an action here to adjust cpu pinning policy",
+      "range": {
+        "startLine": 285,
+        "startChar": 24,
+        "endLine": 285,
+        "endChar": 51
+      },
+      "revId": "4e4cdcb4c51b22f89ad317553b78ffcd01872ec5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_5e94e436",
+        "filename": "3rd_party/onap/vXXX_Vnf_v1.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-08-04T12:56:39Z",
+      "side": 1,
+      "message": "the action here would be to mark the DIMM for maintenance check/replacement\nsame for line 311",
+      "revId": "4e4cdcb4c51b22f89ad317553b78ffcd01872ec5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_9e9e6c55",
+        "filename": "3rd_party/onap/vXXX_Vnf_v1.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-08-04T12:56:39Z",
+      "side": 1,
+      "message": "how do we distinguish the severity of the fault? for some, based on the severity we might want to recommend an action",
+      "range": {
+        "startLine": 505,
+        "startChar": 0,
+        "endLine": 505,
+        "endChar": 40
+      },
+      "revId": "4e4cdcb4c51b22f89ad317553b78ffcd01872ec5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_be99b070",
+        "filename": "3rd_party/onap/vXXX_Vnf_v1.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-08-04T12:56:39Z",
+      "side": 1,
+      "message": "I think depending on the severity for some of these - we might want to mark the platform for a maintenance check",
+      "range": {
+        "startLine": 533,
+        "startChar": 19,
+        "endLine": 533,
+        "endChar": 39
+      },
+      "revId": "4e4cdcb4c51b22f89ad317553b78ffcd01872ec5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
