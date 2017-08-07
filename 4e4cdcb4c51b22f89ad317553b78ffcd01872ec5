@@ -71,6 +71,53 @@
     },
     {
       "key": {
+        "uuid": "da33351e_7474699c",
+        "filename": "3rd_party/onap/vXXX_Vnf_v1.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2017-08-07T11:49:13Z",
+      "side": 1,
+      "message": "also, the physical NICs for host.",
+      "parentUuid": "da33351e_3e76403f",
+      "range": {
+        "startLine": 61,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 30
+      },
+      "revId": "4e4cdcb4c51b22f89ad317553b78ffcd01872ec5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_14487d5a",
+        "filename": "3rd_party/onap/vXXX_Vnf_v1.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2017-08-07T11:49:13Z",
+      "side": 1,
+      "message": "I need to verify that we have clear definitions for  memory-bandwidth-local and -remote, line 284 (on the wiki somewhere?).",
+      "range": {
+        "startLine": 280,
+        "startChar": 58,
+        "endLine": 280,
+        "endChar": 80
+      },
+      "revId": "4e4cdcb4c51b22f89ad317553b78ffcd01872ec5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_7e8f2824",
         "filename": "3rd_party/onap/vXXX_Vnf_v1.yml",
         "patchSetId": 2
