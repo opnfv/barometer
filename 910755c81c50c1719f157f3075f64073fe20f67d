@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_cfe79be3",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-08-08T12:56:13Z",
+      "side": 1,
+      "message": "just to confirm. what will happen if both these fields are empty?",
+      "range": {
+        "startLine": 424,
+        "startChar": 6,
+        "endLine": 425,
+        "endChar": 23
+      },
+      "revId": "910755c81c50c1719f157f3075f64073fe20f67d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
