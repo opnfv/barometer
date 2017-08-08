@@ -22,6 +22,30 @@
       "revId": "910755c81c50c1719f157f3075f64073fe20f67d",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_af033772",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 6903
+      },
+      "writtenOn": "2017-08-08T13:13:15Z",
+      "side": 1,
+      "message": "Nothing happens as no events provided in EventList option. And HardwareEvents is required only if EventList is not empty.",
+      "parentUuid": "da33351e_cfe79be3",
+      "range": {
+        "startLine": 424,
+        "startChar": 6,
+        "endLine": 425,
+        "endChar": 23
+      },
+      "revId": "910755c81c50c1719f157f3075f64073fe20f67d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
