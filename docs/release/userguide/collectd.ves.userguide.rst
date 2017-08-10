@@ -2,51 +2,180 @@
 .. http://creativecommons.org/licenses/by/4.0
 .. (c) OPNFV, Intel Corporation and others.
 
-==============================
-collectd VES plugin User Guide
-==============================
-The Barometer repository contains a python based write plugin for VES.
+==========================
+VES Application User Guide
+==========================
+The Barometer repository contains a python based application for VES.
 
-The plugin currently supports pushing platform relevant metrics through the
+The application currently supports pushing platform relevant metrics through the
 additional measurements field for VES.
 
-**Please note**: Hardcoded configuration values will be modified so that they
-are configurable through the configuration file.
+Collectd has a write_kafka plugin that will send collectd metrics and values to
+a Kafka Broker.
+The VES application uses Kafka Consumer to receive metrics from the Kafka
+Broker.
 
 Installation Instructions:
 --------------------------
-1. Clone this repo
+1. Clone this repo:
+
+    .. code:: bash
+
+        git clone https://gerrit.opnfv.org/gerrit/barometer
+
 2. Install collectd
 
-.. code:: bash
+    .. code:: bash
 
-   $ sudo apt-get install collectd
+        $ sudo apt-get install collectd
+
+    CentOS 7.x use:
+
+    .. code:: bash
+
+        $ sudo yum install collectd
+
+    .. note:: You may need to add epel repository if the above does not work.
+
+    .. code:: bash
+
+        $ sudo yun install epel-release
 
 3. Modify the collectd configuration script: `/etc/collectd/collectd.conf`
 
-.. code:: bash
+    .. code:: bash
 
-    <LoadPlugin python>
-      Globals true
-    </LoadPlugin>
+        <Plugin write_kafka>
+            Property "metadata.broker.list" "localhost:9092"
+            <Topic "collectd">
+                Format JSON
+            </Topic>
+        </Plugin>
 
-    <Plugin python>
-      ModulePath "/path/to/your/python/modules"
-      LogTraces true
-      Interactive false
-      Import "ves_plugin"
-    <Module ves_plugin>
-    # VES plugin configuration (see next section below)
-    </Module>
-    </Plugin>
+    .. note::
 
-where "/path/to/your/python/modules" is the path to ves_plugin.py,
-which is located in this repo.
+        The above configuration is for a single host setup. Simpy change localhost to remote
+        server IP addess or hostname.
 
-VES python plugin configuration description:
---------------------------------------------
+Install Kafka Broker
+--------------------
 
-**Note** Details of the Vendor Event Listener REST service
+1. Dependencies: install JAVA & Zookeeper.
+
+    JAVA:
+
+    .. code:: bash
+
+        $ sudo apt install default-jre
+
+    CentOS 7.x use:
+
+    .. code:: bash
+
+        $ sudo yum install java-1.6.0-openjdk
+
+    Zookeeper:
+
+    .. code:: bash
+
+        $ sudo apt install zookeeperd
+
+    CentOS 7.x use:
+
+    .. code:: bash
+
+        $ sudo yum install zookeeper
+
+    .. note:: You may need to add the the repository that contains zookeeper
+
+    .. code:: bash
+
+        $ sudo yum install
+        https://archive.cloudera.com/cdh5/one-click-install/redhat/7/x86_64/cloudera-cdh-5-0.x86_64.rpm
+
+    CentOS 7.x start zookeeper:
+
+    .. code:: bash
+
+        $ sudo zookeeper-server start
+
+    To test if Zookeeper is running as a daemon.
+
+    .. code:: bash
+
+        $ sudo telnet localhost 2181
+
+    Type 'ruok' & hit enter.
+    Expected response is 'imok'. Zookeeper is running fine.
+
+    .. note::
+
+        VES doesn't work with version 0.9.4 of kafka-python.
+        The recommended/tested version is 1.3.3.
+
+    .. code:: bash
+
+        $ sudo pip install kafka-python
+
+2. Download Kafka:
+
+    .. code:: bash
+
+        $ sudo wget "http://www-eu.apache.org/dist/kafka/0.11.0.0/kafka_2.11-0.11.0.0.tgz"
+
+3. Extract the archive:
+
+    .. code:: bash
+
+        $ sudo tar -xvzf kafka_2.11-0.11.0.0.tgz
+
+4. Configure Kafka Server:
+
+    .. code:: bash
+
+        $ sudo vi kafka_2.11-0.11.0.0/config/server.properties
+
+    By default Kafka does not allow you to delete topics. Please uncomment:
+
+    .. code:: bash
+
+        delete.topic.enable=true
+
+5. Start the Kafka Server.
+
+    Run 'kafka-server-start.sh' with nohup as a background process:
+
+    .. code:: bash
+
+        $ sudo nohup kafka_2.11-0.11.0.0/bin/kafka-server-start.sh \
+          kafka_2.11-0.11.0.0/config/server.properties > kafka_2.11-0.11.0.0/kafka.log 2>&1 &
+
+6. Test Kafka Broker Installation
+
+    To test if the installation worked correctly there is two scripts, producer and consumer scripts.
+    These will allow you to see messages pushed to broker and receive from broker.
+
+    Producer (Publish "Hello World"):
+
+    .. code:: bash
+
+        $ echo "Hello, World" | kafka_2.11-0.11.0.0/bin/kafka-console-producer.sh \
+          --broker-list localhost:9092 --topic TopicTest > /dev/null
+
+    Consumer (Receive "Hello World"):
+
+    .. code:: bash
+
+        $ kafka_2.11-0.11.0.0/bin/kafka-console-consumer.sh --zookeeper \
+          localhost:2181 --topic TopicTest --from-beginning
+
+
+VES application configuration description:
+------------------------------------------
+
+Within the VES directory there is a configuration file called 'ves_app.conf'.
+
+.. note:: Details of the Vendor Event Listener REST service
 
 REST resources are defined with respect to a ServerRoot:
 
@@ -76,7 +205,7 @@ REST resources are of the form:
   Used as the "topicName" element in the REST  path (default: `empty`)
 
 **UseHttps** *true|false*
-  Allow plugin to use HTTPS instead of HTTP (default: `false`)
+  Allow application to use HTTPS instead of HTTP (default: `false`)
 
 **Username** *"username"*
   VES collector user name (default: `empty`)
@@ -94,6 +223,13 @@ REST resources are of the form:
 
 **ApiVersion** *version*
   Used as the "apiVersion" element in the REST path (default: `5.1`)
+
+**KafkaPort** *port*
+  Kafka Port (Default ``9092``)
+
+**KafkaBroker** *host*
+  Kafka Broker domain name. It can be an IP address or hostname of local or remote server
+  (default: localhost)
 
 Other collectd.conf configurations
 ----------------------------------
@@ -132,7 +268,32 @@ Please ensure that the cpu plugin is enabled and configured as follows
         ValuesPercentage true
     </Plugin>
 
-To report the host name as a UUID the uuid plugin can be used.
+.. note::
+
+    The ``ReportByCpu`` option should be set to `true` (default)
+    if VES application is running on guest machine ('GuestRunning' = true).
+
+Please ensure that the aggregation plugin is enabled and configured as follows
+(required if 'GuestRunning' = true)
+
+.. code:: bash
+
+    LoadPlugin aggregation
+
+    <Plugin aggregation>
+        <Aggregation>
+                Plugin "cpu"
+                Type "percent"
+                GroupBy "Host"
+                GroupBy "TypeInstance"
+                SetPlugin "cpu-aggregation"
+                CalculateAverage true
+        </Aggregation>
+    </Plugin>
+
+If application is running on a guest side, it is important to enable uuid plugin
+too. In this case the hostname in event message will be represented as UUID
+instead of system host name.
 
 .. code:: bash
 
@@ -157,8 +318,8 @@ Please also ensure that the following plugins are enabled:
     LoadPlugin interface
     LoadPlugin memory
 
-VES plugin notification example
--------------------------------
+VES application with collectd notifications example
+---------------------------------------------------
 
 A good example of collectD notification is monitoring of the total CPU usage on a VM
 using the 'threshold' plugin. The following configuration will setup VES plugin to send 'Fault'
