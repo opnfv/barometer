@@ -906,7 +906,7 @@ def main():
     parser.add_argument("--config", dest="configfile", default=None, help="Specify config file", metavar="FILE")
     parser.add_argument("--loglevel", dest="level", choices=['DEBUG', 'INFO', 'WARNING', 'ERROR'], default='WARNING',
                         help="Specify log level (default: %(default)s)", metavar="LEVEL")
-    parser.add_argument("--logfile", dest="logfile", default='ves_plugin.log',
+    parser.add_argument("--logfile", dest="logfile", default='ves_app.log',
                         help="Specify log file (default: %(default)s)", metavar="FILE")
     args = parser.parse_args()
 
