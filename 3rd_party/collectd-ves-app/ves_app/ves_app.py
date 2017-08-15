@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     http://www.apache.org/licenses/LICENSE-2.0
+# http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -525,11 +525,11 @@ class Fault(Event):
         return obj
 
 
-class VESApp(object):
-    """VES Application"""
+class VESPlugin(object):
+    """VES plugin with collectd callbacks"""
 
     def __init__(self):
-        """Application initialization"""
+        """Plugin initialization"""
         self.__plugin_data_cache = {
             'cpu': {'interval': 0.0, 'vls': []},
             'virt': {'interval': 0.0, 'vls': []},
@@ -537,7 +537,7 @@ class VESApp(object):
             'interface': {'interval': 0.0, 'vls': []},
             'memory': {'interval': 0.0, 'vls': []}
         }
-        self.__app_config = {
+        self.__plugin_config = {
             'Domain': '127.0.0.1',
             'Port': 30000,
             'Path': '',
@@ -562,16 +562,16 @@ class VESApp(object):
         return str(self.__event_id)
 
     def lock(self):
-        """Lock the application"""
+        """Lock the plugin"""
         self.__lock.acquire()
 
     def unlock(self):
-        """Unlock the application"""
+        """Unlock the plugin"""
         self.__lock.release()
 
     def start_timer(self):
         """Start event timer"""
-        self.__ves_timer = Timer(self.__app_config['SendEventInterval'], self.__on_time)
+        self.__ves_timer = Timer(self.__plugin_config['SendEventInterval'], self.__on_time)
         self.__ves_timer.start()
 
     def stop_timer(self):
@@ -586,14 +586,14 @@ class VESApp(object):
     def event_send(self, event):
         """Send event to VES"""
         server_url = "http{}://{}:{}{}/eventListener/v{}{}".format(
-            's' if self.__app_config['UseHttps'] else '', self.__app_config['Domain'],
-            int(self.__app_config['Port']), '{}'.format(
-                '/{}'.format(self.__app_config['Path']) if (len(self.__app_config['Path']) > 0) else ''),
-            int(self.__app_config['ApiVersion']), '{}'.format(
-                '/{}'.format(self.__app_config['Topic']) if (len(self.__app_config['Topic']) > 0) else ''))
+            's' if self.__plugin_config['UseHttps'] else '', self.__plugin_config['Domain'],
+            int(self.__plugin_config['Port']), '{}'.format(
+                '/{}'.format(self.__plugin_config['Path']) if (len(self.__plugin_config['Path']) > 0) else ''),
+            int(self.__plugin_config['ApiVersion']), '{}'.format(
+                '/{}'.format(self.__plugin_config['Topic']) if (len(self.__plugin_config['Topic']) > 0) else ''))
         logging.info('Vendor Event Listener is at: {}'.format(server_url))
         credentials = base64.b64encode('{}:{}'.format(
-            self.__app_config['Username'], self.__app_config['Password']).encode()).decode()
+            self.__plugin_config['Username'], self.__plugin_config['Password']).encode()).decode()
         logging.info('Authentication credentials are: {}'.format(credentials))
         try:
             request = url.Request(server_url)
@@ -637,7 +637,7 @@ class VESApp(object):
                 continue
             # values are up-to-date, create an event message
             measurement = MeasurementsForVfScaling(self.get_event_id())
-            measurement.functional_role = self.__app_config['FunctionalRole']
+            measurement.functional_role = self.__plugin_config['FunctionalRole']
             # fill out reporting_entity
             measurement.reporting_entity_id = self.get_hostname()
             measurement.reporting_entity_name = measurement.reporting_entity_id
@@ -799,17 +799,17 @@ class VESApp(object):
     def config(self, config):
         """VES option configuration"""
         for key, value in config.items('config'):
-            if key in self.__app_config:
+            if key in self.__plugin_config:
                 try:
-                    if type(self.__app_config[key]) == int:
+                    if type(self.__plugin_config[key]) == int:
                         value = int(value)
-                    elif type(self.__app_config[key]) == float:
+                    elif type(self.__plugin_config[key]) == float:
                         value = float(value)
-                    elif type(self.__app_config[key]) == bool:
+                    elif type(self.__plugin_config[key]) == bool:
                         value = bool(distutils.util.strtobool(value))
 
-                    if isinstance(value, type(self.__app_config[key])):
-                        self.__app_config[key] = value
+                    if isinstance(value, type(self.__plugin_config[key])):
+                        self.__plugin_config[key] = value
                     else:
                         logging.error("Type mismatch with %s" % key)
                         sys.exit()
@@ -884,7 +884,7 @@ class VESApp(object):
 
     def run(self):
         """Consumer JSON data from kafka broker"""
-        kafka_server = '%s:%s' % (self.__app_config.get('KafkaBroker'), self.__app_config.get('KafkaPort'))
+        kafka_server = '%s:%s' % (self.__plugin_config.get('KafkaBroker'), self.__plugin_config.get('KafkaPort'))
         consumer = KafkaConsumer('collectd', bootstrap_servers=kafka_server, auto_offset_reset='latest',
                                  enable_auto_commit=False,
                                  value_deserializer=lambda m: json.loads(m.decode('ascii')))
@@ -906,15 +906,15 @@ def main():
     parser.add_argument("--config", dest="configfile", default=None, help="Specify config file", metavar="FILE")
     parser.add_argument("--loglevel", dest="level", choices=['DEBUG', 'INFO', 'WARNING', 'ERROR'], default='WARNING',
                         help="Specify log level (default: %(default)s)", metavar="LEVEL")
-    parser.add_argument("--logfile", dest="logfile", default='ves_plugin.log',
+    parser.add_argument("--logfile", dest="logfile", default='ves_app.log',
                         help="Specify log file (default: %(default)s)", metavar="FILE")
     args = parser.parse_args()
 
     # Create log file
     logging.basicConfig(filename=args.logfile, format='%(asctime)s %(message)s', level=args.level)
 
-    # Create Application Instance
-    application_instance = VESApp()
+    # Create Plugin Instance
+    plugin_instance = VESPlugin()
 
     # Read from config file
     if args.configfile:
@@ -922,20 +922,20 @@ def main():
         config.optionxform = lambda option: option
         config.read(args.configfile)
         # Write Config Values
-        application_instance.config(config)
+        plugin_instance.config(config)
     else:
         logging.warning("No configfile specified, using default options")
 
     # Start timer for interval
-    application_instance.init()
+    plugin_instance.init()
 
     # Read Data from Kakfa
     try:
         # Kafka consumer & update cache
-        application_instance.run()
+        plugin_instance.run()
     except KeyboardInterrupt:
         logging.info(" - Ctrl-C handled, exiting gracefully")
-        application_instance.shutdown()
+        plugin_instance.shutdown()
         sys.exit()
     except:
         logging.error("Unknown Error")
