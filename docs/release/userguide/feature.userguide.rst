@@ -24,7 +24,7 @@ to support thresholding and notification.
 
 Barometer has enabled the following collectd plugins:
 
-* *dpdkstat plugin*: A read plugin that retrieve stats from the DPDK extended
+* *dpdkstat plugin*: A read plugin that retrieves stats from the DPDK extended
    NIC stats API.
 
 * *dpdkevents plugin*:  A read plugin that retrieves DPDK link status and DPDK
@@ -47,13 +47,13 @@ Barometer has enabled the following collectd plugins:
   stats from OVS.
 
 * *mcelog plugin*: A read plugin that uses mcelog client protocol to check for
-  memory Machine Check Exceptions and sends the stats for reported exceptions
+  memory Machine Check Exceptions and sends the stats for reported exceptions.
 
 * *PMU plugin*: A read plugin that provides performance counters data on
   Intel CPUs using Linux perf interface.
 
 * *RDT plugin*: A read plugin that provides the last level cache utilization and
-  memory bandwidth utilization
+  memory bandwidth utilization.
 
 * *virt*: A read plugin that uses virtualization API *libvirt* to gather
   statistics about virtualized guests on a system directly from the hypervisor,
@@ -87,22 +87,23 @@ Third party application in Barometer repository:
 * *Open vSwitch PMD stats*: An aplication that retrieves PMD stats from OVS. It is run
   through exec plugin.
 
-**Plugins included in the Danube release:**
+**Plugins and application included in the Euphorate release:**
 
-* Hugepages
-* Open vSwitch Events
-* Ceilometer
-* Mcelog
+* virt plugin
+* aodh plugin
+* gnocchi plugin
+* Intel RDT plugin
+* SNMP agent plugin
+* Open vSwitch stats plugin
+* Open vSwitch PMD stats application
 
-collectd capabilities and usage
+Collectd capabilities and usage
 ------------------------------------
 .. Describe the specific capabilities and usage for <XYZ> feature.
 .. Provide enough information that a user will be able to operate the feature on a deployed scenario.
 
-.. note:: Plugins included in the OPNFV D release will be built-in to the fuel
- plugin and available in the /opt/opnfv directory on the fuel master. You don't
- need to clone the barometer/collectd repos to use these, but you can configure
- them as shown in the examples below.
+.. note:: Plugins included in the OPNFV E release will be built-in for Apex integration
+ and can be configured as shown in the examples below.
 
  The collectd plugins in OPNFV are configured with reasonable defaults, but can
  be overridden.
@@ -114,7 +115,7 @@ built and configured through the barometer repository.
 
 .. note::
  * sudo permissions are required to install collectd.
- * These are instructions for Ubuntu 16.04
+ * These instructions are for Centos 7.
 
 To build all the upstream plugins, clone the barometer repo:
 
@@ -138,13 +139,9 @@ Sample configuration files can be found in '/opt/collectd/etc/collectd.conf.d'
   sample config file from '/opt/collectd/etc/collectd.conf.d'
 .. note::
   If you plan on using the Exec plugin (for OVS_PMD_STATS or for executing scripts
-  on notification generation), the plugin requires a non-root
-  user to execute scripts. By default, `collectd_exec` user is used in the exec.conf
-  provided in the sample configurations directory under src/collectd in the Barometer
-  repo. The scripts *DO NOT* create this user. You need to create this user before you
-  run build_base_machine.sh. Or modify configuration in the sample configurations
-  directory under src/collectd to use another existing non root user before running
-  run build_base_machine.sh.
+  on notification generation), the plugin requires a non-root user to execute scripts. 
+  By default, `collectd_exec` user is used in the exec.conf provided in the sample
+  configurations directory under src/collectd in the Barometer repo. These scripts *DO NOT* create this user. You need to create this user or modify the configuration in the sample configurations directory under src/collectd to use another existing non root user before  running build_base_machine.sh.
 
 .. note::
   If you are using any Open vSwitch plugins you need to run:
@@ -176,7 +173,7 @@ Branch: master
 
 Dependencies: DPDK (http://dpdk.org/)
 
-.. note:: DPDK statistics plugin requires DPDK version 16.04 or later
+.. note:: DPDK statistics plugin requires DPDK version 16.04 or later.
 
 To build and install DPDK to /usr please see:
 https://github.com/collectd/collectd/blob/master/docs/BUILD.dpdkstat.md
@@ -204,25 +201,21 @@ Example of specifying custom paths to DPDK headers and libraries:
 
     $ ./configure LIBDPDK_CPPFLAGS="path to DPDK header files" LIBDPDK_LDFLAGS="path to DPDK libraries"
 
-This will install collectd to /opt/collectd
-The collectd configuration file can be found at /opt/collectd/etc
-
+This will install collectd to default folder ``/opt/collectd``. The collectd
+configuration file (``collectd.conf``) can be found at ``/opt/collectd/etc``.
 To configure the dpdkstats plugin you need to modify the configuration file to
 include:
 
 .. code:: bash
 
     LoadPlugin dpdkstat
-    <Plugin "dpdkstat">
-        <EAL>
-            Coremask "0x2"
-            MemoryChannels "4"
-            ProcessType "secondary"
-            FilePrefix "rte"
-        </EAL>
-        EnabledPortMask 0xffff
-        PortName "interface1"
-        PortName "interface2"
+    <Plugin dpdkstat>
+       Coremask "0xf"
+       ProcessType "secondary"
+       FilePrefix "rte"
+       EnabledPortMask 0xffff
+       PortName "interface1"
+       PortName "interface2"
     </Plugin>
 
 
@@ -231,28 +224,27 @@ include:
 
 .. code:: bash
 
-    LoadPlugin dpdkevents
+    <LoadPlugin dpdkevents>
+      Interval 1
+    </LoadPlugin>
+
     <Plugin "dpdkevents">
-        Interval 1
-        <EAL>
-            Coremask "0x1"
-            MemoryChannels "4"
-            ProcessType "secondary"
-            FilePrefix "rte"
-        </EAL>
-        <Event "link_status">
-            SendEventsOnUpdate true
-            EnabledPortMask 0xffff
-            PortName "interface1"
-            PortName "interface2"
-            SendNotification false
-        </Event>
-        <Event "keep_alive">
-            SendEventsOnUpdate true
-            LCoreMask "0xf"
-            KeepAliveShmName "/dpdk_keepalive_shm_name"
-            SendNotification false
-        </Event>
+      <EAL>
+        Coremask "0x1"
+        MemoryChannels "4"
+        FilePrefix "rte"
+      </EAL>
+      <Event "link_status">
+        SendEventsOnUpdate false
+        EnabledPortMask 0xffff
+        SendNotification true
+      </Event>
+      <Event "keep_alive">
+        SendEventsOnUpdate false
+        LCoreMask "0xf"
+        KeepAliveShmName "/dpdk_keepalive_shm_name"
+        SendNotification true
+      </Event>
     </Plugin>
 
 .. note:: Currently, the DPDK library doesn’t support API to de-initialize
@@ -270,10 +262,10 @@ For more information on the plugin parameters, please see:
 https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
 
 .. note:: dpdkstat plugin initialization time depends on read interval. It
- requires 5 read cycles to set up internal buffers and states. During that time
- no statistics are submitted. Also if plugin is running and the number of DPDK
+ requires 5 read cycles to set up internal buffers and states, during that time
+ no statistics are submitted. Also, if plugin is running and the number of DPDK
  ports is increased, internal buffers are resized. That requires 3 read cycles
- and no port statistics are submitted in that time.
+ and no port statistics are submitted during that time.
 
 The Address-Space Layout Randomization (ASLR) security feature in Linux should be
 disabled, in order for the same hugepage memory mappings to be present in all
@@ -313,7 +305,7 @@ http://dpdk.org/doc/guides/prog_guide/multi_proc_support.html
 
   When network port controlled by Linux is bound to DPDK driver, the port
   will not be available in the OS. It affects the SNMP write plugin as those
-  ports will not be present in standard IF-MIB. Thus addition work is
+  ports will not be present in standard IF-MIB. Thus, additional work is
   required to be done to support DPDK ports and statistics.
 
 Hugepages Plugin
@@ -328,9 +320,9 @@ To configure some hugepages:
 
 .. code:: bash
 
-   sudo mkdir -p /mnt/huge
-   sudo mount -t hugetlbfs nodev /mnt/huge
-   sudo echo 14336 > /sys/devices/system/node/node0/hugepages/hugepages-2048kB/nr_hugepages
+   $ sudo mkdir -p /mnt/huge
+   $ sudo mount -t hugetlbfs nodev /mnt/huge
+   $ sudo echo 14336 > /sys/devices/system/node/node0/hugepages/hugepages-2048kB/nr_hugepages
 
 Building and installing collectd:
 
@@ -343,8 +335,8 @@ Building and installing collectd:
     $ make
     $ sudo make install
 
-This will install collectd to /opt/collectd
-The collectd configuration file can be found at /opt/collectd/etc
+This will install collectd to default folder ``/opt/collectd``. The collectd
+configuration file (``collectd.conf``) can be found at ``/opt/collectd/etc``.
 To configure the hugepages plugin you need to modify the configuration file to
 include:
 
@@ -400,8 +392,8 @@ Building and installing collectd:
     $ make
     $ sudo make install
 
-This will install collectd to /opt/collectd
-The collectd configuration file can be found at /opt/collectd/etc
+This will install collectd to default folder ``/opt/collectd``. The collectd
+configuration file (``collectd.conf``) can be found at ``/opt/collectd/etc``.
 To configure the PMU plugin you need to modify the configuration file to
 include:
 
@@ -465,8 +457,8 @@ Building and installing collectd:
     $ make
     $ sudo make install
 
-This will install collectd to /opt/collectd
-The collectd configuration file can be found at /opt/collectd/etc
+This will install collectd to default folder ``/opt/collectd``. The collectd
+configuration file (``collectd.conf``) can be found at ``/opt/collectd/etc``.
 To configure the RDT plugin you need to modify the configuration file to
 include:
 
@@ -505,11 +497,11 @@ has been introduced.
 
 **Install dependencies**
 
-On Ubuntu, the OpenIPMI library can be installed via apt package manager:
+On Centos, install OpenIPMI library:
 
 .. code:: bash
 
-    $ sudo apt-get install libopenipmi-dev
+    $ sudo yum install OpenIPMI ipmitool
 
 Anyway, it's recommended to use the latest version of the OpenIPMI library as
 it includes fixes of known issues which aren't included in standard OpenIPMI
@@ -521,7 +513,7 @@ Remove old version of OpenIPMI library:
 
 .. code:: bash
 
-    $ sudo apt-get remove libopenipmi-dev
+    $ sudo yum remove OpenIPMI ipmitool
 
 Download OpenIPMI library sources:
 
@@ -584,8 +576,8 @@ Clone and install the collectd IPMI plugin:
 Where $BRANCH is feat_ipmi_events or feat_ipmi_analog.
 
 This will install collectd to default folder ``/opt/collectd``. The collectd
-configuration file (``collectd.conf``) can be found at ``/opt/collectd/etc``. To
-configure the IPMI plugin you need to modify the file to include:
+configuration file (``collectd.conf``) can be found at ``/opt/collectd/etc``.
+To configure the IPMI plugin you need to modify the file to include:
 
 .. code:: bash
 
@@ -625,19 +617,19 @@ Start by installing mcelog.
 
 .. note::
   The kernel has to have CONFIG_X86_MCE enabled. For 32bit kernels you
-  need at least a 2.6,30 kernel.
+  need atleast a 2.6,30 kernel.
 
-On ubuntu:
+On Centos:
 
 .. code:: bash
 
-    $ apt-get update && apt-get install mcelog
+    $ sudo yum install mcelog
 
 Or build from source
 
 .. code:: bash
 
-    $ git clone git://git.kernel.org/pub/scm/utils/cpu/mce/mcelog.git
+    $ git clone https://git.kernel.org/pub/scm/utils/cpu/mce/mcelog.git
     $ cd mcelog
     $ make
     ... become root ...
@@ -664,6 +656,27 @@ enable:
 .. code:: bash
 
     socket-path = /var/run/mcelog-client
+    [dimm]
+    dimm-tracking-enabled = yes
+    dmi-prepopulate = yes
+    uc-error-threshold = 1 / 24h
+    ce-error-threshold = 10 / 24h
+
+    [socket]
+    socket-tracking-enabled = yes
+    mem-uc-error-threshold = 100 / 24h
+    mem-ce-error-threshold = 100 / 24h
+    mem-ce-error-log = yes
+
+    [page]
+    memory-ce-threshold = 10 / 24h
+    memory-ce-log = yes
+    memory-ce-action = soft
+
+    [trigger]
+    children-max = 2
+    directory = /etc/mcelog
+
 
 Clone and install the collectd mcelog plugin:
 
@@ -671,14 +684,13 @@ Clone and install the collectd mcelog plugin:
 
     $ git clone  https://github.com/maryamtahhan/collectd
     $ cd collectd
-    $ git checkout feat_ras
     $ ./build.sh
     $ ./configure --enable-syslog --enable-logfile --enable-debug
     $ make
     $ sudo make install
 
-This will install collectd to /opt/collectd
-The collectd configuration file can be found at /opt/collectd/etc
+This will install collectd to default folder ``/opt/collectd``. The collectd
+configuration file (``collectd.conf``) can be found at ``/opt/collectd/etc``.
 To configure the mcelog plugin you need to modify the configuration file to
 include:
 
@@ -687,7 +699,7 @@ include:
     <LoadPlugin mcelog>
       Interval 1
     </LoadPlugin>
-    <Plugin "mcelog">
+    <Plugin mcelog>
        McelogClientSocket "/var/run/mcelog-client"
     </Plugin>
 
@@ -721,7 +733,7 @@ Then you can run the mcelog test suite with
 
 This will inject different classes of errors and check that the mcelog triggers
 runs. There will be some kernel messages about page offlining attempts. The
-test will also lose a few pages of memory in your system (not significant)
+test will also lose a few pages of memory in your system (not significant).
 .. note::
   This test will kill any running mcelog, which needs to be restarted
   manually afterwards.
@@ -754,7 +766,7 @@ Inject the error:
   The uncorrected and fatal scripts under test will cause a platform reset.
   Only the fatal script generates the memory errors**. In order to  quickly
   emulate uncorrected memory errors and avoid host reboot following test errors
-  from mce-test  suite can be injected:
+  from mce-test suite can be injected:
 
 .. code:: bash
 
@@ -762,7 +774,7 @@ Inject the error:
 
 **mce-test:**
 
-In addition an more in-depth test of the Linux kernel machine check facilities
+In addition a more in-depth test of the Linux kernel machine check facilities
 can be done with the mce-test test suite. mce-test supports testing uncorrected
 error handling, real error injection, handling of different soft offlining
 cases, and other tests.
@@ -797,11 +809,14 @@ IF-MIB (http://www.net-snmp.org/docs/mibs/IF-MIB.txt)
 
 Dependencies: Open vSwitch, Yet Another JSON Library (https://github.com/lloyd/yajl)
 
-On Ubuntu, install the dependencies:
+On Centos, install the dependencies and Open vSwitch:
 
 .. code:: bash
 
-    $ sudo apt-get install libyajl-dev openvswitch-switch
+    $ sudo yum install yajl-devel
+
+Steps to install Open vSwtich can be found at
+http://docs.openvswitch.org/en/latest/intro/install/fedora/
 
 Start the Open vSwitch service:
 
@@ -809,7 +824,7 @@ Start the Open vSwitch service:
 
     $ sudo service openvswitch-switch start
 
-configure the ovsdb-server manager:
+Configure the ovsdb-server manager:
 
 .. code:: bash
 
@@ -827,21 +842,21 @@ Clone and install the collectd ovs plugin:
     $ make
     $ sudo make install
 
-This will install collectd to /opt/collectd. The collectd configuration file
-can be found at /opt/collectd/etc. To configure the OVS events plugin you
-need to modify the configuration file to include:
+This will install collectd to default folder ``/opt/collectd``. The collectd
+configuration file (``collectd.conf``) can be found at ``/opt/collectd/etc``.
+To configure the OVS events plugin you need to modify the configuration file to include:
 
 .. code:: bash
 
     <LoadPlugin ovs_events>
        Interval 1
     </LoadPlugin>
-    <Plugin "ovs_events">
-       Port 6640
+    <Plugin ovs_events>
+       Port "6640"
+       Address "127.0.0.1"
        Socket "/var/run/openvswitch/db.sock"
        Interfaces "br0" "veth0"
-       SendNotification false
-       DispatchValues true
+       SendNotification true
     </Plugin>
 
 To configure the OVS stats plugin you need to modify the configuration file
@@ -856,7 +871,7 @@ to include:
        Port "6640"
        Address "127.0.0.1"
        Socket "/var/run/openvswitch/db.sock"
-       Bridges "br0" "br_ext"
+       Bridges "br0"
     </Plugin>
 
 For more information on the plugin parameters, please see:
@@ -884,7 +899,6 @@ to include:
     </LoadPlugin
     <Plugin exec>
         Exec "user:group" "<path to ovs_pmd_stat.sh>"
-        #NotificationExec "nobody" "/usr/lib/collectd/notify.sh"
     </Plugin>
 
 .. note:: Exec plugin configuration has to be changed to use appropriate user before starting collectd service.
@@ -900,28 +914,22 @@ SNMP Agent Plugin
 ^^^^^^^^^^^^^^^^^
 Repo: https://github.com/maryamtahhan/collectd/
 
-Branch: feat_snmp
+Branch: master
 
 Dependencies: NET-SNMP library
 
 Start by installing net-snmp and dependencies.
 
-On ubuntu:
+On Centos 7:
 
 .. code:: bash
 
-    $ apt-get install snmp snmp-mibs-downloader snmpd libsnmp-dev
+    $ sudo yum install net-snmp net-snmp-libs net-snmp-utils net-snmp-devel
     $ systemctl start snmpd.service
 
 Or build from source
 
-Become root to install net-snmp dependencies
-
-.. code:: bash
-
-    $ apt-get install libperl-dev
-
-Clone and build net-snmp
+Clone and build net-snmp:
 
 .. code:: bash
 
@@ -936,13 +944,13 @@ Become root
 
     $ make install
 
-Copy default configuration to persistent folder
+Copy default configuration to persistent folder:
 
 .. code:: bash
 
     $ cp EXAMPLE.conf /usr/share/snmp/snmpd.conf
 
-Set library path and default MIB configuration
+Set library path and default MIB configuration:
 
 .. code:: bash
 
@@ -951,7 +959,7 @@ Set library path and default MIB configuration
     $ net-snmp-config --default-mibdirs
     $ net-snmp-config --snmpconfpath
 
-Configure snmpd as a service
+Configure snmpd as a service:
 
 .. code:: bash
 
@@ -986,8 +994,9 @@ Clone and install the collectd snmp_agent plugin:
     $ make
     $ sudo make install
 
-This will install collectd to /opt/collectd
-The collectd configuration file can be found at /opt/collectd/etc
+This will install collectd to default folder ``/opt/collectd``. The collectd
+configuration file (``collectd.conf``) can be found at ``/opt/collectd/etc``.
+
 **SNMP Agent plugin is a generic plugin and cannot work without configuration**.
 To configure the snmp_agent plugin you need to modify the configuration file to
 include OIDs mapped to collectd types. The following example maps scalar
@@ -1023,15 +1032,15 @@ virt plugin
 ^^^^^^^^^^^^
 Repo: https://github.com/maryamtahhan/collectd
 
-Branch: feat_libvirt_upstream
+Branch: master
 
 Dependencies: libvirt (https://libvirt.org/), libxml2
 
-On Ubuntu, install the dependencies:
+On Centos, install the dependencies:
 
 .. code:: bash
 
-    $ sudo apt-get install libxml2-dev
+    $ sudo yum install libxml2-dev libpciaccess-devel yajl-devel device-mapper-devel
 
 Install libvirt:
 
@@ -1125,24 +1134,23 @@ Clone and install the collectd virt plugin:
 
     $ git clone $REPO
     $ cd collectd
-    $ git checkout $BRANCH
     $ ./build.sh
     $ ./configure --enable-syslog --enable-logfile --enable-debug
     $ make
     $ sudo make install
 
-Where ``$REPO`` and ``$BRANCH`` are equal to information provided above.
+Where ``$REPO`` is equal to information provided above.
 
 This will install collectd to ``/opt/collectd``. The collectd configuration file
-``collectd.conf`` can be found at ``/opt/collectd/etc``. To load the virt plugin
-user needs to modify the configuration file to include:
+``collectd.conf`` can be found at ``/opt/collectd/etc``.
+To load the virt plugin user needs to modify the configuration file to include:
 
 .. code:: bash
 
     LoadPlugin virt
 
 Additionally, user can specify plugin configuration parameters in this file,
-such as connection URI, domain name and much more. By default extended virt plugin
+such as connection URL, domain name and much more. By default extended virt plugin
 statistics are disabled. They can be enabled with ``ExtraStats`` option.
 
 .. code:: bash
@@ -1155,6 +1163,58 @@ statistics are disabled. They can be enabled with ``ExtraStats`` option.
 For more information on the plugin parameters, please see:
 https://github.com/maryamtahhan/collectd/blob/feat_libvirt_upstream/src/collectd.conf.pod
 
+<<<<<<< HEAD
+=======
+Pcie Errors Plugin
+^^^^^^^^^^^^^^^^^^^
+Repo: https://github.com/maryamtahhan/collectd
+
+Branch: feat_pcie_errors
+
+Dependencies: utils_message_parser on branch feat_log_msg_parser
+
+Clone and install the collectd pcie_errors plugin:
+
+.. code:: bash
+
+    $ git clone $REPO collectd
+    $ cd collectd
+    $ git checkout $BRANCH
+    $ ./build.sh
+    $ ./configure --enable-syslog --enable-logfile --enable-debug --enable-pcie_errors
+    $ make
+    $ sudo make install
+
+Where ``$REPO`` and ``$BRANCH`` are equal to information provided above.
+
+This will install collectd to default folder ``/opt/collectd``. The collectd
+configuration file (``collectd.conf``) can be found at ``/opt/collectd/etc``.
+To configure the pcie_errors plugin you need to modify the configuration file to
+include:
+
+.. code:: bash
+
+    LoadPlugin pcie
+    <Plugin pcie>
+        Source "sysfs"
+    </Plugin>
+
+To configure the plugin to parse AER errors from syslog change the configuration
+to include:
+
+.. code:: bash
+
+    LoadPlugin pcie
+    <Plugin pcie>
+        Source "logfile"
+        LogFile "/var/log/syslog"
+    </Plugin>
+
+The input file can be changed with use of LogFile parameter.
+For more information on the plugin parameters, please see:
+https://github.com/maryamtahhan/collectd/blob/feat_pcie_errors/src/collectd.conf.pod
+
+>>>>>>> 025abde... docs: updated userguide for E release.
 Installing collectd as a service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 **NOTE**: In an OPNFV installation, collectd is installed and configured as a
@@ -1251,7 +1311,7 @@ Monitoring Interfaces and Openstack Support
    Monitoring Interfaces and Openstack Support
 
 The figure above shows the DPDK L2 forwarding application running on a compute
-node, sending and receiving traffic. collectd is also running on this compute
+node, sending and receiving traffic. Collectd is also running on this compute
 node retrieving the stats periodically from DPDK through the dpdkstat plugin
 and publishing the retrieved stats to OpenStack through the
 collectd-ceilometer-plugin.
