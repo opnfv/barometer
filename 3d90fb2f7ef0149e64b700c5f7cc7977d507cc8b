@@ -1,0 +1,935 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_1f6fda93",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "This patch contains code for testing gnocchi.\nEither split it into different patches or include more information about the change",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 49
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_9f048a16",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "nit: python comments should begin with \"# \"",
+      "range": {
+        "startLine": 70,
+        "startChar": 4,
+        "endLine": 70,
+        "endChar": 5
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_ff09562d",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "nit: python comments should begin with \"# \"",
+      "range": {
+        "startLine": 77,
+        "startChar": 8,
+        "endLine": 77,
+        "endChar": 12
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_df0e1234",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "nit: python comments should begin with \"# \"",
+      "range": {
+        "startLine": 82,
+        "startChar": 8,
+        "endLine": 82,
+        "endChar": 9
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_3f13be5d",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "nit: python comments should begin with \"# \"",
+      "range": {
+        "startLine": 86,
+        "startChar": 8,
+        "endLine": 86,
+        "endChar": 9
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_bfffce00",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "nit: python comments should begin with \"# \"",
+      "range": {
+        "startLine": 91,
+        "startChar": 8,
+        "endLine": 91,
+        "endChar": 9
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_5c03300f",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "nit: whitespace",
+      "range": {
+        "startLine": 100,
+        "startChar": 47,
+        "endLine": 100,
+        "endChar": 48
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_5f1a026f",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "gnocchi",
+      "range": {
+        "startLine": 109,
+        "startChar": 42,
+        "endLine": 109,
+        "endChar": 52
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_1f107a4d",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "nit: meter -\u003e metric",
+      "range": {
+        "startLine": 109,
+        "startChar": 19,
+        "endLine": 109,
+        "endChar": 24
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_ff5836fc",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "The Ceilometer API is deprecated, and it looks like you\u0027re replacing instances of \"Ceilometer\" with \"Gnocchi\".\n\nCan this class be removed completely?",
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_7f3426de",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "Blank line contains whitespace",
+      "range": {
+        "startLine": 248,
+        "startChar": 0,
+        "endLine": 248,
+        "endChar": 1
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_bf4d0e75",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "nit: whitespace",
+      "range": {
+        "startLine": 409,
+        "startChar": 46,
+        "endLine": 409,
+        "endChar": 47
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_ff579600",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "Python whitespace should use spaces, not tabs",
+      "range": {
+        "startLine": 450,
+        "startChar": 0,
+        "endLine": 450,
+        "endChar": 1
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_3f41fe39",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "Use spaces, not tabs.",
+      "range": {
+        "startLine": 454,
+        "startChar": 0,
+        "endLine": 454,
+        "endChar": 2
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_1f3ebab8",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "spaces",
+      "range": {
+        "startLine": 464,
+        "startChar": 0,
+        "endLine": 464,
+        "endChar": 1
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_7f4b8659",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "spaces",
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_9f792a96",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "spaces",
+      "range": {
+        "startLine": 474,
+        "startChar": 0,
+        "endLine": 474,
+        "endChar": 2
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_ff6e76c8",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "nit:trailing whitespace",
+      "range": {
+        "startLine": 538,
+        "startChar": 45,
+        "endLine": 538,
+        "endChar": 46
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_df73b2af",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "nit: trailing whitespace",
+      "range": {
+        "startLine": 549,
+        "startChar": 49,
+        "endLine": 549,
+        "endChar": 50
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_3f68deb9",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "trailing whitespace",
+      "range": {
+        "startLine": 550,
+        "startChar": 50,
+        "endLine": 550,
+        "endChar": 51
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_ffa5d604",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "trailing whitespace",
+      "range": {
+        "startLine": 551,
+        "startChar": 52,
+        "endLine": 551,
+        "endChar": 53
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_dfaa92d3",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "blank line contains whitespace",
+      "range": {
+        "startLine": 655,
+        "startChar": 0,
+        "endLine": 655,
+        "endChar": 3
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_3faf3ee5",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 671,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "blank line contains whitespace",
+      "range": {
+        "startLine": 671,
+        "startChar": 0,
+        "endLine": 671,
+        "endChar": 1
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_1facfaec",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "use spaces, not tabs",
+      "range": {
+        "startLine": 678,
+        "startChar": 0,
+        "endLine": 678,
+        "endChar": 1
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_7fb9c62d",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 680,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "use spaces, not tabs",
+      "range": {
+        "startLine": 680,
+        "startChar": 0,
+        "endLine": 680,
+        "endChar": 1
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_5fb6823e",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 718,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "trailing whitespace",
+      "range": {
+        "startLine": 718,
+        "startChar": 50,
+        "endLine": 718,
+        "endChar": 51
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_bf822e50",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "trailing whitespace",
+      "range": {
+        "startLine": 774,
+        "startChar": 23,
+        "endLine": 774,
+        "endChar": 25
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_3f961e95",
+        "filename": "baro_tests/config_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "comments should start with a \"# \"",
+      "range": {
+        "startLine": 39,
+        "startChar": 7,
+        "endLine": 39,
+        "endChar": 8
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_df81f24b",
+        "filename": "baro_tests/config_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "These lines are not indented correctly, the #\u0027s should be aligned with the lines above them\n\nadd an additional space before the #",
+      "range": {
+        "startLine": 39,
+        "startChar": 7,
+        "endLine": 41,
+        "endChar": 61
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_1f935aa4",
+        "filename": "baro_tests/config_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "use spaces, not tabs",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 1
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_7f90a695",
+        "filename": "baro_tests/config_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "use spaces, not tabs",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 13
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_5f8de27a",
+        "filename": "baro_tests/config_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "blank line contains whitespace",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 2
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_bfe98e1c",
+        "filename": "baro_tests/config_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "line length exceeds 80 characters",
+      "range": {
+        "startLine": 198,
+        "startChar": 70,
+        "endLine": 198,
+        "endChar": 83
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_df5d72eb",
+        "filename": "baro_tests/config_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "Line length exceeds 80 characters",
+      "range": {
+        "startLine": 402,
+        "startChar": 71,
+        "endLine": 402,
+        "endChar": 83
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_fff31608",
+        "filename": "baro_tests/config_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "This should be removed if it is not being used",
+      "range": {
+        "startLine": 555,
+        "startChar": 0,
+        "endLine": 588,
+        "endChar": 11
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_dff8d2e7",
+        "filename": "baro_tests/config_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "comments should begin with \"# \"",
+      "range": {
+        "startLine": 590,
+        "startChar": 8,
+        "endLine": 590,
+        "endChar": 9
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_7fe70641",
+        "filename": "baro_tests/config_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "nit: plugin",
+      "range": {
+        "startLine": 632,
+        "startChar": 24,
+        "endLine": 632,
+        "endChar": 29
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_3fdd7e71",
+        "filename": "baro_tests/config_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "Remove, if unused",
+      "range": {
+        "startLine": 655,
+        "startChar": 12,
+        "endLine": 657,
+        "endChar": 131
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_bf37ceaf",
+        "filename": "baro_tests/config_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 707,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "nit:return",
+      "range": {
+        "startLine": 707,
+        "startChar": 8,
+        "endLine": 707,
+        "endChar": 14
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_3f4bbe2c",
+        "filename": "baro_tests/config_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 746,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "What are you initialising here? This is not in a class.",
+      "range": {
+        "startLine": 746,
+        "startChar": 8,
+        "endLine": 746,
+        "endChar": 72
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_5f5202de",
+        "filename": "baro_tests/config_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 768,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:24:32Z",
+      "side": 1,
+      "message": "remove, if unused",
+      "range": {
+        "startLine": 767,
+        "startChar": 8,
+        "endLine": 768,
+        "endChar": 64
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
