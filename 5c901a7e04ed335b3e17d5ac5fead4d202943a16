@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_3fe73e14",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:49:47Z",
+      "side": 1,
+      "message": "Remove the word \"file\"",
+      "range": {
+        "startLine": 377,
+        "startChar": 29,
+        "endLine": 377,
+        "endChar": 33
+      },
+      "revId": "5c901a7e04ed335b3e17d5ac5fead4d202943a16",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_1fe4fa0b",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:49:47Z",
+      "side": 1,
+      "message": "Should this section be after you clone the pmu-tools repo?",
+      "range": {
+        "startLine": 375,
+        "startChar": 0,
+        "endLine": 381,
+        "endChar": 19
+      },
+      "revId": "5c901a7e04ed335b3e17d5ac5fead4d202943a16",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_dfe29202",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:49:47Z",
+      "side": 1,
+      "message": "nit: follow with a comma\n\ni.e. \"configuration, \"",
+      "range": {
+        "startLine": 404,
+        "startChar": 52,
+        "endLine": 404,
+        "endChar": 65
+      },
+      "revId": "5c901a7e04ed335b3e17d5ac5fead4d202943a16",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_7ff1c6cc",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:49:47Z",
+      "side": 1,
+      "message": "Should this be \"increase the limit on the number of open file descriptors allowed\"?",
+      "range": {
+        "startLine": 405,
+        "startChar": 44,
+        "endLine": 405,
+        "endChar": 50
+      },
+      "revId": "5c901a7e04ed335b3e17d5ac5fead4d202943a16",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_bfba2edf",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:49:47Z",
+      "side": 1,
+      "message": "This should appear as a note, as it may not actually be required, and is not part of normal configuration/installaton",
+      "range": {
+        "startLine": 403,
+        "startChar": 0,
+        "endLine": 408,
+        "endChar": 24
+      },
+      "revId": "5c901a7e04ed335b3e17d5ac5fead4d202943a16",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_5fee82ed",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:49:47Z",
+      "side": 1,
+      "message": "This should be immediately after the .. code:: block at line 402",
+      "range": {
+        "startLine": 410,
+        "startChar": 0,
+        "endLine": 411,
+        "endChar": 65
+      },
+      "revId": "5c901a7e04ed335b3e17d5ac5fead4d202943a16",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_dfb9f2ea",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-17T18:49:47Z",
+      "side": 1,
+      "message": "Is there a tested sample config to include in src/collectd/collectd_sample_configs/ ? \n\nThe sample config COULD be included in this patch, otherwise, make sure that this section matches the sample config when it is uploaded.",
+      "range": {
+        "startLine": 417,
+        "startChar": 0,
+        "endLine": 424,
+        "endChar": 13
+      },
+      "revId": "5c901a7e04ed335b3e17d5ac5fead4d202943a16",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
