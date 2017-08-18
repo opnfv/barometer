@@ -25,6 +25,52 @@
     },
     {
       "key": {
+        "uuid": "da33351e_557ca320",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-18T14:24:54Z",
+      "side": 1,
+      "message": "This should be below the license header",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 31
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_35791f30",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-18T14:24:54Z",
+      "side": 1,
+      "message": "Wrong license header used: https://wiki.opnfv.org/display/DEV/Contribution+Guidelines",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 20
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_9f048a16",
         "filename": "baro_tests/collectd.py",
         "patchSetId": 1
@@ -972,6 +1018,29 @@
         "startChar": 8,
         "endLine": 768,
         "endChar": 64
+      },
+      "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_f587b70d",
+        "filename": "baro_tests/tests.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-18T14:24:54Z",
+      "side": 1,
+      "message": "This should be after the license header",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 72
       },
       "revId": "3d90fb2f7ef0149e64b700c5f7cc7977d507cc8b",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
