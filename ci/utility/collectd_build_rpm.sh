@@ -19,9 +19,13 @@ source $DIR/package-list.sh
 VERSION="VERSION_NOT_SET"
 
 cd $COLLECTD_DIR
-VERSION=$( $COLLECTD_DIR/version-gen.sh | sed "s/^\W$//g" )
+VERSION=$( $COLLECTD_DIR/version-gen.sh )
 $COLLECTD_DIR/build.sh
 $COLLECTD_DIR/configure
+sed     --regexp-extended \
+        --in-place=".bak" \
+        --expression="/ProtectHome=true/a CapabilityBoundingSet=CAP_SETUID CAP_SETGID CAP_SYS_RAWIO" \
+        $COLLECTD_DIR/contrib/systemd.collectd.service
 make dist
 
 cp $COLLECTD_DIR/collectd-$VERSION.tar.bz2 $RPM_WORKDIR/SOURCES/
