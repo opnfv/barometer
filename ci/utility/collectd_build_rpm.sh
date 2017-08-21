@@ -24,7 +24,7 @@ $COLLECTD_DIR/build.sh
 $COLLECTD_DIR/configure
 sed     --regexp-extended \
         --in-place=".bak" \
-        --expression="/ProtectHome=true/a CapabilityBoundingSet=CAP_SETUID CAP_SETGID CAP_SYS_RAWIO" \
+        --expression="s/^CapabilityBoundingSet=/CapabilityBoundingSet=CAP_SETUID CAP_SETGID CAP_SYS_RAWIO/g" \
         $COLLECTD_DIR/contrib/systemd.collectd.service
 make dist
 
