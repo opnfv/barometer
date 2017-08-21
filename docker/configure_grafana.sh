@@ -1,0 +1,2 @@
+curl -u admin:admin -X POST -H 'content-type: application/json'  http://127.0.0.1:3000/api/datasources -d '{"name":"collectd","type":"influxdb","url":"http://localhost:8086","access":"proxy","isDefault":true,"database":"collectd","user":"admin","password":"admin","basicAuth":false}'
+curl -u admin:admin -X POST -H 'content-type: application/json'  http://127.0.0.1:3000/api/dashboards/db -d @cpu_usage_dashboard.json
