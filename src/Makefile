@@ -31,11 +31,15 @@ $(SUBBUILDS):
 	$(AT)$(MAKE) -C ../$@ $(MAKECMDGOALS)
 
 with-dpdk:
-export WITH_DPDK
 include mk/master.mk
 SUBDIRS =
+ifndef DPDK_DISABLED
+export WITH_DPDK
 SUBDIRS += dpdk
+endif
+ifndef DOCKER
 SUBDIRS += libpqos
+endif
 SUBDIRS += collectd
 SUBDIRS += collectd-ceilometer-plugin
 

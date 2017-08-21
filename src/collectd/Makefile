@@ -41,7 +41,9 @@ endif
 
 CONFIG_CMD += --enable-syslog
 CONFIG_CMD += --enable-logfile
+ifndef DOCKER
 CONFIG_CMD += --with-libpqos=$(LIBPQOS_DIR)
+endif
 CONFIG_CMD += --with-hugepages
 CONFIG_CMD += --enable-exec
 CONFIG_CMD += --enable-python
@@ -73,14 +75,15 @@ force_install:
 	$(AT)sed -i -e 's/ExecStart=\/usr\/sbin\/collectd/ExecStart=\/opt\/collectd\/sbin\/collectd/g' /etc/systemd/system/collectd.service
 	$(AT)sed -i -e 's/CapabilityBoundingSet=/CapabilityBoundingSet=CAP_SETUID CAP_SETGID CAP_SYS_RAWIO CAP_SYS_ADMIN/g' /etc/systemd/system/collectd.service
 	$(AT)sed -i -e 's|Environment=\(.*\)|Environment=XDG_CACHE_HOME='$(XDG_CACHE_HOME_DIR)' \1|g' /etc/systemd/system/collectd.service
+ifndef DOCKER
 	$(AT)systemctl daemon-reload
 	$(AT)sudo ./ovs_pmd_stats_config.sh
 	$(AT)sudo ./snmp_mib_config.sh
 	$(AT)sudo ./include_config.sh
+endif
 	@echo "Make install done"
 
 install: force_install
-
 
 # hard way to clean and clobber
 clean:
