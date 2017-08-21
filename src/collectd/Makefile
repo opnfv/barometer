@@ -69,6 +69,7 @@ force_make: $(WORK_DIR)/Makefile
 
 force_install:
 	$(AT)$(MAKE) -C $(WORK_DIR) install
+ifndef DOCKER
 	$(AT)cp $(WORK_DIR)/contrib/systemd.collectd.service /etc/systemd/system/
 	$(AT)mv /etc/systemd/system/systemd.collectd.service /etc/systemd/system/collectd.service
 	$(AT)sed -i -e 's/ExecStart=\/usr\/sbin\/collectd/ExecStart=\/opt\/collectd\/sbin\/collectd/g' /etc/systemd/system/collectd.service
@@ -77,11 +78,11 @@ force_install:
 	$(AT)systemctl daemon-reload
 	$(AT)sudo ./ovs_pmd_stats_config.sh
 	$(AT)sudo ./snmp_mib_config.sh
+endif
 	$(AT)sudo ./include_config.sh
 	@echo "Make install done"
 
 install: force_install
-
 
 # hard way to clean and clobber
 clean:
