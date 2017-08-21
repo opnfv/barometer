@@ -27,3 +27,7 @@ if [ "${RESULT:-null}" != null ]; then
 else
   echo "Openvswitch service is not running. Please start before running ovs plugins"
 fi
+# Always copy python ovs module when building Docker image
+if [ -z ${DOCKER+x} ]; then
+  cp $OVS_PMD_STAT_SCRIPT $PATH_LOCAL
+fi

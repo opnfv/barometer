@@ -11,11 +11,4 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-
-LoadPlugin exec
-<Plugin exec>
-     # For OVS PMD stats plugin
-     Exec "collectd_exec" "/opt/collectd/etc/collectd.conf.d/ovs_pmd_stats.sh"
-     NotificationExec "collectd_exec" "/opt/collectd/etc/collectd.conf.d/write_notification.sh"
-</Plugin>
+wget https://raw.githubusercontent.com/collectd/collectd/collectd-5.8/src/types.db -O types.db
