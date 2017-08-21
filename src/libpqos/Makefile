@@ -32,8 +32,8 @@ BUILD_CMD =
 # install depends on make
 force_install: force_make
 
-all: force_make
-	@echo "Finished making $(WORK_DIR) "
+all: force_install
+	@echo "Finished installing $(WORK_DIR) "
 
 INSTALL_TARGET = force_install force_make
 
@@ -45,10 +45,12 @@ force_make: $(WORK_DIR)
 
 force_install:
 	$(AT)sudo $(MAKE) -C $(WORK_DIR) install PREFIX=/usr
+ifndef DOCKER
 	$(AT)sudo modprobe msr
+endif
 
-install: $(INSTALL_TARGET)
-
+install: 
+	@echo "Install done"
 # hard way to clean and clobber
 clean:
 	$(AT)cd $(WORK_DIR) && git clean -xfd *.o

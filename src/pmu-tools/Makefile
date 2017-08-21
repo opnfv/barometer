@@ -33,8 +33,8 @@ MAKEFILE = Makefile
 # install depends on make
 force_install: force_make
 
-all: force_make
-	@echo "Finished making $(WORK_DIR) "
+all: force_install
+	@echo "Finished installing $(WORK_DIR) "
 
 INSTALL_TARGET = force_install force_make
 
@@ -42,7 +42,7 @@ force_make: $(WORK_DIR) $(TAG_DONE_FLAG)
 	$(AT)cd $(WORK_DIR) && git pull $(PMUTOOLS_URL) $(PMUTOOLS_TAG)
 	@echo "git pull done"
 	$(AT)cd $(WORK_DIR)/jevents
-	$(AT)sed -i 's/CFLAGS += -g -Wall -O2 -Wno-unused-result -fPIC/CFLAGS += -g -Wall -O2 -Wno-unused-result -fPIC/' $(MAKEFILE)
+	$(AT)sed -i.bak -e 's/CFLAGS[ ]*:=\(.*\)/CFLAGS := -fPIC\1/' $(WORK_DIR)/jevents/$(MAKEFILE) 
 	$(AT)$(MAKE) -C $(WORK_DIR)/jevents
 	@echo "Make done"
 
@@ -50,7 +50,8 @@ force_install:
 	$(AT)sudo $(MAKE) -C $(WORK_DIR)/jevents install
 	$(AT)./$(WORK_DIR)/event_download.py
 
-install: $(INSTALL_TARGET)
+install:
+	@echo "Install done"
 
 # hard way to clean and clobber
 clean:

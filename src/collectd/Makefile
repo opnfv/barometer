@@ -41,7 +41,9 @@ endif
 
 CONFIG_CMD += --enable-syslog
 CONFIG_CMD += --enable-logfile
+ifndef DOCKER
 CONFIG_CMD += --with-libpqos=$(LIBPQOS_DIR)
+endif
 CONFIG_CMD += --with-hugepages
 CONFIG_CMD += --with-libjevents=/usr/local
 CONFIG_CMD += --enable-exec
@@ -69,6 +71,7 @@ force_make: $(WORK_DIR)/Makefile
 
 force_install:
 	$(AT)$(MAKE) -C $(WORK_DIR) install
+ifndef DOCKER
 	$(AT)cp $(WORK_DIR)/contrib/systemd.collectd.service /etc/systemd/system/
 	$(AT)mv /etc/systemd/system/systemd.collectd.service /etc/systemd/system/collectd.service
 	$(AT)sed -i -e 's/ExecStart=\/usr\/sbin\/collectd/ExecStart=\/opt\/collectd\/sbin\/collectd/g' /etc/systemd/system/collectd.service
@@ -78,10 +81,10 @@ force_install:
 	$(AT)sudo ./ovs_pmd_stats_config.sh
 	$(AT)sudo ./snmp_mib_config.sh
 	$(AT)sudo ./include_config.sh
+endif
 	@echo "Make install done"
 
 install: force_install
-
 
 # hard way to clean and clobber
 clean:
