@@ -1,0 +1,101 @@
+==============================================================================
+Readme for collectd in Docker project
+==============================================================================
+
+This text file includes information about environment preparation and
+deployment collectd in Docker container
+
+Table of content:
+1. DESCRIPTION
+2. SYSTEM REQUIREMENTS
+3. INSTALLATION NOTES
+4. USABLE COMMANDS
+
+------------------------------------------------------------------------------
+1. DESCRIPTION
+
+2. SYSTEM REQUIREMENTS
+
+  Docker >= 17.06.0-ce 
+
+3. INSTALLATION NOTES
+
+  #Docker CE installation on Ubuntu 1604
+  sudo apt-get update
+  sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+   sudo apt-get update
+   sudo apt-get install docker-ce
+
+   Copy folder with preinstall script and Dockerfile on host machine
+
+  ./preinstall.sh
+  sudo docker images
+  sudo docker run -ti --net=host -v /var/run:/var/run --privileged <image-id> /opt/collectd/sbin/collectd
+  or
+  sudo docker run -ti --net=host -v /var/run:/var/run --privileged 7686cf98da39 bash
+
+4. USABLE COMMANDS
+
+To completely rebuild docker image run --no-cache
+
+scp -r * pod13-node4:/home/opnfv/collectd_docker/
+
+MCELOG
+
+To simulate mcelog message use instruction in http://artifacts.opnfv.org/barometer/docs/index.html#mcelog-plugin
+
+git clone https://github.com/andikleen/mce-inject
+cd mce-inject/
+make
+sudo make install
+modprobe mce-inject
+
+go to mcelog folder
+sudo make test
+
+if runs multiple times mcelog service shoud be restarted(cause mcelog make test exits closes mcelog)
+
+VIRT
+
+http://artifacts.opnfv.org/barometer/docs/index.html#virt-plugin
+Check that libvirtd is running on the remote host
+systemctl status libvirtd
+virsh list
+virsh perf instance-00000003
+sudo virsh perf instance-00000003 --enable cpu_cycles --live
+sudo virsh perf instance-00000003 --enable cmt --live
+sudo virsh perf instance-00000003 --enable mbmt --live
+sudo virsh perf instance-00000003 --enable mbml --live
+sudo virsh perf instance-00000003 --enable instructions --live
+sudo virsh perf instance-00000003 --enable cache_references --live
+sudo virsh perf instance-00000003 --enable cache_mises --live
+sudo virsh perf instance-00000003 --enable cache_misses --live
+
+OVS
+
+To successfuly run ovs plugins in Docker you need an ovs instance to connect to
+If you want to install ovs on the same host as Docker please procede these steps
+
+sudo apt install openvswitch-switch
+sudo service openvswitch-switch start
+sudo ovs-vsctl set-manager ptcp:6640
+
+docker run -ti --net=host <Image ID> /bin/bash
+
+To check if connection is successfull please check
+sudo ovs-vsctl show
+319efc53-b321-49a9-b628-e8d70f9bd8a9
+    Manager "ptcp:6640"
+        is_connected: true - can be a marker that ovs plugins successfully connected
+    ovs_version: "2.5.2"
+
+on the host.
