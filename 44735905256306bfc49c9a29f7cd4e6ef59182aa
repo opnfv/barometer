@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_6e13d166",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-21T08:41:40Z",
+      "side": 1,
+      "message": "Please use the .. note:: directive",
+      "range": {
+        "startLine": 422,
+        "startChar": 0,
+        "endLine": 422,
+        "endChar": 10
+      },
+      "revId": "44735905256306bfc49c9a29f7cd4e6ef59182aa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
