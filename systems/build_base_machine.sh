@@ -3,7 +3,7 @@
 # Top level scripts to build basic setup for the host
 #
 
-# Copyright 2015-2016 OPNFV, Intel Corporation.
+# Copyright 2015-2017 OPNFV, Intel Corporation.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -60,16 +60,20 @@ if [ -d "$distro_dir" ] && [ -e "$distro_dir/build_base_machine.sh" ]; then
 else
     die "$distro_dir is not yet supported"
 fi
-
-if [ ! -d /lib/modules/`uname -r`/build ] ; then
-    die "Kernel devel is not available for active kernel. It can be caused by recent kernel update. Please reboot and run $0 again."
+if [ -z ${DOCKER+x} ]; then
+       if [ ! -d /lib/modules/`uname -r`/build ] ; then
+       die "Kernel devel is not available for active kernel. It can be caused by recent kernel update. Please reboot and run $0 again."
+       fi
 fi
-
 # download and compile DPDK and Collectd
 if [ -f ../src/Makefile ] ; then
     cd ../src
     make clobber || die "Make clobber failed"
-    make install || die "Make install failed"
+if [ -z ${DOCKER+x} ]; then
+    make DOCKER=y install || die "Make install failed";
+else
+    make install || die "Make install failed";
+fi
     cd -
 else
     die "Make failed; No Makefile"
