@@ -43,9 +43,14 @@ force_make: $(WORK_DIR)
 	$(AT)$(MAKE) -C $(WORK_DIR) $(MORE_MAKE_FLAGS)
 	@echo "Make done"
 
+ifdef MSR_DISABLED
+force_install:
+	$(AT)sudo $(MAKE) -C $(WORK_DIR) install PREFIX=/usr
+else
 force_install:
 	$(AT)sudo $(MAKE) -C $(WORK_DIR) install PREFIX=/usr
 	$(AT)sudo modprobe msr
+endif
 
 install: $(INSTALL_TARGET)
 
