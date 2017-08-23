@@ -1,7 +1,6 @@
-"""Function for testing collectd plug-ins with different oup plug-ins"""
 # -*- coding: utf-8 -*-
 
-#Licensed under the Apache License, Version 2.0 (the "License"); you may
+# Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
 # a copy of the License at
 #
@@ -13,7 +12,16 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+"""Function for testing collectd plug-ins with different oup plug-ins"""
+
 import time
+
+
+def test_gnocchi_node_sends_data(
+        node_id, interval, logger, client, criteria_list=[],
+        resource_id_substrings=['']):
+    logger.info("Gnocchi test cases will be coming soon!!")
+    return False
 
 
 def test_ceilometer_node_sends_data(
@@ -43,7 +51,8 @@ def test_ceilometer_node_sends_data(
         Return latest entry from meter list which contains given node string
         and (if defined) subsrting.
         """
-        res = [entry for entry in meterlist if node_str in entry['resource_id']
+        res = [
+            entry for entry in meterlist if node_str in entry['resource_id']
             and substr in entry['resource_id']]
         if res:
             return res[0]
@@ -54,24 +63,30 @@ def test_ceilometer_node_sends_data(
     timestamps = {}
     node_str = 'node-{}'.format(node_id) if node_id else ''
 
-    logger.info('Searching for timestamps of latest entries{0}{1}{2}...'.format(
-        '' if node_str == '' else ' for {}'.format(node_str),
-        '' if len(criteria_list) == 0 else (' for criteria ' + ', '.join(criteria_list)),
-        '' if resource_id_substrings == [''] else ' and resource ID substrings "{}"'.format(
-            '", "'.join(resource_id_substrings))))
+    logger.info(
+        'Searching for timestamps of latest entries{0}{1}{2}...'.format(
+            '' if node_str == '' else ' for {}'.format(node_str),
+            '' if len(criteria_list) == 0 else (
+                ' for criteria ' + ', '.join(criteria_list)),
+            '' if resource_id_substrings == [''] else
+            ' and resource ID substrings "{}"'.format(
+                '", "'.join(resource_id_substrings))))
     for criterion in criteria_list if len(criteria_list) > 0 else [None]:
-        meter_list = client.get_ceil_metrics(criterion)
+        meter_list = client.get_gnocchi_metrics(criterion)
         for resource_id_substring in resource_id_substrings:
-            last_entry = _search_meterlist_latest_entry(meter_list, node_str, resource_id_substring)
+            last_entry = _search_meterlist_latest_entry(
+                meter_list, node_str, resource_id_substring)
             if len(last_entry) == 0:
                 logger.error('Entry{0}{1}{2} not found'.format(
                     '' if node_str == '' else ' for {}'.format(node_str),
-                    '' if criterion is None else 'for criterion {}'.format(criterion),
-                    '' if resource_id_substring == ''
-                    else 'and resource ID substring "{}"'.format(resource_id_substring)))
+                    '' if criterion is None else 'for criterion {}'.format(
+                        criterion),
+                    '' if resource_id_substring == '' else 'and resource '
+                    + 'ID substring "{}"'.format(resource_id_substring)))
                 return False
             timestamp = last_entry['timestamp']
-            logger.debug('Last entry found: {0} {1}'.format(timestamp, last_entry['resource_id']))
+            logger.debug('Last entry found: {0} {1}'.format(
+                timestamp, last_entry['resource_id']))
             timestamps[(criterion, resource_id_substring)] = timestamp
 
     attempt = 1
@@ -87,11 +102,14 @@ def test_ceilometer_node_sends_data(
             + '(interval is {} sec)...'.format(interval))
         time.sleep(sleep_time)
 
-        logger.info('Searching for timestamps of latest entries{}{}{}...'.format(
-            '' if node_str == '' else ' for {}'.format(node_str),
-            '' if len(criteria_list) == 0 else (' for criteria ' + ', '.join(criteria_list)),
-            '' if resource_id_substrings == ['']
-            else ' and resource ID substrings "{}"'.format('", "'.join(resource_id_substrings))))
+        logger.info(
+            'Searching for timestamps of latest entries{}{}{}...' .format(
+                '' if node_str == '' else ' for {}'.format(node_str),
+                '' if len(criteria_list) == 0 else (
+                    ' for criteria ' + ', ' .join(criteria_list)),
+                '' if resource_id_substrings == ['']
+                else ' and resource ID substrings "{}"' .format(
+                    '", "'.join(resource_id_substrings))))
         for criterion in criteria_list if len(criteria_list) > 0 else [None]:
             meter_list = client.get_ceil_metrics(criterion)
             for resource_id_substring in resource_id_substrings:
@@ -100,19 +118,25 @@ def test_ceilometer_node_sends_data(
                 if len(last_entry) == 0:
                     logger.error('Entry{0}{1}{2} not found'.format(
                         '' if node_str == '' else ' for {}'.format(node_str),
-                        '' if criterion is None else 'for criterion {}'.format(criterion),
-                        '' if resource_id_substring == ''
-                        else ' and resource ID substring "{}"'.format(resource_id_substring)))
+                        '' if criterion is None else 'for criterion {}'.format(
+                            criterion),
+                        '' if resource_id_substring == '' else ' and resource'
+                        + 'ID substring "{}"'.format(resource_id_substring)))
                     return False
                 timestamp = last_entry['timestamp']
-                logger.debug('Last entry found: {} {}'.format(timestamp, last_entry['resource_id']))
+                logger.debug('Last entry found: {} {}'.format(
+                    timestamp, last_entry['resource_id']))
                 if timestamp == timestamps[(criterion, resource_id_substring)]:
                     logger.warning(
-                        'Last entry{0}{1}{2} has the same timestamp as before the sleep'.format(
-                            '' if node_str == '' else ' for {}'.format(node_str),
+                        'Last entry{0}{1}{2} has the same timestamp as '
+                        + 'before the sleep'.format(
+                            '' if node_str == '' else ' for {}'.format(
+                                node_str),
                             '' if resource_id_substring == ''
-                            else ', substring "{}"'.format(resource_id_substring),
-                            '' if criterion is None else ' for criterion {}'.format(criterion)))
+                            else ', substring "{}"'.format(
+                                resource_id_substring),
+                            '' if criterion is None else
+                            ' for criterion {}'.format(criterion)))
                     is_passed = False
         attempt += 1
         if not is_passed:
@@ -140,22 +164,28 @@ def test_csv_handles_plugin_data(
 
     Return boolean value indicating success or failure.
     """
-    logger.info('Getting CSV metrics of plugin {} on compute node {}...'.format(
-        plugin, compute.get_id()))
+    logger.info(
+        'Getting CSV metrics of plugin {} on compute node {}...' .format(
+            plugin, compute.get_id()))
     logger.debug('Interval: {}'.format(interval))
     logger.debug('Plugin subdirs: {}'.format(plugin_subdirs))
     logger.debug('Plugin meter categories: {}'.format(meter_categories))
-    plugin_metrics = client.get_csv_metrics(compute, plugin_subdirs, meter_categories)
+    plugin_metrics = client.get_csv_metrics(
+        compute, plugin_subdirs, meter_categories)
     if len(plugin_metrics) < len(plugin_subdirs) * len(meter_categories):
         logger.error('Some plugin metrics not found')
         return False
 
-    logger.info('Checking that last two entries in metrics are corresponding to interval...')
+    logger.info(
+        'Checking that last two entries in metrics are corresponding'
+        + 'to interval...')
     for metric in plugin_metrics:
         logger.debug('{0} {1} {2} ... '.format(metric[0], metric[1], metric[2]))
         if metric[3] - metric[2] != interval:
-            logger.error('Time of last two entries differ by {}, but interval is {}'.format(
-                metric[3] - metric[2], interval))
+            logger.error(
+                'Time of last two entries differ by '
+                + '{}, but interval is {}'.format(
+                    metric[3] - metric[2], interval))
             return False
         else:
             logger.debug('OK')
@@ -168,8 +198,10 @@ def test_csv_handles_plugin_data(
         + '(interval is {} sec)...'.format(interval))
     time.sleep(sleep_time)
 
-    logger.info('Getting new metrics of compute node {}...'.format(compute.get_id()))
-    plugin_metrics2 = client.get_csv_metrics(compute, plugin_subdirs, meter_categories)
+    logger.info('Getting new metrics of compute node {}...'.format(
+        compute.get_name()))
+    plugin_metrics2 = client.get_csv_metrics(
+        compute, plugin_subdirs, meter_categories)
     if len(plugin_metrics2) < len(plugin_subdirs) * len(meter_categories):
         logger.error('Some plugin metrics not found')
         return False
@@ -182,7 +214,8 @@ def test_csv_handles_plugin_data(
         return False
     for i in range(len(plugin_metrics2)):
         logger.debug('{0} {1} {2}  - {3} {4} {5} ... '.format(
-            plugin_metrics[i][0], plugin_metrics[i][1], plugin_metrics[i][2], plugin_metrics2[i][0],
+            plugin_metrics[i][0], plugin_metrics[i][1],
+            plugin_metrics[i][2], plugin_metrics2[i][0],
             plugin_metrics2[i][1], plugin_metrics2[i][2]))
         if plugin_metrics[i] == plugin_metrics2[i]:
             logger.error('FAIL')
