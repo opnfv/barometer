@@ -3,35 +3,42 @@
 
 Barometer post installation procedures
 ======================================
-Add a brief introduction to the methods of validating the installation
-according to this specific installer or feature.
+This document describes briefly the methods of validating the Barometer installation.
 
 Automated post installation activities
 --------------------------------------
-Describe specific post installation activities performed by the OPNFV
-deployment pipeline including testing activities and reports. Refer to
-the relevant testing guides, results, and release notes.
-
-note: this section should be singular and derived from the test projects
-once we have one test suite to run for all deploy tools.  This is not the
-case yet so each deploy tool will need to provide (hopefully very simillar)
-documentation of this.
+The Barometer test-suite in Functest is called 'barometercollectd' and is part of the 'Features'
+tier.  Running these tests is done automatically by the OPNFV deployment pipeline on the supported
+scenarios.  The testing consists of basic verifications that each plugin is functional per their
+default configurations.  Inside the Functest container, the detailed results can be found in the
+/home/opnfv/functest/results/barometercollectd.log.
 
 Barometer post configuration procedures
---------------------------------------
-The fuel plugin installs collectd and its plugins on compute nodes.
-separate config files for each of the collectd plugins. These
-configuration files can be found on the compute node @
-`/etc/collectd/collectd.conf.d/` directory. Each collectd plugin will
-have its own configuration file with a default configuration for each
-plugin. You can override any of the plugin configurations, by modifying
-the configuration file and restarting the collectd service on the compute node.
+---------------------------------------
+The functionality for each plugin (such as enabling/disabling and configuring its capabilities)
+is controlled as described in the User Guide through their individual .conf file located in
+the /etc/collectd/collectd.conf.d/ folder on the compute node(s).  In order for any changes to
+take effect, the collectd service must be stopped and then started again.
 
 Platform components validation
----------------------------------
-1. SSH to a compute node and ensure that the collectd service is running.
+------------------------------
+The following steps describe how to perform a simple 'manual' testing of the Barometer components:
 
-2. On the compute node, you need to inject a corrected memory error:
+1. Connect on any compute node and ensure that the collectd service is running.  The collectd.log
+should contain no errors and should indicate that each plugin was successfully loaded. For example,
+from the Jump Host:
+
+.. code:: bash
+
+    $ opnfv-util overcloud compute0
+    $ ls /etc/collectd/collectd.conf.d/
+    $ systemctl status collectd
+    $ vi /opt/stack/collectd.log
+
+The following plugings should be found loaded:
+aodh, gnocchi, hugepages, intel_rdt, mcelog, ovs_events, ovs_stats, snmp, virt
+
+2. On the compute node, induce an event monitored by the plugins; e.g. a corrected memory error:
 
 .. code:: bash
 
@@ -54,28 +61,40 @@ Inject the error:
 
     $ ./mce-inject < test/corrected
 
-3. SSH to openstack controller node and query the ceilometer DB:
+3. Connect to the controller node and query the monitoring services.  Make sure the overcloudrc.v3
+file has been copied to the controller (from the undercloud VM or from the Jump Host) in order to
+be able to authenticate for OpenStack services.
 
 .. code:: bash
 
-    $ source openrc
-    $ ceilometer sample-list -m interface.if_packets
-    $ ceilometer sample-list -m hugepages.vmpage_number
-    $ ceilometer sample-list -m ovs_events.gauge
-    $ ceilometer sample-list -m mcelog.errors
+    $ opnfv-util overcloud controller0
+    $ su
+    $ source overcloudrc.v3
+    $ gnocchi metric list
+    $ aodh alarm list
 
-As you run each command above, you should see output similar to the examples below:
+The output for the gnocchi and aodh queries should be similar to the excerpts below:
 
 .. code:: bash
- | node-6.domain.tld-br-prv-link_status       | ovs_events.gauge | gauge | 1.0    | None | 2017-01-20T18:18:40 |
- | node-6.domain.tld-int-br-prv-link_status   | ovs_events.gauge | gauge | 1.0    | None | 2017-01-20T18:18:39 |
- | node-6.domain.tld-br-int-link_status       | ovs_events.gauge | gauge | 0.0    | None | 2017-01-20T18:18:39 |
 
- | node-6.domain.tld-mm-2048Kb-free    | hugepages.vmpage_number | gauge | 0.0    | None | 2017-01-20T18:17:12 |
- | node-6.domain.tld-mm-2048Kb-used    | hugepages.vmpage_number | gauge | 0.0    | None | 2017-01-20T18:17:12 |
- +-------------------------------------+-------------------------+-------+--------+------+---------------------+
+    +--------------------------------------+---------------------+------------------------------------------------------------------------------------------------------------+-----------+-------------+
+    | id                                   | archive_policy/name | name                                                                                                       | unit      | resource_id |
+    +--------------------------------------+---------------------+------------------------------------------------------------------------------------------------------------+-----------+-------------+
+    [...]
+    | 0550d7c1-384f-4129-83bc-03321b6ba157 | high                | overcloud-novacompute-0.jf.intel.com-hugepages-mm-2048Kb@vmpage_number.free                                | Pages     | None        |
+    | 0cf9f871-0473-4059-9497-1fea96e5d83a | high                | overcloud-novacompute-0.jf.intel.com-hugepages-node0-2048Kb@vmpage_number.free                             | Pages     | None        |
+    | 0d56472e-99d2-4a64-8652-81b990cd177a | high                | overcloud-novacompute-0.jf.intel.com-hugepages-node1-1048576Kb@vmpage_number.used                          | Pages     | None        |
+    | 0ed71a49-6913-4e57-a475-d30ca2e8c3d2 | high                | overcloud-novacompute-0.jf.intel.com-hugepages-mm-1048576Kb@vmpage_number.used                             | Pages     | None        |
+    | 11c7be53-b2c1-4c0e-bad7-3152d82c6503 | high                | overcloud-novacompute-0.jf.intel.com-mcelog-                                                               | None      | None        |
+    |                                      |                     | SOCKET_0_CHANNEL_any_DIMM_any@errors.uncorrected_memory_errors_in_24h                                      |           |             |
+    | 120752d4-385e-4153-aed8-458598a2a0e0 | high                | overcloud-novacompute-0.jf.intel.com-cpu-24@cpu.interrupt                                                  | jiffies   | None        |
+    | 1213161e-472e-4e1b-9e56-5c6ad1647c69 | high                | overcloud-novacompute-0.jf.intel.com-cpu-6@cpu.softirq                                                     | jiffies   | None        |
+    [...]
 
- | bf05daca-df41-11e6-b097-5254006ed58e | node-6.domain.tld-SOCKET_0_CHANNEL_0_DIMM_any-uncorrected_memory_errors_in_24h   | mcelog.errors    | gauge | 0.0          | None    | 2017-01-20T18:53:34 |
- | bf05dacb-df41-11e6-b097-5254006ed58e | node-6.domain.tld-SOCKET_0_CHANNEL_any_DIMM_any-uncorrected_memory_errors_in_24h | mcelog.errors    | gauge | 0.0          | None    | 2017-01-20T18:53:34 |
- | bdcb930d-df41-11e6-b097-5254006ed58e | node-6.domain.tld-SOCKET_0_CHANNEL_any_DIMM_any-uncorrected_memory_errors        | mcelog.errors    | gauge | 0.0          | None    | 2017-01-20T18:53:33 |
-
+    +--------------------------------------+-------+------------------------------------------------------------------+-------+----------+---------+
+    | alarm_id                             | type  | name                                                             | state | severity | enabled |
+    +--------------------------------------+-------+------------------------------------------------------------------+-------+----------+---------+
+    | fbd06539-45dd-42c5-a991-5c5dbf679730 | event | gauge.memory_erros(overcloud-novacompute-0.jf.intel.com-mcelog)  | ok    | moderate | True    |
+    | d73251a5-1c4e-4f16-bd3d-377dd1e8cdbe | event | gauge.mcelog_status(overcloud-novacompute-0.jf.intel.com-mcelog) | ok    | moderate | True    |
+    [...]
+    
