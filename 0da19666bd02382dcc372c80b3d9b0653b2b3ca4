@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_fcb02d8d",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 2409
+      },
+      "writtenOn": "2017-08-24T15:17:58Z",
+      "side": 1,
+      "message": "Collected",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 8
+      },
+      "revId": "0da19666bd02382dcc372c80b3d9b0653b2b3ca4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
