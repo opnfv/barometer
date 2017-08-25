@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_ce6e4701",
+        "filename": "docs/release/scenarios/os-nosdn-bar-ha/scenario.description.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-25T15:09:27Z",
+      "side": 1,
+      "message": "double checking that this is deliberate.\nShould the be ``os-nosdn-fdio-ha.yaml`` or ``os-nosdn-fdio-ha.yaml``\n\nSame in other scenario file",
+      "range": {
+        "startLine": 38,
+        "startChar": 122,
+        "endLine": 38,
+        "endChar": 126
+      },
+      "revId": "bf28dab88672d942b0d0da36ec99514d647882d4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
