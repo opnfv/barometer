@@ -142,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "da33351e_b3ba506c",
+        "filename": "docs/release/release-notes/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-25T12:12:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da33351e_13405ca4",
+      "range": {
+        "startLine": 35,
+        "startChar": 3,
+        "endLine": 35,
+        "endChar": 4
+      },
+      "revId": "98f762731a3cd1e26d43549701e728de9352ca3c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_d38434d6",
         "filename": "docs/release/release-notes/release-notes.rst",
         "patchSetId": 2
@@ -174,6 +198,30 @@
         "id": 6869
       },
       "writtenOn": "2017-08-25T12:09:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da33351e_d38434d6",
+      "range": {
+        "startLine": 53,
+        "startChar": 78,
+        "endLine": 53,
+        "endChar": 81
+      },
+      "revId": "98f762731a3cd1e26d43549701e728de9352ca3c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_13b17c8f",
+        "filename": "docs/release/release-notes/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-25T12:12:39Z",
       "side": 1,
       "message": "Done",
       "parentUuid": "da33351e_d38434d6",
@@ -268,6 +316,30 @@
         "id": 6869
       },
       "writtenOn": "2017-08-25T12:09:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da33351e_334ac0ac",
+      "range": {
+        "startLine": 142,
+        "startChar": 46,
+        "endLine": 142,
+        "endChar": 61
+      },
+      "revId": "98f762731a3cd1e26d43549701e728de9352ca3c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_73672826",
+        "filename": "docs/release/release-notes/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-25T12:12:39Z",
       "side": 1,
       "message": "Done",
       "parentUuid": "da33351e_334ac0ac",
