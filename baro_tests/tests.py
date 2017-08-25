@@ -17,11 +17,53 @@
 import time
 
 
-def test_gnocchi_node_sends_data(
-        node_id, interval, logger, client, criteria_list=[],
-        resource_id_substrings=['']):
-    logger.info("Gnocchi test cases will be coming soon!!")
-    return False
+def test_snmp_sends_data(
+        compute, interval, logger, client, mib_file=None,
+        mib_strings=None, in_command=None, conf=None):
+    """Check that SNMP deta are updated"""
+    logger.debug('Interval: {}'.format(interval))
+    if mib_file is not None:
+        logger.info(
+            'Getting SNMP metrics of MIB file {} and '.format(mib_file)
+            + 'following MIB strings: {}...'.format(', '.join(mib_strings)))
+    snmp_metrics = client.get_snmp_metrics(compute, mib_file, mib_strings)
+    if mib_file is None:
+        return len(snmp_metrics) > 1
+    if in_command is not None and conf is not None:
+        conf.execute_command(in_command, compute.get_ip())
+
+    attempt = 1
+    is_passed = False
+    while (attempt <= 10) and not is_passed:
+        is_passed = True
+        # wait Interval time + 2 sec for db update
+        sleep_time = interval + 2
+        if attempt > 1:
+            logger.info('Starting attempt {}'.format(attempt))
+        logger.info(
+            'Sleeping for {} seconds to get updated entries'.format(sleep_time)
+            + ' (interval is {} sec)...'.format(interval))
+        time.sleep(sleep_time)
+
+        logger.info(
+            'Getting SNMP metrics of MIB file {} and '.format(mib_file)
+            + 'following MIB strings: {}...'.format(', '.join(mib_strings)))
+        snmp_metrics2 = client.get_snmp_metrics(compute, mib_file, mib_strings)
+        unchanged_snmp_metrics = [
+            snmp_metric for snmp_metric in snmp_metrics
+            if snmp_metrics[snmp_metric] == snmp_metrics2[snmp_metric]]
+        if len(unchanged_snmp_metrics) > 0:
+            logger.error("Following SNMP metrics didn't change: {}".format(
+                ', '.join(unchanged_snmp_metrics)))
+            is_passed = False
+        attempt += 1
+        if not is_passed:
+            logger.warning('After sleep new entries were not found.')
+    if not is_passed:
+        logger.error('This was the last attempt.')
+        return False
+    logger.info('All SNMP metrics are changed.')
+    return True
 
 
 def test_ceilometer_node_sends_data(

@@ -25,6 +25,7 @@ import tests
 import subprocess
 from opnfv.deployment import factory
 
+AODH_NAME = 'aodh'
 GNOCCHI_NAME = 'gnocchi'
 ID_RSA_SRC = '/root/.ssh/id_rsa'
 ID_RSA_DST_DIR = '/home/opnfv/.ssh'
@@ -110,10 +111,10 @@ class GnocchiClient(object):
         criteria -- criteria for ceilometer meter list
         """
         if criteria is None:
-            url = self._gnocchi_url + ('/v3/resource?limit=400')
+            url = self._gnocchi_url + ('/v2/metric?limit=400')
         else:
             url = self._gnocchi_url \
-                + ('/v3/resource/%s?q.field=resource_id&limit=400' % criteria)
+                + ('/v3/metric/%s?q.field=metric&limit=400' % criteria)
         headers = {'X-Auth-Token': self._auth_token}
         resp = requests.get(url, headers=headers)
         try:
@@ -121,6 +122,71 @@ class GnocchiClient(object):
             self._meter_list = resp.json()
         except (KeyError, ValueError, requests.exceptions.HTTPError) as err:
             raise InvalidResponse(err, resp)
+
+
+class AodhClient(object):
+    # Gnocchi Client to authenticate and request meters
+    def __init__(self):
+        self._auth_token = None
+        self._aodh_url = None
+        self._meter_list = None
+
+    def auth_token(self):
+        # Get auth token
+        self._auth_server()
+        return self._auth_token
+
+    def get_aodh_url(self):
+        # Get Gnocchi  URL
+        return self._gnocchi_url
+
+    def get_aodh_metrics(self, criteria=None):
+        # Subject to change if metric gathering is different for gnocchi
+        self._request_meters(criteria)
+        return self._meter_list
+
+    def _auth_server(self):
+        # Request token in authentication server
+        logger.debug('Connecting to the AODH auth server {}'.format(
+            os.environ['OS_AUTH_URL']))
+        keystone = client.Client(username=os.environ['OS_USERNAME'],
+                                 password=os.environ['OS_PASSWORD'],
+                                 tenant_name=os.environ['OS_USERNAME'],
+                                 auth_url=os.environ['OS_AUTH_URL'])
+        self._auth_token = keystone.auth_token
+        for service in keystone.service_catalog.get_data():
+            if service['name'] == AODH_NAME:
+                for service_type in service['endpoints']:
+                    if service_type['interface'] == 'internal':
+                        self._gnocchi_url = service_type['url']
+
+        if self._aodh_url is None:
+            logger.warning('Aodh is not registered in service catalog')
+
+
+class SNMPClient(object):
+    """Client to request SNMP meters"""
+    def __init__(self, conf, compute_node):
+        """
+        Keyword arguments:
+        conf -- ConfigServer instance
+        compute_node -- Compute node object
+        """
+        self.conf = conf
+        self.compute_node = compute_node
+
+    def get_snmp_metrics(self, compute_node, mib_file, mib_strings):
+        snmp_output = {}
+        if mib_file is None:
+            cmd = "snmpwalk -v 2c -c public localhost IF-MIB::interfaces"
+            ip = compute_node.get_ip()
+            snmp_output = self.conf.execute_command(cmd, ip)
+        else:
+            for mib_string in mib_strings:
+                snmp_output[mib_string] = self.conf.execute_command(
+                    "snmpwalk -v2c -m {} -c public localhost {}".format(
+                        mib_file, mib_string), compute_node.get_ip())
+        return snmp_output
 
 
 class CSVClient(object):
@@ -259,7 +325,7 @@ def _print_final_result_of_plugin(
         elif out_plugin == 'Gnocchi':
             print_line += ' NOT EX |'
         else:
-            print_line += ' SKIP   |'
+            print_line += ' NOT EX |'
     return print_line
 
 
@@ -295,21 +361,25 @@ def print_overall_summary(compute_ids, tested_plugins, results, out_plugins):
     out_plugins_print = ['Gnocchi']
     if 'SNMP' in out_plugins.values():
         out_plugins_print.append('SNMP')
+    if 'AODH' in out_plugins.values():
+        out_plugins_print.append('AODH')
     if 'CSV' in out_plugins.values():
         out_plugins_print.append('CSV')
     for out_plugin in out_plugins_print:
         output_plugins_line = ''
         for id in compute_ids:
-            out_plugin_result = '----'
+            out_plugin_result = 'FAIL'
             if out_plugin == 'Gnocchi':
                 out_plugin_result = \
                     'PASS' if out_plugins[id] == out_plugin else 'FAIL'
+            if out_plugin == 'AODH':
+                if out_plugins[id] == out_plugin:
+                    out_plugin_result = \
+                        'PASS' if out_plugins[id] == out_plugin else 'FAIL'
             if out_plugin == 'SNMP':
                 if out_plugins[id] == out_plugin:
                     out_plugin_result = \
                         'PASS' if out_plugins[id] == out_plugin else 'FAIL'
-                else:
-                    out_plugin_result = 'SKIP'
             if out_plugin == 'CSV':
                 if out_plugins[id] == out_plugin:
                     out_plugin_result = \
@@ -335,8 +405,8 @@ def print_overall_summary(compute_ids, tested_plugins, results, out_plugins):
 
 
 def _exec_testcase(
-        test_labels, name, gnocchi_running, compute_node,
-        conf, results, error_plugins):
+        test_labels, name, gnocchi_running, aodh_running, snmp_running,
+        controllers, compute_node, conf, results, error_plugins, out_plugins):
     """Execute the testcase.
 
     Keyword arguments:
@@ -376,18 +446,35 @@ def _exec_testcase(
         'ovs_stats': [(
             len(ovs_existing_configured_bridges) > 0,
             'Bridges must be configured.')]}
-    ceilometer_criteria_lists = {
-        'intel_rdt': [
-            'intel_rdt.ipc', 'intel_rdt.bytes',
-            'intel_rdt.memory_bandwidth'],
-        'hugepages': ['hugepages.vmpage_number'],
-        'ipmi': ['ipmi.temperature', 'ipmi.voltage'],
+    gnocchi_criteria_lists = {
+        'hugepages': ['hugepages'],
+        'mcelog': ['mcelog'],
+        'ovs_events': ['interface-ovs-system'],
+        'ovs_stats': ['ovs_stats-br0.br0']}
+    aodh_criteria_lists = {
         'mcelog': ['mcelog.errors'],
-        'ovs_stats': ['interface.if_packets'],
         'ovs_events': ['ovs_events.gauge']}
-    ceilometer_substr_lists = {
-        'ovs_events': ovs_existing_configured_int if len(
-            ovs_existing_configured_int) > 0 else ovs_interfaces}
+    snmp_mib_files = {
+        'intel_rdt': '/usr/share/snmp/mibs/Intel-Rdt.txt',
+        'hugepages': '/usr/share/snmp/mibs/Intel-Hugepages.txt',
+        'mcelog': '/usr/share/snmp/mibs/Intel-Mcelog.txt'}
+    snmp_mib_strings = {
+        'intel_rdt': [
+            'INTEL-RDT-MIB::rdtLlc.1',
+            'INTEL-RDT-MIB::rdtIpc.1',
+            'INTEL-RDT-MIB::rdtMbmRemote.1',
+            'INTEL-RDT-MIB::rdtMbmLocal.1'],
+        'hugepages': [
+            'INTEL-HUGEPAGES-MIB::hugepagesPageFree'],
+        'mcelog': [
+            'INTEL-MCELOG-MIB::memoryCorrectedErrors.1',
+            'INTEL-MCELOG-MIB::memoryCorrectedErrors.2']}
+    nr_hugepages = int(time.time()) % 10000
+    snmp_in_commands = {
+        'intel_rdt': None,
+        'hugepages': 'echo {} > /sys/kernel/'.format(nr_hugepages)
+                     + 'mm/hugepages/hugepages-2048kB/nr_hugepages',
+        'mcelog': '/root/mce-inject_df < /root/corrected'}
     csv_subdirs = {
         'intel_rdt': [
             'intel_rdt-{}'.format(core)
@@ -461,14 +548,22 @@ def _exec_testcase(
                 logger.error(' * {}'.format(prerequisite))
         else:
             if gnocchi_running:
+                plugin_interval = conf.get_plugin_interval(compute_node, name)
                 res = conf.test_plugins_with_gnocchi(
-                    compute_node.get_id(),
-                    conf.get_plugin_interval(compute_node, name),
-                    logger, client=GnocchiClient(),
-                    criteria_list=ceilometer_criteria_lists[name],
-                    resource_id_substrings=(
-                        ceilometer_substr_lists[name]
-                        if name in ceilometer_substr_lists else ['']))
+                    compute_node.get_id(), plugin_interval, logger,
+                    criteria_list=gnocchi_criteria_lists[name])
+            elif aodh_running:
+                res = conf.test_plugins_with_aodh(
+                   compute_node.get_id(), plugin_interval,
+                   logger, creteria_list=aodh_criteria_lists[name])
+            elif snmp_running:
+                res = \
+                    name in snmp_mib_files and name in snmp_mib_strings \
+                    and tests.test_snmp_sends_data(
+                        compute_node,
+                        conf.get_plugin_interval(compute_node, name), logger,
+                        SNMPClient(conf, compute_node), snmp_mib_files[name],
+                        snmp_mib_strings[name], snmp_in_commands[name], conf)
             else:
                 res = tests.test_csv_handles_plugin_data(
                     compute_node, conf.get_plugin_interval(compute_node, name),
@@ -618,19 +713,32 @@ def main(bt_logger=None):
 
     mcelog_install()
     gnocchi_running_on_con = False
-    _print_label('Test Gnocchi on controller nodes')
+    aodh_running_on_con = False
+    snmp_running = False
+    _print_label('Testing Gnocchi, AODH and SNMP on controller nodes')
 
     for controller in controllers:
-        logger.info("Controller = {}" .format(controller))
         gnocchi_client = GnocchiClient()
         gnocchi_client.auth_token()
-        gnocchi_running_on_con = (
-            gnocchi_running_on_con or conf.is_gnocchi_running(
-                controller))
-    if gnocchi_running_on_con:
+        gnocchi_running = (
+            gnocchi_running_on_con and conf.is_gnocchi_running(controller))
+        aodh_client = AodhClient()
+        aodh_client.auth_token()
+        aodh_running = (
+            aodh_running_on_con and conf.is_aodh_running(controller))
+    if gnocchi_running:
         logger.info("Gnocchi is running on controller.")
-    else:
+    elif aodh_running:
         logger.error("Gnocchi is not running on controller.")
+        logger.info("AODH is running on controller.")
+    elif snmp_running:
+        logger.error("Gnocchi is not running on Controller")
+        logger.error("AODH is not running on controller.")
+        logger.info("SNMP is running on controller.")
+    else:
+        logger.error("Gnocchi is not running on Controller")
+        logger.error("AODH is not running on controller.")
+        logger.error("SNMP is not running on controller.")
         logger.info("CSV will be enabled on compute nodes.")
 
     compute_ids = []
@@ -643,7 +751,11 @@ def main(bt_logger=None):
         'mcelog': 'Mcelog',
         'ovs_stats': 'OVS stats',
         'ovs_events': 'OVS events'}
-    out_plugins = {}
+    out_plugins = {
+        'gnocchi': 'Gnocchi',
+        'aodh': 'AODH',
+        'snmp': 'SNMP',
+        'csv': 'CSV'}
     for compute_node in computes:
         node_id = compute_node.get_id()
         node_name = compute_node.get_name()
@@ -676,17 +788,26 @@ def main(bt_logger=None):
             else:
                 for warning in collectd_warnings:
                     logger.warning(warning)
-                gnocchi_running = (
-                    gnocchi_running_on_con
-                    and conf.test_gnocchi_is_sending_data(
-                        controller))
+
                 if gnocchi_running:
                     out_plugins[node_id] = 'Gnocchi'
                     logger.info("Gnocchi is active and collecting data")
+                elif aodh_running:
+                    out_plugins[node_id] = 'AODH'
+                    logger.info("AODH withh be tested")
+                    _print_label('Node {}: Test AODH' .format(node_name))
+                    logger.info("Checking if AODH is running")
+                    logger.info("AODH is running")
+                elif snmp_running:
+                    out_plugins[node_id] = 'SNMP'
+                    logger.info("SNMP will be tested.")
+                    _print_label('NODE {}: Test SNMP'.format(node_id))
+                    logger.info("Checking if SNMP is running.")
+                    logger.info("SNMP is running.")
                 else:
                     plugins_to_enable.append('csv')
                     out_plugins[node_id] = 'CSV'
-                    logger.error("Gnocchi is inactive and not collecting data")
+                    logger.error("Gnocchi, AODH, SNMP are not running")
                     logger.info(
                         "CSV will be enabled for verification "
                         + "of test plugins.")
@@ -728,9 +849,10 @@ def main(bt_logger=None):
 
                         for plugin_name in sorted(plugin_labels.keys()):
                             _exec_testcase(
-                                plugin_labels, plugin_name,
-                                gnocchi_running,
-                                compute_node, conf, results, error_plugins)
+                                plugin_labels, plugin_name, gnocchi_running,
+                                aodh_running, snmp_running, controllers,
+                                compute_node, conf, results, error_plugins,
+                                out_plugins[node_id])
 
             _print_label('NODE {}: Restoring config file'.format(node_name))
             conf.restore_config(compute_node)
