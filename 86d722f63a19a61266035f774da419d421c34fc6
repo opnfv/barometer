@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "da33351e_0e978f91",
+        "filename": "docs/release/scenarios/os-nosdn-bar-ha/scenario.description.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2017-08-25T12:54:37Z",
+      "side": 1,
+      "message": "that *their* statistics...",
+      "range": {
+        "startLine": 21,
+        "startChar": 20,
+        "endLine": 21,
+        "endChar": 39
+      },
+      "revId": "86d722f63a19a61266035f774da419d421c34fc6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_ce7da770",
         "filename": "docs/release/scenarios/os-nosdn-bar-ha/scenario.description.rst",
         "patchSetId": 3
@@ -48,6 +71,69 @@
     },
     {
       "key": {
+        "uuid": "da33351e_aef783f4",
+        "filename": "docs/release/scenarios/os-nosdn-bar-ha/scenario.description.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2017-08-25T12:54:37Z",
+      "side": 1,
+      "message": "on/from the controller node",
+      "range": {
+        "startLine": 49,
+        "startChar": 65,
+        "endLine": 49,
+        "endChar": 83
+      },
+      "revId": "86d722f63a19a61266035f774da419d421c34fc6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_0ede6f6d",
+        "filename": "docs/release/scenarios/os-nosdn-bar-ha/scenario.description.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2017-08-25T12:54:37Z",
+      "side": 1,
+      "message": "in the user guide.",
+      "range": {
+        "startLine": 50,
+        "startChar": 88,
+        "endLine": 50,
+        "endChar": 101
+      },
+      "revId": "86d722f63a19a61266035f774da419d421c34fc6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_eed86b81",
+        "filename": "docs/release/scenarios/os-nosdn-bar-ha/scenario.description.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2017-08-25T12:54:37Z",
+      "side": 1,
+      "message": "None.",
+      "revId": "86d722f63a19a61266035f774da419d421c34fc6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_ae802347",
         "filename": "docs/release/scenarios/os-nosdn-bar-noha/scenario.description.rst",
         "patchSetId": 3
@@ -59,6 +145,24 @@
       "writtenOn": "2017-08-25T12:42:51Z",
       "side": 1,
       "message": "The same comments apply as the previous file",
+      "revId": "86d722f63a19a61266035f774da419d421c34fc6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_4ee87710",
+        "filename": "docs/release/scenarios/os-nosdn-bar-noha/scenario.description.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2017-08-25T12:54:37Z",
+      "side": 1,
+      "message": "same for me.",
+      "parentUuid": "da33351e_ae802347",
       "revId": "86d722f63a19a61266035f774da419d421c34fc6",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
