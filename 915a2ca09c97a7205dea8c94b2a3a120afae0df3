@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_531e6464",
+        "filename": "docs/release/release-notes/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-25T12:00:18Z",
+      "side": 1,
+      "message": "Revert this line to what it was initially, and add your own line, so there are two entries, one for Maryam\u0027s initial draft, and one for your update for the Euphrates release",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 85
+      },
+      "revId": "915a2ca09c97a7205dea8c94b2a3a120afae0df3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
