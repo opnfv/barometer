@@ -12,5 +12,7 @@ OPNFV Barometer Scenarios
 .. toctree::
     :maxdepth: 1
 
-    ./os-nosdn-kvm_ovs_dpdk_bar-ha/scenario.description
+    ./os-nosdn-bar-ha/scenario.description
+    ./os-nosdn-bar-noha/scenario.description
+    
 
