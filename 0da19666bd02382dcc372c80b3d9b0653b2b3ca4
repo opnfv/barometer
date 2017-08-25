@@ -22,6 +22,52 @@
       "revId": "0da19666bd02382dcc372c80b3d9b0653b2b3ca4",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_adaf8d93",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6729
+      },
+      "writtenOn": "2017-08-25T01:20:09Z",
+      "side": 1,
+      "message": "Euphrates",
+      "range": {
+        "startLine": 90,
+        "startChar": 42,
+        "endLine": 90,
+        "endChar": 51
+      },
+      "revId": "0da19666bd02382dcc372c80b3d9b0653b2b3ca4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_cd83f102",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6729
+      },
+      "writtenOn": "2017-08-25T01:20:09Z",
+      "side": 1,
+      "message": "Please write the plugins in two sections such as Write and Read plugins. \nFor ex- Write(OUT) Plugin-Aodh, Gnocchi, SNMP, CSV\nRead(IN) Pluggin- Hugepages, Intel RDT, Mcelog, OVS Events, OVS stats, VIRT",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 36
+      },
+      "revId": "0da19666bd02382dcc372c80b3d9b0653b2b3ca4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
