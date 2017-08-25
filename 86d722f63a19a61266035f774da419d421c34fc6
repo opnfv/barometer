@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "da33351e_6e629bae",
+        "filename": "docs/release/scenarios/os-nosdn-bar-ha/scenario.description.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 2409
+      },
+      "writtenOn": "2017-08-25T13:40:31Z",
+      "side": 1,
+      "message": "os-nosdn-bar-ha overview and description",
+      "revId": "86d722f63a19a61266035f774da419d421c34fc6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_4eba3724",
         "filename": "docs/release/scenarios/os-nosdn-bar-ha/scenario.description.rst",
         "patchSetId": 3
@@ -163,6 +180,23 @@
       "side": 1,
       "message": "same for me.",
       "parentUuid": "da33351e_ae802347",
+      "revId": "86d722f63a19a61266035f774da419d421c34fc6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_ae5ca3ee",
+        "filename": "docs/release/scenarios/os-nosdn-bar-noha/scenario.description.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 2409
+      },
+      "writtenOn": "2017-08-25T13:40:31Z",
+      "side": 1,
+      "message": "os-nosdn-bar-noha overview and description",
       "revId": "86d722f63a19a61266035f774da419d421c34fc6",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
