@@ -1,0 +1,8 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+2: Emma Foley <emma.l.foley@intel.com>
+Verified+1: Emma Foley <emma.l.foley@intel.com>
+Submitted-by: Emma Foley <emma.l.foley@intel.com>
+Submitted-at: Fri, 25 Aug 2017 15:30:31 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/40249
+Project: barometer
+Branch: refs/heads/master
