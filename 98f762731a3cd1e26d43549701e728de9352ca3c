@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "da33351e_734e0898",
+        "filename": "docs/release/release-notes/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6869
+      },
+      "writtenOn": "2017-08-25T12:09:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da33351e_f3f3389d",
+      "range": {
+        "startLine": 22,
+        "startChar": 2,
+        "endLine": 22,
+        "endChar": 78
+      },
+      "revId": "98f762731a3cd1e26d43549701e728de9352ca3c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_13405ca4",
         "filename": "docs/release/release-notes/release-notes.rst",
         "patchSetId": 2
@@ -82,6 +106,30 @@
       "writtenOn": "2017-08-25T12:00:18Z",
       "side": 1,
       "message": "collectd is not capitalised",
+      "range": {
+        "startLine": 35,
+        "startChar": 3,
+        "endLine": 35,
+        "endChar": 4
+      },
+      "revId": "98f762731a3cd1e26d43549701e728de9352ca3c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_934bcc86",
+        "filename": "docs/release/release-notes/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6869
+      },
+      "writtenOn": "2017-08-25T12:09:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da33351e_13405ca4",
       "range": {
         "startLine": 35,
         "startChar": 3,
@@ -117,6 +165,30 @@
     },
     {
       "key": {
+        "uuid": "da33351e_337da0b2",
+        "filename": "docs/release/release-notes/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6869
+      },
+      "writtenOn": "2017-08-25T12:09:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da33351e_d38434d6",
+      "range": {
+        "startLine": 53,
+        "startChar": 78,
+        "endLine": 53,
+        "endChar": 81
+      },
+      "revId": "98f762731a3cd1e26d43549701e728de9352ca3c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_93610c3c",
         "filename": "docs/release/release-notes/release-notes.rst",
         "patchSetId": 2
@@ -140,6 +212,30 @@
     },
     {
       "key": {
+        "uuid": "da33351e_5382e494",
+        "filename": "docs/release/release-notes/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6869
+      },
+      "writtenOn": "2017-08-25T12:09:16Z",
+      "side": 1,
+      "message": "This is the list mentioned in task description \u0027Update the JIRA backlog in the notes: https://jira.opnfv.org/secure/RapidBoard.jspa?rapidView\u003d57\u0027",
+      "parentUuid": "da33351e_93610c3c",
+      "range": {
+        "startLine": 86,
+        "startChar": 1,
+        "endLine": 86,
+        "endChar": 75
+      },
+      "revId": "98f762731a3cd1e26d43549701e728de9352ca3c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_334ac0ac",
         "filename": "docs/release/release-notes/release-notes.rst",
         "patchSetId": 2
@@ -151,6 +247,30 @@
       "writtenOn": "2017-08-25T12:00:18Z",
       "side": 1,
       "message": "SFQM had changed to barometer for release D",
+      "range": {
+        "startLine": 142,
+        "startChar": 46,
+        "endLine": 142,
+        "endChar": 61
+      },
+      "revId": "98f762731a3cd1e26d43549701e728de9352ca3c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_73c0c8e0",
+        "filename": "docs/release/release-notes/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 6869
+      },
+      "writtenOn": "2017-08-25T12:09:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da33351e_334ac0ac",
       "range": {
         "startLine": 142,
         "startChar": 46,
