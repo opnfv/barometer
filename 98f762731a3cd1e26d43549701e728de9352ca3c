@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_f3f3389d",
+        "filename": "docs/release/release-notes/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-25T12:00:18Z",
+      "side": 1,
+      "message": "Revert this line, and add your own for this change, so you have two entries, one for the initial draft, and one for the updates for the Euphrates release",
+      "range": {
+        "startLine": 22,
+        "startChar": 2,
+        "endLine": 22,
+        "endChar": 78
+      },
+      "revId": "98f762731a3cd1e26d43549701e728de9352ca3c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_13405ca4",
+        "filename": "docs/release/release-notes/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-25T12:00:18Z",
+      "side": 1,
+      "message": "collectd is not capitalised",
+      "range": {
+        "startLine": 35,
+        "startChar": 3,
+        "endLine": 35,
+        "endChar": 4
+      },
+      "revId": "98f762731a3cd1e26d43549701e728de9352ca3c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_d38434d6",
+        "filename": "docs/release/release-notes/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-25T12:00:18Z",
+      "side": 1,
+      "message": "\u0027|\u0027 should be inline with other lines",
+      "range": {
+        "startLine": 53,
+        "startChar": 78,
+        "endLine": 53,
+        "endChar": 81
+      },
+      "revId": "98f762731a3cd1e26d43549701e728de9352ca3c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_93610c3c",
+        "filename": "docs/release/release-notes/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-25T12:00:18Z",
+      "side": 1,
+      "message": "Did this result in any code? If not, then it shouldn\u0027t be included.",
+      "range": {
+        "startLine": 86,
+        "startChar": 1,
+        "endLine": 86,
+        "endChar": 75
+      },
+      "revId": "98f762731a3cd1e26d43549701e728de9352ca3c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_334ac0ac",
+        "filename": "docs/release/release-notes/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-25T12:00:18Z",
+      "side": 1,
+      "message": "SFQM had changed to barometer for release D",
+      "range": {
+        "startLine": 142,
+        "startChar": 46,
+        "endLine": 142,
+        "endChar": 61
+      },
+      "revId": "98f762731a3cd1e26d43549701e728de9352ca3c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
