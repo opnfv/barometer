@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_a8a3fb4d",
+        "filename": "docs/release/configguide/postinstall.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 6869
+      },
+      "writtenOn": "2017-08-25T08:32:21Z",
+      "side": 1,
+      "message": "better to put it under quotes: `.conf`",
+      "range": {
+        "startLine": 19,
+        "startChar": 69,
+        "endLine": 19,
+        "endChar": 75
+      },
+      "revId": "7132f1c69e01dee565b42e99047879a09ea8ff68",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
