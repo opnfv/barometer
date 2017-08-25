@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_4eba3724",
+        "filename": "docs/release/scenarios/os-nosdn-bar-ha/scenario.description.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-25T12:42:51Z",
+      "side": 1,
+      "message": "Euphrates release of Barometer",
+      "range": {
+        "startLine": 9,
+        "startChar": 51,
+        "endLine": 9,
+        "endChar": 60
+      },
+      "revId": "86d722f63a19a61266035f774da419d421c34fc6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_ce7da770",
+        "filename": "docs/release/scenarios/os-nosdn-bar-ha/scenario.description.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-25T12:42:51Z",
+      "side": 1,
+      "message": "double back ticks (``..``) gives monospaced font",
+      "range": {
+        "startLine": 31,
+        "startChar": 27,
+        "endLine": 31,
+        "endChar": 28
+      },
+      "revId": "86d722f63a19a61266035f774da419d421c34fc6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_ae802347",
+        "filename": "docs/release/scenarios/os-nosdn-bar-noha/scenario.description.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-25T12:42:51Z",
+      "side": 1,
+      "message": "The same comments apply as the previous file",
+      "revId": "86d722f63a19a61266035f774da419d421c34fc6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
