@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "da33351e_33f80049",
+        "filename": "docs/release/release-notes/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 2409
+      },
+      "writtenOn": "2017-08-25T12:09:10Z",
+      "side": 1,
+      "message": "OPNFV is not needed in the title",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 29
+      },
+      "revId": "98f762731a3cd1e26d43549701e728de9352ca3c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_b3a3704e",
+        "filename": "docs/release/release-notes/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 2409
+      },
+      "writtenOn": "2017-08-25T12:09:10Z",
+      "side": 1,
+      "message": "Euphrates release of Barometer",
+      "range": {
+        "startLine": 8,
+        "startChar": 45,
+        "endLine": 8,
+        "endChar": 75
+      },
+      "revId": "98f762731a3cd1e26d43549701e728de9352ca3c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_f3f3389d",
         "filename": "docs/release/release-notes/release-notes.rst",
         "patchSetId": 2
