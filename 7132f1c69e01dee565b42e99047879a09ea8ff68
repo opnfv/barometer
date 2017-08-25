@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da33351e_a24e776d",
+        "filename": "docs/release/configguide/featureconfig.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-25T16:25:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da33351e_28a6cb53",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 23
+      },
+      "revId": "7132f1c69e01dee565b42e99047879a09ea8ff68",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_13421c3e",
         "filename": "docs/release/configguide/featureconfig.rst",
         "patchSetId": 5
@@ -94,6 +118,54 @@
     },
     {
       "key": {
+        "uuid": "da33351e_8251b310",
+        "filename": "docs/release/configguide/featureconfig.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-25T16:25:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da33351e_13697cbe",
+      "range": {
+        "startLine": 40,
+        "startChar": 87,
+        "endLine": 40,
+        "endChar": 91
+      },
+      "revId": "7132f1c69e01dee565b42e99047879a09ea8ff68",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_e2587f34",
+        "filename": "docs/release/configguide/featureconfig.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-25T16:25:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da33351e_f36338db",
+      "range": {
+        "startLine": 40,
+        "startChar": 50,
+        "endLine": 40,
+        "endChar": 53
+      },
+      "revId": "7132f1c69e01dee565b42e99047879a09ea8ff68",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_f3aa18d1",
         "filename": "docs/release/configguide/postinstall.rst",
         "patchSetId": 5
@@ -105,6 +177,30 @@
       "writtenOn": "2017-08-25T09:25:12Z",
       "side": 1,
       "message": "use ``...`` instead of \u0027...\u0027",
+      "range": {
+        "startLine": 10,
+        "startChar": 47,
+        "endLine": 10,
+        "endChar": 66
+      },
+      "revId": "7132f1c69e01dee565b42e99047879a09ea8ff68",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_023da3bb",
+        "filename": "docs/release/configguide/postinstall.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-25T16:25:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da33351e_f3aa18d1",
       "range": {
         "startLine": 10,
         "startChar": 47,
@@ -140,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "da33351e_2242673e",
+        "filename": "docs/release/configguide/postinstall.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-25T16:25:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da33351e_13b05c42",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 50
+      },
+      "revId": "7132f1c69e01dee565b42e99047879a09ea8ff68",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_a8a3fb4d",
         "filename": "docs/release/configguide/postinstall.rst",
         "patchSetId": 5
@@ -151,6 +271,30 @@
       "writtenOn": "2017-08-25T08:32:21Z",
       "side": 1,
       "message": "better to put it under quotes: `.conf`",
+      "range": {
+        "startLine": 19,
+        "startChar": 69,
+        "endLine": 19,
+        "endChar": 75
+      },
+      "revId": "7132f1c69e01dee565b42e99047879a09ea8ff68",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_c25bbb2c",
+        "filename": "docs/release/configguide/postinstall.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-25T16:25:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da33351e_a8a3fb4d",
       "range": {
         "startLine": 19,
         "startChar": 69,
