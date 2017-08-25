@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_b33ff0d5",
+        "filename": "docs/release/release-notes/release-notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-25T12:12:39Z",
+      "side": 1,
+      "message": "| 2017-02-16         | 0.1.0              | Maryam Tahhan      | First draft                   |\n|                    |                    |                    |                               |\n+--------------------+--------------------+--------------------+-------------------------------+\n| 2017-08-25         | 0.2.0              | Shobhi Jain        | Updated for Euphrates release |\n|                    |                    |                    |                               |",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 85
+      },
+      "revId": "0b6c8e26dcc2cd05743cde54f22a888acbc9a820",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
