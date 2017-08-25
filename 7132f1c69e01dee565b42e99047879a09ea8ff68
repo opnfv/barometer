@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "da33351e_28a6cb53",
+        "filename": "docs/release/configguide/featureconfig.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 2409
+      },
+      "writtenOn": "2017-08-25T08:36:01Z",
+      "side": 1,
+      "message": "Barometer Configuration Guide",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 23
+      },
+      "revId": "7132f1c69e01dee565b42e99047879a09ea8ff68",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_a8a3fb4d",
         "filename": "docs/release/configguide/postinstall.rst",
         "patchSetId": 5
