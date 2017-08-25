@@ -25,6 +25,121 @@
     },
     {
       "key": {
+        "uuid": "da33351e_13421c3e",
+        "filename": "docs/release/configguide/featureconfig.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-25T09:25:12Z",
+      "side": 1,
+      "message": "nit: monospaced would look better for these directory and file names and config options that would otherwise be quoted",
+      "range": {
+        "startLine": 19,
+        "startChar": 12,
+        "endLine": 19,
+        "endChar": 28
+      },
+      "revId": "7132f1c69e01dee565b42e99047879a09ea8ff68",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_f36338db",
+        "filename": "docs/release/configguide/featureconfig.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-25T09:25:12Z",
+      "side": 1,
+      "message": "ISO image",
+      "range": {
+        "startLine": 40,
+        "startChar": 50,
+        "endLine": 40,
+        "endChar": 53
+      },
+      "revId": "7132f1c69e01dee565b42e99047879a09ea8ff68",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_13697cbe",
+        "filename": "docs/release/configguide/featureconfig.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-25T09:25:12Z",
+      "side": 1,
+      "message": "RPMs",
+      "range": {
+        "startLine": 40,
+        "startChar": 87,
+        "endLine": 40,
+        "endChar": 91
+      },
+      "revId": "7132f1c69e01dee565b42e99047879a09ea8ff68",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_f3aa18d1",
+        "filename": "docs/release/configguide/postinstall.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-25T09:25:12Z",
+      "side": 1,
+      "message": "use ``...`` instead of \u0027...\u0027",
+      "range": {
+        "startLine": 10,
+        "startChar": 47,
+        "endLine": 10,
+        "endChar": 66
+      },
+      "revId": "7132f1c69e01dee565b42e99047879a09ea8ff68",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_13b05c42",
+        "filename": "docs/release/configguide/postinstall.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-25T09:25:12Z",
+      "side": 1,
+      "message": "add ``\u0027s around file names, directory names and config options.\n    ``/home/opnfv/functest/results/barometercollectd.log.``",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 50
+      },
+      "revId": "7132f1c69e01dee565b42e99047879a09ea8ff68",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_a8a3fb4d",
         "filename": "docs/release/configguide/postinstall.rst",
         "patchSetId": 5
@@ -41,6 +156,29 @@
         "startChar": 69,
         "endLine": 19,
         "endChar": 75
+      },
+      "revId": "7132f1c69e01dee565b42e99047879a09ea8ff68",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_53bae423",
+        "filename": "docs/release/configguide/postinstall.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-25T09:25:12Z",
+      "side": 1,
+      "message": "all lines that are part of the enumerated list item should be indented",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 78
       },
       "revId": "7132f1c69e01dee565b42e99047879a09ea8ff68",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
