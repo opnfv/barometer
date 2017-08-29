@@ -4,3 +4,8 @@
 /docs_build/
 /docs_output/
 /releng/
+*.egg-info/
+.*project
+.settings
+build
+dist
