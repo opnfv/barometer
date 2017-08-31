@@ -15,6 +15,7 @@
 """Function for testing collectd plug-ins with different oup plug-ins"""
 
 import time
+import math
 
 
 def test_snmp_sends_data(
@@ -223,7 +224,7 @@ def test_csv_handles_plugin_data(
         + 'to interval...')
     for metric in plugin_metrics:
         logger.debug('{0} {1} {2} ... '.format(metric[0], metric[1], metric[2]))
-        if metric[3] - metric[2] != interval:
+        if math.floor(metric[3] - metric[2]) > interval:
             logger.error(
                 'Time of last two entries differ by '
                 + '{}, but interval is {}'.format(

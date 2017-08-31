@@ -16,17 +16,22 @@
 
 import paramiko
 import time
-import string
 import os.path
 import os
 import re
-ID_RSA_PATH = '/home/opnfv/.ssh/id_rsa'
+import subprocess
+from opnfv.deployment import factory
+ID_RSA_PATH = '/root/.ssh/id_rsa'
 SSH_KEYS_SCRIPT = '/home/opnfv/barometer/baro_utils/get_ssh_keys.sh'
 DEF_PLUGIN_INTERVAL = 10
 COLLECTD_CONF = '/etc/collectd.conf'
 COLLECTD_CONF_DIR = '/etc/collectd/collectd.conf.d'
 NOTIFICATION_FILE = '/var/log/python-notifications.dump'
 COLLECTD_NOTIFICATION = '/etc/collectd_notification_dump.py'
+APEX_IP = subprocess.check_output("echo $INSTALLER_IP", shell=True)
+APEX_USER = 'root'
+APEX_USER_STACK = 'stack'
+APEX_PKEY = '/root/.ssh/id_rsa'
 
 
 class Node(object):
@@ -55,6 +60,15 @@ class Node(object):
     def get_roles(self):
         """Get node role"""
         return self.__roles
+
+
+def get_apex_nodes():
+    handler = factory.Factory.get_handler('apex',
+                                          APEX_IP,
+                                          APEX_USER_STACK,
+                                          APEX_PKEY)
+    nodes = handler.get_nodes()
+    return nodes
 
 
 class ConfigServer(object):
@@ -163,31 +177,17 @@ class ConfigServer(object):
         plugin -- plug-in name
 
         If found, return interval value, otherwise the default value"""
-        ssh, sftp = self.__open_sftp_session(
-            compute.get_ip(), 'root', 'opnfvapex')
-        in_plugin = False
-        plugin_name = ''
         default_interval = DEF_PLUGIN_INTERVAL
-        config_files = [COLLECTD_CONF] + [
-            COLLECTD_CONF_DIR + '/'
-            + conf_file for conf_file in sftp.listdir(COLLECTD_CONF_DIR)]
-        for config_file in config_files:
-            try:
-                with sftp.open(config_file) as config:
-                    for line in config.readlines():
-                        words = line.split()
-                        if len(words) > 1 and words[0] == '<LoadPlugin':
-                            in_plugin = True
-                            plugin_name = words[1].strip('">')
-                        if words and words[0] == '</LoadPlugin>':
-                            in_plugin = False
-                        if words and words[0] == 'Interval':
-                            if in_plugin and plugin_name == plugin:
-                                return int(words[1])
-                            if not in_plugin:
-                                default_interval = int(words[1])
-            except IOError:
-                self.__logger.error("Could not open collectd.conf file.")
+        compute_name = compute.get_name()
+        nodes = get_apex_nodes()
+        for node in nodes:
+            if compute_name == node.get_dict()['name']:
+                stdout = node.run_cmd(
+                    'cat /etc/collectd/collectd.conf.d/{}.conf'.format(plugin))
+                for line in stdout.split('\n'):
+                    if 'Interval' in line:
+                        # line = line.strip('Interval')
+                        return 1
         return default_interval
 
     def get_plugin_config_values(self, compute, plugin, parameter):
@@ -199,30 +199,22 @@ class ConfigServer(object):
         parameter -- plug-in parameter
 
         Return list of found values."""
-        ssh, sftp = self.__open_sftp_session(
-            compute.get_ip(), 'root', 'opnfvapex')
-        # find the plugin value
-        in_plugin = False
-        plugin_name = ''
         default_values = []
-        config_files = [COLLECTD_CONF] + [
-            COLLECTD_CONF_DIR + '/'
-            + conf_file for conf_file in sftp.listdir(COLLECTD_CONF_DIR)]
-        for config_file in config_files:
-            try:
-                with sftp.open(config_file) as config:
-                    for line in config.readlines():
-                        words = line.split()
-                        if len(words) > 1 and words[0] == '<Plugin':
-                            in_plugin = True
-                            plugin_name = words[1].strip('">')
-                        if len(words) > 0 and words[0] == '</Plugin>':
-                            in_plugin = False
-                        if len(words) > 0 and words[0] == parameter:
-                            if in_plugin and plugin_name == plugin:
-                                return [word.strip('"') for word in words[1:]]
-            except IOError:
-                self.__logger.error("Could not open collectd.conf file.")
+        compute_name = compute.get_name()
+        nodes = get_apex_nodes()
+        for node in nodes:
+            if compute_name == node.get_dict()['name']:
+                stdout = node.run_cmd(
+                    'cat /etc/collectd/collectd.conf.d/{}.conf' .format(plugin))
+                for line in stdout.split('\n'):
+                    if 'Interfaces' in line:
+                        return line.split(' ', 1)[1]
+                    elif 'Bridges' in line:
+                        return line.split(' ', 1)[1]
+                    elif 'Cores' in line:
+                        return line.split(' ', 1)[1]
+                    else:
+                        pass
         return default_values
 
     def execute_command(self, command, host_ip=None, ssh=None):
@@ -249,8 +241,12 @@ class ConfigServer(object):
         Keyword arguments:
         compute -- compute node instance
         """
-        stdout = self.execute_command("ovs-vsctl list-br", compute.get_ip())
-        return [interface.strip() for interface in stdout]
+        compute_name = compute.get_name()
+        nodes = get_apex_nodes()
+        for node in nodes:
+            if compute_name == node.get_dict()['name']:
+                stdout = node.run_cmd('sudo ovs-vsctl list-br')
+        return stdout
 
     def is_gnocchi_running(self, controller):
         """Check whether Gnocchi is running on controller.
@@ -291,21 +287,24 @@ class ConfigServer(object):
 
         Return boolean value whether package is installed.
         """
-        stdout = self.execute_command(
-            'yum list installed | grep {}'.format(package),
-            compute.get_ip())
+        compute_name = compute.get_name()
+        nodes = get_apex_nodes()
+        for node in nodes:
+            if compute_name == node.get_dict()['name']:
+                stdout = node.run_cmd(
+                    'yum list installed | grep {}'.format(package))
         return len(stdout) > 0
 
     def is_libpqos_on_node(self, compute):
         """Check whether libpqos is present on compute node"""
-        ssh, sftp = self.__open_sftp_session(
-            compute.get_ip(), 'root', 'opnfvapex')
-        stdin, stdout, stderr = \
-            ssh.exec_command("ls /usr/local/lib/ | grep libpqos")
-        output = stdout.readlines()
-        for lib in output:
-            if 'libpqos' in lib:
-                return True
+
+        compute_name = compute.get_name()
+        nodes = get_apex_nodes()
+        for node in nodes:
+            if compute_name == node.get_dict()['name']:
+                stdout = node.run_cmd('ls /usr/local/lib/ | grep libpqos')
+                if 'libpqos' in stdout:
+                    return True
         return False
 
     def check_gnocchi_plugin_included(self, compute):
@@ -318,87 +317,18 @@ class ConfigServer(object):
         Return boolean value whether gnocchi plugin is included
         or it's enabling was successful.
         """
-        ssh, sftp = self.__open_sftp_session(
-            compute.get_ip(), 'root', 'opnfvapex')
-        try:
-            config = sftp.open(COLLECTD_CONF, mode='r')
-        except IOError:
-            self.__logger.error(
-                'Cannot open {} on node {}'.format(
-                    COLLECTD_CONF, compute.get_name()))
-            return False
-        in_lines = config.readlines()
-        out_lines = in_lines[:]
-        include_section_indexes = [
-            (start, end) for start in range(len(in_lines))
-            for end in range(len(in_lines))
-            if (start < end)
-            and '<Include' in in_lines[start]
-            and COLLECTD_CONF_DIR in in_lines[start]
-            and '#' not in in_lines[start]
-            and '</Include>' in in_lines[end]
-            and '#' not in in_lines[end]
-            and len([
-                i for i in in_lines[start + 1: end]
-                if 'Filter' in i and '*.conf' in i and '#' not in i]) > 0]
-        if len(include_section_indexes) == 0:
-            out_lines.append('<Include "{}">\n'.format(COLLECTD_CONF_DIR))
-            out_lines.append('        Filter "*.conf"\n')
-            out_lines.append('</Include>\n')
-            config.close()
-            config = sftp.open(COLLECTD_CONF, mode='w')
-            config.writelines(out_lines)
-        config.close()
-        self.__logger.info('Creating backup of collectd.conf...')
-        config = sftp.open(COLLECTD_CONF + '.backup', mode='w')
-        config.writelines(in_lines)
-        config.close()
-        return True
-
-    def check_ceil_plugin_included(self, compute):
-        """Check if ceilometer plugin is included in collectd.conf file.
-        If not, try to enable it.
-
-        Keyword arguments:
-        compute -- compute node instance
-
-        Return boolean value whether ceilometer plugin is included
-        or it's enabling was successful.
-        """
-        ssh, sftp = self.__open_sftp_session(compute.get_ip(), 'root')
-        try:
-            config = sftp.open(COLLECTD_CONF, mode='r')
-        except IOError:
-            self.__logger.error(
-                'Cannot open {} on node {}'.format(
-                    COLLECTD_CONF, compute.get_id()))
-            return False
-        in_lines = config.readlines()
-        out_lines = in_lines[:]
-        include_section_indexes = [
-            (start, end) for start in range(len(in_lines))
-            for end in range(len(in_lines))
-            if (start < end)
-            and '<Include' in in_lines[start]
-            and COLLECTD_CONF_DIR in in_lines[start]
-            and '#' not in in_lines[start]
-            and '</Include>' in in_lines[end]
-            and '#' not in in_lines[end]
-            and len([
-                i for i in in_lines[start + 1: end]
-                if 'Filter' in i and '*.conf' in i and '#' not in i]) > 0]
-        if len(include_section_indexes) == 0:
-            out_lines.append('<Include "{}">\n'.format(COLLECTD_CONF_DIR))
-            out_lines.append('        Filter "*.conf"\n')
-            out_lines.append('</Include>\n')
-            config.close()
-            config = sftp.open(COLLECTD_CONF, mode='w')
-            config.writelines(out_lines)
-        config.close()
-        self.__logger.info('Creating backup of collectd.conf...')
-        config = sftp.open(COLLECTD_CONF + '.backup', mode='w')
-        config.writelines(in_lines)
-        config.close()
+        compute_name = compute.get_name()
+        nodes = get_apex_nodes()
+        for node in nodes:
+            if compute_name == node.get_dict()['name']:
+                # node.run_cmd('su; "opnfvapex"')
+                gnocchi_conf = node.run_cmd('ls /etc/collectd/collectd.conf.d')
+                if 'collectd-ceilometer-plugin.conf' not in gnocchi_conf:
+                    self.__logger.info("Gnocchi Plugin not included")
+                    return True
+                else:
+                    self.__logger.info("Gnochi plugin present")
+                    return True
         return True
 
     def enable_plugins(
@@ -420,151 +350,16 @@ class ConfigServer(object):
         Return boolean value indicating whether function was successful.
         """
         plugins = sorted(plugins)
-        ssh, sftp = self.__open_sftp_session(
-            compute.get_ip(), 'root', 'opnfvapex')
-        plugins_to_enable = plugins[:]
-        for plugin in plugins:
-            plugin_file = '/usr/lib64/collectd/{}.so'.format(plugin)
-            try:
-                sftp.stat(plugin_file)
-            except IOError:
-                self.__logger.debug(
-                    'Plugin file {} not found on node'.format(plugin_file)
-                    + ' {0}, plugin {1} will not be enabled'.format(
-                        compute.get_name(), plugin))
-                error_plugins.append((
-                    plugin, 'plugin file {} not found'.format(plugin_file),
-                    True))
-                plugins_to_enable.remove(plugin)
-        self.__logger.debug(
-            'Following plugins will be enabled on node {}: {}'.format(
-                compute.get_name(), ', '.join(plugins_to_enable)))
-        try:
-            config = sftp.open(COLLECTD_CONF, mode='r')
-        except IOError:
-            self.__logger.warning(
-                'Cannot open {} on node {}'.format(
-                    COLLECTD_CONF, compute.get_name()))
-            return False
-        in_lines = config.readlines()
-        out_lines = []
-        enabled_plugins = []
-        enabled_sections = []
-        in_section = 0
-        comment_section = False
-        uncomment_section = False
-        for line in in_lines:
-            if 'LoadPlugin' in line:
-                for plugin in plugins_to_enable:
-                    if plugin in line:
-                        commented = '#' in line
-                        # list of uncommented lines which contain LoadPlugin
-                        # for this plugin
-                        loadlines = [
-                            ll for ll in in_lines if 'LoadPlugin' in ll
-                            and plugin in ll and '#' not in ll]
-                        if len(loadlines) == 0:
-                            if plugin not in enabled_plugins:
-                                line = line.lstrip(string.whitespace + '#')
-                                enabled_plugins.append(plugin)
-                                error_plugins.append((
-                                    plugin, 'plugin not enabled in '
-                                    + '{}, trying to enable it'.format(
-                                        COLLECTD_CONF), False))
-                        elif not commented:
-                            if plugin not in enabled_plugins:
-                                enabled_plugins.append(plugin)
-                            else:
-                                line = '#' + line
-                                error_plugins.append((
-                                    plugin, 'plugin enabled more than once '
-                                    + '(additional occurrence of LoadPlugin '
-                                    + 'found in {}), '.format(COLLECTD_CONF)
-                                    + 'trying to comment it out.', False))
-            elif line.lstrip(string.whitespace + '#').find('<Plugin') == 0:
-                in_section += 1
-                for plugin in plugins_to_enable:
-                    if plugin in line:
-                        commented = '#' in line
-                        # list of uncommented lines which contain Plugin for
-                        # this plugin
-                        pluginlines = [
-                            pl for pl in in_lines if '<Plugin' in pl
-                            and plugin in pl and '#' not in pl]
-                        if len(pluginlines) == 0:
-                            if plugin not in enabled_sections:
-                                line = line[line.rfind('#') + 1:]
-                                uncomment_section = True
-                                enabled_sections.append(plugin)
-                                error_plugins.append((
-                                    plugin, 'plugin section found in '
-                                    + '{}, but commented'.format(COLLECTD_CONF)
-                                    + ' out, trying to uncomment it.', False))
-                        elif not commented:
-                            if plugin not in enabled_sections:
-                                enabled_sections.append(plugin)
-                            else:
-                                line = '#' + line
-                                comment_section = True
-                                error_plugins.append((
-                                    plugin, 'additional occurrence of plugin '
-                                    + 'section found in {}'.format(
-                                        COLLECTD_CONF)
-                                    + ', trying to comment it out.', False))
-            elif in_section > 0:
-                if comment_section and '#' not in line:
-                    line = '#' + line
-                if uncomment_section and '#' in line:
-                    line = line[line.rfind('#') + 1:]
-                if '</Plugin>' in line:
-                    in_section -= 1
-                    if in_section == 0:
-                        comment_section = False
-                        uncomment_section = False
-            elif '</Plugin>' in line:
-                self.__logger.error(
-                    'Unexpected closure os plugin section on line'
-                    + ' {} in collectd.conf'.format(len(out_lines) + 1)
-                    + ', matching section start not found.')
-                return False
-            out_lines.append(line)
-        if in_section > 0:
-            self.__logger.error(
-                'Unexpected end of file collectd.conf, '
-                + 'closure of last plugin section not found.')
-            return False
-        out_lines = [
-            'LoadPlugin {}\n'.format(plugin) for plugin in plugins_to_enable
-            if plugin not in enabled_plugins] + out_lines
-        for plugin in plugins_to_enable:
-            if plugin not in enabled_plugins:
-                error_plugins.append((
-                    plugin, 'plugin not enabled in {},'.format(COLLECTD_CONF)
-                    + ' trying to enable it.', False))
-        unenabled_sections = [plugin for plugin in plugins_to_enable
-                              if plugin not in enabled_sections]
-        if unenabled_sections:
-            self.__logger.error(
-                'Plugin sections for following plugins not found: {}'.format(
-                    ', '.join(unenabled_sections)))
-            return False
-
-        config.close()
-        if create_backup:
-            self.__logger.info('Creating backup of collectd.conf...')
-            config = sftp.open(COLLECTD_CONF + '.backup', mode='w')
-            config.writelines(in_lines)
-            config.close()
-        self.__logger.info('Updating collectd.conf...')
-        config = sftp.open(COLLECTD_CONF, mode='w')
-        config.writelines(out_lines)
-        config.close()
-        diff_command = \
-            "diff {} {}.backup".format(COLLECTD_CONF, COLLECTD_CONF)
-        stdin, stdout, stderr = ssh.exec_command(diff_command)
-        self.__logger.debug(diff_command)
-        for line in stdout.readlines():
-            self.__logger.debug(line.strip())
+        compute_name = compute.get_name()
+        nodes = get_apex_nodes()
+        for node in nodes:
+            if compute_name == node.get_dict()['name']:
+                node.put_file(
+                    '/usr/local/lib/python2.7/dist-packages/baro_tests/'
+                    + 'csv.conf', 'csv.conf')
+                node.run_cmd(
+                    'sudo cp csv.conf '
+                    + '/etc/collectd/collectd.conf.d/csv.conf')
         return True
 
     def restore_config(self, compute):
@@ -589,34 +384,36 @@ class ConfigServer(object):
         Retrun tuple with boolean indicating success and list of warnings
         received during collectd start.
         """
+        compute_name = compute.get_name()
+        nodes = get_apex_nodes()
 
-        def get_collectd_processes(ssh_session):
+        def get_collectd_processes(compute_node):
             """Get number of running collectd processes.
 
             Keyword arguments:
             ssh_session -- instance of SSH session in which to check
                 for processes
             """
-            stdin, stdout, stderr = ssh_session.exec_command(
-                "pgrep collectd")
-            return len(stdout.readlines())
+            stdout = compute_node.run_cmd("pgrep collectd")
+            return len(stdout)
 
-        ssh, sftp = self.__open_sftp_session(
-            compute.get_ip(), 'root', 'opnfvapex')
-
-        self.__logger.info('Stopping collectd service...')
-        stdout = self.execute_command("service collectd stop", ssh=ssh)
-        time.sleep(10)
-        if get_collectd_processes(ssh):
-            self.__logger.error('Collectd is still running...')
-            return False, []
-        self.__logger.info('Starting collectd service...')
-        stdout = self.execute_command("service collectd start", ssh=ssh)
-        time.sleep(10)
-        warning = [output.strip() for output in stdout if 'WARN: ' in output]
-        if get_collectd_processes(ssh) == 0:
-            self.__logger.error('Collectd is still not running...')
-            return False, warning
+        for node in nodes:
+            if compute_name == node.get_dict()['name']:
+                # node.run_cmd('su; "opnfvapex"')
+                self.__logger.info('Stopping collectd service...')
+                node.run_cmd('sudo systemctl stop collectd')
+                time.sleep(10)
+                if get_collectd_processes(node):
+                    self.__logger.error('Collectd is still running...')
+                    return False, []
+                self.__logger.info('Starting collectd service...')
+                stdout = node.run_cmd('sudo systemctl start collectd')
+                time.sleep(10)
+                warning = [
+                    output.strip() for output in stdout if 'WARN: ' in output]
+                if get_collectd_processes(node) == 0:
+                    self.__logger.error('Collectd is still not running...')
+                    return False, warning
         return True, warning
 
     def test_gnocchi_is_sending_data(self, controller):

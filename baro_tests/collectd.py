@@ -28,7 +28,7 @@ from opnfv.deployment import factory
 AODH_NAME = 'aodh'
 GNOCCHI_NAME = 'gnocchi'
 ID_RSA_SRC = '/root/.ssh/id_rsa'
-ID_RSA_DST_DIR = '/home/opnfv/.ssh'
+ID_RSA_DST_DIR = '/root/.ssh'
 ID_RSA_DST = ID_RSA_DST_DIR + '/id_rsa'
 APEX_IP = subprocess.check_output("echo $INSTALLER_IP", shell=True)
 APEX_USER = 'root'
@@ -63,6 +63,15 @@ class InvalidResponse(KeystoneException):
         """
         super(InvalidResponse, self).__init__(
             "Invalid response", exc, response)
+
+
+def get_apex_nodes():
+    handler = factory.Factory.get_handler('apex',
+                                          APEX_IP,
+                                          APEX_USER_STACK,
+                                          APEX_PKEY)
+    nodes = handler.get_nodes()
+    return nodes
 
 
 class GnocchiClient(object):
@@ -209,30 +218,40 @@ class CSVClient(object):
 
         Return list of metrics.
         """
-        stdout = self.conf.execute_command(
-            "date '+%Y-%m-%d'", compute_node.get_ip())
-        date = stdout[0].strip()
-        metrics = []
-        for plugin_subdir in plugin_subdirectories:
-            for meter_category in meter_categories:
-                stdout = self.conf.execute_command(
-                    "tail -2 /var/lib/collectd/csv/"
-                    + "{0}.jf.intel.com/{1}/{2}-{3}".format(
-                        compute_node.get_name(), plugin_subdir, meter_category,
-                        date),
-                    compute_node.get_ip())
+        compute_name = compute_node.get_name()
+        nodes = get_apex_nodes()
+        for node in nodes:
+            if compute_name == node.get_dict()['name']:
+                date = node.run_cmd(
+                    "date '+%Y-%m-%d'")
+                metrics = []
+                for plugin_subdir in plugin_subdirectories:
+                    for meter_category in meter_categories:
+                        stdout1 = node.run_cmd(
+                            "tail -2 /var/lib/collectd/csv/"
+                            + "{0}.jf.intel.com/{1}/{2}-{3}".format(
+                                compute_node.get_name(), plugin_subdir,
+                                meter_category, date))
+                        stdout2 = node.run_cmd(
+                            "tail -1 /var/lib/collectd/csv/"
+                            + "{0}.jf.intel.com/{1}/{2}-{3}".format(
+                                compute_node.get_name(), plugin_subdir,
+                                meter_category, date))
                 # Storing last two values
-                values = stdout
-                if len(values) < 2:
-                    logger.error(
-                        'Getting last two CSV entries of meter category '
-                        + '{0} in {1} subdir failed'.format(
-                            meter_category, plugin_subdir))
-                else:
-                    old_value = int(values[0][0:values[0].index('.')])
-                    new_value = int(values[1][0:values[1].index('.')])
-                    metrics.append((
-                        plugin_subdir, meter_category, old_value, new_value))
+                        values = stdout1
+                        if values is None:
+                            logger.error(
+                                'Getting last two CSV entries of meter category'
+                                + ' {0} in {1} subdir failed'.format(
+                                    meter_category, plugin_subdir))
+                        else:
+                            values = values.split(',')
+                            old_value = float(values[0])
+                            stdout2 = stdout2.split(',')
+                            new_value = float(stdout2[0])
+                            metrics.append((
+                                plugin_subdir, meter_category, old_value,
+                                new_value))
         return metrics
 
 
@@ -489,13 +508,9 @@ def _exec_testcase(
             'mcelog-SOCKET_0_CHANNEL_0_DIMM_any',
             'mcelog-SOCKET_0_CHANNEL_any_DIMM_any'],
         'ovs_stats': [
-            'ovs_stats-{0}.{0}'.format(interface)
-            for interface in ovs_existing_configured_bridges],
+            'ovs_stats-br0.br0'],
         'ovs_events': [
-            'ovs_events-{}'.format(interface)
-            for interface in (
-                ovs_existing_configured_int
-                if len(ovs_existing_configured_int) > 0 else ovs_interfaces)]}
+            'ovs_events-br0']}
     csv_meter_categories_ipmi = get_csv_categories_for_ipmi(conf, compute_node)
     csv_meter_categories = {
         'intel_rdt': [
@@ -591,6 +606,20 @@ def get_results_for_ovs_events(
     logger.info("Results for OVS Events = {}" .format(results))
 
 
+def create_ovs_bridge():
+    """Create OVS brides on compute nodes"""
+    handler = factory.Factory.get_handler('apex',
+                                          APEX_IP,
+                                          APEX_USER_STACK,
+                                          APEX_PKEY)
+    nodes = handler.get_nodes()
+    for node in nodes:
+        if node.is_compute():
+            node.run_cmd('sudo ovs-vsctl add-br br0')
+            node.run_cmd('sudo ovs-vsctl set-manager ptcp:6640')
+        logger.info('OVS Bridges created on compute nodes')
+
+
 def mcelog_install():
     """Install mcelog on compute nodes."""
     _print_label('Enabling mcelog on compute nodes')
@@ -617,8 +646,8 @@ def mcelog_install():
                 logger.info(
                     'Mcelog seems to be already installed '
                     + 'on node-{}.'.format(node.get_dict()['id']))
-                node.run_cmd('modprobe mce-inject_ea')
-                node.run_cmd('mce-inject_ea < corrected')
+                node.run_cmd('sudo modprobe mce-inject')
+                node.run_cmd('sudo ./mce-inject_ea < corrected')
             else:
                 logger.info(
                     'Mcelog will be enabled on node-{}...'.format(
@@ -633,8 +662,8 @@ def mcelog_install():
                     + ' corrected')
                 node.run_cmd(
                     'echo "ADDR 0x0010FFFFFFF" >> corrected')
-                node.run_cmd('modprobe mce-inject')
-                node.run_cmd('mce-inject_ea < corrected')
+                node.run_cmd('sudo modprobe mce-inject')
+                node.run_cmd('sudo ./mce-inject_ea < corrected')
     logger.info('Mcelog is installed on all compute nodes')
 
 
@@ -650,7 +679,7 @@ def mcelog_delete():
                 node.run_cmd('rm mce-inject_ea')
             if 'corrected' in output:
                 node.run_cmd('rm corrected')
-            node.run_cmd('systemctl restart mcelog')
+            node.run_cmd('sudo systemctl restart mcelog')
     logger.info('Mcelog is deleted from all compute nodes')
 
 
@@ -712,6 +741,7 @@ def main(bt_logger=None):
         for node in computes]))
 
     mcelog_install()
+    create_ovs_bridge()
     gnocchi_running_on_con = False
     aodh_running_on_con = False
     snmp_running = False
@@ -772,7 +802,7 @@ def main(bt_logger=None):
         else:
             collectd_restarted, collectd_warnings = \
                 conf.restart_collectd(compute_node)
-            sleep_time = 5
+            sleep_time = 30
             logger.info(
                 'Sleeping for {} seconds after collectd restart...'.format(
                     sleep_time))
@@ -854,8 +884,8 @@ def main(bt_logger=None):
                                 compute_node, conf, results, error_plugins,
                                 out_plugins[node_id])
 
-            _print_label('NODE {}: Restoring config file'.format(node_name))
-            conf.restore_config(compute_node)
+            # _print_label('NODE {}: Restoring config file'.format(node_name))
+            # conf.restore_config(compute_node)
         mcelog_delete()
     print_overall_summary(compute_ids, plugin_labels, results, out_plugins)
 
