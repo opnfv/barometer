@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_30e623b5",
+        "filename": "src/collectd/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2017-08-31T15:19:38Z",
+      "side": 1,
+      "message": "Should it be just `/usr` same as PREFIX?",
+      "range": {
+        "startLine": 46,
+        "startChar": 32,
+        "endLine": 46,
+        "endChar": 42
+      },
+      "revId": "4d17cf3e8c74d0c861a73ea29168fe56c32ba919",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
