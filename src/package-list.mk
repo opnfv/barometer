@@ -11,6 +11,9 @@ DPDK_TAG ?= v16.11
 LIBPQOS_URL ?= https://github.com/01org/intel-cmt-cat.git
 LIBPQOS_TAG ?= master
 
+PMUTOOLS_URL ?= https://github.com/andikleen/pmu-tools
+PMUTOOLS_TAG ?= master
+
 # collectd section
 COLLECTD_URL ?= https://github.com/collectd/collectd
 COLLECTD_TAG ?= master
