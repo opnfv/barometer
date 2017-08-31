@@ -43,6 +43,7 @@ CONFIG_CMD += --enable-syslog
 CONFIG_CMD += --enable-logfile
 CONFIG_CMD += --with-libpqos=$(LIBPQOS_DIR)
 CONFIG_CMD += --with-hugepages
+CONFIG_CMD += --with-libjevents=/usr/local
 CONFIG_CMD += --enable-exec
 CONFIG_CMD += --enable-python
 CONFIG_CMD += --enable-threshold
