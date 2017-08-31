@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_3063c3dd",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-31T11:29:17Z",
+      "side": 1,
+      "message": "single back ticks surrounding a value is for italics.\nEnclose the term in double backticks for monospaced font\n\ni.e.  ``/etc/collectd/collectd.conf``",
+      "range": {
+        "startLine": 32,
+        "startChar": 45,
+        "endLine": 32,
+        "endChar": 46
+      },
+      "revId": "eb08e9d92eb4ed7f24a11d03ef14d45a1ab1019c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_105e7f12",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-31T11:29:17Z",
+      "side": 1,
+      "message": "Why is this a note? \nShould it be part of the introduction to this section?\n\nOr should there be a link associated with it?",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 59
+      },
+      "revId": "eb08e9d92eb4ed7f24a11d03ef14d45a1ab1019c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_709c2bc1",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-31T11:29:17Z",
+      "side": 1,
+      "message": "want monospaced? use: ``9092``",
+      "range": {
+        "startLine": 98,
+        "startChar": 22,
+        "endLine": 98,
+        "endChar": 28
+      },
+      "revId": "eb08e9d92eb4ed7f24a11d03ef14d45a1ab1019c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_509f67b4",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-31T11:29:17Z",
+      "side": 1,
+      "message": "double back ticks for monospaced",
+      "range": {
+        "startLine": 142,
+        "startChar": 8,
+        "endLine": 142,
+        "endChar": 21
+      },
+      "revId": "eb08e9d92eb4ed7f24a11d03ef14d45a1ab1019c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_b0a6b30e",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-08-31T11:29:17Z",
+      "side": 1,
+      "message": "collectd is not spelled with a capital D.\n\nAll instances of collectd are fully lowercase (except for starting sentences) on their website: https://collectd.org/faq.shtml",
+      "range": {
+        "startLine": 193,
+        "startChar": 25,
+        "endLine": 193,
+        "endChar": 26
+      },
+      "revId": "eb08e9d92eb4ed7f24a11d03ef14d45a1ab1019c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
