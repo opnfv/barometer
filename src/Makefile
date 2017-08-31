@@ -36,6 +36,7 @@ include mk/master.mk
 SUBDIRS =
 SUBDIRS += dpdk
 SUBDIRS += libpqos
+SUBDIRS += pmu_tools
 SUBDIRS += collectd
 SUBDIRS += collectd-ceilometer-plugin
 
