@@ -1,0 +1,251 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_dc2a738f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-08-31T15:22:37Z",
+      "side": 1,
+      "message": "what is still in progress :D?",
+      "range": {
+        "startLine": 9,
+        "startChar": 26,
+        "endLine": 9,
+        "endChar": 51
+      },
+      "revId": "e8c3032b85f15e1e1e858e30e7a9cf079485a8b0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_1c1cdb76",
+        "filename": "docker/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-08-31T15:22:37Z",
+      "side": 1,
+      "message": "is this really all you need to install? from the systems script in barometer: https://gerrit.opnfv.org/gerrit/gitweb?p\u003dbarometer.git;a\u003dblob;f\u003dsystems/ubuntu/16.04/build_base_machine.sh;h\u003d7ea42404503119226c7c8398d2dc03bd36d05cfe;hb\u003dHEAD#l18",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 42
+      },
+      "revId": "e8c3032b85f15e1e1e858e30e7a9cf079485a8b0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_104affab",
+        "filename": "docker/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-08-31T15:22:37Z",
+      "side": 1,
+      "message": "you should clone the barometer repo and build src",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 54
+      },
+      "revId": "e8c3032b85f15e1e1e858e30e7a9cf079485a8b0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_70c8ab22",
+        "filename": "docker/README",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-08-31T15:22:37Z",
+      "side": 1,
+      "message": "can you create appropriate documentation for barometer also?",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 37
+      },
+      "revId": "e8c3032b85f15e1e1e858e30e7a9cf079485a8b0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_50cbe71d",
+        "filename": "docker/collectd.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-08-31T15:22:37Z",
+      "side": 1,
+      "message": "Please use the real config file from building and installing collectd.\n\nif you use the barometer src build this will be in /opt/collectd/etc  as will the other sample configuration files...",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 10
+      },
+      "revId": "e8c3032b85f15e1e1e858e30e7a9cf079485a8b0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_b0d233d0",
+        "filename": "docker/collectd.d/gnoocchi.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-08-31T15:22:37Z",
+      "side": 1,
+      "message": "this file is not named correctly... and you don\u0027t need it. this is not for an openstack environment",
+      "revId": "e8c3032b85f15e1e1e858e30e7a9cf079485a8b0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_90d56fbb",
+        "filename": "docker/preinstall.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-08-31T15:22:37Z",
+      "side": 1,
+      "message": "instead of copying these in would delete the non applicable ones from /opt/collectd/etc/collectd.d/ that are installed by the barometer src build... no need to reinvent the wheel",
+      "range": {
+        "startLine": 9,
+        "startChar": 2,
+        "endLine": 9,
+        "endChar": 78
+      },
+      "revId": "e8c3032b85f15e1e1e858e30e7a9cf079485a8b0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_f0db1beb",
+        "filename": "docker/preinstall.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-08-31T15:22:37Z",
+      "side": 1,
+      "message": "you won\u0027t need this using the barometer src build. \nthis comment and the previous one apply throughout this file.",
+      "range": {
+        "startLine": 10,
+        "startChar": 2,
+        "endLine": 10,
+        "endChar": 49
+      },
+      "revId": "e8c3032b85f15e1e1e858e30e7a9cf079485a8b0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_d0d6d7c2",
+        "filename": "docker/preinstall.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-08-31T15:22:37Z",
+      "side": 1,
+      "message": "Did not find",
+      "range": {
+        "startLine": 12,
+        "startChar": 8,
+        "endLine": 12,
+        "endChar": 18
+      },
+      "revId": "e8c3032b85f15e1e1e858e30e7a9cf079485a8b0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_70ef0b88",
+        "filename": "docker/preinstall.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-08-31T15:22:37Z",
+      "side": 1,
+      "message": "this is a duplication of what\u0027s in the docker file. do you really need it?",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 10
+      },
+      "revId": "e8c3032b85f15e1e1e858e30e7a9cf079485a8b0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_d0fd373d",
+        "filename": "docker/preinstall.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-08-31T15:22:37Z",
+      "side": 1,
+      "message": "should be done by the docker file... ?",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 4
+      },
+      "revId": "e8c3032b85f15e1e1e858e30e7a9cf079485a8b0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
