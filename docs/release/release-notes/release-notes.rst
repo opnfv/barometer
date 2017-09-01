@@ -36,12 +36,42 @@ The Barometer@OPNFV project adds a platform telemetry agent to compute nodes
 that is capabable of retrieving platform statistics and events, and relay them
 to Openstack Gnocchi and Aodh. The telemetry agent currently supported by barometer
 is collectd. Some additional collectd plugins and application were developed to add
-functionality to retrieve statistics or events for:
+the following functionality:
 
-Write Plugins: aodh plugin, SNMP agent plugin, gnocchi plugin.
+Write/publishing Plugins:
 
-Read Plugins/application: Intel RDT plugin, virt plugin, Open vSwitch stats plugin,
-Open vSwitch PMD stats application.
+- aodh plugin: A notification plugin that pushes events to Aodh, and
+  creates/updates alarms appropriately.
+- SNMP agent plugin: A write plugin that will act as a AgentX subagent that
+  receives and handles queries from SNMP master agent and returns the data
+  collected by read plugins. The SNMP Agent plugin handles requests only for OIDs
+  specified in configuration file. To handle SNMP queries the plugin gets data
+  from collectd and translates requested values from collectd’s internal format
+  to SNMP format. Supports SNMP: get, getnext and walk requests.
+- gnocchi plugin: A write plugin that pushes the retrieved stats to Gnocchi.
+  It’s capable of pushing any stats read through collectd to Gnocchi, not just
+  the DPDK stats.
+
+Read Plugins/application:
+
+- Intel RDT plugin: A read plugin that provides the last level cache
+  utilization and memory bandwidth utilization.
+- virt plugin: A read plugin that uses virtualization API libvirt to gather
+  statistics and events about virtualized guests on a system directly from the
+  hypervisor, without a need to install collectd instance on the guest.
+- Open vSwitch stats plugin: A read plugin that retrieves interface stats from
+  OVS.
+
+In addition to the previous plugins from the Danube Release:
+
+- mcelog plugin: A read plugin that uses mcelog to check for memory Machine
+  Check Exceptions and sends the stats for reported exceptions
+- hugepages plugin: A read plugin that retrieves the number of available and
+  free hugepages on a platform as well as what is available in terms of
+  hugepages per socket.
+- Open vSwitch events plugin: A read plugin that retrieves events (like link
+  status changes) from OVS.
+
 
 Release Data
 ---------------
