@@ -22,6 +22,30 @@
       "revId": "3f8fc48bd786df355b6ddc1339bc85764e88a831",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_49997e1e",
+        "filename": "docs/release/release-notes/release-notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-09-01T12:22:45Z",
+      "side": 1,
+      "message": "I\u0027m aware. I just wanted to list them",
+      "parentUuid": "da33351e_4964de48",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 60
+      },
+      "revId": "3f8fc48bd786df355b6ddc1339bc85764e88a831",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
