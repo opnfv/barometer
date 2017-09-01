@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_c43575dc",
+        "filename": "docs/release/release-notes/release-notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2017-09-01T12:13:50Z",
+      "side": 1,
+      "message": "s//as an AgentX/",
+      "range": {
+        "startLine": 45,
+        "startChar": 50,
+        "endLine": 45,
+        "endChar": 61
+      },
+      "revId": "79f01d82fa3efb10f6663522ed9635575d6405e1",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_243541da",
+        "filename": "docs/release/release-notes/release-notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2017-09-01T12:13:50Z",
+      "side": 1,
+      "message": "trailing WS.",
+      "range": {
+        "startLine": 65,
+        "startChar": 60,
+        "endLine": 65,
+        "endChar": 77
+      },
+      "revId": "79f01d82fa3efb10f6663522ed9635575d6405e1",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
