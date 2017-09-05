@@ -503,7 +503,7 @@ def _exec_testcase(
             'hugepages-mm-2048Kb', 'hugepages-node0-2048Kb',
             'hugepages-node1-2048Kb', 'hugepages-mm-1048576Kb',
             'hugepages-node0-1048576Kb', 'hugepages-node1-1048576Kb'],
-        'ipmi': ['ipmi'],
+        # 'ipmi': ['ipmi'],
         'mcelog': [
             'mcelog-SOCKET_0_CHANNEL_0_DIMM_any',
             'mcelog-SOCKET_0_CHANNEL_any_DIMM_any'],
@@ -511,13 +511,14 @@ def _exec_testcase(
             'ovs_stats-br0.br0'],
         'ovs_events': [
             'ovs_events-br0']}
-    csv_meter_categories_ipmi = get_csv_categories_for_ipmi(conf, compute_node)
+    # csv_meter_categories_ipmi = get_csv_categories_for_ipmi(conf,
+    # compute_node)
     csv_meter_categories = {
         'intel_rdt': [
             'bytes-llc', 'ipc', 'memory_bandwidth-local',
             'memory_bandwidth-remote'],
         'hugepages': ['vmpage_number-free', 'vmpage_number-used'],
-        'ipmi': csv_meter_categories_ipmi,
+        # 'ipmi': csv_meter_categories_ipmi,
         'mcelog': [
             'errors-corrected_memory_errors',
             'errors-uncorrected_memory_errors',

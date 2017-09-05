@@ -292,8 +292,11 @@ class ConfigServer(object):
         for node in nodes:
             if compute_name == node.get_dict()['name']:
                 stdout = node.run_cmd(
-                    'yum list installed | grep {}'.format(package))
-        return len(stdout) > 0
+                    'yum list installed | grep mcelog')
+                if 'mcelog' in stdout:
+                    return 1
+                else:
+                    return 0
 
     def is_libpqos_on_node(self, compute):
         """Check whether libpqos is present on compute node"""
