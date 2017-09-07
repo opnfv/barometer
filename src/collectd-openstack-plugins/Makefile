@@ -25,7 +25,7 @@ include ../package-list.mk
 
 .PHONY: force_make install
 
-WORK_DIR = collectd-ceilometer-plugin 
+WORK_DIR = collectd-openstack-plugins
 TAG_DONE_FLAG = $(WORK_DIR)/.$(COLLECTD_OPENSTACK_TAG).tag.done
 
 all: force_make install
