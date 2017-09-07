@@ -60,8 +60,7 @@ could be fed to analytics systems to enable failure prediction, and can also be
 used for intelligent workload placement.
 
 All developed features will be upstreamed to Open Source projects relevant to
-telemetry such as `collectd`_, `Ceilometer`_. and other relavent Openstack
-projects.
+telemetry such as `collectd`_, and relavent Openstack projects.
 
 .. toctree::
      :maxdepth: 3
@@ -80,5 +79,4 @@ Indices
 
 .. _Barometer: https://wiki.opnfv.org/display/fastpath
 .. _collectd: http://collectd.org/
-.. _Ceilometer: https://wiki.openstack.org/wiki/Telemetry
 
