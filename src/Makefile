@@ -38,6 +38,6 @@ SUBDIRS += dpdk
 SUBDIRS += libpqos
 SUBDIRS += pmu-tools
 SUBDIRS += collectd
-SUBDIRS += collectd-ceilometer-plugin
+SUBDIRS += collectd-openstack-plugins
 
 include mk/make-subsys.mk
