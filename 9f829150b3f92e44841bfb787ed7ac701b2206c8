@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_48dfa63b",
+        "filename": "src/collectd-ceilometer-plugin/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 5995
+      },
+      "writtenOn": "2017-09-08T13:46:02Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 4,
+        "startChar": 17,
+        "endLine": 4,
+        "endChar": 21
+      },
+      "revId": "9f829150b3f92e44841bfb787ed7ac701b2206c8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
