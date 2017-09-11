@@ -1,0 +1,153 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_29ad039d",
+        "filename": "docker/Dockerfile",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-09-11T12:24:04Z",
+      "side": 1,
+      "message": "silly question time :) \nif you run the top level /systems/build_base_machine.sh file here instead of the CentOS 7 one, can this container support all the OSes that the top level script supports?",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 46
+      },
+      "revId": "47af8a4cdd9e0f455403819ef1f39a2f173b4c9f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_09b0fff2",
+        "filename": "docker/Dockerfile",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-09-11T12:24:04Z",
+      "side": 1,
+      "message": "why not run top level /systems/build_base_machine.sh which will build and install collectd, and all it\u0027s dependencies from source?\nyou can disable the DPDK build in the src directory through the toplevel makefile and a flag",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 56
+      },
+      "revId": "47af8a4cdd9e0f455403819ef1f39a2f173b4c9f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_a9a0f39f",
+        "filename": "docker/README",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-09-11T12:24:04Z",
+      "side": 1,
+      "message": "can you not start collectd as a service in the container?",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 30
+      },
+      "revId": "47af8a4cdd9e0f455403819ef1f39a2f173b4c9f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_09875f10",
+        "filename": "src/Makefile",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-09-11T12:24:04Z",
+      "side": 1,
+      "message": "make the changes to the real barometer src/ Makefile... \nalso, why:\nifndef DOCKER\nSUBDIRS +\u003d libpqos\nendif",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 5
+      },
+      "revId": "47af8a4cdd9e0f455403819ef1f39a2f173b4c9f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_4978472b",
+        "filename": "src/collectd/Makefile",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-09-11T12:24:04Z",
+      "side": 1,
+      "message": "why?",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 13
+      },
+      "revId": "47af8a4cdd9e0f455403819ef1f39a2f173b4c9f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_697d4b1c",
+        "filename": "src/collectd/Makefile",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-09-11T12:24:04Z",
+      "side": 1,
+      "message": "why?",
+      "revId": "47af8a4cdd9e0f455403819ef1f39a2f173b4c9f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_a9775339",
+        "filename": "src/libpqos/Makefile",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-09-11T12:24:04Z",
+      "side": 1,
+      "message": "why?",
+      "revId": "47af8a4cdd9e0f455403819ef1f39a2f173b4c9f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
