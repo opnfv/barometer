@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_989457e3",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-09-12T15:19:46Z",
+      "side": 1,
+      "message": "can we move this up to the installation instructions\n\nalso is this a single host installation guide or a multi host installation guide (collectd on one host, kafka broker on the other?)\ndelimiting what can be done on different hosts could be good",
+      "range": {
+        "startLine": 220,
+        "startChar": 0,
+        "endLine": 220,
+        "endChar": 20
+      },
+      "revId": "49048ff5be16bcd088eeb0250f2bb4be48fdae22",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
