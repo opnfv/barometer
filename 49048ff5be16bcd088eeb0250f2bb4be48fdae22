@@ -2,6 +2,121 @@
   "comments": [
     {
       "key": {
+        "uuid": "da33351e_ac2abc7b",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 232
+      },
+      "writtenOn": "2017-09-12T16:34:08Z",
+      "side": 1,
+      "message": "Here and below, if there\u0027s a difference between the install on Ubuntu and Centos, make sure to clarify. Otherwise just add a note at the top that the install works the same on Ubuntu and Centos, except use \"yum\" instead of \"apt-get\" on Centos.",
+      "range": {
+        "startLine": 30,
+        "startChar": 9,
+        "endLine": 30,
+        "endChar": 21
+      },
+      "revId": "49048ff5be16bcd088eeb0250f2bb4be48fdae22",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_0c22c8a3",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 232
+      },
+      "writtenOn": "2017-09-12T16:34:08Z",
+      "side": 1,
+      "message": "If this assumes that the kafka broker is installed on the same host, clarify that. If there\u0027s an option to install the broker on another host or in a container etc, clarify that and the change to this config setting.",
+      "range": {
+        "startLine": 37,
+        "startChar": 45,
+        "endLine": 37,
+        "endChar": 54
+      },
+      "revId": "49048ff5be16bcd088eeb0250f2bb4be48fdae22",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_8c3538dc",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 232
+      },
+      "writtenOn": "2017-09-12T16:34:08Z",
+      "side": 1,
+      "message": "As above, if this hostname/IP can be on another server, clarify that.",
+      "range": {
+        "startLine": 101,
+        "startChar": 55,
+        "endLine": 101,
+        "endChar": 63
+      },
+      "revId": "49048ff5be16bcd088eeb0250f2bb4be48fdae22",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_4c3b30d1",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 232
+      },
+      "writtenOn": "2017-09-12T16:34:08Z",
+      "side": 1,
+      "message": "Is guest mode still supported (I thought this was removed earlier but if not that\u0027s great ... we still need it).",
+      "range": {
+        "startLine": 143,
+        "startChar": 46,
+        "endLine": 143,
+        "endChar": 67
+      },
+      "revId": "49048ff5be16bcd088eeb0250f2bb4be48fdae22",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_2c36ace7",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 232
+      },
+      "writtenOn": "2017-09-12T16:34:08Z",
+      "side": 1,
+      "message": "plugin",
+      "range": {
+        "startLine": 143,
+        "startChar": 11,
+        "endLine": 143,
+        "endChar": 16
+      },
+      "revId": "49048ff5be16bcd088eeb0250f2bb4be48fdae22",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_989457e3",
         "filename": "docs/release/userguide/collectd.ves.userguide.rst",
         "patchSetId": 3
@@ -18,6 +133,29 @@
         "startChar": 0,
         "endLine": 220,
         "endChar": 20
+      },
+      "revId": "49048ff5be16bcd088eeb0250f2bb4be48fdae22",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_ec24c4b0",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 232
+      },
+      "writtenOn": "2017-09-12T16:34:08Z",
+      "side": 1,
+      "message": "As above need to verify that this works equally on Centos or clarify the diffs.",
+      "range": {
+        "startLine": 223,
+        "startChar": 17,
+        "endLine": 223,
+        "endChar": 41
       },
       "revId": "49048ff5be16bcd088eeb0250f2bb4be48fdae22",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
