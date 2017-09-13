@@ -224,13 +224,15 @@ class CSVClient(object):
             if compute_name == node.get_dict()['name']:
                 date = node.run_cmd(
                     "date '+%Y-%m-%d'")
+                hostname = node.run_cmd('hostname -A')
+                hostname = hostname.split()[0]
                 metrics = []
                 for plugin_subdir in plugin_subdirectories:
                     for meter_category in meter_categories:
                         stdout1 = node.run_cmd(
                             "tail -2 /var/lib/collectd/csv/"
-                            + "{0}.jf.intel.com/{1}/{2}-{3}".format(
-                                compute_node.get_name(), plugin_subdir,
+                            + "{0}/{1}/{2}-{3}".format(
+                                hostname, plugin_subdir,
                                 meter_category, date))
                         stdout2 = node.run_cmd(
                             "tail -1 /var/lib/collectd/csv/"
@@ -272,7 +274,7 @@ def get_csv_categories_for_ipmi(conf, compute_node):
     return [category.strip()[:-11] for category in categories]
 
 
-def _process_result(compute_node, test, result, results_list):
+def _process_result(compute_node, out_plugin, test, result, results_list):
     """Print test result and append it to results list.
 
     Keyword arguments:
@@ -282,13 +284,13 @@ def _process_result(compute_node, test, result, results_list):
     """
     if result:
         logger.info(
-            'Compute node {0} test case {1} PASSED.'.format(
-                compute_node, test))
+            'Test case {0} PASSED with {1}.'.format(
+                test, out_plugin))
     else:
         logger.error(
-            'Compute node {0} test case {1} FAILED.'.format(
-                compute_node, test))
-    results_list.append((compute_node, test, result))
+            'Test case {0} FAILED with {1}.'.format(
+                test, out_plugin))
+    results_list.append((compute_node, out_plugin, test, result))
 
 
 def _print_label(label):
@@ -333,22 +335,34 @@ def _print_final_result_of_plugin(
     """
     print_line = ''
     for id in compute_ids:
-        if out_plugins[id] == out_plugin:
-            if (id, plugin, True) in results:
+        if out_plugin == 'Gnocchi':
+            if (id, out_plugin, plugin, True) in results:
                 print_line += ' PASS   |'
-            elif (id, plugin, False) in results \
-                    and out_plugins[id] == out_plugin:
+            elif (id, out_plugin, plugin, False) in results:
                 print_line += ' FAIL   |'
             else:
                 print_line += ' NOT EX |'
-        elif out_plugin == 'Gnocchi':
-            print_line += ' NOT EX |'
+        elif out_plugin == 'AODH':
+            if (id, out_plugin, plugin, True) in results:
+                print_line += ' PASS   |'
+            elif (id, out_plugin, plugin, False) in results:
+                print_line += ' FAIL   |'
+            else:
+                print_line += ' NOT EX |'
+        elif out_plugin == 'CSV':
+            if (id, out_plugin, plugin, True) in results:
+                print_line += ' PASS   |'
+            elif (id, out_plugin, plugin, False) in results:
+                print_line += ' FAIL   |'
+            else:
+                print_line += ' NOT EX |'
         else:
-            print_line += ' NOT EX |'
+            print_line += ' SKIP   |'
     return print_line
 
 
-def print_overall_summary(compute_ids, tested_plugins, results, out_plugins):
+def print_overall_summary(
+        compute_ids, tested_plugins, aodh_plugins, results, out_plugins):
     """Print overall summary table.
 
     Keyword arguments:
@@ -359,7 +373,6 @@ def print_overall_summary(compute_ids, tested_plugins, results, out_plugins):
     """
     compute_node_names = ['Node-{}'.format(i) for i in range(
         len((compute_ids)))]
-    # compute_node_names = ['Node-{}'.format(id) for id in compute_ids]
     all_computes_in_line = ''
     for compute in compute_node_names:
         all_computes_in_line += '| ' + compute + (' ' * (7 - len(compute)))
@@ -377,46 +390,61 @@ def print_overall_summary(compute_ids, tested_plugins, results, out_plugins):
     logger.info(line_of_nodes)
     logger.info(
         '+' + ('-' * 16) + '+' + (('-' * 8) + '+') * len(compute_node_names))
-    out_plugins_print = ['Gnocchi']
-    if 'SNMP' in out_plugins.values():
-        out_plugins_print.append('SNMP')
-    if 'AODH' in out_plugins.values():
-        out_plugins_print.append('AODH')
-    if 'CSV' in out_plugins.values():
-        out_plugins_print.append('CSV')
+    out_plugins_print = []
+    out_plugins_print1 = []
+    for key in out_plugins.keys():
+        if 'Gnocchi' in out_plugins[key]:
+            out_plugins_print1.append('Gnocchi')
+        if 'AODH' in out_plugins[key]:
+            out_plugins_print1.append('AODH')
+        if 'SNMP' in out_plugins[key]:
+            out_plugins_print1.append('SNMP')
+        if 'CSV' in out_plugins[key]:
+            out_plugins_print1.append('CSV')
+    for i in out_plugins_print1:
+        if i not in out_plugins_print:
+            out_plugins_print.append(i)
     for out_plugin in out_plugins_print:
         output_plugins_line = ''
         for id in compute_ids:
-            out_plugin_result = 'FAIL'
+            out_plugin_result = '----'
             if out_plugin == 'Gnocchi':
                 out_plugin_result = \
-                    'PASS' if out_plugins[id] == out_plugin else 'FAIL'
+                    'PASS' if 'Gnocchi' in out_plugins_print else 'FAIL'
             if out_plugin == 'AODH':
-                if out_plugins[id] == out_plugin:
-                    out_plugin_result = \
-                        'PASS' if out_plugins[id] == out_plugin else 'FAIL'
+                out_plugin_result = \
+                    'PASS' if out_plugin in out_plugins_print else 'FAIL'
             if out_plugin == 'SNMP':
-                if out_plugins[id] == out_plugin:
-                    out_plugin_result = \
-                        'PASS' if out_plugins[id] == out_plugin else 'FAIL'
+                out_plugin_result = \
+                    'PASS' if [
+                        plugin for comp_id, out_pl, plugin, res in results
+                        if comp_id == id and res] else 'FAIL'
             if out_plugin == 'CSV':
-                if out_plugins[id] == out_plugin:
-                    out_plugin_result = \
-                        'PASS' if [
-                            plugin for comp_id, plugin, res in results
-                            if comp_id == id and res] else 'FAIL'
-                else:
-                    out_plugin_result = 'SKIP'
+                out_plugin_result = \
+                    'PASS' if [
+                        plugin for comp_id, out_pl, plugin, res in results
+                        if comp_id == id and res] else 'FAIL'
+            else:
+                out_plugin_result = 'FAIL'
             output_plugins_line += '| ' + out_plugin_result + '   '
         logger.info(
             '| OUT:{}'.format(out_plugin) + (' ' * (11 - len(out_plugin)))
             + output_plugins_line + '|')
-        for plugin in sorted(tested_plugins.values()):
-            line_plugin = _print_final_result_of_plugin(
-                plugin, compute_ids, results, out_plugins, out_plugin)
-            logger.info(
-                '|  IN:{}'.format(plugin) + (' ' * (11-len(plugin)))
-                + '|' + line_plugin)
+
+        if out_plugin == 'AODH':
+            for plugin in sorted(aodh_plugins.values()):
+                line_plugin = _print_final_result_of_plugin(
+                    plugin, compute_ids, results, out_plugins, out_plugin)
+                logger.info(
+                    '|  IN:{}'.format(plugin) + (' ' * (11-len(plugin)))
+                    + '|' + line_plugin)
+        else:
+            for plugin in sorted(tested_plugins.values()):
+                line_plugin = _print_final_result_of_plugin(
+                    plugin, compute_ids, results, out_plugins, out_plugin)
+                logger.info(
+                    '|  IN:{}'.format(plugin) + (' ' * (11-len(plugin)))
+                    + '|' + line_plugin)
         logger.info(
             '+' + ('-' * 16) + '+'
             + (('-' * 8) + '+') * len(compute_node_names))
@@ -424,8 +452,8 @@ def print_overall_summary(compute_ids, tested_plugins, results, out_plugins):
 
 
 def _exec_testcase(
-        test_labels, name, gnocchi_running, aodh_running, snmp_running,
-        controllers, compute_node, conf, results, error_plugins, out_plugins):
+        test_labels, name, out_plugin, controllers, compute_node,
+        conf, results, error_plugins, out_plugins):
     """Execute the testcase.
 
     Keyword arguments:
@@ -457,7 +485,7 @@ def _exec_testcase(
             conf.is_libpqos_on_node(compute_node),
             'libpqos must be installed.')],
         'mcelog': [(
-            conf.is_installed(compute_node, 'mcelog'),
+            conf.is_mcelog_installed(compute_node, 'mcelog'),
             'mcelog must be installed.')],
         'ovs_events': [(
             len(ovs_existing_configured_int) > 0 or len(ovs_interfaces) > 0,
@@ -466,13 +494,13 @@ def _exec_testcase(
             len(ovs_existing_configured_bridges) > 0,
             'Bridges must be configured.')]}
     gnocchi_criteria_lists = {
-        'hugepages': ['hugepages'],
-        'mcelog': ['mcelog'],
-        'ovs_events': ['interface-ovs-system'],
-        'ovs_stats': ['ovs_stats-br0.br0']}
+        'hugepages': 'hugepages',
+        'mcelog': 'mcelog',
+        'ovs_events': 'interface-ovs-system',
+        'ovs_stats': 'ovs_stats-br0.br0'}
     aodh_criteria_lists = {
-        'mcelog': ['mcelog.errors'],
-        'ovs_events': ['ovs_events.gauge']}
+        'mcelog': 'mcelog',
+        'ovs_events': 'ovs_events'}
     snmp_mib_files = {
         'intel_rdt': '/usr/share/snmp/mibs/Intel-Rdt.txt',
         'hugepages': '/usr/share/snmp/mibs/Intel-Hugepages.txt',
@@ -501,8 +529,7 @@ def _exec_testcase(
                 compute_node, 'intel_rdt', 'Cores')],
         'hugepages': [
             'hugepages-mm-2048Kb', 'hugepages-node0-2048Kb',
-            'hugepages-node1-2048Kb', 'hugepages-mm-1048576Kb',
-            'hugepages-node0-1048576Kb', 'hugepages-node1-1048576Kb'],
+            'hugepages-node1-2048Kb'],
         # 'ipmi': ['ipmi'],
         'mcelog': [
             'mcelog-SOCKET_0_CHANNEL_0_DIMM_any',
@@ -521,13 +548,9 @@ def _exec_testcase(
         # 'ipmi': csv_meter_categories_ipmi,
         'mcelog': [
             'errors-corrected_memory_errors',
-            'errors-uncorrected_memory_errors',
-            'errors-corrected_memory_errors_in_24h',
-            'errors-uncorrected_memory_errors_in_24h'],
+            'errors-uncorrected_memory_errors'],
         'ovs_stats': [
-            'if_collisions', 'if_dropped', 'if_errors', 'if_packets',
-            'if_rx_errors-crc', 'if_rx_errors-frame', 'if_rx_errors-over',
-            'if_rx_octets', 'if_tx_octets'],
+            'if_dropped', 'if_errors', 'if_packets'],
         'ovs_events': ['gauge-link_status']}
 
     _print_plugin_label(
@@ -541,7 +564,8 @@ def _exec_testcase(
         for error in plugin_critical_errors:
             logger.error(' * ' + error)
         _process_result(
-            compute_node.get_id(), test_labels[name], False, results)
+            compute_node.get_id(), out_plugin, test_labels[name], False,
+            results)
     else:
         plugin_errors = [
             error for plugin, error, critical in error_plugins
@@ -563,35 +587,37 @@ def _exec_testcase(
             for prerequisite in failed_prerequisites:
                 logger.error(' * {}'.format(prerequisite))
         else:
-            if gnocchi_running:
-                plugin_interval = conf.get_plugin_interval(compute_node, name)
+            plugin_interval = conf.get_plugin_interval(compute_node, name)
+            if out_plugin == 'Gnocchi':
                 res = conf.test_plugins_with_gnocchi(
-                    compute_node.get_id(), plugin_interval, logger,
-                    criteria_list=gnocchi_criteria_lists[name])
-            elif aodh_running:
+                    compute_node.get_name(), plugin_interval,
+                    logger, criteria_list=gnocchi_criteria_lists[name])
+            if out_plugin == 'AODH':
                 res = conf.test_plugins_with_aodh(
-                   compute_node.get_id(), plugin_interval,
-                   logger, creteria_list=aodh_criteria_lists[name])
-            elif snmp_running:
+                    compute_node.get_name(), plugin_interval,
+                    logger, criteria_list=aodh_criteria_lists[name])
+            if out_plugin == 'SNMP':
                 res = \
                     name in snmp_mib_files and name in snmp_mib_strings \
                     and tests.test_snmp_sends_data(
                         compute_node,
-                        conf.get_plugin_interval(compute_node, name), logger,
+                        plugin_interval, logger,
                         SNMPClient(conf, compute_node), snmp_mib_files[name],
                         snmp_mib_strings[name], snmp_in_commands[name], conf)
-            else:
+            if out_plugin == 'CSV':
                 res = tests.test_csv_handles_plugin_data(
                     compute_node, conf.get_plugin_interval(compute_node, name),
                     name, csv_subdirs[name], csv_meter_categories[name],
                     logger, CSVClient(conf))
+
             if res and plugin_errors:
                 logger.info(
                     'Test works, but will be reported as failure,'
                     + 'because of non-critical errors.')
                 res = False
             _process_result(
-                compute_node.get_id(), test_labels[name], res, results)
+                compute_node.get_id(), out_plugin, test_labels[name],
+                res, results)
 
 
 def get_results_for_ovs_events(
@@ -618,7 +644,7 @@ def create_ovs_bridge():
         if node.is_compute():
             node.run_cmd('sudo ovs-vsctl add-br br0')
             node.run_cmd('sudo ovs-vsctl set-manager ptcp:6640')
-        logger.info('OVS Bridges created on compute nodes')
+    logger.info('OVS Bridges created on compute nodes')
 
 
 def mcelog_install():
@@ -635,18 +661,18 @@ def mcelog_install():
             if '3.10.0-514.26.2.el7.x86_64' not in centos_release:
                 logger.info(
                     'Mcelog will not be enabled '
-                    + 'on node-{0}, '.format(node.get_dict()['id'])
+                    + 'on node-{0}, '.format(node.get_dict()['name'])
                     + 'unsupported CentOS release found ({1}).'.format(
                         centos_release))
             else:
                 logger.info(
                     'Checking if  mcelog is enabled'
-                    + ' on node-{}...'.format(node.get_dict()['id']))
+                    + ' on node-{}...'.format(node.get_dict()['name']))
                 res = node.run_cmd('ls')
             if 'mce-inject_ea' and 'corrected' in res:
                 logger.info(
                     'Mcelog seems to be already installed '
-                    + 'on node-{}.'.format(node.get_dict()['id']))
+                    + 'on node-{}.'.format(node.get_dict()['name']))
                 node.run_cmd('sudo modprobe mce-inject')
                 node.run_cmd('sudo ./mce-inject_ea < corrected')
             else:
@@ -734,43 +760,23 @@ def main(bt_logger=None):
 
     _print_label(
         'Display of Control and Compute nodes available in the set up')
-    logger.info('controllers: {}'.format([('{0}: {1} ({2})'.format(
-        node.get_id(), node.get_name(),
-        node.get_ip())) for node in controllers]))
-    logger.info('computes: {}'.format([('{0}: {1} ({2})'.format(
-        node.get_id(), node.get_name(), node.get_ip()))
-        for node in computes]))
+    logger.info('controllers: {}'.format([('{0}: {1}'.format(
+        node.get_name(), node.get_ip())) for node in controllers]))
+    logger.info('computes: {}'.format([('{0}: {1}'.format(
+        node.get_name(), node.get_ip())) for node in computes]))
 
     mcelog_install()
     create_ovs_bridge()
     gnocchi_running_on_con = False
     aodh_running_on_con = False
     snmp_running = False
-    _print_label('Testing Gnocchi, AODH and SNMP on controller nodes')
+    _print_label('Testing Gnocchi, AODH and SNMP on nodes')
 
     for controller in controllers:
-        gnocchi_client = GnocchiClient()
-        gnocchi_client.auth_token()
         gnocchi_running = (
             gnocchi_running_on_con and conf.is_gnocchi_running(controller))
-        aodh_client = AodhClient()
-        aodh_client.auth_token()
         aodh_running = (
-            aodh_running_on_con and conf.is_aodh_running(controller))
-    if gnocchi_running:
-        logger.info("Gnocchi is running on controller.")
-    elif aodh_running:
-        logger.error("Gnocchi is not running on controller.")
-        logger.info("AODH is running on controller.")
-    elif snmp_running:
-        logger.error("Gnocchi is not running on Controller")
-        logger.error("AODH is not running on controller.")
-        logger.info("SNMP is running on controller.")
-    else:
-        logger.error("Gnocchi is not running on Controller")
-        logger.error("AODH is not running on controller.")
-        logger.error("SNMP is not running on controller.")
-        logger.info("CSV will be enabled on compute nodes.")
+            aodh_running_on_con or conf.is_aodh_running(controller))
 
     compute_ids = []
     compute_node_names = []
@@ -782,113 +788,87 @@ def main(bt_logger=None):
         'mcelog': 'Mcelog',
         'ovs_stats': 'OVS stats',
         'ovs_events': 'OVS events'}
-    out_plugins = {
-        'gnocchi': 'Gnocchi',
-        'aodh': 'AODH',
-        'snmp': 'SNMP',
-        'csv': 'CSV'}
+    aodh_plugin_labels = {
+        'mcelog': 'Mcelog',
+        'ovs_events': 'OVS events'}
+    out_plugins = {}
+    out_plugins_to_test = []
     for compute_node in computes:
         node_id = compute_node.get_id()
         node_name = compute_node.get_name()
-        out_plugins[node_id] = 'CSV'
+        out_plugins[node_id] = []
         compute_ids.append(node_id)
         compute_node_names.append(node_name)
         plugins_to_enable = []
-        _print_label('NODE {}: Test Gnocchi Plug-in'.format(node_name))
-        logger.info('Checking if gnocchi plug-in is included in compute nodes.')
-        if not conf.check_gnocchi_plugin_included(compute_node):
-            logger.error('Gnocchi plug-in is not included.')
-            logger.info(
-                'Testcases on node {} will not be executed'.format(node_name))
-        else:
-            collectd_restarted, collectd_warnings = \
-                conf.restart_collectd(compute_node)
-            sleep_time = 30
-            logger.info(
-                'Sleeping for {} seconds after collectd restart...'.format(
-                    sleep_time))
-            time.sleep(sleep_time)
-            if not collectd_restarted:
-                for warning in collectd_warnings:
-                    logger.warning(warning)
+        error_plugins = []
+        gnocchi_running = (
+            gnocchi_running or conf.check_gnocchi_plugin_included(
+                compute_node))
+        aodh_running = (
+            aodh_running and conf.check_aodh_plugin_included(compute_node))
+        if gnocchi_running:
+            out_plugins[node_id].append("Gnocchi")
+        if aodh_running:
+            out_plugins[node_id].append("AODH")
+        if snmp_running:
+            out_plugins_to_test.append("SNMP")
+
+        if 'gnocchi' not in out_plugins[node_id]:
+            logger.info("CSV will be enabled for verification")
+            plugins_to_enable.append('csv')
+            out_plugins[node_id].append("CSV")
+            if plugins_to_enable:
+                _print_label(
+                    'NODE {}: Enabling Test Plug-in '.format(node_name)
+                    + 'and Test case execution')
+            if plugins_to_enable and not conf.enable_plugins(
+                    compute_node, plugins_to_enable, error_plugins,
+                    create_backup=False):
                 logger.error(
-                    'Restart of collectd on node {} failed'.format(node_name))
+                    'Failed to test plugins on node {}.'.format(node_id))
                 logger.info(
                     'Testcases on node {} will not be executed'.format(
-                        node_name))
+                        node_id))
             else:
-                for warning in collectd_warnings:
-                    logger.warning(warning)
-
-                if gnocchi_running:
-                    out_plugins[node_id] = 'Gnocchi'
-                    logger.info("Gnocchi is active and collecting data")
-                elif aodh_running:
-                    out_plugins[node_id] = 'AODH'
-                    logger.info("AODH withh be tested")
-                    _print_label('Node {}: Test AODH' .format(node_name))
-                    logger.info("Checking if AODH is running")
-                    logger.info("AODH is running")
-                elif snmp_running:
-                    out_plugins[node_id] = 'SNMP'
-                    logger.info("SNMP will be tested.")
-                    _print_label('NODE {}: Test SNMP'.format(node_id))
-                    logger.info("Checking if SNMP is running.")
-                    logger.info("SNMP is running.")
-                else:
-                    plugins_to_enable.append('csv')
-                    out_plugins[node_id] = 'CSV'
-                    logger.error("Gnocchi, AODH, SNMP are not running")
-                    logger.info(
-                        "CSV will be enabled for verification "
-                        + "of test plugins.")
                 if plugins_to_enable:
-                    _print_label(
-                        'NODE {}: Enabling Test Plug-in '.format(node_name)
-                        + 'and Test case execution')
-                error_plugins = []
-                if plugins_to_enable and not conf.enable_plugins(
-                        compute_node, plugins_to_enable, error_plugins,
-                        create_backup=False):
-                    logger.error(
-                        'Failed to test plugins on node {}.'.format(node_id))
+                    collectd_restarted, collectd_warnings = \
+                        conf.restart_collectd(compute_node)
+                    sleep_time = 10
                     logger.info(
-                        'Testcases on node {} will not be executed'.format(
+                        'Sleeping for {} seconds'.format(sleep_time)
+                        + ' after collectd restart...')
+                    time.sleep(sleep_time)
+                if plugins_to_enable and not collectd_restarted:
+                    for warning in collectd_warnings:
+                        logger.warning(warning)
+                    logger.error(
+                        'Restart of collectd on node {} failed'.format(
                             node_id))
+                    logger.info(
+                        'Testcases on node {}'.format(node_id)
+                        + ' will not be executed.')
                 else:
-                    if plugins_to_enable:
-                        collectd_restarted, collectd_warnings = \
-                            conf.restart_collectd(compute_node)
-                        sleep_time = 30
-                        logger.info(
-                            'Sleeping for {} seconds'.format(sleep_time)
-                            + ' after collectd restart...')
-                        time.sleep(sleep_time)
-                    if plugins_to_enable and not collectd_restarted:
+                    if collectd_warnings:
                         for warning in collectd_warnings:
                             logger.warning(warning)
-                        logger.error(
-                            'Restart of collectd on node {} failed'.format(
-                                node_id))
-                        logger.info(
-                            'Testcases on node {}'.format(node_id)
-                            + ' will not be executed.')
-                    else:
-                        if collectd_warnings:
-                            for warning in collectd_warnings:
-                                logger.warning(warning)
 
-                        for plugin_name in sorted(plugin_labels.keys()):
-                            _exec_testcase(
-                                plugin_labels, plugin_name, gnocchi_running,
-                                aodh_running, snmp_running, controllers,
-                                compute_node, conf, results, error_plugins,
-                                out_plugins[node_id])
+        for i in out_plugins[node_id]:
+            if i == 'AODH':
+                for plugin_name in sorted(aodh_plugin_labels.keys()):
+                    _exec_testcase(
+                        aodh_plugin_labels, plugin_name, i,
+                        controllers, compute_node, conf, results,
+                        error_plugins, out_plugins[node_id])
+            else:
+                for plugin_name in sorted(plugin_labels.keys()):
+                    _exec_testcase(
+                        plugin_labels, plugin_name, i,
+                        controllers, compute_node, conf, results,
+                        error_plugins, out_plugins[node_id])
 
-            # _print_label('NODE {}: Restoring config file'.format(node_name))
-            # conf.restore_config(compute_node)
-        mcelog_delete()
-    print_overall_summary(compute_ids, plugin_labels, results, out_plugins)
+    mcelog_delete()
+    print_overall_summary(
+        compute_ids, plugin_labels, aodh_plugin_labels, results, out_plugins)
 
     if ((len([res for res in results if not res[2]]) > 0)
             or (len(results) < len(computes) * len(plugin_labels))):
