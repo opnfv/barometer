@@ -257,28 +257,39 @@ class ConfigServer(object):
         Return boolean value whether Gnocchi is running.
         """
         gnocchi_present = False
-        lines = self.execute_command(
-            'source overcloudrc.v3;systemctl status openstack-gnocchi-api | '
-            + 'grep running', controller.get_ip())
-        for line in lines:
-            if '(running)' in line:
-                gnocchi_present = True
+        controller_name = controller.get_name()
+        nodes = get_apex_nodes()
+        for node in nodes:
+            if controller_name == node.get_dict()['name']:
+                node.put_file(
+                    '/home/opnfv/functest/conf/openstack.creds',
+                    'overcloudrc.v3')
+                stdout = node.run_cmd(
+                    "source overcloudrc.v3;"
+                    + "openstack catalog list | grep gnocchi")
+                if 'gnocchi' in stdout:
+                    gnocchi_present = True
         return gnocchi_present
 
     def is_aodh_running(self, controller):
         """Check whether aodh service is running on controller
         """
         aodh_present = False
-        lines = self.execute_command(
-            'source overcloudrc.v3;systemctl openstack-aodh-api | grep running',
-            controller.get_ip())
-        for line in lines:
-            self.__logger.info("Line = {}" .format(line))
-            if '(running)' in line:
-                aodh_present = True
+        controller_name = controller.get_name()
+        nodes = get_apex_nodes()
+        for node in nodes:
+            if controller_name == node.get_dict()['name']:
+                node.put_file(
+                    '/home/opnfv/functest/conf/openstack.creds',
+                    'overcloudrc.v3')
+                stdout = node.run_cmd(
+                    "source overcloudrc.v3;"
+                    + "openstack catalog list | grep aodh")
+                if 'aodh' in stdout:
+                    aodh_present = True
         return aodh_present
 
-    def is_installed(self, compute, package):
+    def is_mcelog_installed(self, compute, package):
         """Check whether package exists on compute node.
 
         Keyword arguments:
@@ -310,6 +321,32 @@ class ConfigServer(object):
                     return True
         return False
 
+    def check_aodh_plugin_included(self, compute):
+        """Check if aodh plugin is included in collectd.conf file.
+        If not, try to enable it.
+
+        Keyword arguments:
+        compute -- compute node instance
+
+        Return boolean value whether AODH plugin is included
+        or it's enabling was successful.
+        """
+        compute_name = compute.get_name()
+        nodes = get_apex_nodes()
+        for node in nodes:
+            if compute_name == node.get_dict()['name']:
+                aodh_conf = node.run_cmd('ls /etc/collectd/collectd.conf.d')
+                if 'aodh.conf' not in aodh_conf:
+                    self.__logger.info(
+                        "AODH Plugin not included in compute node")
+                    return False
+                else:
+                    self.__logger.info(
+                        "AODH plugin present in compute node {}" .format(
+                            compute_name))
+                    return True
+        return True
+
     def check_gnocchi_plugin_included(self, compute):
         """Check if gnocchi plugin is included in collectd.conf file.
         If not, try to enable it.
@@ -324,13 +361,14 @@ class ConfigServer(object):
         nodes = get_apex_nodes()
         for node in nodes:
             if compute_name == node.get_dict()['name']:
-                # node.run_cmd('su; "opnfvapex"')
                 gnocchi_conf = node.run_cmd('ls /etc/collectd/collectd.conf.d')
                 if 'collectd-ceilometer-plugin.conf' not in gnocchi_conf:
                     self.__logger.info("Gnocchi Plugin not included")
-                    return True
+                    return False
                 else:
-                    self.__logger.info("Gnochi plugin present")
+                    self.__logger.info(
+                        "Gnochi plugin available in compute node {}" .format(
+                            compute_name))
                     return True
         return True
 
@@ -341,14 +379,6 @@ class ConfigServer(object):
         Keyword arguments:
         compute -- compute node instance
         plugins -- list of plugins to be enabled
-        error_plugins -- list of tuples with found errors, new entries
-            may be added there (plugin, error_description, is_critical):
-                plugin -- plug-in name
-                error_decription -- description of the error
-                is_critical -- boolean value indicating whether error
-                    is critical
-        create_backup -- boolean value indicating whether backup
-            shall be created
 
         Return boolean value indicating whether function was successful.
         """
@@ -364,19 +394,6 @@ class ConfigServer(object):
                     'sudo cp csv.conf '
                     + '/etc/collectd/collectd.conf.d/csv.conf')
         return True
-
-    def restore_config(self, compute):
-        """Restore collectd config file from backup on compute node.
-
-        Keyword arguments:
-        compute -- compute node instance
-        """
-        ssh, sftp = self.__open_sftp_session(
-            compute.get_ip(), 'root', 'opnfvapex')
-
-        self.__logger.info('Restoring config file from backup...')
-        ssh.exec_command("cp {0} {0}.used".format(COLLECTD_CONF))
-        ssh.exec_command("cp {0}.backup {0}".format(COLLECTD_CONF))
 
     def restart_collectd(self, compute):
         """Restart collectd on compute node.
@@ -419,142 +436,103 @@ class ConfigServer(object):
                     return False, warning
         return True, warning
 
-    def test_gnocchi_is_sending_data(self, controller):
-        """ Checking if Gnocchi is sending metrics to controller"""
-        metric_ids = []
-        timestamps1 = {}
-        timestamps2 = {}
-        ssh, sftp = self.__open_sftp_session(
-            controller.get_ip(), 'root', 'opnfvapex')
-
-        self.__logger.info('Getting gnocchi metric list on{}'.format(
-            controller.get_name()))
-        stdout = self.execute_command(
-            "source overcloudrc.v3;gnocchi metric list | grep if_packets",
-            ssh=ssh)
-        for line in stdout:
-            metric_ids = [r.split('|')[1] for r in stdout]
-        self.__logger.info("Metric ids = {}" .format(metric_ids))
-        for metric_id in metric_ids:
-            metric_id = metric_id.replace("u", "")
-            stdout = self.execute_command(
-                "source overcloudrc.v3;gnocchi measures show {}" .format(
-                    metric_id), ssh=ssh)
-            self.__logger.info("stdout measures ={}" .format(stdout))
-            for line in stdout:
-                if line[0] == '+':
-                    pass
-                else:
-                    self.__logger.info("Line = {}" .format(line))
-                    timestamps1 = [line.split('|')[1]]
-            self.__logger.info("Last line timetamp1 = {}" .format(timestamps1))
-            time.sleep(10)
-            stdout = self.execute_command(
-                "source overcloudrc.v3;gnocchi measures show {}" .format(
-                    metric_id), ssh=ssh)
-            for line in stdout:
-                if line[0] == '+':
-                    pass
-                else:
-                    timestamps2 = [line.split('|')[1]]
-            self.__logger.info("Last line timetamp2 = {}" .format(timestamps2))
-            if timestamps1 == timestamps2:
-                self.__logger.info("False")
-                # return False
-                return True
-            else:
-                self.__logger.info("True")
-                return True
-
-    def test_plugins_with_aodh(self, controller):
-        """Checking if AODH is sending metrics to controller"""
-        metric_ids = []
-        timestamps1 = {}
-        timestamps2 = {}
-        ssh, sftp = self.__open_sftp_session(
-            controller.get_ip(), 'root', 'opnfvapex')
-        self.__logger.info('Getting AODH alarm list on{}'.format(
-            controller.get_name()))
-        stdout = self.execute_command(
-            "source overcloudrc.v3;aodh alarm list | grep mcelog",
-            ssh=ssh)
-        for line in stdout:
-            metric_ids = [r.split('|')[1] for r in stdout]
-        self.__logger.info("Metric ids = {}" .format(metric_ids))
-        for metric_id in metric_ids:
-            metric_id = metric_id.replace("u", "")
-            stdout = self.execute_command(
-                "source overcloudrc.v3;aodh alarm show {}" .format(
-                    metric_id), ssh=ssh)
-            self.__logger.info("stdout alarms ={}" .format(stdout))
-            for line in stdout:
-                if line[0] == '+':
-                    pass
-                else:
-                    self.__logger.info("Line = {}" .format(line))
-                    timestamps1 = [line.split('|')[1]]
-            self.__logger.info("Last line timetamp1 = {}" .format(timestamps1))
-            time.sleep(10)
-            stdout = self.execute_command(
-                "source overcloudrc.v3;aodh alarm show {}" .format(
-                    metric_id), ssh=ssh)
-            for line in stdout:
-                if line[0] == '+':
-                    pass
-                else:
-                    timestamps2 = [line.split('|')[1]]
-            self.__logger.info("Last line timetamp2 = {}" .format(timestamps2))
-            if timestamps1 == timestamps2:
-                self.__logger.info("False")
-                # return False
-                return True
-            else:
-                self.__logger.info("True")
-                return True
-
-    def test_plugins_with_gnocchi(
-            self, controller, compute_node, plugin_interval, logger,
+    def test_plugins_with_aodh(
+            self, compute, plugin_interval, logger,
             criteria_list=[]):
 
-        metric_ids = []
+        metric_id = {}
         timestamps1 = {}
         timestamps2 = {}
-        ssh, sftp = self.__open_sftp_session(
-            controller.get_ip(), 'root', 'opnfvapex')
-        self.__logger.info('Getting gnocchi metric list on{}'.format(
-            controller.get_name()))
-        stdout = self.execute_command(
-            "source overcloudrc.v3;gnocchi metric list | grep {0} | grep {1}"
-            .format(compute_node.get_name(), criteria_list), ssh=ssh)
-        for line in stdout:
-            metric_ids = [r.split('|')[1] for r in stdout]
-        self.__logger.info("Metric ids = {}" .format(metric_ids))
-        for metric_id in metric_ids:
-            metric_id = metric_id.replace("u", "")
-            stdout = self.execute_command(
-                "source overcloudrc.v3;gnocchi measures show {}" .format(
-                    metric_id), ssh=ssh)
-            self.__logger.info("stdout measures ={}" .format(stdout))
-            for line in stdout:
-                if line[0] == '+':
-                    pass
-                else:
-                    self.__logger.info("Line = {}" .format(line))
-                    timestamps1 = [line.split('|')[1]]
-            self.__logger.info("Last line timetamp1 = {}" .format(timestamps1))
-            time.sleep(10)
-            stdout = self.execute_command(
-                "source overcloudrc.v3;gnocchi measures show {}" .format(
-                    metric_id), ssh=ssh)
-            for line in stdout:
-                if line[0] == '+':
-                    pass
-                else:
-                    timestamps2 = [line.split('|')[1]]
-            self.__logger.info("Last line timetamp2 = {}" .format(timestamps2))
-            if timestamps1 == timestamps2:
-                self.__logger.info("False")
-                return False
-            else:
-                self.__logger.info("True")
-                return True
+        nodes = get_apex_nodes()
+        for node in nodes:
+            if node.is_controller():
+                self.__logger.info('Getting AODH Alarm list on {}' .format(
+                    (node.get_dict()['name'])))
+                node.put_file(
+                    '/home/opnfv/functest/conf/openstack.creds',
+                    'overcloudrc.v3')
+                stdout = node.run_cmd(
+                    "source overcloudrc.v3;"
+                    + "aodh alarm list | grep {0} | grep {1}"
+                    .format(criteria_list, compute))
+                for line in stdout.splitlines():
+                    line = line.replace('|', "")
+                    metric_id = line.split()[0]
+                    stdout = node.run_cmd(
+                        'source overcloudrc.v3; aodh alarm show {}' .format(
+                            metric_id))
+                    for line in stdout.splitlines()[3: -1]:
+                        line = line.replace('|', "")
+                        if line.split()[0] == 'timestamp':
+                            timestamps1 = line.split()[1]
+                            self.__logger.info("timestamp_before = {}" .format(
+                                timestamps1))
+                        else:
+                            pass
+                    time.sleep(12)
+                    stdout = node.run_cmd(
+                        "source overcloudrc.v3; aodh alarm show {}" .format(
+                            metric_id))
+                    for line in stdout.splitlines()[3:-1]:
+                        line = line.replace('|', "")
+                        if line.split()[0] == 'timestamp':
+                            timestamps2 = line.split()[1]
+                            self.__logger.info("timestamp_after = {}" .format(
+                                timestamps2))
+                        else:
+                            pass
+                    if timestamps1 == timestamps2:
+                        self.__logger.info(
+                            "Data not updated after interval of 12 seconds")
+                        return False
+                    else:
+                        self.__logger.info("PASS")
+                        return True
+
+    def test_plugins_with_gnocchi(
+            self, compute, plugin_interval, logger,
+            criteria_list=[]):
+
+        metric_id = {}
+        timestamps1 = {}
+        timestamps2 = {}
+        nodes = get_apex_nodes()
+        for node in nodes:
+            if node.is_controller():
+                self.__logger.info('Getting gnocchi metric list on {}' .format(
+                    (node.get_dict()['name'])))
+                node.put_file(
+                    '/home/opnfv/functest/conf/openstack.creds',
+                    'overcloudrc.v3')
+                stdout = node.run_cmd(
+                    "source overcloudrc.v3;"
+                    + "gnocchi metric list | grep {0} | grep {1}"
+                    .format(criteria_list, compute))
+                for line in stdout.splitlines():
+                    line = line.replace('|', "")
+                    metric_id = line.split()[0]
+                    stdout = node.run_cmd(
+                        'source overcloudrc.v3;gnocchi measures show {}'.format(
+                            metric_id))
+                    for line in stdout.splitlines()[3: -1]:
+                        if line[0] == '+':
+                            pass
+                        else:
+                            timestamps1 = line.replace('|', "")
+                            timestamps1 = timestamps1.split()[0]
+                    time.sleep(10)
+                    stdout = node.run_cmd(
+                        "source overcloudrc.v3;gnocchi measures show {}".format(
+                            metric_id))
+                    for line in stdout.splitlines()[3:-1]:
+                        if line[0] == '+':
+                            pass
+                        else:
+                            timestamps2 = line.replace('|', "")
+                            timestamps2 = timestamps2.split()[0]
+                    if timestamps1 == timestamps2:
+                        self.__logger.info("Data not updated after 12 seconds")
+                        return False
+                    else:
+                        self.__logger.info("PASS")
+                        return True
