@@ -173,31 +173,6 @@ class AodhClient(object):
             logger.warning('Aodh is not registered in service catalog')
 
 
-class SNMPClient(object):
-    """Client to request SNMP meters"""
-    def __init__(self, conf, compute_node):
-        """
-        Keyword arguments:
-        conf -- ConfigServer instance
-        compute_node -- Compute node object
-        """
-        self.conf = conf
-        self.compute_node = compute_node
-
-    def get_snmp_metrics(self, compute_node, mib_file, mib_strings):
-        snmp_output = {}
-        if mib_file is None:
-            cmd = "snmpwalk -v 2c -c public localhost IF-MIB::interfaces"
-            ip = compute_node.get_ip()
-            snmp_output = self.conf.execute_command(cmd, ip)
-        else:
-            for mib_string in mib_strings:
-                snmp_output[mib_string] = self.conf.execute_command(
-                    "snmpwalk -v2c -m {} -c public localhost {}".format(
-                        mib_file, mib_string), compute_node.get_ip())
-        return snmp_output
-
-
 class CSVClient(object):
     """Client to request CSV meters"""
     def __init__(self, conf):
@@ -239,7 +214,7 @@ class CSVClient(object):
                             + "{0}.jf.intel.com/{1}/{2}-{3}".format(
                                 compute_node.get_name(), plugin_subdir,
                                 meter_category, date))
-                # Storing last two values
+                        # Storing last two values
                         values = stdout1
                         if values is None:
                             logger.error(
@@ -349,6 +324,13 @@ def _print_final_result_of_plugin(
                 print_line += ' FAIL   |'
             else:
                 print_line += ' NOT EX |'
+        elif out_plugin == 'SNMP':
+            if (id, out_plugin, plugin, True) in results:
+                print_line += ' PASS   |'
+            elif (id, out_plugin, plugin, False) in results:
+                print_line += ' FAIL   |'
+            else:
+                print_line += ' NOT EX |'
         elif out_plugin == 'CSV':
             if (id, out_plugin, plugin, True) in results:
                 print_line += ' PASS   |'
@@ -410,22 +392,21 @@ def print_overall_summary(
             out_plugin_result = '----'
             if out_plugin == 'Gnocchi':
                 out_plugin_result = \
-                    'PASS' if 'Gnocchi' in out_plugins_print else 'FAIL'
-            if out_plugin == 'AODH':
+                    'PASS'
+            elif out_plugin == 'AODH':
                 out_plugin_result = \
-                    'PASS' if out_plugin in out_plugins_print else 'FAIL'
-            if out_plugin == 'SNMP':
+                    'PASS'
+            elif out_plugin == 'SNMP':
                 out_plugin_result = \
-                    'PASS' if [
-                        plugin for comp_id, out_pl, plugin, res in results
-                        if comp_id == id and res] else 'FAIL'
-            if out_plugin == 'CSV':
+                    'PASS'
+            elif out_plugin == 'CSV':
                 out_plugin_result = \
                     'PASS' if [
                         plugin for comp_id, out_pl, plugin, res in results
                         if comp_id == id and res] else 'FAIL'
             else:
-                out_plugin_result = 'FAIL'
+                out_plugin_result = \
+                    'FAIL'
             output_plugins_line += '| ' + out_plugin_result + '   '
         logger.info(
             '| OUT:{}'.format(out_plugin) + (' ' * (11 - len(out_plugin)))
@@ -481,9 +462,6 @@ def _exec_testcase(
         bridge for bridge in ovs_interfaces
         if bridge in ovs_configured_bridges]
     plugin_prerequisites = {
-        'intel_rdt': [(
-            conf.is_libpqos_on_node(compute_node),
-            'libpqos must be installed.')],
         'mcelog': [(
             conf.is_mcelog_installed(compute_node, 'mcelog'),
             'mcelog must be installed.')],
@@ -495,6 +473,7 @@ def _exec_testcase(
             'Bridges must be configured.')]}
     gnocchi_criteria_lists = {
         'hugepages': 'hugepages',
+        'intel_rdt': 'rdt',
         'mcelog': 'mcelog',
         'ovs_events': 'interface-ovs-system',
         'ovs_stats': 'ovs_stats-br0.br0'}
@@ -506,16 +485,9 @@ def _exec_testcase(
         'hugepages': '/usr/share/snmp/mibs/Intel-Hugepages.txt',
         'mcelog': '/usr/share/snmp/mibs/Intel-Mcelog.txt'}
     snmp_mib_strings = {
-        'intel_rdt': [
-            'INTEL-RDT-MIB::rdtLlc.1',
-            'INTEL-RDT-MIB::rdtIpc.1',
-            'INTEL-RDT-MIB::rdtMbmRemote.1',
-            'INTEL-RDT-MIB::rdtMbmLocal.1'],
-        'hugepages': [
-            'INTEL-HUGEPAGES-MIB::hugepagesPageFree'],
-        'mcelog': [
-            'INTEL-MCELOG-MIB::memoryCorrectedErrors.1',
-            'INTEL-MCELOG-MIB::memoryCorrectedErrors.2']}
+        'intel_rdt': 'INTEL-RDT-MIB::rdtLlc.1',
+        'hugepages': 'INTEL-HUGEPAGES-MIB::hugepagesPageFree',
+        'mcelog': 'INTEL-MCELOG-MIB::memoryCorrectedErrors.1'}
     nr_hugepages = int(time.time()) % 10000
     snmp_in_commands = {
         'intel_rdt': None,
@@ -524,9 +496,7 @@ def _exec_testcase(
         'mcelog': '/root/mce-inject_df < /root/corrected'}
     csv_subdirs = {
         'intel_rdt': [
-            'intel_rdt-{}'.format(core)
-            for core in conf.get_plugin_config_values(
-                compute_node, 'intel_rdt', 'Cores')],
+            'intel_rdt-0-2'],
         'hugepages': [
             'hugepages-mm-2048Kb', 'hugepages-node0-2048Kb',
             'hugepages-node1-2048Kb'],
@@ -542,8 +512,7 @@ def _exec_testcase(
     # compute_node)
     csv_meter_categories = {
         'intel_rdt': [
-            'bytes-llc', 'ipc', 'memory_bandwidth-local',
-            'memory_bandwidth-remote'],
+            'bytes-llc', 'ipc'],
         'hugepages': ['vmpage_number-free', 'vmpage_number-used'],
         # 'ipmi': csv_meter_categories_ipmi,
         'mcelog': [
@@ -599,11 +568,10 @@ def _exec_testcase(
             if out_plugin == 'SNMP':
                 res = \
                     name in snmp_mib_files and name in snmp_mib_strings \
-                    and tests.test_snmp_sends_data(
-                        compute_node,
-                        plugin_interval, logger,
-                        SNMPClient(conf, compute_node), snmp_mib_files[name],
-                        snmp_mib_strings[name], snmp_in_commands[name], conf)
+                    and conf.test_plugins_with_snmp(
+                        compute_node.get_name(), plugin_interval, logger, name,
+                        snmp_mib_files[name], snmp_mib_strings[name],
+                        snmp_in_commands[name])
             if out_plugin == 'CSV':
                 res = tests.test_csv_handles_plugin_data(
                     compute_node, conf.get_plugin_interval(compute_node, name),
@@ -769,12 +737,12 @@ def main(bt_logger=None):
     create_ovs_bridge()
     gnocchi_running_on_con = False
     aodh_running_on_con = False
-    snmp_running = False
+    snmp_running = True
     _print_label('Testing Gnocchi, AODH and SNMP on nodes')
 
     for controller in controllers:
         gnocchi_running = (
-            gnocchi_running_on_con and conf.is_gnocchi_running(controller))
+            gnocchi_running_on_con or conf.is_gnocchi_running(controller))
         aodh_running = (
             aodh_running_on_con or conf.is_aodh_running(controller))
 
@@ -792,7 +760,6 @@ def main(bt_logger=None):
         'mcelog': 'Mcelog',
         'ovs_events': 'OVS events'}
     out_plugins = {}
-    out_plugins_to_test = []
     for compute_node in computes:
         node_id = compute_node.get_id()
         node_name = compute_node.get_name()
@@ -802,18 +769,20 @@ def main(bt_logger=None):
         plugins_to_enable = []
         error_plugins = []
         gnocchi_running = (
-            gnocchi_running or conf.check_gnocchi_plugin_included(
+            gnocchi_running and conf.check_gnocchi_plugin_included(
                 compute_node))
         aodh_running = (
             aodh_running and conf.check_aodh_plugin_included(compute_node))
+        # snmp_running = (
+        # snmp_running or conf.check_snmp_plugin_included(compute_node))
         if gnocchi_running:
             out_plugins[node_id].append("Gnocchi")
         if aodh_running:
             out_plugins[node_id].append("AODH")
         if snmp_running:
-            out_plugins_to_test.append("SNMP")
+            out_plugins[node_id].append("SNMP")
 
-        if 'gnocchi' not in out_plugins[node_id]:
+        if 'Gnocchi' in out_plugins[node_id]:
             logger.info("CSV will be enabled for verification")
             plugins_to_enable.append('csv')
             out_plugins[node_id].append("CSV")

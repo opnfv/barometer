@@ -372,6 +372,24 @@ class ConfigServer(object):
                     return True
         return True
 
+    def check_snmp_plugin_included(self, compute):
+        """Check if SNMP plugin is active in compute node.
+        """
+        snmp_mib = '/usr/share/snmp/mibs/Intel-Rdt.txt'
+        snmp_string = 'INTEL-RDT-MIB::intelRdt'
+        compute_name = compute.get_name()
+        nodes = get_apex_nodes()
+        for node in nodes:
+            if compute_name == node.get_dict()['name']:
+                stdout = node.run_cmd(
+                    'snmpwalk -v2c -m {0} -c public localhost {1}' .format(
+                        snmp_mib, snmp_string))
+                self.__logger.info("snmp output = {}" .format(stdout))
+                if 'OID' in stdout:
+                    return False
+                else:
+                    return True
+
     def enable_plugins(
             self, compute, plugins, error_plugins, create_backup=True):
         """Enable plugins on compute node
@@ -465,8 +483,6 @@ class ConfigServer(object):
                         line = line.replace('|', "")
                         if line.split()[0] == 'timestamp':
                             timestamps1 = line.split()[1]
-                            self.__logger.info("timestamp_before = {}" .format(
-                                timestamps1))
                         else:
                             pass
                     time.sleep(12)
@@ -477,8 +493,6 @@ class ConfigServer(object):
                         line = line.replace('|', "")
                         if line.split()[0] == 'timestamp':
                             timestamps2 = line.split()[1]
-                            self.__logger.info("timestamp_after = {}" .format(
-                                timestamps2))
                         else:
                             pass
                     if timestamps1 == timestamps2:
@@ -535,4 +549,47 @@ class ConfigServer(object):
                         return False
                     else:
                         self.__logger.info("PASS")
+                        return True
+
+    def test_plugins_with_snmp(
+            self, compute, plugin_interval, logger, plugin, snmp_mib_files=[],
+            snmp_mib_strings=[], snmp_in_commands=[]):
+
+        if plugin == 'intel_rdt':
+            nodes = get_apex_nodes()
+            for node in nodes:
+                if compute == node.get_dict()['name']:
+                    stdout = node.run_cmd(
+                        'snmpwalk -v2c -m {0} -c public localhost {1}' .format(
+                            snmp_mib_files, snmp_mib_strings))
+                    self.__logger.info("{}" .format(stdout))
+                    if 'OID' in stdout:
+                        self.__logger.info("SNMP query failed")
+                        return False
+                    else:
+                        counter1 = stdout.split()[3]
+                    time.sleep(10)
+                    stdout = node.run_cmd(
+                        'snmpwalk -v2c -m {0} -c public localhost {1}' .format(
+                            snmp_mib_files, snmp_mib_strings))
+                    self.__logger.info("{}" .format(stdout))
+                    if 'OID' in stdout:
+                        self.__logger.info(
+                            "SNMP query failed during second check")
+                        self.__logger.info("waiting for 10 sec")
+                        time.sleep(10)
+                    stdout = node.run_cmd(
+                        'snmpwalk -v2c -m {0} -c public localhost {1}' .format(
+                            snmp_mib_files, snmp_mib_strings))
+                    self.__logger.info("{}" .format(stdout))
+                    if 'OID' in stdout:
+                        self.__logger.info("SNMP query failed again")
+                        self.__logger.info("Failing this test case")
+                        return False
+                    else:
+                        counter2 = stdout.split()[3]
+
+                    if counter1 == counter2:
+                        return False
+                    else:
                         return True
