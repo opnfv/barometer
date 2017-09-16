@@ -1,0 +1,8 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+1: Saroj Panigrahy <sarojx.panigrahy@intel.com>
+Code-Review+2: Calin Gherghe <calin.gherghe@intel.com>
+Submitted-by: Calin Gherghe <calin.gherghe@intel.com>
+Submitted-at: Sat, 16 Sep 2017 02:52:28 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/42103
+Project: barometer
+Branch: refs/heads/master
