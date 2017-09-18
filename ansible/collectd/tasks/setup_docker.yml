@@ -1,0 +1,67 @@
+---
+
+- name: Copy Dockerfile to remote host
+  copy:
+    src: Dockerfile
+    dest: "{{ remote_work_dir }}/Dockerfile"
+
+- name: Create collectd.d folder on remote host
+  file:
+    path: "{{ remote_work_dir }}/collectd.d"
+    force: yes
+    state: directory
+
+# This statement should also check existance of /var/run/openvswitch/db.sock
+- name: Check if host system has ovs installed
+  shell: ps -ef | grep vswitchd | grep -v grep > /dev/null
+  register: result
+  ignore_errors: True
+
+- name: Copy ovs_stats.conf and ovs_events.conf to collectd configuration directory
+  copy:
+    src: "{{ collectd_configs_path }}/{{ item }}.conf"
+    dest: "{{ remote_work_dir }}/collectd.d/{{ item }}.conf"
+  when: result|succeeded
+  with_items:
+    - ovs_stats
+    - ovs_events
+
+- name: Check if host system has rdt capabilities
+  shell: |
+    grep -q cqm_llc "/proc/cpuinfo" && \
+    grep -q cqm_occup_llc "/proc/cpuinfo" && \
+    grep -q cqm_mbm_total "/proc/cpuinfo" && \
+    grep -q cqm_mbm_local "/proc/cpuinfo"
+  register: result
+  ignore_errors: True
+
+- name: Copy intel_rdt.conf to collectd configuration directory
+  copy:
+    src: "{{ collectd_configs_path }}/intel_rdt.conf"
+    dest: "{{ remote_work_dir }}/collectd.d/intel_rdt.conf"
+  when: result|succeeded
+
+- name: Check if libvirtd is running
+  shell: ps -ef | grep libvirtd | grep -v grep > /dev/null
+  register: result
+  ignore_errors: True
+
+- name: Copy virt.conf to collectd configuration directory
+  copy:
+    src: "{{ collectd_configs_path }}/virt.conf"
+    dest: "{{ remote_work_dir }}/collectd.d/virt.conf"
+  when: result|succeeded
+
+- name: Build collectd image
+  docker_image:
+    name: collectd
+    tag: collectd
+    path: "{{ remote_work_dir }}"
+    state: present
+
+- name: Start collectd docker image
+  docker_container:
+    name: collectd
+    image: "collectd:collectd"
+    state: present
+#    command: /opt/collectd/sbin/collectd
