@@ -1,0 +1,6 @@
+---
+- hosts: servers
+  become: yes
+  become_user: root
+
+- include: collectd.yml

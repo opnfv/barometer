@@ -1,0 +1,142 @@
+---
+
+#- name: Copy Dockerfile to remote host
+#  copy:
+#    src: Dockerfile
+#    dest: "{{ remote_work_dir }}/Dockerfile"
+
+- name: Create collectd.d folder on remote host
+  file:
+    path: "{{ remote_work_dir }}/collectd.d"
+    force: yes
+    state: directory
+
+- name: Create folder for csv logs on remote host
+  file:
+    path: "{{ csv_log_dir }}"
+    force: yes
+    state: directory
+
+- name: Check if vswitchd is running
+  shell: ps -ef | grep vswitchd | grep -v grep > /dev/null
+  register: vswitchd_running
+  ignore_errors: True
+
+- name: Check if db.sock exists
+  stat:
+    path: /var/run/openvswitch/db.sock
+  register: dbsock_exists
+  ignore_errors: True
+
+- name: Copy ovs_stats.conf and ovs_events.conf to collectd configuration directory
+  copy:
+    src: "collectd.d/{{ item }}.conf"
+    dest: "{{ remote_work_dir }}/collectd.d/{{ item }}.conf"
+  when: vswitchd_running|succeeded and dbsock_exists|succeeded
+  with_items:
+    - ovs_stats
+    - ovs_events
+
+- name: Check if mcelog is running on host system
+  shell: ps -ef | grep mcelog | grep -v grep > /dev/null
+  register: mcelog_running
+  ignore_errors: True
+
+- name: Check if mcelog exists
+  shell: which mcelog > /dev/null
+  register: mcelog_exists
+  ignore_errors: True
+
+- name: Check if mcelog-client exists
+  stat:
+    path: /var/run/mcelog-client
+  register: mcelog_client_exists
+  ignore_errors: True
+
+- name: Copy mcelog.conf to collectd configuration directory
+  copy:
+    src: "collectd.d/mcelog.conf"
+    dest: "{{ remote_work_dir }}/collectd.d/mcelog.conf"
+  when: mcelog_running|succeeded and mcelog_exists|succeeded and mcelog_client_exists|succeeded
+
+- name: Check if hugepages folders exists on host system
+  stat:
+    path: "{{ item }}"
+  register: hugepages_folders_exists
+  ignore_errors: True
+  with_items:
+    /sys/devices/system/node
+    /sys/kernel/mm/hugepages
+
+- name: Copy hugepages.conf to collectd configuration directory
+  copy:
+    src: "collectd.d/hugepages.conf"
+    dest: "{{ remote_work_dir }}/collectd.d/hugepages.conf"
+  when: hugepages_folders_exists|succeeded
+
+- name: Check if host system has rdt capabilities
+  shell: |
+    grep -q cqm_llc "/proc/cpuinfo" && \
+    grep -q cqm_occup_llc "/proc/cpuinfo" && \
+    grep -q cqm_mbm_total "/proc/cpuinfo" && \
+    grep -q cqm_mbm_local "/proc/cpuinfo"
+  register: result
+  ignore_errors: True
+
+- name: Copy intel_rdt.conf to collectd configuration directory
+  copy:
+    src: "collectd.d/intel_rdt.conf"
+    dest: "{{ remote_work_dir }}/collectd.d/intel_rdt.conf"
+  when: result|succeeded
+
+- name: Load msr kernel module
+  modprobe:
+    name: msr
+    state: present
+
+- name: Check if libvirtd is running
+  shell: ps -ef | grep libvirtd | grep -v grep > /dev/null
+  register: result
+  ignore_errors: True
+
+- name: Copy virt.conf to collectd configuration directory
+  copy:
+    src: "collectd.d/virt.conf"
+    dest: "{{ remote_work_dir }}/collectd.d/virt.conf"
+  when: result|succeeded
+
+- name: Copy intel_pmu.conf to collectd configuration directory
+  copy:
+    src: "collectd.d/intel_pmu.conf"
+    dest: "{{ remote_work_dir }}/collectd.d/intel_pmu.conf"
+
+- name: Copy intel_pmu.conf to collectd configuration directory
+  copy:
+    src: "collectd.d/csv.conf"
+    dest: "{{ remote_work_dir }}/collectd.d/csv.conf"
+
+# Here we should pull docker image from repo
+
+#- name: Build collectd image
+#  docker_image:
+#    name: collectd
+#    tag: collectd
+#    path: "{{ remote_work_dir }}"
+#    state: present
+
+- name: Start collectd docker image
+  docker_container:
+    name: collectd
+    image: "collectd:collectd"
+    state: started
+    command: "/opt/collectd/sbin/collectd -f"
+    volumes:
+      - "{{ remote_work_dir }}/collectd.d:/opt/collectd/etc/collectd.d"
+      - "{{ csv_log_dir }}:/tmp/collectd/csv"
+      - /var/run:/var/run
+      - /dev/cpu:/dev/cpu
+    detach: yes
+    recreate: yes
+    restart: yes
+    privileged: yes
+    network_mode: host

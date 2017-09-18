@@ -1,0 +1,3 @@
+---
+remote_work_dir: /tmp
+collectd_configs_path: collectd_configs
