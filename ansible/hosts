@@ -1,0 +1,10 @@
+[test]
+10.10.130.22
+
+[test:vars]
+ansible_user=opnfv
+ansible_password=opnfv
+ansible_sudo_pass=opnfv
+
+[servers:children]
+test
