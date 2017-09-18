@@ -1,0 +1,20 @@
+---
+
+- name: Install prerequisites
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - python-pip
+    - git
+  when: ansible_os_family == "Debian"
+
+- name: Install python module for Docker
+  pip:
+    name: docker-py
+
+- name: Clone barometer repo
+  git:
+    repo: https://github.com/opnfv/barometer
+    dest: "{{ remote_work_dir }}/barometer"
+    force: yes

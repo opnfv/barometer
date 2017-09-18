@@ -1,0 +1,1 @@
+../../../src/collectd/collectd_sample_configs/

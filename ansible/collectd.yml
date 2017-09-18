@@ -1,0 +1,7 @@
+---
+- name: Host for collectd in docker role
+  hosts: all
+  become: yes
+  become_user: root
+  roles:
+  - collectd
