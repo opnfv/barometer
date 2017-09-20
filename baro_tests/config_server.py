@@ -101,20 +101,20 @@ class ConfigServer(object):
             stderr_lines = stderr.readlines()
             if stderr_lines:
                 self.__logger.warning(
-                    "'fuel node' command failed (try {}):".format(attempt))
+                    "'Apex node' command failed (try {}):".format(attempt))
                 for line in stderr_lines:
                     self.__logger.debug(line.strip())
             else:
                 fuel_node_passed = True
                 if attempt > 1:
                     self.__logger.info(
-                        "'fuel node' command passed (try {})".format(attempt))
+                        "'Apex node' command passed (try {})".format(attempt))
             attempt += 1
         if not fuel_node_passed:
             self.__logger.error(
-                "'fuel node' command failed. This was the last try.")
+                "'Apex node' command failed. This was the last try.")
             raise OSError(
-                "'fuel node' command failed. This was the last try.")
+                "'Apex node' command failed. This was the last try.")
         node_table = stdout.readlines()\
 
         # skip table title and parse table values
@@ -186,7 +186,6 @@ class ConfigServer(object):
                     'cat /etc/collectd/collectd.conf.d/{}.conf'.format(plugin))
                 for line in stdout.split('\n'):
                     if 'Interval' in line:
-                        # line = line.strip('Interval')
                         return 1
         return default_interval
 
@@ -555,7 +554,7 @@ class ConfigServer(object):
             self, compute, plugin_interval, logger, plugin, snmp_mib_files=[],
             snmp_mib_strings=[], snmp_in_commands=[]):
 
-        if plugin == 'intel_rdt':
+        if plugin == 'hugepages' or 'intel_rdt' or 'mcelog':
             nodes = get_apex_nodes()
             for node in nodes:
                 if compute == node.get_dict()['name']:
@@ -563,7 +562,10 @@ class ConfigServer(object):
                         'snmpwalk -v2c -m {0} -c public localhost {1}' .format(
                             snmp_mib_files, snmp_mib_strings))
                     self.__logger.info("{}" .format(stdout))
-                    if 'OID' in stdout:
+                    if stdout is None:
+                        self.__logger.info("No output from snmpwalk")
+                        return False
+                    elif 'OID' in stdout:
                         self.__logger.info("SNMP query failed")
                         return False
                     else:
@@ -573,7 +575,9 @@ class ConfigServer(object):
                         'snmpwalk -v2c -m {0} -c public localhost {1}' .format(
                             snmp_mib_files, snmp_mib_strings))
                     self.__logger.info("{}" .format(stdout))
-                    if 'OID' in stdout:
+                    if stdout is None:
+                        self.__logger.info("No output from snmpwalk")
+                    elif 'OID' in stdout:
                         self.__logger.info(
                             "SNMP query failed during second check")
                         self.__logger.info("waiting for 10 sec")
@@ -582,7 +586,9 @@ class ConfigServer(object):
                         'snmpwalk -v2c -m {0} -c public localhost {1}' .format(
                             snmp_mib_files, snmp_mib_strings))
                     self.__logger.info("{}" .format(stdout))
-                    if 'OID' in stdout:
+                    if stdout is None:
+                        self.__logger.info("No output from snmpwalk")
+                    elif 'OID' in stdout:
                         self.__logger.info("SNMP query failed again")
                         self.__logger.info("Failing this test case")
                         return False
@@ -593,3 +599,5 @@ class ConfigServer(object):
                         return False
                     else:
                         return True
+        else:
+            return False
