@@ -323,14 +323,14 @@ def _print_final_result_of_plugin(
             elif (id, out_plugin, plugin, False) in results:
                 print_line += ' FAIL   |'
             else:
-                print_line += ' NOT EX |'
+                print_line += ' FAIL   |'
         elif out_plugin == 'SNMP':
             if (id, out_plugin, plugin, True) in results:
                 print_line += ' PASS   |'
             elif (id, out_plugin, plugin, False) in results:
                 print_line += ' FAIL   |'
             else:
-                print_line += ' NOT EX |'
+                print_line += ' FAIL   |'
         elif out_plugin == 'CSV':
             if (id, out_plugin, plugin, True) in results:
                 print_line += ' PASS   |'
@@ -608,6 +608,7 @@ def create_ovs_bridge():
                                           APEX_USER_STACK,
                                           APEX_PKEY)
     nodes = handler.get_nodes()
+    logger.info("Creating OVS bridges on computes nodes")
     for node in nodes:
         if node.is_compute():
             node.run_cmd('sudo ovs-vsctl add-br br0')
@@ -617,7 +618,7 @@ def create_ovs_bridge():
 
 def mcelog_install():
     """Install mcelog on compute nodes."""
-    _print_label('Enabling mcelog on compute nodes')
+    _print_label('Enabling mcelog and OVS bridges on compute nodes')
     handler = factory.Factory.get_handler('apex',
                                           APEX_IP,
                                           APEX_USER_STACK,
@@ -773,8 +774,7 @@ def main(bt_logger=None):
                 compute_node))
         aodh_running = (
             aodh_running and conf.check_aodh_plugin_included(compute_node))
-        # snmp_running = (
-        # snmp_running or conf.check_snmp_plugin_included(compute_node))
+        logger.info("SNMP enabled on {}" .format(node_name))
         if gnocchi_running:
             out_plugins[node_id].append("Gnocchi")
         if aodh_running:
