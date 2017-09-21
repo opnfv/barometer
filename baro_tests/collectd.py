@@ -22,7 +22,6 @@ import time
 import logging
 import config_server
 import tests
-import subprocess
 from opnfv.deployment import factory
 
 AODH_NAME = 'aodh'
@@ -30,10 +29,11 @@ GNOCCHI_NAME = 'gnocchi'
 ID_RSA_SRC = '/root/.ssh/id_rsa'
 ID_RSA_DST_DIR = '/root/.ssh'
 ID_RSA_DST = ID_RSA_DST_DIR + '/id_rsa'
-APEX_IP = subprocess.check_output("echo $INSTALLER_IP", shell=True)
+APEX_IP = os.getenv("INSTALLER_IP").rstrip('\n')
 APEX_USER = 'root'
 APEX_USER_STACK = 'stack'
 APEX_PKEY = '/root/.ssh/id_rsa'
+PATH = os.path.dirname(os.path.realpath(__file__))
 
 
 class KeystoneException(Exception):
@@ -649,7 +649,7 @@ def mcelog_install():
                     'Mcelog will be enabled on node-{}...'.format(
                         node.get_dict()['id']))
                 node.put_file(
-                    '/usr/local/lib/python2.7/dist-packages/baro_tests/'
+                    'PATH/'
                     + 'mce-inject_ea', 'mce-inject_ea')
                 node.run_cmd('chmod a+x mce-inject_ea')
                 node.run_cmd('echo "CPU 0 BANK 0" > corrected')
