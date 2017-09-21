@@ -19,7 +19,6 @@ import time
 import os.path
 import os
 import re
-import subprocess
 from opnfv.deployment import factory
 ID_RSA_PATH = '/root/.ssh/id_rsa'
 SSH_KEYS_SCRIPT = '/home/opnfv/barometer/baro_utils/get_ssh_keys.sh'
@@ -28,10 +27,11 @@ COLLECTD_CONF = '/etc/collectd.conf'
 COLLECTD_CONF_DIR = '/etc/collectd/collectd.conf.d'
 NOTIFICATION_FILE = '/var/log/python-notifications.dump'
 COLLECTD_NOTIFICATION = '/etc/collectd_notification_dump.py'
-APEX_IP = subprocess.check_output("echo $INSTALLER_IP", shell=True)
+APEX_IP = os.getenv("INSTALLER_IP").rstrip('\n')
 APEX_USER = 'root'
 APEX_USER_STACK = 'stack'
 APEX_PKEY = '/root/.ssh/id_rsa'
+PATH = os.path.dirname(os.path.realpath(__file__))
 
 
 class Node(object):
@@ -303,7 +303,9 @@ class ConfigServer(object):
             if compute_name == node.get_dict()['name']:
                 stdout = node.run_cmd(
                     'yum list installed | grep mcelog')
-                if 'mcelog' in stdout:
+                if stdout is None:
+                    return 0
+                elif 'mcelog' in stdout:
                     return 1
                 else:
                     return 0
@@ -405,8 +407,7 @@ class ConfigServer(object):
         for node in nodes:
             if compute_name == node.get_dict()['name']:
                 node.put_file(
-                    '/usr/local/lib/python2.7/dist-packages/baro_tests/'
-                    + 'csv.conf', 'csv.conf')
+                    'PATH/csv.conf', 'csv.conf')
                 node.run_cmd(
                     'sudo cp csv.conf '
                     + '/etc/collectd/collectd.conf.d/csv.conf')
