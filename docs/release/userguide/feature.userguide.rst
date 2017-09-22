@@ -321,7 +321,7 @@ To configure some hugepages:
 
    $ sudo mkdir -p /mnt/huge
    $ sudo mount -t hugetlbfs nodev /mnt/huge
-   $ sudo echo 14336 > /sys/devices/system/node/node0/hugepages/hugepages-2048kB/nr_hugepages
+   $ sudo bash -c "echo 14336 > /sys/devices/system/node/node0/hugepages/hugepages-2048kB/nr_hugepages"
 
 Building and installing collectd:
 
@@ -514,40 +514,23 @@ Remove old version of OpenIPMI library:
 
     $ sudo yum remove OpenIPMI ipmitool
 
-Download OpenIPMI library sources:
+Build and install OpenIPMI library:
 
 .. code:: bash
 
     $ git clone https://git.code.sf.net/p/openipmi/code openipmi-code
     $ cd openipmi-code
-
-Patch the OpenIPMI pkg-config file to provide correct compilation flags
-for collectd IPMI plugin:
-
-.. code:: diff
-
-    diff --git a/OpenIPMIpthread.pc.in b/OpenIPMIpthread.pc.in
-    index 59b52e5..fffa0d0 100644
-    --- a/OpenIPMIpthread.pc.in
-    +++ b/OpenIPMIpthread.pc.in
-    @@ -6,6 +6,6 @@ includedir=@includedir@
-     Name: OpenIPMIpthread
-     Description: Pthread OS handler for OpenIPMI
-     Version: @VERSION@
-    -Requires: OpenIPMI pthread
-    +Requires: OpenIPMI
-     Libs: -L${libdir} -lOpenIPMIutils -lOpenIPMIpthread
-    -Cflags: -I${includedir}
-    +Cflags: -I${includedir} -pthread
-
-Build and install OpenIPMI library:
-
-.. code:: bash
-
     $ autoreconf --install
     $ ./configure --prefix=/usr
     $ make
     $ sudo make install
+
+Add the directory containing ``OpenIPMI*.pc`` files to the ``PKG_CONFIG_PATH``
+environment variable:
+
+.. code:: bash
+
+    export PKG_CONFIG_PATH=/usr/lib/pkgconfig
 
 Enable IPMI support in the kernel:
 
@@ -924,9 +907,11 @@ On Centos 7:
 .. code:: bash
 
     $ sudo yum install net-snmp net-snmp-libs net-snmp-utils net-snmp-devel
-    $ systemctl start snmpd.service
+    $ sudo systemctl start snmpd.service
 
-Or build from source
+go to the `snmp configuration`_ steps.
+
+From source:
 
 Clone and build net-snmp:
 
@@ -967,12 +952,14 @@ Configure snmpd as a service:
     $ systemctl enable snmpd.service
     $ systemctl start snmpd.service
 
+.. _`snmp configuration`:
+
 Add the following line to snmpd.conf configuration file
-"/usr/share/snmp/snmpd.conf" to make all OID tree visible for SNMP clients:
+``/etc/snmp/snmpd.conf`` to make all OID tree visible for SNMP clients:
 
 .. code:: bash
 
-    view   systemonly  included   .1
+    view    systemview    included   .1
 
 To verify that SNMP is working you can get IF-MIB table using SNMP client
 to view the list of Linux interfaces:
@@ -981,11 +968,35 @@ to view the list of Linux interfaces:
 
     $ snmpwalk -v 2c -c public localhost IF-MIB::interfaces
 
+Get the default MIB location:
+
+.. code:: bash
+
+    $ net-snmp-config --default-mibdirs
+    /opt/stack/.snmp/mibs:/usr/share/snmp/mibs
+
+Install Intel specific MIBs (if needed) into location received by
+``net-snmp-config`` command (e.g. ``/usr/share/snmp/mibs``).
+
+.. code:: bash
+
+    $ cd ~
+    $ git clone https://gerrit.opnfv.org/gerrit/barometer.git
+    $ cd barometer
+    $ sudo cp -f mibs/Intel-Common-MIB.mib.txt /usr/share/snmp/mibs/
+    $ sudo cp -f mibs/Intel-Hugepages.txt /usr/share/snmp/mibs/
+    $ sudo cp -f mibs/Intel-Mcelog.txt /usr/share/snmp/mibs/
+    $ sudo cp -f mibs/Intel-Pmu.txt /usr/share/snmp/mibs/
+    $ sudo cp -f mibs/Intel-Rdt.txt /usr/share/snmp/mibs/
+    $ sudo cp -f mibs/Intel-SA.txt /usr/share/snmp/mibs/
+    $ sudo systemctl restart snmpd.service
+
 Clone and install the collectd snmp_agent plugin:
 
 .. code:: bash
 
-    $ git clone  https://github.com/maryamtahhan/collectd
+    $ cd ~
+    $ git clone https://github.com/maryamtahhan/collectd
     $ cd collectd
     $ git checkout feat_snmp
     $ ./build.sh
@@ -1012,6 +1023,15 @@ memAvailReal OID to value represented as free memory type of memory plugin:
         OIDs "1.3.6.1.4.1.2021.4.6.0"
       </Data>
     </Plugin>
+
+
+The ``snmpwalk`` command can be used to validate the collectd configuration:
+
+.. code:: bash
+
+    $ snmpwalk -v 2c -c public localhost 1.3.6.1.4.1.2021.4.6.0
+    UCD-SNMP-MIB::memAvailReal.0 = INTEGER: 135237632 kB
+
 
 **Limitations**
 
