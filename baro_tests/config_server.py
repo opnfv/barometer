@@ -31,7 +31,6 @@ APEX_IP = os.getenv("INSTALLER_IP").rstrip('\n')
 APEX_USER = 'root'
 APEX_USER_STACK = 'stack'
 APEX_PKEY = '/root/.ssh/id_rsa'
-PATH = os.path.dirname(os.path.realpath(__file__))
 
 
 class Node(object):
@@ -184,6 +183,8 @@ class ConfigServer(object):
             if compute_name == node.get_dict()['name']:
                 stdout = node.run_cmd(
                     'cat /etc/collectd/collectd.conf.d/{}.conf'.format(plugin))
+                if stdout is None:
+                    return default_interval
                 for line in stdout.split('\n'):
                     if 'Interval' in line:
                         return 1
@@ -205,6 +206,8 @@ class ConfigServer(object):
             if compute_name == node.get_dict()['name']:
                 stdout = node.run_cmd(
                     'cat /etc/collectd/collectd.conf.d/{}.conf' .format(plugin))
+                if stdout is None:
+                    return default_values
                 for line in stdout.split('\n'):
                     if 'Interfaces' in line:
                         return line.split(' ', 1)[1]
@@ -302,7 +305,7 @@ class ConfigServer(object):
         for node in nodes:
             if compute_name == node.get_dict()['name']:
                 stdout = node.run_cmd(
-                    'yum list installed | grep mcelog')
+                    'rpm -qa | grep mcelog')
                 if stdout is None:
                     return 0
                 elif 'mcelog' in stdout:
@@ -339,7 +342,7 @@ class ConfigServer(object):
                 aodh_conf = node.run_cmd('ls /etc/collectd/collectd.conf.d')
                 if 'aodh.conf' not in aodh_conf:
                     self.__logger.info(
-                        "AODH Plugin not included in compute node")
+                        "AODH Plugin not included in {}".format(compute_name))
                     return False
                 else:
                     self.__logger.info(
@@ -364,7 +367,9 @@ class ConfigServer(object):
             if compute_name == node.get_dict()['name']:
                 gnocchi_conf = node.run_cmd('ls /etc/collectd/collectd.conf.d')
                 if 'collectd-ceilometer-plugin.conf' not in gnocchi_conf:
-                    self.__logger.info("Gnocchi Plugin not included")
+                    self.__logger.info(
+                        "Gnocchi Plugin not included in node {}".format(
+                            compute_name))
                     return False
                 else:
                     self.__logger.info(
@@ -401,13 +406,13 @@ class ConfigServer(object):
 
         Return boolean value indicating whether function was successful.
         """
+        csv_file = os.path.dirname(os.path.realpath(__file__)) + '/csv.conf'
         plugins = sorted(plugins)
         compute_name = compute.get_name()
         nodes = get_apex_nodes()
         for node in nodes:
             if compute_name == node.get_dict()['name']:
-                node.put_file(
-                    'PATH/csv.conf', 'csv.conf')
+                node.put_file(csv_file, 'csv.conf')
                 node.run_cmd(
                     'sudo cp csv.conf '
                     + '/etc/collectd/collectd.conf.d/csv.conf')
@@ -473,12 +478,18 @@ class ConfigServer(object):
                     "source overcloudrc.v3;"
                     + "aodh alarm list | grep {0} | grep {1}"
                     .format(criteria_list, compute))
+                if stdout is None:
+                    self.__logger.info("aodh alarm list was empty")
+                    return False
                 for line in stdout.splitlines():
                     line = line.replace('|', "")
                     metric_id = line.split()[0]
                     stdout = node.run_cmd(
                         'source overcloudrc.v3; aodh alarm show {}' .format(
                             metric_id))
+                    if stdout is None:
+                        self.__logger.info("aodh alarm list was empty")
+                        return False
                     for line in stdout.splitlines()[3: -1]:
                         line = line.replace('|', "")
                         if line.split()[0] == 'timestamp':
@@ -489,6 +500,9 @@ class ConfigServer(object):
                     stdout = node.run_cmd(
                         "source overcloudrc.v3; aodh alarm show {}" .format(
                             metric_id))
+                    if stdout is None:
+                        self.__logger.info("aodh alarm list was empty")
+                        return False
                     for line in stdout.splitlines()[3:-1]:
                         line = line.replace('|', "")
                         if line.split()[0] == 'timestamp':
@@ -522,12 +536,18 @@ class ConfigServer(object):
                     "source overcloudrc.v3;"
                     + "gnocchi metric list | grep {0} | grep {1}"
                     .format(criteria_list, compute))
+                if stdout is None:
+                        self.__logger.info("gnocchi list was empty")
+                        return False
                 for line in stdout.splitlines():
                     line = line.replace('|', "")
                     metric_id = line.split()[0]
                     stdout = node.run_cmd(
                         'source overcloudrc.v3;gnocchi measures show {}'.format(
                             metric_id))
+                    if stdout is None:
+                        self.__logger.info("gnocchi list was empty")
+                        return False
                     for line in stdout.splitlines()[3: -1]:
                         if line[0] == '+':
                             pass
@@ -538,6 +558,9 @@ class ConfigServer(object):
                     stdout = node.run_cmd(
                         "source overcloudrc.v3;gnocchi measures show {}".format(
                             metric_id))
+                    if stdout is None:
+                        self.__logger.info("gnocchi measures was empty")
+                        return False
                     for line in stdout.splitlines()[3:-1]:
                         if line[0] == '+':
                             pass

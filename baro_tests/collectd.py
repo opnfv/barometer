@@ -33,7 +33,6 @@ APEX_IP = os.getenv("INSTALLER_IP").rstrip('\n')
 APEX_USER = 'root'
 APEX_USER_STACK = 'stack'
 APEX_PKEY = '/root/.ssh/id_rsa'
-PATH = os.path.dirname(os.path.realpath(__file__))
 
 
 class KeystoneException(Exception):
@@ -624,6 +623,7 @@ def mcelog_install():
                                           APEX_USER_STACK,
                                           APEX_PKEY)
     nodes = handler.get_nodes()
+    mce_bin = os.path.dirname(os.path.realpath(__file__)) + '/mce-inject_ea'
     for node in nodes:
         if node.is_compute():
             centos_release = node.run_cmd('uname -r')
@@ -648,9 +648,7 @@ def mcelog_install():
                 logger.info(
                     'Mcelog will be enabled on node-{}...'.format(
                         node.get_dict()['id']))
-                node.put_file(
-                    'PATH/'
-                    + 'mce-inject_ea', 'mce-inject_ea')
+                node.put_file(mce_bin, 'mce-inject_ea')
                 node.run_cmd('chmod a+x mce-inject_ea')
                 node.run_cmd('echo "CPU 0 BANK 0" > corrected')
                 node.run_cmd(
