@@ -1,0 +1,7 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+2: Calin Gherghe <calin.gherghe@intel.com>
+Submitted-by: Calin Gherghe <calin.gherghe@intel.com>
+Submitted-at: Sat, 23 Sep 2017 03:06:57 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/42835
+Project: barometer
+Branch: refs/heads/stable/euphrates
