@@ -1,0 +1,278 @@
+---
+# Common event header definition (required fields and defaults)
+commonEventHeader: &commonEventHeader
+  domain: N/A
+  eventId: "{system.id}"
+  eventName: ""
+  eventType: Info
+  lastEpochMicrosec: 0
+  priority: Normal
+  reportingEntityId: &reportingEntityId "{system.hostname}"
+  reportingEntityName: *reportingEntityId
+  sequence: 0
+  sourceName: N/A
+  startEpochMicrosec: 0
+  version: 2.0
+
+# Value mapping (used to map collectd notification severity to VES)
+collectdSeverityMapping: &collectdSeverityMapping
+  NOTIF_FAILURE: CRITICAL
+  NOTIF_WARNING: WARNING
+  NOTIF_OKAY: NORMAL
+
+# Measurements definition
+Host Measurements: !Measurements
+  - ITEM-DESC:
+      event:
+        commonEventHeader:
+          <<: *commonEventHeader
+          eventType: guestOS
+          domain: measurementsForVfScaling
+          sourceId: &sourceId "{vl.host}"
+          sourceName: *sourceId
+          startEpochMicrosec: !Number "{vl.time}"
+        measurementsForVfScalingFields:
+          measurementsForVfScalingVersion: 2.0
+          additionalMeasurements: !ArrayItem
+            - SELECT:
+                plugin: "/^(?!memory|cpu|interface|disk).*$/"
+            - INDEX-KEY:
+                - plugin
+                - plugin_instance
+            - ITEM-DESC:
+                name: "{vl.plugin}-{vl.plugin_instance}"
+                arrayOfFields: !ArrayItem
+                  - SELECT:
+                      plugin: "{vl.plugin}"
+                      plugin_instance: "{vl.plugin_instance}"
+                  - ITEM-DESC:
+                      name: "{vl.type}-{vl.type_instance}-{vl.ds_name}"
+                      value: "{vl.value}"
+          measurementInterval: !Number "{vl.interval}"
+          memoryUsageArray: !ArrayItem
+            - SELECT:
+                plugin: memory
+                type: memory
+                type_instance: free
+            - ITEM-DESC:
+                vmIdentifier: "{vl.host}"
+                memoryFree: !Number "{vl.value}"
+                memoryUsed: !ValueItem
+                  - SELECT:
+                      plugin: memory
+                      type: memory
+                      type_instance: used
+                  - VALUE: !Bytes2Kibibytes "{vl.value}"
+                memoryBuffered: !ValueItem
+                  - SELECT:
+                      plugin: memory
+                      type: memory
+                      type_instance: buffered
+                  - VALUE: !Bytes2Kibibytes "{vl.value}"
+                memoryCached: !ValueItem
+                  - SELECT:
+                      plugin: memory
+                      type: memory
+                      type_instance: cached
+                  - VALUE: !Bytes2Kibibytes "{vl.value}"
+                memorySlabRecl: !ValueItem
+                  - SELECT:
+                      plugin: memory
+                      type: memory
+                      type_instance: slab_recl
+                  - VALUE: !Bytes2Kibibytes "{vl.value}"
+                  - DEFAULT: 0
+                memorySlabUnrecl: !ValueItem
+                  - SELECT:
+                      plugin: memory
+                      type: memory
+                      type_instance: slab_unrecl
+                  - VALUE: !Bytes2Kibibytes "{vl.value}"
+                  - DEFAULT: 0
+          cpuUsageArray: !ArrayItem
+            - SELECT:
+                plugin: cpu
+                type: percent
+                type_instance: idle
+            - ITEM-DESC:
+                cpuIdentifier: "{vl.plugin_instance}"
+                cpuIdle: !Number "{vl.value}"
+                percentUsage: 0.0
+                cpuUsageUser: !ValueItem
+                  - SELECT:
+                      plugin: cpu
+                      plugin_instance: "{vl.plugin_instance}"
+                      type: percent
+                      type_instance: user
+                cpuWait: !ValueItem
+                  - SELECT:
+                      plugin: cpu
+                      plugin_instance: "{vl.plugin_instance}"
+                      type: percent
+                      type_instance: wait
+                cpuUsageInterrupt: !ValueItem
+                  - SELECT:
+                      plugin: cpu
+                      plugin_instance: "{vl.plugin_instance}"
+                      type: percent
+                      type_instance: interrupt
+                cpuUsageNice: !ValueItem
+                  - SELECT:
+                      plugin: cpu
+                      plugin_instance: "{vl.plugin_instance}"
+                      type: percent
+                      type_instance: nice
+                cpuUsageSoftIrq: !ValueItem
+                  - SELECT:
+                      plugin: cpu
+                      plugin_instance: "{vl.plugin_instance}"
+                      type: percent
+                      type_instance: softirq
+                cpuUsageSteal: !ValueItem
+                  - SELECT:
+                      plugin: cpu
+                      plugin_instance: "{vl.plugin_instance}"
+                      type: percent
+                      type_instance: steal
+                cpuUsageSystem: !ValueItem
+                  - SELECT:
+                      plugin: cpu
+                      plugin_instance: "{vl.plugin_instance}"
+                      type: percent
+                      type_instance: system
+          vNicPerformanceArray: !ArrayItem
+            - SELECT:
+                plugin: interface
+                type: if_packets
+                ds_name: rx
+            - ITEM-DESC:
+                valuesAreSuspect: "true"
+                vNicIdentifier: "{vl.plugin_instance}"
+                receivedTotalPacketsAccumulated: !Number "{vl.value}"
+                transmittedTotalPacketsAccumulated: !ValueItem
+                  - SELECT:
+                      plugin: interface
+                      plugin_instance: "{vl.plugin_instance}"
+                      type: if_packets
+                      ds_name: tx
+                receivedOctetsAccumulated: !ValueItem
+                  - SELECT:
+                      plugin: interface
+                      plugin_instance: "{vl.plugin_instance}"
+                      type: if_octets
+                      ds_name: rx
+                transmittedOctetsAccumulated: !ValueItem
+                  - SELECT:
+                      plugin: interface
+                      plugin_instance: "{vl.plugin_instance}"
+                      type: if_octets
+                      ds_name: tx
+                receivedErrorPacketsAccumulated: !ValueItem
+                  - SELECT:
+                      plugin: interface
+                      plugin_instance: "{vl.plugin_instance}"
+                      type: if_errors
+                      ds_name: rx
+                transmittedErrorPacketsAccumulated: !ValueItem
+                  - SELECT:
+                      plugin: interface
+                      plugin_instance: "{vl.plugin_instance}"
+                      type: if_errors
+                      ds_name: tx
+                receivedDiscardedPacketsAccumulated: !ValueItem
+                  - SELECT:
+                      plugin: interface
+                      plugin_instance: "{vl.plugin_instance}"
+                      type: if_dropped
+                      ds_name: rx
+                transmittedDiscardedPacketsAccumulated: !ValueItem
+                  - SELECT:
+                      plugin: interface
+                      plugin_instance: "{vl.plugin_instance}"
+                      type: if_dropped
+                      ds_name: tx
+          diskUsageArray: !ArrayItem
+            - SELECT:
+                plugin: disk
+                type: disk_octets
+                ds_name: read
+            - ITEM-DESC:
+                diskIdentifier: "{vl.plugin_instance}"
+                diskOctetsReadLast: !Number "{vl.value}"
+                diskOctetsWriteLast: !ValueItem
+                  - SELECT:
+                      plugin: disk
+                      plugin_instance: "{vl.plugin_instance}"
+                      type: disk_octets
+                      ds_name: write
+                diskOpsReadLast: !ValueItem
+                  - SELECT:
+                      plugin: disk
+                      plugin_instance: "{vl.plugin_instance}"
+                      type: disk_ops
+                      ds_name: read
+                diskOpsWriteLast: !ValueItem
+                  - SELECT:
+                      plugin: disk
+                      plugin_instance: "{vl.plugin_instance}"
+                      type: disk_ops
+                      ds_name: write
+                diskIoTimeLast: !ValueItem
+                  - SELECT:
+                      plugin: disk
+                      plugin_instance: "{vl.plugin_instance}"
+                      type: disk_io_time
+                      ds_name: io_time
+                diskMergedReadLast: !ValueItem
+                  - SELECT:
+                      plugin: disk
+                      plugin_instance: "{vl.plugin_instance}"
+                      type: disk_merged
+                      ds_name: read
+                  - DEFAULT: 0
+                diskMergedWriteLast: !ValueItem
+                  - SELECT:
+                      plugin: disk
+                      plugin_instance: "{vl.plugin_instance}"
+                      type: disk_merged
+                      ds_name: write
+                  - DEFAULT: 0
+                diskTimeReadLast: !ValueItem
+                  - SELECT:
+                      plugin: disk
+                      plugin_instance: "{vl.plugin_instance}"
+                      type: disk_time
+                      ds_name: read
+                diskTimeWriteLast: !ValueItem
+                  - SELECT:
+                      plugin: disk
+                      plugin_instance: "{vl.plugin_instance}"
+                      type: disk_time
+                      ds_name: write
+  - SELECT:
+      plugin: memory
+      type_instance: free
+
+Guest Events: !Events
+  - ITEM-DESC:
+      event:
+        commonEventHeader:
+          <<: *commonEventHeader
+          domain: fault
+          eventType: Notification
+          sourceId: "{system.hostname}"
+          sourceName: "{system.hostname}"
+          lastEpochMicrosec: !Number "{n.time}"
+          startEpochMicrosec: !Number "{n.time}"
+        faultFields:
+          alarmInterfaceA: "{n.plugin}-{n.plugin_instance}"
+          alarmCondition: "{n.message}"
+          eventSeverity: !MapValue
+            VALUE: "{n.severity}"
+            TO: *collectdSeverityMapping
+          eventSourceType: guest
+          faultFieldsVersion: 1.1
+          specificProblem: "{n.plugin_instance}-{n.type_instance}"
+          vfStatus: Active
+  - CONDITION:
+      plugin: "/^(?!virt).*$/"
