@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_f6df4ad4",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 985,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-09-26T12:39:43Z",
+      "side": 1,
+      "message": "Do you have to cd to barometer?\nCan you replace this with a single command\n\n    git clone https://github.com/opnfv/barometer.git ~/barometer",
+      "range": {
+        "startLine": 983,
+        "startChar": 6,
+        "endLine": 985,
+        "endChar": 18
+      },
+      "revId": "94dfb62dfb1ec0fec31deaff0a003bf805e3862f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_56c9d624",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 991,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-09-26T12:39:43Z",
+      "side": 1,
+      "message": "Would a single ``cp -f mibs/*.txt /usr/share/snmp/mibs`` not be sufficient here? Or is there a  reason that mibs/Intel-Bios.txt is being omitted?",
+      "range": {
+        "startLine": 986,
+        "startChar": 6,
+        "endLine": 991,
+        "endChar": 56
+      },
+      "revId": "94dfb62dfb1ec0fec31deaff0a003bf805e3862f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
