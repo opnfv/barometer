@@ -1,0 +1,153 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_8212f406",
+        "filename": "docker/Dockerfile",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-09-27T12:01:51Z",
+      "side": 1,
+      "message": "is it possible to leave this as a template to be filled out by Ansible?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 13
+      },
+      "revId": "c81f19515f31fc8fc3a2eb2ff1d365fda55d9b94",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_228e8879",
+        "filename": "docker/Dockerfile",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-09-27T12:01:51Z",
+      "side": 1,
+      "message": "this is all done by the build_base_machine.sh script",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 29
+      },
+      "revId": "c81f19515f31fc8fc3a2eb2ff1d365fda55d9b94",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_e297808e",
+        "filename": "docker/Dockerfile",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-09-27T12:01:51Z",
+      "side": 1,
+      "message": "already done in the Makefile in src/",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 56
+      },
+      "revId": "c81f19515f31fc8fc3a2eb2ff1d365fda55d9b94",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_e2fae0bb",
+        "filename": "docker/run_collectd.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-09-27T12:01:51Z",
+      "side": 1,
+      "message": "do you need to pass the configuration file as a param as well?",
+      "revId": "c81f19515f31fc8fc3a2eb2ff1d365fda55d9b94",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_c2f7dcd1",
+        "filename": "src/collectd/Makefile",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-09-27T12:01:51Z",
+      "side": 1,
+      "message": "I think the endif should be just after line 78\nor is there a reason why you are skipping the plugin config here? is it so that it will be managed by ansible?",
+      "revId": "c81f19515f31fc8fc3a2eb2ff1d365fda55d9b94",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_220168af",
+        "filename": "src/libpqos/Makefile",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-09-27T12:01:51Z",
+      "side": 1,
+      "message": "will this be done by ansible?",
+      "range": {
+        "startLine": 49,
+        "startChar": 1,
+        "endLine": 49,
+        "endChar": 23
+      },
+      "revId": "c81f19515f31fc8fc3a2eb2ff1d365fda55d9b94",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_4233ccaa",
+        "filename": "src/pmu-tools/Makefile",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-09-27T12:01:51Z",
+      "side": 1,
+      "message": "this would not work for me it had to be +\u003d for jevents to be compiled with position independent code...",
+      "range": {
+        "startLine": 45,
+        "startChar": 49,
+        "endLine": 45,
+        "endChar": 51
+      },
+      "revId": "c81f19515f31fc8fc3a2eb2ff1d365fda55d9b94",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
