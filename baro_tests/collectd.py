@@ -210,21 +210,27 @@ class CSVClient(object):
                                 meter_category, date))
                         stdout2 = node.run_cmd(
                             "tail -1 /var/lib/collectd/csv/"
-                            + "{0}.jf.intel.com/{1}/{2}-{3}".format(
-                                compute_node.get_name(), plugin_subdir,
+                            + "{0}/{1}/{2}-{3}".format(
+                                hostname, plugin_subdir,
                                 meter_category, date))
                         # Storing last two values
                         values = stdout1
+                        values2 = stdout2
                         if values is None:
                             logger.error(
                                 'Getting last two CSV entries of meter category'
                                 + ' {0} in {1} subdir failed'.format(
                                     meter_category, plugin_subdir))
+                        elif values2 is None:
+                            logger.error(
+                                'Getting last CSV entries of meter category'
+                                + ' {0} in {1} subdir failed'.format(
+                                    meter_category, plugin_subdir))
                         else:
                             values = values.split(',')
                             old_value = float(values[0])
-                            stdout2 = stdout2.split(',')
-                            new_value = float(stdout2[0])
+                            values2 = values2.split(',')
+                            new_value = float(values2[0])
                             metrics.append((
                                 plugin_subdir, meter_category, old_value,
                                 new_value))
