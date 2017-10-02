@@ -19,4 +19,4 @@ COLLECTD_URL ?= https://github.com/collectd/collectd
 COLLECTD_TAG ?= master
 
 COLLECTD_OPENSTACK_URL ?= https://github.com/openstack/collectd-ceilometer-plugin
-COLLECTD_OPENSTACK_TAG ?= stable/ocata
+COLLECTD_OPENSTACK_TAG ?= stable/pike
