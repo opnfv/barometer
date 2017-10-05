@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da33351e_b6de5d6b",
+        "filename": "docker/Dockerfile",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5499
+      },
+      "writtenOn": "2017-10-05T12:49:17Z",
+      "side": 1,
+      "message": "so you want ansible to build docker image? I thought that ansible will just generate configuration for pre built docker image",
+      "parentUuid": "da33351e_8212f406",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 13
+      },
+      "revId": "c81f19515f31fc8fc3a2eb2ff1d365fda55d9b94",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_228e8879",
         "filename": "docker/Dockerfile",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2017-09-27T12:01:51Z",
       "side": 1,
       "message": "this is all done by the build_base_machine.sh script",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 29
+      },
+      "revId": "c81f19515f31fc8fc3a2eb2ff1d365fda55d9b94",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_16f0e9fc",
+        "filename": "docker/Dockerfile",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 5499
+      },
+      "writtenOn": "2017-10-05T12:49:17Z",
+      "side": 1,
+      "message": "no. should i add it to build_base_machine.sh?",
+      "parentUuid": "da33351e_228e8879",
       "range": {
         "startLine": 3,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "da33351e_affb8545",
+        "filename": "docker/Dockerfile",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5499
+      },
+      "writtenOn": "2017-10-05T12:49:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da33351e_e297808e",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 56
+      },
+      "revId": "c81f19515f31fc8fc3a2eb2ff1d365fda55d9b94",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_e2fae0bb",
         "filename": "docker/run_collectd.sh",
         "patchSetId": 5
@@ -88,6 +160,24 @@
     },
     {
       "key": {
+        "uuid": "da33351e_8ff6815b",
+        "filename": "docker/run_collectd.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 5499
+      },
+      "writtenOn": "2017-10-05T12:49:17Z",
+      "side": 1,
+      "message": "no need colelctd will start with default config file path \"/opt/collectd/etc/collectd.conf\"",
+      "parentUuid": "da33351e_e2fae0bb",
+      "revId": "c81f19515f31fc8fc3a2eb2ff1d365fda55d9b94",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_c2f7dcd1",
         "filename": "src/collectd/Makefile",
         "patchSetId": 5
@@ -99,6 +189,24 @@
       "writtenOn": "2017-09-27T12:01:51Z",
       "side": 1,
       "message": "I think the endif should be just after line 78\nor is there a reason why you are skipping the plugin config here? is it so that it will be managed by ansible?",
+      "revId": "c81f19515f31fc8fc3a2eb2ff1d365fda55d9b94",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_cf9b6916",
+        "filename": "src/collectd/Makefile",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 5499
+      },
+      "writtenOn": "2017-10-05T12:49:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da33351e_c2f7dcd1",
       "revId": "c81f19515f31fc8fc3a2eb2ff1d365fda55d9b94",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
@@ -128,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "da33351e_2f9f7504",
+        "filename": "src/libpqos/Makefile",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5499
+      },
+      "writtenOn": "2017-10-05T12:49:17Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "da33351e_220168af",
+      "range": {
+        "startLine": 49,
+        "startChar": 1,
+        "endLine": 49,
+        "endChar": 23
+      },
+      "revId": "c81f19515f31fc8fc3a2eb2ff1d365fda55d9b94",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_4233ccaa",
         "filename": "src/pmu-tools/Makefile",
         "patchSetId": 5
@@ -139,6 +271,30 @@
       "writtenOn": "2017-09-27T12:01:51Z",
       "side": 1,
       "message": "this would not work for me it had to be +\u003d for jevents to be compiled with position independent code...",
+      "range": {
+        "startLine": 45,
+        "startChar": 49,
+        "endLine": 45,
+        "endChar": 51
+      },
+      "revId": "c81f19515f31fc8fc3a2eb2ff1d365fda55d9b94",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_0fa2714a",
+        "filename": "src/pmu-tools/Makefile",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5499
+      },
+      "writtenOn": "2017-10-05T12:49:17Z",
+      "side": 1,
+      "message": "this line is for adding \"-fPIC\" to CFLAGS pmu-tools/jevents/Makefile:5\nso as a results it will be:\n-CFLAGS :\u003d -g -Wall -O2 -Wno-unused-result\n+CFLAGS :\u003d -fPIC -g -Wall -O2 -Wno-unused-result",
+      "parentUuid": "da33351e_4233ccaa",
       "range": {
         "startLine": 45,
         "startChar": 49,
