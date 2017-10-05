@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "da33351e_9807371c",
+        "filename": "docker/README",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5499
+      },
+      "writtenOn": "2017-10-05T12:49:17Z",
+      "side": 1,
+      "message": "No. I want to have collectd logs available (docker log \u003ccontainer id\u003e",
+      "parentUuid": "da33351e_a9a0f39f",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 30
+      },
+      "revId": "47af8a4cdd9e0f455403819ef1f39a2f173b4c9f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_09875f10",
         "filename": "src/Makefile",
         "patchSetId": 3
@@ -128,6 +152,24 @@
       "writtenOn": "2017-09-11T12:24:04Z",
       "side": 1,
       "message": "why?",
+      "revId": "47af8a4cdd9e0f455403819ef1f39a2f173b4c9f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_4c14d043",
+        "filename": "src/collectd/Makefile",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 5499
+      },
+      "writtenOn": "2017-10-05T12:49:17Z",
+      "side": 1,
+      "message": "there is no systemctl in docker and I do not want to manage configuration in docker",
+      "parentUuid": "da33351e_697d4b1c",
       "revId": "47af8a4cdd9e0f455403819ef1f39a2f173b4c9f",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
