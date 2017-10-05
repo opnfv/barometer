@@ -787,7 +787,6 @@ def main(bt_logger=None):
             out_plugins[node_id].append("SNMP")
 
         if 'Gnocchi' in out_plugins[node_id]:
-            logger.info("CSV will be enabled for verification")
             plugins_to_enable.append('csv')
             out_plugins[node_id].append("CSV")
             if plugins_to_enable:
@@ -802,28 +801,6 @@ def main(bt_logger=None):
                 logger.info(
                     'Testcases on node {} will not be executed'.format(
                         node_id))
-            else:
-                if plugins_to_enable:
-                    collectd_restarted, collectd_warnings = \
-                        conf.restart_collectd(compute_node)
-                    sleep_time = 10
-                    logger.info(
-                        'Sleeping for {} seconds'.format(sleep_time)
-                        + ' after collectd restart...')
-                    time.sleep(sleep_time)
-                if plugins_to_enable and not collectd_restarted:
-                    for warning in collectd_warnings:
-                        logger.warning(warning)
-                    logger.error(
-                        'Restart of collectd on node {} failed'.format(
-                            node_id))
-                    logger.info(
-                        'Testcases on node {}'.format(node_id)
-                        + ' will not be executed.')
-                else:
-                    if collectd_warnings:
-                        for warning in collectd_warnings:
-                            logger.warning(warning)
 
         for i in out_plugins[node_id]:
             if i == 'AODH':
@@ -832,6 +809,30 @@ def main(bt_logger=None):
                         aodh_plugin_labels, plugin_name, i,
                         controllers, compute_node, conf, results,
                         error_plugins, out_plugins[node_id])
+            elif i == 'CSV':
+                logger.info("Restarting collectd for CSV tests")
+                collectd_restarted, collectd_warnings = \
+                    conf.restart_collectd(compute_node)
+                sleep_time = 10
+                logger.info(
+                    'Sleeping for {} seconds'.format(sleep_time)
+                    + ' after collectd restart...')
+                time.sleep(sleep_time)
+                if not collectd_restarted:
+                    for warning in collectd_warnings:
+                        logger.warning(warning)
+                    logger.error(
+                        'Restart of collectd on node {} failed'.format(
+                            compute_node))
+                    logger.info(
+                        'CSV Testcases on node {}'.format(compute_node)
+                        + ' will not be executed.')
+                for plugin_name in sorted(plugin_labels.keys()):
+                    _exec_testcase(
+                        plugin_labels, plugin_name, i,
+                        controllers, compute_node, conf, results,
+                        error_plugins, out_plugins[node_id])
+
             else:
                 for plugin_name in sorted(plugin_labels.keys()):
                     _exec_testcase(
@@ -843,10 +844,12 @@ def main(bt_logger=None):
     print_overall_summary(
         compute_ids, plugin_labels, aodh_plugin_labels, results, out_plugins)
 
-    if ((len([res for res in results if not res[2]]) > 0)
-            or (len(results) < len(computes) * len(plugin_labels))):
-        logger.error('Some tests have failed or have not been executed')
-        return 1
+    for res in results:
+        if res[3] is 'False' or 'None':
+            logger.error('Some tests have failed or have not been executed')
+            return 1
+        else:
+            pass
     return 0
 
 
