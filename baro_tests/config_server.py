@@ -269,8 +269,13 @@ class ConfigServer(object):
                 stdout = node.run_cmd(
                     "source overcloudrc.v3;"
                     + "openstack catalog list | grep gnocchi")
-                if 'gnocchi' in stdout:
+                if stdout is None:
+                    return False
+                elif 'gnocchi' in stdout:
                     gnocchi_present = True
+                    return gnocchi_present
+                else:
+                    return False
         return gnocchi_present
 
     def is_aodh_running(self, controller):
@@ -287,8 +292,13 @@ class ConfigServer(object):
                 stdout = node.run_cmd(
                     "source overcloudrc.v3;"
                     + "openstack catalog list | grep aodh")
-                if 'aodh' in stdout:
+                if stdout is None:
+                    return False
+                elif 'aodh' in stdout:
                     aodh_present = True
+                    return aodh_present
+                else:
+                    return False
         return aodh_present
 
     def is_mcelog_installed(self, compute, package):
