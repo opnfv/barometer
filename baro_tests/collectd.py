@@ -11,7 +11,7 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
-# Patch on October 05 2017
+# Patch on October 09 2017
 
 """Executing test of plugins"""
 
@@ -743,8 +743,9 @@ def main(bt_logger=None):
     create_ovs_bridge()
     gnocchi_running_on_con = False
     aodh_running_on_con = False
-    snmp_running = True
-    _print_label('Testing Gnocchi, AODH and SNMP on nodes')
+    # Disabling SNMP write plug-in
+    snmp_running = False
+    _print_label('Testing Gnocchi and AODH plugins on nodes')
 
     for controller in controllers:
         gnocchi_running = (
@@ -779,7 +780,7 @@ def main(bt_logger=None):
                 compute_node))
         aodh_running = (
             aodh_running and conf.check_aodh_plugin_included(compute_node))
-        logger.info("SNMP enabled on {}" .format(node_name))
+        # logger.info("SNMP enabled on {}" .format(node_name))
         if gnocchi_running:
             out_plugins[node_id].append("Gnocchi")
         if aodh_running:
