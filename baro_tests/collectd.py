@@ -11,7 +11,7 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
-# Patch on October 09 2017
+# Patch on October 10 2017
 
 """Executing test of plugins"""
 
@@ -255,7 +255,7 @@ def get_csv_categories_for_ipmi(conf, compute_node):
     return [category.strip()[:-11] for category in categories]
 
 
-def _process_result(compute_node, out_plugin, test, result, results_list):
+def _process_result(compute_node, out_plugin, test, result, results_list, node):
     """Print test result and append it to results list.
 
     Keyword arguments:
@@ -265,12 +265,12 @@ def _process_result(compute_node, out_plugin, test, result, results_list):
     """
     if result:
         logger.info(
-            'Test case {0} PASSED with {1}.'.format(
-                test, out_plugin))
+            'Test case for {0} with {1} PASSED on {2}.'.format(
+                node, out_plugin, test))
     else:
         logger.error(
-            'Test case {0} FAILED with {1}.'.format(
-                test, out_plugin))
+            'Test case for {0} with {1} FAILED on {2}.'.format(
+                node, out_plugin, test))
     results_list.append((compute_node, out_plugin, test, result))
 
 
@@ -540,7 +540,7 @@ def _exec_testcase(
             logger.error(' * ' + error)
         _process_result(
             compute_node.get_id(), out_plugin, test_labels[name], False,
-            results)
+            results, compute_node.get_name())
     else:
         plugin_errors = [
             error for plugin, error, critical in error_plugins
@@ -591,7 +591,7 @@ def _exec_testcase(
                 res = False
             _process_result(
                 compute_node.get_id(), out_plugin, test_labels[name],
-                res, results)
+                res, results, compute_node.get_name())
 
 
 def get_results_for_ovs_events(
@@ -851,6 +851,7 @@ def main(bt_logger=None):
     for res in results:
         if res[3] is 'False' or 'None':
             logger.error('Some tests have failed or have not been executed')
+            logger.error('Overall Result is Fail')
             return 1
         else:
             pass

@@ -383,7 +383,7 @@ class ConfigServer(object):
                     return False
                 else:
                     self.__logger.info(
-                        "Gnochi plugin available in compute node {}" .format(
+                        "Gnocchi plugin available in compute node {}" .format(
                             compute_name))
                     return True
         return True
@@ -535,6 +535,7 @@ class ConfigServer(object):
         timestamps1 = {}
         timestamps2 = {}
         nodes = get_apex_nodes()
+        sleep_time = plugin_interval + 2
         for node in nodes:
             if node.is_controller():
                 self.__logger.info('Getting gnocchi metric list on {}' .format(
@@ -564,7 +565,7 @@ class ConfigServer(object):
                         else:
                             timestamps1 = line.replace('|', "")
                             timestamps1 = timestamps1.split()[0]
-                    time.sleep(10)
+                    time.sleep(sleep_time)
                     stdout = node.run_cmd(
                         "source overcloudrc.v3;gnocchi measures show {}".format(
                             metric_id))
@@ -578,11 +579,16 @@ class ConfigServer(object):
                             timestamps2 = line.replace('|', "")
                             timestamps2 = timestamps2.split()[0]
                     if timestamps1 == timestamps2:
-                        self.__logger.info("Data not updated after 12 seconds")
+                        self.__logger.info(
+                            "Plugin Interval is {}" .format(plugin_interval))
+                        self.__logger.info(
+                            "Data not updated after {} seconds".format(
+                                sleep_time))
                         return False
                     else:
                         self.__logger.info("PASS")
                         return True
+        return False
 
     def test_plugins_with_snmp(
             self, compute, plugin_interval, logger, plugin, snmp_mib_files=[],
