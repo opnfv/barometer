@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_1377fc03",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-10-10T14:08:36Z",
+      "side": 1,
+      "message": "simply*",
+      "range": {
+        "startLine": 57,
+        "startChar": 60,
+        "endLine": 57,
+        "endChar": 65
+      },
+      "revId": "3838ea0aa047e0480adfc2d308ef89fb502d6bc1",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_f3737813",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-10-10T14:08:36Z",
+      "side": 1,
+      "message": "are",
+      "range": {
+        "startLine": 155,
+        "startChar": 55,
+        "endLine": 155,
+        "endChar": 57
+      },
+      "revId": "3838ea0aa047e0480adfc2d308ef89fb502d6bc1",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
