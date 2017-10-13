@@ -8,10 +8,6 @@ This document provides guidelines on how to install and configure Barometer with
 The deployment script installs and enables a series of collectd plugins on the compute node(s),
 which collect and dispatch specific metrics and events from the platform.
 
-.. contents::
-   :depth: 3
-   :local:
-
 Pre-configuration activities
 ----------------------------
 Deploying the Barometer components in Apex is done through the deploy-opnfv command by selecting

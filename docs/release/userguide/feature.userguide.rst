@@ -6,10 +6,6 @@
 OPNFV Barometer User Guide
 ===================================
 
-.. contents::
-   :depth: 3
-   :local:
-
 Barometer collectd plugins description
 ---------------------------------------
 .. Describe the specific features and how it is realised in the scenario in a brief manner
