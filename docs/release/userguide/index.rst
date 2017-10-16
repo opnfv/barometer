@@ -17,6 +17,7 @@ OPNFV Barometer User Guide
 
    feature.userguide
    collectd.ves.userguide.rst
+   docker.userguide.rst
 .. The feature.userguide.rst file should contain the text for this document
 .. additional documents can be added to this directory and added in the right order
 .. to this file as a list below.
