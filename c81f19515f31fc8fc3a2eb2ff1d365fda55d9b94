@@ -231,6 +231,24 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_f708762f",
+        "filename": "src/collectd/Makefile",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-10-16T09:35:26Z",
+      "side": 1,
+      "message": "I think the dockerfile/image should still look after the full installation. if we leave out those commands the docker image is not usable standalone",
+      "parentUuid": "9a3d3df0_34177cef",
+      "revId": "c81f19515f31fc8fc3a2eb2ff1d365fda55d9b94",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_220168af",
         "filename": "src/libpqos/Makefile",
         "patchSetId": 5
@@ -337,6 +355,30 @@
       "side": 1,
       "message": "I know, :\u003d does not build a library with position independent code for me. +\u003d does...",
       "parentUuid": "da33351e_0fa2714a",
+      "range": {
+        "startLine": 45,
+        "startChar": 49,
+        "endLine": 45,
+        "endChar": 51
+      },
+      "revId": "c81f19515f31fc8fc3a2eb2ff1d365fda55d9b94",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_170cfa41",
+        "filename": "src/pmu-tools/Makefile",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-10-16T09:35:26Z",
+      "side": 1,
+      "message": "it works on CentOS so I\u0027m happy enough with the flag - I think I had issues on ubuntu",
+      "parentUuid": "9a3d3df0_541a0018",
       "range": {
         "startLine": 45,
         "startChar": 49,
