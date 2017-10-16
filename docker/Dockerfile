@@ -1,5 +1,6 @@
 FROM centos:7
-
+ENV http_proxy ${http_proxy}
+ENV https_proxy ${https_proxy}
 RUN yum update -y
 RUN yum install -y which sudo
 ENV DOCKER y
