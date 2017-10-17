@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_06a32a9f",
+        "filename": "src/collectd/snmp_mib_config.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-10-17T12:58:46Z",
+      "side": 1,
+      "message": "does this apply to centOS also? you could just leave it as an else?",
+      "range": {
+        "startLine": 28,
+        "startChar": 25,
+        "endLine": 28,
+        "endChar": 32
+      },
+      "revId": "39364caf939b2f5026e05defc897749b52a604b2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
