@@ -216,9 +216,7 @@ class CollectdData(object):
 
     @classmethod
     def is_regular_expression(cls, expr):
-        if len(expr) > 1 and expr[0] == '/' and expr[-1] == '/':
-            return True
-        return False
+        return len(expr) > 1 and expr[0] == '/' and expr[-1] == '/'
 
     def match(self, **kargs):
         # compare the metric
