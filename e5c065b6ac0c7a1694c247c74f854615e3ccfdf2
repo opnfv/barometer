@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_66f31674",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-10-17T14:00:25Z",
+      "side": 1,
+      "message": "missing the proxies... will add these in",
+      "range": {
+        "startLine": 229,
+        "startChar": 1,
+        "endLine": 230,
+        "endChar": 83
+      },
+      "revId": "e5c065b6ac0c7a1694c247c74f854615e3ccfdf2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
