@@ -40,13 +40,13 @@ Host Measurements: !Measurements
                 - plugin
                 - plugin_instance
             - ITEM-DESC:
-                name: "{vl.plugin}-{vl.plugin_instance}"
+                name: !StripExtraDash "{vl.plugin}-{vl.plugin_instance}"
                 arrayOfFields: !ArrayItem
                   - SELECT:
                       plugin: "{vl.plugin}"
                       plugin_instance: "{vl.plugin_instance}"
                   - ITEM-DESC:
-                      name: "{vl.type}-{vl.type_instance}-{vl.ds_name}"
+                      name: !StripExtraDash "{vl.type}-{vl.type_instance}-{vl.ds_name}"
                       value: "{vl.value}"
           measurementInterval: !Number "{vl.interval}"
           memoryUsageArray: !ArrayItem
@@ -265,14 +265,14 @@ Guest Events: !Events
           lastEpochMicrosec: !Number "{n.time}"
           startEpochMicrosec: !Number "{n.time}"
         faultFields:
-          alarmInterfaceA: "{n.plugin}-{n.plugin_instance}"
+          alarmInterfaceA: !StripExtraDash "{n.plugin}-{n.plugin_instance}"
           alarmCondition: "{n.message}"
           eventSeverity: !MapValue
             VALUE: "{n.severity}"
             TO: *collectdSeverityMapping
           eventSourceType: guest
           faultFieldsVersion: 1.1
-          specificProblem: "{n.plugin_instance}-{n.type_instance}"
+          specificProblem: !StripExtraDash "{n.plugin_instance}-{n.type_instance}"
           vfStatus: Active
   - CONDITION:
       plugin: "/^(?!virt).*$/"
