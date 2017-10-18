@@ -129,8 +129,8 @@ Feature additions
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
 
-Bug corrections
-~~~~~~~~~~~~~~~~~~~~~
+Bugs
+~~~~
 
 **JIRA TICKETS:**
 
@@ -138,8 +138,10 @@ Bug corrections
 | **JIRA REFERENCE**                   | **SLOGAN**                           |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-|                                      |                                      |
-|                                      |                                      |
+| BAROMETER-80                         | SNMP Agent testing with Intel RDT,   |
+|                                      | MCELOG, Hugepages, and OVS Stats not |
+|                                      | functional in the Apex image of OPNFV| 
+|                                      | Release E                            |
 +--------------------------------------+--------------------------------------+
 |                                      |                                      |
 |                                      |                                      |
