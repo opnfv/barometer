@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_4473654d",
+        "filename": "docs/release/release-notes/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 5995
+      },
+      "writtenOn": "2017-10-18T15:03:59Z",
+      "side": 1,
+      "message": "5.0\nAccording to OPNFV Wiki - Euphrates Schedule:\nhttps://wiki.opnfv.org/display/SWREL/Euphrates?preview\u003d/8689511/13205820/OPNFV%20Release%20%2522Euphrates%2522%20r12.pdf\nindicates \"(MS11) Release Euphrates 5.0\"",
+      "range": {
+        "startLine": 59,
+        "startChar": 51,
+        "endLine": 59,
+        "endChar": 54
+      },
+      "revId": "cabd30aeb610467a138eb71c9cf7aa7b1dff12ce",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
