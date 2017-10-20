@@ -25,6 +25,31 @@ Platform components validation - Apex
 -------------------------------------
 The following steps describe how to perform a simple "manual" testing of the Barometer components:
 
+On the controller:
+
+You will need update the archive policy rule for gnocchi via the command line.
+The default is low, which means that you only get a metric every
+5 minutes. To do this:
+
+.. code:: bash
+
+    $ openstack metric archive-policy rule delete default
+    $ openstack metric archive-policy-rule create  -a bool -m '*'  default
+
+Using the ``bool`` archive policy reduces the number of aggregation methods run
+to one (last), and it keeps all metrics at a 1 second interval.
+In order to query this you need to explicitly choose an aggregation method to
+display (by default, ``measures show`` uses mean). You may have to update the
+command for checking the metrics, this is the CLI command:
+
+.. code:: bash
+
+     $ watch –n2 –d openstack metric measures show  --aggregation last <metric_id>
+
+More on testing and displaying metrics is shown below.
+
+On the compute:
+
 1. Connect to any compute node and ensure that the collectd service is running.  The log file
    ``collectd.log`` should contain no errors and should indicate that each plugin was successfully
    loaded.  For example, from the Jump Host:
