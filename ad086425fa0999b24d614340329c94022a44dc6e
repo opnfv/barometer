@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_2709f931",
+        "filename": "docs/release/configguide/postinstall.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5995
+      },
+      "writtenOn": "2017-10-20T19:14:26Z",
+      "side": 1,
+      "message": "In case of an HA scenario, would this have to be done on all Controllers?  Please clarify.",
+      "range": {
+        "startLine": 28,
+        "startChar": 7,
+        "endLine": 28,
+        "endChar": 17
+      },
+      "revId": "ad086425fa0999b24d614340329c94022a44dc6e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
