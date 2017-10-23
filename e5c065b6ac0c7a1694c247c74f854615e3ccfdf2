@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "9a3d3df0_3dc46691",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 5499
+      },
+      "writtenOn": "2017-10-23T08:43:46Z",
+      "side": 1,
+      "message": "should it be /opt/collectd/etc/collectd.conf.d ??",
+      "range": {
+        "startLine": 229,
+        "startChar": 93,
+        "endLine": 229,
+        "endChar": 104
+      },
+      "revId": "e5c065b6ac0c7a1694c247c74f854615e3ccfdf2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_66f31674",
         "filename": "docs/release/userguide/docker.userguide.rst",
         "patchSetId": 2
