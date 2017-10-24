@@ -17,8 +17,14 @@ export CURRENT_DIR=$(pwd)
 
 cp $CURRENT_DIR/../../mibs/*  /usr/share/snmp/mibs/
 
-if [  -n "$(uname -a | grep Ubuntu)" ]; then
+# Detect OS name and version from systemd based os-release file
+. /etc/os-release
+
+# Get OS name (the First word from $NAME in /etc/os-release)
+OS_NAME="$ID"
+
+if [ "x$OS_NAME" == "xubuntu" ]; then
       cp $CURRENT_DIR/../../mibs/*  /var/lib/mibs/ietf/
-else
+elif [ "x${OS_NAME}" == "xfedora" ]; then
       cp $CURRENT_DIR/../../mibs/*  /usr/share/mibs/ietf/
 fi
