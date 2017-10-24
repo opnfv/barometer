@@ -32,9 +32,12 @@ $(SUBBUILDS):
 
 with-dpdk:
 export WITH_DPDK
+
 include mk/master.mk
 SUBDIRS =
+ifdef WITH_DPDK
 SUBDIRS += dpdk
+endif
 SUBDIRS += libpqos
 SUBDIRS += pmu-tools
 SUBDIRS += collectd

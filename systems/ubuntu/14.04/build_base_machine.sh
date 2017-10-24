@@ -40,6 +40,8 @@ apt-get -y install \
     libmnl-dev \
     libmosquitto0-dev \
     libmysqlclient-dev \
+    libncurses5 \
+    libncurses5-dev \
     libnotify-dev \
     libopenipmi-dev \
     liboping-dev \
@@ -47,6 +49,7 @@ apt-get -y install \
     libpcap0.8-dev \
     libpcap-dev\
     libperl-dev \
+    libpopt-dev \
     libpq-dev \
     libprotobuf-c0-dev \
     libriemann-client-dev \
@@ -65,8 +68,8 @@ apt-get -y install \
     libudev-dev \
     libupsclient-dev \
     libvarnishapi-dev \
+    libvirt-bin \
     libvirt-dev \
-    libvirt-daemon \
     libxen-dev \
     libxml2-dev \
     libyajl-dev \
