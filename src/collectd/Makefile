@@ -52,7 +52,7 @@ CONFIG_CMD += --disable-perl
 .PHONY: install force_install config force_make
 
 # install depends on make
-#force_install: force_make
+force_install: force_make
 
 all: force_make
 	@echo "Finished making $(WORK_DIR)"

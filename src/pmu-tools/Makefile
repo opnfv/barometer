@@ -22,7 +22,7 @@
 
 include ../mk/master.mk
 include ../package-list.mk
-
+export XDG_CACHE_HOME=/usr/local/src
 WORK_DIR = pmu-tools
 TAG_DONE_FLAG = $(WORK_DIR)/.$(PMUTOOLS_TAG).done
 BUILD_CMD =
@@ -42,7 +42,8 @@ force_make: $(WORK_DIR) $(TAG_DONE_FLAG)
 	$(AT)cd $(WORK_DIR) && git pull $(PMUTOOLS_URL) $(PMUTOOLS_TAG)
 	@echo "git pull done"
 	$(AT)cd $(WORK_DIR)/jevents
-	$(AT)sed -i 's/CFLAGS += -g -Wall -O2 -Wno-unused-result -fPIC/CFLAGS += -g -Wall -O2 -Wno-unused-result -fPIC/' $(MAKEFILE)
+	$(AT)sed -i 's/lib64/lib/' $(WORK_DIR)/jevents/$(MAKEFILE)
+	$(AT)sed -i 's/CFLAGS := -g -Wall -O2 -Wno-unused-result/CFLAGS := -g -Wall -O2 -Wno-unused-result -fPIC/' $(WORK_DIR)/jevents/$(MAKEFILE)
 	$(AT)$(MAKE) -C $(WORK_DIR)/jevents
 	@echo "Make done"
 
