@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_0e45ea6f",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2017-10-25T14:02:13Z",
+      "side": 1,
+      "message": "Suggest:  ...that ZooKeeper is already running on the host.  (if this is correct, otherwise \"at the first time\" is not clear)",
+      "range": {
+        "startLine": 63,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 33
+      },
+      "revId": "68aa8d5a0b3f02e7e6e88de665d3c9692822a2f7",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
