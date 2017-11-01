@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_b9efdcaf",
+        "filename": "docker/cpu_usage_dashboard.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-11-01T13:40:02Z",
+      "side": 1,
+      "message": "can you please clean up all the white space",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 6
+      },
+      "revId": "2349d2264cd565f176613503c58fe93d09ec2347",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_192c0802",
+        "filename": "docker/types.db",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-11-01T13:40:02Z",
+      "side": 1,
+      "message": "why can\u0027t we wget this rather than store it in the repo",
+      "revId": "2349d2264cd565f176613503c58fe93d09ec2347",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
