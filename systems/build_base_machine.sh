@@ -60,11 +60,6 @@ if [ -d "$distro_dir" ] && [ -e "$distro_dir/build_base_machine.sh" ]; then
 else
     die "$distro_dir is not yet supported"
 fi
-if [ -z ${DOCKER+x} ]; then
-       if [ ! -d /lib/modules/`uname -r`/build ] ; then
-       die "Kernel devel is not available for active kernel. It can be caused by recent kernel update. Please reboot and run $0 again."
-       fi
-fi
 # download and compile DPDK and Collectd
 if [ -f ../src/Makefile ] ; then
     cd ../src
