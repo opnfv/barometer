@@ -63,7 +63,7 @@ else
 fi
 if [ -z ${DOCKER+x} ]; then
        if [ ! -d /lib/modules/`uname -r`/build ] ; then
-       die "Kernel devel is not available for active kernel. It can be caused by recent kernel update. Please reboot and run $0 again."
+        die "Kernel devel is not available for active kernel. It can be caused by recent kernel update. Please reboot and run $0 again."
        fi
 fi
 # download and compile DPDK and Collectd
