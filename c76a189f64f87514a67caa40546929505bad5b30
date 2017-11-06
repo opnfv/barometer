@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_77b718d9",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2017-11-06T09:41:01Z",
+      "side": 1,
+      "message": "Here 1 file can be created with multiple proxy settings\neg /etc/systemd/system/docker.service.d/proxy.conf\n.. code:: bash\n    [Service]\n    Environment\u003d\"http_proxy\u003dhttp://proxy.example.com:443\"\n    Environment\u003d\"https_proxy\u003dhttps://proxy.example.com:443\"\n    Environment\u003d\"ftp_proxy\u003dftp://proxy.example.com:443\"\n    Environment\u003d\"no_proxy\u003dlocalhost\"",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 60
+      },
+      "revId": "c76a189f64f87514a67caa40546929505bad5b30",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
