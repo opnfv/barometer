@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_37c5903c",
+        "filename": "docker/cpu_usage_dashboard.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 5499
+      },
+      "writtenOn": "2017-11-06T10:06:06Z",
+      "side": 1,
+      "message": "I wanted to have separate line on chart for these type instances like this https://prnt.sc/h6tnz4",
+      "parentUuid": "9a3d3df0_e0c1a5e5",
+      "range": {
+        "startLine": 87,
+        "startChar": 121,
+        "endLine": 87,
+        "endChar": 134
+      },
+      "revId": "9820b9631a7d62081158fec8f7865976cb2f90b2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_40b7b186",
         "filename": "docker/docker-compose.yml",
         "patchSetId": 10
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_37ae3086",
+        "filename": "docker/docker-compose.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5499
+      },
+      "writtenOn": "2017-11-06T10:06:06Z",
+      "side": 1,
+      "message": "collectd container can be defined here in case we have it publically available. However, i\u0027d rather start collectd separately cause we need to provide a configuration got colelctd container. \nonce I run \"docker-compose up\" i will have influxdb ad grafana containers up and running. InfluxDB will be configured with collectd service plugin enabled.",
+      "parentUuid": "9a3d3df0_40b7b186",
+      "revId": "9820b9631a7d62081158fec8f7865976cb2f90b2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_20bc2d69",
         "filename": "docker/types.db",
         "patchSetId": 10
@@ -53,6 +95,24 @@
       "writtenOn": "2017-11-03T15:42:49Z",
       "side": 1,
       "message": "please wget this file... I don\u0027t want to store types.db in the barometer repo",
+      "revId": "9820b9631a7d62081158fec8f7865976cb2f90b2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_17a96c7b",
+        "filename": "docker/types.db",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5499
+      },
+      "writtenOn": "2017-11-06T10:06:06Z",
+      "side": 1,
+      "message": "ok will do.",
+      "parentUuid": "9a3d3df0_20bc2d69",
       "revId": "9820b9631a7d62081158fec8f7865976cb2f90b2",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
