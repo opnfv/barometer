@@ -58,7 +58,7 @@ distro_dir="$OS_NAME/$VERSION_ID"
 if [ -d "$distro_dir" ] && [ -e "$distro_dir/build_base_machine.sh" ]; then
     $SUDO $distro_dir/build_base_machine.sh || die "$distro_dir/build_base_machine.sh failed"
 else
-    die "$distro_dir is not yet supported"
+    die "$distro_dir is not supported"
 fi
 
 if [ ! -d /lib/modules/`uname -r`/build ] ; then
