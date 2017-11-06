@@ -39,6 +39,24 @@
       "revId": "2349d2264cd565f176613503c58fe93d09ec2347",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_590df08f",
+        "filename": "docker/types.db",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5499
+      },
+      "writtenOn": "2017-11-06T10:06:06Z",
+      "side": 1,
+      "message": "yes we can",
+      "parentUuid": "9a3d3df0_192c0802",
+      "revId": "2349d2264cd565f176613503c58fe93d09ec2347",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
