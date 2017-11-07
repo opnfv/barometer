@@ -46,6 +46,30 @@
       "revId": "2eb375da38b4680dc7daf5e8ff5bd2b3aad8111b",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_a024b8af",
+        "filename": "docker/docker-compose.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-11-07T18:21:09Z",
+      "side": 1,
+      "message": "I guess the question is where is get_types_db.sh called to download types.db",
+      "parentUuid": "9a3d3df0_dd59e35c",
+      "range": {
+        "startLine": 10,
+        "startChar": 10,
+        "endLine": 10,
+        "endChar": 18
+      },
+      "revId": "2eb375da38b4680dc7daf5e8ff5bd2b3aad8111b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
