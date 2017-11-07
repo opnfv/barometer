@@ -22,6 +22,30 @@
       "revId": "2eb375da38b4680dc7daf5e8ff5bd2b3aad8111b",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_dd59e35c",
+        "filename": "docker/docker-compose.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5499
+      },
+      "writtenOn": "2017-11-07T16:29:00Z",
+      "side": 1,
+      "message": "it will break IfluxDB collect service plugin. \nIn this line file types.db is mounted to the container.",
+      "parentUuid": "9a3d3df0_ddc5633e",
+      "range": {
+        "startLine": 10,
+        "startChar": 10,
+        "endLine": 10,
+        "endChar": 18
+      },
+      "revId": "2eb375da38b4680dc7daf5e8ff5bd2b3aad8111b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
