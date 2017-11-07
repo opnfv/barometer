@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_ddc5633e",
+        "filename": "docker/docker-compose.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-11-07T14:53:35Z",
+      "side": 1,
+      "message": "get_types_db.sh",
+      "range": {
+        "startLine": 10,
+        "startChar": 10,
+        "endLine": 10,
+        "endChar": 18
+      },
+      "revId": "2eb375da38b4680dc7daf5e8ff5bd2b3aad8111b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
