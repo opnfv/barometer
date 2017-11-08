@@ -1,0 +1,9 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+1: Al Morton <acmorton@att.com>
+Code-Review+1: Emma Foley <emma.l.foley@intel.com>
+Code-Review+2: Maryam Tahhan <maryam.tahhan@intel.com>
+Submitted-by: Aaron Smith <aasmith@redhat.com>
+Submitted-at: Wed, 08 Nov 2017 18:51:22 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/46041
+Project: barometer
+Branch: refs/heads/master
