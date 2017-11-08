@@ -288,7 +288,7 @@ class Item(yaml.YAMLObject):
     def format_node(cls, mapping, metric):
         if mapping.tag in [
                 'tag:yaml.org,2002:str', Bytes2Kibibytes.yaml_tag,
-                Number.yaml_tag]:
+                Number.yaml_tag, StripExtraDash.yaml_tag]:
             return yaml.ScalarNode(mapping.tag, mapping.value.format(**metric))
         elif mapping.tag == 'tag:yaml.org,2002:map':
             values = []
@@ -457,6 +457,15 @@ class Number(yaml.YAMLObject):
             return int(node.value)
         except ValueError:
             return float(node.value)
+
+
+class StripExtraDash(yaml.YAMLObject):
+    """Class to process StripExtraDash tag"""
+    yaml_tag = u'!StripExtraDash'
+
+    @classmethod
+    def from_yaml(cls, loader, node):
+        return '-'.join([ x for x in node.value.split('-') if len(x) > 0])
 
 
 class MapValue(yaml.YAMLObject):
