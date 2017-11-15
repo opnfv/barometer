@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_a55f9de4",
+        "filename": "src/package-list.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5499
+      },
+      "writtenOn": "2017-11-15T10:19:35Z",
+      "side": 1,
+      "message": "I believe it should be collectd-5.8",
+      "revId": "8a4a023e58edfd7a3eb2b26a9420b4fb2ce185f0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
