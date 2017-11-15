@@ -16,7 +16,7 @@ PMUTOOLS_TAG ?= master
 
 # collectd section
 COLLECTD_URL ?= https://github.com/collectd/collectd
-COLLECTD_TAG ?= master
+COLLECTD_TAG ?= 5.8.0
 
 COLLECTD_OPENSTACK_URL ?= https://github.com/openstack/collectd-ceilometer-plugin
 COLLECTD_OPENSTACK_TAG ?= stable/pike
