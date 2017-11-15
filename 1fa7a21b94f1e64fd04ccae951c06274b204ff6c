@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_45ffb1aa",
+        "filename": "ansible/ansible.cfg",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-11-15T10:37:12Z",
+      "side": 1,
+      "message": "I realise most of this is auto generated - can we clean up the whitespace though?",
+      "revId": "1fa7a21b94f1e64fd04ccae951c06274b204ff6c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_8530999f",
+        "filename": "ansible/collectd/files/collectd_configs/csv.conf",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-11-15T10:37:12Z",
+      "side": 1,
+      "message": "2017 - if this is kept",
+      "range": {
+        "startLine": 1,
+        "startChar": 15,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "1fa7a21b94f1e64fd04ccae951c06274b204ff6c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
