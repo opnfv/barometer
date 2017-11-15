@@ -471,7 +471,7 @@ https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
 
 IPMI Plugin
 ^^^^^^^^^^^^
-Repo: https://github.com/maryamtahhan/collectd
+Repo: https://github.com/collectd/collectd
 
 Branch: feat_ipmi_events, feat_ipmi_analog
 
@@ -543,15 +543,12 @@ Clone and install the collectd IPMI plugin:
 
 .. code:: bash
 
-    $ git clone  https://github.com/maryamtahhan/collectd
+    $ git clone https://github.com/collectd/collectd 
     $ cd collectd
-    $ git checkout $BRANCH
     $ ./build.sh
     $ ./configure --enable-syslog --enable-logfile --enable-debug
     $ make
     $ sudo make install
-
-Where $BRANCH is feat_ipmi_events or feat_ipmi_analog.
 
 This will install collectd to default folder ``/opt/collectd``. The collectd
 configuration file (``collectd.conf``) can be found at ``/opt/collectd/etc``.
@@ -561,7 +558,9 @@ To configure the IPMI plugin you need to modify the file to include:
 
     LoadPlugin ipmi
     <Plugin ipmi>
-       SELEnabled true # only feat_ipmi_events branch supports this
+       <Instance "local">
+         SELEnabled true # only feat_ipmi_events branch supports this
+       </Instance>
     </Plugin>
 
 .. note::
@@ -569,8 +568,7 @@ To configure the IPMI plugin you need to modify the file to include:
   dispatch the values to collectd and send SEL notifications.
 
 For more information on the IPMI plugin parameters and SEL feature configuration,
-please see:
-https://github.com/maryamtahhan/collectd/blob/feat_ipmi_events/src/collectd.conf.pod
+please see: https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
 
 Extended analog sensors support doesn't require additional configuration. The usual
 collectd IPMI documentation can be used:
@@ -660,7 +658,7 @@ Clone and install the collectd mcelog plugin:
 
 .. code:: bash
 
-    $ git clone  https://github.com/maryamtahhan/collectd
+    $ git clone https://github.com/collectd/collectd 
     $ cd collectd
     $ ./build.sh
     $ ./configure --enable-syslog --enable-logfile --enable-debug
@@ -678,11 +676,15 @@ include:
       Interval 1
     </LoadPlugin>
     <Plugin mcelog>
-       McelogClientSocket "/var/run/mcelog-client"
+      <Memory>
+        McelogClientSocket "/var/run/mcelog-client"
+        PersistentNotification false
+      </Memory>
+      #McelogLogfile "/var/log/mcelog"
     </Plugin>
 
 For more information on the plugin parameters, please see:
-https://github.com/maryamtahhan/collectd/blob/feat_ras/src/collectd.conf.pod
+https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
 
 Simulating a Machine Check Exception can be done in one of 3 ways:
 
@@ -890,7 +892,7 @@ ovs_pmd_stat.sh calls the script for OVS PMD stats application with its argument
 
 SNMP Agent Plugin
 ^^^^^^^^^^^^^^^^^
-Repo: https://github.com/maryamtahhan/collectd/
+Repo: https://github.com/collectd/collectd 
 
 Branch: master
 
@@ -985,9 +987,8 @@ Clone and install the collectd snmp_agent plugin:
 .. code:: bash
 
     $ cd ~
-    $ git clone https://github.com/maryamtahhan/collectd
+    $ git clone https://github.com/collectd/collectd 
     $ cd collectd
-    $ git checkout feat_snmp
     $ ./build.sh
     $ ./configure --enable-syslog --enable-logfile --enable-debug --enable-snmp --with-libnetsnmp
     $ make
@@ -1031,14 +1032,14 @@ The ``snmpwalk`` command can be used to validate the collectd configuration:
   retreived using standard IF-MIB tables.
 
 For more information on the plugin parameters, please see:
-https://github.com/maryamtahhan/collectd/blob/feat_snmp/src/collectd.conf.pod
+https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
 
 For more details on AgentX subagent, please see:
 http://www.net-snmp.org/tutorial/tutorial-5/toolkit/demon/
 
 virt plugin
 ^^^^^^^^^^^^
-Repo: https://github.com/maryamtahhan/collectd
+Repo: https://github.com/collectd/collectd 
 
 Branch: master
 
@@ -1169,7 +1170,7 @@ statistics are disabled. They can be enabled with ``ExtraStats`` option.
     </Plugin>
 
 For more information on the plugin parameters, please see:
-https://github.com/maryamtahhan/collectd/blob/feat_libvirt_upstream/src/collectd.conf.pod
+https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
 
 Installing collectd as a service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
