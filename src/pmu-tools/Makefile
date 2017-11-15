@@ -49,7 +49,7 @@ force_make: $(WORK_DIR) $(TAG_DONE_FLAG)
 
 force_install:
 	$(AT)sudo $(MAKE) -C $(WORK_DIR)/jevents install
-	$(AT)./$(WORK_DIR)/event_download.py
+	$(AT)./$(WORK_DIR)/event_download.py --all
 
 install: $(INSTALL_TARGET)
 
