@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  snmpd:
+    image: polinux/snmpd
+    network_mode: host
+    volumes:
+      - ./snmpd.conf:/etc/snmpd/snmpd.conf:ro
+      - /var/agentx/:/var/agentx/
+    command: -c /etc/snmpd/snmpd.conf
