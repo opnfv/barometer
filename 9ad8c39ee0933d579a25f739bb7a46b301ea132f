@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_1dd7b924",
+        "filename": "docker/Dockerfile",
+        "patchSetId": 14
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-11-17T10:42:26Z",
+      "side": 1,
+      "message": "I still think you need to \nrun \"usermod -g root\" as well",
+      "revId": "9ad8c39ee0933d579a25f739bb7a46b301ea132f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_7ddec540",
+        "filename": "docker/configure_grafana.sh",
+        "patchSetId": 14
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-11-17T10:42:26Z",
+      "side": 1,
+      "message": "7",
+      "range": {
+        "startLine": 1,
+        "startChar": 15,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "9ad8c39ee0933d579a25f739bb7a46b301ea132f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_5de141fd",
+        "filename": "docker/get_types_db.sh",
+        "patchSetId": 14
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-11-17T10:42:26Z",
+      "side": 1,
+      "message": "7",
+      "range": {
+        "startLine": 1,
+        "startChar": 15,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "9ad8c39ee0933d579a25f739bb7a46b301ea132f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_fdf135ce",
+        "filename": "docker/run_collectd.sh",
+        "patchSetId": 14
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-11-17T10:42:26Z",
+      "side": 1,
+      "message": "please add the copyright back...",
+      "revId": "9ad8c39ee0933d579a25f739bb7a46b301ea132f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_ddec31f6",
+        "filename": "systems/build_base_machine.sh",
+        "patchSetId": 14
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-11-17T10:42:26Z",
+      "side": 1,
+      "message": "7",
+      "range": {
+        "startLine": 6,
+        "startChar": 20,
+        "endLine": 6,
+        "endChar": 21
+      },
+      "revId": "9ad8c39ee0933d579a25f739bb7a46b301ea132f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
