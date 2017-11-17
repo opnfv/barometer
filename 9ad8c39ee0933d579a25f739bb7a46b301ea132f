@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_9d3aa932",
+        "filename": "docker/Dockerfile",
+        "patchSetId": 14
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5499
+      },
+      "writtenOn": "2017-11-17T14:13:35Z",
+      "side": 1,
+      "message": "no need. User collectd_exec will have sudo access",
+      "parentUuid": "9a3d3df0_1dd7b924",
+      "revId": "9ad8c39ee0933d579a25f739bb7a46b301ea132f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_7ddec540",
         "filename": "docker/configure_grafana.sh",
         "patchSetId": 14
