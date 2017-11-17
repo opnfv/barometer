@@ -241,7 +241,7 @@ class CollectdNotification(CollectdData):
         self.message = message
 
     def __repr__(self):
-        return '{}(host={}, plugin={}, plugin_instance={}, type={},' \
+        return '{}(host={}, plugin={}, plugin_instance={}, type={}, ' \
                'type_instance={}, severity={}, message={}, time={})'.format(
                    self.__class__.__name__, self.host, self.plugin,
                    self.plugin_instance, self.type, self.type_instance,
@@ -274,7 +274,7 @@ class CollectdValue(CollectdData):
                              self.type, self.type_instance, self.ds_name)
 
     def __repr__(self):
-        return '{}(host={}, plugin={}, plugin_instance={}, type={},' \
+        return '{}(host={}, plugin={}, plugin_instance={}, type={}, ' \
                'type_instance={}, ds_name={}, value={}, time={})'.format(
                    self.__class__.__name__, self.host, self.plugin,
                    self.plugin_instance, self.type, self.type_instance,
@@ -347,14 +347,15 @@ class ValueItem(Item):
         # select collectd metric based on SELECT condition
         metrics = loader.collector.items(select)
         assert len(metrics) < 2, \
-            'Wrong SELECT condition, selected {} metrics'.format(len(metrics))
+            'Wrong SELECT condition {}, selected {} metrics'.format(
+            select, len(metrics))
         if len(metrics) > 0:
             item = cls.format_node(value_desc, {'vl': metrics[0],
                                    'system': loader.system})
             return loader.construct_object(item)
         # nothing has been found by SELECT condition, set to DEFAULT value.
-        assert default is not None, \
-            "No metrics selected by SELECT condition and DEFAULT key isn't set"
+        assert default is not None, "No metrics selected by SELECT condition" \
+            " {} and DEFAULT key isn't set".format(select)
         return default
 
 
@@ -398,10 +399,10 @@ class ArrayItem(Item):
         if len(index_keys) > 0:
             metric_set = set()
             for metric in metrics:
-                value_params = {}
+                value = CollectdValue()
                 for key in index_keys:
-                    value_params[key] = getattr(metric, key)
-                metric_set.add(CollectdValue(**value_params))
+                    setattr(value, key, getattr(metric, key))
+                metric_set.add(value)
             metrics = list(metric_set)
         # build items based on SELECT and/or INDEX-KEY criteria
         for metric in metrics:
@@ -465,7 +466,7 @@ class StripExtraDash(yaml.YAMLObject):
 
     @classmethod
     def from_yaml(cls, loader, node):
-        return '-'.join([ x for x in node.value.split('-') if len(x) > 0])
+        return '-'.join([x for x in node.value.split('-') if len(x) > 0])
 
 
 class MapValue(yaml.YAMLObject):
