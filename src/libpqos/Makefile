@@ -45,7 +45,9 @@ force_make: $(WORK_DIR)
 
 force_install:
 	$(AT)sudo $(MAKE) -C $(WORK_DIR) install PREFIX=/usr
+ifndef DOCKER
 	$(AT)sudo modprobe msr
+endif
 
 install: $(INSTALL_TARGET)
 
