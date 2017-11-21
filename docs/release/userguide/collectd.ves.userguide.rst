@@ -24,28 +24,20 @@ Install Kafka Broker
 
 1. Dependencies: install JAVA & Zookeeper.
 
-    JAVA:
+   Ubuntu 16.04:
 
     .. code:: bash
 
-        $ sudo apt install default-jre
+        $ sudo apt-get install default-jre
+        $ sudo apt-get install zookeeperd
+        $ sudo apt-get install python-pip
 
-    CentOS 7.x use:
+   CentOS:
 
     .. code:: bash
 
         $ sudo yum install java-1.6.0-openjdk
-
-    Zookeeper:
-
-    .. code:: bash
-
-        $ sudo apt install zookeeperd
-
-    CentOS 7.x use:
-
-    .. code:: bash
-
+        $ sudo yum install python-pip
         $ sudo yum install zookeeper
 
     .. note:: You may need to add the repository that contains zookeeper.
@@ -57,7 +49,7 @@ Install Kafka Broker
         $ sudo yum install
         https://archive.cloudera.com/cdh5/one-click-install/redhat/7/x86_64/cloudera-cdh-5-0.x86_64.rpm
 
-    CentOS 7.x start zookeeper:
+    Start zookeeper:
 
     .. code:: bash
 
@@ -69,62 +61,41 @@ Install Kafka Broker
 
     .. code:: bash
 
-        $ sudo /usr/lib/zookeeper/bin/zkServer-initialize.sh
+       $ sudo /usr/lib/zookeeper/bin/zkServer-initialize.sh
         No myid provided, be sure to specify it in /var/lib/zookeeper/myid if using non-standalone
 
-    To test if Zookeeper is running as a daemon.
+2. Test if Zookeeper is running as a daemon.
 
     .. code:: bash
 
         $ telnet localhost 2181
 
     Type 'ruok' & hit enter.
-    Expected response is 'imok'. Zookeeper is running fine.
+    Expected response is 'imok' which means that Zookeeper is up running.
 
-    .. note::
+3. Install Kafka
 
-        VES doesn't work with version 0.9.4 of kafka-python.
-        The recommended/tested version is 1.3.3.
+    .. note:: VES doesn't work with version 0.9.4 of kafka-python. The
+        recommended/tested version is 1.3.3.
 
     .. code:: bash
 
-        $ sudo yum install python-pip
         $ sudo pip install kafka-python
-
-2. Download Kafka:
-
-    .. code:: bash
-
         $ wget "http://www-eu.apache.org/dist/kafka/0.11.0.0/kafka_2.11-0.11.0.0.tgz"
-
-3. Extract the archive:
-
-    .. code:: bash
-
         $ tar -xvzf kafka_2.11-0.11.0.0.tgz
-
-4. Configure Kafka Server:
-
-    .. code:: bash
-
-        $ vi kafka_2.11-0.11.0.0/config/server.properties
-
-    By default Kafka does not allow you to delete topics. Please uncomment:
-
-    .. code:: bash
-
-        delete.topic.enable=true
-
-5. Start the Kafka Server.
-
-    Run 'kafka-server-start.sh' with nohup as a background process:
-
-    .. code:: bash
-
+        $ sed -i -- 's/#delete.topic.enable=true/delete.topic.enable=true/' kafka_2.11-0.11.0.0/config/server.properties
         $ sudo nohup kafka_2.11-0.11.0.0/bin/kafka-server-start.sh \
           kafka_2.11-0.11.0.0/config/server.properties > kafka_2.11-0.11.0.0/kafka.log 2>&1 &
 
-6. Test Kafka Broker Installation
+    .. note:: If Kafka server fails to start, please check if the system IP
+        address is associated with the hostname in the static host lookup
+        table. If it doesn't exist, use the following command to add it.
+
+    .. code:: bash
+
+        $ echo "$(ip route get 8.8.8.8 | awk '{print $NF; exit}') $HOSTNAME" | sudo tee -a /etc/hosts
+
+4. Test the Kafka Installation
 
     To test if the installation worked correctly there are two scripts, producer and consumer scripts.
     These will allow you to see messages pushed to broker and receive from broker.
@@ -141,7 +112,7 @@ Install Kafka Broker
     .. code:: bash
 
         $ kafka_2.11-0.11.0.0/bin/kafka-console-consumer.sh --zookeeper \
-          localhost:2181 --topic TopicTest --from-beginning
+          localhost:2181 --topic TopicTest --from-beginning --max-messages 1 --timeout-ms 3000
 
 
 Install collectd
@@ -149,13 +120,22 @@ Install collectd
 
 Install development tools:
 
-.. code:: bash
+   Ubuntu 16.04:
 
-    $ sudo yum group install 'Development Tools'
+    .. code:: bash
 
-.. The libkafka installed via yum pkg manager is 0.11.0 which doesn't work with
-   collectd (compilation issue). Thus, we have to use the library installed
-   from sources using latest stable version which works with collectd.
+        $ sudo apt-get install build-essential bison autotools-dev autoconf
+        $ sudo apt-get install pkg-config flex libtool
+
+   CentOS:
+
+    .. code:: bash
+
+        $ sudo yum group install 'Development Tools'
+
+.. The libkafka installed via the package manager may not work with collectd
+   (due to compilation issue). Thus, it's recommented to use the library installed
+   from sources using latest stable version of libkafka.
 
 Install Apache Kafka C/C++ client library:
 
@@ -228,6 +208,13 @@ Start VES Test Collector:
 Setup VES application (guest mode)
 ----------------------------------
 
+This mode is used to collect guest VM statistics provided by collectd
+and send those metrics into the VES collector.
+
+.. figure:: ves-app-guest-mode.png
+
+    VES guest mode setup
+
 Install dependencies:
 
 .. code:: bash
@@ -252,6 +239,14 @@ Clone Barometer repo and start the VES application:
 
 Configure VES in host mode
 --------------------------
+
+This mode is used to collect hypervisor statistics about guest VMs and to send
+those metrics into the VES collector. Also, this mode collects host statistics
+and send them as part of the guest VES message.
+
+.. figure:: ves-app-host-mode.png
+
+    VES host mode setup
 
 Running the VES in host mode looks like steps described in
 `Setup VES application (guest mode)`_ but with the following exceptions:
