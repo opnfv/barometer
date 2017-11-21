@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_0bff6eab",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2017-11-21T17:14:13Z",
+      "side": 1,
+      "message": "Thank you. Will update it.",
+      "parentUuid": "9a3d3df0_ab42c20d",
+      "range": {
+        "startLine": 84,
+        "startChar": 16,
+        "endLine": 84,
+        "endChar": 84
+      },
+      "revId": "30c49fb5a48bdf2d310a748e07fe1404fcd5c63d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_6b5f1ae6",
         "filename": "docs/release/userguide/collectd.ves.userguide.rst",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2017-11-21T16:59:17Z",
       "side": 1,
       "message": "These dependencies need to be installed. Note that if you are installing the client library in a container, the \"sudo\" is not used. Thus I use this process to selectively use sudo or not:\n  if [[ ! -f /.dockerenv ]]; then dosudo\u003d\"sudo\"; fi\n  $dosudo apt-get install -y build-essential\n  $dosudo apt-get install -y libpthread-stubs0-dev\n  $dosudo apt-get install -y libssl-dev\n  $dosudo apt-get install -y libsasl2-dev\n  $dosudo apt-get install -y liblz4-dev\n  git clone https://github.com/edenhill/librdkafka.git ~/librdkafka\n  cd ~/librdkafka\n  git checkout -b v0.9.5 v0.9.5\n  ./configure --prefix\u003d/usr\n  make\n  $dosudo make install",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 71
+      },
+      "revId": "30c49fb5a48bdf2d310a748e07fe1404fcd5c63d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_2b04f2be",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2017-11-21T17:14:13Z",
+      "side": 1,
+      "message": "What version of Ubuntu are you using? I\u0027ve tried on clean Ubuntu 16.04 and the following dependencies worked for me:\n\n        $ sudo apt-get install build-essential bison autotools-dev autoconf\n        $ sudo apt-get install pkg-config flex libtool",
+      "parentUuid": "9a3d3df0_6b5f1ae6",
       "range": {
         "startLine": 144,
         "startChar": 0,
