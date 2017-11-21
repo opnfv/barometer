@@ -16,6 +16,24 @@
       "revId": "d6346322bf2fe849780c5fefd488160ffc62aa68",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_484e9c97",
+        "filename": "setup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 3405
+      },
+      "writtenOn": "2017-11-21T13:40:39Z",
+      "side": 1,
+      "message": "Yes. I asked for the right copyright to LF (+legal). The target here is to copy setup.py asis like all openstack projects which are synchronized via requirements. In this case I think the copyright shouldn\u0027t be changed if no diff.",
+      "parentUuid": "9a3d3df0_88ba646c",
+      "revId": "d6346322bf2fe849780c5fefd488160ffc62aa68",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
