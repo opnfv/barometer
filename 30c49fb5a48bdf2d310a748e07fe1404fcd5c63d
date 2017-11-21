@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_ab42c20d",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 232
+      },
+      "writtenOn": "2017-11-21T16:59:17Z",
+      "side": 1,
+      "message": "This version no longer exists (404). Note that the latest version at the URL http://www-eu.apache.org/dist/kafka/ should be downloaded. e.g. here\u0027s how I script this:\n  ver\u003d\"0.11.0.2\"\n  log \"get and unpack kafka_2.11-$ver.tgz\"\n  wget \"http://www-eu.apache.org/dist/kafka/$ver/kafka_2.11-$ver.tgz\"\n  tar -xvzf kafka_2.11-$ver.tgz",
+      "range": {
+        "startLine": 84,
+        "startChar": 16,
+        "endLine": 84,
+        "endChar": 84
+      },
+      "revId": "30c49fb5a48bdf2d310a748e07fe1404fcd5c63d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_6b5f1ae6",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 232
+      },
+      "writtenOn": "2017-11-21T16:59:17Z",
+      "side": 1,
+      "message": "These dependencies need to be installed. Note that if you are installing the client library in a container, the \"sudo\" is not used. Thus I use this process to selectively use sudo or not:\n  if [[ ! -f /.dockerenv ]]; then dosudo\u003d\"sudo\"; fi\n  $dosudo apt-get install -y build-essential\n  $dosudo apt-get install -y libpthread-stubs0-dev\n  $dosudo apt-get install -y libssl-dev\n  $dosudo apt-get install -y libsasl2-dev\n  $dosudo apt-get install -y liblz4-dev\n  git clone https://github.com/edenhill/librdkafka.git ~/librdkafka\n  cd ~/librdkafka\n  git checkout -b v0.9.5 v0.9.5\n  ./configure --prefix\u003d/usr\n  make\n  $dosudo make install",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 71
+      },
+      "revId": "30c49fb5a48bdf2d310a748e07fe1404fcd5c63d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
