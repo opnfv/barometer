@@ -1283,6 +1283,25 @@ To see this demo in action please checkout: `Barometer OPNFV Summit demo`_
 For more information on configuring and installing OpenStack plugins for
 collectd, check out the `collectd-ceilometer-plugin GSG`_.
 
+Security
+^^^^^^^^^
+* AAA – on top of collectd there secure agents like SNMP V3, Openstack agents
+  etc. with their own AAA methods.
+* Collectd runs as a daemon with root permissions.
+* Protection of Data in flight: It's recommend to use a minimum version of 4.7 of
+  the Network plugin which provides the possibility to cryptographically sign or encrypt
+  the network traffic. Write Redis plugin or the Write MongoDB plugin are recommended to
+  store the data. Please see: https://collectd.org/wiki/index.php?title=Networking_introduction
+* Known vulnerabilities include:
+** https://www.cvedetails.com/vulnerability-list/vendor_id-11242/Collectd.html
+*** `CVE-2017-7401`_ fixed https://github.com/collectd/collectd/issues/2174 in Version 5.7.2.
+*** `CVE-2016-6254`_ fixed https://mailman.verplant.org/pipermail/collectd/2016-July/006838.html
+    in Version  5.4.3.
+*** `CVE-2010-4336`_ fixed https://mailman.verplant.org/pipermail/collectd/2010-November/004277.html
+    in Version 4.10.2.
+** http://www.cvedetails.com/product/20310/Collectd-Collectd.html?vendor_id=11242
+* It's recommended to only use collectd plugins from signed packages.
+
 References
 ^^^^^^^^^^^
 .. [1] https://collectd.org/wiki/index.php/Naming_schema
@@ -1298,3 +1317,6 @@ References
 .. _aodh plugin: https://github.com/openstack/collectd-ceilometer-plugin/tree/stable/ocata/
 .. _collectd-ceilometer-plugin GSG: https://github.com/openstack/collectd-ceilometer-plugin/blob/master/doc/source/GSG.rst
 .. _grafana guide: https://wiki.opnfv.org/display/fastpath/Installing+and+configuring+InfluxDB+and+Grafana+to+display+metrics+with+collectd
+.. _CVE-2017-7401: https://www.cvedetails.com/cve/CVE-2017-7401/
+.. _CVE-2016-6254: https://www.cvedetails.com/cve/CVE-2016-6254/
+.. _CVE-2010-4336: https://www.cvedetails.com/cve/CVE-2010-4336/
