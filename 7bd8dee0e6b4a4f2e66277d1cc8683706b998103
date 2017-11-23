@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_77a3794f",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 1296,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-11-23T16:41:20Z",
+      "side": 1,
+      "message": "You could add two sub-bullets here:\n\n... counters security concerns by:\n   ** ensuring...\n   ** not allowing custom ... with superuser privileges.",
+      "range": {
+        "startLine": 1294,
+        "startChar": 14,
+        "endLine": 1296,
+        "endChar": 13
+      },
+      "revId": "7bd8dee0e6b4a4f2e66277d1cc8683706b998103",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_37c0d1df",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 1301,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-11-23T16:41:20Z",
+      "side": 1,
+      "message": "These should be sub-points\n* Protection of data in flight:\n  ** ... minimum version of Network\n  ** Write Redis ....",
+      "range": {
+        "startLine": 1298,
+        "startChar": 31,
+        "endLine": 1301,
+        "endChar": 95
+      },
+      "revId": "7bd8dee0e6b4a4f2e66277d1cc8683706b998103",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
