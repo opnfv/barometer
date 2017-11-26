@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_3911e3ac",
+        "filename": "docker/dashboards/cpu_usage_dashboard.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2017-11-26T20:39:45Z",
+      "side": 1,
+      "message": "Is this in nanoseconds, or percent?   If percent, it would be CPU Utilization according to TST008, but I understand there are deviations around...",
+      "range": {
+        "startLine": 509,
+        "startChar": 12,
+        "endLine": 509,
+        "endChar": 33
+      },
+      "revId": "495333b074d1c5ba7c51146ad418385ca7e42988",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_79224b02",
+        "filename": "docker/dashboards/cpu_usage_dashboard.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 650,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2017-11-26T20:39:45Z",
+      "side": 1,
+      "message": "maybe this is the Utilization metric in percent?",
+      "range": {
+        "startLine": 650,
+        "startChar": 12,
+        "endLine": 650,
+        "endChar": 47
+      },
+      "revId": "495333b074d1c5ba7c51146ad418385ca7e42988",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_99274f12",
+        "filename": "docker/dashboards/ovs_stats_dashboard.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2017-11-26T20:39:45Z",
+      "side": 1,
+      "message": "surprised to see \"Average\" used in many titles, but I should wait to see all this implemented and then ask questions...",
+      "range": {
+        "startLine": 209,
+        "startChar": 12,
+        "endLine": 209,
+        "endChar": 40
+      },
+      "revId": "495333b074d1c5ba7c51146ad418385ca7e42988",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
