@@ -1,0 +1,39 @@
+# Copyright 2017 Intel Corporation.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+[socket]
+socket-path = /var/run/mcelog-client
+
+[dimm]
+dimm-tracking-enabled = yes
+dmi-prepopulate = yes
+uc-error-threshold = 1 / 24h
+ce-error-threshold = 10 / 24h
+
+[socket]
+socket-tracking-enabled = yes
+mem-uc-error-threshold = 100 / 24h
+mem-ce-error-threshold = 100 / 24h
+mem-ce-error-log = yes
+
+[page]
+memory-ce-threshold = 10 / 24h
+memory-ce-log = yes
+memory-ce-action = soft
+
+[trigger]
+children-max = 2
+directory = /etc/mcelog
+
+
