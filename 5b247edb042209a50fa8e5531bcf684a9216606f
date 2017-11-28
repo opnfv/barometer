@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_4d5ce125",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6421
+      },
+      "writtenOn": "2017-11-28T14:00:33Z",
+      "side": 1,
+      "message": "1.6.0 seems pretty old...\nI would have expected 1.8.0\nremoving 1.6 and install 1.8.0...  zookeeper works...",
+      "range": {
+        "startLine": 39,
+        "startChar": 27,
+        "endLine": 39,
+        "endChar": 37
+      },
+      "revId": "5b247edb042209a50fa8e5531bcf684a9216606f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_4d2501aa",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6421
+      },
+      "writtenOn": "2017-11-28T14:00:33Z",
+      "side": 1,
+      "message": "For fresh Centos 7, need to enable EPEL\n\nyum install epel-release",
+      "range": {
+        "startLine": 40,
+        "startChar": 9,
+        "endLine": 40,
+        "endChar": 37
+      },
+      "revId": "5b247edb042209a50fa8e5531bcf684a9216606f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_ed35f5da",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6421
+      },
+      "writtenOn": "2017-11-28T14:00:33Z",
+      "side": 1,
+      "message": "Telnet is not installed by default...\nyum install telnet",
+      "range": {
+        "startLine": 71,
+        "startChar": 10,
+        "endLine": 71,
+        "endChar": 16
+      },
+      "revId": "5b247edb042209a50fa8e5531bcf684a9216606f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_6d59e535",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6421
+      },
+      "writtenOn": "2017-11-28T14:00:33Z",
+      "side": 1,
+      "message": "Following the steps above, zookeeper does not start with 1.6.0\n\nException in thread \"main\" java.lang.UnsupportedClassVersionError: org/apache/zookeeper/server/quorum/QuorumPeerMain : Unsupported major.minor version 51.0\n        at java.lang.ClassLoader.defineClass1(Native Method)\n        at java.lang.ClassLoader.defineClass(ClassLoader.java:648)\n        at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)\n        at java.net.URLClassLoader.defineClass(URLClassLoader.java:272)\n        at java.net.URLClassLoader.access$000(URLClassLoader.java:68)\n        at java.net.URLClassLoader$1.run(URLClassLoader.java:207)\n        at java.net.URLClassLoader$1.run(URLClassLoader.java:201)\n        at java.security.AccessController.doPrivileged(Native Method)\n        at java.net.URLClassLoader.findClass(URLClassLoader.java:200)\n        at java.lang.ClassLoader.loadClass(ClassLoader.java:325)\n        at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:296)\n        at java.lang.ClassLoader.loadClass(ClassLoader.java:270)\n        at sun.launcher.LauncherHelper.checkAndLoadMain(LauncherHelper.java:406)",
+      "range": {
+        "startLine": 74,
+        "startChar": 4,
+        "endLine": 74,
+        "endChar": 22
+      },
+      "revId": "5b247edb042209a50fa8e5531bcf684a9216606f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_0da019f3",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 6421
+      },
+      "writtenOn": "2017-11-28T14:00:33Z",
+      "side": 1,
+      "message": "This directory is missing",
+      "range": {
+        "startLine": 204,
+        "startChar": 5,
+        "endLine": 204,
+        "endChar": 45
+      },
+      "revId": "5b247edb042209a50fa8e5531bcf684a9216606f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
