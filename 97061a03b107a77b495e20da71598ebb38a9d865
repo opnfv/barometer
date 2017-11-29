@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_7c6994bd",
+        "filename": "systems/centos/7/build_base_machine.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6421
+      },
+      "writtenOn": "2017-11-29T13:06:02Z",
+      "side": 1,
+      "message": "SHould this be 1.8.0?",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 18
+      },
+      "revId": "97061a03b107a77b495e20da71598ebb38a9d865",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
