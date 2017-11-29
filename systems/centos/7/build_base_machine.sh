@@ -27,7 +27,7 @@ yum -y update
 yum install -y yum-utils
 yum install -y epel-release
 yum-builddep -y collectd
-
+yum -y install https://archive.cloudera.com/cdh5/one-click-install/redhat/7/x86_64/cloudera-cdh-5-0.x86_64.rpm
 # Install required packages
 yum -y install $(echo "
 
@@ -54,8 +54,11 @@ libvirt-daemon
 mcelog
 wget
 net-snmp-devel
+java-1.6.0-openjdk
+zookeeper
+python-pip
+kafka-python
 
 # install epel release required for git-review
 epel-release
 " | grep -v ^#)
-

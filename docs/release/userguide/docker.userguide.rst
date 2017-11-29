@@ -47,6 +47,7 @@ to the standard collectd plugins):
 * RDT plugin
 * virt
 * SNMP Agent
+* Kafka_write plugin
 
 Plugins and third party applications in Barometer repository that will be available in the
 docker image:
@@ -251,13 +252,13 @@ Run the barometer docker image:
   The docker barometer image contains configuration for all the collectd plugins. In the command
   above we are overriding /opt/collectd/etc/collectd.conf.d by mounting a host directory
   `pwd`/../src/collectd_sample_configs thta contains only the sample configurations we are interested
-  in running.
+  in running. It's important to do this if you don't have DPDK, or RDT installed on the host.
 
 To make some changes run:
 
 .. code:: bash
 
-   sudo docker exec -tid barometer_image /bin/bash
+   sudo docker exec -ti barometer_image /bin/bash
 
 Check your docker image is running
 
@@ -267,8 +268,8 @@ Check your docker image is running
 
 Build the influxdb + Grafana docker images
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Start by installing docker compose:
+On the node where you want to run influxdb + grafana:
+1. Start by installing docker compose
 
 .. code:: bash
 
@@ -309,7 +310,7 @@ Start by installing docker compose:
 
 .. code:: bash
 
-   $ ./configure_grafana.sh
+   $ cd dashboards && ./configure_grafana.sh
 
 8. Connect to <host_ip>:3000 with a browser and log into grafana: admin/admin
 
