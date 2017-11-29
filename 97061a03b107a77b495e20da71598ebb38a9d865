@@ -22,6 +22,46 @@
       "revId": "97061a03b107a77b495e20da71598ebb38a9d865",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_7cb07443",
+        "filename": "systems/centos/7/build_base_machine.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2017-11-29T13:15:19Z",
+      "side": 1,
+      "message": "Those pkgs are needed for running Kafka. Do we really need them right now? For collectd write_kafka plugin the installing of librdkafka library should be enough.",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 10
+      },
+      "revId": "97061a03b107a77b495e20da71598ebb38a9d865",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_1caa08d4",
+        "filename": "systems/centos/7/build_base_machine.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2017-11-29T13:15:19Z",
+      "side": 1,
+      "message": "Does it work yum? \nIn the VES document the `sudo pip install kafka-python` is used instead to install the kafka-python.\nAlso, this library is required for python VES application only but not for write_kafka plugin. So, we may skip this library as VES app is not included here.",
+      "revId": "97061a03b107a77b495e20da71598ebb38a9d865",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
