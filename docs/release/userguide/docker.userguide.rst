@@ -257,7 +257,7 @@ To make some changes run:
 
 .. code:: bash
 
-   sudo docker exec -tid barometer_image /bin/bash
+   sudo docker exec -ti barometer_image /bin/bash
 
 Check your docker image is running
 
@@ -267,8 +267,8 @@ Check your docker image is running
 
 Build the influxdb + Grafana docker images
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Start by installing docker compose:
+On the node where you want to run influxdb + grafana:
+1. Start by installing docker compose
 
 .. code:: bash
 
@@ -309,7 +309,7 @@ Start by installing docker compose:
 
 .. code:: bash
 
-   $ ./configure_grafana.sh
+   $ cd dashboards && ./configure_grafana.sh
 
 8. Connect to <host_ip>:3000 with a browser and log into grafana: admin/admin
 

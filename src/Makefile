@@ -40,6 +40,7 @@ SUBDIRS += dpdk
 endif
 SUBDIRS += libpqos
 SUBDIRS += pmu-tools
+SUBDIRS += librdkafka 
 SUBDIRS += collectd
 SUBDIRS += collectd-openstack-plugins
 

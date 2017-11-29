@@ -14,6 +14,9 @@ LIBPQOS_TAG ?= master
 PMUTOOLS_URL ?= https://github.com/andikleen/pmu-tools
 PMUTOOLS_TAG ?= master
 
+KAFKA_URL ?= https://github.com/edenhill/librdkafka.git
+KAFKA_TAG ?= v0.9.5
+
 # collectd section
 COLLECTD_URL ?= https://github.com/collectd/collectd
 COLLECTD_TAG ?= collectd-5.8
