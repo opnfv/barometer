@@ -58,4 +58,3 @@ net-snmp-devel
 # install epel release required for git-review
 epel-release
 " | grep -v ^#)
-
