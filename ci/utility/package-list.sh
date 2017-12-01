@@ -20,7 +20,7 @@ COLLECTD_DIR=$WORKSPACE/collectd
 CMTCAT_DIR=$WORKSPACE/intel-cmt-cat
 
 CMTCAT_REPO=https://github.com/01org/intel-cmt-cat.git
-CMTCAT_BRANCH=master
+CMTCAT_BRANCH=8b27ad757e86a01bc51eafcb9e600605ff1beca4
 CMTCAT_VERSION="v1.1.0"
 
 COLLECTD_REPO=https://github.com/collectd/collectd.git

@@ -22,14 +22,14 @@ bash $DIR/check_git_repo.sh $CMTCAT_DIR $CMTCAT_REPO
 if [[ $? != 0 ]]
 then
 	rm -rf $CMTCAT_DIR
-        git clone --branch $CMTCAT_BRANCH $CMTCAT_REPO $CMTCAT_DIR
+        git clone $CMTCAT_REPO $CMTCAT_DIR
 	else
 	cd $CMTCAT_DIR
 	git reset HEAD --hard
         git pull
-	git checkout -f $CMTCAT_BRANCH
 fi
 cd $CMTCAT_DIR
+git checkout -b intel_rdt $CMTCAT_BRANCH
 wget https://github.com/01org/intel-cmt-cat/archive/${VERSION}.tar.gz --directory-prefix=$CMTCAT_DIR
 mv $CMTCAT_DIR/${VERSION}.tar.gz $RPM_WORKDIR/SOURCES/
 rpmbuild --define "_topdir $RPM_WORKDIR" -bb $CMTCAT_DIR/rpm/intel-cmt-cat.spec
