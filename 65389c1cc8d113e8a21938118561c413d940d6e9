@@ -1,0 +1,8 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+1: valentin boucher <valentin.boucher@kontron.com>
+Code-Review+2: Maryam Tahhan <maryam.tahhan@intel.com>
+Submitted-by: Aaron Smith <aasmith@redhat.com>
+Submitted-at: Fri, 01 Dec 2017 15:04:06 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/48171
+Project: barometer
+Branch: refs/heads/stable/euphrates
