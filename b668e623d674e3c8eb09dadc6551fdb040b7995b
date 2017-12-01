@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_d04fe1bb",
+        "filename": ".gitreview",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-12-01T14:40:53Z",
+      "side": 1,
+      "message": "why would the default branch be stable euphrates? It\u0027s always master and we cherry pick back what we need",
+      "revId": "b668e623d674e3c8eb09dadc6551fdb040b7995b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
