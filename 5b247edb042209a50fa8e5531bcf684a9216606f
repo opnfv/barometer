@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_860d2341",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2017-12-04T09:17:11Z",
+      "side": 1,
+      "message": "Thanks, will check and verify it.",
+      "parentUuid": "9a3d3df0_4d5ce125",
+      "range": {
+        "startLine": 39,
+        "startChar": 27,
+        "endLine": 39,
+        "endChar": 37
+      },
+      "revId": "5b247edb042209a50fa8e5531bcf684a9216606f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_4d2501aa",
         "filename": "docs/release/userguide/collectd.ves.userguide.rst",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2017-11-28T14:00:33Z",
       "side": 1,
       "message": "For fresh Centos 7, need to enable EPEL\n\nyum install epel-release",
+      "range": {
+        "startLine": 40,
+        "startChar": 9,
+        "endLine": 40,
+        "endChar": 37
+      },
+      "revId": "5b247edb042209a50fa8e5531bcf684a9216606f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_6608df2d",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2017-12-04T09:17:11Z",
+      "side": 1,
+      "message": "Thanks, will check and verify it.",
+      "parentUuid": "9a3d3df0_4d2501aa",
       "range": {
         "startLine": 40,
         "startChar": 9,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_c6072b1b",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2017-12-04T09:17:11Z",
+      "side": 1,
+      "message": "Will fix it.",
+      "parentUuid": "9a3d3df0_ed35f5da",
+      "range": {
+        "startLine": 71,
+        "startChar": 10,
+        "endLine": 71,
+        "endChar": 16
+      },
+      "revId": "5b247edb042209a50fa8e5531bcf684a9216606f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_6d59e535",
         "filename": "docs/release/userguide/collectd.ves.userguide.rst",
         "patchSetId": 3
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_a602e708",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2017-12-04T09:17:11Z",
+      "side": 1,
+      "message": "Will check and fix it.",
+      "parentUuid": "9a3d3df0_6d59e535",
+      "range": {
+        "startLine": 74,
+        "startChar": 4,
+        "endLine": 74,
+        "endChar": 22
+      },
+      "revId": "5b247edb042209a50fa8e5531bcf684a9216606f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_0da019f3",
         "filename": "docs/release/userguide/collectd.ves.userguide.rst",
         "patchSetId": 3
@@ -105,6 +201,30 @@
       "writtenOn": "2017-11-28T14:00:33Z",
       "side": 1,
       "message": "This directory is missing",
+      "range": {
+        "startLine": 204,
+        "startChar": 5,
+        "endLine": 204,
+        "endChar": 45
+      },
+      "revId": "5b247edb042209a50fa8e5531bcf684a9216606f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_2617f752",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2017-12-04T09:17:11Z",
+      "side": 1,
+      "message": "`$ git clone https://github.com/att/evel-test-collector.git ~/evel-test-collector` should crate this directory. Why is it missing?",
+      "parentUuid": "9a3d3df0_0da019f3",
       "range": {
         "startLine": 204,
         "startChar": 5,
