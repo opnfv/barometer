@@ -234,6 +234,30 @@
       "revId": "5b247edb042209a50fa8e5531bcf684a9216606f",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_e13b399a",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 6421
+      },
+      "writtenOn": "2017-12-04T13:40:13Z",
+      "side": 1,
+      "message": "You are correct.  Mistake in following the directions...",
+      "parentUuid": "9a3d3df0_2617f752",
+      "range": {
+        "startLine": 204,
+        "startChar": 5,
+        "endLine": 204,
+        "endChar": 45
+      },
+      "revId": "5b247edb042209a50fa8e5531bcf684a9216606f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
