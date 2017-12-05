@@ -218,8 +218,9 @@ Build the barometer docker image
 
 .. code:: bash
 
+    $ git clone https://gerrit.opnfv.org/gerrit/barometer
     $ cd barometer/docker
-    $ sudo docker build -t barometer_image --build-arg http_proxy=`echo $http_proxy` \
+    $ sudo docker build -t opnfv/barometer --build-arg http_proxy=`echo $http_proxy` \
       --build-arg https_proxy=`echo $https_proxy` -f Dockerfile .
 
 .. note::
@@ -236,29 +237,39 @@ Output should contain a barometer image:
 .. code::
 
    REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-   barometer_image     latest              05f2a3edd96b        3 hours ago         1.2GB
+   opnfv/barometer     latest              05f2a3edd96b        3 hours ago         1.2GB
    centos              7                   196e0ce0c9fb        4 weeks ago         197MB
    centos              latest              196e0ce0c9fb        4 weeks ago         197MB
    hello-world         latest              05a3bd381fc2        4 weeks ago         1.84kB
 
-Run the barometer docker image:
+Download the barometer docker image
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If you want to use a pre-built barometer image, you can pull the barometer
+image from https://hub.docker.com/r/opnfv/barometer/
 
 .. code:: bash
 
+    $ docker pull opnfv/barometer
+
+
+Run the barometer docker image
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code:: bash
+
    $ sudo docker run -tid --net=host -v `pwd`/../src/collectd_sample_configs:/opt/collectd/etc/collectd.conf.d \
-    -v /var/run:/var/run -v /tmp:/tmp --privileged barometer_image /run_collectd.sh
+    -v /var/run:/var/run -v /tmp:/tmp --privileged opnfv/barometer /run_collectd.sh
 
 .. note::
   The docker barometer image contains configuration for all the collectd plugins. In the command
   above we are overriding /opt/collectd/etc/collectd.conf.d by mounting a host directory
   `pwd`/../src/collectd_sample_configs thta contains only the sample configurations we are interested
-  in running. It's important to do this if you don't have DPDK, or RDT installed on the host.
+  in running. *It's important to do this if you don't have DPDK, or RDT installed on the host*.
 
-To make some changes run:
+To make some changes when the container is running run:
 
 .. code:: bash
 
-   sudo docker exec -ti barometer_image /bin/bash
+   sudo docker exec -ti opnfv/barometer /bin/bash
 
 Check your docker image is running
 
