@@ -218,9 +218,9 @@ Build the barometer docker image
 
 .. code:: bash
 
-    $ cd barometer
+    $ cd barometer/docker
     $ sudo docker build -t barometer_image --build-arg http_proxy=`echo $http_proxy` \
-      --build-arg https_proxy=`echo $https_proxy` -f docker/Dockerfile .
+      --build-arg https_proxy=`echo $https_proxy` -f Dockerfile .
 
 .. note::
    In the above mentioned ``docker build`` command, http_proxy & https_proxy arguments needs to be passed only if system is behind an HTTP or HTTPS proxy server.
