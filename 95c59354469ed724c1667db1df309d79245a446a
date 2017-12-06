@@ -16,6 +16,24 @@
       "revId": "95c59354469ed724c1667db1df309d79245a446a",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_ce673d24",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 6421
+      },
+      "writtenOn": "2017-12-06T20:39:34Z",
+      "side": 1,
+      "message": "Agree with Taras...  Having lots of customer issues with 5.8 due to dpdk issues..",
+      "parentUuid": "9a3d3df0_4ed96d82",
+      "revId": "95c59354469ed724c1667db1df309d79245a446a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
