@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_8e7d35b4",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 232
+      },
+      "writtenOn": "2017-12-06T21:04:29Z",
+      "side": 1,
+      "message": "before:\nAdd:\n    sudo yum update -y\n    sudo yum install -y git wget",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 8
+      },
+      "revId": "c22fed53362c7ee31cd9396a8e57cae0c2cbc5a4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_4e732de7",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 232
+      },
+      "writtenOn": "2017-12-06T21:04:29Z",
+      "side": 1,
+      "message": "sudo yum install -y gcc python-pip python-devel",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 37
+      },
+      "revId": "c22fed53362c7ee31cd9396a8e57cae0c2cbc5a4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_ee4b2185",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 232
+      },
+      "writtenOn": "2017-12-06T21:04:29Z",
+      "side": 1,
+      "message": "Also if deploying in \"node\" mode:\nsudo yum install -y libxml2-devel libpciaccess-devel yajl-devel device-mapper-devel libvirt-devel",
+      "range": {
+        "startLine": 134,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 8
+      },
+      "revId": "c22fed53362c7ee31cd9396a8e57cae0c2cbc5a4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_ce4e1d96",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 232
+      },
+      "writtenOn": "2017-12-06T21:04:29Z",
+      "side": 1,
+      "message": "needs to be \"sudo make\" on centos",
+      "range": {
+        "startLine": 148,
+        "startChar": 6,
+        "endLine": 148,
+        "endChar": 10
+      },
+      "revId": "c22fed53362c7ee31cd9396a8e57cae0c2cbc5a4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_2e46a97c",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 232
+      },
+      "writtenOn": "2017-12-06T21:04:29Z",
+      "side": 1,
+      "message": "Prerequisite step for centos as below:\n# TODO: fix this workaround for issue preventing collectd from working. As logged in in var /log/messages: ... collectd: ... check_create_dir: mkdir (/work-dir): Permission denied\n\nsudo mkdir /work-dir",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 5
+      },
+      "revId": "c22fed53362c7ee31cd9396a8e57cae0c2cbc5a4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
