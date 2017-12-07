@@ -36,9 +36,13 @@ Install Kafka Broker
 
     .. code:: bash
 
-        $ sudo yum install java-1.6.0-openjdk
+        $ sudo yum update -y
+        $ sudo yum install java-1.8.0-openjdk
+        $ sudo yum install epel-release
         $ sudo yum install python-pip
         $ sudo yum install zookeeper
+        $ sudo yum install telnet
+        $ sudo yum install wget
 
     .. note:: You may need to add the repository that contains zookeeper.
       To do so, follow the step below and try to install `zookeeper` again

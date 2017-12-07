@@ -1052,14 +1052,18 @@ On Centos, install the dependencies:
 
 .. code:: bash
 
-    $ sudo yum install libxml2-dev libpciaccess-devel yajl-devel device-mapper-devel
+    $ sudo yum install libxml2-devel libpciaccess-devel yajl-devel device-mapper-devel
 
 Install libvirt:
 
-libvirt version in package manager might be quite old and offer only limited
-functionality. Hence, building and installing libvirt from sources is recommended.
-Detailed instructions can bet found at:
-https://libvirt.org/compiling.html
+.. note:: libvirt version in package manager might be quite old and offer only
+    limited functionality. Hence, building and installing libvirt from sources
+    is recommended. Detailed instructions can bet found at:
+    https://libvirt.org/compiling.html
+
+.. code:: bash
+
+    $ sudo yum install libvirt-devel
 
 Certain metrics provided by the plugin have a requirement on a minimal version of
 the libvirt API. *File system information* statistics require a *Guest Agent (GA)*
