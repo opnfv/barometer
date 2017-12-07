@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_b9e161d2",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2017-12-07T09:50:40Z",
+      "side": 1,
+      "message": "wget is fixed already. `yum update` is something general, but let\u0027s mention it here too.",
+      "parentUuid": "9a3d3df0_8e7d35b4",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 8
+      },
+      "revId": "c22fed53362c7ee31cd9396a8e57cae0c2cbc5a4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_4e732de7",
         "filename": "docs/release/userguide/collectd.ves.userguide.rst",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2017-12-06T21:04:29Z",
       "side": 1,
       "message": "sudo yum install -y gcc python-pip python-devel",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 37
+      },
+      "revId": "c22fed53362c7ee31cd9396a8e57cae0c2cbc5a4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_19e96db8",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2017-12-07T09:50:40Z",
+      "side": 1,
+      "message": "$ sudo yum group install \u0027Development Tools\u0027 install already `gcc`. Why do you need python-devel?",
+      "parentUuid": "9a3d3df0_4e732de7",
       "range": {
         "startLine": 40,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_79c0792a",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2017-12-07T09:50:40Z",
+      "side": 1,
+      "message": "This is duplication of steps described in `virt` plugin installation. Anyway, the virt plugin guide should be updated. Thx.",
+      "parentUuid": "9a3d3df0_ee4b2185",
+      "range": {
+        "startLine": 134,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 8
+      },
+      "revId": "c22fed53362c7ee31cd9396a8e57cae0c2cbc5a4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_ce4e1d96",
         "filename": "docs/release/userguide/collectd.ves.userguide.rst",
         "patchSetId": 4
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_99c57d3e",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2017-12-07T09:50:40Z",
+      "side": 1,
+      "message": "`make` is enough and sudo is not required here. Please try to clone sources again and `make` it again from clean sources.",
+      "parentUuid": "9a3d3df0_ce4e1d96",
+      "range": {
+        "startLine": 148,
+        "startChar": 6,
+        "endLine": 148,
+        "endChar": 10
+      },
+      "revId": "c22fed53362c7ee31cd9396a8e57cae0c2cbc5a4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_2e46a97c",
         "filename": "docs/release/userguide/collectd.ves.userguide.rst",
         "patchSetId": 4
@@ -105,6 +201,30 @@
       "writtenOn": "2017-12-06T21:04:29Z",
       "side": 1,
       "message": "Prerequisite step for centos as below:\n# TODO: fix this workaround for issue preventing collectd from working. As logged in in var /log/messages: ... collectd: ... check_create_dir: mkdir (/work-dir): Permission denied\n\nsudo mkdir /work-dir",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 5
+      },
+      "revId": "c22fed53362c7ee31cd9396a8e57cae0c2cbc5a4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_d9dee510",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2017-12-07T09:50:40Z",
+      "side": 1,
+      "message": "No, it\u0027s not required. As I described in the e-mail, please remove `csv` plugin from your collectd configuration or change the the `/wirk-dir` to some other existing folder.",
+      "parentUuid": "9a3d3df0_2e46a97c",
       "range": {
         "startLine": 171,
         "startChar": 0,
