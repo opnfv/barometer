@@ -34,6 +34,24 @@
       "revId": "95c59354469ed724c1667db1df309d79245a446a",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_7a198778",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2017-12-08T14:47:20Z",
+      "side": 1,
+      "message": "As regards documenting how to disable them, that was the intention behind the note on line 262...\nI noticed the typo there on line 265 I will fix it... But I will also get the DPDK config files removed for now from inside the container in a separate patch",
+      "parentUuid": "9a3d3df0_ce673d24",
+      "revId": "95c59354469ed724c1667db1df309d79245a446a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
