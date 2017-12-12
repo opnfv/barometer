@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_9d672025",
+        "filename": "docs/release/configguide/postinstall.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-12-12T22:31:59Z",
+      "side": 1,
+      "message": "nit: Use backticks to format as monospace",
+      "range": {
+        "startLine": 39,
+        "startChar": 11,
+        "endLine": 39,
+        "endChar": 15
+      },
+      "revId": "2991bfb81fe315e369c31cdf792a5ee32b125bc7",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_fd6e2c00",
+        "filename": "docs/release/configguide/postinstall.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2017-12-12T22:31:59Z",
+      "side": 1,
+      "message": "\"by default ``measures show`` uses mean\"",
+      "range": {
+        "startLine": 42,
+        "startChar": 21,
+        "endLine": 42,
+        "endChar": 42
+      },
+      "revId": "2991bfb81fe315e369c31cdf792a5ee32b125bc7",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
