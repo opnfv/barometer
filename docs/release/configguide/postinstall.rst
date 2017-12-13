@@ -21,8 +21,8 @@ is controlled as described in the User Guide through their individual ``.conf`` 
 the ``/etc/collectd/collectd.conf.d/`` folder on the compute node(s).  In order for any changes to
 take effect, the collectd service must be stopped and then started again.
 
-Platform components validation
-------------------------------
+Platform components validation - Apex
+-------------------------------------
 The following steps describe how to perform a simple "manual" testing of the Barometer components:
 
 On the controller:
@@ -123,3 +123,42 @@ On the compute:
       | fbd06539-45dd-42c5-a991-5c5dbf679730 | event | gauge.memory_erros(overcloud-novacompute-0.jf.intel.com-mcelog)  | ok    | moderate | True    |
       | d73251a5-1c4e-4f16-bd3d-377dd1e8cdbe | event | gauge.mcelog_status(overcloud-novacompute-0.jf.intel.com-mcelog) | ok    | moderate | True    |
         [...]
+
+
+Platform components validation - Compass4nfv
+--------------------------------------------
+
+The procedure is similar to the above.
+
+The following steps describe how to perform a simple "manual" testing of the Barometer components:
+
+On the compute:
+
+1. Connect to any compute node and ensure that the collectd service is running. The log file
+   ``collectd.log`` should contain no errors and should indicate that each plugin was successfully
+   loaded. For example, ssh into a compute node and test:
+
+   .. code:: bash
+
+       $ ls /etc/collectd/collectd.conf.d/
+       $ systemctl status collectd
+       $ vi /var/log/collectd.log
+
+   The following plugings should be found loaded:
+   aodh, gnocchi, hugepages, mcelog, ovs_events, ovs_stats, cpu, interface, memory, disk, numa, virt, rrdtool
+
+2. Testing using mce-inject is similar to #2 shown above.
+
+On the controller:
+
+3. Connect to the controller and query the monitoring services. Make sure to log in to the lxc-utility
+container before using the OpenStack CLI. Please refer to this wiki for details:
+https://wiki.opnfv.org/display/compass4nfv/Containerized+Compass#ContainerizedCompass-HowtouseOpenStackCLI:
+
+   .. code:: bash
+
+      $ source ~/openrc
+      $ gnocchi metric list
+      $ aodh alarm list
+
+   The output for the gnocchi and aodh queries should be similar to the excerpts shown in #3 above.
