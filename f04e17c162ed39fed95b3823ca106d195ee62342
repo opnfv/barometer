@@ -1,0 +1,9 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+1: Taras Chornyi <tarasx.chornyi@intel.com>
+Code-Review+1: Aaron Smith <aasmith@redhat.com>
+Code-Review+2: Al Morton <acmorton@att.com>
+Submitted-by: Al Morton <acmorton@att.com>
+Submitted-at: Wed, 13 Dec 2017 19:20:03 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/48409
+Project: barometer
+Branch: refs/heads/master
