@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_f28136c4",
+        "filename": "docs/release/configguide/postinstall.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 386
+      },
+      "writtenOn": "2017-12-14T02:57:19Z",
+      "side": 1,
+      "message": "make sure login into lxc-utility container before using OpenStack CLI, suggest refering to https://wiki.opnfv.org/display/compass4nfv/Containerized+Compass#ContainerizedCompass-HowtouseOpenStackCLI",
+      "range": {
+        "startLine": 152,
+        "startChar": 2,
+        "endLine": 152,
+        "endChar": 33
+      },
+      "revId": "503a1feb84ae428448187f367d482b5aec0b0b84",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
