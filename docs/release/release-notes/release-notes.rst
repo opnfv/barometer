@@ -53,13 +53,13 @@ Release Data
 | **Project**                          | Euphrates/barometer/barometer@opnfv  |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| **Repo/commit-ID**                   | barometer/                           |
+| **Repo/commit-ID**                   | barometer/opnfv-5.1.0                |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| **Release designation**              | Euphrates 5.0                        |
+| **Release designation**              | Euphrates 5.1.0                      |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
-| **Release date**                     | October 20th, 2017                   |
+| **Release date**                     | December 15th, 2017                  |
 |                                      |                                      |
 +--------------------------------------+--------------------------------------+
 | **Purpose of the delivery**          | Official OPNFV release               |
