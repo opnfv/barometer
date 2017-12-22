@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  kafka:
+    image: barometer_kafka:latest
+    network_mode: host
+  ves:
+    image: barometer_ves:latest
+    network_mode: host
+    
