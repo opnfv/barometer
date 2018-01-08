@@ -10,23 +10,25 @@ OPNFV Barometer Docker User Guide
    :depth: 3
    :local:
 
-Barometer docker image description
+The intention of this user guide is to outline how to install and test the
+barometer, Influxdb and Grafana docker images that can be built from the Dockerfiles
+available in the barometer repository.
+
+
+Barometer docker images description
 -----------------------------------
+
 .. Describe the specific features and how it is realised in the scenario in a brief manner
 .. to ensure the user understand the context for the user guide instructions to follow.
 
-The intention of this user guide is to outline how to install and test the
-barometer docker image that can be built from the Dockerfile available in the
-barometer repository.
+Barometer Collectd Image
+^^^^^^^^^^^^^^^^^^^^^^^^
+The barometer Collectd docker image gives you a collectd installation that includes all
+the barometer plugins.
 
 .. note::
    The Dockerfile is available in the docker/ directory in the barometer repo.
    The Dockerfile builds a CentOS 7 docker image.
-
-The barometer docker image gives you a collectd installation that includes all
-the barometer plugins.
-
-.. note::
    The container MUST be run as a privileged container.
 
 Collectd is a daemon which collects system performance statistics periodically
@@ -58,6 +60,12 @@ docker image:
 * aodh plugin
 * Legacy/IPMI
 
+InfluxDB + Grafana Image
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+The Barometer project's InfluxDB and Grafana docker images are docker images that database and graph statistics reported
+by the Barometer Collectd docker. InfluxDB is an open-source time series database tool which stores the data from Collectd for future
+analysis via Grafana, which is a open-source metrics anlytics and visualisation suite which can be accessed through any browser. 
 
 Installing Docker
 -----------------
@@ -279,7 +287,12 @@ Check your docker image is running
    sudo docker ps
 
 Build the influxdb + Grafana docker images
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------------------
+
+
+Install docker-compose
+^^^^^^^^^^^^^^^^^^^^^^
+
 On the node where you want to run influxdb + grafana:
 1. Start by installing docker compose
 
@@ -304,27 +317,94 @@ On the node where you want to run influxdb + grafana:
 
   $ sudo docker-compose --version
 
-4. Run the get_types_db.sh script in barometer/docker
 
-5. Run the docker containers:
+Download the InfluxDB and Grafana docker image
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If you wish to use pre-built barometer project's influxdb and grafana images, you can pull the
+images from https://hub.docker.com/r/opnfv/barometer-influxdb/ and https://hub.docker.com/r/opnfv/barometer-grafana/
+
+.. note::
+ If your preference is to build images locally please see sections `Build the InfluxDB Image`_ and 
+ `Build the Grafana Image`_ 
+ 
+.. code:: bash
+
+    $ docker pull opnfv/barometer_influxdb
+    $ docker pull opnfv/barometer_grafana
+
+Run the Influxdb and Grafana Images
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Launch containers:
 
 .. code:: bash
 
-  $ sudo docker-compose up -d
+   $ cd barometer/docker/
+   $ sudo docker-compose up -d
 
-6. Check your docker images are running
+Check your docker images are running
 
 .. code:: bash
 
    $ sudo docker ps
 
-7. Run the script to create the CPU dashboard barometer/docker:
+Connect to <host_ip>:3000 with a browser and log into grafana: admin/admin
+
+
+Build the InfluxDB Image
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Build influxdb image from Dockerfile
 
 .. code:: bash
 
-   $ cd dashboards && ./configure_grafana.sh
+  $ cd barometer/docker/barometer-influxdb
+  $ sudo docker build -t barometer_influxdb --build-arg http_proxy=`echo $http_proxy` \
+      --build-arg https_proxy=`echo $https_proxy` -f Dockerfile .
 
-8. Connect to <host_ip>:3000 with a browser and log into grafana: admin/admin
+.. note::
+      In the above mentioned ``docker build`` command, http_proxy & https_proxy arguments needs to be passed only if system is behind an HTTP or HTTPS proxy server.
+
+Check the docker images:
+
+.. code:: bash
+
+   $ sudo docker images
+
+Output should contain an influxdb image:
+
+.. code::
+
+   REPOSITORY             TAG                 IMAGE ID            CREATED            SIZE
+   barometer_influxdb     latest              1e4623a59fe5        3 days ago         191MB
+
+
+Build the Grafana Image
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Build Grafana image from Dockerfile
+
+.. code:: bash
+
+  $ cd barometer/docker/barometer-grafana
+  $ sudo docker build -t barometer_grafana --build-arg http_proxy=`echo $http_proxy` \
+      --build-arg https_proxy=`echo $https_proxy` -f Dockerfile .
+
+.. note::
+         In the above mentioned ``docker build`` command, http_proxy & https_proxy arguments needs to be passed only if system is behind an HTTP or HTTPS proxy server.
+
+Check the docker images:
+
+.. code:: bash
+
+   $ sudo docker images
+
+Output should contain an influxdb image:
+
+.. code::
+
+   REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
+   barometer_grafana      latest              05f2a3edd96b        3 hours ago         1.2GB
 
 Testing the docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^
