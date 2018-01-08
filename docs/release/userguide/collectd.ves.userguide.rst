@@ -8,16 +8,26 @@ VES Application User Guide
 
 The Barometer repository contains a python based application for VES (VNF Event
 Stream) which receives the `collectd`_ specific metrics via `Kafka`_ bus,
-normalizes the metric data into the VES message and sends it into the VES
+normalizes the metric data into the VES message format and sends it into the VES
 collector.
 
 The application currently supports pushing platform relevant metrics through the
 additional measurements field for VES.
 
 Collectd has a ``write_kafka`` plugin that sends collectd metrics and values to
-a Kafka Broker. The VES application uses Kafka Consumer to receive metrics
-from the Kafka Broker.
+a Kafka Broker. The VES message formatting application, ves_app.py, receives metrics from 
+the Kafka broker, normalises the data to VES message format for forwarding to VES collector.
+The VES message formatting application will be simply referred to as the "VES application" 
+within this userguide
 
+The VES application can be run in host mode (baremetal), hypervisor mode (within the hypervisor) or guest
+mode(within a VM). The main software blocks that are required to run the VES application
+demo are:
+
+        1. Kafka
+        2. Collectd
+        3. VES Application
+        4. VES Collector
 
 Install Kafka Broker
 --------------------
@@ -85,11 +95,11 @@ Install Kafka Broker
     .. code:: bash
 
         $ sudo pip install kafka-python
-        $ wget "https://archive.apache.org/dist/kafka/0.11.0.0/kafka_2.11-0.11.0.0.tgz"
-        $ tar -xvzf kafka_2.11-0.11.0.0.tgz
-        $ sed -i -- 's/#delete.topic.enable=true/delete.topic.enable=true/' kafka_2.11-0.11.0.0/config/server.properties
-        $ sudo nohup kafka_2.11-0.11.0.0/bin/kafka-server-start.sh \
-          kafka_2.11-0.11.0.0/config/server.properties > kafka_2.11-0.11.0.0/kafka.log 2>&1 &
+        $ wget "https://archive.apache.org/dist/kafka/1.0.0/kafka_2.11-1.0.0.tgz"
+        $ tar -xvzf kafka_2.11-1.0.0.tgz
+        $ sed -i -- 's/#delete.topic.enable=true/delete.topic.enable=true/' kafka_2.11-1.0.0/config/server.properties
+        $ sudo nohup kafka_2.11-1.0.0/bin/kafka-server-start.sh \
+          kafka_2.11-1.0.0/config/server.properties > kafka_2.11-1.0.0/kafka.log 2>&1 &
 
     .. note:: If Kafka server fails to start, please check if the system IP
         address is associated with the hostname in the static host lookup
@@ -108,14 +118,14 @@ Install Kafka Broker
 
     .. code:: bash
 
-        $ echo "Hello, World" | kafka_2.11-0.11.0.0/bin/kafka-console-producer.sh \
+        $ echo "Hello, World" | kafka_2.11-1.0.0/bin/kafka-console-producer.sh \
           --broker-list localhost:9092 --topic TopicTest > /dev/null
 
     Consumer (Receive "Hello World"):
 
     .. code:: bash
 
-        $ kafka_2.11-0.11.0.0/bin/kafka-console-consumer.sh --zookeeper \
+        $ kafka_2.11-1.0.0/bin/kafka-console-consumer.sh --zookeeper \
           localhost:2181 --topic TopicTest --from-beginning --max-messages 1 --timeout-ms 3000
 
 
@@ -162,17 +172,148 @@ Build collectd with Kafka support:
     $ ./configure --with-librdkafka=/usr --without-perl-bindings --enable-perl=no
     $ make && sudo make install
 
-Configure and start collectd. Create ``/opt/collectd/etc/collectd.conf``
-collectd configuration file as following:
+.. note::
 
-.. note:: The following collectd configuration file allows user to run VES
-   application in the guest mode. To run the VES in host mode, please follow
-   the `Configure VES in host mode`_ steps.
+   If installing from git repository ``collectd.conf`` configuration file will be located in directory ``/opt/collectd/etc/``
+   If installing from via a package manager ``collectd.conf`` configuration file will be located in directory ``/etc/collectd/``
 
-.. include:: collectd-ves-guest.conf
-   :code: bash
+Configure and start collectd. Modify Collectd configuration file ``collectd.conf``
+as following:
+
+- Within a VM: `Setup VES application (guest mode)`_
+- On Host with VMs: `Setup VES application (hypervisor mode)`_
+- No Virtualization: `Setup VES application (host mode)`_
 
 Start collectd process as a service as described in :ref:`install-collectd-as-a-service`.
+
+Setup VES application (guest mode)
+----------------------------------
+
+In this mode Collectd runs from within a VM and sends metrics to the VES collector.
+
+.. figure:: ves-app-guest-mode.png
+
+    VES guest mode setup
+
+Install dependencies:
+
+.. code:: bash
+
+    $ sudo pip install pyyaml python-kafka
+
+Clone Barometer repo and start the VES application:
+
+.. code:: bash
+
+    $ git clone https://gerrit.opnfv.org/gerrit/barometer 
+    $ cd barometer/3rd_party/collectd-ves-app/ves_app
+    $ nohup python ves_app.py --events-schema=guest.yaml --config=ves_app_config.conf > ves_app.stdout.log &
+
+
+Modify Collectd configuration file ``collectd.conf`` as following:
+
+.. include:: collectd-ves-guest.conf
+      :code: bash
+
+
+Start collectd process as a service as described in :ref:`install-collectd-as-a-service`.
+
+.. note::
+
+    The above configuration is used for a localhost. The VES application can be
+    configured to use remote real VES collector and remote Kafka server. To do
+    so, the IP addresses/host names needs to be changed in ``collector.conf``
+    and ``ves_app_config.conf`` files accordingly.
+
+
+Setup VES application (hypervisor mode)
+---------------------------------
+
+This mode is used to collect hypervisor statistics about guest VMs and to send
+those metrics into the VES collector. Also, this mode collects host statistics
+and send them as part of the guest VES message.
+
+.. figure:: ves-app-hypervisor-mode.png
+
+    VES hypervisor mode setup
+
+Running the VES in hypervisor mode looks like steps described in
+`Setup VES application (guest mode)`_ but with the following exceptions:
+
+- The ``hypervisor.yaml`` configuration file should be used instead of ``guest.yaml``
+  file when VES application is running.
+
+- Collectd should be running on hypervisor machine only.
+
+- Addition ``libvirtd`` dependencies needs to be installed on  where
+  collectd daemon is running. To install those dependencies, see :ref:`virt-plugin`
+  section of Barometer user guide.
+
+- The next (minimum) configuration needs to be provided to collectd to be able
+  to generate the VES message to VES collector.
+
+.. note::
+   At least one VM instance should be up and running by hypervisor on the host.
+
+.. include:: collectd-ves-hypervisor.conf
+      :code: bash
+
+
+Start collectd process as a service as described in :ref:`install-collectd-as-a-service`.
+
+.. note::
+
+    The above configuration is used for a localhost. The VES application can be
+    configured to use remote real VES collector and remote Kafka server. To do
+    so, the IP addresses/host names needs to be changed in ``collector.conf``
+    and ``ves_app_config.conf`` files accordingly.
+
+
+.. note:: The list of the plugins can be extented depends on your needs.
+
+
+Setup VES application (host mode)
+----------------------------------
+
+This mode is used to collect system wide metrics and to send those metrics into the VES collector.
+It is most suitable for running within a baremetal platform. 
+
+Install dependencies:
+
+.. code:: bash
+
+    $ sudo pip install pyyaml
+
+Clone Barometer repo and start the VES application:
+
+.. code:: bash
+
+    $ git clone https://gerrit.opnfv.org/gerrit/barometer 
+    $ cd barometer/3rd_party/collectd-ves-app/ves_app
+    $ nohup python ves_app.py --events-schema=host.yaml --config=ves_app_config.conf > ves_app.stdout.log &
+
+
+.. figure:: ves-app-host-mode.png
+
+    VES Native mode setup
+
+Modify collectd configuration file ``collectd.conf`` as following:
+
+.. include:: collectd-ves-host.conf
+                    :code: bash
+
+Start collectd process as a service as described in :ref:`install-collectd-as-a-service`.
+
+.. note::
+
+    The above configuration is used for a localhost. The VES application can be
+    configured to use remote VES collector and remote Kafka server. To do
+    so, the IP addresses/host names needs to be changed in ``collector.conf``
+    and ``ves_app_config.conf`` files accordingly.
+
+
+.. note:: The list of the plugins can be extented depends on your needs.
+
 
 
 Setup VES Test Collector
@@ -209,80 +350,6 @@ Start VES Test Collector:
     $ nohup python ./collector.py --config ../../config/collector.conf > collector.stdout.log &
 
 
-Setup VES application (guest mode)
-----------------------------------
-
-This mode is used to collect guest VM statistics provided by collectd
-and send those metrics into the VES collector.
-
-.. figure:: ves-app-guest-mode.png
-
-    VES guest mode setup
-
-Install dependencies:
-
-.. code:: bash
-
-    $ sudo pip install pyyaml
-
-Clone Barometer repo and start the VES application:
-
-.. code:: bash
-
-    $ git clone https://gerrit.opnfv.org/gerrit/barometer ~/barometer
-    $ cd ~/barometer/3rd_party/collectd-ves-app/ves_app
-    $ nohup python ves_app.py --events-schema=guest.yaml --config=ves_app_config.conf > ves_app.stdout.log &
-
-.. note::
-
-    The above configuration is used for a localhost. The VES application can be
-    configured to use remote real VES collector and remote Kafka server. To do
-    so, the IP addresses/host names needs to be changed in ``collector.conf``
-    and ``ves_app_config.conf`` files accordingly.
-
-
-Configure VES in host mode
---------------------------
-
-This mode is used to collect hypervisor statistics about guest VMs and to send
-those metrics into the VES collector. Also, this mode collects host statistics
-and send them as part of the guest VES message.
-
-.. figure:: ves-app-host-mode.png
-
-    VES host mode setup
-
-Running the VES in host mode looks like steps described in
-`Setup VES application (guest mode)`_ but with the following exceptions:
-
-- The ``host.yaml`` configuration file should be used instead of ``guest.yaml``
-  file when VES application is running.
-
-- Collectd should be running on host machine only.
-
-- Addition ``libvirtd`` dependencies needs to be installed on a host where
-  collectd daemon is running. To install those dependencies, see :ref:`virt-plugin`
-  section of Barometer user guide.
-
-- At least one VM instance should be up and running by hypervisor on the host.
-
-- The next (minimum) configuration needs to be provided to collectd to be able
-  to generate the VES message to VES collector.
-
-  .. include:: collectd-ves-host.conf
-     :code: bash
-
-  to apply this configuration, the ``/opt/collectd/etc/collectd.conf`` file
-  needs to be modified based on example above and collectd daemon needs to
-  be restarted using the command below:
-
-  .. code:: bash
-
-    $ sudo systemctl restart collectd
-
-.. note:: The list of the plugins can be extented depends on your needs.
-
-
 VES application configuration description
 -----------------------------------------
 
@@ -299,7 +366,7 @@ REST resources are of the form::
     {ServerRoot}/eventListener/v{apiVersion}/eventBatch`
 
 Within the VES directory (``3rd_party/collectd-ves-app/ves_app``) there is a
-configuration file called ``ves_app.conf``. The description of the
+configuration file called ``ves_app_conf.conf``. The description of the
 configuration options are described below:
 
 **Domain** *"host"*
@@ -310,10 +377,10 @@ configuration options are described below:
   VES port (default: ``30000``)
 
 **Path** *"path"*
-  Used as the "optionalRoutingPath" element in the REST path (default: empty)
+  Used as the "optionalRoutingPath" element in the REST path (default: ``vendor_event_listener``)
 
 **Topic** *"path"*
-  Used as the "topicName" element in the REST  path (default: empty)
+  Used as the "topicName" element in the REST  path (default: ``example_vnf``)
 
 **UseHttps** *true|false*
   Allow application to use HTTPS instead of HTTP (default: ``false``)
@@ -329,7 +396,7 @@ configuration options are described below:
   Vendor Event Listener (default: ``20``)
 
 **ApiVersion** *version*
-  Used as the "apiVersion" element in the REST path (default: ``5.1``)
+  Used as the "apiVersion" element in the REST path (default: ``3``)
 
 **KafkaPort** *port*
   Kafka Port (Default ``9092``)
