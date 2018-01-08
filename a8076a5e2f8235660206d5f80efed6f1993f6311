@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_8547a276",
+        "filename": "docker/kafka/Dockerfile",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-08T09:44:54Z",
+      "side": 1,
+      "message": "to be safe we should update this to ${repos_dir} just in case someone changes workdir before this step in the future",
+      "range": {
+        "startLine": 18,
+        "startChar": 20,
+        "endLine": 18,
+        "endChar": 21
+      },
+      "revId": "a8076a5e2f8235660206d5f80efed6f1993f6311",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
