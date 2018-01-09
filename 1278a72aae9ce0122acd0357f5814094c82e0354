@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_0a327a5e",
+        "filename": "docker/ves/Dockerfile",
+        "patchSetId": 7
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-09T10:29:55Z",
+      "side": 1,
+      "message": "would be safer to use ${repos_dir} just in case any steps change in the future",
+      "range": {
+        "startLine": 16,
+        "startChar": 22,
+        "endLine": 16,
+        "endChar": 23
+      },
+      "revId": "1278a72aae9ce0122acd0357f5814094c82e0354",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_4a0f6288",
+        "filename": "docker/ves/Dockerfile",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-09T10:29:55Z",
+      "side": 1,
+      "message": "why use entrypoint and cmd I think you can do something like: ENTRYPOINT [\"./start_ves_app.sh\",\"native.yaml\"]\n\nbut if you want to allow more flexibility in the future in terms of the YAML that\u0027s being used - in that the user can override it from the docker commandline you could use\nCMD [\"./start_ves_app.sh\",\"native.yaml\"] please see: \nhttps://www.ctl.io/developers/blog/post/dockerfile-entrypoint-vs-cmd/",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 10
+      },
+      "revId": "1278a72aae9ce0122acd0357f5814094c82e0354",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
