@@ -1,0 +1,343 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_7e1e6460",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-10T14:14:16Z",
+      "side": 1,
+      "message": "receives*",
+      "range": {
+        "startLine": 18,
+        "startChar": 68,
+        "endLine": 18,
+        "endChar": 76
+      },
+      "revId": "a6190910f1f259b688db7c0f728a55d559069936",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_5e23a0a6",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-10T14:14:16Z",
+      "side": 1,
+      "message": "VES",
+      "range": {
+        "startLine": 19,
+        "startChar": 78,
+        "endLine": 19,
+        "endChar": 81
+      },
+      "revId": "a6190910f1f259b688db7c0f728a55d559069936",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_3e769ca4",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-10T14:14:16Z",
+      "side": 1,
+      "message": "can we add a note that collectd is running inside the guest and sending metrics to a collectd instance running on the host",
+      "revId": "a6190910f1f259b688db7c0f728a55d559069936",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_fe31d4ed",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-10T14:14:16Z",
+      "side": 1,
+      "message": "~/barometer isn\u0027t needed",
+      "range": {
+        "startLine": 208,
+        "startChar": 58,
+        "endLine": 208,
+        "endChar": 69
+      },
+      "revId": "a6190910f1f259b688db7c0f728a55d559069936",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_de2e908b",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-10T14:14:16Z",
+      "side": 1,
+      "message": "would suggest removing relative paths\nso cd barometer",
+      "range": {
+        "startLine": 209,
+        "startChar": 8,
+        "endLine": 209,
+        "endChar": 11
+      },
+      "revId": "a6190910f1f259b688db7c0f728a55d559069936",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_be42ac3b",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-10T14:14:16Z",
+      "side": 1,
+      "message": "or modify - I would prefer to modify the existing conf file... rather than creating a new one...",
+      "range": {
+        "startLine": 213,
+        "startChar": 0,
+        "endLine": 213,
+        "endChar": 6
+      },
+      "revId": "a6190910f1f259b688db7c0f728a55d559069936",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_fe48b45d",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-10T14:14:16Z",
+      "side": 1,
+      "message": "would prefer to call this hypervisor mode than Host mode.",
+      "range": {
+        "startLine": 229,
+        "startChar": 23,
+        "endLine": 229,
+        "endChar": 27
+      },
+      "revId": "a6190910f1f259b688db7c0f728a55d559069936",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_de45f043",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-10T14:14:16Z",
+      "side": 1,
+      "message": "you will need to extend this to cover the full title.",
+      "range": {
+        "startLine": 230,
+        "startChar": 1,
+        "endLine": 230,
+        "endChar": 5
+      },
+      "revId": "a6190910f1f259b688db7c0f728a55d559069936",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_5e71e0a6",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-10T14:14:16Z",
+      "side": 1,
+      "message": "can you make this bold or highlight it as a note with .. note::",
+      "range": {
+        "startLine": 252,
+        "startChar": 2,
+        "endLine": 252,
+        "endChar": 78
+      },
+      "revId": "a6190910f1f259b688db7c0f728a55d559069936",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_be690cc0",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-10T14:14:16Z",
+      "side": 1,
+      "message": "remove real*",
+      "range": {
+        "startLine": 268,
+        "startChar": 29,
+        "endLine": 268,
+        "endChar": 33
+      },
+      "revId": "a6190910f1f259b688db7c0f728a55d559069936",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_1e7bd88c",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-10T14:14:16Z",
+      "side": 1,
+      "message": "can we call this host mode",
+      "range": {
+        "startLine": 276,
+        "startChar": 23,
+        "endLine": 276,
+        "endChar": 29
+      },
+      "revId": "a6190910f1f259b688db7c0f728a55d559069936",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_7e6ca4d0",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-10T14:14:16Z",
+      "side": 1,
+      "message": "you will need to extend this to cover the length of the full title",
+      "range": {
+        "startLine": 277,
+        "startChar": 7,
+        "endLine": 277,
+        "endChar": 9
+      },
+      "revId": "a6190910f1f259b688db7c0f728a55d559069936",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_9e66c8eb",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-10T14:14:16Z",
+      "side": 1,
+      "message": "platform rather than system",
+      "range": {
+        "startLine": 279,
+        "startChar": 29,
+        "endLine": 279,
+        "endChar": 35
+      },
+      "revId": "a6190910f1f259b688db7c0f728a55d559069936",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_fe5f140d",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-10T14:14:16Z",
+      "side": 1,
+      "message": "would prefer to modify the existing /opt/collectd/etc/collectd.conf to include the appropriate configuration... \n\nAlso please note that if you install collectd from a package it gets installed in a different location:\n/etc/collectd/collectd.conf... so it maybe better to refer to this line generically",
+      "range": {
+        "startLine": 301,
+        "startChar": 0,
+        "endLine": 301,
+        "endChar": 6
+      },
+      "revId": "a6190910f1f259b688db7c0f728a55d559069936",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_de5cd01b",
+        "filename": "docs/release/userguide/collectd.ves.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-10T14:14:16Z",
+      "side": 1,
+      "message": "please remove real",
+      "range": {
+        "startLine": 311,
+        "startChar": 29,
+        "endLine": 311,
+        "endChar": 33
+      },
+      "revId": "a6190910f1f259b688db7c0f728a55d559069936",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
