@@ -9,12 +9,13 @@ RUN pip install pyyaml \
                 kafka-python
 
 ENV repos_dir /src
+ENV ves_dir barometer/3rd_party/collectd-ves-app/ves_app
 
 WORKDIR ${repos_dir}
 RUN git clone https://gerrit.opnfv.org/gerrit/barometer
-WORKDIR barometer/3rd_party/collectd-ves-app/ves_app
-COPY start_ves_app.sh ${repos_dir}
-RUN chmod 755 start_ves_app.sh
+WORKDIR ${ves_dir}
+COPY start_ves_app.sh ${ves_dir}/start_ves_app.sh
+RUN chmod +x ${ves_dir}/start_ves_app.sh
 
 ENTRYPOINT ["./start_ves_app.sh"]
 CMD ["host.yaml"]
