@@ -291,69 +291,6 @@ Check your docker image is running
 
 Build the influxdb + Grafana docker images
 ------------------------------------------
-
-
-Install docker-compose
-^^^^^^^^^^^^^^^^^^^^^^
-
-On the node where you want to run influxdb + grafana:
-1. Start by installing docker compose
-
-.. code:: bash
-
-   $ sudo curl -L https://github.com/docker/compose/releases/download/1.17.0/docker-compose-`uname -s`-`uname -m` -o /usr/bin/docker-compose
-
-.. note::
-  Use the latest Compose release number in the download command. The above command is an example,
-  and it may become out-of-date. To ensure you have the latest version, check the Compose repository
-  release page on GitHub.
-
-2. Apply executable permissions to the binary:
-
-.. code:: bash
-
-   $ sudo chmod +x /usr/bin/docker-compose
-
-3. Test the installation.
-
-.. code:: bash
-
-  $ sudo docker-compose --version
-
-
-Download the InfluxDB and Grafana docker image
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you wish to use pre-built barometer project's influxdb and grafana images, you can pull the
-images from https://hub.docker.com/r/opnfv/barometer-influxdb/ and https://hub.docker.com/r/opnfv/barometer-grafana/
-
-.. note::
- If your preference is to build images locally please see sections `Build the InfluxDB Image`_ and
- `Build the Grafana Image`_
-
-.. code:: bash
-
-    $ docker pull opnfv/barometer-influxdb
-    $ docker pull opnfv/barometer-grafana
-
-Run the Influxdb and Grafana Images
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Launch containers:
-
-.. code:: bash
-
-   $ cd barometer/docker/
-   $ sudo docker-compose up -d
-
-Check your docker images are running
-
-.. code:: bash
-
-   $ sudo docker ps
-
-Connect to <host_ip>:3000 with a browser and log into grafana: admin/admin
-
-
 Build the InfluxDB Image
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -409,6 +346,39 @@ Output should contain an influxdb image:
 
    REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
    barometer-grafana      latest              05f2a3edd96b        3 hours ago         1.2GB
+
+
+Download the InfluxDB and Grafana docker image
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If you wish to use pre-built barometer project's influxdb and grafana images, you can pull the
+images from https://hub.docker.com/r/opnfv/barometer-influxdb/ and https://hub.docker.com/r/opnfv/barometer-grafana/
+
+.. note::
+ If your preference is to build images locally please see sections `Build the InfluxDB Image`_ and
+ `Build the Grafana Image`_
+
+.. code:: bash
+
+    $ docker pull opnfv/barometer-influxdb
+    $ docker pull opnfv/barometer-grafana
+
+Run the Influxdb and Grafana Images
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Launch containers:
+
+.. code:: bash
+
+   $ cd barometer/docker/
+   $ sudo docker-compose up -d
+
+Check your docker images are running
+
+.. code:: bash
+
+   $ sudo docker ps
+
+Connect to <host_ip>:3000 with a browser and log into grafana: admin/admin
 
 Testing the docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^
