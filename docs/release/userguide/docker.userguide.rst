@@ -11,8 +11,8 @@ OPNFV Barometer Docker User Guide
    :local:
 
 The intention of this user guide is to outline how to install and test the
-barometer, Influxdb and Grafana docker images that can be built from the Dockerfiles
-available in the barometer repository.
+Barometer projects Collectd, Influxdb and Grafana docker images which can be built from the Dockerfiles
+available within the barometer repository.
 
 
 Barometer docker images description
@@ -23,11 +23,11 @@ Barometer docker images description
 
 Barometer Collectd Image
 ^^^^^^^^^^^^^^^^^^^^^^^^
-The barometer Collectd docker image gives you a collectd installation that includes all
+The barometer collectd docker image gives you a collectd installation that includes all
 the barometer plugins.
 
 .. note::
-   The Dockerfile is available in the docker/ directory in the barometer repo.
+   The Dockerfile is available in the docker/barometer-collectd directory in the barometer repo.
    The Dockerfile builds a CentOS 7 docker image.
    The container MUST be run as a privileged container.
 
@@ -35,10 +35,10 @@ Collectd is a daemon which collects system performance statistics periodically
 and provides a variety of mechanisms to publish the collected metrics. It
 supports more than 90 different input and output plugins. Input plugins
 retrieve metrics and publish them to the collectd deamon, while output plugins
-publish the data they receive to an end point. collectd also has infrastructure
+publish the data they receive to an end point. Collectd also has infrastructure
 to support thresholding and notification.
 
-Barometer docker image has enabled the following collectd plugins (in addition
+Collectd docker image has enabled the following collectd plugins (in addition
 to the standard collectd plugins):
 
 * hugepages plugin
@@ -64,8 +64,8 @@ InfluxDB + Grafana Images
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Barometer project's InfluxDB and Grafana docker images are 2 docker images that database and graph
-statistics reported by the Barometer Collectd docker. InfluxDB is an open-source time series database
-tool which stores the data from Collectd for future analysis via Grafana, which is a open-source
+statistics reported by the Barometer collectd docker. InfluxDB is an open-source time series database
+tool which stores the data from collectd for future analysis via Grafana, which is a open-source
 metrics anlytics and visualisation suite which can be accessed through any browser.
 
 Installing Docker
@@ -222,14 +222,14 @@ To try something more ambitious, you can run an Ubuntu container with:
 
     $ docker run -it ubuntu bash
 
-Build the barometer docker image
+Build the collectd docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code:: bash
 
     $ git clone https://gerrit.opnfv.org/gerrit/barometer
-    $ cd barometer/docker
-    $ sudo docker build -t opnfv/barometer --build-arg http_proxy=`echo $http_proxy` \
+    $ cd barometer/docker/barometer-collectd
+    $ sudo docker build -t opnfv/barometer-collectd --build-arg http_proxy=`echo $http_proxy` \
       --build-arg https_proxy=`echo $https_proxy` -f Dockerfile .
 
 .. note::
@@ -242,35 +242,35 @@ Check the docker images:
 
    $ sudo docker images
 
-Output should contain a barometer image:
+Output should contain a barometer-collectd image:
 
 .. code::
 
-   REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-   opnfv/barometer     latest              05f2a3edd96b        3 hours ago         1.2GB
-   centos              7                   196e0ce0c9fb        4 weeks ago         197MB
-   centos              latest              196e0ce0c9fb        4 weeks ago         197MB
-   hello-world         latest              05a3bd381fc2        4 weeks ago         1.84kB
+   REPOSITORY                   TAG                 IMAGE ID            CREATED             SIZE
+   opnfv/barometer-collectd     latest              05f2a3edd96b        3 hours ago         1.2GB
+   centos                       7                   196e0ce0c9fb        4 weeks ago         197MB
+   centos                       latest              196e0ce0c9fb        4 weeks ago         197MB
+   hello-world                  latest              05a3bd381fc2        4 weeks ago         1.84kB
 
-Download the barometer docker image
+Download the collectd docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you want to use a pre-built barometer image, you can pull the barometer
-image from https://hub.docker.com/r/opnfv/barometer/
+image from https://hub.docker.com/r/opnfv/barometer-collectd/
 
 .. code:: bash
 
-    $ docker pull opnfv/barometer
+    $ docker pull opnfv/barometer-collectd
 
 
-Run the barometer docker image
+Run the collectd docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. code:: bash
 
    $ sudo docker run -tid --net=host -v `pwd`/../src/collectd_sample_configs:/opt/collectd/etc/collectd.conf.d \
-    -v /var/run:/var/run -v /tmp:/tmp --privileged opnfv/barometer /run_collectd.sh
+    -v /var/run:/var/run -v /tmp:/tmp --privileged opnfv/barometer-collectd /run_collectd.sh
 
 .. note::
-  The docker barometer image contains configuration for all the collectd plugins. In the command
+  The docker collectd image contains configuration for all the collectd plugins. In the command
   above we are overriding /opt/collectd/etc/collectd.conf.d by mounting a host directory
   `pwd`/../src/collectd_sample_configs that contains only the sample configurations we are interested
   in running. *It's important to do this if you don't have DPDK, or RDT installed on the host*.
@@ -281,7 +281,7 @@ To make some changes when the container is running run:
 
 .. code:: bash
 
-   sudo docker exec -ti opnfv/barometer /bin/bash
+   sudo docker exec -ti opnfv/barometer-collectd /bin/bash
 
 Check your docker image is running
 
@@ -338,11 +338,12 @@ images from https://hub.docker.com/r/opnfv/barometer-influxdb/ and https://hub.d
 Run the Influxdb and Grafana Images
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+The folder ``docker/docker-influxdb`` contains a docker-compose.yml file which launches influxdb and grafana images
 Launch containers:
 
 .. code:: bash
 
-   $ cd barometer/docker/
+   $ cd barometer/docker/docker-influxdb
    $ sudo docker-compose up -d
 
 Check your docker images are running
@@ -362,7 +363,7 @@ Build influxdb image from Dockerfile
 .. code:: bash
 
   $ cd barometer/docker/barometer-influxdb
-  $ sudo docker build -t barometer-influxdb --build-arg http_proxy=`echo $http_proxy` \
+  $ sudo docker build -t opnfv/barometer-influxdb --build-arg http_proxy=`echo $http_proxy` \
       --build-arg https_proxy=`echo $https_proxy` -f Dockerfile .
 
 .. note::
@@ -379,9 +380,26 @@ Output should contain an influxdb image:
 
 .. code::
 
-   REPOSITORY             TAG                 IMAGE ID            CREATED            SIZE
-   barometer-influxdb     latest              1e4623a59fe5        3 days ago         191MB
+   REPOSITORY                   TAG                 IMAGE ID            CREATED            SIZE
+   opnfv/barometer-influxdb     latest              1e4623a59fe5        3 days ago         191MB
 
+Run the InfluxDB  docker image
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code:: bash
+
+   $ sudo docker run -tid --net=host -v /var/lib/influxdb:/var/lib/influxdb -p 8086:8086 opnfv/barometer-influxdb
+
+To make some changes when the container is running run:
+
+.. code:: bash
+
+   sudo docker exec -ti opnfv/barometer-influxdb /bin/bash
+
+Check your docker image is running
+
+.. code:: bash
+
+   sudo docker ps
 
 Build the Grafana Image
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -391,7 +409,7 @@ Build Grafana image from Dockerfile
 .. code:: bash
 
   $ cd barometer/docker/barometer-grafana
-  $ sudo docker build -t barometer-grafana --build-arg http_proxy=`echo $http_proxy` \
+  $ sudo docker build -t opnfv/barometer-grafana --build-arg http_proxy=`echo $http_proxy` \
       --build-arg https_proxy=`echo $https_proxy` -f Dockerfile .
 
 .. note::
@@ -407,8 +425,27 @@ Output should contain an influxdb image:
 
 .. code::
 
-   REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
-   barometer-grafana      latest              05f2a3edd96b        3 hours ago         1.2GB
+   REPOSITORY                   TAG                 IMAGE ID            CREATED             SIZE
+   opnfv/barometer-grafana      latest              05f2a3edd96b        3 hours ago         1.2GB
+
+Run the Grafana docker image
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code:: bash
+
+   $ sudo docker run -tid --net=host -v /var/lib/grafana:/var/lib/grafana -p 3000:3000 opnfv/barometer-grafana
+
+To make some changes when the container is running run:
+
+.. code:: bash
+
+   sudo docker exec -ti opnfv/barometer-grafana /bin/bash
+
+Check your docker image is running
+
+.. code:: bash
+
+   sudo docker ps
+
 
 Testing the docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^

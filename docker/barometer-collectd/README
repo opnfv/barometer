@@ -25,7 +25,7 @@ This Dockerfile provides instruction for building collect in isolated container
 3. INSTALLATION NOTES
 
 To build docker container run
-sudo docker build -f ./docker/Dockerfile .
+sudo docker build -f ./docker/barometer-collectd/Dockerfile .
 from barometer folder.
 
 To run builded image run
