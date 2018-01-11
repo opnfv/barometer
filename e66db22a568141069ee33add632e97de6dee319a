@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_6047e2bc",
+        "filename": "docker/barometer-ves/Dockerfile",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 232
+      },
+      "writtenOn": "2018-01-11T18:27:18Z",
+      "side": 1,
+      "message": "Add license as header",
+      "revId": "e66db22a568141069ee33add632e97de6dee319a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
