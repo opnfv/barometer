@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  influxdb:
+    image: barometer-influxdb
+    network_mode: host
+    volumes:
+      - /var/lib/influxdb
+  grafana:
+    image: barometer-grafana
+    network_mode: host
+    volumes:
+      - /var/lib/grafana
