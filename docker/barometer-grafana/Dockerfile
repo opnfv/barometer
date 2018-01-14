@@ -1,6 +1,11 @@
-FROM grafana/grafana:latest
+FROM grafana/grafana:4.6.3
 
-COPY ./configure_grafana.sh /
+ENV grafana_folder /opt/grafana
+RUN mkdir -p ${grafana_folder}/dashboards/
+
+COPY ./configure_grafana.sh ${grafana_folder}
 COPY ./run.sh /
-COPY ./dashboards/ /var/lib/grafana/dashboards/
-RUN chmod 755 run.sh configure_grafana.sh
+COPY ./dashboards/ ${grafana_folder}/dashboards/
+
+WORKDIR $grafana_folder
+RUN chmod 755 /run.sh configure_grafana.sh
