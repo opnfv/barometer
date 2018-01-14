@@ -291,6 +291,23 @@ Check your docker image is running
 
 Build the influxdb + Grafana docker images
 ------------------------------------------
+
+Overview
+^^^^^^^^
+The barometer-influxdb image is based on the influxdb:1.3.7 image from the influxdb dockerhub. To view detils on the base image please
+visit `https://hub.docker.com/_/influxdb/  <https://hub.docker.com/_/influxdb/>`_ Page includes details of exposed ports and configurable enviromental variables of the
+base image.
+ 
+The barometer-grafana image is based on grafana:4.6.3 image from the grafana dockerhub. To view details on the base image please
+visit `https://hub.docker.com/r/grafana/grafana/ <https://hub.docker.com/r/grafana/grafana/>`_ .Page includes details on exposed ports and configurable enviromental variables of the
+base image.The barometer-grafana image includes pre-configured source and dashboards to display statistics exposed by the barometer-collectd image.
+The default datasource is an influxdb database running on localhost but the address of the influxdb server can be modified when launching the image
+by setting the environmental variables influxdb_host to IP or hostname of host on which influxdb server is running.
+
+Additional dashboards can be added to barometer-grafana by mapping a volumne to /opt/grafana/dashboards. Incase where a folder is mounted to this volumne 
+only files included in this folder will be visible inside barometer-grafana. To ensure all default files are also loaded please ensure they are included in 
+volumne folder been mounted. Appropiate example are given in section ``Run the Grafana docker image``
+
 Download the InfluxDB and Grafana docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you wish to use pre-built barometer project's influxdb and grafana images, you can pull the
@@ -366,7 +383,7 @@ Run the InfluxDB  docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. code:: bash
 
-   $ sudo docker run -tid --net=host -v /var/lib/influxdb:/var/lib/influxdb -p 8086:8086 opnfv/barometer-influxdb
+   $ sudo docker run -tid --net=host -v /var/lib/influxdb:/var/lib/influxdb -p 8086:8086 -p 25826:25826  opnfv/barometer-influxdb
 
 To make some changes when the container is running run:
 
@@ -379,11 +396,21 @@ Check your docker image is running
 .. code:: bash
 
    sudo docker ps
-Run the Grafana docker image
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Run the Grafana docker image 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Connecting to an influxdb instances running on local system and adding own custom dashboards
+
 .. code:: bash
 
-   $ sudo docker run -tid --net=host -v /var/lib/grafana:/var/lib/grafana -p 3000:3000 opnfv/barometer-grafana
+   $ sudo docker run -tid --net=host -v /var/lib/grafana:/var/lib/grafana -v ${PWD}/dashboards:/opt/grafana/dashboards -p 3000:3000 opnfv/barometer-grafana
+
+Connecting to an influxdb instances running on remote system with hostname of someserver and IP address of 192.168.121.111
+
+.. code:: bash
+
+   $ sudo docker run -tid --net=host -v /var/lib/grafana:/var/lib/grafana -p 3000:3000 -e influxdb_host=someserver --add-host someserver:192.168.121.111 opnfv/barometer-grafana
 
 To make some changes when the container is running run:
 
