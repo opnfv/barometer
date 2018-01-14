@@ -1,4 +1,4 @@
-# Copyright 2017 OPNFV
+# Copyright 2017-2018 OPNFV, Intel Corporation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,14 +12,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+if [ -z "${influxdb_host}" ]
+then
+  influxdb_host=localhost
+fi
 
-sleep 20 #allow 20 seconds for grafana complete initilization 
 
-curl -u admin:admin -X POST -H 'content-type: application/json'\
-      http://127.0.0.1:3000/api/datasources -d \
-      '{"name":"collectd","type":"influxdb","url":"http://localhost:8086","access":"proxy","isDefault":true,"database":"collectd","user":"admin","password":"admin","basicAuth":false}'
+while [ -z "$RETURN" ]
+do
+  sleep 1
+  RETURN=$(curl -u admin:admin -X POST -H 'content-type: application/json'\
+  http://127.0.0.1:3000/api/datasources -d \
+  '{"name":"collectd","type":"influxdb","url":"http://'"${influxdb_host}"':8086","access":"proxy","isDefault":true,"database":"collectd","user":"admin","password":"admin","basicAuth":false}')
+done
 
-FILES=/var/lib/grafana/dashboards/*.json
+FILES=/opt/grafana/dashboards/*.json
 for f in $FILES
 do
   curl -u admin:admin -X POST -H 'content-type: application/json' \
