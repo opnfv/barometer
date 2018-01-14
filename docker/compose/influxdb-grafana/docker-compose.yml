@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  influxdb:
+    image: opnfv/barometer-influxdb
+    network_mode: host
+    volumes:
+      - /var/lib/influxdb
+    ports:
+      - 8086:8086
+      - 25826:25826
+  grafana:
+    image: opnfv/barometer-grafana
+    network_mode: host
+    volumes:
+      - /var/lib/grafana
+    ports:
+      - 3000:3000
