@@ -22,14 +22,18 @@ RUN yum install -y python-pip
 RUN pip install pyyaml \
                 kafka-python
 
-ENV repos_dir /src
-ENV ves_dir barometer/3rd_party/collectd-ves-app/ves_app
 
-WORKDIR ${repos_dir}
+ENV VES_DIR /opt/ves
+ENV REPOS_DIR /src
+
+RUN mkdir -p ${VES_DIR}/yaml
+RUN mkdir -p ${VES_DIR}/config
+WORKDIR ${REPOS_DIR}
 RUN git clone https://gerrit.opnfv.org/gerrit/barometer
-WORKDIR ${ves_dir}
-COPY start_ves_app.sh ${ves_dir}/start_ves_app.sh
-RUN chmod +x ${ves_dir}/start_ves_app.sh
+COPY ./start_ves_app.sh ${VES_DIR}/
+RUN cp -rf barometer/3rd_party/collectd-ves-app/ves_app/* ${VES_DIR}
+WORKDIR ${VES_DIR}
+RUN chmod 755 ${VES_DIR}/start_ves_app.sh
 
-ENTRYPOINT ["./barometer/3rd_party/collectd-ves-app/ves_app/start_ves_app.sh"]
+ENTRYPOINT ["./start_ves_app.sh"]
 CMD ["host.yaml"]
