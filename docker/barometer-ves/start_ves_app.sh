@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright 2018 OPNFV and Intel Corporation
+#Copyright 2018 OPNFV and Intel Corporation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,12 @@
 
 YAML_FILE="$1"
 
-#wait for kafka service to be available
-while ! nc localhost  9092  < /dev/null; do sleep 1;  done
+if [ -z "${ves_kafka_host}" ]
+then
+  ves_kafka_host=localhost
+fi
 
-python ves_app.py --events-schema="$YAML_FILE" --config=ves_app_config.conf
+#wait for kafka service to be available
+while ! nc $ves_kafka_host  9092  < /dev/null; do sleep 1;  done
+
+python ves_app.py --events-schema="./yaml/$YAML_FILE" --config="./config/ves_app_config.conf"
