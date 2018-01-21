@@ -2,7 +2,7 @@
 #
 # Build a base machine for CentOS distro
 #
-# Copyright 2017 OPNFV
+# Copyright 2017-2018 OPNFV
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -57,4 +57,6 @@ net-snmp-devel
 
 # install epel release required for git-review
 epel-release
+libvirt-python
+python2-pip
 " | grep -v ^#)
