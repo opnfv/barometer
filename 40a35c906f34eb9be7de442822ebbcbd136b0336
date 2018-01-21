@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_2d99416e",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-21T14:15:21Z",
+      "side": 1,
+      "message": "Can you please include an example in a ..code block?",
+      "range": {
+        "startLine": 309,
+        "startChar": 0,
+        "endLine": 310,
+        "endChar": 100
+      },
+      "revId": "40a35c906f34eb9be7de442822ebbcbd136b0336",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_0d9c3d5c",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-21T14:15:21Z",
+      "side": 1,
+      "message": "volume*",
+      "range": {
+        "startLine": 312,
+        "startChar": 69,
+        "endLine": 312,
+        "endChar": 76
+      },
+      "revId": "40a35c906f34eb9be7de442822ebbcbd136b0336",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_6da6a9af",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-21T14:15:21Z",
+      "side": 1,
+      "message": "volume",
+      "range": {
+        "startLine": 313,
+        "startChar": 41,
+        "endLine": 313,
+        "endChar": 48
+      },
+      "revId": "40a35c906f34eb9be7de442822ebbcbd136b0336",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_adac318d",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-21T14:15:21Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 315,
+        "startChar": 0,
+        "endLine": 315,
+        "endChar": 7
+      },
+      "revId": "40a35c906f34eb9be7de442822ebbcbd136b0336",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_8da7ada6",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-21T14:15:21Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 315,
+        "startChar": 29,
+        "endLine": 315,
+        "endChar": 39
+      },
+      "revId": "40a35c906f34eb9be7de442822ebbcbd136b0336",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_cdbc15be",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-21T14:15:21Z",
+      "side": 1,
+      "message": "instance",
+      "range": {
+        "startLine": 415,
+        "startChar": 26,
+        "endLine": 415,
+        "endChar": 35
+      },
+      "revId": "40a35c906f34eb9be7de442822ebbcbd136b0336",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
