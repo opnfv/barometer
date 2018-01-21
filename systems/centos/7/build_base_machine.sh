@@ -57,4 +57,6 @@ net-snmp-devel
 
 # install epel release required for git-review
 epel-release
+libvirt-python
+python2-pip
 " | grep -v ^#)
