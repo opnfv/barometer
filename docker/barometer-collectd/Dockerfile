@@ -17,6 +17,9 @@ RUN echo "collectd_exec ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 WORKDIR ${openstack_plugins}
 RUN make
+RUN yum install -y epel-release python2-pip
+RUN pip install --upgrade pip
+RUN pip install -r ${openstack_plugins}/collectd-openstack-plugins/requirements.txt
 
 COPY run_collectd.sh /run_collectd.sh
 RUN chmod +x /run_collectd.sh
