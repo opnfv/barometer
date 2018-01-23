@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_21b78af6",
+        "filename": "docker/barometer-ves/Dockerfile",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-23T11:45:32Z",
+      "side": 1,
+      "message": "you should probably copy a default yaml to this location",
+      "range": {
+        "startLine": 29,
+        "startChar": 24,
+        "endLine": 29,
+        "endChar": 28
+      },
+      "revId": "c313790b885b900ce3735cfda7fb1d84770b7113",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_41b44ef1",
+        "filename": "docker/barometer-ves/Dockerfile",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-23T11:45:32Z",
+      "side": 1,
+      "message": "you should probably copy a default config to this location",
+      "range": {
+        "startLine": 30,
+        "startChar": 24,
+        "endLine": 30,
+        "endChar": 30
+      },
+      "revId": "c313790b885b900ce3735cfda7fb1d84770b7113",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_01bec6d4",
+        "filename": "docker/barometer-ves/start_ves_app.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-23T11:45:32Z",
+      "side": 1,
+      "message": "are we not better off changing this to /opt/ves rather than ./\nsame of the config path",
+      "range": {
+        "startLine": 27,
+        "startChar": 35,
+        "endLine": 27,
+        "endChar": 36
+      },
+      "revId": "c313790b885b900ce3735cfda7fb1d84770b7113",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
