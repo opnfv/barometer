@@ -1,0 +1,11 @@
+If you would like to build the RPMs locally you will need a CentOS7 platform.
+Set an environment variable called WORKSPACE to /tmp.
+Make sure $PERL_MM_OPT is not set as an environment variable.
+Run the following:
+
+  * sudo -E ./install_dependencies.sh
+  * sudo -E ./build_rpm.sh
+
+This will create 3 directories in /tmp: collectd, intel-cmt-cat and rpmbuild.
+
+The built RPMs can be found in rpmbuild/RPMS/x86_64/.

@@ -24,4 +24,4 @@ CMTCAT_BRANCH=8b27ad757e86a01bc51eafcb9e600605ff1beca4
 CMTCAT_VERSION="v1.1.0"
 
 COLLECTD_REPO=https://github.com/collectd/collectd.git
-COLLECTD_BRANCH=d83bdb92ce4dbda05dcb7112c4e9fea1a17a3e22
+COLLECTD_BRANCH=collectd-5.8
