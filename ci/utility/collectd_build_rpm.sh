@@ -20,6 +20,7 @@ VERSION="VERSION_NOT_SET"
 
 cd $COLLECTD_DIR
 VERSION=$( $COLLECTD_DIR/version-gen.sh )
+$COLLECTD_DIR/clean.sh
 $COLLECTD_DIR/build.sh
 $COLLECTD_DIR/configure
 sed     --regexp-extended \
