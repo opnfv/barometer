@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_95b2074a",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 304
+      },
+      "writtenOn": "2018-01-26T14:56:07Z",
+      "side": 1,
+      "message": "can we use the official zookeeper image from: https://hub.docker.com/r/library/zookeeper/",
+      "range": {
+        "startLine": 573,
+        "startChar": 50,
+        "endLine": 573,
+        "endChar": 64
+      },
+      "revId": "7be7d9aea103e9bd1073bbb1e8fd7583e5c598c4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
