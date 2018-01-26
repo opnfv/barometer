@@ -10,16 +10,32 @@ OPNFV Barometer Docker User Guide
    :depth: 3
    :local:
 
-The intention of this user guide is to outline how to install and test the
-Barometer projects Collectd, Influxdb and Grafana docker images which can be built from the Dockerfiles
-available within the barometer repository.
+The intention of this user guide is to outline how to install and test the Barometer project's
+docker images. The `OPNFV docker hub <https://hub.docker.com/u/opnfv/?page=1>`_ contains 5 docker
+images from the Barometer project:
 
+ 1. `Collectd docker image <https://hub.docker.com/r/opnfv/barometer-collectd/>`_
+ 2. `Influxdb docker image <https://hub.docker.com/r/opnfv/barometer-influxdb/>`_
+ 3. `Grafana docker image <https://hub.docker.com/r/opnfv/barometer-grafana/>`_
+ 4. `Kafka docker image <https://hub.docker.com/r/opnfv/barometer-kafka/>`_
+ 5. `VES application docker image <https://hub.docker.com/r/opnfv/barometer-ves/>`_
 
-Barometer docker images description
+For description of images please see section `Barometer Docker Images Description`_
+
+For steps to build and run Collectd image please see section `Build and Run Collectd Docker Image`_
+
+For steps to build and run Influxdb and Grafana images please see section `Build and Run InfluxDB and Grafana Docker Images`_
+
+For steps to build and run VES and Kafka images please see section `Build and Run VES and Kafka Docker Images`_
+
+For overview of running VES application with Kafka please see the `VES Application User Guide
+<http://docs.opnfv.org/en/latest/submodules/barometer/docs/release/userguide/collectd.ves.userguide.html>`_
+
+Barometer Docker Images Description
 -----------------------------------
 
 .. Describe the specific features and how it is realised in the scenario in a brief manner
-.. to ensure the user understand the context for the user guide instructions to follow.
+   .. to ensure the user understand the context for the user guide instructions to follow.
 
 Barometer Collectd Image
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -60,13 +76,23 @@ docker image:
 * aodh plugin
 * Legacy/IPMI
 
-InfluxDB + Grafana Images
-^^^^^^^^^^^^^^^^^^^^^^^^^
+InfluxDB + Grafana Docker Images
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Barometer project's InfluxDB and Grafana docker images are 2 docker images that database and graph
 statistics reported by the Barometer collectd docker. InfluxDB is an open-source time series database
 tool which stores the data from collectd for future analysis via Grafana, which is a open-source
 metrics anlytics and visualisation suite which can be accessed through any browser.
+
+VES + Kafka Docker Images
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The Barometer project's VES application and Kafka docker images are based on a CentOS 7 image. Kafka
+docker image has a dependancy on `Zookeeper <https://zookeeper.apache.org/>`_. Kafka must be able to
+connect and register with an instance of Zookeeper that is either running on local or remote host.
+Kafka recieves and stores metrics recieved from Collectd. VES application pulls latest metrics from Kafka
+which it normalizes into VES format for sending to a VES collector. Please see details in `VES Application User Guide
+<http://docs.opnfv.org/en/latest/submodules/barometer/docs/release/userguide/collectd.ves.userguide.html>`_
 
 Installing Docker
 -----------------
@@ -76,8 +102,8 @@ Installing Docker
 On Ubuntu
 ^^^^^^^^^^
 .. note::
- * sudo permissions are required to install docker.
- * These instructions are for Ubuntu 16.10
+   * sudo permissions are required to install docker.
+   * These instructions are for Ubuntu 16.10
 
 To install docker:
 
@@ -93,8 +119,8 @@ Replace <username> above with an appropriate user name.
 On CentOS
 ^^^^^^^^^^
 .. note::
- * sudo permissions are required to install docker.
- * These instructions are for CentOS 7
+   * sudo permissions are required to install docker.
+   * These instructions are for CentOS 7
 
 To install docker:
 
@@ -189,7 +215,7 @@ Or create a single file with all the proxy configurations:
 Test docker installation
 ^^^^^^^^^^^^^^^^^^^^^^^^
 .. note::
-      This applies for both CentOS and Ubuntu.
+   This applies for both CentOS and Ubuntu.
 
 .. code:: bash
 
@@ -222,8 +248,20 @@ To try something more ambitious, you can run an Ubuntu container with:
 
     $ docker run -it ubuntu bash
 
+Build and Run Collectd Docker Image
+-----------------------------------
+
+Download the collectd docker image
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If you wish to use a pre-built barometer image, you can pull the barometer
+image from https://hub.docker.com/r/opnfv/barometer-collectd/
+
+.. code:: bash
+
+    $ docker pull opnfv/barometer-collectd
+
 Build the collectd docker image
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code:: bash
 
@@ -252,16 +290,6 @@ Output should contain a barometer-collectd image:
    centos                       latest              196e0ce0c9fb        4 weeks ago         197MB
    hello-world                  latest              05a3bd381fc2        4 weeks ago         1.84kB
 
-Download the collectd docker image
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you want to use a pre-built barometer image, you can pull the barometer
-image from https://hub.docker.com/r/opnfv/barometer-collectd/
-
-.. code:: bash
-
-    $ docker pull opnfv/barometer-collectd
-
-
 Run the collectd docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. code:: bash
@@ -269,13 +297,13 @@ Run the collectd docker image
    $ sudo docker run -tid --net=host -v `pwd`/../src/collectd_sample_configs:/opt/collectd/etc/collectd.conf.d \
     -v /var/run:/var/run -v /tmp:/tmp --privileged opnfv/barometer-collectd /run_collectd.sh
 
-.. note::
-  The docker collectd image contains configuration for all the collectd plugins. In the command
-  above we are overriding /opt/collectd/etc/collectd.conf.d by mounting a host directory
-  `pwd`/../src/collectd_sample_configs that contains only the sample configurations we are interested
-  in running. *It's important to do this if you don't have DPDK, or RDT installed on the host*.
-  Sample configurations can be found at:
-  https://github.com/opnfv/barometer/tree/master/src/collectd/collectd_sample_configs
+.. note:: 
+   The docker collectd image contains configuration for all the collectd plugins. In the command
+   above we are overriding /opt/collectd/etc/collectd.conf.d by mounting a host directory
+   `pwd`/../src/collectd_sample_configs that contains only the sample configurations we are interested
+   in running. *It's important to do this if you don't have DPDK, or RDT installed on the host*.
+   Sample configurations can be found at:
+   https://github.com/opnfv/barometer/tree/master/src/collectd/collectd_sample_configs
 
 To make some changes when the container is running run:
 
@@ -289,8 +317,8 @@ Check your docker image is running
 
    sudo docker ps
 
-Build the influxdb + Grafana docker images
-------------------------------------------
+Build and Run InfluxDB and Grafana docker images
+------------------------------------------------
 
 Overview
 ^^^^^^^^
@@ -314,14 +342,14 @@ Incase where a folder is mounted to this volume only files included in this fold
 inside barometer-grafana. To ensure all default files are also loaded please ensure they are included in
 volume folder been mounted. Appropriate example are given in section `Run the Grafana docker image`_
 
-Download the InfluxDB and Grafana docker image
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Download the InfluxDB and Grafana docker images
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you wish to use pre-built barometer project's influxdb and grafana images, you can pull the
 images from https://hub.docker.com/r/opnfv/barometer-influxdb/ and https://hub.docker.com/r/opnfv/barometer-grafana/
 
 .. note::
-     If your preference is to build images locally please see sections `Build the InfluxDB Image`_ and
-     `Build the Grafana Image`_
+   If your preference is to build images locally please see sections `Build InfluxDB Docker Image`_ and
+   `Build Grafana Docker Image`_
 
 .. code:: bash
 
@@ -329,15 +357,15 @@ images from https://hub.docker.com/r/opnfv/barometer-influxdb/ and https://hub.d
     $ docker pull opnfv/barometer-grafana
 
 .. note::
-     If you have pulled the pre-built barometer-influxdb and barometer-grafana images there is no
-     requirement to complete steps outlined in  sections `Build the InfluxDB Image`_ and
-     `Build the Grafana Image`_ and you can proceed directly to section
-     `Run the Influxdb and Grafana Images`_ If you wish to run the barometer-influxdb and
-     barometer-grafana images via Docker Compose proceed directly to section
-     `Docker Compose`_.
+   If you have pulled the pre-built barometer-influxdb and barometer-grafana images there is no
+   requirement to complete steps outlined in  sections `Build InfluxDB Docker Image`_ and
+   `Build Grafana Docker Image`_ and you can proceed directly to section
+   `Run the Influxdb and Grafana Images`_ If you wish to run the barometer-influxdb and
+   barometer-grafana images via Docker Compose proceed directly to section
+   `Docker Compose`_.
 
-Build the InfluxDB Image
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Build InfluxDB docker image
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Build influxdb image from Dockerfile
 
@@ -345,11 +373,11 @@ Build influxdb image from Dockerfile
 
   $ cd barometer/docker/barometer-influxdb
   $ sudo docker build -t opnfv/barometer-influxdb --build-arg http_proxy=`echo $http_proxy` \
-      --build-arg https_proxy=`echo $https_proxy` -f Dockerfile .
+    --build-arg https_proxy=`echo $https_proxy` -f Dockerfile .
 
-.. note::
-      In the above mentioned ``docker build`` command, http_proxy & https_proxy arguments needs to
-      be passed only if system is behind an HTTP or HTTPS proxy server.
+.. note:: 
+   In the above mentioned ``docker build`` command, http_proxy & https_proxy arguments needs to
+   be passed only if system is behind an HTTP or HTTPS proxy server.
 
 Check the docker images:
 
@@ -364,8 +392,8 @@ Output should contain an influxdb image:
    REPOSITORY                   TAG                 IMAGE ID            CREATED            SIZE
    opnfv/barometer-influxdb     latest              1e4623a59fe5        3 days ago         191MB
 
-Build the Grafana Image
-^^^^^^^^^^^^^^^^^^^^^^^
+Build Grafana docker image
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Build Grafana image from Dockerfile
 
@@ -373,10 +401,11 @@ Build Grafana image from Dockerfile
 
   $ cd barometer/docker/barometer-grafana
   $ sudo docker build -t opnfv/barometer-grafana --build-arg http_proxy=`echo $http_proxy` \
-      --build-arg https_proxy=`echo $https_proxy` -f Dockerfile .
+    --build-arg https_proxy=`echo $https_proxy` -f Dockerfile .
 
-.. note::
-         In the above mentioned ``docker build`` command, http_proxy & https_proxy arguments needs to be passed only if system is behind an HTTP or HTTPS proxy server.
+.. note:: 
+   In the above mentioned ``docker build`` command, http_proxy & https_proxy arguments needs to
+   be passed only if system is behind an HTTP or HTTPS proxy server.
 
 Check the docker images:
 
@@ -394,7 +423,7 @@ Output should contain an influxdb image:
 Run the Influxdb and Grafana Images
 -----------------------------------
 
-Run the InfluxDB  docker image
+Run the InfluxDB docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. code:: bash
 
@@ -419,13 +448,16 @@ Connecting to an influxdb instance running on local system and adding own custom
 
 .. code:: bash
 
-   $ sudo docker run -tid --net=host -v /var/lib/grafana:/var/lib/grafana -v ${PWD}/dashboards:/opt/grafana/dashboards -p 3000:3000 opnfv/barometer-grafana
+   $ sudo docker run -tid --net=host -v /var/lib/grafana:/var/lib/grafana -v ${PWD}/dashboards:/opt/grafana/dashboards \
+     -p 3000:3000 opnfv/barometer-grafana
 
-Connecting to an influxdb instance running on remote system with hostname of someserver and IP address of 192.168.121.111
+Connecting to an influxdb instance running on remote system with hostname of someserver and IP address
+of 192.168.121.111
 
 .. code:: bash
 
-   $ sudo docker run -tid --net=host -v /var/lib/grafana:/var/lib/grafana -p 3000:3000 -e influxdb_host=someserver --add-host someserver:192.168.121.111 opnfv/barometer-grafana
+   $ sudo docker run -tid --net=host -v /var/lib/grafana:/var/lib/grafana -p 3000:3000 -e \
+     influxdb_host=someserver --add-host someserver:192.168.121.111 opnfv/barometer-grafana
 
 To make some changes when the container is running run:
 
@@ -441,6 +473,152 @@ Check your docker image is running
 
 Connect to <host_ip>:3000 with a browser and log into grafana: admin/admin
 
+
+Build and Run VES and Kafka Docker Images
+------------------------------------------
+
+Download VES and Kafka docker images
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you wish to use pre-built barometer project's VES and kafka images, you can pull the
+images from https://hub.docker.com/r/opnfv/barometer-ves/ and  https://hub.docker.com/r/opnfv/barometer-kafka/
+
+.. note:: 
+   If your preference is to build images locally please see sections `Build the Kafka Image`_ and
+   `Build VES Image`_
+
+.. code:: bash
+
+    $ docker pull opnfv/barometer-kafka
+    $ docker pull opnfv/barometer-ves
+
+.. note:: 
+   If you have pulled the pre-built images there is no requirement to complete steps outlined
+   in sections `Build Kafka Docker Image`_ and `Build VES Docker Image`_ and you can proceed directly to section
+   `Run Kafka Docker Image`_ If you wish to run the docker images via Docker Compose proceed directly to section `Docker Compose`_.
+
+Build Kafka docker image
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Build Kafka docker image:
+
+.. code:: bash
+
+    $ cd barometer/docker/barometer-kafka
+    $ sudo docker build -t opnfv/barometer-kafka --build-arg http_proxy=`echo $http_proxy` \
+      --build-arg https_proxy=`echo $https_proxy` -f Dockerfile .
+
+.. note:: 
+   In the above mentioned ``docker build`` command, http_proxy & https_proxy arguments needs
+   to be passed only if system is behind an HTTP or HTTPS proxy server.
+
+Check the docker images:
+
+.. code:: bash
+
+   $ sudo docker images
+
+Output should contain a barometer image:
+
+.. code::
+
+   REPOSITORY                TAG                 IMAGE ID            CREATED             SIZE
+   opnfv/barometer-kafka     latest              05f2a3edd96b        3 hours ago         1.2GB
+
+Build VES docker image
+^^^^^^^^^^^^^^^^^^^^^^
+
+Build VES application docker image:
+
+.. code:: bash
+
+    $ cd barometer/docker/barometer-ves
+    $ sudo docker build -t opnfv/barometer-ves --build-arg http_proxy=`echo $http_proxy` \
+      --build-arg https_proxy=`echo $https_proxy` -f Dockerfile .
+
+.. note:: 
+   In the above mentioned ``docker build`` command, http_proxy & https_proxy arguments needs
+   to be passed only if system is behind an HTTP or HTTPS proxy server.
+
+Check the docker images:
+
+.. code:: bash
+
+   $ sudo docker images
+
+Output should contain a barometer image:
+
+.. code::
+
+   REPOSITORY                TAG                 IMAGE ID            CREATED             SIZE
+   opnfv/barometer-ves       latest              05f2a3edd96b        3 hours ago         1.2GB
+
+Run Kafka docker image
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. note:: 
+   Before running Kafka an instance of Zookeeper must be running for the Kafka broker to register
+   with. Zookeeper can be running locally or on a remote platform. Kafka's broker_id and address of
+   its zookeeper instance can be configured by setting values for environmental variables 'broker_id'
+   and 'zookeeper_node'. In instance where 'broker_id' and/or 'zookeeper_node' is not set the default
+   setting of broker_id=0 and zookeeper_node=localhost is used. In intance where Zookeeper is running
+   on same node as Kafka and there is a one to one relationship between Zookeeper and Kafka, default
+   setting can be used. The docker argument `add-host` adds hostname and IP address to
+   /etc/hosts file in container
+
+Run zookeeper docker image:
+
+.. code:: bash
+
+   $ sudo docker run -tid --net=host -p 2181:2181 31z4/zookeeper
+
+Run kafka docker image which connects with a zookeeper instance running on same node with a 1:1 relationship
+
+.. code:: bash
+
+   $ sudo docker run -tid --net=host opnfv/barometer_image
+
+
+Run kafka docker image which connects with a zookeeper instance running on a node with IP address of
+192.168.121.111 using broker ID of 1
+
+.. code:: bash
+
+   $ sudo docker run -tid --net=host --env broker_id=1 --env zookeeper_node=zookeeper --add-host \
+     zookeeper:192.168.121.111 opnfv/barometer_image
+
+Run VES Application docker image
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. note:: 
+   VES application uses configuration file ves_app_config.conf from directory
+   barometer/3rd_party/collectd-ves-app/ves_app/config/ and host.yaml file from
+   barometer/3rd_party/collectd-ves-app/ves_app/yaml/ by default. If you wish to use a custom config
+   file it should be mounted to mount point /opt/ves/config/ves_app_config.conf. To use an alternative yaml
+   file from folder barometer/3rd_party/collectd-ves-app/ves_app/yaml the name of the yaml file to use
+   should be passed as an additional command. If you wish to use a custom file the file should be
+   mounted to mount point /opt/ves/yaml/ Please see examples below
+
+Run VES docker image with default configuration
+
+.. code:: bash
+
+   $ sudo docker run -tid --net=host opnfv/barometer-ves
+
+Run VES docker image with guest.yaml files from barometer/3rd_party/collectd-ves-app/ves_app/yaml/
+
+.. code:: bash
+
+   $ sudo docker run -tid --net=host opnfv/barometer-ves guest.yaml
+
+
+Run VES docker image with using custom config and yaml files. In example below yaml/ folder cotains
+file named custom.yaml
+
+.. code:: bash
+
+   $ sudo docker run -tid --net=host -v ${PWD}/custom.config:/opt/ves/config/ves_app_config.conf \
+     -v ${PWD}/yaml/:/opt/ves/yaml/ opnfv/barometer-ves custom.yaml
+
 Docker Compose
 --------------
 
@@ -451,9 +629,9 @@ On the node where you want to run influxdb + grafana or the node where you want 
 zookeeper and Kafka containers together:
 
 .. note::
-      The default configuration for all these containers is to run on the localhost. If this is not
-      the model you want to use then please make the appropriate configuration changes before launching
-      the docker containers.
+   The default configuration for all these containers is to run on the localhost. If this is not
+   the model you want to use then please make the appropriate configuration changes before launching
+   the docker containers.
 
 1. Start by installing docker compose
 
@@ -462,9 +640,9 @@ zookeeper and Kafka containers together:
    $ sudo curl -L https://github.com/docker/compose/releases/download/1.17.0/docker-compose-`uname -s`-`uname -m` -o /usr/bin/docker-compose
 
 .. note::
-  Use the latest Compose release number in the download command. The above command is an example,
-  and it may become out-of-date. To ensure you have the latest version, check the Compose repository
-  release page on GitHub.
+   Use the latest Compose release number in the download command. The above command is an example,
+   and it may become out-of-date. To ensure you have the latest version, check the Compose repository
+   release page on GitHub.
 
 2. Apply executable permissions to the binary:
 
@@ -521,4 +699,5 @@ References
 .. [1] https://docs.docker.com/engine/admin/systemd/#httphttps-proxy
 .. [2] https://docs.docker.com/engine/installation/linux/docker-ce/centos/#install-using-the-repository
 .. [3] https://docs.docker.com/engine/userguide/
+
 
