@@ -376,6 +376,18 @@ Building and installing *jevents* library:
     $ make
     $ sudo make install
 
+Download the Hardware Events that are relevant to your CPU, download the appropriate
+CPU event list json file:
+
+.. code:: bash
+
+    $ wget https://raw.githubusercontent.com/andikleen/pmu-tools/master/event_download.py
+    $ python event_download.py
+
+This will download the json files to the location: $HOME/.cache/pmu-events/. If you don't want to
+download these files to the aforementioned location, set the environment variable XDG_CACHE_HOME to
+the location you want the files downloaded to.
+
 Building and installing collectd:
 
 .. code:: bash
@@ -402,6 +414,23 @@ include:
       ReportKernelPMUEvents true
       ReportSoftwareEvents true
     </Plugin>
+
+If you want to monitor Intel CPU specific CPU events, make sure to enable the
+additional two options shown below:
+
+.. code:: bash
+
+    <Plugin intel_pmu>
+     ReportHardwareCacheEvents true
+     ReportKernelPMUEvents true
+     ReportSoftwareEvents true
+     EventList "$HOME/.cache/pmu-events/GenuineIntel-6-2D-core.json"
+     HardwareEvents "L2_RQSTS.CODE_RD_HIT,L2_RQSTS.CODE_RD_MISS" "L2_RQSTS.ALL_CODE_RD"
+    </Plugin>
+
+.. note::
+    If you set XDG_CACHE_HOME to anything other than the variable above - you will need to modify
+    the path for the EventList configuration.
 
 For more information on the plugin parameters, please see:
 https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
