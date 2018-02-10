@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_85375d4c",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2018-02-10T13:28:08Z",
+      "side": 1,
+      "message": "Maybe:  If you set XDG_CACHE_HOME (default $HOME/.cache/pmu-events/ ) to another location - you will need to modify the Eventlist path to match.",
+      "range": {
+        "startLine": 432,
+        "startChar": 4,
+        "endLine": 432,
+        "endChar": 71
+      },
+      "revId": "441dc55df6e051b145b04be756317085413149b3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
