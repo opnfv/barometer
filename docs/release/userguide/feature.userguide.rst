@@ -376,6 +376,15 @@ Building and installing *jevents* library:
     $ make
     $ sudo make install
 
+Download the Hardware Events that are relevant to your CPU, download the appropriate
+CPU event list json file:
+
+.. code:: bash
+
+    $ wget https://raw.githubusercontent.com/andikleen/pmu-tools/master/event_download.py
+    $ python event_download.py
+
+
 Building and installing collectd:
 
 .. code:: bash
@@ -401,6 +410,19 @@ include:
       ReportHardwareCacheEvents true
       ReportKernelPMUEvents true
       ReportSoftwareEvents true
+    </Plugin>
+
+If you want to monitor Intel CPU specific CPU events, make sure to enable the
+additional two options shown below:
+
+.. code:: bash
+
+    <Plugin intel_pmu>
+     ReportHardwareCacheEvents true
+     ReportKernelPMUEvents true
+     ReportSoftwareEvents true
+     EventList "/var/cache/pmu/GenuineIntel-6-2D-core.json"
+     HardwareEvents "L2_RQSTS.CODE_RD_HIT,L2_RQSTS.CODE_RD_MISS" "L2_RQSTS.ALL_CODE_RD"
     </Plugin>
 
 For more information on the plugin parameters, please see:
