@@ -1,0 +1,34 @@
+#Copyright 2018 OPNFV and Intel Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+---
+
+- name: copy default template to system
+  template:
+    src: default_read_plugins.conf.j2
+    dest: "{{ config_file_dir }}/default_read_plugins.conf"
+  tags:
+   - always
+
+- name: enable all default plugins
+  replace:
+    path: "{{ config_file_dir }}/default_read_plugins.conf"
+    regexp: '(\s+)#LoadPlugin(\s+.*)?$'
+    replace: '\1LoadPlugin\2'
+  register: en_default_all
+  tags:
+    - en_default_all
+
+- name: include per default plugin tasks
+  include: default_read_import.yml
+  when: en_default_all is not defined
