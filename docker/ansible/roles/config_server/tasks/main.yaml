@@ -1,0 +1,65 @@
+# #############################################################################
+# Copyright (c) 2017-18 Intel Corp.
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+# #############################################################################
+---
+
+- name: yum; install docker libs
+  yum:
+   name:
+    - '*'
+    - yum-utils  
+    - device-mapper-persistent-data  
+    - lvm2
+    - epel-release
+    - python-pip
+   state:
+     latest
+   disable_gpg_check:
+      yes
+
+-name: enable repos
+ yum_repository:
+   name:
+    - docker-ce-edge
+    - docker-ce-test
+
+- name: yum; install docker libs
+  yum:
+   name:
+    - docker-ce
+   state:
+     latest
+   disable_gpg_check:
+      yes
+
+
+-name: Create collectd.d folder on remote host
+  file:
+    path: /etc/systemd/system/docker.service.d
+    force: yes
+    state: directory
+  tags:
+    - always
+
+-name: Create collectd.d folder on remote host
+  file:
+    path: /etc/systemd/system/docker.service.d
+    force: yes
+    state: directory
+  tags:
+    - always
+
+- name: copy default template to system
+  remote_user: root
+  template:
+    src: docker_nviromentals.yaml.conf
+    dest: "{{ config_file_dir }}/default_plugins.conf"
+  tags:
+   - always
+
+
