@@ -1,0 +1,144 @@
+#Copyright 2018 OPNFV and Intel Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+---
+
+- name: enable cpu plugin
+  replace:
+      path: "{{ config_file_dir }}/default_read_plugins.conf"
+      regexp: '(\s+)#LoadPlugin cpu(\s+.*)?$'
+      replace: '\1LoadPlugin cpu\2'
+  tags:
+    - cpu
+
+- name: enable cpufreq plugin
+  replace:
+      path: "{{ config_file_dir }}/default_read_plugins.conf"
+      regexp: '(\s+)#LoadPlugin cpufreq(\s+.*)?$'
+      replace: '\1LoadPlugin cpufreq\2'
+  tags:
+    - cpufreq
+
+- name: enable disk plugin
+  replace:
+      path: "{{ config_file_dir }}/default_read_plugins.conf"
+      regexp: '(\s+)#LoadPlugin disk(\s+.*)?$'
+      replace: '\1LoadPlugin disk\2'
+  tags:
+    - disk
+
+- name: enable load plugin
+  replace:
+      path: "{{ config_file_dir }}/default_read_plugins.conf"
+      regexp: '(\s+)#LoadPlugin load(\s+.*)?$'
+      replace: '\1LoadPlugin load\2'
+  tags:
+    - load
+
+- name: enable memory plugin
+  replace:
+      path: "{{ config_file_dir }}/default_read_plugins.conf"
+      regexp: '(\s+)#LoadPlugin memory(\s+.*)?$'
+      replace: '\1LoadPlugin memory\2'
+  tags:
+    - memory
+
+- name: enable numa plugin
+  replace:
+      path: "{{ config_file_dir }}/default_read_plugins.conf"
+      regexp: '(\s+)#LoadPlugin numa(\s+.*)?$'
+      replace: '\1LoadPlugin numa\2'
+  tags:
+    - numa
+
+- name: enable processes plugin
+  replace:
+      path: "{{ config_file_dir }}/default_read_plugins.conf"
+      regexp: '(\s+)#LoadPlugin processes(\s+.*)?$'
+      replace: '\1LoadPlugin processes\2'
+  tags:
+    - processes
+
+- name: enable irq plugin
+  replace:
+      path: "{{ config_file_dir }}/default_read_plugins.conf"
+      regexp: '(\s+)#LoadPlugin irq(\s+.*)?$'
+      replace: '\1LoadPlugin irq\2'
+  tags:
+    - irq
+
+- name: enable swap plugin
+  replace:
+      path: /tmp/collectd.d/default_plugins.conf
+      regexp: '(\s+)#LoadPlugin swap(\s+.*)?$'
+      replace: '\1LoadPlugin swap\2'
+  tags:
+    - swap
+
+- name: enable ethstat plugin
+  replace:
+      path: "{{ config_file_dir }}/default_read_plugins.conf"
+      regexp: '(\s+)#LoadPlugin ethstat(\s+.*)?$'
+      replace: '\1LoadPlugin ethstat\2'
+  tags:
+    - ethstat
+
+- name: enable ipc plugin
+  replace:
+      path: "{{ config_file_dir }}/default_read_plugins.conf"
+      regexp: '(\s+)#LoadPlugin ipc(\s+.*)?$'
+      replace: '\1LoadPlugin ipc\2'
+  tags:
+    - ipc
+
+- name: enable ipmi plugin
+  replace:
+      path: "{{ config_file_dir }}/default_read_plugins.conf"
+      regexp: '(\s+)#LoadPlugin ipmi(\s+.*)?$'
+      replace: '\1LoadPlugin ipmi\2'
+  tags:
+    - ipmi
+
+- name: enable df plugin
+  replace:
+      path: "{{ config_file_dir }}/default_read_plugins.conf"
+      regexp: '(\s+)#LoadPlugin df(\s+.*)?$'
+      replace: '\1LoadPlugin df\2'
+  tags:
+    - df
+
+- name: enable turbostat plugin
+  replace:
+      path: "{{ config_file_dir }}/default_read_plugins.conf"
+      regexp: '(\s+)#LoadPlugin turbostat(\s+.*)?$'
+      replace: '\1LoadPlugin turbostat\2'
+  tags:
+    - turbostat
+
+- name: enable uptime plugin
+  replace:
+      path: "{{ config_file_dir }}/default_read_plugins.conf"
+      regexp: '(\s+)#LoadPlugin uptime(\s+.*)?$'
+      replace: '\1LoadPlugin uptime\2'
+  tags:
+    - uptime
+
+- name: enable contextswitch  plugin
+  replace:
+      path: "{{ config_file_dir }}/default_read_plugins.conf"
+      regexp: '(\s+)#LoadPlugin contextswitch(\s+.*)?$'
+      replace: '\1LoadPlugin contextswitch\2'
+  tags:
+    - contextswitch
+
