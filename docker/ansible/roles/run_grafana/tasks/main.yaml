@@ -1,0 +1,49 @@
+#Copyright 2018 OPNFV and Intel Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+---
+
+- name: remove bar-grafana container
+  docker_container:
+    name: bar-grafana
+    state: absent
+  tags:
+    - rm_containers
+    - rm_grafana_cont
+  when: rm_containers|default(false)|bool == true
+
+- name: Remove barometer-grafana image
+  docker_image:
+    state: absent
+    name: opnfv/barometer-grafana
+  tags:
+    - rm_images
+    - rm_grafana_image
+  when: rm_imagess|default(false)|bool == true
+
+- name: launch barometer-grafana container
+  docker_container:
+    name: bar-grafana
+    image: opnfv/barometer-grafana
+    volumes:
+       - /var/lib/grafana:/var/lib/grafana
+    ports:
+       - 3000:3000
+    env:
+      "{{ influxdb_host }}": "{{ influxdb_hostname }}"
+    etc_hosts:
+      "{{ influxdb_hostname }}": "{{ influxdb_host_ip }}"
+    detach: yes
+    restart: yes
+    network_mode: host
