@@ -22,6 +22,30 @@
       "revId": "3480b083b9c620c8ef82873d1d5e94f71da1d7fc",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_15c51f5b",
+        "filename": "docker/ansible/roles/run_influxdb/tasks/main.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7113
+      },
+      "writtenOn": "2018-02-20T10:35:15Z",
+      "side": 1,
+      "message": "Hi Taras,\n\nYes if ports are exposed in Dockerfile there should be no reason to have to expose ports here but for some reason in my testing i found that in not all cases this held up so I decided to expose in task also to ensure it worked.",
+      "parentUuid": "5a3f45e8_75baa3e2",
+      "range": {
+        "startLine": 41,
+        "startChar": 3,
+        "endLine": 49,
+        "endChar": 22
+      },
+      "revId": "3480b083b9c620c8ef82873d1d5e94f71da1d7fc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
