@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_ce5841fd",
+        "filename": "docker/ansible/roles/config_files/tasks/default_read_import.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6421
+      },
+      "writtenOn": "2018-02-21T19:53:12Z",
+      "side": 1,
+      "message": "Should this be in the /tmp dir?",
+      "revId": "a036ac7a1e0c57cc38b6fe29f5f4d902e546fa75",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_8e0599c4",
+        "filename": "docker/ansible/roles/config_files/templates/ovs_events.conf.j2",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6421
+      },
+      "writtenOn": "2018-02-21T19:53:12Z",
+      "side": 1,
+      "message": "vars?",
+      "revId": "a036ac7a1e0c57cc38b6fe29f5f4d902e546fa75",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_2e69e58b",
+        "filename": "docker/ansible/roles/config_files/templates/ovs_stats.conf.j2",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6421
+      },
+      "writtenOn": "2018-02-21T19:53:12Z",
+      "side": 1,
+      "message": "Would it be possible to have this be a var?\nThe bridges created by the OpenStack installation tool (i.e. director, might have alternate names).",
+      "revId": "a036ac7a1e0c57cc38b6fe29f5f4d902e546fa75",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
