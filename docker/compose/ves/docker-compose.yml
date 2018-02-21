@@ -2,18 +2,21 @@ version: '3'
 
 services:
   zookeeper:
-    image: 31z4/zookeeper
+    image: zookeeper:3.4.11
     network_mode: host
     ports:
      - 2181:2181
+    container_name: zookeeper
   kafka:
     image: opnfv/barometer-kafka
     network_mode: host
     ports:
      - 9092:9092
+    container_name: bar-kafka
   ves:
     image: opnfv/barometer-ves
     network_mode: host
     command: host.yaml
+    container_name: bar-ves
 
 
