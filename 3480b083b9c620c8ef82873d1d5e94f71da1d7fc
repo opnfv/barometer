@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "5a3f45e8_0e418939",
+        "filename": "docker/ansible/collectd_service.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6421
+      },
+      "writtenOn": "2018-02-21T19:53:37Z",
+      "side": 1,
+      "message": "Had to run: pip install docker.py",
+      "revId": "3480b083b9c620c8ef82873d1d5e94f71da1d7fc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_ae5cd526",
+        "filename": "docker/ansible/roles/run_grafana/tasks/main.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6421
+      },
+      "writtenOn": "2018-02-21T19:53:37Z",
+      "side": 1,
+      "message": "rm_imagess \u003d\u003e rm_images",
+      "revId": "3480b083b9c620c8ef82873d1d5e94f71da1d7fc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_75baa3e2",
         "filename": "docker/ansible/roles/run_influxdb/tasks/main.yml",
         "patchSetId": 3
