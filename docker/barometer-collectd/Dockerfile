@@ -22,3 +22,5 @@ RUN pip install -r ${openstack_plugins}/collectd-openstack-plugins/requirements.
 
 COPY run_collectd.sh /run_collectd.sh
 RUN chmod +x /run_collectd.sh
+
+ENTRYPOINT ["/run_collectd.sh"]
