@@ -570,13 +570,13 @@ Run zookeeper docker image:
 
 .. code:: bash
 
-   $ sudo docker run -tid --net=host -p 2181:2181 31z4/zookeeper
+   $ sudo docker run -tid --net=host -p 2181:2181 zookeeper:3.4.11
 
 Run kafka docker image which connects with a zookeeper instance running on same node with a 1:1 relationship
 
 .. code:: bash
 
-   $ sudo docker run -tid --net=host opnfv/barometer_image
+   $ sudo docker run -tid --net=host -p 9092:9092 opnfv/barometer-kafka
 
 
 Run kafka docker image which connects with a zookeeper instance running on a node with IP address of
@@ -584,8 +584,8 @@ Run kafka docker image which connects with a zookeeper instance running on a nod
 
 .. code:: bash
 
-   $ sudo docker run -tid --net=host --env broker_id=1 --env zookeeper_node=zookeeper --add-host \
-     zookeeper:192.168.121.111 opnfv/barometer_image
+   $ sudo docker run -tid --net=host -p 9092:9092 --env broker_id=1 --env zookeeper_node=zookeeper --add-host \
+     zookeeper:192.168.121.111 opnfv/barometer-kafka
 
 Run VES Application docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
