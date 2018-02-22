@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_b111daae",
+        "filename": "docker/ansible/collectd_service.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7113
+      },
+      "writtenOn": "2018-02-22T11:10:09Z",
+      "side": 1,
+      "message": "Hi Aaron,\n\nYes I am aware of the requirement but by design the scripts do not install any external libraries or dependencies.\n\nsaying that i am not against adding a task that would install docker.py via pip but this task would have to be explicitly enabled by Customer. What do you think?",
+      "parentUuid": "5a3f45e8_0e418939",
+      "revId": "3480b083b9c620c8ef82873d1d5e94f71da1d7fc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_ae5cd526",
         "filename": "docker/ansible/roles/run_grafana/tasks/main.yml",
         "patchSetId": 3
@@ -47,6 +65,30 @@
       "writtenOn": "2018-02-22T09:02:43Z",
       "side": 1,
       "message": "As Aaron said in the other file rm_imagess\u003d\u003erm_images",
+      "range": {
+        "startLine": 33,
+        "startChar": 8,
+        "endLine": 33,
+        "endChar": 18
+      },
+      "revId": "3480b083b9c620c8ef82873d1d5e94f71da1d7fc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_d1358647",
+        "filename": "docker/ansible/roles/run_influxdb/tasks/main.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7113
+      },
+      "writtenOn": "2018-02-22T11:10:09Z",
+      "side": 1,
+      "message": "Fixed. Thanks",
+      "parentUuid": "5a3f45e8_d10f46e0",
       "range": {
         "startLine": 33,
         "startChar": 8,
