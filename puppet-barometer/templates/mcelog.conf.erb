@@ -15,7 +15,11 @@
 <LoadPlugin mcelog>
   Interval 1
 </LoadPlugin>
+
 <Plugin "mcelog">
-   McelogClientSocket "/var/run/mcelog-client"
+  <Memory>
+    McelogClientSocket "/var/run/mcelog-client"
+    PersistentNotification false
+  </Memory>
 </Plugin>
 
