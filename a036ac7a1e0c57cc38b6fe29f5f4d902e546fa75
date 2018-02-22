@@ -19,6 +19,98 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_31ee6aed",
+        "filename": "docker/ansible/roles/config_files/templates/kafka.conf.j2",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-02-22T09:34:41Z",
+      "side": 1,
+      "message": "why is this here if not in others?",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 3
+      },
+      "revId": "a036ac7a1e0c57cc38b6fe29f5f4d902e546fa75",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_91badedf",
+        "filename": "docker/ansible/roles/config_files/templates/logfile.conf.j2",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-02-22T09:34:41Z",
+      "side": 1,
+      "message": "why do we need \"\" here?",
+      "range": {
+        "startLine": 15,
+        "startChar": 10,
+        "endLine": 15,
+        "endChar": 20
+      },
+      "revId": "a036ac7a1e0c57cc38b6fe29f5f4d902e546fa75",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_71bf52d1",
+        "filename": "docker/ansible/roles/config_files/templates/logfile.conf.j2",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-02-22T09:34:41Z",
+      "side": 1,
+      "message": "and here",
+      "range": {
+        "startLine": 17,
+        "startChar": 8,
+        "endLine": 17,
+        "endChar": 17
+      },
+      "revId": "a036ac7a1e0c57cc38b6fe29f5f4d902e546fa75",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_d1b466f4",
+        "filename": "docker/ansible/roles/config_files/templates/ovs_events.conf.j2",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-02-22T09:34:41Z",
+      "side": 1,
+      "message": "is \"\" needed?",
+      "range": {
+        "startLine": 19,
+        "startChar": 8,
+        "endLine": 19,
+        "endChar": 20
+      },
+      "revId": "a036ac7a1e0c57cc38b6fe29f5f4d902e546fa75",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_8e0599c4",
         "filename": "docker/ansible/roles/config_files/templates/ovs_events.conf.j2",
         "patchSetId": 6
@@ -47,6 +139,121 @@
       "writtenOn": "2018-02-21T19:53:12Z",
       "side": 1,
       "message": "Would it be possible to have this be a var?\nThe bridges created by the OpenStack installation tool (i.e. director, might have alternate names).",
+      "revId": "a036ac7a1e0c57cc38b6fe29f5f4d902e546fa75",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_b1b9daeb",
+        "filename": "docker/ansible/roles/config_files/templates/rdt.conf.j2",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-02-22T09:34:41Z",
+      "side": 1,
+      "message": "is \"\" needed?",
+      "range": {
+        "startLine": 19,
+        "startChar": 8,
+        "endLine": 19,
+        "endChar": 18
+      },
+      "revId": "a036ac7a1e0c57cc38b6fe29f5f4d902e546fa75",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_d1abc687",
+        "filename": "docker/ansible/roles/config_files/templates/rrdtool.conf.j2",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-02-22T09:34:41Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 3
+      },
+      "revId": "a036ac7a1e0c57cc38b6fe29f5f4d902e546fa75",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_71a632c3",
+        "filename": "docker/ansible/roles/config_files/templates/rrdtool.conf.j2",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-02-22T09:34:41Z",
+      "side": 1,
+      "message": "\"\"",
+      "range": {
+        "startLine": 19,
+        "startChar": 8,
+        "endLine": 19,
+        "endChar": 17
+      },
+      "revId": "a036ac7a1e0c57cc38b6fe29f5f4d902e546fa75",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_11952e40",
+        "filename": "docker/ansible/roles/config_files/templates/syslog.conf.j2",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-02-22T09:34:41Z",
+      "side": 1,
+      "message": "\"\"",
+      "range": {
+        "startLine": 15,
+        "startChar": 11,
+        "endLine": 15,
+        "endChar": 19
+      },
+      "revId": "a036ac7a1e0c57cc38b6fe29f5f4d902e546fa75",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_f191a253",
+        "filename": "docker/ansible/roles/config_files/templates/syslog.conf.j2",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-02-22T09:34:41Z",
+      "side": 1,
+      "message": "\"\"",
+      "range": {
+        "startLine": 18,
+        "startChar": 9,
+        "endLine": 18,
+        "endChar": 16
+      },
       "revId": "a036ac7a1e0c57cc38b6fe29f5f4d902e546fa75",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
