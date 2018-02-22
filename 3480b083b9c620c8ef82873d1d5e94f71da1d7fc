@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_d112a661",
+        "filename": "docker/ansible/collectd_service.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6421
+      },
+      "writtenOn": "2018-02-22T18:10:38Z",
+      "side": 1,
+      "message": "Can we document the requirement?  I\u0027d be fine with just a note in the docs.",
+      "parentUuid": "5a3f45e8_b111daae",
+      "revId": "3480b083b9c620c8ef82873d1d5e94f71da1d7fc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_ae5cd526",
         "filename": "docker/ansible/roles/run_grafana/tasks/main.yml",
         "patchSetId": 3
@@ -160,6 +178,30 @@
       "side": 1,
       "message": "I believe we can avoid usage of host namespace. Because ports are exposed there is no need to keep influxdb and grafana in host namespace.",
       "parentUuid": "5a3f45e8_15c51f5b",
+      "range": {
+        "startLine": 41,
+        "startChar": 3,
+        "endLine": 49,
+        "endChar": 22
+      },
+      "revId": "3480b083b9c620c8ef82873d1d5e94f71da1d7fc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_147cfc1f",
+        "filename": "docker/ansible/roles/run_influxdb/tasks/main.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6421
+      },
+      "writtenOn": "2018-02-22T18:10:38Z",
+      "side": 1,
+      "message": "Is there a resolution on this?  It is usually preferable to avoid host namespace.",
+      "parentUuid": "5a3f45e8_30be6900",
       "range": {
         "startLine": 41,
         "startChar": 3,
