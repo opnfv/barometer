@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_71bbd2c4",
+        "filename": "docker/ansible/roles/config_files/tasks/default_read_import.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7113
+      },
+      "writtenOn": "2018-02-22T10:51:46Z",
+      "side": 1,
+      "message": "No. Fixed. Thank you Aaron",
+      "parentUuid": "5a3f45e8_ce5841fd",
+      "revId": "a036ac7a1e0c57cc38b6fe29f5f4d902e546fa75",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_31ee6aed",
         "filename": "docker/ansible/roles/config_files/templates/kafka.conf.j2",
         "patchSetId": 6
@@ -30,6 +48,30 @@
       "writtenOn": "2018-02-22T09:34:41Z",
       "side": 1,
       "message": "why is this here if not in others?",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 3
+      },
+      "revId": "a036ac7a1e0c57cc38b6fe29f5f4d902e546fa75",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_51f2169b",
+        "filename": "docker/ansible/roles/config_files/templates/kafka.conf.j2",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7113
+      },
+      "writtenOn": "2018-02-22T10:51:46Z",
+      "side": 1,
+      "message": "Should not be there",
+      "parentUuid": "5a3f45e8_31ee6aed",
       "range": {
         "startLine": 14,
         "startChar": 0,
@@ -111,6 +153,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_91b65edb",
+        "filename": "docker/ansible/roles/config_files/templates/ovs_events.conf.j2",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7113
+      },
+      "writtenOn": "2018-02-22T10:51:46Z",
+      "side": 1,
+      "message": "No. removed quotes",
+      "parentUuid": "5a3f45e8_d1b466f4",
+      "range": {
+        "startLine": 19,
+        "startChar": 8,
+        "endLine": 19,
+        "endChar": 20
+      },
+      "revId": "a036ac7a1e0c57cc38b6fe29f5f4d902e546fa75",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_8e0599c4",
         "filename": "docker/ansible/roles/config_files/templates/ovs_events.conf.j2",
         "patchSetId": 6
@@ -139,6 +205,24 @@
       "writtenOn": "2018-02-21T19:53:12Z",
       "side": 1,
       "message": "Would it be possible to have this be a var?\nThe bridges created by the OpenStack installation tool (i.e. director, might have alternate names).",
+      "revId": "a036ac7a1e0c57cc38b6fe29f5f4d902e546fa75",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_f1f40289",
+        "filename": "docker/ansible/roles/config_files/templates/ovs_stats.conf.j2",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7113
+      },
+      "writtenOn": "2018-02-22T10:51:46Z",
+      "side": 1,
+      "message": "Hi Aaron,\n\nThere is requirements at times for Customers to modify the template files directly and this is one of those instances. It is not feasible to make every option and configuration configurable via variables and tags. Even if we allowed Customer to specify array of Bridges via a variable the Customer would still have to edit the file to enable the Bridges option by removing hash.\n\n-Gordon",
+      "parentUuid": "5a3f45e8_2e69e58b",
       "revId": "a036ac7a1e0c57cc38b6fe29f5f4d902e546fa75",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
