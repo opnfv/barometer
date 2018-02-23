@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_7a60c735",
+        "filename": "docker/ansible/roles/config_files/tasks/csv.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-02-23T15:34:17Z",
+      "side": 1,
+      "message": "missing ---",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 5
+      },
+      "revId": "317f6d18bb599cf61ffa166f60081ce335da1be6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
