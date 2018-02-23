@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_9a25d3ad",
+        "filename": "docker/ansible/roles/config_files/tasks/default_read_plugins.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-02-23T09:46:22Z",
+      "side": 1,
+      "message": "add new line before for consistency",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 39
+      },
+      "revId": "3ab0bc4a5482ae57d390ca9c129c2373d0c383fe",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_ba208f9c",
+        "filename": "docker/ansible/roles/config_files/tasks/pmu.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-02-23T09:46:22Z",
+      "side": 1,
+      "message": "add new line before for consistency",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 31
+      },
+      "revId": "3ab0bc4a5482ae57d390ca9c129c2373d0c383fe",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_7aff2702",
+        "filename": "docker/ansible/roles/config_files/templates/exec.conf.j2",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-02-23T09:46:22Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 3
+      },
+      "revId": "3ab0bc4a5482ae57d390ca9c129c2373d0c383fe",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_5a2b4b82",
+        "filename": "docker/ansible/roles/config_files/templates/kafka.conf.j2",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-02-23T09:46:22Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 1
+      },
+      "revId": "3ab0bc4a5482ae57d390ca9c129c2373d0c383fe",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_5a04eb14",
+        "filename": "docker/ansible/roles/config_files/templates/rrdtool.conf.j2",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-02-23T09:46:22Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 1
+      },
+      "revId": "3ab0bc4a5482ae57d390ca9c129c2373d0c383fe",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
