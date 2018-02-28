@@ -70,3 +70,14 @@
 
 - name: enable virt plugin
   import_tasks: virt.yml
+
+- name: copy additional templates to target system
+  template:
+    src: "{{ item }}"
+    dest: "{{ config_file_dir }}/{{ item | basename | regex_replace('\\.extmp.j2','') }}"
+  tags:
+   - always
+   - copy_extmp
+  with_fileglob:
+    - ../templates/*conf.extmp.j2
+
