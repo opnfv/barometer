@@ -51,3 +51,6 @@ syslog_log_level: info
 rrdtool_db_dir: "/var/lib/collectd/rrd"
 cache_flush: 120
 write_per_sec: 50
+
+#additional configuration files path
+additional_configs_path: ""
