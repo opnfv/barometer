@@ -1,0 +1,8 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+1: Sharada Shiddibhavi <sharada.shiddibhavi@intel.com>
+Code-Review+2: Calin Gherghe <calin.gherghe@intel.com>
+Submitted-by: Calin Gherghe <calin.gherghe@intel.com>
+Submitted-at: Wed, 28 Feb 2018 18:43:03 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/52775
+Project: barometer
+Branch: refs/heads/master
