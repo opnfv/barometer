@@ -1,0 +1,53 @@
+#Copyright 2018 OPNFV and Intel Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+---
+
+#directory paths
+config_file_dir: "/opt/collectd/etc/collectd.conf.d/"
+csv_log_dir: "/var/lib/collectd/csv"
+logfile_dir: "/var/log/"
+
+#global default interval
+interval_value: 10
+
+#network plugin vars
+network_port: 25826
+network_ip_addr: localhost
+
+#ovs event and stats plugin vars
+ovs_event_interval: 1
+ovs_event_ip_addr: localhost
+ovs_event_port: 6640
+ovs_stats_interval: 1
+ovs_stats_ip_addr: localhost
+ovs_stats_port: 6640
+
+#rdt plugin vars
+rdt_interval: 1
+
+#kafka plugin vars
+kafka_ip_addr: localhost
+kafka_port: 9092
+kafka_topic: collectd
+
+#logfile plugin vars
+logfile_log_level: info
+
+#syslog plugin vars
+syslog_log_level: info
+
+#rrd plugin vars
+rrdtool_db_dir: "/var/lib/collectd/rrd"
+cache_flush: 120
+write_per_sec: 50
