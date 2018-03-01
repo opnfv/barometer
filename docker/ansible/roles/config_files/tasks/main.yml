@@ -70,3 +70,6 @@
 
 - name: enable virt plugin
   import_tasks: virt.yml
+
+- name: enable ipmi plugin
+  include: ipmi.yml

@@ -101,14 +101,6 @@
   tags:
     - ipc
 
-- name: enable ipmi plugin
-  replace:
-      path: "{{ config_file_dir }}/default_read_plugins.conf"
-      regexp: '(\s+)#LoadPlugin ipmi(\s+.*)?$'
-      replace: '\1LoadPlugin ipmi\2'
-  tags:
-    - ipmi
-
 - name: enable df plugin
   replace:
       path: "{{ config_file_dir }}/default_read_plugins.conf"
