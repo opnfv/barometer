@@ -1,0 +1,45 @@
+#Copyright 2018 OPNFV and Intel Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+---
+
+- name: check ipmi executable is present
+  shell: "which ipmitool"
+  register: ipmitool
+  ignore_errors: true
+  tags:
+    - ipmi
+
+- name: check ipmi_devintf is loaded
+  shell: "lsmod | cut -d' ' -f1 | grep ipmi_devintf | grep -v grep"
+  register: ipmi_devintf
+  ignore_errors: true
+  tags:
+    - ipmi
+
+- name: check ipmi_si is loaded
+  shell: "lsmod | cut -d' ' -f1 | grep ipmi_si | grep -v grep"
+  register: ipmi_devsi
+  ignore_errors: true
+  tags:
+    - ipmi
+
+- name: enable ipmi plugin
+  replace:
+      path: "{{ config_file_dir }}/default_read_plugins.conf"
+      regexp: '(\s+)#LoadPlugin ipmi(\s+.*)?$'
+      replace: '\1LoadPlugin ipmi\2'
+  when: ipmitool|succeeded and ipmi_devintf|succeeded and ipmi_devsi|succeeded
+  tags:
+    - ipmi
+
