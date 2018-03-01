@@ -71,6 +71,9 @@
 - name: enable virt plugin
   import_tasks: virt.yml
 
+- name: enable ipmi plugin
+  include: ipmi.yml
+
 - name: copy additional configuration files to target system
   template:
     src: "{{ item }}"
@@ -80,4 +83,3 @@
    - copy_additional_configs
   with_fileglob:
     - "{{ additional_configs_path }}"
-
