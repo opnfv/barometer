@@ -14,12 +14,15 @@
 
 """Classes used by collectd.py"""
 
-import paramiko
 import time
 import os.path
 import os
 import re
+
 from opnfv.deployment import factory
+import paramiko
+from functest.utils import constants
+
 ID_RSA_PATH = '/root/.ssh/id_rsa'
 SSH_KEYS_SCRIPT = '/home/opnfv/barometer/baro_utils/get_ssh_keys.sh'
 DEF_PLUGIN_INTERVAL = 10
@@ -263,9 +266,7 @@ class ConfigServer(object):
         nodes = get_apex_nodes()
         for node in nodes:
             if controller_name == node.get_dict()['name']:
-                node.put_file(
-                    '/home/opnfv/functest/conf/openstack.creds',
-                    'overcloudrc.v3')
+                node.put_file(constants.ENV_FILE, 'overcloudrc.v3')
                 stdout = node.run_cmd(
                     "source overcloudrc.v3;"
                     + "openstack catalog list | grep gnocchi")
@@ -286,9 +287,7 @@ class ConfigServer(object):
         nodes = get_apex_nodes()
         for node in nodes:
             if controller_name == node.get_dict()['name']:
-                node.put_file(
-                    '/home/opnfv/functest/conf/openstack.creds',
-                    'overcloudrc.v3')
+                node.put_file(constants.ENV_FILE, 'overcloudrc.v3')
                 stdout = node.run_cmd(
                     "source overcloudrc.v3;"
                     + "openstack catalog list | grep aodh")
@@ -481,9 +480,7 @@ class ConfigServer(object):
             if node.is_controller():
                 self.__logger.info('Getting AODH Alarm list on {}' .format(
                     (node.get_dict()['name'])))
-                node.put_file(
-                    '/home/opnfv/functest/conf/openstack.creds',
-                    'overcloudrc.v3')
+                node.put_file(constants.ENV_FILE, 'overcloudrc.v3')
                 stdout = node.run_cmd(
                     "source overcloudrc.v3;"
                     + "aodh alarm list | grep {0} | grep {1}"
@@ -540,9 +537,7 @@ class ConfigServer(object):
             if node.is_controller():
                 self.__logger.info('Getting gnocchi metric list on {}' .format(
                     (node.get_dict()['name'])))
-                node.put_file(
-                    '/home/opnfv/functest/conf/openstack.creds',
-                    'overcloudrc.v3')
+                node.put_file(constants.ENV_FILE, 'overcloudrc.v3')
                 stdout = node.run_cmd(
                     "source overcloudrc.v3;"
                     + "gnocchi metric list | grep {0} | grep {1}"
