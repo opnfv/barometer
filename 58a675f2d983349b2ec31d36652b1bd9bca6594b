@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_96f91e50",
+        "filename": "docker/ansible/roles/config_files/tasks/ipmi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2018-03-02T11:33:14Z",
+      "side": 1,
+      "message": "same as below",
+      "range": {
+        "startLine": 24,
+        "startChar": 9,
+        "endLine": 24,
+        "endChar": 67
+      },
+      "revId": "58a675f2d983349b2ec31d36652b1bd9bca6594b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_b6fc1a40",
+        "filename": "docker/ansible/roles/config_files/tasks/ipmi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2018-03-02T11:33:14Z",
+      "side": 1,
+      "message": "Is this needed? If grep doesn\u0027t find a match, it just doesn\u0027t return anything, right?\n\nUnder what circumstances would it return an error?\nIf there is an error, then wouldn\u0027t it be in STDERR, not STDOUT?",
+      "range": {
+        "startLine": 31,
+        "startChar": 47,
+        "endLine": 31,
+        "endChar": 61
+      },
+      "revId": "58a675f2d983349b2ec31d36652b1bd9bca6594b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
