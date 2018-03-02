@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_f6c7c210",
+        "filename": "docker/ansible/roles/config_files/tasks/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2018-03-02T11:08:48Z",
+      "side": 1,
+      "message": "Could be more explicit here. \"additional configuration file templates\"?",
+      "range": {
+        "startLine": 74,
+        "startChar": 24,
+        "endLine": 74,
+        "endChar": 33
+      },
+      "revId": "bcd244b31ec05126a00f3eeacc8af87640393a6d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_d6cc4638",
+        "filename": "docker/ansible/roles/config_files/tasks/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2018-03-02T11:08:48Z",
+      "side": 1,
+      "message": "Please change this tag. The action is not intuitive. \n\nI suggest something like copy_extra_templates or copy_custom_configs or copy_additional_configs.\nSomething along those lines.",
+      "range": {
+        "startLine": 80,
+        "startChar": 5,
+        "endLine": 80,
+        "endChar": 15
+      },
+      "revId": "bcd244b31ec05126a00f3eeacc8af87640393a6d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_b6e53aaa",
+        "filename": "docker/ansible/roles/config_files/tasks/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2018-03-02T11:08:48Z",
+      "side": 1,
+      "message": "May I suggest making this configurable. So the user can pint at an existing directory and basically say \"Take those ones\".\n\nThe files in that directory wouldn\u0027t necessarily need to be templates either (i.e. look for .conf.j2 and .conf). The user might have a bunch of collectd conf files that they use that aren\u0027t templates.\nThis would also mean that you can default to another dir and not require the .extmp extension.",
+      "range": {
+        "startLine": 82,
+        "startChar": 25,
+        "endLine": 82,
+        "endChar": 30
+      },
+      "revId": "bcd244b31ec05126a00f3eeacc8af87640393a6d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
