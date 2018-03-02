@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "5a3f45e8_ea2512ac",
+        "filename": "docker/ansible/roles/config_files/tasks/ipmi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2018-03-02T13:38:07Z",
+      "side": 1,
+      "message": "This tool isn\u0027t required for the collectd ipmi plugin to work. So, it can be removed. Rather, I would check the presence of `/dev/ipmi0` file which can be missing if device doesn\u0027t support the IPMI even the drivers are loaded.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 10
+      },
+      "revId": "58a675f2d983349b2ec31d36652b1bd9bca6594b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_96f91e50",
         "filename": "docker/ansible/roles/config_files/tasks/ipmi.yml",
         "patchSetId": 1
@@ -36,6 +59,30 @@
       "writtenOn": "2018-03-02T11:33:14Z",
       "side": 1,
       "message": "Is this needed? If grep doesn\u0027t find a match, it just doesn\u0027t return anything, right?\n\nUnder what circumstances would it return an error?\nIf there is an error, then wouldn\u0027t it be in STDERR, not STDOUT?",
+      "range": {
+        "startLine": 31,
+        "startChar": 47,
+        "endLine": 31,
+        "endChar": 61
+      },
+      "revId": "58a675f2d983349b2ec31d36652b1bd9bca6594b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_ea7352af",
+        "filename": "docker/ansible/roles/config_files/tasks/ipmi.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2018-03-02T13:38:07Z",
+      "side": 1,
+      "message": "Agree with Emma. Why this is needed?",
+      "parentUuid": "5a3f45e8_b6fc1a40",
       "range": {
         "startLine": 31,
         "startChar": 47,
