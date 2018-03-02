@@ -16,6 +16,24 @@
       "revId": "ae7fd7fb552c8bb44860e7787910365de824c070",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_0ab5deed",
+        "filename": "docker/ansible/roles/config_files/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7113
+      },
+      "writtenOn": "2018-03-02T14:48:46Z",
+      "side": 1,
+      "message": "Customer can make variable to \"../folder/*\".\nIt gives more flexibility. Variable implies path and not directory",
+      "parentUuid": "5a3f45e8_4a208649",
+      "revId": "ae7fd7fb552c8bb44860e7787910365de824c070",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
