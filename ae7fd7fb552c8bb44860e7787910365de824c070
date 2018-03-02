@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_4a208649",
+        "filename": "docker/ansible/roles/config_files/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2018-03-02T14:41:46Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we add match a pattern here like:\n- \"{{ additional_configs_path }}/*\" ?",
+      "revId": "ae7fd7fb552c8bb44860e7787910365de824c070",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
