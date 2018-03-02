@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_4aca4650",
+        "filename": "docker/ansible/roles/config_files/tasks/ipmi.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6419
+      },
+      "writtenOn": "2018-03-02T15:04:21Z",
+      "side": 1,
+      "message": "new line",
+      "revId": "15acf7ec7e446f01c89abcc8aa14e6427ef91162",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
