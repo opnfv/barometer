@@ -10,10 +10,10 @@ import logging
 
 from baro_tests import collectd
 
-import functest.core.feature as base
+from xtesting.core import feature
 
 
-class BarometerCollectd(base.Feature):
+class BarometerCollectd(feature.Feature):
     '''
     Class for executing barometercollectd testcase.
     '''
