@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_322c8c02",
+        "filename": "INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2018-03-07T10:33:48Z",
+      "side": 1,
+      "message": "Unrelated: we have more committers than this\n\nwiki list: https://wiki.opnfv.org/display/fastpath/Barometer+Home\nINFO file: https://github.com/opnfv/barometer/blob/master/INFO",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 19
+      },
+      "revId": "fe81d565ba69e912a279896d24f5dbb3786d286e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
