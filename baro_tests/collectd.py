@@ -645,27 +645,30 @@ def mcelog_install():
                     'Checking if  mcelog is enabled'
                     + ' on node-{}...'.format(node.get_dict()['name']))
                 res = node.run_cmd('ls')
-            if 'mce-inject_ea' and 'corrected' in res:
-                logger.info(
-                    'Mcelog seems to be already installed '
-                    + 'on node-{}.'.format(node.get_dict()['name']))
-                node.run_cmd('sudo modprobe mce-inject')
-                node.run_cmd('sudo ./mce-inject_ea < corrected')
-            else:
-                logger.info(
-                    'Mcelog will be enabled on node-{}...'.format(
-                        node.get_dict()['id']))
-                node.put_file(mce_bin, 'mce-inject_ea')
-                node.run_cmd('chmod a+x mce-inject_ea')
-                node.run_cmd('echo "CPU 0 BANK 0" > corrected')
-                node.run_cmd(
-                    'echo "STATUS 0xcc00008000010090" >>'
-                    + ' corrected')
-                node.run_cmd(
-                    'echo "ADDR 0x0010FFFFFFF" >> corrected')
-                node.run_cmd('sudo modprobe mce-inject')
-                node.run_cmd('sudo ./mce-inject_ea < corrected')
-    logger.info('Mcelog is installed on all compute nodes')
+                if 'mce-inject_ea' and 'corrected' in res:
+                    logger.info(
+                        'Mcelog seems to be already installed '
+                        + 'on node-{}.'.format(node.get_dict()['name']))
+                    node.run_cmd('sudo modprobe mce-inject')
+                    node.run_cmd('sudo ./mce-inject_ea < corrected')
+                else:
+                    logger.info(
+                        'Mcelog will be enabled on node-{}...'.format(
+                            node.get_dict()['id']))
+                    node.put_file(mce_bin, 'mce-inject_ea')
+                    node.run_cmd('chmod a+x mce-inject_ea')
+                    node.run_cmd('echo "CPU 0 BANK 0" > corrected')
+                    node.run_cmd(
+                        'echo "STATUS 0xcc00008000010090" >>'
+                        + ' corrected')
+                    node.run_cmd(
+                        'echo "ADDR 0x0010FFFFFFF" >> corrected')
+                    node.run_cmd('sudo modprobe mce-inject')
+                    node.run_cmd('sudo ./mce-inject_ea < corrected')
+                    logger.info(
+                        'Mcelog is installed on node-{}'.format(
+                            node.get_dict()['name']))
+
 
 
 def mcelog_delete():
