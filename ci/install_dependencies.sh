@@ -21,16 +21,14 @@ sudo yum install -y yum-utils
 sudo yum install -y epel-release
 sudo yum-builddep -y collectd
 
-sudo yum -y install autoconf automake flex bison libtool pkg-config
+sudo yum -y install autoconf automake flex bison libtool pkg-config make
 
 sudo yum -y install git
 
 sudo yum -y install rpm-build \
-	libcap-devel xfsprogs-devel iptables-devel \
-	libmemcached-devel gtk2-devel libvirt-devel
+    libcap-devel xfsprogs-devel iptables-devel \
+    libmemcached-devel gtk2-devel libvirt-devel
 
-# For intel-cmt-cat
-sudo yum -y install wget
 
 # For RPM build
 mkdir -p $RPM_WORKDIR/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
