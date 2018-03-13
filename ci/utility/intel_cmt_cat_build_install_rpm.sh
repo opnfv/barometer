@@ -30,7 +30,7 @@ then
 fi
 cd $CMTCAT_DIR
 git checkout -b intel_rdt $CMTCAT_BRANCH
-wget https://github.com/01org/intel-cmt-cat/archive/${VERSION}.tar.gz --directory-prefix=$CMTCAT_DIR
+curl -sSL --create-dirs http://artifacts.opnfv.org/barometer/intel-cmt-cat/${VERSION}.tar.gz -o $CMTCAT_DIR/${VERSION}.tar.gz
 mv $CMTCAT_DIR/${VERSION}.tar.gz $RPM_WORKDIR/SOURCES/
 rpmbuild --define "_topdir $RPM_WORKDIR" -bb $CMTCAT_DIR/rpm/intel-cmt-cat.spec
 

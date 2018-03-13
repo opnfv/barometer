@@ -9,3 +9,4 @@
 .settings
 build
 dist
+src/collectd-openstack-plugins/collectd-openstack-plugins/
