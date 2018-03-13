@@ -21,7 +21,7 @@ sudo yum install -y yum-utils
 sudo yum install -y epel-release
 sudo yum-builddep -y collectd
 
-sudo yum -y install autoconf automake flex bison libtool pkg-config
+sudo yum -y install autoconf automake flex bison libtool pkg-config make
 
 sudo yum -y install git
 
