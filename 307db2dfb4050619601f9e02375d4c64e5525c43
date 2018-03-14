@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_aa100ba9",
+        "filename": "docker/barometer-collectd/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 3299
+      },
+      "writtenOn": "2018-03-14T16:08:02Z",
+      "side": 0,
+      "message": "Note that as part of this build, I\u0027ve dropped a seemingly(?) invalid bit of the build. The Python dependencies are installed for the OpenStack plugins, but the actual plugins aren\u0027t installed.\n\nAlso, I don\u0027t see this image as a base to something else that would be using the repo, and I haven\u0027t seen any scripts that seem to reference the plugins.\n\nSo either 1) this shouldn\u0027t be installed into the image here, and 2) we should expand this section to run a `pip install .` after the deps are installed.\n\nI have a mailing list email out asking about this very section.",
+      "revId": "307db2dfb4050619601f9e02375d4c64e5525c43",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
