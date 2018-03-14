@@ -125,29 +125,27 @@ On the compute:
         [...]
 
 
-Platform components validation - Compass4nfv
---------------------------------------------
+Barometer post installation verification for Compass4nfv
+--------------------------------------------------------
 
-The procedure is similar to the above.
+For Fraser release, Compass4nfv integrated the ``barometer-collectd`` container of Barometer.
+As a result, on the compute node, collectd runs in a Docker container. On the controller node,
+Grafana and InfluxDB are installed and configured.
 
-The following steps describe how to perform a simple "manual" testing of the Barometer components:
+The following steps describe how to perform simple "manual" testing of the Barometer components
+after successfully deploying a Barometer scenario using Compass4nfv:
 
 On the compute:
 
-1. Connect to any compute node and ensure that the collectd service is running. The log file
-   ``collectd.log`` should contain no errors and should indicate that each plugin was successfully
-   loaded. For example, ssh into a compute node and test:
+1. Connect to any compute node and ensure that the collectd container is running.
 
    .. code:: bash
 
-       $ ls /etc/collectd/collectd.conf.d/
-       $ systemctl status collectd
-       $ vi /var/log/collectd.log
+       root@host2:~# docker ps | grep collectd
 
-   The following plugings should be found loaded:
-   aodh, gnocchi, hugepages, mcelog, ovs_events, ovs_stats, cpu, interface, memory, disk, numa, virt, rrdtool
+   You should see the container ``opnfv/barometer-collectd`` running.
 
-2. Testing using mce-inject is similar to #2 shown above.
+2. Testing using mce-inject is similar to testing done in Apex.
 
 On the controller:
 
@@ -157,8 +155,18 @@ https://wiki.opnfv.org/display/compass4nfv/Containerized+Compass#ContainerizedCo
 
    .. code:: bash
 
-      $ source ~/openrc
-      $ gnocchi metric list
-      $ aodh alarm list
+      root@host1-utility-container-d15da033:~# source ~/openrc
+      root@host1-utility-container-d15da033:~# gnocchi metric list
+      root@host1-utility-container-d15da033:~# aodh alarm list
 
-   The output for the gnocchi and aodh queries should be similar to the excerpts shown in #3 above.
+   The output for the gnocchi and aodh queries should be similar to the excerpts shown in the section above for Apex.
+
+4. Use a web browser to connect to Grafana at ``http://<serverip>:3000/``, using the hostname or
+IP of your Ubuntu server and port 3000. Log in with admin/admin. You will see ``collectd``
+InfluxDB database in the ``Data Sources``. Also, you will notice metrics coming in the several
+dashboards such as ``CPU Usage`` and ``Host Overview``.
+
+For more details on the Barometer containers, Grafana and InfluxDB, please refer to
+the following documentation links:
+https://wiki.opnfv.org/display/fastpath/Barometer+Containers#BarometerContainers-barometer-collectdcontainer
+http://docs.opnfv.org/en/latest/submodules/barometer/docs/release/userguide/docker.userguide.html#barometer-collectd-image
