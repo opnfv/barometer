@@ -13,6 +13,14 @@
 # limitations under the License.
 ---
 
+- name: enable contextswitch  plugin
+  replace:
+      path: "{{ config_file_dir }}/default_read_plugins.conf"
+      regexp: '(\s+)#LoadPlugin contextswitch(\s+.*)?$'
+      replace: '\1LoadPlugin contextswitch\2'
+  tags:
+    - contextswitch
+
 - name: enable cpu plugin
   replace:
       path: "{{ config_file_dir }}/default_read_plugins.conf"
@@ -29,6 +37,14 @@
   tags:
     - cpufreq
 
+- name: enable df plugin
+  replace:
+      path: "{{ config_file_dir }}/default_read_plugins.conf"
+      regexp: '(\s+)#LoadPlugin df(\s+.*)?$'
+      replace: '\1LoadPlugin df\2'
+  tags:
+    - df
+
 - name: enable disk plugin
   replace:
       path: "{{ config_file_dir }}/default_read_plugins.conf"
@@ -36,6 +52,30 @@
       replace: '\1LoadPlugin disk\2'
   tags:
     - disk
+
+- name: enable ethstat plugin
+  replace:
+      path: "{{ config_file_dir }}/default_read_plugins.conf"
+      regexp: '(\s+)#LoadPlugin ethstat(\s+.*)?$'
+      replace: '\1LoadPlugin ethstat\2'
+  tags:
+    - ethstat
+
+- name: enable ipc plugin
+  replace:
+      path: "{{ config_file_dir }}/default_read_plugins.conf"
+      regexp: '(\s+)#LoadPlugin ipc(\s+.*)?$'
+      replace: '\1LoadPlugin ipc\2'
+  tags:
+    - ipc
+
+- name: enable irq plugin
+  replace:
+      path: "{{ config_file_dir }}/default_read_plugins.conf"
+      regexp: '(\s+)#LoadPlugin irq(\s+.*)?$'
+      replace: '\1LoadPlugin irq\2'
+  tags:
+    - irq
 
 - name: enable load plugin
   replace:
@@ -69,45 +109,13 @@
   tags:
     - processes
 
-- name: enable irq plugin
-  replace:
-      path: "{{ config_file_dir }}/default_read_plugins.conf"
-      regexp: '(\s+)#LoadPlugin irq(\s+.*)?$'
-      replace: '\1LoadPlugin irq\2'
-  tags:
-    - irq
-
 - name: enable swap plugin
   replace:
-      path: "{{ config_file_dir }}/default_plugins.conf"
+      path: "{{ config_file_dir }}/default_read_plugins.conf"
       regexp: '(\s+)#LoadPlugin swap(\s+.*)?$'
       replace: '\1LoadPlugin swap\2'
   tags:
     - swap
-
-- name: enable ethstat plugin
-  replace:
-      path: "{{ config_file_dir }}/default_read_plugins.conf"
-      regexp: '(\s+)#LoadPlugin ethstat(\s+.*)?$'
-      replace: '\1LoadPlugin ethstat\2'
-  tags:
-    - ethstat
-
-- name: enable ipc plugin
-  replace:
-      path: "{{ config_file_dir }}/default_read_plugins.conf"
-      regexp: '(\s+)#LoadPlugin ipc(\s+.*)?$'
-      replace: '\1LoadPlugin ipc\2'
-  tags:
-    - ipc
-
-- name: enable df plugin
-  replace:
-      path: "{{ config_file_dir }}/default_read_plugins.conf"
-      regexp: '(\s+)#LoadPlugin df(\s+.*)?$'
-      replace: '\1LoadPlugin df\2'
-  tags:
-    - df
 
 - name: enable turbostat plugin
   replace:
@@ -124,12 +132,3 @@
       replace: '\1LoadPlugin uptime\2'
   tags:
     - uptime
-
-- name: enable contextswitch  plugin
-  replace:
-      path: "{{ config_file_dir }}/default_read_plugins.conf"
-      regexp: '(\s+)#LoadPlugin contextswitch(\s+.*)?$'
-      replace: '\1LoadPlugin contextswitch\2'
-  tags:
-    - contextswitch
-
