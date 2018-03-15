@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_fef498d0",
+        "filename": "docs/release/configguide/postinstall.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 605
+      },
+      "writtenOn": "2018-03-15T00:41:00Z",
+      "side": 1,
+      "message": "When I copy all of these into http://rst.ninjs.org/, the table here seems not correct.",
+      "range": {
+        "startLine": 120,
+        "startChar": 6,
+        "endLine": 125,
+        "endChar": 13
+      },
+      "revId": "ae75b0bab428449d299429ee74b07e7b179a9b3e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_1efa24bd",
+        "filename": "docs/release/configguide/postinstall.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 605
+      },
+      "writtenOn": "2018-03-15T00:41:00Z",
+      "side": 1,
+      "message": "Do we need to add a reference link for this?",
+      "range": {
+        "startLine": 162,
+        "startChar": 95,
+        "endLine": 162,
+        "endChar": 117
+      },
+      "revId": "ae75b0bab428449d299429ee74b07e7b179a9b3e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
