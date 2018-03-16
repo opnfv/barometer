@@ -27,24 +27,23 @@ The following steps describe how to perform a simple "manual" testing of the Bar
 
 On the controller:
 
-You will need update the archive policy rule for gnocchi via the command line.
-The default is low, which means that you only get a metric every
-5 minutes. To do this:
+1. Get a list of the available metrics:
 
-.. code:: bash
+   .. code::
 
-    $ openstack metric archive-policy rule delete default
-    $ openstack metric archive-policy-rule create  -a bool -m '*'  default
+      $ openstack metric list
 
-Using the ``bool`` archive policy reduces the number of aggregation methods run
-to one (last), and it keeps all metrics at a 1 second interval.
-In order to query this you need to explicitly choose an aggregation method to
-display (by default, ``measures show`` uses mean). You may have to update the
-command for checking the metrics, this is the CLI command:
+2. Take note of the ID of the metric of interest, and show the measures of this metric:
 
-.. code:: bash
+   .. code::
 
-     $ watch –n2 –d openstack metric measures show  --aggregation last <metric_id>
+      $ openstack metric measures show <metric_id>
+
+3. Watch the measure list for updates to verify that metrics are being added:
+
+   .. code:: bash
+
+      $ watch –n2 –d openstack metric measures show <metric_id>
 
 More on testing and displaying metrics is shown below.
 
