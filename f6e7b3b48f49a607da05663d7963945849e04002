@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_83a535b7",
+        "filename": "baro_tests/config_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 5995
+      },
+      "writtenOn": "2018-03-16T18:15:46Z",
+      "side": 1,
+      "message": "I\u0027m not sure it\u0027s OK to wait 30 sec for metrics that are supposed to be updated much more frequently (e.g. every 1, 2 or even 10 sec).  If a 30 sec is used to wait, then a test based on time-stamp must be added in order to verify the update interval because that is part of the test.",
+      "range": {
+        "startLine": 549,
+        "startChar": 12,
+        "endLine": 549,
+        "endChar": 27
+      },
+      "revId": "f6e7b3b48f49a607da05663d7963945849e04002",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
