@@ -74,6 +74,9 @@
 - name: enable ipmi plugin
   include: ipmi.yml
 
+- name: copy types.db to target
+  include: types_db.yml
+
 - name: copy additional configuration files to target system
   template:
     src: "{{ item }}"
