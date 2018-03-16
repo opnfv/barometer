@@ -224,7 +224,9 @@ def test_csv_handles_plugin_data(
         + 'to interval...')
     for metric in plugin_metrics:
         logger.debug('{0} {1} {2} ... '.format(metric[0], metric[1], metric[2]))
-        if math.floor(metric[3] - metric[2]) > interval:
+        # When there's a small interval or many metrics, there may be a slight
+        # delay in writing the metrics. e.g. a gap of 1.* is okay for an interval of 1
+        if math.floor(metric[3] - metric[2]) > interval + 1:
             logger.error(
                 'Time of last two entries differ by '
                 + '{}, but interval is {}'.format(

@@ -322,6 +322,17 @@ class ConfigServer(object):
                 else:
                     return 0
 
+    def is_rdt_available(self, compute):
+        """Check whether the compute node is a virtual machine."""
+        compute_name = compute.get_name()
+        nodes = get_apex_nodes()
+        for node in nodes:
+            if compute_name == node.get_dict()['name']:
+                stdout = node.run_cmd('cat /proc/cpuinfo | grep hypervisor')
+                if 'hypervisor' in stdout:
+                    return False
+        return True
+
     def is_libpqos_on_node(self, compute):
         """Check whether libpqos is present on compute node"""
 
@@ -532,7 +543,11 @@ class ConfigServer(object):
         timestamps1 = {}
         timestamps2 = {}
         nodes = get_apex_nodes()
-        sleep_time = plugin_interval + 2
+        if plugin_interval > 15:
+            sleep_time = plugin_interval*2
+        else:
+            sleep_time = 30
+
         for node in nodes:
             if node.is_controller():
                 self.__logger.info('Getting gnocchi metric list on {}' .format(

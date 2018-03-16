@@ -322,28 +322,28 @@ def _print_final_result_of_plugin(
             elif (id, out_plugin, plugin, False) in results:
                 print_line += ' FAIL   |'
             else:
-                print_line += ' NOT EX |'
+                print_line += ' SKIP   |'
         elif out_plugin == 'AODH':
             if (id, out_plugin, plugin, True) in results:
                 print_line += ' PASS   |'
             elif (id, out_plugin, plugin, False) in results:
                 print_line += ' FAIL   |'
             else:
-                print_line += ' FAIL   |'
+                print_line += ' SKIP   |'
         elif out_plugin == 'SNMP':
             if (id, out_plugin, plugin, True) in results:
                 print_line += ' PASS   |'
             elif (id, out_plugin, plugin, False) in results:
                 print_line += ' FAIL   |'
             else:
-                print_line += ' FAIL   |'
+                print_line += ' SKIP   |'
         elif out_plugin == 'CSV':
             if (id, out_plugin, plugin, True) in results:
                 print_line += ' PASS   |'
             elif (id, out_plugin, plugin, False) in results:
                 print_line += ' FAIL   |'
             else:
-                print_line += ' NOT EX |'
+                print_line += ' SKIP   |'
         else:
             print_line += ' SKIP   |'
     return print_line
@@ -468,6 +468,9 @@ def _exec_testcase(
         bridge for bridge in ovs_interfaces
         if bridge in ovs_configured_bridges]
     plugin_prerequisites = {
+        'intel_rdt': [(
+             conf.is_rdt_available(compute_node),
+             'RDT not avaialble on VMs')],
         'mcelog': [(
             conf.is_mcelog_installed(compute_node, 'mcelog'),
             'mcelog must be installed.')],
@@ -504,8 +507,7 @@ def _exec_testcase(
         'intel_rdt': [
             'intel_rdt-0-2'],
         'hugepages': [
-            'hugepages-mm-2048Kb', 'hugepages-node0-2048Kb',
-            'hugepages-node1-2048Kb'],
+            'hugepages-mm-2048Kb', 'hugepages-node0-2048Kb',],
         # 'ipmi': ['ipmi'],
         'mcelog': [
             'mcelog-SOCKET_0_CHANNEL_0_DIMM_any',
@@ -634,7 +636,7 @@ def mcelog_install():
     for node in nodes:
         if node.is_compute():
             centos_release = node.run_cmd('uname -r')
-            if '3.10.0-514.26.2.el7.x86_64' not in centos_release:
+            if centos_release not in ('3.10.0-514.26.2.el7.x86_64', '3.10.0-693.17.1.el7.x86_64'):
                 logger.info(
                     'Mcelog will NOT be enabled on node-{}.'
                     + ' Unsupported CentOS release found ({}).'.format(
