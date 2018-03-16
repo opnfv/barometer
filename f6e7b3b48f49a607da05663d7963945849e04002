@@ -1,0 +1,9 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+2: Aaron Smith <aasmith@redhat.com>
+Verified+1: Aaron Smith <aasmith@redhat.com>
+Code-Review+1: ramamani yeleswarapu <ramamani.yeleswarapu@intel.com>
+Submitted-by: Aaron Smith <aasmith@redhat.com>
+Submitted-at: Fri, 16 Mar 2018 18:08:30 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/53907
+Project: barometer
+Branch: refs/heads/master
