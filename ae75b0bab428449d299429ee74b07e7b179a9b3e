@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_437a0cf2",
+        "filename": "docs/release/configguide/postinstall.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 605
+      },
+      "writtenOn": "2018-03-19T01:44:53Z",
+      "side": 1,
+      "message": "Got it. Thanks.",
+      "parentUuid": "5a3f45e8_949c55c2",
+      "range": {
+        "startLine": 120,
+        "startChar": 6,
+        "endLine": 125,
+        "endChar": 13
+      },
+      "revId": "ae75b0bab428449d299429ee74b07e7b179a9b3e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_1efa24bd",
         "filename": "docs/release/configguide/postinstall.rst",
         "patchSetId": 1
