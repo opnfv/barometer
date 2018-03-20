@@ -76,3 +76,6 @@
 
 - name: copy additional config files
   include: additional_configs.yml
+
+- name: copy types.db to target
+  include: types_db.yml
