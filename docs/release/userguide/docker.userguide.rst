@@ -305,17 +305,17 @@ Run the collectd docker image
    Sample configurations can be found at:
    https://github.com/opnfv/barometer/tree/master/src/collectd/collectd_sample_configs
 
-To make some changes when the container is running run:
-
-.. code:: bash
-
-   sudo docker exec -ti opnfv/barometer-collectd /bin/bash
-
 Check your docker image is running
 
 .. code:: bash
 
    sudo docker ps
+
+To make some changes when the container is running run:
+
+.. code:: bash
+
+   sudo docker exec -ti <CONTAINER ID> /bin/bash
 
 Build and Run InfluxDB and Grafana docker images
 ------------------------------------------------
@@ -429,17 +429,17 @@ Run the InfluxDB docker image
 
    $ sudo docker run -tid --net=host -v /var/lib/influxdb:/var/lib/influxdb -p 8086:8086 -p 25826:25826  opnfv/barometer-influxdb
 
-To make some changes when the container is running run:
-
-.. code:: bash
-
-   sudo docker exec -ti opnfv/barometer-influxdb /bin/bash
-
 Check your docker image is running
 
 .. code:: bash
 
    sudo docker ps
+
+To make some changes when the container is running run:
+
+.. code:: bash
+
+   sudo docker exec -ti <CONTAINER ID> /bin/bash
 
 Run the Grafana docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -459,17 +459,17 @@ of 192.168.121.111
    $ sudo docker run -tid --net=host -v /var/lib/grafana:/var/lib/grafana -p 3000:3000 -e \
      influxdb_host=someserver --add-host someserver:192.168.121.111 opnfv/barometer-grafana
 
-To make some changes when the container is running run:
-
-.. code:: bash
-
-   sudo docker exec -ti opnfv/barometer-grafana /bin/bash
-
 Check your docker image is running
 
 .. code:: bash
 
    sudo docker ps
+
+To make some changes when the container is running run:
+
+.. code:: bash
+
+   sudo docker exec -ti <CONTAINER ID> /bin/bash
 
 Connect to <host_ip>:3000 with a browser and log into grafana: admin/admin
 
