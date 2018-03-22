@@ -309,7 +309,7 @@ To make some changes when the container is running run:
 
 .. code:: bash
 
-   sudo docker exec -ti opnfv/barometer-collectd /bin/bash
+   sudo docker exec -ti <CONTAINER ID> /bin/bash
 
 Check your docker image is running
 
