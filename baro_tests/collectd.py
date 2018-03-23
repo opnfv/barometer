@@ -649,7 +649,7 @@ def mcelog_install():
     for node in nodes:
         if node.is_compute():
             centos_release = node.run_cmd('uname -r')
-            if centos_release not in ('3.10.0-514.26.2.el7.x86_64', '3.10.0-693.17.1.el7.x86_64'):
+            if centos_release < '3.10.0-514.26.2.el7.x86_64':
                 logger.info(
                     'Mcelog will NOT be enabled on node-{}.'
                     + ' Unsupported CentOS release found ({}).'.format(
