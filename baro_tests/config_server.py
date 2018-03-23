@@ -479,6 +479,16 @@ class ConfigServer(object):
                     return False, warning
         return True, warning
 
+    def trigger_alarm_update(self, alarm, compute_node):
+        # TODO: move these actions to main, with criteria lists so that we can reference that
+        # i.e. test_plugin_with_aodh(self, compute, plugin.., logger, criteria_list, alarm_action)
+        if alarm == 'mcelog':
+            compute_node.run_cmd('sudo modprobe mce-inject')
+            compute_node.run_cmd('sudo ./mce-inject_ea < corrected')
+        if alarm == 'ovs_events':
+            compute_node.run_cmd('sudo ifconfig -a | grep br0')
+            compute_node.run_cmd('sudo ifconfig br0 down; sudo ifconfig br0 up')
+
     def test_plugins_with_aodh(
             self, compute, plugin_interval, logger,
             criteria_list=[]):
@@ -487,11 +497,13 @@ class ConfigServer(object):
         timestamps1 = {}
         timestamps2 = {}
         nodes = get_apex_nodes()
+        compute_node = [node for node in nodes if node.get_dict()['name'] == compute][0]
         for node in nodes:
             if node.is_controller():
                 self.__logger.info('Getting AODH Alarm list on {}' .format(
                     (node.get_dict()['name'])))
                 node.put_file(constants.ENV_FILE, 'overcloudrc.v3')
+                self.trigger_alarm_update(criteria_list, compute_node)
                 stdout = node.run_cmd(
                     "source overcloudrc.v3;"
                     + "aodh alarm list | grep {0} | grep {1}"
@@ -510,10 +522,9 @@ class ConfigServer(object):
                         return False
                     for line in stdout.splitlines()[3: -1]:
                         line = line.replace('|', "")
-                        if line.split()[0] == 'timestamp':
+                        if line.split()[0] == 'state_timestamp':
                             timestamps1 = line.split()[1]
-                        else:
-                            pass
+                    self.trigger_alarm_update(criteria_list, compute_node)
                     time.sleep(12)
                     stdout = node.run_cmd(
                         "source overcloudrc.v3; aodh alarm show {}" .format(
@@ -523,10 +534,8 @@ class ConfigServer(object):
                         return False
                     for line in stdout.splitlines()[3:-1]:
                         line = line.replace('|', "")
-                        if line.split()[0] == 'timestamp':
+                        if line.split()[0] == 'state_timestamp':
                             timestamps2 = line.split()[1]
-                        else:
-                            pass
                     if timestamps1 == timestamps2:
                         self.__logger.info(
                             "Data not updated after interval of 12 seconds")
