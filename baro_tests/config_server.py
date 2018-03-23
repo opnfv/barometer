@@ -613,7 +613,7 @@ class ConfigServer(object):
             self, compute, plugin_interval, logger, plugin, snmp_mib_files=[],
             snmp_mib_strings=[], snmp_in_commands=[]):
 
-        if plugin == 'hugepages' or 'intel_rdt' or 'mcelog':
+        if plugin in ('hugepages', 'intel_rdt', 'mcelog'):
             nodes = get_apex_nodes()
             for node in nodes:
                 if compute == node.get_dict()['name']:

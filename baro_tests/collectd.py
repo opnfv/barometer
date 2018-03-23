@@ -468,9 +468,6 @@ def _exec_testcase(
         bridge for bridge in ovs_interfaces
         if bridge in ovs_configured_bridges]
     plugin_prerequisites = {
-        'intel_rdt': [(
-             conf.is_rdt_available(compute_node),
-             'RDT not avaialble on VMs')],
         'mcelog': [(
             conf.is_mcelog_installed(compute_node, 'mcelog'),
             'mcelog must be installed.')],
@@ -563,6 +560,18 @@ def _exec_testcase(
                 + 'following prerequisites failed:')
             for prerequisite in failed_prerequisites:
                 logger.error(' * {}'.format(prerequisite))
+        # optional plugin
+        elif "intel_rdt" == name and not conf.is_rdt_available(compute_node):
+            #TODO: print log message
+            logger.info("RDT is not available on virtual nodes, skipping test.")
+            res = True
+            print("Results for {}, pre-processing".format(str(test_labels[name])))
+            print(results)
+            _process_result(
+                compute_node.get_id(), out_plugin, test_labels[name],
+                res, results, compute_node.get_name())
+            print("Results for {}, post-processing".format(str(test_labels[name])))
+            print(results)
         else:
             plugin_interval = conf.get_plugin_interval(compute_node, name)
             if out_plugin == 'Gnocchi':
@@ -591,9 +600,13 @@ def _exec_testcase(
                     'Test works, but will be reported as failure,'
                     + 'because of non-critical errors.')
                 res = False
+            print("Results for {}, pre-processing".format(str(test_labels[name])))
+            print(results)
             _process_result(
                 compute_node.get_id(), out_plugin, test_labels[name],
                 res, results, compute_node.get_name())
+            print("Results for {}, post-processing".format(str(test_labels[name])))
+            print(results)
 
 
 def get_results_for_ovs_events(
