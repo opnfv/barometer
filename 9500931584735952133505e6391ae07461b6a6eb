@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_dfaedf84",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2018-03-26T19:23:00Z",
+      "side": 1,
+      "message": "same as below:\n- check container is running\n- make changes to container.",
+      "revId": "9500931584735952133505e6391ae07461b6a6eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_7f9fcb50",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2018-03-26T19:23:00Z",
+      "side": 1,
+      "message": "Same as below.\n\n- run container\n- check container is running\n- make changes to running coantainer",
+      "range": {
+        "startLine": 432,
+        "startChar": 0,
+        "endLine": 436,
+        "endChar": 48
+      },
+      "revId": "9500931584735952133505e6391ae07461b6a6eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_9fa457a7",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2018-03-26T19:23:00Z",
+      "side": 1,
+      "message": "Move this to L473.\n\ni.e. sequence is as follows:\n  run container\n  check container is running\n  make changes to running container",
+      "range": {
+        "startLine": 462,
+        "startChar": 0,
+        "endLine": 466,
+        "endChar": 48
+      },
+      "revId": "9500931584735952133505e6391ae07461b6a6eb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
