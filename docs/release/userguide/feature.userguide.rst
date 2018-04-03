@@ -155,7 +155,7 @@ If you want to use granfana to display the metrics you collect, please see:
 `grafana guide`_
 
 For more information on configuring and installing OpenStack plugins for
-collectd, check out the `collectd-ceilometer-plugin GSG`_.
+collectd, check out the `collectd-openstack-plugins GSG`_.
 
 Below is the per plugin installation and configuration guide, if you only want
 to install some/particular plugins.
@@ -1309,12 +1309,12 @@ The figure above shows the DPDK L2 forwarding application running on a compute
 node, sending and receiving traffic. Collectd is also running on this compute
 node retrieving the stats periodically from DPDK through the dpdkstat plugin
 and publishing the retrieved stats to OpenStack through the
-collectd-ceilometer-plugin.
+collectd-openstack-plugins.
 
 To see this demo in action please checkout: `Barometer OPNFV Summit demo`_
 
 For more information on configuring and installing OpenStack plugins for
-collectd, check out the `collectd-ceilometer-plugin GSG`_.
+collectd, check out the `collectd-openstack-plugins GSG`_.
 
 Security
 ^^^^^^^^^
@@ -1362,9 +1362,9 @@ References
 .. [7] https://collectd.org/wiki/index.php/Meta_Data_Interface
 
 .. _Barometer OPNFV Summit demo: https://prezi.com/kjv6o8ixs6se/software-fastpath-service-quality-metrics-demo/
-.. _gnocchi plugin: https://github.com/openstack/collectd-ceilometer-plugin/tree/stable/ocata/
-.. _aodh plugin: https://github.com/openstack/collectd-ceilometer-plugin/tree/stable/ocata/
-.. _collectd-ceilometer-plugin GSG: https://github.com/openstack/collectd-ceilometer-plugin/blob/master/doc/source/GSG.rst
+.. _gnocchi plugin: https://github.com/openstack/collectd-openstack-plugins/tree/stable/ocata/
+.. _aodh plugin: https://github.com/openstack/collectd-openstack-plugins/tree/stable/ocata/
+.. _collectd-openstack-plugins GSG: https://github.com/openstack/collectd-openstack-plugins/blob/master/doc/source/GSG.rst
 .. _grafana guide: https://wiki.opnfv.org/display/fastpath/Installing+and+configuring+InfluxDB+and+Grafana+to+display+metrics+with+collectd
 .. _CVE-2017-7401: https://www.cvedetails.com/cve/CVE-2017-7401/
 .. _CVE-2016-6254: https://www.cvedetails.com/cve/CVE-2016-6254/

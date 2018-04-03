@@ -21,5 +21,5 @@ KAFKA_TAG ?= v0.9.5
 COLLECTD_URL ?= https://github.com/collectd/collectd
 COLLECTD_TAG ?= collectd-5.8
 
-COLLECTD_OPENSTACK_URL ?= https://github.com/openstack/collectd-ceilometer-plugin
+COLLECTD_OPENSTACK_URL ?= https://github.com/openstack/collectd-openstack-plugins
 COLLECTD_OPENSTACK_TAG ?= stable/pike
