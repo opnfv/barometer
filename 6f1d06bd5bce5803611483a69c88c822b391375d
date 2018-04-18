@@ -16,6 +16,24 @@
       "revId": "6f1d06bd5bce5803611483a69c88c822b391375d",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_01639c42",
+        "filename": "docker/barometer-collectd/Dockerfile",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2018-04-18T14:15:22Z",
+      "side": 0,
+      "message": "You need this, as it installs the Openstack plugins so that collectd can send metrics to gnocchi and alarms to aodh",
+      "parentUuid": "5a3f45e8_017c3ceb",
+      "revId": "6f1d06bd5bce5803611483a69c88c822b391375d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
