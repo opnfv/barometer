@@ -16,6 +16,6 @@
 - name: enable intel_pmu plugin
   template:
     src: intel_pmu.conf.j2
-    dest: "{{ config_file_dir }}/intel_pmu.conf"
+    dest: "{{ config_file_dir }}/pmu_intel.conf"
   tags:
     - pmu
