@@ -413,6 +413,7 @@ include:
       ReportHardwareCacheEvents true
       ReportKernelPMUEvents true
       ReportSoftwareEvents true
+      Cores ""
     </Plugin>
 
 If you want to monitor Intel CPU specific CPU events, make sure to enable the
@@ -426,11 +427,19 @@ additional two options shown below:
      ReportSoftwareEvents true
      EventList "$HOME/.cache/pmu-events/GenuineIntel-6-2D-core.json"
      HardwareEvents "L2_RQSTS.CODE_RD_HIT,L2_RQSTS.CODE_RD_MISS" "L2_RQSTS.ALL_CODE_RD"
+     Cores ""
     </Plugin>
 
 .. note::
     If you set XDG_CACHE_HOME to anything other than the variable above - you will need to modify
     the path for the EventList configuration.
+
+Use "Cores" option to monitor metrics only for configured cores. To limit monitoring
+to cores 0-7 set the option as shown below:
+
+.. code:: bash
+
+    Cores "[0-7]"
 
 For more information on the plugin parameters, please see:
 https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
