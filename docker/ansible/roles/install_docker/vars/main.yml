@@ -13,10 +13,6 @@
 # limitations under the License.
 ---
 
-- name: copy types.db to target system
-  copy:
-    src: types.db
-    dest: "{{ typesdb_dir }}/types.db"
-  ignore_errors: True
-  tags:
-     - typesdb
+#docker proxy configuration file
+docker_proxy_conf: "/etc/systemd/system/docker.service.d/proxy.conf"
+

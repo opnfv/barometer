@@ -54,6 +54,3 @@ write_per_sec: 50
 
 #additional configuration files path
 additional_configs_path: ""
-
-#directory to copy types.db file to
-typesdb_dir: "/opt/collectd/share/collectd/"
