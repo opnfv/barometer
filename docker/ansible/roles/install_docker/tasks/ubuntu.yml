@@ -11,24 +11,37 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+---
 
-Hostname "{{ inventory_hostname }}"
-Interval "{{ interval_value }}"
+- name: update package manager cache
+  tags:
+     - cache_update
+  package:
+     update_cache: yes
 
+- name: install python
+  package:
+     name: python
+     state: present
 
-#LoadPlugin contextswitch
-#LoadPlugin cpu
-#LoadPlugin cpufreq
-#LoadPlugin df
-#LoadPlugin disk
-#LoadPlugin ethstat
-#LoadPlugin ipc
-#LoadPlugin irq
-#LoadPlugin load
-#LoadPlugin memory
-#LoadPlugin numa
-#LoadPlugin processes
-#LoadPlugin swap
-#LoadPlugin turbostat
-#LoadPlugin uptime
+- name: install python-pip
+  package:
+     name: python-pip
+     state: present
 
+- name: install docker-py
+  pip:
+     name: docker-py
+     state: present
+
+- name: install docker
+  package:
+     name: docker.io
+     state: present
+
+- name: start docker daemon
+  systemd:
+     name: docker
+     daemon_reload: true
+     state: started
+     enabled: true

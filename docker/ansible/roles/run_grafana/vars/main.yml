@@ -13,5 +13,5 @@
 # limitations under the License.
 ---
 
-influxdb_hostname: localhost
-influxdb_host_ip: 127.0.0.1
+influxdb_hostname: influxdb_host
+influxdb_host_ip: "{{ (groups['influxdb_hosts']|default({}))[0] | default('localhost') }}"

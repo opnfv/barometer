@@ -13,6 +13,23 @@
 # limitations under the License.
 ---
 
+- name: install mcelog package
+  package:
+     name: mcelog
+     state: present
+  when: install_mcelog|default(false)|bool
+  tags:
+     - mcelogs
+
+- name: start mcelog daemon if not running
+  service:
+     name: mcelog
+     state: started
+     enabled: true
+  when: install_mcelog|default(false)|bool
+  tags:
+     - mcelogs
+
 - name: check if mcelog running on host
   shell: ps -ef | grep mcelog | grep -v grep > /dev/null
   register: mcelog_running

@@ -94,6 +94,215 @@ Kafka recieves and stores metrics recieved from Collectd. VES application pulls 
 which it normalizes into VES format for sending to a VES collector. Please see details in `VES Application User Guide
 <http://docs.opnfv.org/en/latest/submodules/barometer/docs/release/userguide/collectd.ves.userguide.html>`_
 
+Download and Run Docker Images with Ansible-Playbook
+----------------------------------------------------
+
+Install Ansible
+^^^^^^^^^^^^^^^
+.. note::
+   * sudo permissions or root access are required to install ansible.
+   * ansible version needs to be 2.4+, because usage of import/include statements
+
+To install Ansible 2.6.3 on Ubuntu:
+
+.. code:: bash
+
+    $ sudo apt-get install python
+    $ sudo apt-get install python-pip
+    $ sudo pip install 'ansible==2.6.3'
+
+To install Ansible 2.6.3 on Centos:
+
+.. code:: bash
+
+    $ sudo yum install python
+    $ sudo yum install epel-release
+    $ sudo yum install python-pip
+    $ sudo pip install 'ansible==2.6.3'
+
+Clone barometer repo
+^^^^^^^^^^^^^^^^^^^^
+
+.. code:: bash
+
+    $ git clone https://gerrit.opnfv.org/gerrit/barometer
+    $ cd barometer/docker/ansible
+
+Edit inventory file
+^^^^^^^^^^^^^^^^^^^
+Edit inventory file and add hosts: ~/default.inv
+
+.. code:: bash
+
+    [collectd_hosts]
+    localhost
+
+    [collectd_hosts:vars]
+    install_mcelog=true
+    insert_ipmi_modules=true
+
+    [influxdb_hosts]
+    localhost
+
+    [grafana_hosts]
+    localhost
+
+    [kafka_hosts]
+    #localhost
+
+    [ves_hosts]
+    #localhost
+
+Change localhost to different hosts where neccessary.
+Hosts for influxdb and grafana are required only for collectd_service.yml.
+Hosts for kafka and ves are required only for collectd_ves.yml.
+
+To change host for kafka edit kafka_ip_addr in ./roles/config_files/vars/main.yml.
+
+Additional plugin dependencies
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+By default ansible will try to fulfill dependencies for mcelog and ipmi plugin.
+For mcelog plugin it installs mcelog daemon. For ipmi it tries to insert ipmi_devintf
+and ipmi_si kernel modules.
+This can be changed in inventory file with use of variables install_mcelog
+and insert_ipmi_modules, both variables are independent:
+
+.. code:: bash
+
+    [collectd_hosts:vars]
+    install_mcelog=false
+    insert_ipmi_modules=false
+
+Configure ssh keys
+^^^^^^^^^^^^^^^^^^
+
+Generate ssh keys if not present, otherwise move onto next step.
+
+.. code:: bash
+
+    $ sudo ssh-keygen
+
+Coppy ssh key to all target hosts. It requires to provide root password. The example is for localhost.
+
+.. code:: bash
+
+    $ sudo ssh-copy-id root@localhost
+
+Download collectd+influxdb+grafana containers
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: bash
+
+    $ sudo ansible-playbook -i ~/default.inv collectd_service.yml
+
+Check the three containers are running, the output of docker ps should be similar to:
+
+.. code:: bash
+
+    $ sudo docker ps
+    CONTAINER ID        IMAGE                      COMMAND                  CREATED             STATUS              PORTS               NAMES
+    a033aeea180d        opnfv/barometer-grafana    "/run.sh"                9 days ago          Up 7 minutes                            bar-grafana
+    1bca2e4562ab        opnfv/barometer-influxdb   "/entrypoint.sh in..."   9 days ago          Up 7 minutes                            bar-influxdb
+    daeeb68ad1d5        opnfv/barometer-collectd   "/run_collectd.sh ..."   9 days ago          Up 7 minutes                            bar-collectd
+
+To make some changes when a container is running run:
+
+.. code:: bash
+
+    $ sudo docker exec -ti <CONTAINER ID> /bin/bash
+
+Connect to <host_ip>:3000 with a browser and log into grafana: admin/admin
+
+The collectd configuration files can be accessed directly on target system in '/opt/collectd/etc/collectd.conf.d'.
+It can be used for manual changes or enable/disable plugins. If configuration has been modified it is required to
+restart collectd:
+
+.. code:: bash
+
+    $ sudo docker restart bar-collectd
+
+Download collectd+kafka+ves containers
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Before running Kafka an instance of zookeeper is required. See `Run Kafka docker image`_ for notes on how to run it.
+The 'zookeeper_hostname' and 'broker_id' can be set in ./roles/run_kafka/vars/main.yml.
+
+.. code:: bash
+
+    $ sudo ansible-playbook -i ~/default.inv collectd_ves.yml
+
+Check the three containers are running, the output of docker ps should be similar to:
+
+.. code:: bash
+
+    $ sudo docker ps
+    CONTAINER ID        IMAGE                      COMMAND                  CREATED             STATUS                     PORTS               NAMES
+    8b095ad94ea1        zookeeper:3.4.11           "/docker-entrypoin..."   7 minutes ago       Up 7 minutes                                   awesome_jennings
+    eb8bba3c0b76        opnfv/barometer-ves        "./start_ves_app.s..."   21 minutes ago      Up 6 minutes                                   bar-ves
+    86702a96a68c        opnfv/barometer-kafka      "/src/start_kafka.sh"    21 minutes ago      Up 6 minutes                                   bar-kafka
+    daeeb68ad1d5        opnfv/barometer-collectd   "/run_collectd.sh ..."   13 days ago         Up 6 minutes                                   bar-collectd
+
+
+To make some changes when a container is running run:
+
+.. code:: bash
+
+    $ sudo docker exec -ti <CONTAINER ID> /bin/bash
+
+List of default plugins for collectd container
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+By default the collectd is started with default configuration which includes the followin plugins:
+   * csv, contextswitch, cpu, cpufreq, df, disk, ethstat, ipc, irq, load, memory, numa, processes,
+     swap, turbostat, uuid, uptime, exec, hugepages, intel_pmu, ipmi, write_kafka, logfile, mcelog,
+     network, intel_rdt, rrdtool, snmp_agent, syslog, virt, ovs_stats, ovs_events
+
+Some of the plugins are loaded depending on specific system requirements and can be omitted if
+dependency is not met, this is the case for:
+   * hugepages, ipmi, mcelog, intel_rdt, virt, ovs_stats, ovs_events
+
+List and description of tags used in ansible scripts
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Tags can be used to run a specific part of the configuration without running the whole playbook.
+To run a specific parts only:
+
+.. code:: bash
+
+    $ sudo ansible-playbook -i ~/default.inv collectd_service.yml --tags "syslog,cpu,uuid"
+
+To disable some parts or plugins:
+
+.. code:: bash
+
+    $ sudo ansible-playbook -i ~/default.inv collectd_service.yml --skip-tags "en_default_all,syslog,cpu,uuid"
+
+List of available tags:
+
+install_docker
+  Install docker and required dependencies with package manager.
+
+add_docker_proxy
+  Configure proxy file for docker service if proxy is set on host environment.
+
+rm_config_dir
+  Remove collectd config files.
+
+copy_additional_configs
+  Copy additional configuration files to target system. Path to additional configuration
+  is stored in $barometer_dir/docker/ansible/roles/config_files/vars/main.yml as additional_configs_path.
+
+en_default_all
+  Set of default read plugins: contextswitch, cpu, cpufreq, df, disk, ethstat, ipc, irq,
+  load, memory, numa, processes, swap, turbostat, uptime.
+
+plugins tags
+  The following tags can be used to enable/disable plugins: csv, contextswitch, cpu,
+  cpufreq, df, disk, ethstat, ipc, irq, load, memory, numa, processes, swap, turbostat,
+  uptime, exec, hugepages, ipmi, kafka, logfile, mcelogs, network, pmu, rdt, rrdtool,
+  snmp, syslog, virt, ovs_stats, ovs_events, uuid.
+
 Installing Docker
 -----------------
 .. Describe the specific capabilities and usage for <XYZ> feature.

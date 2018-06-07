@@ -13,14 +13,6 @@
 # limitations under the License.
 ---
 
-- name: Check if /dev/ipmi0 exists
-  stat:
-    path: /dev/ipmi0
-  register: ipmi0_exists
-  ignore_errors: True
-  tags:
-    - ipmi
-
 - name: check ipmi_devintf is loaded
   shell: "lsmod | cut -d' ' -f1 | grep ipmi_devintf"
   register: ipmi_devintf
@@ -34,6 +26,30 @@
   ignore_errors: true
   tags:
     - ipmi
+
+- name: insert ipmi module ipmi_devintf
+  command: "modprobe ipmi_devintf"
+  register: ipmi_devintf
+  ignore_errors: true
+  when: ipmi_devintf|failed and insert_ipmi_modules|default(false)|bool
+  tags:
+     - ipmi
+
+- name: insert ipmi module ipmi_si
+  command: "modprobe ipmi_si"
+  register: ipmi_devsi
+  ignore_errors: true
+  when: ipmi_devsi|failed and insert_ipmi_modules|default(false)|bool
+  tags:
+     - ipmi
+
+- name: Check if /dev/ipmi0 exists
+  stat:
+    path: /dev/ipmi0
+  register: ipmi0_exists
+  ignore_errors: true
+  tags:
+     - ipmi
 
 - name: enable ipmi plugin
   template:
