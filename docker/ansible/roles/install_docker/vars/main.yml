@@ -13,28 +13,6 @@
 # limitations under the License.
 ---
 
-- hosts: collectd_hosts influxdb_hosts grafana_hosts
-  become: true
-  become_user: root
-  gather_facts: true
-  roles:
-      - install_docker
+#docker proxy configuration file
+docker_proxy_conf: "/etc/systemd/system/docker.service.d/proxy.conf"
 
-- hosts: collectd_hosts
-  become: true
-  become_user: root
-  roles:
-      - config_files
-      - run_collectd
-
-- hosts: influxdb_hosts
-  become: true
-  become_user: root
-  roles:
-      - run_influxdb
-
-- hosts: grafana_hosts
-  become: true
-  become_user: root
-  roles:
-      - run_grafana
