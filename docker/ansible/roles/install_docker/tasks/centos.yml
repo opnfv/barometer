@@ -13,24 +13,28 @@
 # limitations under the License.
 ---
 
-- hosts: collectd_hosts influxdb_hosts grafana_hosts
-  remote_user: root
-  gather_facts: True
-  roles:
-      - install_docker
+- name: install dependencies for docker
+  yum: name={{ item }} state=present
+  with_items:
+     - python
+     - yum-utils
+     - device-mapper-persistent-data
+     - lvm2
 
-- hosts: collectd_hosts
-  remote_user: root
-  roles:
-      - config_files
-      - run_collectd
+- name: set up docker repository
+  shell: "yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo"
 
-- hosts: influxdb_hosts
-  remote_user: root
-  roles:
-      - run_influxdb
+- name: install docker-py
+  yum:
+     name: python-docker-py
+     state: present
 
-- hosts: grafana_hosts
-  remote_user: root
-  roles:
-      - run_grafana
+- name: install docker
+  yum:
+     name: docker-ce
+     state: present
+
+- name: Start docker daemon if not running
+  service:
+     name: docker
+     state: started

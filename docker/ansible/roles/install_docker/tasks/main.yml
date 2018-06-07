@@ -13,24 +13,19 @@
 # limitations under the License.
 ---
 
-- hosts: collectd_hosts influxdb_hosts grafana_hosts
-  remote_user: root
-  gather_facts: True
-  roles:
-      - install_docker
+- name: proxy configuration for docker
+  tags:
+     - install_docker
+  import_tasks: proxy.yml
 
-- hosts: collectd_hosts
-  remote_user: root
-  roles:
-      - config_files
-      - run_collectd
+- name: install docker for ubuntu
+  tags:
+     - install_docker
+  import_tasks: ubuntu.yml
+  when: ansible_distribution == "Ubuntu"
 
-- hosts: influxdb_hosts
-  remote_user: root
-  roles:
-      - run_influxdb
-
-- hosts: grafana_hosts
-  remote_user: root
-  roles:
-      - run_grafana
+- name: install docker for centos
+  tags:
+     - install_docker
+  import_tasks: centos.yml
+  when: ansible_distribution == "CentOS"
