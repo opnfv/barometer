@@ -1,0 +1,55 @@
+#Copyright 2018 OPNFV and Intel Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+---
+
+- name: create docker proxy configuration file
+  tags:
+     - add_docker_proxy
+  lineinfile:
+     path: "{{ docker_proxy_conf }}"
+     line: "[Service]"
+     create: yes
+
+- name: add docker http proxy
+  tags:
+     - add_docker_proxy
+  lineinfile:
+     path: "{{ docker_proxy_conf }}"
+     line: "Environment=\"HTTP_PROXY={{ ansible_env.http_proxy }}\""
+  when: ansible_env.http_proxy is defined
+
+- name: add docker https proxy
+  tags:
+     - add_docker_proxy
+  lineinfile:
+     path: "{{ docker_proxy_conf }}"
+     line: "Environment=\"HTTPS_PROXY={{ ansible_env.https_proxy }}\""
+  when: ansible_env.https_proxy is defined
+
+- name: add docker ftp proxy
+  tags:
+     - add_docker_proxy
+  lineinfile:
+     path: "{{ docker_proxy_conf }}"
+     line: "Environment=\"FTP_PROXY={{ ansible_env.ftp_proxy }}\""
+  when: ansible_env.ftp_proxy is defined
+
+- name: add docker no proxy
+  tags:
+     - add_docker_proxy
+  lineinfile:
+     path: "{{ docker_proxy_conf }}"
+     line: "Environment=\"NO_PROXY={{ ansible_env.no_proxy }}\""
+  when: ansible_env.no_proxy is defined
+

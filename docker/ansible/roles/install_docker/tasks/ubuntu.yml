@@ -13,24 +13,28 @@
 # limitations under the License.
 ---
 
-- hosts: collectd_hosts influxdb_hosts grafana_hosts
-  remote_user: root
-  gather_facts: True
-  roles:
-      - install_docker
+- name: update package manager cache
+  tags:
+     - cache_update
+  package:
+     update_cache: yes
 
-- hosts: collectd_hosts
-  remote_user: root
-  roles:
-      - config_files
-      - run_collectd
+- name: install python
+  package:
+     name: python
+     state: present
 
-- hosts: influxdb_hosts
-  remote_user: root
-  roles:
-      - run_influxdb
+- name: install python-pip
+  package:
+     name: python-pip
+     state: present
 
-- hosts: grafana_hosts
-  remote_user: root
-  roles:
-      - run_grafana
+- name: install docker-py
+  pip:
+     name: docker-py
+     state: present
+
+- name: install docker
+  package:
+     name: docker.io
+     state: present

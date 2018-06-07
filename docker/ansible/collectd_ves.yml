@@ -13,6 +13,12 @@
 # limitations under the License.
 ---
 
+- hosts: collectd_hosts kafka_hosts ves_hosts
+  remote_user: root
+  gather_facts: True
+  roles:
+      - install_docker
+
 - hosts: collectd_hosts
   remote_user: root
   roles:
@@ -22,9 +28,9 @@
 - hosts: kafka_hosts
   remote_user: root
   roles:
-    - run_kafka
+      - run_kafka
 
 - hosts: ves_hosts
   remote_user: root
   roles:
-    - run_ves
+      - run_ves
