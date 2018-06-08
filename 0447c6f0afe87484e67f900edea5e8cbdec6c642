@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da5c1566_b3ac5837",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2018-06-08T08:22:40Z",
+      "side": 1,
+      "message": "So, what happens when core is set to \"\"?\n\nDoes it monitor all cores? Or no cores?",
+      "range": {
+        "startLine": 430,
+        "startChar": 5,
+        "endLine": 430,
+        "endChar": 13
+      },
+      "revId": "0447c6f0afe87484e67f900edea5e8cbdec6c642",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
