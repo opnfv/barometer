@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da5c1566_d058d4fc",
+        "filename": "docker/ansible/roles/config_files/tasks/pmu.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2018-06-18T12:51:32Z",
+      "side": 1,
+      "message": "ipmi has to be loaded first, thus this change should be applied to ipmi.conf not intel_pmu.",
+      "range": {
+        "startLine": 19,
+        "startChar": 33,
+        "endLine": 19,
+        "endChar": 49
+      },
+      "revId": "42f5db3f1c81d04499b90c4afe0f481896e163dc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
