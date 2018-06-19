@@ -1,0 +1,8 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+1: Leif Madsen <lmadsen@redhat.com>
+Code-Review+2: Aaron Smith <aasmith@redhat.com>
+Submitted-by: Aaron Smith <aasmith@redhat.com>
+Submitted-at: Tue, 19 Jun 2018 18:32:46 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/58691
+Project: barometer
+Branch: refs/heads/master
