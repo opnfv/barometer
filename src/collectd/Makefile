@@ -49,6 +49,7 @@ CONFIG_CMD += --enable-python
 CONFIG_CMD += --enable-threshold
 CONFIG_CMD += --disable-perl
 CONFIG_CMD += --with-librdkafka=/usr
+CONFIG_CMD += --disable-lvm
 
 .PHONY: install force_install config force_make
 
