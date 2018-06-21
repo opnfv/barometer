@@ -1,10 +1,10 @@
-#Copyright 2018 OPNFV and Intel Corporation
+# Copyright (c) 2018 Intel Corporation.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     http://www.apache.org/licenses/LICENSE-2.0
+#      http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,20 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
+- name: Install dependencies on remote servers
+  action: "{{ ansible_pkg_mgr }} name={{ item }} state=present"
+  with_items:
+    - python
+    - python-pip
+    - docker.io
 
-- hosts: collectd_hosts
-  remote_user: root
-  roles:
-      - install_ansible_container_dependancies
-      - config_files
-      - run_collectd
-
-- hosts: influxdb_hosts
-  remote_user: root
-  roles:
-    - run_influxdb
-
-- hosts: grafana_hosts
-  remote_user: root
-  roles:
-    - run_grafana
+- name: install docker-py
+  pip:
+    name: docker-py
