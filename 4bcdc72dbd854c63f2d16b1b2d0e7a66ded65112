@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da5c1566_0ae32308",
+        "filename": "docker/ansible/roles/config_files/vars/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-06-28T16:30:17Z",
+      "side": 1,
+      "message": "1903",
+      "range": {
+        "startLine": 29,
+        "startChar": 16,
+        "endLine": 29,
+        "endChar": 21
+      },
+      "revId": "4bcdc72dbd854c63f2d16b1b2d0e7a66ded65112",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_6ae73f13",
+        "filename": "docker/ansible/roles/run_prometheus/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-06-28T16:30:17Z",
+      "side": 1,
+      "message": "need to add 1903",
+      "range": {
+        "startLine": 40,
+        "startChar": 3,
+        "endLine": 43,
+        "endChar": 18
+      },
+      "revId": "4bcdc72dbd854c63f2d16b1b2d0e7a66ded65112",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
