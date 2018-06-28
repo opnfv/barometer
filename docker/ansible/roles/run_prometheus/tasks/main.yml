@@ -1,0 +1,63 @@
+#Copyright 2018 OPNFV and Intel Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+---
+
+- name: remove bar-prometheus container
+  docker_container:
+    name: bar-prometheus
+    state: absent
+  tags:
+    - rm_containers
+    - rm_prometheus_cont
+  when: rm_containers|default(false)|bool == true
+
+- name: Create prometheus directory
+  file: path=/etc/prometheus state=directory
+
+- name: copy prometheus config
+  template:
+    src: prometheus.yml
+    dest: "/etc/prometheus/prometheus.yml"
+
+- name: modify prometious.yml to add prometious_hosts
+  lineinfile:
+    dest: /etc/prometheus/prometheus.yml
+    insertafter: targets
+    line: "        - '{{ item }}:{{ prometheus_port }}'"
+  with_items: "{{ groups['prometheus_hosts'] }}"
+
+- name: Remove prom-prometheus image
+  docker_image:
+    name: prom/prometheus
+    state: absent
+  tags:
+    - rm_images
+    - rm_prometheus_cont
+  when: rm_images|default(false)|bool == true
+
+- name: launch bar-prometheus container
+  docker_container:
+    name: bar-prometheus
+    image: prom/prometheus
+    volumes:
+       - /etc/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    exposed:
+     - 9090
+     - "{{ prometheus_port }}"
+    ports:
+       - 9090:9090
+       - "{{ prometheus_port }}:{{ prometheus_port }}"
+    detach: yes
+    restart: yes
+    network_mode: host

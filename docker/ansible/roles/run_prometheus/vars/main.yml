@@ -13,23 +13,10 @@
 # limitations under the License.
 ---
 
-- hosts: collectd_hosts
-  remote_user: root
-  roles:
-      - config_files
-      - run_collectd
+#prometheus plugin vars
+prometheus_port: 9103
 
-- hosts: influxdb_hosts
-  remote_user: root
-  roles:
-    - run_influxdb
+scrape_timeout: 4s
+scrape_interval: 5s # Set the scrape interval to every 5 seconds. Default is every 1 minute.
+evaluation_interval: 5s # Evaluate rules every 5 seconds. The default is every 1 minute.
 
-- hosts: grafana_hosts
-  remote_user: root
-  roles:
-    - run_grafana
-
-- hosts: prometheus_hosts
-  remote_user: root
-  roles:
-    - run_prometheus
