@@ -53,6 +53,10 @@
 - name: enable network plugin
   import_tasks: network.yml
 
+- name: enable prometheus plugin
+  import_tasks: prometheus.yml
+  when: groups['prometheus_hosts'] is defined
+
 - name: enable pmu plugin
   import_tasks: pmu.yml
 

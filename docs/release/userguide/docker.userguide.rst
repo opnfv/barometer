@@ -147,6 +147,9 @@ Edit inventory file and add hosts: ~/default.inv
     [grafana_hosts]
     localhost
 
+    [prometheus_hosts]
+    #localhost
+
     [kafka_hosts]
     #localhost
 
