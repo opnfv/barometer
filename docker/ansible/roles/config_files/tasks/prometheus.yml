@@ -13,23 +13,9 @@
 # limitations under the License.
 ---
 
-- hosts: collectd_hosts
-  remote_user: root
-  roles:
-      - config_files
-      - run_collectd
-
-- hosts: influxdb_hosts
-  remote_user: root
-  roles:
-    - run_influxdb
-
-- hosts: grafana_hosts
-  remote_user: root
-  roles:
-    - run_grafana
-
-- hosts: prometheus_hosts
-  remote_user: root
-  roles:
-    - run_prometheus
+- name: enable prometheus plugin
+  template:
+    src: prometheus.conf.j2
+    dest: "{{ config_file_dir }}/prometheus.conf"
+  tags:
+     - prometheus
