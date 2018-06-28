@@ -11,36 +11,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
----
 
-- hosts: collectd_hosts influxdb_hosts grafana_hosts
-  become: true
-  become_user: root
-  gather_facts: true
-  roles:
-      - install_docker
+LoadPlugin  write_prometheus
 
-- hosts: collectd_hosts
-  become: true
-  become_user: root
-  roles:
-      - config_files
-      - run_collectd
-
-- hosts: influxdb_hosts
-  become: true
-  become_user: root
-  roles:
-      - run_influxdb
-
-- hosts: grafana_hosts
-  become: true
-  become_user: root
-  roles:
-      - run_grafana
-
-- hosts: prometheus_hosts
-  become: true
-  become_user: root
-  roles:
-      - run_prometheus
+<Plugin "write_prometheus">
+  Port "{{ prometheus_port }}"
+</Plugin>
