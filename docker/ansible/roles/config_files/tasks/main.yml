@@ -53,6 +53,9 @@
 - name: enable network plugin
   import_tasks: network.yml
 
+- name: enable prometheus plugin
+  import_tasks: prometheus.yml
+
 - name: enable pmu plugin
   import_tasks: pmu.yml
 
