@@ -25,6 +25,9 @@ interval_value: 10
 network_port: 25826
 network_ip_addr: localhost
 
+#prometheus plugin vars
+prometheus_port: 9090
+
 #ovs event and stats plugin vars
 ovs_event_interval: 1
 ovs_event_ip_addr: localhost
