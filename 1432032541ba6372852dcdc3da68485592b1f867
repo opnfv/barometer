@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da5c1566_0d421810",
+        "filename": "docker/ansible/roles/run_prometheus/tasks/main.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6421
+      },
+      "writtenOn": "2018-07-02T14:13:03Z",
+      "side": 1,
+      "message": "prometheus? not prometious?",
+      "range": {
+        "startLine": 33,
+        "startChar": 15,
+        "endLine": 33,
+        "endChar": 25
+      },
+      "revId": "1432032541ba6372852dcdc3da68485592b1f867",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
