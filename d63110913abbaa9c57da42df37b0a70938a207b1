@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da5c1566_c6559e1e",
+        "filename": "docker/ansible/roles/run_prometheus/tasks/main.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-07-06T08:26:04Z",
+      "side": 1,
+      "message": "I was thinking about this again. I made a mistake.\nthis should be collectd_hosts as prometheus needs to contact the web server running on collectd. it passed my validation as I had collectd running on the same hosts as prometheus. I will fix this.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 47
+      },
+      "revId": "d63110913abbaa9c57da42df37b0a70938a207b1",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
