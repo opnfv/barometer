@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da5c1566_12751098",
+        "filename": "docker/ansible/roles/run_prometheus/tasks/main.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 3299
+      },
+      "writtenOn": "2018-07-10T12:43:53Z",
+      "side": 1,
+      "message": "For consistency can you use the expanded form here?",
+      "revId": "7a2ac184e23c8b46046a1ab31fda6e79afeaddc1",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
