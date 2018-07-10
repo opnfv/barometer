@@ -54,6 +54,7 @@ libvirt-daemon
 mcelog
 wget
 net-snmp-devel
+hiredis-devel
 
 # install epel release required for git-review
 epel-release
