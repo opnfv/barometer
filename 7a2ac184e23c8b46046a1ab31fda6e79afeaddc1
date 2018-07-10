@@ -16,6 +16,29 @@
       "revId": "7a2ac184e23c8b46046a1ab31fda6e79afeaddc1",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_b248a45c",
+        "filename": "docker/ansible/roles/run_prometheus/vars/main.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6421
+      },
+      "writtenOn": "2018-07-10T12:44:16Z",
+      "side": 1,
+      "message": "Interested in knowing if 5s has been a customer request on your side...  We have designed our system for 1s.  Most telco customers want 1 second, but then they realized how much data that really is ;).  Most have backed off to 30s.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 19
+      },
+      "revId": "7a2ac184e23c8b46046a1ab31fda6e79afeaddc1",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
