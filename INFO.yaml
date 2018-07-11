@@ -32,6 +32,7 @@ meetings:
       time:  # eg: '16:00 UTC'
 repositories:
     - 'barometer'
+    - 'puppet-barometer'
 committers:
     - <<: *opnfv_barometer_ptl
     - name: 'Maryam Tahhan'
