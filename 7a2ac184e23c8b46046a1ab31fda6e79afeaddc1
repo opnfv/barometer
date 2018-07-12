@@ -39,6 +39,30 @@
       "revId": "7a2ac184e23c8b46046a1ab31fda6e79afeaddc1",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_32749498",
+        "filename": "docker/ansible/roles/run_prometheus/vars/main.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-07-12T09:14:24Z",
+      "side": 1,
+      "message": "I don\u0027t mind what we choose.",
+      "parentUuid": "da5c1566_b248a45c",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 19
+      },
+      "revId": "7a2ac184e23c8b46046a1ab31fda6e79afeaddc1",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
