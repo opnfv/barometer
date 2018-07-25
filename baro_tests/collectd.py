@@ -867,7 +867,7 @@ def main(bt_logger=None):
         compute_ids, plugin_labels, aodh_plugin_labels, results, out_plugins)
 
     for res in results:
-        if res[3] is 'False' or 'None':
+        if res[3] is False or res[3] is None:
             logger.error('Some tests have failed or have not been executed')
             logger.error('Overall Result is Fail')
             return 1
