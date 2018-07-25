@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a561d44_d4cd6d5f",
+        "filename": "baro_tests/collectd.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 870,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2018-07-25T15:45:12Z",
+      "side": 1,
+      "message": "This can be replaced with:\n    if res[3] in (False, None):",
+      "range": {
+        "startLine": 870,
+        "startChar": 8,
+        "endLine": 870,
+        "endChar": 45
+      },
+      "revId": "81559108a6e2ebc3facccae8ea2604452c7abc2b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
