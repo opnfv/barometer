@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "9a561d44_0a905eeb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2018-07-27T14:12:50Z",
+      "side": 1,
+      "message": "Can you add a follow-up patch with documentation?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 11
+      },
+      "revId": "7a2ac184e23c8b46046a1ab31fda6e79afeaddc1",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da5c1566_12751098",
         "filename": "docker/ansible/roles/run_prometheus/tasks/main.yml",
         "patchSetId": 9
