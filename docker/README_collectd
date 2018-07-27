@@ -8,13 +8,20 @@ deployment collectd in docker container
 Table of content:
 1. DESCRIPTION
 2. SYSTEM REQUIREMENTS
-3. INSTALLATION NOTES
-4. ADDITIONAL STEPS
+3. INSTALLATION NOTES - barometer-collectd
+4. INSTALLATION NOTES - barometer-collectd-master
+5. ADDITIONAL STEPS
 
 ------------------------------------------------------------------------------
 1. DESCRIPTION
 
-This Dockerfile provides instruction for building collect in isolated container
+This Dockerfile provides instruction for building collect in isolated container.
+There are currently two variants of collectd container:
+ - barometer-collectd - it is based on stable collect release
+ - barometer-collectd-master - development container that is based on
+   latest 'master' branch for collectd project. It contains all available
+   collectd plugins and features that are available on 'master' branch but
+   some issues with configuration or stability may occur
 
 ------------------------------------------------------------------------------
 2. SYSTEM REQUIREMENTS
@@ -22,29 +29,51 @@ This Dockerfile provides instruction for building collect in isolated container
   Docker >= 17.06.0-ce
 
 ------------------------------------------------------------------------------
-3. INSTALLATION NOTES
+3. INSTALLATION NOTES: barometer-collectd (stable container)
 
-To build docker container run
-sudo docker build -f ./docker/barometer-collectd/Dockerfile .
+To build docker container, that is based on stable collectd release, run:
+sudo docker build -f ./docker/barometer-collectd/Dockerfile ./docker/barometer-collectd
 from barometer folder.
 
-To run builded image run
-sudo docker images
-Get docker image id
-sudo docker run -ti --net=host -v `pwd`/../src/collectd_sample_configs:/opt/collectd/etc/collectd.d \
--v /var/run:/var/run -v /tmp:/tmp --privileged <image id> /run_collectd.sh
+sudo docker images # get docker image id
+sudo docker run -ti --net=host -v `pwd`/src/collectd/collectd_sample_configs:/opt/collectd/etc/collectd.conf.d \
+-v /var/run:/var/run -v /tmp:/tmp --privileged <image id>
 
 To make some changes run
-sudo docker run -ti --net=host -v `pwd`/../collectd_sample_configs:/opt/collectd/etc/collectd.d \
- -v /var/run:/var/run --privileged <image id> /bin/bash
+sudo docker run -ti --net=host -v `pwd`/src/collectd/collectd_sample_configs:/opt/collectd/etc/collectd.conf.d \
+-v /var/run:/var/run -v /tmp:/tmp --privileged --entrypoint=/bin/bash <image id>
 
 /opt/collectd/sbin/collectd -f
 
 ------------------------------------------------------------------------------
-4. ADDITIONAL STEPS
+4. INSTALLATION NOTES: barometer-collectd-master (development container)
+
+To build docker barometer-collectd-master container run (it is based on master branch from collectd):
+sudo docker build -f ./docker/barometer-collectd-master/Dockerfile .
+from root barometer folder.
+
+To run builded image run
+sudo docker images # get docker image id
+sudo docker run -ti --net=host -v `pwd`/src/collectd/collectd_sample_configs-master:/opt/collectd/etc/collectd.conf.d \
+-v /var/run:/var/run -v /tmp:/tmp --privileged <image id>
+
+NOTE: barometer-collectd-master container uses a different sample configurations files
+compared to regular barometer-collectd container (src/collectd/collectd_sample_configs-master)
+
+To make some changes run
+sudo docker run -ti --net=host -v `pwd`/src/collectd/collectd_sample_configs-master:/opt/collectd/etc/collectd.conf.d \
+-v /var/run:/var/run -v /tmp:/tmp --privileged --entrypoint=/bin/bash <image id>
+
+/opt/collectd/sbin/collectd -f
+
+------------------------------------------------------------------------------
+5. ADDITIONAL STEPS
 
 To check if container works properly additional packages should be installed
 on host system.
+
+DEVELOPMENT TOOLS
+sudo yum group install "Development Tools"
 
 MCELOG
 To simulate mcelog message use instruction in http://artifacts.opnfv.org/barometer/docs/index.html#mcelog-plugin
