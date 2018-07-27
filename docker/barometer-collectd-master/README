@@ -1,0 +1,106 @@
+==============================================================================
+Readme for collectd docker container in barometer project
+==============================================================================
+
+This text file includes information about environment preparation and
+deployment collectd in docker container
+
+Table of content:
+1. DESCRIPTION
+2. SYSTEM REQUIREMENTS
+3. INSTALLATION NOTES
+4. ADDITIONAL STEPS
+
+------------------------------------------------------------------------------
+1. DESCRIPTION
+
+This Dockerfile provides instruction for building collect in isolated container
+
+------------------------------------------------------------------------------
+2. SYSTEM REQUIREMENTS
+
+  Docker >= 17.06.0-ce
+
+------------------------------------------------------------------------------
+3. INSTALLATION NOTES
+
+To build docker container run
+sudo docker build -f ./docker/barometer-collectd/Dockerfile .
+from barometer folder.
+
+To run builded image run
+sudo docker images
+Get docker image id
+sudo docker run -ti --net=host -v `pwd`/../src/collectd_sample_configs-master:/opt/collectd/etc/collectd.conf.d \
+-v /var/run:/var/run -v /tmp:/tmp --privileged <image id> /run_collectd.sh
+
+To make some changes run
+sudo docker run -ti --net=host -v `pwd`/../collectd_sample_configs-master:/opt/collectd/etc/collectd.conf.d \
+ -v /var/run:/var/run --privileged <image id> /bin/bash
+
+/opt/collectd/sbin/collectd -f
+
+------------------------------------------------------------------------------
+4. ADDITIONAL STEPS
+
+To check if container works properly additional packages should be installed
+on host system.
+
+MCELOG
+To simulate mcelog message use instruction in http://artifacts.opnfv.org/barometer/docs/index.html#mcelog-plugin
+
+git clone https://github.com/andikleen/mce-inject
+cd mce-inject/
+make
+sudo make install
+modprobe mce-inject
+
+go to mcelog folder
+sudo make test
+
+if runs multiple times mcelog service shoud be restarted(cause mcelog make test exits closes mcelog)
+
+VIRT
+http://artifacts.opnfv.org/barometer/docs/index.html#virt-plugin
+Check that libvirtd is running on the remote host
+systemctl status libvirtd
+virsh list
+virsh perf instance-00000003
+sudo virsh perf instance-00000003 --enable cpu_cycles --live
+sudo virsh perf instance-00000003 --enable cmt --live
+sudo virsh perf instance-00000003 --enable mbmt --live
+sudo virsh perf instance-00000003 --enable mbml --live
+sudo virsh perf instance-00000003 --enable instructions --live
+sudo virsh perf instance-00000003 --enable cache_references --live
+sudo virsh perf instance-00000003 --enable cache_mises --live
+sudo virsh perf instance-00000003 --enable cache_misses --live
+
+OVS
+To successfuly run ovs plugins in Docker you need an ovs instance to connect to
+
+sudo yum install -y openvswitch-switch
+sudo service openvswitch-switch start
+sudo ovs-vsctl set-manager ptcp:6640
+
+Alternatively you can build ovs from source
+yum -y install make gcc openssl-devel autoconf automake rpm-build \
+       redhat-rpm-config python-devel openssl-devel kernel-devel  \
+       kernel-debug-devel libtool wget python-six selinux-policy-devel
+mkdir -p ~/rpmbuild/SOURCES
+cd ~/rpmbuild/SOURCES
+wget http://openvswitch.org/releases/openvswitch-2.5.3.tar.gz
+tar xfz openvswitch-2.5.3.tar.gz
+sed 's/openvswitch-kmod, //g' rhel/openvswitch.spec > rhel/openvswitch_no_kmod.spec
+rpmbuild -bb --nocheck rhel/openvswitch_no_kmod.spec
+cd ../RPMS/x86_64/
+yum install -y openvswitch-2.5.3-1.x86_64.rpm
+sudo systemctl start openvswitch.service
+sudo ovs-vsctl set-manager ptcp:6640
+
+To check if connection is successfull please check
+sudo ovs-vsctl show
+319efc53-b321-49a9-b628-e8d70f9bd8a9
+    Manager "ptcp:6640"
+        is_connected: true - can be a marker that ovs plugins successfully connected
+    ovs_version: "2.5.3"
+on the host.

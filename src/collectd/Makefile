@@ -39,6 +39,11 @@ ifeq ($(XDG_CACHE_HOME_DIR),)
 XDG_CACHE_HOME_DIR = $(shell echo $$HOME)
 endif
 
+SAMPLE_CONF_VARIANT_NAME = collectd_sample_configs
+ifdef COLLECTD_USE_MASTER
+SAMPLE_CONF_VARIANT_NAME = collectd_sample_configs-master
+endif
+
 CONFIG_CMD += --enable-syslog
 CONFIG_CMD += --enable-logfile
 CONFIG_CMD += --with-libpqos=$(LIBPQOS_DIR)
@@ -82,7 +87,9 @@ ifndef DOCKER
 endif
 	$(AT)sudo ./ovs_pmd_stats_config.sh
 	$(AT)sudo ./snmp_mib_config.sh
-	$(AT)sudo ./include_config.sh
+
+	@echo "Using sample configs: $(SAMPLE_CONF_VARIANT_NAME)"
+	$(AT)sudo ./include_config.sh $(SAMPLE_CONF_VARIANT_NAME)
 	@echo "Make install done"
 
 install: force_install
@@ -118,6 +125,7 @@ $(WORK_DIR):
 	$(AT)git clone $(COLLECTD_URL)
 
 $(TAG_DONE_FLAG): $(WORK_DIR)
+	@echo "Checking out collectd from tag: $(COLLECTD_TAG)"
 	$(AT)cd collectd; git checkout $(COLLECTD_TAG)
 ifneq ($(PATCH_FILE),)
 	$(AT)cd $(WORK_DIR); patch -p1 < ../$(PATCH_FILE)
