@@ -29,6 +29,9 @@ sudo yum -y install rpm-build \
 	libcap-devel xfsprogs-devel iptables-devel \
 	libmemcached-devel gtk2-devel libvirt-devel
 
+# For DMA component
+sudo yum -y install hiredis-devel
+
 # For intel-cmt-cat
 sudo yum -y install wget
 

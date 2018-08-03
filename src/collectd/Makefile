@@ -47,6 +47,7 @@ CONFIG_CMD += --with-libjevents=/usr/local
 CONFIG_CMD += --enable-exec
 CONFIG_CMD += --enable-python
 CONFIG_CMD += --enable-threshold
+CONFIG_CMD += --enable-write_redis
 CONFIG_CMD += --disable-perl
 CONFIG_CMD += --with-librdkafka=/usr
 CONFIG_CMD += --disable-lvm

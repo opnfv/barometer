@@ -49,6 +49,7 @@ git
 pciutils
 cifs-utils
 socat
+hiredis-devel
 
 # install git-review tool
 git-review
