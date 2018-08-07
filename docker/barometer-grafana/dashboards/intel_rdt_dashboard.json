@@ -33,6 +33,7 @@
             "datasource": "collectd",
             "fill": 1,
             "id": 1,
+            "interval": "1s",
             "legend": {
               "alignAsTable": true,
               "avg": true,
@@ -171,6 +172,7 @@
             "datasource": "collectd",
             "fill": 1,
             "id": 2,
+            "interval": "1s",
             "legend": {
               "alignAsTable": true,
               "avg": true,
@@ -309,6 +311,7 @@
             "datasource": "collectd",
             "fill": 1,
             "id": 3,
+            "interval": "1s",
             "legend": {
               "alignAsTable": true,
               "avg": true,
@@ -441,6 +444,7 @@
             "datasource": "collectd",
             "fill": 1,
             "id": 4,
+            "interval": "1s",
             "legend": {
               "alignAsTable": true,
               "avg": true,
@@ -484,7 +488,7 @@
                   },
                   {
                     "params": [
-                      "none"
+                      "null"
                     ],
                     "type": "fill"
                   }
