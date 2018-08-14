@@ -219,13 +219,13 @@ To run a specific parts only:
 
 .. code:: bash
 
-    $ sudo ansible-playbook -i ~/inventory.inv collectd_service.yml --tags "syslog,cpu"
+    $ sudo ansible-playbook -i ~/inventory.inv collectd_service.yml --tags "syslog,cpu,uuid"
 
 To disable some parts or plugins:
 
 .. code:: bash
 
-    $ sudo ansible-playbook -i ~/inventory.inv collectd_service.yml --skip-tags "syslog,cpu"
+    $ sudo ansible-playbook -i ~/inventory.inv collectd_service.yml --skip-tags "en_default_all,syslog,cpu,uuid"
 
 List of available tags:
 
@@ -244,8 +244,11 @@ copy_additional_configs
 typesdb
   Copy types.db to target system
 
+en_default_all
+  Set of default read plugins: contextswitch, cpu, cpufreq, df, disk, ethstat, ipc, irq, load, memory, numa, processes, swap, turbostat, uptime.
+
 plugins tags
-  The following tags can be used to enable/disable plugins: csv, contextswitch, cpu, cpufreq, df, disk, ethstat, ipc, irq, load, memory, numa, processes, swap, turbostat, uptime, exec, hugepages, ipmi, kafka, logfile, mcelogs, network, pmu, rdt, rrdtool, snmp, syslog, virt, ovs_stats, ovs_events.
+  The following tags can be used to enable/disable plugins: csv, contextswitch, cpu, cpufreq, df, disk, ethstat, ipc, irq, load, memory, numa, processes, swap, turbostat, uptime, exec, hugepages, ipmi, kafka, logfile, mcelogs, network, pmu, rdt, rrdtool, snmp, syslog, virt, ovs_stats, ovs_events, uuid.
 
 Installing Docker
 -----------------
