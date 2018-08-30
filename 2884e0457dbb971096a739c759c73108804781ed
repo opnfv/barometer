@@ -22,6 +22,40 @@
       "revId": "2884e0457dbb971096a739c759c73108804781ed",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_64cbe572",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1171
+      },
+      "writtenOn": "2018-08-30T08:10:45Z",
+      "side": 1,
+      "message": "We need to document here the default list of plugins enabled through this installation. This will help the user to later modify or update the plugins as needed.",
+      "revId": "2884e0457dbb971096a739c759c73108804781ed",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_c4c8f176",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1171
+      },
+      "writtenOn": "2018-08-30T08:10:45Z",
+      "side": 1,
+      "message": "We also need to add an example of how to enable or disable certain plugins while the container is running.",
+      "revId": "2884e0457dbb971096a739c759c73108804781ed",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
