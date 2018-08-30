@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a561d44_e46375af",
+        "filename": "docker/ansible/roles/install_docker/tasks/proxy.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7345
+      },
+      "writtenOn": "2018-08-30T06:15:49Z",
+      "side": 1,
+      "message": "Maybe rework to \"ftp_proxy\", to better reflect name of env var in task name and in same time resolve anteater find.\n\nFor consistency also change names in other tasks in this file, e.g. \"http_proxy\", etc.",
+      "range": {
+        "startLine": 40,
+        "startChar": 19,
+        "endLine": 40,
+        "endChar": 28
+      },
+      "revId": "2884e0457dbb971096a739c759c73108804781ed",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
