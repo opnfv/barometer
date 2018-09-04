@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a561d44_2816d7f1",
+        "filename": "docker/ansible/roles/install_docker/tasks/proxy.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2018-09-04T14:06:51Z",
+      "side": 1,
+      "message": "File is created if not existing due to parameter:\n\"create: yes\"\nI think that adding additional step for file creation would be redundant.",
+      "parentUuid": "9a561d44_07bb0be6",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 46
+      },
+      "revId": "2884e0457dbb971096a739c759c73108804781ed",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a561d44_e46375af",
         "filename": "docker/ansible/roles/install_docker/tasks/proxy.yml",
         "patchSetId": 1
@@ -76,6 +100,24 @@
       "writtenOn": "2018-08-30T08:10:45Z",
       "side": 1,
       "message": "We also need to add an example of how to enable or disable certain plugins while the container is running.",
+      "revId": "2884e0457dbb971096a739c759c73108804781ed",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_08e833e1",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2018-09-04T14:06:51Z",
+      "side": 1,
+      "message": "Change in collectd configuration requires process/container restart, but I agree we need to document it as well.",
+      "parentUuid": "9a561d44_c4c8f176",
       "revId": "2884e0457dbb971096a739c759c73108804781ed",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
