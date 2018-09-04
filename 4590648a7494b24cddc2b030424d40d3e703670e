@@ -142,6 +142,30 @@
       "revId": "4590648a7494b24cddc2b030424d40d3e703670e",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_68d72f24",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2018-09-04T14:06:51Z",
+      "side": 1,
+      "message": "OK, but it\u0027s better to use 2.6.3 because 2.6 has some bug in docker_container module. For now \u00272.6.3\u0027 seems to work for me.",
+      "parentUuid": "9a561d44_7dd1b4fa",
+      "range": {
+        "startLine": 112,
+        "startChar": 28,
+        "endLine": 112,
+        "endChar": 31
+      },
+      "revId": "4590648a7494b24cddc2b030424d40d3e703670e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
