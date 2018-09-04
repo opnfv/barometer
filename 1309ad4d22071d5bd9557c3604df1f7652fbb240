@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a561d44_e81b3f1a",
+        "filename": "docker/barometer-collectd-master/README",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6421
+      },
+      "writtenOn": "2018-09-04T14:12:31Z",
+      "side": 1,
+      "message": "I believe this should be:\n\nsudo docker build -f ./docker/barometer-collectd/Dockerfile ./docker/barometer-collectd",
+      "revId": "1309ad4d22071d5bd9557c3604df1f7652fbb240",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_a8e14700",
+        "filename": "docker/barometer-collectd-master/README",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6421
+      },
+      "writtenOn": "2018-09-04T14:12:31Z",
+      "side": 1,
+      "message": "Should mention that Development Tools should be installed...\n\nsudo yum group install \"Development Tools\"",
+      "revId": "1309ad4d22071d5bd9557c3604df1f7652fbb240",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
