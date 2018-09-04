@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "9a561d44_48c98b77",
+        "filename": "docker/ansible/roles/install_docker/tasks/proxy.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-09-04T14:17:22Z",
+      "side": 1,
+      "message": "IIRC The directory path will not be created when using lineinfile, if its not there. File sorts this issue. Sorry I should have been clear",
+      "parentUuid": "9a561d44_2816d7f1",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 46
+      },
+      "revId": "2884e0457dbb971096a739c759c73108804781ed",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a561d44_e46375af",
         "filename": "docker/ansible/roles/install_docker/tasks/proxy.yml",
         "patchSetId": 1
