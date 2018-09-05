@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a561d44_13b1848f",
+        "filename": "docker/barometer-collectd-master/README",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7399
+      },
+      "writtenOn": "2018-09-05T15:00:51Z",
+      "side": 1,
+      "message": "yes, this have to be changed. This readme file was created as a copy of corresponding readme from \u0027barometer-collectd\u0027 folder (docker image for \u0027stable\u0027 collectd release) - so in original file it has to be changed as well.\nI think that I will create just single README file for both barometer-collectd(stable) and barometer-collectd-master containers since differences will be mostly in build command section.",
+      "parentUuid": "9a561d44_e81b3f1a",
+      "revId": "1309ad4d22071d5bd9557c3604df1f7652fbb240",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a561d44_a8e14700",
         "filename": "docker/barometer-collectd-master/README",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2018-09-04T14:12:31Z",
       "side": 1,
       "message": "Should mention that Development Tools should be installed...\n\nsudo yum group install \"Development Tools\"",
+      "revId": "1309ad4d22071d5bd9557c3604df1f7652fbb240",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_f3ab301c",
+        "filename": "docker/barometer-collectd-master/README",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7399
+      },
+      "writtenOn": "2018-09-05T15:00:51Z",
+      "side": 1,
+      "message": "+1, it will be fixed as well in next patch iteration.\nThanks for review.",
+      "parentUuid": "9a561d44_a8e14700",
       "revId": "1309ad4d22071d5bd9557c3604df1f7652fbb240",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
