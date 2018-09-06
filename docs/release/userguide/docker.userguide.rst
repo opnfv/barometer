@@ -619,6 +619,112 @@ file named custom.yaml
    $ sudo docker run -tid --net=host -v ${PWD}/custom.config:/opt/ves/config/ves_app_config.conf \
      -v ${PWD}/yaml/:/opt/ves/yaml/ opnfv/barometer-ves custom.yaml
 
+Build and Run LocalAgent and Redis Docker Images
+-----------------------------------------------------
+
+Download LocalAgent docker images
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you wish to use pre-built barometer project's LocalAgent images, you can pull the
+images from https://hub.docker.com/r/opnfv/barometer-localagent/
+
+.. note::
+   If your preference is to build images locally please see sections `Build LocalAgent Docker Image`_
+
+.. code:: bash
+
+    $ docker pull opnfv/barometer-localagent
+
+.. note::
+   If you have pulled the pre-built images there is no requirement to complete steps outlined
+   in sections `Build LocalAgent Docker Image`_ and you can proceed directly to section
+   `Run LocalAgent Docker Image`_ If you wish to run the docker images via Docker Compose proceed directly to section `Docker Compose`_.
+
+Build LocalAgent docker image
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Build LocalAgent docker image:
+
+.. code:: bash
+
+    $ cd barometer/docker/barometer-dma
+    $ sudo docker build -t opnfv/barometer-dma --build-arg http_proxy=`echo $http_proxy` \
+      --build-arg https_proxy=`echo $https_proxy` -f Dockerfile .
+
+.. note::
+   In the above mentioned ``docker build`` command, http_proxy & https_proxy arguments needs
+   to be passed only if system is behind an HTTP or HTTPS proxy server.
+
+Check the docker images:
+
+.. code:: bash
+
+   $ sudo docker images
+
+Output should contain a barometer image:
+
+.. code::
+
+   REPOSITORY                   TAG                 IMAGE ID            CREATED             SIZE
+   opnfv/barometer-dma          latest              2f14fbdbd498        3 hours ago         941 MB
+
+Run Redis docker image
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. note::
+   Before running LocalAgent, Redis must be running.
+
+Run Redis docker image:
+
+.. code:: bash
+
+   $ sudo docker run -tid -p 6379:6379 --name barometer-redis redis
+
+Check your docker image is running
+
+.. code:: bash
+
+   sudo docker ps
+
+Run LocalAgent docker image
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. note::
+
+Run LocalAgent docker image with default configuration
+
+.. code:: bash
+
+   $ cd barometer/docker/barometer-dma
+   $ sudo mkdir /etc/barometer-dma
+   $ sudo cp ../../src/dma/examples/config.toml /etc/barometer-dma/
+   $ sudo vi /etc/barometer-dma/config.toml
+   (edit amqp_password and os_password:OpenStack admin password)
+
+   $ sudo su -
+   (When there is no key for SSH access authentication)
+   # ssh-keygen
+   (Press Enter until done)
+   (Backup if necessary)
+   # cp ~/.ssh/authorized_keys ~/.ssh/authorized_keys_org
+   # cat ~/.ssh/authorized_keys_org ~/.ssh/id_rsa.pub \
+     > ~/.ssh/authorized_keys
+   # exit
+
+   $ sudo docker run -tid --net=host --name server \
+     -v /etc/barometer-dma:/etc/barometer-dma \
+     -v /root/.ssh/id_rsa:/root/.ssh/id_rsa \
+     -v /etc/collectd/collectd.conf.d:/etc/collectd/collectd.conf.d \
+     opnfv/barometer-dma /server
+
+   $ sudo docker run -tid --net=host --name infofetch \
+     -v /etc/barometer-dma:/etc/barometer-dma \
+     -v /var/run/libvirt:/var/run/libvirt \
+     opnfv/barometer-dma /infofetch
+
+   (Execute when installing the threshold evaluation binary)
+   $ sudo docker cp infofetch:/threshold ./
+   $ sudo ln -s ${PWD}/threshold /usr/local/bin/
+
 Docker Compose
 --------------
 
