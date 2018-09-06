@@ -18,6 +18,7 @@ import time
 import os.path
 import os
 import re
+import yaml
 
 from opnfv.deployment import factory
 import paramiko
@@ -299,6 +300,97 @@ class ConfigServer(object):
                 else:
                     return False
         return aodh_present
+
+    def is_redis_running(self, compute):
+        """Check whether redis service is running on compute"""
+        compute_name = compute.get_name()
+        nodes = get_apex_nodes()
+        for node in nodes:
+            if compute_name == node.get_dict()['name']:
+                stdout = node.run_cmd('sudo systemctl status docker'
+                                      '&& sudo docker ps'
+                                      '| grep barometer-redis')
+                if stdout and 'barometer-redis' in stdout:
+                    self.__logger.info(
+                        'Redis is running in node {}'.format(
+                         compute_name))
+                    return True
+        self.__logger.info(
+            'Redis is *not* running in node {}'.format(
+             compute_name))
+        return False
+
+    def is_localagent_server_running(self, compute):
+        """Check whether LocalAgent server is running on compute"""
+        compute_name = compute.get_name()
+        nodes = get_apex_nodes()
+        for node in nodes:
+            if compute_name == node.get_dict()['name']:
+                stdout = node.run_cmd('sudo systemctl status docker'
+                                      '&& sudo docker ps'
+                                      '| grep opnfv/barometer-localagent')
+                if stdout and '/server' in stdout:
+                    self.__logger.info(
+                        'LocalAgent Server is running in node {}'.format(
+                         compute_name))
+                    return True
+        self.__logger.info(
+            'LocalAgent Server is *not* running in node {}'.format(
+             compute_name))
+        return False
+
+    def is_localagent_infofetch_running(self, compute):
+        """Check whether LocalAgent infofetch is running on compute"""
+        compute_name = compute.get_name()
+        nodes = get_apex_nodes()
+        for node in nodes:
+            if compute_name == node.get_dict()['name']:
+                stdout = node.run_cmd('sudo systemctl status docker'
+                                      '&& sudo docker ps'
+                                      '| grep opnfv/barometer-localagent')
+                if stdout and '/infofetch' in stdout:
+                    self.__logger.info(
+                        'LocalAgent InfoFetch is running in node {}'.format(
+                         compute_name))
+                    return True
+        self.__logger.info(
+            'LocalAgent InfoFetch is *not* running in node {}'.format(
+             compute_name))
+        return False
+
+    def get_localagent_config(self, compute):
+        """Get config values of LocalAgent"""
+        compute_name = compute.get_name()
+        nodes = get_apex_nodes()
+        for node in nodes:
+            if compute_name == node.get_dict()['name']:
+                # We use following after functest accept python-toml
+                #     stdout = node.run_cmd(
+                #         'cat /etc/barometer-localagent/config.toml')
+                #     try:
+                #         agent_conf = toml.loads(stdout)
+                #     except (TypeError, TomlDecodeError) as e:
+                #         self.__logger.error(
+                #             'LocalAgent config error: {}'.format(e))
+                #         agent_conf = None
+                #     finally:
+                #         return agent_conf
+                readcmd = (
+                    'egrep "listen_port|amqp_"'
+                    ' /etc/barometer-localagent/config.toml'
+                    '| sed -e "s/#.*$//" | sed -e "s/=/:/"'
+                    )
+                stdout = node.run_cmd(readcmd)
+                agent_conf = {"server": yaml.load(stdout)}
+
+                pingcmd = (
+                    'ping -n -c1 ' + agent_conf["server"]["amqp_host"] +
+                    '| sed -ne "s/^.*bytes from //p" | sed -e "s/:.*//"'
+                    )
+                agent_conf["server"]["amqp_host"] = node.run_cmd(pingcmd)
+
+                return agent_conf
+        return None
 
     def is_mcelog_installed(self, compute, package):
         """Check whether package exists on compute node.
@@ -660,3 +752,129 @@ class ConfigServer(object):
                         return True
         else:
             return False
+
+    def check_localagent_dummy_included(self, compute, name):
+        """Check if dummy collectd config by LocalAgent
+           is included in collectd.conf file.
+
+        Keyword arguments:
+        compute -- compute node instance
+        name -- config file name
+        """
+        compute_name = compute.get_name()
+        nodes = get_apex_nodes()
+        for node in nodes:
+            if compute_name == node.get_dict()['name']:
+                dummy_conf = node.run_cmd('ls /etc/collectd/collectd.conf.d')
+                if name + '.conf' not in dummy_conf:
+                    self.__logger.error('check conf FAIL')
+                    return False
+                else:
+                    self.__logger.info('check conf PASS')
+                    fullpath = '/etc/collectd/collectd.conf.d/{}'.format(
+                               name + '.conf')
+                    self.__logger.info('Delete file {}'.format(fullpath))
+                    node.run_cmd('sudo rm -f ' + fullpath)
+                    return True
+        self.__logger.error('Some panic, compute not found')
+        return False
+
+    def create_testvm(self, compute_node, test_name):
+        nodes = get_apex_nodes()
+        compute_name = compute_node.get_name()
+
+        controller_node = None
+        for node in nodes:
+            if node.is_controller():
+                controller_node = node
+                break
+
+        self.__logger.debug('Creating Test VM on {}' .format(compute_name))
+        self.__logger.debug('Create command is executed in {}' .format(
+            (controller_node.get_dict()['name'])))
+
+        image_filename = 'cirros-0.4.0-x86_64-disk.img'
+        controller_node.run_cmd(
+            'curl -sO '
+            'http://download.cirros-cloud.net/0.4.0/'
+            + image_filename)
+
+        node.put_file(constants.ENV_FILE, 'overcloudrc.v3')
+        image = controller_node.run_cmd(
+            'source overcloudrc.v3;'
+            'openstack image create -f value -c id'
+            ' --disk-format qcow2 --file {0} {1}'
+            .format(image_filename, test_name))
+        flavor = controller_node.run_cmd(
+            'source overcloudrc.v3;'
+            'openstack flavor create -f value -c id {}'
+            .format(test_name))
+        host = controller_node.run_cmd(
+            'source overcloudrc.v3;'
+            'openstack hypervisor list -f value -c "Hypervisor Hostname"'
+            ' | grep "^{}\\."'
+            .format(compute_name))
+        server = controller_node.run_cmd(
+            'source overcloudrc.v3;'
+            'openstack server create -f value -c id'
+            ' --image {0} --flavor {1} --availability-zone {2} {3}'
+            .format(image, flavor, 'nova:' + host, test_name))
+
+        resources = {"image": image, "flavor": flavor, "server": server}
+
+        if server:
+            self.__logger.debug('VM created')
+        self.__logger.debug('VM info: {}'.format(resources))
+
+        return resources
+
+    def delete_testvm(self, resources):
+        nodes = get_apex_nodes()
+
+        controller_node = None
+        for node in nodes:
+            if node.is_controller():
+                controller_node = node
+                break
+
+        self.__logger.debug('Deleteing Test VM')
+        self.__logger.debug('VM to be deleted info: {}'.format(resources))
+        self.__logger.debug('Delete command is executed in {}' .format(
+            (controller_node.get_dict()['name'])))
+
+        server = resources.get('server', None)
+        flavor = resources.get('flavor', None)
+        image = resources.get('image', None)
+        if server:
+            controller_node.run_cmd(
+                'source overcloudrc.v3;'
+                'openstack server delete {}'.format(server))
+        if flavor:
+            controller_node.run_cmd(
+                'source overcloudrc.v3;'
+                'openstack flavor delete {}'.format(flavor))
+        if image:
+            controller_node.run_cmd(
+                'source overcloudrc.v3;'
+                'openstack image delete {}'.format(image))
+
+        self.__logger.debug('VM and other OpenStack resources deleted')
+
+    def test_localagent_infofetch_get_data(self, compute, test_name):
+        compute_name = compute.get_name()
+        nodes = get_apex_nodes()
+        for node in nodes:
+            if compute_name == node.get_dict()['name']:
+                stdout = node.run_cmd(
+                    'redis-cli keys "barometer-localagent/vm/*/vminfo"'
+                    ' | while read k; do redis-cli get $k; done'
+                    ' | grep {}'.format(test_name))
+                self.__logger.debug('InfoFetch data: {}'.format(stdout))
+                if stdout and test_name in stdout:
+                    self.__logger.info('PASS')
+                    return True
+                else:
+                    self.__logger.info('No test vm info')
+
+        self.__logger.info('FAIL')
+        return False

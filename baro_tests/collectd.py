@@ -23,6 +23,7 @@ import time
 import logging
 import config_server
 import tests
+import local_agent
 from distutils import version
 from opnfv.deployment import factory
 
@@ -866,14 +867,19 @@ def main(bt_logger=None):
     print_overall_summary(
         compute_ids, plugin_labels, aodh_plugin_labels, results, out_plugins)
 
+    res_overall = 0
     for res in results:
         if not res[3]:
             logger.error('Some tests have failed or have not been executed')
             logger.error('Overall Result is Fail')
-            return 1
+            res_overall = 1
         else:
             pass
-    return 0
+
+    _print_label('Testing LocalAgent on compute nodes')
+    res_agent = local_agent.local_agent_main(logger, conf, computes)
+
+    return 0 if res_overall == 0 and res_agent == 0 else 1
 
 
 if __name__ == '__main__':
