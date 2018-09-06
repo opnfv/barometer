@@ -1,0 +1,42 @@
+[common]
+# All daemons share redis DB for annotation etc.
+redis_host = "localhost"
+redis_port = "6379"
+redis_password = ""
+redis_db = 0
+
+
+[server]
+listen_port = "12345"
+
+amqp_host = "overcloud-controller-0.internalapi"
+amqp_user = "guest"
+amqp_password = "xxxxxxxxxxxxxxxxxxxxxxxxx"
+amqp_port = "5672"
+
+collectd_confdir = "/etc/collectd/collectd.conf.d"
+
+
+[infofetch]
+os_username = "admin"
+os_user_domain_name = "Default"
+os_project_domain_name = "Default"
+os_project_name = "admin"
+os_password = "xxxxxxxxxxxxxxxxxxxxxxxxx"
+os_auth_url = "http://overcloud-controller-0.internalapi:5000/v3"
+
+
+[threshold]
+# redis for raw metrics data
+redis_host = "localhost"
+redis_port = "6379"
+redis_password = ""
+redis_db = 0
+
+# exceed by exec "sudo ping -i 0.00005 -c 1000 -s 1000 -q <IP>"
+interval = 5
+min = 1000000
+
+collectd_plugin = "barometer-dma"
+collectd_type = "if-octets-threshold"
+
