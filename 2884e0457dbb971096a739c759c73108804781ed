@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "5a682502_d85131da",
+        "filename": "docker/ansible/roles/install_docker/tasks/proxy.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2018-09-06T12:50:16Z",
+      "side": 1,
+      "message": "After tests it seems that the opposite is true. \u0027File: touch\u0027 does not create subdirectories, and \u0027lineinfile: create\u0027 handles the issue and creates file along with subdirectories.\nI\u0027ve tested it on both Ubuntu and CentOS with ansible 2.6.3.",
+      "parentUuid": "9a561d44_48c98b77",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 46
+      },
+      "revId": "2884e0457dbb971096a739c759c73108804781ed",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a561d44_e46375af",
         "filename": "docker/ansible/roles/install_docker/tasks/proxy.yml",
         "patchSetId": 1
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "5a682502_5846c124",
+        "filename": "docker/ansible/roles/install_docker/tasks/proxy.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2018-09-06T12:50:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a561d44_e46375af",
+      "range": {
+        "startLine": 40,
+        "startChar": 19,
+        "endLine": 40,
+        "endChar": 28
+      },
+      "revId": "2884e0457dbb971096a739c759c73108804781ed",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a561d44_64cbe572",
         "filename": "docs/release/userguide/docker.userguide.rst",
         "patchSetId": 1
@@ -107,6 +155,24 @@
       "writtenOn": "2018-08-30T08:10:45Z",
       "side": 1,
       "message": "We need to document here the default list of plugins enabled through this installation. This will help the user to later modify or update the plugins as needed.",
+      "revId": "2884e0457dbb971096a739c759c73108804781ed",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_7858ddfa",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2018-09-06T12:50:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a561d44_64cbe572",
       "revId": "2884e0457dbb971096a739c759c73108804781ed",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
@@ -142,6 +208,24 @@
       "side": 1,
       "message": "Change in collectd configuration requires process/container restart, but I agree we need to document it as well.",
       "parentUuid": "9a561d44_c4c8f176",
+      "revId": "2884e0457dbb971096a739c759c73108804781ed",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_585d21e9",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2018-09-06T12:50:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a561d44_08e833e1",
       "revId": "2884e0457dbb971096a739c759c73108804781ed",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
