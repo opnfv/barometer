@@ -1,0 +1,903 @@
+LIBVIRT-HYPERVISOR-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+    MODULE-IDENTITY, OBJECT-TYPE, Integer32, Unsigned32, Counter64
+        FROM SNMPv2-SMI
+
+    hostAssist
+        FROM Intel-SA-MIB
+
+    DisplayString
+        FROM SNMPv2-TC;
+
+--*****************************************************************************
+--
+-- MODULE IDENTITY AND REVISION GROUP
+--
+--*****************************************************************************
+
+libvirtHypervisor MODULE-IDENTITY
+    LAST-UPDATED "201710061110Z" -- coordinated universal time UTC format is YYMMDDHHmmZ
+    ORGANIZATION "Intel, Server Management Software"
+    CONTACT-INFO
+        ""
+    DESCRIPTION
+        "This SNMP MIB module supports the libvirt SNMP subagent
+        for monitoring information provided by monitoring metrics
+        of virtualized guests, their attached block devices and
+        network interfaces such as performance statistics, domain
+        state, file system information, CPU pinning and CPU
+        utilization, disk errors.
+
+        Version:  1.0   09/08/2017
+
+        Intel copyright information 2017"
+    REVISION
+        "201710061110Z"
+    DESCRIPTION
+        "Fixing types and units in MemoryTable"
+    ::= { hostAssist 6 }
+
+-------------------------------------------------------------------------------
+-- Libvirt Hypervisor Domain Statistics Table
+-------------------------------------------------------------------------------
+
+lvhDomainTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF LvhDomainTableEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "This Group defines the Libvirt Domain Stats Table."
+    ::= { libvirtHypervisor 1 }
+
+lvhDomainTableEntry OBJECT-TYPE
+    SYNTAX      LvhDomainTableEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "This Group defines the Libvirt Domain Stats Table Entry."
+    INDEX       { lvhDomainName }
+    ::= { lvhDomainTable 1 }
+
+LvhDomainTableEntry                 ::= SEQUENCE {
+    lvhDomainName                   DisplayString,
+    lvhDomainStateState             INTEGER,
+    lvhDomainStateReason            INTEGER,
+    lvhCPUTotalTimeUser             Counter64,
+    lvhCPUTotalTimeSystem           Counter64,
+    lvhVirtCPUTotal                 Integer32,
+    lvhMemoryTotal                  Integer32
+}
+
+lvhDomainName OBJECT-TYPE
+    SYNTAX      DisplayString (SIZE (0..50))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Textual string containing a VM name."
+    ::= { lvhDomainTableEntry 1 }
+
+lvhDomainStateState OBJECT-TYPE
+    SYNTAX      INTEGER {
+                    unknown(0),
+                    running(1),
+                    blocked(2),
+                    paused(3),
+                    shutdown(4),
+                    shutoff(5),
+                    crashed(6),
+                    pmususpended(7)
+                }
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "State of the VM, returned as number from virDomainState enum."
+    ::= { lvhDomainTableEntry 2 }
+
+lvhDomainStateReason OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Reason for entering given state, returned as int from
+        virDomain*Reason enum corresponding to given state."
+    ::= { lvhDomainTableEntry 3 }
+
+lvhCPUTotalTimeUser OBJECT-TYPE
+    SYNTAX      Counter64
+    UNITS       "nanoseconds"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "User CPU time spent in nanoseconds."
+    ::= { lvhDomainTableEntry 4 }
+
+lvhCPUTotalTimeSystem OBJECT-TYPE
+    SYNTAX      Counter64
+    UNITS       "nanoseconds"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "System CPU time spent in nanoseconds."
+    ::= { lvhDomainTableEntry 5 }
+
+lvhVirtCPUTotal OBJECT-TYPE
+    SYNTAX      Integer32
+    UNITS       "percent"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "CPU utilization in percentage."
+    ::= { lvhDomainTableEntry 6 }
+
+lvhMemoryTotal OBJECT-TYPE
+    SYNTAX      Integer32
+    UNITS       "bytes"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Memory in bytes used by the domain."
+    ::= { lvhDomainTableEntry 7 }
+
+-------------------------------------------------------------------------------
+-- Libvirt Hypervisor Memory Statistics Table
+-------------------------------------------------------------------------------
+
+lvhMemoryTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF LvhMemoryTableEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "This Group defines the Libvirt Hypervisor Memory Table."
+    ::= { libvirtHypervisor 2 }
+
+lvhMemoryTableEntry OBJECT-TYPE
+    SYNTAX      LvhMemoryTableEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "This Group defines the Libvirt Hypervisor Memory Table Entry."
+    INDEX       { lvhMemoryDomainName }
+    ::= { lvhMemoryTable 1 }
+
+LvhMemoryTableEntry                 ::= SEQUENCE {
+    lvhMemoryDomainName             DisplayString,
+    lvhMemorySwapIn                 Unsigned32,
+    lvhMemorySwapOut                Unsigned32,
+    lvhMemoryMajorFault             Unsigned32,
+    lvhMemoryMinorFault             Unsigned32,
+    lvhMemoryUnused                 Unsigned32,
+    lvhMemoryAvailable              Unsigned32,
+    lvhMemoryActualBalloon          Unsigned32,
+    lvhMemoryRss                    Unsigned32,
+    lvhMemoryUsable                 Unsigned32,
+    lvhMemoryLastUpdate             Counter64
+}
+
+lvhMemoryDomainName OBJECT-TYPE
+    SYNTAX      DisplayString (SIZE (0..50))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Textual string containing a VM name."
+    ::= { lvhMemoryTableEntry 1 }
+
+lvhMemorySwapIn OBJECT-TYPE
+    SYNTAX      Unsigned32
+    UNITS       "bytes"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Amount of data read from swap space."
+    ::= { lvhMemoryTableEntry 2 }
+
+lvhMemorySwapOut OBJECT-TYPE
+    SYNTAX      Unsigned32
+    UNITS       "bytes"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Amount of memory written out to swap space."
+    ::= { lvhMemoryTableEntry 3 }
+
+lvhMemoryMajorFault OBJECT-TYPE
+    SYNTAX      Unsigned32
+    UNITS       "in 24h (x1024)"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Number of page faults when disk IO was required."
+    ::= { lvhMemoryTableEntry 4 }
+
+lvhMemoryMinorFault OBJECT-TYPE
+    SYNTAX      Unsigned32
+    UNITS       "in 24h (x1024)"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Number of other page faults."
+    ::= { lvhMemoryTableEntry 5 }
+
+lvhMemoryUnused OBJECT-TYPE
+    SYNTAX      Unsigned32
+    UNITS       "bytes"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Amount of memory left unused by the system."
+    ::= { lvhMemoryTableEntry 6 }
+
+lvhMemoryAvailable OBJECT-TYPE
+    SYNTAX      Unsigned32
+    UNITS       "bytes"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Amount of usable memory as seen by the domain."
+    ::= { lvhMemoryTableEntry 7 }
+
+lvhMemoryActualBalloon OBJECT-TYPE
+    SYNTAX      Unsigned32
+    UNITS       "bytes"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Memory currently used."
+    ::= { lvhMemoryTableEntry 8 }
+
+lvhMemoryRss OBJECT-TYPE
+    SYNTAX      Unsigned32
+    UNITS       "bytes"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Resident Set Size of running domain's process."
+    ::= { lvhMemoryTableEntry 9 }
+
+lvhMemoryUsable OBJECT-TYPE
+    SYNTAX      Unsigned32
+    UNITS       "bytes"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Amount of memory which can be reclaimed by
+        balloon without causing host swapping."
+    ::= { lvhMemoryTableEntry 10 }
+
+lvhMemoryLastUpdate OBJECT-TYPE
+    SYNTAX      Counter64
+    UNITS       "seconds (x1024)"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Timestamp of the last update of statistics."
+    ::= { lvhMemoryTableEntry 11 }
+
+-------------------------------------------------------------------------------
+-- Libvirt Hypervisor Perf Statistics Table
+-------------------------------------------------------------------------------
+
+lvhPerfTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF LvhPerfTableEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "This Group defines the Libvirt Hypervisor Perf Table."
+    ::= { libvirtHypervisor 3 }
+
+lvhPerfTableEntry OBJECT-TYPE
+    SYNTAX      LvhPerfTableEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "This Group defines the Libvirt Hypervisor Perf Table Entry."
+    INDEX       { lvhPerfDomainName }
+    ::= { lvhPerfTable 1 }
+
+LvhPerfTableEntry                   ::= SEQUENCE {
+    lvhPerfDomainName               DisplayString,
+    lvhPerfAlignmentFaults          Integer32,
+    lvhPerfBranchInstructions       Integer32,
+    lvhPerfBranchMisses             Integer32,
+    lvhPerfBusCycles                Integer32,
+    lvhPerfCacheMisses              Integer32,
+    lvhPerfCacheReferences          Integer32,
+    lvhPerfCmt                      Integer32,
+    lvhPerfContextSwitches          Integer32,
+    lvhPerfCPUClock                 Counter64,
+    lvhPerfCPUCycles                Counter64,
+    lvhPerfCPUMigrations            Integer32,
+    lvhPerfEmulationFaults          Integer32,
+    lvhPerfInstructions             Integer32,
+    lvhPerfMbml                     Integer32,
+    lvhPerfMbmt                     Integer32,
+    lvhPerfPageFaults               Integer32,
+    lvhPerfPageFaultsMaj            Integer32,
+    lvhPerfPageFaultsMin            Integer32,
+    lvhPerfRefCPUCycles             Counter64,
+    lvhPerfTaskClock                Counter64
+}
+
+lvhPerfDomainName OBJECT-TYPE
+    SYNTAX      DisplayString (SIZE (0..50))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Textual string containing a VM name."
+    ::= { lvhPerfTableEntry 1 }
+
+lvhPerfAlignmentFaults OBJECT-TYPE
+    SYNTAX      Integer32
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Count of alignment faults."
+    ::= { lvhPerfTableEntry 2 }
+
+lvhPerfBranchInstructions OBJECT-TYPE
+    SYNTAX      Integer32
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Count of branch instructions."
+    ::= { lvhPerfTableEntry 3 }
+
+lvhPerfBranchMisses OBJECT-TYPE
+    SYNTAX      Integer32
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Count of branch misses."
+    ::= { lvhPerfTableEntry 4 }
+
+lvhPerfBusCycles OBJECT-TYPE
+    SYNTAX      Integer32
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Count of bus cycles."
+    ::= { lvhPerfTableEntry 5 }
+
+lvhPerfCacheMisses OBJECT-TYPE
+    SYNTAX      Integer32
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Count of cache misses."
+    ::= { lvhPerfTableEntry 6 }
+
+lvhPerfCacheReferences OBJECT-TYPE
+    SYNTAX      Integer32
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Count of cache hits."
+    ::= { lvhPerfTableEntry 7 }
+
+lvhPerfCmt OBJECT-TYPE
+    SYNTAX      Integer32
+    UNITS       "bytes"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Cache usage in bytes."
+    ::= { lvhPerfTableEntry 8 }
+
+lvhPerfContextSwitches OBJECT-TYPE
+    SYNTAX      Integer32
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Count of context switches."
+    ::= { lvhPerfTableEntry 9 }
+
+lvhPerfCPUClock OBJECT-TYPE
+    SYNTAX      Counter64
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Count of CPU clock time."
+    ::= { lvhPerfTableEntry 10 }
+
+lvhPerfCPUCycles OBJECT-TYPE
+    SYNTAX      Counter64
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Count of CPU cycles (total/elapsed)."
+    ::= { lvhPerfTableEntry 11 }
+
+lvhPerfCPUMigrations OBJECT-TYPE
+    SYNTAX      Integer32
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Count of CPU migrations."
+    ::= { lvhPerfTableEntry 12 }
+
+lvhPerfEmulationFaults OBJECT-TYPE
+    SYNTAX      Integer32
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Count of emulation faults."
+    ::= { lvhPerfTableEntry 13 }
+
+lvhPerfInstructions OBJECT-TYPE
+    SYNTAX      Integer32
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Count of instructions."
+    ::= { lvhPerfTableEntry 14 }
+
+lvhPerfMbml OBJECT-TYPE
+    SYNTAX      Integer32
+    UNITS       "bytes/s"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Traffic bandwidth for a memory controller."
+    ::= { lvhPerfTableEntry 15 }
+
+lvhPerfMbmt OBJECT-TYPE
+    SYNTAX      Integer32
+    UNITS       "bytes/s"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Total system bandwidth from one cache level."
+    ::= { lvhPerfTableEntry 16 }
+
+lvhPerfPageFaults OBJECT-TYPE
+    SYNTAX      Integer32
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Count of page faults."
+    ::= { lvhPerfTableEntry 17 }
+
+lvhPerfPageFaultsMaj OBJECT-TYPE
+    SYNTAX      Integer32
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Count of major page faults."
+    ::= { lvhPerfTableEntry 18 }
+
+lvhPerfPageFaultsMin OBJECT-TYPE
+    SYNTAX      Integer32
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Count of minor page faults."
+    ::= { lvhPerfTableEntry 19 }
+
+lvhPerfRefCPUCycles OBJECT-TYPE
+    SYNTAX      Counter64
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "The count of ref CPU cycles."
+    ::= { lvhPerfTableEntry 20 }
+
+lvhPerfTaskClock OBJECT-TYPE
+    SYNTAX      Counter64
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Count of task clock time."
+    ::= { lvhPerfTableEntry 21 }
+
+-------------------------------------------------------------------------------
+-- Libvirt Hypervisor CPUAffinity Table
+-------------------------------------------------------------------------------
+
+lvhCPUAffinityTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF LvhCPUAffinityTableEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION "This Group defines the CPUAffinity Table Entry."
+    ::= { libvirtHypervisor 4 }
+
+lvhCPUAffinityTableEntry OBJECT-TYPE
+    SYNTAX      LvhCPUAffinityTableEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION "This Group defines the Libvirt Hypervisor CPU Affinity Table Entry."
+    INDEX       { lvhAffinityDomainName, lvhCPUIndex, lvhVCPUIndex }
+    ::= { lvhCPUAffinityTable 1 }
+
+LvhCPUAffinityTableEntry            ::= SEQUENCE {
+    lvhAffinityDomainName           DisplayString,
+    lvhCPUIndex                     Integer32,
+    lvhVCPUIndex                    Integer32,
+    lvhCPUAffinity                  Integer32
+}
+
+lvhAffinityDomainName OBJECT-TYPE
+    SYNTAX      DisplayString (SIZE (0..50))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Textual string containing the VM name."
+    ::= { lvhCPUAffinityTableEntry 1 }
+
+lvhCPUIndex OBJECT-TYPE
+    SYNTAX      Integer32 (0..999)
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "CPU index."
+    ::= { lvhCPUAffinityTableEntry 2 }
+
+lvhVCPUIndex OBJECT-TYPE
+    SYNTAX      Integer32 (0..999)
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Virtual CPU index."
+    ::= { lvhCPUAffinityTableEntry 3 }
+
+lvhCPUAffinity OBJECT-TYPE
+    SYNTAX      Integer32 (0..1)
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Pinning of domain VCPU to host physical CPU."
+    ::= { lvhCPUAffinityTableEntry 4 }
+
+-------------------------------------------------------------------------------
+-- Libvirt Hypervisor VCPU Table
+-------------------------------------------------------------------------------
+
+lvhVirtVCPUTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF LvhVirtVCPUTableEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION "This Group defines the VirtVCPU Table Entry."
+    ::= { libvirtHypervisor 5 }
+
+lvhVirtVCPUTableEntry OBJECT-TYPE
+    SYNTAX      LvhVirtVCPUTableEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION "This Group defines the Libvirt Hypervisor VirtVCPU Table Entry."
+    INDEX       { lvhVCPUDomainName, lvhVCPUVCPUIndex }
+    ::= { lvhVirtVCPUTable 1 }
+
+LvhVirtVCPUTableEntry               ::= SEQUENCE {
+    lvhVCPUDomainName               DisplayString,
+    lvhVCPUVCPUIndex                Integer32,
+    lvhVirtVCPU                     Counter64
+}
+
+lvhVCPUDomainName OBJECT-TYPE
+    SYNTAX      DisplayString (SIZE (0..50))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Textual string containing the VM name."
+    ::= { lvhVirtVCPUTableEntry 1 }
+
+lvhVCPUVCPUIndex OBJECT-TYPE
+    SYNTAX      Integer32 (0..999)
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Virtual CPU index."
+    ::= { lvhVirtVCPUTableEntry 2 }
+
+lvhVirtVCPU OBJECT-TYPE
+    SYNTAX      Counter64
+    UNITS       "nanoseconds"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Time spent by virtual CPU."
+    ::= { lvhVirtVCPUTableEntry 3 }
+
+-------------------------------------------------------------------------------
+-- Libvirt Hypervisor DiskError Table
+-------------------------------------------------------------------------------
+
+lvhDiskErrorTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF LvhDiskErrorTableEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION "This Group defines the Libvirt Hypervisor DiskError Table."
+    ::= { libvirtHypervisor 6 }
+
+lvhDiskErrorTableEntry OBJECT-TYPE
+    SYNTAX      LvhDiskErrorTableEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION "This Group defines the Libvirt Hypervisor DiskEror Table Entry."
+    INDEX       { lvhDiskDomainName, lvhDiskName }
+    ::= { lvhDiskErrorTable 1 }
+
+LvhDiskErrorTableEntry                         ::= SEQUENCE {
+    lvhDiskDomainName                          DisplayString,
+    lvhDiskName                                DisplayString,
+    lvhDiskError                               INTEGER
+}
+
+lvhDiskDomainName OBJECT-TYPE
+    SYNTAX      DisplayString (SIZE (0..50))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Textual string containing a VM name."
+    ::= { lvhDiskErrorTableEntry 1 }
+
+lvhDiskName OBJECT-TYPE
+    SYNTAX      DisplayString (SIZE (0..20))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Textual string containing a disk name."
+    ::= { lvhDiskErrorTableEntry 2 }
+
+lvhDiskError OBJECT-TYPE
+    SYNTAX      INTEGER {
+                    none(0),
+                    unspec(1),
+                    nospace(2)
+                }
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Disk error code."
+    ::= { lvhDiskErrorTableEntry 3 }
+
+-------------------------------------------------------------------------------
+-- Libvirt Hypervisor Block Device Statistics Table
+-------------------------------------------------------------------------------
+
+lvhBlockDeviceTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF LvhBlockDeviceTableEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "This Group defines the Libvirt Hypervisor Block Device Table."
+    ::= { libvirtHypervisor 7 }
+
+lvhBlockDeviceTableEntry OBJECT-TYPE
+    SYNTAX      LvhBlockDeviceTableEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "This Group defines the Libvirt Hypervisor Block Device Table Entry."
+    INDEX       { lvhBlockDomainName, lvhBlockDeviceName }
+    ::= { lvhBlockDeviceTable 1 }
+
+LvhBlockDeviceTableEntry            ::= SEQUENCE {
+    lvhBlockDomainName              DisplayString,
+    lvhBlockDeviceName              DisplayString,
+    lvhDiskOpsRead                  Integer32,
+    lvhDiskOpsWrite                 Integer32,
+    lvhDiskOctetsRead               Integer32,
+    lvhDiskOctetsWrite              Integer32,
+    lvhDiskTimeCacheRead            Counter64,
+    lvhDiskTimeCacheWrite           Counter64
+}
+
+lvhBlockDomainName OBJECT-TYPE
+    SYNTAX      DisplayString (SIZE (0..50))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Textual string containing a VM name."
+    ::= { lvhBlockDeviceTableEntry 1 }
+
+lvhBlockDeviceName OBJECT-TYPE
+    SYNTAX      DisplayString (SIZE (0..20))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Textual string containing a block device name."
+    ::= { lvhBlockDeviceTableEntry 2 }
+
+lvhDiskOpsRead OBJECT-TYPE
+    SYNTAX      Integer32
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Number of read requests."
+    ::= { lvhBlockDeviceTableEntry 3 }
+
+lvhDiskOpsWrite OBJECT-TYPE
+    SYNTAX      Integer32
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Number of write requests."
+    ::= { lvhBlockDeviceTableEntry 4 }
+
+lvhDiskOctetsRead OBJECT-TYPE
+    SYNTAX      Integer32
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Number of read bytes."
+    ::= { lvhBlockDeviceTableEntry 5 }
+
+lvhDiskOctetsWrite OBJECT-TYPE
+    SYNTAX      Integer32
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Number of write bytes."
+    ::= { lvhBlockDeviceTableEntry 6 }
+
+lvhDiskTimeCacheRead OBJECT-TYPE
+    SYNTAX      Counter64
+    UNITS       "nanoseconds"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Total time spent on cache reads."
+    ::= { lvhBlockDeviceTableEntry 7 }
+
+lvhDiskTimeCacheWrite OBJECT-TYPE
+    SYNTAX      Counter64
+    UNITS       "nanoseconds"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Total times spent on cache writes."
+    ::= { lvhBlockDeviceTableEntry 8 }
+
+-------------------------------------------------------------------------------
+-- Libvirt Hypervisor Block Device Flush Statistics Table
+-------------------------------------------------------------------------------
+
+lvhBlockDevFlushTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF LvhBlockDevFlushTableEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "This Group defines the Libvirt Hypervisor Block Device Table."
+    ::= { libvirtHypervisor 8 }
+
+lvhBlockDevFlushTableEntry OBJECT-TYPE
+    SYNTAX      LvhBlockDevFlushTableEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "This Group defines the Libvirt Hypervisor Block Device Table Entry."
+    INDEX       { lvhBlockDevFlushDomainName, lvhBlockDevFlushDeviceName }
+    ::= { lvhBlockDevFlushTable 1 }
+
+LvhBlockDevFlushTableEntry          ::= SEQUENCE {
+    lvhBlockDevFlushDomainName      DisplayString,
+    lvhBlockDevFlushDeviceName      DisplayString,
+    lvhTotalRequestsFlush           Integer32,
+    lvhTotalTimeInMsFlush           Integer32
+}
+
+lvhBlockDevFlushDomainName OBJECT-TYPE
+    SYNTAX      DisplayString (SIZE (0..50))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Textual string containing a VM name."
+    ::= { lvhBlockDevFlushTableEntry 1 }
+
+lvhBlockDevFlushDeviceName OBJECT-TYPE
+    SYNTAX      DisplayString (SIZE (0..20))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Textual string containing a block device name."
+    ::= { lvhBlockDevFlushTableEntry 2 }
+
+lvhTotalRequestsFlush OBJECT-TYPE
+    SYNTAX      Integer32
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Total number of flush requests."
+    ::= { lvhBlockDevFlushTableEntry 3 }
+
+lvhTotalTimeInMsFlush OBJECT-TYPE
+    SYNTAX      Integer32
+    UNITS       "milliseconds"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "The total time spent on cache flushing."
+    ::= { lvhBlockDevFlushTableEntry 4 }
+
+-------------------------------------------------------------------------------
+-- Libvirt Hypervisor Network Interface Statistics Table
+-------------------------------------------------------------------------------
+
+lvhNetworkIfaceTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF LvhNetworkIfaceTableEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION "This Group defines the Libvirt Hypervisor Network Interface
+                Table."
+    ::= { libvirtHypervisor 9 }
+
+lvhNetworkIfaceTableEntry OBJECT-TYPE
+    SYNTAX      LvhNetworkIfaceTableEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "This Group defines the Libvirt Hypervisor Network Interface Table Entry."
+    INDEX       { lvhNetIfDomainName, lvhInterfaceName }
+    ::= { lvhNetworkIfaceTable 1 }
+
+LvhNetworkIfaceTableEntry           ::= SEQUENCE {
+    lvhNetIfDomainName              DisplayString,
+    lvhInterfaceName                DisplayString,
+    lvhIfBytesReceived              Counter64,
+    lvhIfBytesTransmitted           Counter64,
+    lvhIfPacketsReceived            Counter64,
+    lvhIfPacketsTransmitted         Counter64,
+    lvhIfErrorsReceive              Counter64,
+    lvhIfErrorsTransmission         Counter64,
+    lvhIfDroppedReceive             Counter64,
+    lvhIfDroppedTransmit            Counter64
+}
+
+lvhNetIfDomainName OBJECT-TYPE
+    SYNTAX      DisplayString (SIZE (0..50))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Textual string containing a VM name."
+    ::= { lvhNetworkIfaceTableEntry 1 }
+
+lvhInterfaceName OBJECT-TYPE
+    SYNTAX      DisplayString (SIZE (0..20))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Textual string containing a network interface name."
+    ::= { lvhNetworkIfaceTableEntry 2 }
+
+lvhIfBytesReceived OBJECT-TYPE
+    SYNTAX      Counter64
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Number of bytes received."
+    ::= { lvhNetworkIfaceTableEntry 3 }
+
+lvhIfBytesTransmitted OBJECT-TYPE
+    SYNTAX      Counter64
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Number of bytes transmitted."
+    ::= { lvhNetworkIfaceTableEntry 4 }
+
+lvhIfPacketsReceived OBJECT-TYPE
+    SYNTAX      Counter64
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Number of packets received."
+    ::= { lvhNetworkIfaceTableEntry 5 }
+
+lvhIfPacketsTransmitted OBJECT-TYPE
+    SYNTAX      Counter64
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Number of packets transmitted."
+    ::= { lvhNetworkIfaceTableEntry 6 }
+
+lvhIfErrorsReceive OBJECT-TYPE
+    SYNTAX      Counter64
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Number of receive errors."
+    ::= { lvhNetworkIfaceTableEntry 7 }
+
+lvhIfErrorsTransmission OBJECT-TYPE
+    SYNTAX      Counter64
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Number of transmission errors."
+    ::= { lvhNetworkIfaceTableEntry 8 }
+
+lvhIfDroppedReceive OBJECT-TYPE
+    SYNTAX      Counter64
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Number of receive packets dropped."
+    ::= { lvhNetworkIfaceTableEntry 9 }
+
+lvhIfDroppedTransmit OBJECT-TYPE
+    SYNTAX      Counter64
+    UNITS       "in 24h"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION "Number of transmit packets dropped."
+    ::= { lvhNetworkIfaceTableEntry 10 }
+
+END

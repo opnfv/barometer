@@ -19,7 +19,14 @@ KAFKA_TAG ?= v0.9.5
 
 # collectd section
 COLLECTD_URL ?= https://github.com/collectd/collectd
-COLLECTD_TAG ?= collectd-5.8
+# there are 2 collectd flavors:
+# -"collectd" - based on stable collect release
+# -"collectd-master" - development version, based on master branch
+ifdef COLLECTD_USE_MASTER
+	COLLECTD_TAG ?= master
+else
+	COLLECTD_TAG ?= collectd-5.8
+endif
 
 COLLECTD_OPENSTACK_URL ?= https://github.com/openstack/collectd-openstack-plugins
 COLLECTD_OPENSTACK_TAG ?= stable/pike
