@@ -228,6 +228,96 @@ To make some changes when a container is running run:
 
     $ sudo docker exec -ti <CONTAINER ID> /bin/bash
 
+Ansible docker installation using custom docker registry (for offline installations)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In case of setups without external network access, there is an option to use custom docker registry
+during ansible build.
+It allows user to pass a custom URL to docker-registry(that is located behind the firewall) as a source of docker images.
+Both secure and insecure docker registry variants are supported.
+
+For using secure docker registry, pass 'secure_registry_url' parameter to ansible-playbook:
+
+.. code:: bash
+
+    $ sudo ansible-playbook -i ~/inventory.inv collectd_service.yml -e secure_registry_url=<SECURE_REGISTRY_ADDRESS>:<PORT>
+
+
+In case of insecure docker registries, pass 'insecure_registry_url' parameter to ansible-playbook:
+
+.. code:: bash
+
+    $ sudo ansible-playbook -i ~/inventory.inv collectd_service.yml -e insecure_registry_url=<INSECURE_REGISTRY_ADDRESS>:<PORT>
+
+
+Configuring custom docker registry for barometer offline deployments
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Process of creating local docker registries is described in docker documentation: https://docs.docker.com/registry/deploying/
+
+When docker registry is up and running, it has to be fed with following barometer docker images:
+
+barometer-collectd image
+
+.. code:: bash
+
+    $ sudo docker pull opnfv/barometer-collectd &&\
+    sudo docker tag opnfv/barometer-collectd localhost:5000/opnfv/barometer-collectd &&\
+    docker push localhost:5000/opnfv/barometer-collectd
+
+barometer-collectd-master image
+
+.. code:: bash
+
+    $ sudo docker pull opnfv/barometer-collectd-master &&\
+    sudo docker tag opnfv/barometer-collectd-master localhost:5000/opnfv/barometer-collectd-master &&\
+    docker push localhost:5000/opnfv/barometer-collectd-master
+    
+barometer-grafana image
+
+.. code:: bash
+
+    $ sudo docker pull opnfv/barometer-grafana &&\
+    sudo docker tag opnfv/barometer-grafana localhost:5000/opnfv/barometer-grafana &&\
+    docker push localhost:5000/opnfv/barometer-grafana
+
+barometer-influxdb image
+
+.. code:: bash
+
+    $ sudo docker pull opnfv/barometer-influxdb &&\
+    sudo docker tag opnfv/barometer-influxdb localhost:5000/opnfv/barometer-influxdb &&\
+    docker push localhost:5000/opnfv/barometer-influxdb
+
+barometer-kafka image
+
+.. code:: bash
+
+    $ sudo docker pull opnfv/barometer-kafka &&\
+    sudo docker tag opnfv/barometer-kafka localhost:5000/opnfv/barometer-kafka &&\
+    docker push localhost:5000/opnfv/barometer-kafka
+
+barometer-snmp image
+
+.. code:: bash
+
+    sudo docker pull opnfv/barometer-snmp &&\
+    sudo docker tag opnfv/barometer-snmp localhost:5000/opnfv/barometer-snmp &&\
+    docker push localhost:5000/opnfv/barometer-snmp
+
+In order to verify if everything is working as expected, 'curl' can be used to check content of local docker registry
+
+.. code:: bash
+
+    $ curl http://localhost:5000/v2/_catalog
+    {"repositories":["opnfv/barometer-collectd","opnfv/barometer-grafana","opnfv/barometer-influxdb","opnfv/barometer-kafka","opnfv/barometer-snmp"]}
+
+.. note::
+   
+   Be sure to open port '5000' for TCP on firewall - without that other machines won't be able to pull
+   images from docker registry
+
+
 List of default plugins for collectd container
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

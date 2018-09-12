@@ -1,0 +1,57 @@
+#Copyright 2018 OPNFV and Intel Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+---
+
+- name: Create /etc/docker/daemon.json if not exists
+  file: path=/etc/docker/daemon.json state=touch
+
+- name: Load daemon.json from file
+  include_vars:
+    file: /etc/docker/daemon.json
+    name: imported_daemon_conf_var
+
+- name: Create empty json as configuration if needed
+  set_fact:
+    imported_daemon_conf_var: "{{ imported_daemon_conf_var | default([]) }}"
+
+- name: Get current insecure-registries list
+  set_fact:
+    insecure_registries_var: "{{ imported_daemon_conf_var['insecure-registries'] | default([]) }}"
+
+- name: Add new docker-insecure-registry entry
+  set_fact:
+    insecure_registries_var: "{{ insecure_registries_var }} + [ '{{ insecure_registry_url }}' ]"
+
+- debug:
+    var: insecure_registries_var
+
+- name: Update daemon.json configuration
+  set_fact:
+    imported_daemon_conf_var: "{{ imported_daemon_conf_var | combine({item.key: item.value}) }}"
+  with_items:
+    - {key: 'insecure-registries', value: "{{ insecure_registries_var|unique }}"}
+
+- name: Write updated daemon.json file
+  copy:
+    content: "{{ imported_daemon_conf_var | to_nice_json }}"
+    dest: /etc/docker/daemon.json
+
+- name: Reload systemd configuration files
+  systemd:
+    daemon_reload: yes
+
+- name: Restart docker after applying changes to insecure registries configuration
+  systemd:
+    name: docker
+    state: restarted

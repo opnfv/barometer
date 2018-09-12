@@ -13,6 +13,11 @@
 # limitations under the License.
 ---
 
+- name: Set bar-ves docker image name with custom registry
+  set_fact:
+    bar_ves_image_name: "{{ custom_registry_url }}/{{ bar_ves_image_name }}"
+  when: custom_registry_url is defined
+
 - name: Remove bar-ves container
   docker_container:
     name: bar-ves
@@ -25,7 +30,7 @@
 - name: Remove opnfv/barometer-ves image
   docker_image:
     state: absent
-    name: opnfv/barometer-ves
+    name: "{{ bar_ves_image_name }}"
   tags:
     - remove_images
     - remove_ves_image
@@ -34,7 +39,7 @@
 - name: launch opnfv/barometer-ves container
   docker_container:
     name: bar-ves
-    image: opnfv/barometer-ves
+    image: "{{ bar_ves_image_name }}"
     detach: yes
     state: started
     restart: yes

@@ -13,6 +13,11 @@
 # limitations under the License.
 ---
 
+- name: Set bar-influxdb docker image name with custom registry
+  set_fact:
+    bar_influxdb_image_name: "{{ custom_registry_url }}/{{ bar_influxdb_image_name }}"
+  when: custom_registry_url is defined
+
 - name: remove bar-influxdb container
   docker_container:
     name: bar-influxdb
@@ -24,7 +29,7 @@
 
 - name: Remove opnfv/barometer-influxdb image
   docker_image:
-    name: opnfv/barometer-influxdb
+    name: "{{ bar_influxdb_image_name }}"
     state: absent
   tags:
     - rm_images
@@ -34,7 +39,7 @@
 - name: launch barometer-influxdb container
   docker_container:
     name: bar-influxdb
-    image: opnfv/barometer-influxdb
+    image: "{{ bar_influxdb_image_name }}"
     volumes:
        - /var/lib/influxdb:/var/lib/influxdb
     exposed:

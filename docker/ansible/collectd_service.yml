@@ -19,6 +19,7 @@
   gather_facts: true
   roles:
       - install_docker
+      - configure_custom_docker_registry
 
 - hosts: collectd_hosts
   become: true

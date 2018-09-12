@@ -1,0 +1,35 @@
+#Copyright 2018 OPNFV and Intel Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+---
+
+- fail: msg="Only one of 'secure_registry_url'/'insecure_registry_url' can be set"
+  when: (secure_registry_url is defined) and (insecure_registry_url is defined)
+
+# Secure registry handling
+- name: Set custom secure docker registry
+  set_fact:
+     custom_registry_url: "{{ secure_registry_url }}"
+  when: secure_registry_url is defined
+
+# Insecure registry handling
+- name: Set custom insecure docker registry
+  set_fact:
+    custom_registry_url: "{{ insecure_registry_url }}"
+  when: insecure_registry_url is defined
+
+# For insecure docker repositories URL has to be added to whitelist located in
+# /etc/docker/daemon.json
+- name: Add insecure docker registry to docker whitelist
+  import_tasks: add_insecure_url.yml
+  when: insecure_registry_url is defined

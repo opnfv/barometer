@@ -13,6 +13,11 @@
 # limitations under the License.
 ---
 
+- name: Set bar-kafka docker image name with custom registry
+  set_fact:
+    bar_kafka_image_name: "{{ custom_registry_url }}/{{ bar_kafka_image_name }}"
+  when: custom_registry_url is defined
+
 - name: Remove bar-kafka container
   docker_container:
     name: bar-kafka
@@ -24,7 +29,7 @@
 
 - name: Remove opnfv/barometer-kafka  image
   docker_image:
-    name: opnfv/barometer-kafka
+    name: "{{ bar_kafka_image_name }}"
     state: absent
   tags:
     - remove_images
@@ -34,7 +39,7 @@
 - name: launch opnfv/barometer-kafka container
   docker_container:
     name: bar-kafka
-    image: opnfv/barometer-kafka
+    image: "{{ bar_kafka_image_name }}"
     env:
        zookeeper_node: "{{ zookeeper_hostname }}"
        broker_id: "{{ broker_id }}"

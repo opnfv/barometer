@@ -1,4 +1,4 @@
-#Copyright 2018 OPNFV and Intel Corporation
+Copyright 2018 OPNFV and Intel Corporation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,9 +13,4 @@
 # limitations under the License.
 ---
 
-zookeeper_hostname: zookeeper
-zookeeper_host_ip: localhost
-
-broker_id: 0
-
-bar_kafka_image_name: opnfv/barometer-kafka
+bar_ves_image_name: opnfv/barometer-ves

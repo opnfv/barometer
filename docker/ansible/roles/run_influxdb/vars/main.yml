@@ -13,9 +13,4 @@
 # limitations under the License.
 ---
 
-zookeeper_hostname: zookeeper
-zookeeper_host_ip: localhost
-
-broker_id: 0
-
-bar_kafka_image_name: opnfv/barometer-kafka
+bar_influxdb_image_name: opnfv/barometer-influxdb

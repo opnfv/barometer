@@ -15,3 +15,5 @@
 
 influxdb_hostname: localhost
 influxdb_host_ip: 127.0.0.1
+
+bar_grafana_image_name: opnfv/barometer-grafana

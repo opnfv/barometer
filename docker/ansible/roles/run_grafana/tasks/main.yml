@@ -13,6 +13,11 @@
 # limitations under the License.
 ---
 
+- name: Set grafana image name with custom registry
+  set_fact:
+    bar_grafana_image_name: "{{ custom_registry_url }}/{{ bar_grafana_image_name }}"
+  when: custom_registry_url is defined
+
 - name: remove bar-grafana container
   docker_container:
     name: bar-grafana
@@ -25,7 +30,7 @@
 - name: Remove barometer-grafana image
   docker_image:
     state: absent
-    name: opnfv/barometer-grafana
+    name: "{{ bar_grafana_image_name }}"
   tags:
     - rm_images
     - rm_grafana_image
@@ -34,7 +39,7 @@
 - name: launch barometer-grafana container
   docker_container:
     name: bar-grafana
-    image: opnfv/barometer-grafana
+    image: "{{ bar_grafana_image_name }}"
     volumes:
        - /var/lib/grafana:/var/lib/grafana
     ports:

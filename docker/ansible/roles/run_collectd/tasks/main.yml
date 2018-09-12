@@ -13,6 +13,11 @@
 # limitations under the License.
 ---
 
+- name: Set bar-collectd docker image name with custom registry
+  set_fact:
+    bar_collectd_image_name: "{{ custom_registry_url }}/{{ bar_collectd_image_name }}"
+  when: custom_registry_url is defined
+
 - name: remove bar-collectd container
   docker_container:
     name: bar-collectd
@@ -24,7 +29,7 @@
 
 - name: Remove bar-collectd image
   docker_image:
-    name: opnfv/barometer-collectd
+    name: "{{ bar_collectd_image_name }}"
     state: absent
   tags:
     - rm_images
@@ -34,7 +39,7 @@
 - name: launch collectd container
   docker_container:
     name: bar-collectd
-    image: opnfv/barometer-collectd
+    image: "{{ bar_collectd_image_name }}"
     volumes:
        - /opt/collectd/etc/collectd.conf.d/:/opt/collectd/etc/collectd.conf.d
        - /var/run:/var/run
