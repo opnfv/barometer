@@ -168,4 +168,4 @@ dashboards such as ``CPU Usage`` and ``Host Overview``.
 For more details on the Barometer containers, Grafana and InfluxDB, please refer to
 the following documentation links:
 https://wiki.opnfv.org/display/fastpath/Barometer+Containers#BarometerContainers-barometer-collectdcontainer
-http://docs.opnfv.org/en/latest/submodules/barometer/docs/release/userguide/docker.userguide.html#barometer-collectd-image
+:ref:`<barometer-docker-userguide>`

@@ -1,6 +1,7 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
 .. (c) <optionally add copywriters name>
+.. _barometer-docker-userguide:
 
 ===================================
 OPNFV Barometer Docker User Guide
@@ -28,8 +29,7 @@ For steps to build and run InfluxDB and Grafana images please see section `Build
 
 For steps to build and run VES and Kafka images please see section `Build and Run VES and Kafka Docker Images`_
 
-For overview of running VES application with Kafka please see the `VES Application User Guide
-<http://docs.opnfv.org/en/latest/submodules/barometer/docs/release/userguide/collectd.ves.userguide.html>`_
+For overview of running VES application with Kafka please see the :ref:`VES Application User Guide <barometer-ves-userguide>`
 
 Barometer Docker Images Description
 -----------------------------------
@@ -91,8 +91,8 @@ The Barometer project's VES application and Kafka docker images are based on a C
 docker image has a dependancy on `Zookeeper <https://zookeeper.apache.org/>`_. Kafka must be able to
 connect and register with an instance of Zookeeper that is either running on local or remote host.
 Kafka recieves and stores metrics recieved from Collectd. VES application pulls latest metrics from Kafka
-which it normalizes into VES format for sending to a VES collector. Please see details in `VES Application User Guide
-<http://docs.opnfv.org/en/latest/submodules/barometer/docs/release/userguide/collectd.ves.userguide.html>`_
+which it normalizes into VES format for sending to a VES collector. Please see details in 
+:ref:`VES Application User Guide <barometer-ves-userguide>`
 
 Installing Docker
 -----------------
