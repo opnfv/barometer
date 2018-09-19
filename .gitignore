@@ -1,7 +1,6 @@
 *~
 *.sw?
 *.pyc
-/docs_build/
 /docs_output/
 /releng/
 *.egg-info/
@@ -9,3 +8,5 @@
 .settings
 build
 dist
+.tox
+docs/_build/*
