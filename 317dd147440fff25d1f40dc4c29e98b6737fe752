@@ -94,6 +94,30 @@
     },
     {
       "key": {
+        "uuid": "5a682502_c2f805e8",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-09-21T09:30:41Z",
+      "side": 1,
+      "message": "I mean 80 char length",
+      "parentUuid": "5a682502_2268d9b9",
+      "range": {
+        "startLine": 152,
+        "startChar": 100,
+        "endLine": 152,
+        "endChar": 161
+      },
+      "revId": "317dd147440fff25d1f40dc4c29e98b6737fe752",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a682502_c2aac5d3",
         "filename": "docs/release/userguide/docker.userguide.rst",
         "patchSetId": 5
