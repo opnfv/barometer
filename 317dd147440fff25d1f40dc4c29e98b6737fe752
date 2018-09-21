@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a682502_e220a19d",
+        "filename": "docker/ansible/roles/install_docker/tasks/main.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-09-21T09:16:43Z",
+      "side": 1,
+      "message": "what happens if docker is already installed?\nwill the proxy still be set?\nI think you need to restart the docker service for the changes to take effect",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 25
+      },
+      "revId": "317dd147440fff25d1f40dc4c29e98b6737fe752",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_a226a9b8",
+        "filename": "docker/ansible/roles/install_docker/tasks/main.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-09-21T09:16:43Z",
+      "side": 1,
+      "message": "it would be better to have\n- import_tasks: \"{{ ansible_distribution }}.yml\"",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 40
+      },
+      "revId": "317dd147440fff25d1f40dc4c29e98b6737fe752",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_e26ee1c8",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-09-21T09:16:43Z",
+      "side": 1,
+      "message": "this needs to be automatic!\nplease follow my Prometheus patch and automate this\nAt most it will take 2 hours to implement",
+      "range": {
+        "startLine": 152,
+        "startChar": 9,
+        "endLine": 152,
+        "endChar": 108
+      },
+      "revId": "317dd147440fff25d1f40dc4c29e98b6737fe752",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_2268d9b9",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-09-21T09:16:43Z",
+      "side": 1,
+      "message": "Try not to cross the line",
+      "range": {
+        "startLine": 152,
+        "startChar": 100,
+        "endLine": 152,
+        "endChar": 161
+      },
+      "revId": "317dd147440fff25d1f40dc4c29e98b6737fe752",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_c2aac5d3",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-09-21T09:16:43Z",
+      "side": 1,
+      "message": "try not to cross the line",
+      "range": {
+        "startLine": 235,
+        "startChar": 94,
+        "endLine": 237,
+        "endChar": 110
+      },
+      "revId": "317dd147440fff25d1f40dc4c29e98b6737fe752",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_22af39e5",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-09-21T09:16:43Z",
+      "side": 1,
+      "message": "paths should be given in the from $Barometer_dir/docker....",
+      "range": {
+        "startLine": 268,
+        "startChar": 102,
+        "endLine": 268,
+        "endChar": 137
+      },
+      "revId": "317dd147440fff25d1f40dc4c29e98b6737fe752",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
