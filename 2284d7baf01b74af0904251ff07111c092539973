@@ -16,6 +16,144 @@
       "revId": "2284d7baf01b74af0904251ff07111c092539973",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_39748bce",
+        "filename": "docker/ansible/roles/run_ves/vars/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-09-25T15:54:21Z",
+      "side": 1,
+      "message": "missing #",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 4
+      },
+      "revId": "2284d7baf01b74af0904251ff07111c092539973",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_19454f70",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-09-25T15:54:21Z",
+      "side": 1,
+      "message": "try to keep under 80 char",
+      "range": {
+        "startLine": 236,
+        "startChar": 100,
+        "endLine": 236,
+        "endChar": 121
+      },
+      "revId": "2284d7baf01b74af0904251ff07111c092539973",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_797e03b0",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-09-25T15:54:21Z",
+      "side": 1,
+      "message": "please remove",
+      "range": {
+        "startLine": 275,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 4
+      },
+      "revId": "2284d7baf01b74af0904251ff07111c092539973",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_b94ffb91",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-09-25T15:54:21Z",
+      "side": 1,
+      "message": "try to keep under 80 char",
+      "range": {
+        "startLine": 308,
+        "startChar": 93,
+        "endLine": 308,
+        "endChar": 117
+      },
+      "revId": "2284d7baf01b74af0904251ff07111c092539973",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_d94ab782",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-09-25T15:54:21Z",
+      "side": 1,
+      "message": "try to keep under 80 char",
+      "range": {
+        "startLine": 313,
+        "startChar": 100,
+        "endLine": 313,
+        "endChar": 149
+      },
+      "revId": "2284d7baf01b74af0904251ff07111c092539973",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_99815f92",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-09-25T15:54:21Z",
+      "side": 1,
+      "message": "please remove",
+      "range": {
+        "startLine": 316,
+        "startChar": 0,
+        "endLine": 316,
+        "endChar": 3
+      },
+      "revId": "2284d7baf01b74af0904251ff07111c092539973",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
