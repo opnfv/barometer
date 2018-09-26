@@ -794,15 +794,15 @@ def main(bt_logger=None):
         compute_node_names.append(node_name)
         plugins_to_enable = []
         error_plugins = []
-        gnocchi_running = (
+        gnocchi_running_com = (
             gnocchi_running and conf.check_gnocchi_plugin_included(
                 compute_node))
-        aodh_running = (
+        aodh_running_com = (
             aodh_running and conf.check_aodh_plugin_included(compute_node))
         # logger.info("SNMP enabled on {}" .format(node_name))
-        if gnocchi_running:
+        if gnocchi_running_com:
             out_plugins[node_id].append("Gnocchi")
-        if aodh_running:
+        if aodh_running_com:
             out_plugins[node_id].append("AODH")
         if snmp_running:
             out_plugins[node_id].append("SNMP")
