@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a682502_adbe91fd",
+        "filename": "docker/ansible/roles/install_docker/tasks/main.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2018-09-28T14:49:21Z",
+      "side": 1,
+      "message": "It\u0027s true, docker requires daemon_reload.",
+      "parentUuid": "5a682502_e220a19d",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 25
+      },
+      "revId": "317dd147440fff25d1f40dc4c29e98b6737fe752",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a682502_a226a9b8",
         "filename": "docker/ansible/roles/install_docker/tasks/main.yml",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2018-09-21T09:16:43Z",
       "side": 1,
       "message": "it would be better to have\n- import_tasks: \"{{ ansible_distribution }}.yml\"",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 40
+      },
+      "revId": "317dd147440fff25d1f40dc4c29e98b6737fe752",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_8dbbd50d",
+        "filename": "docker/ansible/roles/install_docker/tasks/main.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2018-09-28T14:49:21Z",
+      "side": 1,
+      "message": "Import does not accept facts (\"Static imports cannot use variables from facts or inventory sources like group or host vars\"). And the include_tasks on the other hand does not pass correctly tags to children.",
+      "parentUuid": "5a682502_a226a9b8",
       "range": {
         "startLine": 21,
         "startChar": 0,
@@ -118,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "5a682502_2d428110",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2018-09-28T14:49:21Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "5a682502_e26ee1c8",
+      "range": {
+        "startLine": 152,
+        "startChar": 9,
+        "endLine": 152,
+        "endChar": 108
+      },
+      "revId": "317dd147440fff25d1f40dc4c29e98b6737fe752",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a682502_c2aac5d3",
         "filename": "docs/release/userguide/docker.userguide.rst",
         "patchSetId": 5
@@ -141,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "5a682502_0d47c520",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2018-09-28T14:49:21Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "5a682502_c2aac5d3",
+      "range": {
+        "startLine": 235,
+        "startChar": 94,
+        "endLine": 237,
+        "endChar": 110
+      },
+      "revId": "317dd147440fff25d1f40dc4c29e98b6737fe752",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a682502_22af39e5",
         "filename": "docs/release/userguide/docker.userguide.rst",
         "patchSetId": 5
@@ -152,6 +248,30 @@
       "writtenOn": "2018-09-21T09:16:43Z",
       "side": 1,
       "message": "paths should be given in the from $Barometer_dir/docker....",
+      "range": {
+        "startLine": 268,
+        "startChar": 102,
+        "endLine": 268,
+        "endChar": 137
+      },
+      "revId": "317dd147440fff25d1f40dc4c29e98b6737fe752",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_6d4bd92b",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2018-09-28T14:49:21Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "5a682502_22af39e5",
       "range": {
         "startLine": 268,
         "startChar": 102,
