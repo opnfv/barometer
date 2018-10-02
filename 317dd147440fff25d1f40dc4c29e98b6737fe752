@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "5a682502_aec84775",
+        "filename": "docker/ansible/roles/install_docker/tasks/main.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-10-02T16:25:46Z",
+      "side": 1,
+      "message": "I don\u0027t see how that wouldn\u0027t work.\nThat would apply to whiten the imported task, not the command calling the import.\n\nAnyways what you have will do. We can change it if we support other operating systems.",
+      "parentUuid": "5a682502_8dbbd50d",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 40
+      },
+      "revId": "317dd147440fff25d1f40dc4c29e98b6737fe752",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a682502_e26ee1c8",
         "filename": "docs/release/userguide/docker.userguide.rst",
         "patchSetId": 5
