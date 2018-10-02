@@ -74,8 +74,8 @@
 - name: enable ipmi plugin
   include: ipmi.yml
 
+- name: enable uuid plugin
+  include: uuid.yml
+
 - name: copy additional config files
   include: additional_configs.yml
-
-- name: copy types.db to target
-  include: types_db.yml

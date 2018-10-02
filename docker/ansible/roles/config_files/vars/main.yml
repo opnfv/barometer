@@ -23,7 +23,7 @@ interval_value: 10
 
 #network plugin vars
 network_port: 25826
-network_ip_addr: localhost
+network_ip_addr: "{{ (groups['influxdb_hosts']|default({}))[0] | default('localhost') }}"
 
 #ovs event and stats plugin vars
 ovs_event_interval: 1
@@ -54,6 +54,3 @@ write_per_sec: 50
 
 #additional configuration files path
 additional_configs_path: ""
-
-#directory to copy types.db file to
-typesdb_dir: "/opt/collectd/share/collectd/"

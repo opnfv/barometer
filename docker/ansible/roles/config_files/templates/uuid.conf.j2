@@ -12,23 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-Hostname "{{ inventory_hostname }}"
-Interval "{{ interval_value }}"
+LoadPlugin uuid
 
-
-#LoadPlugin contextswitch
-#LoadPlugin cpu
-#LoadPlugin cpufreq
-#LoadPlugin df
-#LoadPlugin disk
-#LoadPlugin ethstat
-#LoadPlugin ipc
-#LoadPlugin irq
-#LoadPlugin load
-#LoadPlugin memory
-#LoadPlugin numa
-#LoadPlugin processes
-#LoadPlugin swap
-#LoadPlugin turbostat
-#LoadPlugin uptime
+#<Plugin uuid>
+#  UUIDFile "/etc/uuid"
+#</Plugin>
 

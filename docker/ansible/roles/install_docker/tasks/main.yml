@@ -11,24 +11,21 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+---
 
-Hostname "{{ inventory_hostname }}"
-Interval "{{ interval_value }}"
+- name: proxy configuration for docker
+  tags:
+     - install_docker
+  import_tasks: proxy.yml
 
+- name: install docker for ubuntu
+  tags:
+     - install_docker
+  import_tasks: ubuntu.yml
+  when: ansible_distribution == "Ubuntu"
 
-#LoadPlugin contextswitch
-#LoadPlugin cpu
-#LoadPlugin cpufreq
-#LoadPlugin df
-#LoadPlugin disk
-#LoadPlugin ethstat
-#LoadPlugin ipc
-#LoadPlugin irq
-#LoadPlugin load
-#LoadPlugin memory
-#LoadPlugin numa
-#LoadPlugin processes
-#LoadPlugin swap
-#LoadPlugin turbostat
-#LoadPlugin uptime
-
+- name: install docker for centos
+  tags:
+     - install_docker
+  import_tasks: centos.yml
+  when: ansible_distribution == "CentOS"

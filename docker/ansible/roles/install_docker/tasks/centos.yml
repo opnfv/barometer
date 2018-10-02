@@ -1,0 +1,45 @@
+#Copyright 2018 OPNFV and Intel Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+---
+
+- name: install dependencies for docker
+  package:
+     name: "{{ packages }}"
+     state: present
+  vars:
+     packages:
+        - python
+        - yum-utils
+        - device-mapper-persistent-data
+        - lvm2
+
+- name: set up docker repository
+  command: "yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo"
+
+- name: install docker-py
+  package:
+     name: python-docker-py
+     state: present
+
+- name: install docker
+  package:
+     name: docker-ce
+     state: present
+
+- name: start docker daemon
+  systemd:
+     name: docker
+     daemon_reload: true
+     state: started
+     enabled: true
