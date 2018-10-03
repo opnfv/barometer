@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a682502_02b14fe1",
+        "filename": "docker/ansible/roles/config_files/vars/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-10-03T13:52:42Z",
+      "side": 1,
+      "message": "tbh I plan to push a patch to redo some of this. \nI think we should leave it the way it is for now.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 69
+      },
+      "revId": "38c802ad5507e83ea313d79050695397cb7d2357",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
