@@ -94,8 +94,8 @@ Kafka recieves and stores metrics recieved from Collectd. VES application pulls 
 which it normalizes into VES format for sending to a VES collector. Please see details in 
 :ref:`VES Application User Guide <barometer-ves-userguide>`
 
-Download and Run Docker Images with Ansible-Playbook
-----------------------------------------------------
+One Click Install with Ansible
+------------------------------
 
 Install Ansible
 ^^^^^^^^^^^^^^^
@@ -103,6 +103,7 @@ Install Ansible
    * sudo permissions or root access are required to install ansible.
    * ansible version needs to be 2.4+, because usage of import/include statements
 
+The following steps have been verified with Ansible 2.6.3 on Ubuntu 16.04 and 18.04.
 To install Ansible 2.6.3 on Ubuntu:
 
 .. code:: bash
@@ -111,6 +112,7 @@ To install Ansible 2.6.3 on Ubuntu:
     $ sudo apt-get install python-pip
     $ sudo pip install 'ansible==2.6.3'
 
+The following steps have been verified with Ansible 2.6.3 on Centos 7.5.
 To install Ansible 2.6.3 on Centos:
 
 .. code:: bash
@@ -130,7 +132,7 @@ Clone barometer repo
 
 Edit inventory file
 ^^^^^^^^^^^^^^^^^^^
-Edit inventory file and add hosts: ~/default.inv
+Edit inventory file and add hosts: $barometer_dir/docker/ansible/default.inv
 
 .. code:: bash
 
@@ -174,6 +176,12 @@ and insert_ipmi_modules, both variables are independent:
     install_mcelog=false
     insert_ipmi_modules=false
 
+.. note::
+   On Ubuntu 18.04 to use mcelog plugin the user has to install mcelog daemon
+   manually ahead of installing from ansible scripts as the deb package is not
+   available in official Ubuntu 18.04 repo. It means that setting install_mcelog
+   to true is ignored.
+
 Configure ssh keys
 ^^^^^^^^^^^^^^^^^^
 
@@ -183,18 +191,34 @@ Generate ssh keys if not present, otherwise move onto next step.
 
     $ sudo ssh-keygen
 
-Coppy ssh key to all target hosts. It requires to provide root password. The example is for localhost.
+Copy ssh key to all target hosts. It requires to provide root password.
+The example is for localhost.
 
 .. code:: bash
 
     $ sudo ssh-copy-id root@localhost
 
-Download collectd+influxdb+grafana containers
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Verify that key is added and password is not required to connect.
 
 .. code:: bash
 
-    $ sudo ansible-playbook -i ~/default.inv collectd_service.yml
+    $ sudo ssh root@localhost
+
+.. note::
+   Keys should be added to every target host and [localhost] is only used as an
+   example. For multinode installation keys need to be copied for each node:
+   [collectd_hostname], [influxdb_hostname] etc.
+
+Download and run Collectd+Influxdb+Grafana containers
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The One Click installation features easy and scalable deployment of Collectd,
+Influxdb and Grafana containers using Ansible playbook. The following steps goes
+through more details.
+
+.. code:: bash
+
+    $ sudo ansible-playbook -i default.inv collectd_service.yml
 
 Check the three containers are running, the output of docker ps should be similar to:
 
@@ -212,7 +236,9 @@ To make some changes when a container is running run:
 
     $ sudo docker exec -ti <CONTAINER ID> /bin/bash
 
-Connect to <host_ip>:3000 with a browser and log into grafana: admin/admin
+Connect to <host_ip>:3000 with a browser and log into Grafana: admin/admin.
+For short introduction please see the:
+`Grafana guide <http://docs.grafana.org/guides/getting_started/>`_.
 
 The collectd configuration files can be accessed directly on target system in '/opt/collectd/etc/collectd.conf.d'.
 It can be used for manual changes or enable/disable plugins. If configuration has been modified it is required to
@@ -230,7 +256,7 @@ The 'zookeeper_hostname' and 'broker_id' can be set in ./roles/run_kafka/vars/ma
 
 .. code:: bash
 
-    $ sudo ansible-playbook -i ~/default.inv collectd_ves.yml
+    $ sudo ansible-playbook -i default.inv collectd_ves.yml
 
 Check the three containers are running, the output of docker ps should be similar to:
 
@@ -270,13 +296,13 @@ To run a specific parts only:
 
 .. code:: bash
 
-    $ sudo ansible-playbook -i ~/default.inv collectd_service.yml --tags "syslog,cpu,uuid"
+    $ sudo ansible-playbook -i default.inv collectd_service.yml --tags "syslog,cpu,uuid"
 
 To disable some parts or plugins:
 
 .. code:: bash
 
-    $ sudo ansible-playbook -i ~/default.inv collectd_service.yml --skip-tags "en_default_all,syslog,cpu,uuid"
+    $ sudo ansible-playbook -i default.inv collectd_service.yml --skip-tags "en_default_all,syslog,cpu,uuid"
 
 List of available tags:
 
@@ -307,6 +333,11 @@ Installing Docker
 -----------------
 .. Describe the specific capabilities and usage for <XYZ> feature.
 .. Provide enough information that a user will be able to operate the feature on a deployed scenario.
+
+.. note::
+   The below sections provide steps for manual installation and configuration
+   of docker images. They are not neccessary if docker images were installed with
+   use of Ansible-Playbook.
 
 On Ubuntu
 ^^^^^^^^^^

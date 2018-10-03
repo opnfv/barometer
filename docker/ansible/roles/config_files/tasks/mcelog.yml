@@ -17,6 +17,7 @@
   package:
      name: mcelog
      state: present
+  ignore_errors: "true"
   when: install_mcelog|default(false)|bool
   tags:
      - mcelogs
@@ -26,6 +27,7 @@
      name: mcelog
      state: started
      enabled: true
+  ignore_errors: "true"
   when: install_mcelog|default(false)|bool
   tags:
      - mcelogs
