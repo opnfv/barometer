@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "5a682502_6e774fd5",
+        "filename": "docker/ansible/roles/install_docker/tasks/main.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2018-10-03T07:06:26Z",
+      "side": 1,
+      "message": "I mean \u0027import_tasks: \"{{ ansible_distribution }}.yml\"\u0027 is a syntax error. Import can not use any dynamic variables, only static strings are allowed.",
+      "parentUuid": "5a682502_aec84775",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 40
+      },
+      "revId": "317dd147440fff25d1f40dc4c29e98b6737fe752",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a682502_e26ee1c8",
         "filename": "docs/release/userguide/docker.userguide.rst",
         "patchSetId": 5
