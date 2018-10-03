@@ -1,0 +1,8 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+1: John O'Loughlin <john.oloughlin@intel.com>
+Code-Review+2: Emma Foley <emma.l.foley@intel.com>
+Submitted-by: Aaron Smith <aasmith@redhat.com>
+Submitted-at: Wed, 03 Oct 2018 14:27:51 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/59209
+Project: barometer
+Branch: refs/heads/master
