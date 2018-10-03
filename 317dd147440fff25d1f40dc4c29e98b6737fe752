@@ -144,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "5a682502_ae816791",
+        "filename": "docker/ansible/roles/install_docker/tasks/main.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-10-03T07:58:21Z",
+      "side": 1,
+      "message": "My mistake.",
+      "parentUuid": "5a682502_6e774fd5",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 40
+      },
+      "revId": "317dd147440fff25d1f40dc4c29e98b6737fe752",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a682502_e26ee1c8",
         "filename": "docs/release/userguide/docker.userguide.rst",
         "patchSetId": 5
