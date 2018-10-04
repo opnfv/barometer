@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a682502_d8ed888d",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1171
+      },
+      "writtenOn": "2018-10-04T15:57:51Z",
+      "side": 1,
+      "message": "Do we still need \u0027pwd\u0027 when we are cd\u0027ing into BAROMETER_REPO_DIR?",
+      "range": {
+        "startLine": 517,
+        "startChar": 3,
+        "endLine": 517,
+        "endChar": 8
+      },
+      "revId": "45d2ecd63cd9c5f2ee460f90b1a4bd5466457f7e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_f8e8447e",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1171
+      },
+      "writtenOn": "2018-10-04T15:57:51Z",
+      "side": 1,
+      "message": "please change this to \u0027default\u0027.\nThe docker collectd image doesnt have \"all\" plugins.",
+      "range": {
+        "startLine": 521,
+        "startChar": 56,
+        "endLine": 521,
+        "endChar": 60
+      },
+      "revId": "45d2ecd63cd9c5f2ee460f90b1a4bd5466457f7e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
