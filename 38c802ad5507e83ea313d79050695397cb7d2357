@@ -42,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "5a682502_2509f531",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2018-10-04T13:29:26Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "5a682502_85b9e930",
+      "revId": "38c802ad5507e83ea313d79050695397cb7d2357",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a682502_a587c560",
         "filename": "docs/release/userguide/docker.userguide.rst",
         "patchSetId": 1
@@ -53,6 +71,24 @@
       "writtenOn": "2018-10-03T18:55:44Z",
       "side": 1,
       "message": "Can we change this heading to \"Download and run Collectd+Influxdb+Grafana containers\"?",
+      "revId": "38c802ad5507e83ea313d79050695397cb7d2357",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_585fb80e",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2018-10-04T13:29:26Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "5a682502_a587c560",
       "revId": "38c802ad5507e83ea313d79050695397cb7d2357",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
@@ -76,6 +112,24 @@
     },
     {
       "key": {
+        "uuid": "5a682502_b89b6cc8",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2018-10-04T13:29:26Z",
+      "side": 1,
+      "message": "OK, for proxy we can add a separate sub-section, as there are several considerations about it.",
+      "parentUuid": "5a682502_8590c996",
+      "revId": "38c802ad5507e83ea313d79050695397cb7d2357",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a682502_057dd96e",
         "filename": "docs/release/userguide/docker.userguide.rst",
         "patchSetId": 1
@@ -87,6 +141,24 @@
       "writtenOn": "2018-10-03T18:55:44Z",
       "side": 1,
       "message": "Please add a note here on how can the user open grafana to view the metrics. Just 2 or 3 lines would suffice",
+      "revId": "38c802ad5507e83ea313d79050695397cb7d2357",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_98a030f6",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2018-10-04T13:29:26Z",
+      "side": 1,
+      "message": "It is in line 235. I\u0027ve added link to Grafana introduction guide.",
+      "parentUuid": "5a682502_057dd96e",
       "revId": "38c802ad5507e83ea313d79050695397cb7d2357",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
