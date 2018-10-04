@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a682502_589058ec",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 7399
+      },
+      "writtenOn": "2018-10-04T16:04:28Z",
+      "side": 1,
+      "message": "yes it is needed, \u0027docker run\u0027 needs absolute paths and `pwd` makes sure that we will pass absolute path (that begins with \u0027/\u0027).\nWithout that \u0027docker run\u0027 would simply fail with appropriate error.",
+      "parentUuid": "5a682502_d8ed888d",
+      "range": {
+        "startLine": 517,
+        "startChar": 3,
+        "endLine": 517,
+        "endChar": 8
+      },
+      "revId": "45d2ecd63cd9c5f2ee460f90b1a4bd5466457f7e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a682502_f8e8447e",
         "filename": "docs/release/userguide/docker.userguide.rst",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2018-10-04T15:57:51Z",
       "side": 1,
       "message": "please change this to \u0027default\u0027.\nThe docker collectd image doesnt have \"all\" plugins.",
+      "range": {
+        "startLine": 521,
+        "startChar": 56,
+        "endLine": 521,
+        "endChar": 60
+      },
+      "revId": "45d2ecd63cd9c5f2ee460f90b1a4bd5466457f7e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_1886e0b9",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 7399
+      },
+      "writtenOn": "2018-10-04T16:04:28Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "5a682502_f8e8447e",
       "range": {
         "startLine": 521,
         "startChar": 56,
