@@ -1,0 +1,9 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+1: John O'Loughlin <john.oloughlin@intel.com>
+Code-Review+1: Krzysztof Kepka <krzysztof.kepka@intel.com>
+Code-Review+2: Aaron Smith <aasmith@redhat.com>
+Submitted-by: Aaron Smith <aasmith@redhat.com>
+Submitted-at: Fri, 05 Oct 2018 11:46:43 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/63151
+Project: barometer
+Branch: refs/heads/master
