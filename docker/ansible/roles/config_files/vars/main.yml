@@ -23,7 +23,10 @@ interval_value: 10
 
 #network plugin vars
 network_port: 25826
-network_ip_addr: "{{ (groups['influxdb_hosts']|default({}))[0] | default('localhost') }}"
+#get influxdb name as defined in inventory
+influxdb_hostname: "{{ (groups['influxdb_hosts']|default({}))[0] | default('localhost') }}"
+#get hostname as used by ansible
+network_ip_addr: "{{ hostvars[influxdb_hostname].ansible_hostname }}"
 
 #prometheus plugin vars
 prometheus_port: 9103
