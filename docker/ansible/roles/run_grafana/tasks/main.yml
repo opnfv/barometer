@@ -31,6 +31,9 @@
     - rm_grafana_image
   when: rm_images|default(false)|bool == true
 
+- set_fact:
+    influxdb_host_ip_mapping: "{ '{{ influxdb_hostname }}': '{{ influxdb_host_ip }}' }"
+
 - name: launch barometer-grafana container
   docker_container:
     name: bar-grafana
@@ -40,9 +43,9 @@
     ports:
        - 3000:3000
     env:
-      "{{ influxdb_host }}": "{{ influxdb_hostname }}"
+      influxdb_host: "{{ influxdb_hostname }}"
     etc_hosts:
-      "{{ influxdb_hostname }}": "{{ influxdb_host_ip }}"
+      "{{ influxdb_host_ip_mapping }}"
     detach: yes
     restart: yes
     network_mode: host
