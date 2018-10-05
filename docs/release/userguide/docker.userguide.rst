@@ -514,6 +514,12 @@ Build the collectd docker image
       --build-arg https_proxy=`echo $https_proxy` -f Dockerfile .
 
 .. note::
+   Main directory of barometer source code (directory that contains 'docker',
+   'docs', 'src' and systems sub-directories) will be referred as
+   ``<BAROMETER_REPO_DIR>``
+
+
+.. note::
    In the above mentioned ``docker build`` command, http_proxy & https_proxy arguments needs to be
    passed only if system is behind an HTTP or HTTPS proxy server.
 
@@ -537,14 +543,18 @@ Run the collectd docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. code:: bash
 
-   $ sudo docker run -tid --net=host -v `pwd`/../src/collectd_sample_configs:/opt/collectd/etc/collectd.conf.d \
-    -v /var/run:/var/run -v /tmp:/tmp --privileged opnfv/barometer-collectd /run_collectd.sh
+   $ cd <BAROMETER_REPO_DIR>
+   $ sudo docker run -ti --net=host -v \
+   `pwd`/src/collectd/collectd_sample_configs:/opt/collectd/etc/collectd.conf.d \
+   -v /var/run:/var/run -v /tmp:/tmp --privileged opnfv/barometer-collectd
 
 .. note::
-   The docker collectd image contains configuration for all the collectd plugins. In the command
-   above we are overriding /opt/collectd/etc/collectd.conf.d by mounting a host directory
-   `pwd`/../src/collectd_sample_configs that contains only the sample configurations we are interested
-   in running. *It's important to do this if you don't have DPDK, or RDT installed on the host*.
+   The docker collectd image contains configuration for all the collectd
+   plugins. In the command above we are overriding
+   /opt/collectd/etc/collectd.conf.d by mounting a host directory
+   src/collectd/collectd_sample_configs that contains only the sample
+   configurations we are interested in running. *It's important to do
+   this if you don't have DPDK, or RDT installed on the host*.
    Sample configurations can be found at:
    https://github.com/opnfv/barometer/tree/master/src/collectd/collectd_sample_configs
 
@@ -691,7 +701,8 @@ Connecting to an influxdb instance running on local system and adding own custom
 
 .. code:: bash
 
-   $ sudo docker run -tid -v /var/lib/grafana:/var/lib/grafana -v ${PWD}/dashboards:/opt/grafana/dashboards \
+   $ cd <BAROMETER_REPO_DIR>
+   $ sudo docker run -tid -v /var/lib/grafana:/var/lib/grafana -v ${PWD}/docker/barometer-grafana/dashboards:/opt/grafana/dashboards \
      -p 3000:3000 opnfv/barometer-grafana
 
 Connecting to an influxdb instance running on remote system with hostname of someserver and IP address
