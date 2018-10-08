@@ -34,6 +34,12 @@
 - set_fact:
     influxdb_host_ip_mapping: "{ '{{ influxdb_hostname }}': '{{ influxdb_host_ip }}' }"
 
+- name: Cleanup barometer-grafana cache directory under host
+  file:
+    path: /var/lib/grafana
+    state: absent
+  when: clean_grafana_cache|default(true)|bool == true
+
 - name: launch barometer-grafana container
   docker_container:
     name: bar-grafana
