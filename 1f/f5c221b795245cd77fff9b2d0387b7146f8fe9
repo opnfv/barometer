@@ -1,0 +1,8 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+1: sunku ranganath <sunku.ranganath@intel.com>
+Code-Review+2: Aaron Smith <aasmith@redhat.com>
+Submitted-by: Aaron Smith <aasmith@redhat.com>
+Submitted-at: Tue, 09 Oct 2018 14:59:57 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/63315
+Project: barometer
+Branch: refs/heads/master
