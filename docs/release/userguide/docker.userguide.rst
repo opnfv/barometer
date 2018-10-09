@@ -97,6 +97,66 @@ which it normalizes into VES format for sending to a VES collector. Please see d
 One Click Install with Ansible
 ------------------------------
 
+Proxy for package manager on host
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. note::
+   This step has to be performed only if host is behind HTTP/HTTPS proxy
+
+Proxy URL have to be set in dedicated config file
+
+1. CentOS - /etc/yum.conf
+
+.. code:: bash
+
+    proxy=http://your.proxy.domain:1234
+
+2. Ubuntu - /etc/apt/apt.conf
+
+.. code:: bash
+
+    Acquire::http::Proxy "http://your.proxy.domain:1234"
+
+After update of config file, apt mirrors have to be updated via 'apt-get update'
+
+.. code:: bash
+
+    $ sudo apt-get update
+
+Proxy environment variables(for docker and pip)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. note::
+   This step has to be performed only if host is behind HTTP/HTTPS proxy
+
+Configuring proxy for packaging system is not enough, also some proxy
+environment variables have to be set in the system before ansible scripts
+can be started.
+Barometer configures docker proxy automatically via ansible task as a part
+of 'one click install' process - user only has to provide proxy URL using common
+shell environment variables and ansible will automatically configure proxies
+for docker(to be able to fetch barometer images). Another component used by
+ansible (e.g. pip is used for downloading python dependencies) will also benefit
+from setting proxy variables properly in the system.
+
+Proxy variables used by ansible One Click Install:
+   * http_proxy
+   * https_proxy
+   * ftp_proxy
+   * no_proxy
+
+Variables mentioned above have to be visible for superuser (because most
+actions involving ansible-barometer installation require root privileges).
+Proxy variables are commonly defined in '/etc/environment' file (but any other
+place is good as long as variables can be seen by commands using 'su').
+
+Sample proxy configuration in /etc/environment:
+
+.. code:: bash
+
+    http_proxy=http://your.proxy.domain:1234
+    https_proxy=http://your.proxy.domain:1234
+    ftp_proxy=http://your.proxy.domain:1234
+    no_proxy=localhost
+
 Install Ansible
 ^^^^^^^^^^^^^^^
 .. note::
@@ -394,8 +454,9 @@ Replace <username> above with an appropriate user name.
          From       : https://download.docker.com/linux/centos/gpg
         Is this ok [y/N]: y
 
-Proxy Configuration:
-^^^^^^^^^^^^^^^^^^^^
+Manual proxy configuration for docker
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 .. note::
    This applies for both CentOS and Ubuntu.
 
