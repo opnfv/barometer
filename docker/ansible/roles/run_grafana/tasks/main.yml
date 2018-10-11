@@ -31,9 +31,6 @@
     - rm_grafana_image
   when: rm_images|default(false)|bool == true
 
-- set_fact:
-    influxdb_host_ip_mapping: "{ '{{ influxdb_hostname }}': '{{ influxdb_host_ip }}' }"
-
 - name: Cleanup barometer-grafana cache directory under host
   file:
     path: /var/lib/grafana
@@ -49,9 +46,7 @@
     ports:
        - 3000:3000
     env:
-      influxdb_host: "{{ influxdb_hostname }}"
-    etc_hosts:
-      "{{ influxdb_host_ip_mapping }}"
+      influxdb_host: "{{ influxdb_host_ip }}"
     detach: yes
     restart: yes
     network_mode: host

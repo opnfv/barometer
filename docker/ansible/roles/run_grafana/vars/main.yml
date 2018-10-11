@@ -13,5 +13,7 @@
 # limitations under the License.
 ---
 
-influxdb_hostname: localhost
-influxdb_host_ip: 127.0.0.1
+#get hostname from invetory
+influxdb_hostname: "{{ (groups['influxdb_hosts']|default({}))[0] | default('localhost') }}"
+#get ip address for given host
+influxdb_host_ip: "{{ hostvars[influxdb_hostname].ansible_default_ipv4.address }}"
