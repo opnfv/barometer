@@ -741,7 +741,8 @@ Run the InfluxDB docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. code:: bash
 
-   $ sudo docker run -tid -v /var/lib/influxdb:/var/lib/influxdb -p 8086:8086 -p 25826:25826  opnfv/barometer-influxdb
+   $ sudo docker run -tid -v /var/lib/influxdb:/var/lib/influxdb --net=host\
+    --name bar-influxdb opnfv/barometer-influxdb
 
 Check your docker image is running
 
@@ -763,16 +764,18 @@ Connecting to an influxdb instance running on local system and adding own custom
 .. code:: bash
 
    $ cd <BAROMETER_REPO_DIR>
-   $ sudo docker run -tid -v /var/lib/grafana:/var/lib/grafana -v ${PWD}/docker/barometer-grafana/dashboards:/opt/grafana/dashboards \
-     -p 3000:3000 opnfv/barometer-grafana
+   $ sudo docker run -tid -v /var/lib/grafana:/var/lib/grafana \
+     -v ${PWD}/docker/barometer-grafana/dashboards:/opt/grafana/dashboards \
+     --name bar-grafana --net=host opnfv/barometer-grafana
 
 Connecting to an influxdb instance running on remote system with hostname of someserver and IP address
 of 192.168.121.111
 
 .. code:: bash
 
-   $ sudo docker run -tid -v /var/lib/grafana:/var/lib/grafana -p 3000:3000 -e \
-     influxdb_host=someserver --add-host someserver:192.168.121.111 opnfv/barometer-grafana
+   $ sudo docker run -tid -v /var/lib/grafana:/var/lib/grafana --net=host -e \
+     influxdb_host=someserver --add-host someserver:192.168.121.111 --name \
+     bar-grafana opnfv/barometer-grafana
 
 Check your docker image is running
 
