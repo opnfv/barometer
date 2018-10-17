@@ -614,10 +614,27 @@ Run the collectd docker image
    plugins. In the command above we are overriding
    /opt/collectd/etc/collectd.conf.d by mounting a host directory
    src/collectd/collectd_sample_configs that contains only the sample
-   configurations we are interested in running. *It's important to do
-   this if you don't have DPDK, or RDT installed on the host*.
+   configurations we are interested in running.
+
+   *If some dependencies for plugins listed in configuration directory
+   aren't met, then collectd startup may fail(collectd tries to
+   initialize plugins configurations for all given config files that can
+   be found in shared configs directory and may fail if some dependency
+   is missing).*
+
+   If `DPDK` or `RDT` can't be installed on host, then corresponding config
+   files should be removed from shared configuration directory
+   (`<BAROMETER_REPO_DIR>/src/collectd/collectd_sample_configs/`) prior
+   to starting barometer-collectd container. By example: in case of missing
+   `DPDK` functionality on the host, `dpdkstat.conf` and `dpdkevents.conf`
+   should be removed.
+
    Sample configurations can be found at:
    https://github.com/opnfv/barometer/tree/master/src/collectd/collectd_sample_configs
+
+   List of barometer-collectd dependencies on host for various plugins
+   can be found at:
+   https://wiki.opnfv.org/display/fastpath/Barometer-collectd+host+dependencies
 
 Check your docker image is running
 
