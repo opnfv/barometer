@@ -1,5 +1,25 @@
 {
   "dashboard": {
+    "__requires": [
+      {
+        "type": "grafana",
+        "id": "grafana",
+        "name": "Grafana",
+        "version": "4.6.3"
+      },
+      {
+        "type": "panel",
+        "id": "graph",
+        "name": "Graph",
+        "version": ""
+      },
+      {
+        "type": "datasource",
+        "id": "influxdb",
+        "name": "InfluxDB",
+        "version": "1.0.0"
+      }
+    ],
     "annotations": {
       "list": [
         {
@@ -19,7 +39,7 @@
     "hideControls": false,
     "id": null,
     "links": [],
-    "refresh": "5s",
+    "refresh": "10s",
     "rows": [
       {
         "collapse": false,
@@ -62,61 +82,6 @@
             "stack": false,
             "steppedLine": false,
             "targets": [
-              {
-                "alias": "idle",
-                "dsType": "influxdb",
-                "expr": "",
-                "groupBy": [
-                  {
-                    "params": [
-                      "$interval"
-                    ],
-                    "type": "time"
-                  },
-                  {
-                    "params": [
-                      "null"
-                    ],
-                    "type": "fill"
-                  }
-                ],
-                "hide": false,
-                "intervalFactor": 2,
-                "measurement": "cpu_value",
-                "orderByTime": "ASC",
-                "policy": "default",
-                "query": "SELECT mean(\"value\") FROM \"cpu_value\" WHERE (\"host\" =~ /^$host$/ AND \"type_instance\" = 'idle') AND $timeFilter GROUP BY time($interval) fill(null)",
-                "rawQuery": false,
-                "refId": "B",
-                "resultFormat": "time_series",
-                "select": [
-                  [
-                    {
-                      "params": [
-                        "value"
-                      ],
-                      "type": "field"
-                    },
-                    {
-                      "params": [],
-                      "type": "mean"
-                    }
-                  ]
-                ],
-                "tags": [
-                  {
-                    "key": "host",
-                    "operator": "=~",
-                    "value": "/^$host$/"
-                  },
-                  {
-                    "condition": "AND",
-                    "key": "type_instance",
-                    "operator": "=",
-                    "value": "idle"
-                  }
-                ]
-              },
               {
                 "alias": "iowait",
                 "dsType": "influxdb",
@@ -745,7 +710,7 @@
                 "measurement": "cpu_value",
                 "orderByTime": "ASC",
                 "policy": "default",
-                "query": "SELECT mean(\"value\") FROM \"cpu_value\" WHERE (\"host\" =~ /^$host$/ AND \"type\" = 'cpu') AND $timeFilter GROUP BY time($__interval), \"instance\", \"type_instance\" fill(none)",
+                "query": "SELECT mean(\"value\") FROM \"cpu_value\" WHERE (\"host\" =~ /^$host$/ AND \"type\" = 'cpu' AND \"type_instance\" != 'idle') AND $timeFilter GROUP BY time($__interval), \"instance\", \"type_instance\" fill(none)",
                 "rawQuery": true,
                 "refId": "A",
                 "resultFormat": "time_series",
@@ -846,11 +811,7 @@
         },
         {
           "allValue": null,
-          "current": {
-            "tags": [],
-            "text": "silpixa00398941.ir.intel.com",
-            "value": "silpixa00398941.ir.intel.com"
-          },
+          "current": {},
           "datasource": "$datasource",
           "hide": 0,
           "includeAll": false,

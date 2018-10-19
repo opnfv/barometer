@@ -20,6 +20,7 @@
     "hideControls": false,
     "id": null,
     "links": [],
+    "refresh": "1m",
     "rows": [
       {
         "collapse": false,
@@ -129,8 +130,8 @@
                 "tags": [
                   {
                     "key": "host",
-                    "operator": "=",
-                    "value": "silv-mtahhan-ubuntu.ir.intel.com"
+                    "operator": "=~",
+                    "value": "/^$host$/"
                   },
                   {
                     "condition": "AND",

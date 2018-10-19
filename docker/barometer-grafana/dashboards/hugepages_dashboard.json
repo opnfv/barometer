@@ -19,7 +19,7 @@
     "hideControls": false,
     "id": null,
     "links": [],
-    "refresh": "5s",
+    "refresh": "10s",
     "rows": [
       {
         "collapse": false,
