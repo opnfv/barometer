@@ -79,4 +79,3 @@ Indices
 
 .. _Barometer: https://wiki.opnfv.org/display/fastpath
 .. _collectd: http://collectd.org/
-
