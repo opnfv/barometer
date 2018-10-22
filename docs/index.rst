@@ -8,7 +8,6 @@ Barometer
 
 :Project: `Barometer`_
 
-
 :Authors: Maryam Tahhan <maryam.tahhan@intel.com>
 
 :History:
@@ -79,4 +78,3 @@ Indices
 
 .. _Barometer: https://wiki.opnfv.org/display/fastpath
 .. _collectd: http://collectd.org/
-
