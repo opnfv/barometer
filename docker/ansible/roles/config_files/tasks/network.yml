@@ -19,3 +19,10 @@
     dest: "{{ config_file_dir }}/network.conf"
   tags:
      - network
+
+- name: modify network plugin to support multi influx hosts
+  lineinfile:
+    dest: "{{ config_file_dir }}/network.conf"
+    insertafter: Plugin network
+    line: "    Server \"{{ network_ip_addr }}\" \"{{ influx_network_port }}\""
+  with_items: "{{ groups['influxdb_hosts'] }}"
