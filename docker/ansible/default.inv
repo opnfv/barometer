@@ -6,13 +6,15 @@ install_mcelog=true
 insert_ipmi_modules=true
 
 [influxdb_hosts]
-#localhost
+#hostname or ip must be used.
+#using localhost will cause issues with collectd network plugin.
+#hostname
 
 [grafana_hosts]
-#localhost
+#hostname
 
 [kafka_hosts]
-#localhost
+#hostname
 
 [ves_hosts]
-#localhost
+#hostname
