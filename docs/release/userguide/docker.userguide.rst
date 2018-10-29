@@ -674,9 +674,7 @@ images from https://hub.docker.com/r/opnfv/barometer-influxdb/ and https://hub.d
    If you have pulled the pre-built barometer-influxdb and barometer-grafana images there is no
    requirement to complete steps outlined in  sections `Build InfluxDB Docker Image`_ and
    `Build Grafana Docker Image`_ and you can proceed directly to section
-   `Run the Influxdb and Grafana Images`_ If you wish to run the barometer-influxdb and
-   barometer-grafana images via Docker Compose proceed directly to section
-   `Docker Compose`_.
+   `Run the Influxdb and Grafana Images`_
 
 Build InfluxDB docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -810,7 +808,7 @@ images from https://hub.docker.com/r/opnfv/barometer-ves/ and  https://hub.docke
 .. note::
    If you have pulled the pre-built images there is no requirement to complete steps outlined
    in sections `Build Kafka Docker Image`_ and `Build VES Docker Image`_ and you can proceed directly to section
-   `Run Kafka Docker Image`_ If you wish to run the docker images via Docker Compose proceed directly to section `Docker Compose`_.
+   `Run Kafka Docker Image`_
 
 Build Kafka docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -953,7 +951,7 @@ images from https://hub.docker.com/r/opnfv/barometer-localagent/
 .. note::
    If you have pulled the pre-built images there is no requirement to complete steps outlined
    in sections `Build LocalAgent Docker Image`_ and you can proceed directly to section
-   `Run LocalAgent Docker Image`_ If you wish to run the docker images via Docker Compose proceed directly to section `Docker Compose`_.
+   `Run LocalAgent Docker Image`_
 
 Build LocalAgent docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1039,81 +1037,6 @@ Run LocalAgent docker image with default configuration
    (Execute when installing the threshold evaluation binary)
    $ sudo docker cp infofetch:/threshold ./
    $ sudo ln -s ${PWD}/threshold /usr/local/bin/
-
-Docker Compose
---------------
-
-Install docker-compose
-^^^^^^^^^^^^^^^^^^^^^^
-
-On the node where you want to run influxdb + grafana or the node where you want to run the VES app
-zookeeper and Kafka containers together:
-
-.. note::
-   The default configuration for all these containers is to run on the localhost. If this is not
-   the model you want to use then please make the appropriate configuration changes before launching
-   the docker containers.
-
-1. Start by installing docker compose
-
-.. code:: bash
-
-   $ sudo curl -L https://github.com/docker/compose/releases/download/1.17.0/docker-compose-`uname -s`-`uname -m` -o /usr/bin/docker-compose
-
-.. note::
-   Use the latest Compose release number in the download command. The above command is an example,
-   and it may become out-of-date. To ensure you have the latest version, check the Compose repository
-   release page on GitHub.
-
-2. Apply executable permissions to the binary:
-
-.. code:: bash
-
-   $ sudo chmod +x /usr/bin/docker-compose
-
-3. Test the installation.
-
-.. code:: bash
-
-  $ sudo docker-compose --version
-
-Run the InfluxDB and Grafana containers using docker compose
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Launch containers:
-
-.. code:: bash
-
-   $ cd barometer/docker/compose/influxdb-grafana/
-   $ sudo docker-compose up -d
-
-Check your docker images are running
-
-.. code:: bash
-
-   $ sudo docker ps
-
-Connect to <host_ip>:3000 with a browser and log into grafana: admin/admin
-
-Run the Kafka, zookeeper and VES containers using docker compose
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Launch containers:
-
-.. code:: bash
-
-   $ cd barometer/docker/compose/ves/
-   $ sudo docker-compose up -d
-
-Check your docker images are running
-
-.. code:: bash
-
-   $ sudo docker ps
-
-Testing the docker image
-^^^^^^^^^^^^^^^^^^^^^^^^
-TODO
 
 References
 ^^^^^^^^^^^
