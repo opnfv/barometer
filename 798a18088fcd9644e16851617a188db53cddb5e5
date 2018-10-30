@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a682502_90510511",
+        "filename": "docker/ansible/roles/config_files/tasks/network.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-10-30T16:10:35Z",
+      "side": 1,
+      "message": "localhost | SUCCESS \u003d\u003e {\n    \"hostvars[\u0027localhost\u0027]\": {\n        \"ansible_check_mode\": false,\n        \"ansible_connection\": \"local\",\n        \"ansible_diff_mode\": false,\n        \"ansible_facts\": {},\n        \"ansible_forks\": 5,\n        \"ansible_inventory_sources\": [\n            \"/etc/ansible/hosts\"\n        ],\n        \"ansible_playbook_python\": \"/usr/bin/python2.7\",\n        \"ansible_python_interpreter\": \"/usr/bin/python2.7\",\n        \"ansible_version\": {\n            \"full\": \"2.5.5\",\n            \"major\": 2,\n            \"minor\": 5,\n            \"revision\": 5,\n            \"string\": \"2.5.5\"\n        },\n        \"group_names\": [],\n        \"groups\": {\n            \"all\": [],\n            \"ungrouped\": []\n        },\n        \"inventory_hostname\": \"localhost\",\n        \"inventory_hostname_short\": \"localhost\",\n        \"omit\": \"__omit_place_holder__edeea6194462d71d284342206126f1561609f171\",\n        \"playbook_dir\": \"/root/barometer/docker/ansible\"\n    }\n}",
+      "parentUuid": "5a682502_95e1f7d2",
+      "range": {
+        "startLine": 37,
+        "startChar": 24,
+        "endLine": 37,
+        "endChar": 34
+      },
+      "revId": "798a18088fcd9644e16851617a188db53cddb5e5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a682502_f5acaba2",
         "filename": "docker/ansible/roles/config_files/tasks/network.yml",
         "patchSetId": 8
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "5a682502_f0583934",
+        "filename": "docker/ansible/roles/config_files/tasks/network.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-10-30T16:10:35Z",
+      "side": 1,
+      "message": "good point...might need to make this a global var",
+      "parentUuid": "5a682502_f5acaba2",
+      "range": {
+        "startLine": 42,
+        "startChar": 8,
+        "endLine": 42,
+        "endChar": 30
+      },
+      "revId": "798a18088fcd9644e16851617a188db53cddb5e5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a682502_9508d792",
         "filename": "docker/ansible/roles/config_files/vars/main.yml",
         "patchSetId": 8
@@ -59,6 +107,30 @@
       "writtenOn": "2018-10-30T15:08:54Z",
       "side": 1,
       "message": "If we set influxdb hosts by default isn\u0027t it better to comment manual setting by default?",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 26
+      },
+      "revId": "798a18088fcd9644e16851617a188db53cddb5e5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_3042b13e",
+        "filename": "docker/ansible/roles/config_files/vars/main.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-10-30T16:10:35Z",
+      "side": 1,
+      "message": "yeah I was thinking the same",
+      "parentUuid": "5a682502_9508d792",
       "range": {
         "startLine": 30,
         "startChar": 0,
