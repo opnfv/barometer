@@ -22,6 +22,30 @@
       "revId": "afb454571346f39e0b2aca0a32a11794b5d3be49",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_95d73723",
+        "filename": "docker/ansible/roles/config_files/tasks/network.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-10-30T14:48:43Z",
+      "side": 1,
+      "message": "fixed",
+      "parentUuid": "5a682502_fa8498d5",
+      "range": {
+        "startLine": 38,
+        "startChar": 15,
+        "endLine": 38,
+        "endChar": 45
+      },
+      "revId": "afb454571346f39e0b2aca0a32a11794b5d3be49",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
