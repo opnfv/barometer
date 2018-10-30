@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "5a682502_50edadee",
+        "filename": "docker/ansible/roles/config_files/tasks/network.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-10-30T17:21:30Z",
+      "side": 1,
+      "message": "For now a warning not to use localhost will do",
+      "parentUuid": "5a682502_90510511",
+      "range": {
+        "startLine": 37,
+        "startChar": 24,
+        "endLine": 37,
+        "endChar": 34
+      },
+      "revId": "798a18088fcd9644e16851617a188db53cddb5e5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a682502_f5acaba2",
         "filename": "docker/ansible/roles/config_files/tasks/network.yml",
         "patchSetId": 8
