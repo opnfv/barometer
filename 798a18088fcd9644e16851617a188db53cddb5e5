@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a682502_95e1f7d2",
+        "filename": "docker/ansible/roles/config_files/tasks/network.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2018-10-30T15:08:54Z",
+      "side": 1,
+      "message": "I would try something like:\n{{ hostvars[item].ansible_hostname }}\nto make sure that correct host name is used.\nBut it needs a test.",
+      "range": {
+        "startLine": 37,
+        "startChar": 24,
+        "endLine": 37,
+        "endChar": 34
+      },
+      "revId": "798a18088fcd9644e16851617a188db53cddb5e5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_f5acaba2",
+        "filename": "docker/ansible/roles/config_files/tasks/network.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2018-10-30T15:08:54Z",
+      "side": 1,
+      "message": "This role is run on collectd host, won\u0027t it get the name for collectd host instead of influxdb?",
+      "range": {
+        "startLine": 42,
+        "startChar": 8,
+        "endLine": 42,
+        "endChar": 30
+      },
+      "revId": "798a18088fcd9644e16851617a188db53cddb5e5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_9508d792",
+        "filename": "docker/ansible/roles/config_files/vars/main.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2018-10-30T15:08:54Z",
+      "side": 1,
+      "message": "If we set influxdb hosts by default isn\u0027t it better to comment manual setting by default?",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 26
+      },
+      "revId": "798a18088fcd9644e16851617a188db53cddb5e5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
