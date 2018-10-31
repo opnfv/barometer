@@ -22,6 +22,30 @@
       "revId": "d9c7551a005494c025c03b3fd363acb0e5c74f9f",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_aecc9d62",
+        "filename": "docker/ansible/roles/config_files/templates/network.conf.j2",
+        "patchSetId": 10
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2018-10-31T15:25:44Z",
+      "side": 1,
+      "message": "All of the variables are taking care of here: https://gerrit.opnfv.org/gerrit/#/c/63901/10/docker/ansible/roles/config_files/tasks/network.yml\nIt allows us to have a lot more flexibility",
+      "parentUuid": "5a682502_2e308d9d",
+      "range": {
+        "startLine": 17,
+        "startChar": 1,
+        "endLine": 17,
+        "endChar": 5
+      },
+      "revId": "d9c7551a005494c025c03b3fd363acb0e5c74f9f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
