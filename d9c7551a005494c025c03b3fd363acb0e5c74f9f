@@ -46,6 +46,30 @@
       "revId": "d9c7551a005494c025c03b3fd363acb0e5c74f9f",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_aef3fd9d",
+        "filename": "docker/ansible/roles/config_files/templates/network.conf.j2",
+        "patchSetId": 10
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2018-10-31T15:39:43Z",
+      "side": 1,
+      "message": "The previous task (network.yml) populates this, and removes the need for templating the variables here.",
+      "parentUuid": "5a682502_aecc9d62",
+      "range": {
+        "startLine": 17,
+        "startChar": 1,
+        "endLine": 17,
+        "endChar": 5
+      },
+      "revId": "d9c7551a005494c025c03b3fd363acb0e5c74f9f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
