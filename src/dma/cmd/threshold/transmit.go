@@ -19,8 +19,8 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"github.com/distributed-monitoring/agent/pkg/common"
 	"github.com/go-redis/redis"
+	"github.com/opnfv/barometer/src/dma/pkg/common"
 	"strconv"
 	"strings"
 	"time"
