@@ -11,6 +11,9 @@ insert_ipmi_modules=true
 [grafana_hosts]
 #localhost
 
+[prometheus_hosts]
+#localhost
+
 [kafka_hosts]
 #localhost
 
