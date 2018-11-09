@@ -317,6 +317,7 @@ Start collectd process as a service as described in :ref:`install-collectd-as-a-
 .. note:: The list of the plugins can be extented depends on your needs.
 
 
+.. _Setup VES Test Collector:
 
 Setup VES Test Collector
 ------------------------

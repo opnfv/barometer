@@ -934,6 +934,13 @@ file named custom.yaml
    $ sudo docker run -tid --net=host -v ${PWD}/custom.config:/opt/ves/config/ves_app_config.conf \
      -v ${PWD}/yaml/:/opt/ves/yaml/ opnfv/barometer-ves custom.yaml
 
+Run VES Test Collector application
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+VES Test Collector application can be used for displaying platform
+wide metrics that are collected by barometer-ves container.
+Setup instructions are located in: :ref:`Setup VES Test Collector`
+
 Build and Run LocalAgent and Redis Docker Images
 -----------------------------------------------------
 
