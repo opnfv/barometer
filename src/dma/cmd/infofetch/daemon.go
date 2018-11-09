@@ -19,9 +19,9 @@ package main
 import (
 	"context"
 	"github.com/BurntSushi/toml"
-	"github.com/distributed-monitoring/agent/pkg/common"
 	"github.com/go-redis/redis"
 	libvirt "github.com/libvirt/libvirt-go"
+	"github.com/opnfv/barometer/src/dma/pkg/common"
 	"log"
 	"sync"
 )
