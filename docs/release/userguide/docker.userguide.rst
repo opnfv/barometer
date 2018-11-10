@@ -966,14 +966,14 @@ Download LocalAgent docker images
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If you wish to use pre-built barometer project's LocalAgent images, you can pull the
-images from https://hub.docker.com/r/opnfv/barometer-localagent/
+images from https://hub.docker.com/r/opnfv/barometer-dma/
 
 .. note::
    If your preference is to build images locally please see sections `Build LocalAgent Docker Image`_
 
 .. code:: bash
 
-    $ docker pull opnfv/barometer-localagent
+    $ docker pull opnfv/barometer-dma
 
 .. note::
    If you have pulled the pre-built images there is no requirement to complete steps outlined
