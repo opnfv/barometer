@@ -959,31 +959,31 @@ VES Test Collector application can be used for displaying platform
 wide metrics that are collected by barometer-ves container.
 Setup instructions are located in: :ref:`Setup VES Test Collector`
 
-Build and Run LocalAgent and Redis Docker Images
+Build and Run DMA and Redis Docker Images
 -----------------------------------------------------
 
-Download LocalAgent docker images
+Download DMA docker images
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you wish to use pre-built barometer project's LocalAgent images, you can pull the
-images from https://hub.docker.com/r/opnfv/barometer-localagent/
+If you wish to use pre-built barometer project's DMA images, you can pull the
+images from https://hub.docker.com/r/opnfv/barometer-dma/
 
 .. note::
-   If your preference is to build images locally please see sections `Build LocalAgent Docker Image`_
+   If your preference is to build images locally please see sections `Build DMA Docker Image`_
 
 .. code:: bash
 
-    $ docker pull opnfv/barometer-localagent
+    $ docker pull opnfv/barometer-dma
 
 .. note::
    If you have pulled the pre-built images there is no requirement to complete steps outlined
-   in sections `Build LocalAgent Docker Image`_ and you can proceed directly to section
-   `Run LocalAgent Docker Image`_
+   in sections `Build DMA Docker Image`_ and you can proceed directly to section
+   `Run DMA Docker Image`_
 
-Build LocalAgent docker image
+Build DMA docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Build LocalAgent docker image:
+Build DMA docker image:
 
 .. code:: bash
 
@@ -1012,7 +1012,7 @@ Run Redis docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. note::
-   Before running LocalAgent, Redis must be running.
+   Before running DMA, Redis must be running.
 
 Run Redis docker image:
 
@@ -1026,11 +1026,11 @@ Check your docker image is running
 
    sudo docker ps
 
-Run LocalAgent docker image
+Run DMA docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. note::
 
-Run LocalAgent docker image with default configuration
+Run DMA docker image with default configuration
 
 .. code:: bash
 
