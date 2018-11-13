@@ -4,11 +4,11 @@ project_creation_date: ''
 project_category: ''
 lifecycle_state: ''
 project_lead: &opnfv_barometer_ptl
-    name: 'Aaron Smith'
-    email: 'aasmith@redhat.com'
-    id: 'TsaLaGi'
+    name: 'Mattiash Runge'
+    email: 'mrunge@redhat.com'
+    id: 'mrunge'
     company: 'redhat.com'
-    timezone: 'Unknown'
+    timezone: 'Europe/Berlin'
 primary_contact: *opnfv_barometer_ptl
 issue_tracking:
     type: 'jira'
@@ -51,6 +51,10 @@ committers:
       email: 'emma.l.foley@intel.com'
       company: 'intel.com'
       id: 'elfoley'
+    - name: 'Aaron Smith'
+      email: 'aasmith@redhat.com'
+      company: 'redhat.com'
+      id: 'TsaLaGi'
 tsc:
     # yamllint disable rule:line-length
     approval: ''
