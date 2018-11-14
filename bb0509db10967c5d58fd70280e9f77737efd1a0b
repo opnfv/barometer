@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a622d24_16f37a74",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 965,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2018-11-14T08:34:41Z",
+      "side": 1,
+      "message": "For consistency, could you please make sure to use barometer-dma everywhere, instead of just updating the URL?",
+      "revId": "bb0509db10967c5d58fd70280e9f77737efd1a0b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
