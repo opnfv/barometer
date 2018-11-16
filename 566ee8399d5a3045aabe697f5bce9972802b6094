@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a622d24_27092296",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2018-11-16T10:37:52Z",
+      "side": 1,
+      "message": "While it technically should not be necessary, would you add sudo -i right before ssh-keygen (same change as below)?",
+      "revId": "566ee8399d5a3045aabe697f5bce9972802b6094",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
