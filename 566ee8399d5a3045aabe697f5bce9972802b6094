@@ -16,6 +16,24 @@
       "revId": "566ee8399d5a3045aabe697f5bce9972802b6094",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a622d24_673afa37",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 7399
+      },
+      "writtenOn": "2018-11-16T11:08:01Z",
+      "side": 1,
+      "message": "Hi Matthias,\n\nyes it makes sense - I can rephrase this chapter.\n\nOne note about using root privileges here: In general, all given commands have to be entered for the same user. There is also possibility in ansible to log into host machine from non-root user accound(as long it has permission for \u0027sudo\u0027) or log into root account from non-root user by passing additional username parameter during launching ansible-playbook. We were thinking a lot about all of possibilities and combinations and finally decided to go with the simplest approach here - \u0027do everything as user with root privileges\u0027 because it sorts out early all problems with access rights, even before running ansible playbook, and, last but not least, it is easier to follow.",
+      "parentUuid": "1a622d24_27092296",
+      "revId": "566ee8399d5a3045aabe697f5bce9972802b6094",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
