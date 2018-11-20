@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a622d24_48638b1a",
+        "filename": "INFO.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2018-11-20T10:05:21Z",
+      "side": 1,
+      "message": "it\u0027s Matthias (only one \u0027h\u0027, after \u0027tt\u0027)",
+      "revId": "ee64d08dfed03bfb314e42902583ccbd9df4de89",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
