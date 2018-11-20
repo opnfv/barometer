@@ -1,3 +1,12 @@
+# NOTE: for defining hosts both hostnames and IP addresses forms can be used
+# however it is advised to keep it consistent over the file, especially if
+# the same host is used by multiple containers
+# e.g. if some host will be described by IP address at first('127.0.0.1')
+# and at some place the same host will be called using its hostname
+# ('localhost') then ansible will treat them as different entities and
+# synchronization problems during parallel dependencies installation
+# may occur)
+
 [collectd_hosts]
 localhost
 
