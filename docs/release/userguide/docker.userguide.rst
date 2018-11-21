@@ -259,7 +259,8 @@ The example is for localhost.
 
 .. code:: bash
 
-    $ sudo ssh-copy-id root@localhost
+    $ sudo -i
+    $ ssh-copy-id root@localhost
 
 Verify that key is added and password is not required to connect.
 
