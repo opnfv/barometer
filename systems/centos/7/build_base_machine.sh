@@ -60,4 +60,5 @@ hiredis-devel
 epel-release
 libvirt-python
 python2-pip
+numactl-devel
 " | grep -v ^#)

@@ -5,6 +5,7 @@ RUN yum update -y && \
         git config --global http.sslVerify false
 
 ENV DOCKER y
+ENV WITH_DPDK y
 ENV repos_dir /src
 ENV openstack_plugins /src/barometer/src/collectd-openstack-plugins
 

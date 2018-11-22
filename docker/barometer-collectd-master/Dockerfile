@@ -6,6 +6,7 @@ RUN yum update -y && \
 
 ENV DOCKER y
 ENV COLLECTD_USE_MASTER y
+ENV WITH_DPDK y
 ENV repos_dir /src
 ENV openstack_plugins /src/barometer/src/collectd-openstack-plugins
 

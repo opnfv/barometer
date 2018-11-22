@@ -77,6 +77,11 @@ else
 	$(AT)sed -i -e 's/CONFIG_RTE_EAL_PMD_PATH=.*/CONFIG_RTE_EAL_PMD_PATH=\"\/usr\/lib\/dpdk-pmd\/\"/g' $(CONFIG_FILE_LINUXAPP)
 	$(AT)sed -i -e 's/CONFIG_RTE_BUILD_COMBINE_LIBS=./CONFIG_RTE_BUILD_COMBINE_LIBS=y/g' $(CONFIG_FILE_LINUXAPP)
 endif
+# do not build kernel module under docker
+ifdef DOCKER
+	$(AT)sed -i -e 's/CONFIG_RTE_EAL_IGB_UIO=y/CONFIG_RTE_EAL_IGB_UIO=n/' $(CONFIG_FILE_LINUXAPP)
+	$(AT)sed -i -e 's/CONFIG_RTE_KNI_KMOD=y/CONFIG_RTE_KNI_KMOD=n/' $(CONFIG_FILE_LINUXAPP)
+endif
 # CentOS 7.3 specific config changes to compile
 ifeq ($(ID),"centos")
 ifeq ($(VERSION_ID),"7")
@@ -98,7 +103,10 @@ install: $(INSTALL_TARGET)
 	$(AT)cd $(WORK_DIR); sudo make -j install prefix=/usr; cd -
 	$(AT)sudo mkdir -p /usr/lib/dpdk-pmd
 	$(AT)find /usr/lib -type f -name 'librte_pmd*' | while read path; do sudo ln -fs $$path /usr/lib/dpdk-pmd/$$(echo $$path | grep -o 'librte_.*so'); done
+# under docker there won't be kernel module available
+ifndef DOCKER
 	$(AT)sudo cp -a $(WORK_DIR)/build/kmod $(INSTALL_DIR)/lib/modules/$(KERNEL_VERSION)
+endif
 	@echo "install done"
 
 # hard way to clean and clobber
