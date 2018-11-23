@@ -573,7 +573,7 @@ Build the collectd docker image
     $ git clone https://gerrit.opnfv.org/gerrit/barometer
     $ cd barometer/docker/barometer-collectd
     $ sudo docker build -t opnfv/barometer-collectd --build-arg http_proxy=`echo $http_proxy` \
-      --build-arg https_proxy=`echo $https_proxy` -f Dockerfile .
+      --build-arg https_proxy=`echo $https_proxy` --network=host -f Dockerfile .
 
 .. note::
    Main directory of barometer source code (directory that contains 'docker',
@@ -703,7 +703,7 @@ Build influxdb image from Dockerfile
 
   $ cd barometer/docker/barometer-influxdb
   $ sudo docker build -t opnfv/barometer-influxdb --build-arg http_proxy=`echo $http_proxy` \
-    --build-arg https_proxy=`echo $https_proxy` -f Dockerfile .
+    --build-arg https_proxy=`echo $https_proxy` --network=host -f Dockerfile .
 
 .. note::
    In the above mentioned ``docker build`` command, http_proxy & https_proxy arguments needs to
