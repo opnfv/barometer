@@ -56,6 +56,9 @@ CONFIG_CMD += --enable-write_redis
 CONFIG_CMD += --disable-perl
 CONFIG_CMD += --with-librdkafka=/usr
 CONFIG_CMD += --disable-lvm
+ifdef WITH_DPDK
+CONFIG_CMD += LIBDPDK_CFLAGS='-mssse3'
+endif
 
 .PHONY: install force_install config force_make
 
