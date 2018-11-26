@@ -859,6 +859,30 @@ To make some changes when the container is running run:
 
 Connect to <host_ip>:3000 with a browser and log into grafana: admin/admin
 
+Cleanup of influxdb/grafana configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When user wants to remove current grafana and influxdb configuration,
+folowing actions have to be performed
+
+1. Stop and remove running influxdb and grafana containers
+
+.. code:: bash
+
+   sudo docker rm -f bar-grafana bar-influxdb
+
+2. Remove shared influxdb and grafana folders from the Host
+
+.. code:: bash
+
+   sudo rm -rf /var/lib/grafana
+   sudo rm -rf /var/lib/influxdb
+
+.. note::
+   Shared folders are storing configuration of grafana and influxdb
+   containers. In case of changing influxdb or grafana configuration
+   (e.g. moving influxdb to another host) it is good to perform cleanup
+   on shared folders to not affect new setup with an old configuration.
 
 Build and Run VES and Kafka Docker Images
 ------------------------------------------
