@@ -772,6 +772,58 @@ To make some changes when the container is running run:
 
    sudo docker exec -ti <CONTAINER ID> /bin/bash
 
+When both collectd and InfluxDB containers are located
+on the same host, then no additional configuration have to be added and you
+can proceed directly to `Run the Grafana docker image`_ section.
+
+Modify collectd to support InfluxDB on another host
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If InfluxDB and collectd containers are located on separate hosts, then
+additional configuration have to be done in ``collectd`` container - it
+normally sends data using network plugin to 'localhost/127.0.0.1' therefore
+changing output location is required:
+
+1. Stop and remove running bar-collectd container (if it is running)
+
+   .. code:: bash
+
+      $ sudo docker ps #to get collectd container name
+      $ sudo docker rm -f <COLLECTD_CONTAINER_NAME>
+
+2. Go to location where shared collectd config files are stored
+
+   .. code:: bash
+
+      $ cd <BAROMETER_REPO_DIR>
+      $ cd src/collectd/collectd_sample_configs
+
+3. Edit content of ``network.conf`` file.
+   By default this file looks like that:
+
+   .. code::
+
+      LoadPlugin  network
+      <Plugin network>
+      Server "127.0.0.1" "25826"
+      </Plugin>
+
+   ``127.0.0.1`` string has to be replaced with the IP address of host where
+   InfluxDB container is running (e.g. ``192.168.121.111``). Edit this using your
+   favorite text editor.
+
+4. Start again collectd container like it is described in
+   `Run the collectd docker image`_ chapter
+
+   .. code:: bash
+
+      $ cd <BAROMETER_REPO_DIR>
+      $ sudo docker run -ti --name bar-collectd --net=host -v \
+      `pwd`/src/collectd/collectd_sample_configs:/opt/collectd/etc/collectd.conf.d \
+      -v /var/run:/var/run -v /tmp:/tmp --privileged opnfv/barometer-collectd
+
+Now collectd container will be sending data to InfluxDB container located on
+remote Host pointed by IP configured in step 3.
+
 Run the Grafana docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
