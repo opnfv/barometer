@@ -13,7 +13,7 @@
 # under the License.
 # Patch on October 10 2017
 
-"""Executing test of LocalAgent"""
+"""Executing test of DMA"""
 
 import os
 import pika
@@ -25,8 +25,8 @@ import tests
 logger = None
 
 
-class LocalAgentClient(object):
-    """Client to request LocalAgent"""
+class DMAClient(object):
+    """Client to request DMA"""
     def __init__(self, host, port, user, passwd):
         """
         Keyword arguments:
@@ -41,7 +41,7 @@ class LocalAgentClient(object):
         self._passwd = passwd
 
     def set(self, file):
-        logger.error('Do nothing to LocalAgent')
+        logger.error('Do nothing to DMA')
 
     def __str__(self):
         return ('host: {0}, port: {1}, user: {2}, pass: {3}'
@@ -49,13 +49,13 @@ class LocalAgentClient(object):
                         self._user, (self._passwd and '<Filterd>')))
 
 
-class RestLocalAgentClient(LocalAgentClient):
-    """Client to request LocalAgent using REST"""
+class RestDMAClient(DMAClient):
+    """Client to request DMA using REST"""
     def __init__(self, host, port, user, passwd):
         super(self.__class__, self).__init__(host, port, user, passwd)
 
     def set(self, file):
-        logger.debug('Send to localagent using REST -- {}'.format(str(self)))
+        logger.debug('Send to DMA using REST -- {}'.format(str(self)))
 
         if not os.path.isfile(file):
             print '{} is not found'.format(file)
@@ -69,13 +69,13 @@ class RestLocalAgentClient(LocalAgentClient):
         return True
 
 
-class PubLocalAgentClient(LocalAgentClient):
-    """Client to request LocalAgent using AMQP Publish"""
+class PubDMAClient(DMAClient):
+    """Client to request DMA using AMQP Publish"""
     def __init__(self, host, port, user, passwd):
         super(self.__class__, self).__init__(host, port, user, passwd)
 
     def set(self, file):
-        logger.debug('Send to localagent using AMQP Publish -- {}'
+        logger.debug('Send to DMA using AMQP Publish -- {}'
                      .format(str(self)))
 
         if not os.path.isfile(file):
@@ -100,28 +100,28 @@ class PubLocalAgentClient(LocalAgentClient):
         return True
 
 
-def _process_localagent_result(compute_node, testfunc,
+def _process_dma_result(compute_node, testfunc,
                                result, results_list, node):
-    """Print LocalAgent test result and append it to results list.
+    """Print DMA test result and append it to results list.
 
     Keyword arguments:
-    testfunc -- localagent function name
+    testfunc -- DMA function name
     result -- boolean test result
     results_list -- results list
     """
     if result:
         logger.info(
-            'Test case for {0} with LocalAgent PASSED on {1}.'.format(
+            'Test case for {0} with DMA PASSED on {1}.'.format(
                 node, testfunc))
     else:
         logger.error(
-            'Test case for {0} with LocalAgent FAILED on {1}.'.format(
+            'Test case for {0} with DMA FAILED on {1}.'.format(
                 node, testfunc))
-    results_list.append((compute_node, "LocalAgent", testfunc, result))
+    results_list.append((compute_node, "DMA", testfunc, result))
 
 
-def _print_result_of_localagent(compute_ids, results):
-    """Print results of LocalAgent.
+def _print_result_of_dma(compute_ids, results):
+    """Print results of DMA.
 
     Keyword arguments:
     compute_ids -- list of compute node IDs
@@ -147,7 +147,7 @@ def _print_result_of_localagent(compute_ids, results):
     logger.info(
         '+' + ('-' * 16) + '+' + (('-' * 8) + '+') * len(compute_node_names))
 
-    testname = "LocalAgent"
+    testname = "DMA"
     print_line = ''
     for id in compute_ids:
         all_result = \
@@ -178,8 +178,8 @@ def _print_result_of_localagent(compute_ids, results):
     logger.info('=' * 70)
 
 
-def local_agent_main(bt_logger, conf, computes):
-    """Check LocalAgent of each compute node.
+def dma_main(bt_logger, conf, computes):
+    """Check DMA of each compute node.
 
     Keyword arguments:
     bt_logger -- logger instance
@@ -194,42 +194,42 @@ def local_agent_main(bt_logger, conf, computes):
         node_id = compute_node.get_id()
         compute_ids.append(node_id)
 
-        agent_server_running = conf.is_localagent_server_running(compute_node)
+        agent_server_running = conf.is_dma_server_running(compute_node)
         agent_infofetch_running = (
-            conf.is_localagent_infofetch_running(compute_node) and
+            conf.is_dma_infofetch_running(compute_node) and
             conf.is_redis_running(compute_node))
 
         if agent_server_running:
             test_name = 'barotest'
             tmpfile = '/tmp/' + test_name + '.conf'
 
-            agent_config = conf.get_localagent_config(compute_node)
+            agent_config = conf.get_dma_config(compute_node)
             listen_ip = compute_node.get_ip()
             listen_port = agent_config.get('server').get('listen_port')
             amqp_host = agent_config.get('server').get('amqp_host')
             amqp_port = agent_config.get('server').get('amqp_port')
             amqp_user = agent_config.get('server').get('amqp_user')
             amqp_passwd = agent_config.get('server').get('amqp_password')
-            rest_client = RestLocalAgentClient(
+            rest_client = RestDMAClient(
                               listen_ip, listen_port, '', '')
-            pub_client = PubLocalAgentClient(
+            pub_client = PubDMAClient(
                              amqp_host, amqp_port, amqp_user,
                              amqp_passwd)
 
             all_res = True
             for client in [rest_client, pub_client]:
-                tests.test_localagent_server_set_collectd(
+                tests.test_dma_server_set_collectd(
                     compute_node, tmpfile, logger, client)
                 sleep_time = 1
                 logger.info(
                     'Sleeping for {} seconds'.format(sleep_time)
-                    + ' before localagent server test...')
+                    + ' before DMA server test...')
                 time.sleep(sleep_time)
-                res = conf.check_localagent_dummy_included(
+                res = conf.check_dma_dummy_included(
                           compute_node, test_name)
                 all_res = all_res and res
 
-            _process_localagent_result(
+            _process_dma_result(
                 compute_node.get_id(), 'Server',
                 all_res, agent_results, compute_node.get_name())
 
@@ -239,22 +239,22 @@ def local_agent_main(bt_logger, conf, computes):
             sleep_time = 5
             logger.info(
                 'Sleeping for {} seconds'.format(sleep_time)
-                + ' before localagent infofetch test...')
+                + ' before DMA infofetch test...')
             time.sleep(sleep_time)
-            res = conf.test_localagent_infofetch_get_data(
+            res = conf.test_dma_infofetch_get_data(
                       compute_node, test_name)
             conf.delete_testvm(resources)
 
-            _process_localagent_result(
+            _process_dma_result(
                 compute_node.get_id(), 'InfoFetch',
                 res, agent_results, compute_node.get_name())
 
-    _print_result_of_localagent(compute_ids, agent_results)
+    _print_result_of_dma(compute_ids, agent_results)
 
     for res in agent_results:
         if not res[3]:
             logger.error('Some tests have failed or have not been executed')
-            logger.error('LocalAgent test is Fail')
+            logger.error('DMA test is Fail')
             return 1
         else:
             pass

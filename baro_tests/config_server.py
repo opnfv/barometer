@@ -320,64 +320,64 @@ class ConfigServer(object):
              compute_name))
         return False
 
-    def is_localagent_server_running(self, compute):
-        """Check whether LocalAgent server is running on compute"""
+    def is_dma_server_running(self, compute):
+        """Check whether DMA server is running on compute"""
         compute_name = compute.get_name()
         nodes = get_apex_nodes()
         for node in nodes:
             if compute_name == node.get_dict()['name']:
                 stdout = node.run_cmd('sudo systemctl status docker'
                                       '&& sudo docker ps'
-                                      '| grep opnfv/barometer-localagent')
+                                      '| grep opnfv/barometer-dma')
                 if stdout and '/server' in stdout:
                     self.__logger.info(
-                        'LocalAgent Server is running in node {}'.format(
+                        'DMA Server is running in node {}'.format(
                          compute_name))
                     return True
         self.__logger.info(
-            'LocalAgent Server is *not* running in node {}'.format(
+            'DMA Server is *not* running in node {}'.format(
              compute_name))
         return False
 
-    def is_localagent_infofetch_running(self, compute):
-        """Check whether LocalAgent infofetch is running on compute"""
+    def is_dma_infofetch_running(self, compute):
+        """Check whether DMA infofetch is running on compute"""
         compute_name = compute.get_name()
         nodes = get_apex_nodes()
         for node in nodes:
             if compute_name == node.get_dict()['name']:
                 stdout = node.run_cmd('sudo systemctl status docker'
                                       '&& sudo docker ps'
-                                      '| grep opnfv/barometer-localagent')
+                                      '| grep opnfv/barometer-dma')
                 if stdout and '/infofetch' in stdout:
                     self.__logger.info(
-                        'LocalAgent InfoFetch is running in node {}'.format(
+                        'DMA InfoFetch is running in node {}'.format(
                          compute_name))
                     return True
         self.__logger.info(
-            'LocalAgent InfoFetch is *not* running in node {}'.format(
+            'DMA InfoFetch is *not* running in node {}'.format(
              compute_name))
         return False
 
-    def get_localagent_config(self, compute):
-        """Get config values of LocalAgent"""
+    def get_dma_config(self, compute):
+        """Get config values of DMA"""
         compute_name = compute.get_name()
         nodes = get_apex_nodes()
         for node in nodes:
             if compute_name == node.get_dict()['name']:
                 # We use following after functest accept python-toml
                 #     stdout = node.run_cmd(
-                #         'cat /etc/barometer-localagent/config.toml')
+                #         'cat /etc/barometer-dma/config.toml')
                 #     try:
                 #         agent_conf = toml.loads(stdout)
                 #     except (TypeError, TomlDecodeError) as e:
                 #         self.__logger.error(
-                #             'LocalAgent config error: {}'.format(e))
+                #             'DMA config error: {}'.format(e))
                 #         agent_conf = None
                 #     finally:
                 #         return agent_conf
                 readcmd = (
                     'egrep "listen_port|amqp_"'
-                    ' /etc/barometer-localagent/config.toml'
+                    ' /etc/barometer-dma/config.toml'
                     '| sed -e "s/#.*$//" | sed -e "s/=/:/"'
                     )
                 stdout = node.run_cmd(readcmd)
@@ -753,8 +753,8 @@ class ConfigServer(object):
         else:
             return False
 
-    def check_localagent_dummy_included(self, compute, name):
-        """Check if dummy collectd config by LocalAgent
+    def check_dma_dummy_included(self, compute, name):
+        """Check if dummy collectd config by DMA
            is included in collectd.conf file.
 
         Keyword arguments:
@@ -860,13 +860,13 @@ class ConfigServer(object):
 
         self.__logger.debug('VM and other OpenStack resources deleted')
 
-    def test_localagent_infofetch_get_data(self, compute, test_name):
+    def test_dma_infofetch_get_data(self, compute, test_name):
         compute_name = compute.get_name()
         nodes = get_apex_nodes()
         for node in nodes:
             if compute_name == node.get_dict()['name']:
                 stdout = node.run_cmd(
-                    'redis-cli keys "barometer-localagent/vm/*/vminfo"'
+                    'redis-cli keys "barometer-dma/vm/*/vminfo"'
                     ' | while read k; do redis-cli get $k; done'
                     ' | grep {}'.format(test_name))
                 self.__logger.debug('InfoFetch data: {}'.format(stdout))
