@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a622d24_d922c100",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 874,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2018-12-03T14:12:14Z",
+      "side": 1,
+      "message": "typo: grafana",
+      "range": {
+        "startLine": 874,
+        "startChar": 30,
+        "endLine": 874,
+        "endChar": 37
+      },
+      "revId": "72d972694ee2ee2e73cd4768379d13022d161af0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
