@@ -35,6 +35,9 @@
 - name: enable default plugins
   import_tasks: default_read_plugins.yml
 
+- name: enable dpdk plugins
+  import_tasks: dpdk.yml
+
 - name: enable exec plugin
   import_tasks: exec.yml
 
