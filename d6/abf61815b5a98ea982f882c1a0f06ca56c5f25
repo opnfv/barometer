@@ -1,0 +1,8 @@
+Code-Review+1: Kamil Wiatrowski <kamilx.wiatrowski@intel.com>
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+2: Matthias Runge <mrunge@redhat.com>
+Submitted-by: Matthias Runge <mrunge@redhat.com>
+Submitted-at: Tue, 04 Dec 2018 13:36:00 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/65487
+Project: barometer
+Branch: refs/heads/master
