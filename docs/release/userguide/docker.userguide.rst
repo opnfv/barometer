@@ -170,7 +170,7 @@ To install Ansible 2.6.3 on Ubuntu:
 
     $ sudo apt-get install python
     $ sudo apt-get install python-pip
-    $ sudo pip install 'ansible==2.6.3'
+    $ sudo -H pip install 'ansible==2.6.3'
 
 The following steps have been verified with Ansible 2.6.3 on Centos 7.5.
 To install Ansible 2.6.3 on Centos:
@@ -180,7 +180,7 @@ To install Ansible 2.6.3 on Centos:
     $ sudo yum install python
     $ sudo yum install epel-release
     $ sudo yum install python-pip
-    $ sudo pip install 'ansible==2.6.3'
+    $ sudo -H pip install 'ansible==2.6.3'
 
 Clone barometer repo
 ^^^^^^^^^^^^^^^^^^^^
