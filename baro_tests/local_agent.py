@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-
+#
+# Copyright 2018 OPNFV
+#
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
 # a copy of the License at
@@ -23,6 +25,8 @@ import time
 import tests
 
 logger = None
+
+TEMP_DIR = '/root'
 
 
 class LocalAgentClient(object):
@@ -201,7 +205,7 @@ def local_agent_main(bt_logger, conf, computes):
 
         if agent_server_running:
             test_name = 'barotest'
-            tmpfile = '/tmp/' + test_name + '.conf'
+            tmpfile = TEMP_DIR + '/' + test_name + '.conf'
 
             agent_config = conf.get_localagent_config(compute_node)
             listen_ip = compute_node.get_ip()

@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 #
+# Copyright 2017 OPNFV
+#
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
 # a copy of the License at
@@ -35,6 +37,8 @@ APEX_IP = os.getenv("INSTALLER_IP").rstrip('\n')
 APEX_USER = 'root'
 APEX_USER_STACK = 'stack'
 APEX_PKEY = '/root/.ssh/id_rsa'
+TEST_VM_IMAGE = 'cirros-0.4.0-x86_64-disk.img'
+TEST_VM_IMAGE_PATH = '/home/opnfv/functest/images/' + TEST_VM_IMAGE
 
 
 class Node(object):
@@ -381,7 +385,7 @@ class ConfigServer(object):
                     '| sed -e "s/#.*$//" | sed -e "s/=/:/"'
                     )
                 stdout = node.run_cmd(readcmd)
-                agent_conf = {"server": yaml.load(stdout)}
+                agent_conf = {"server": yaml.safe_load(stdout)}
 
                 pingcmd = (
                     'ping -n -c1 ' + agent_conf["server"]["amqp_host"] +
@@ -793,18 +797,13 @@ class ConfigServer(object):
         self.__logger.debug('Create command is executed in {}' .format(
             (controller_node.get_dict()['name'])))
 
-        image_filename = 'cirros-0.4.0-x86_64-disk.img'
-        controller_node.run_cmd(
-            'curl -sO '
-            'http://download.cirros-cloud.net/0.4.0/'
-            + image_filename)
-
         node.put_file(constants.ENV_FILE, 'overcloudrc.v3')
+        node.put_file(TEST_VM_IMAGE_PATH, TEST_VM_IMAGE)
         image = controller_node.run_cmd(
             'source overcloudrc.v3;'
             'openstack image create -f value -c id'
             ' --disk-format qcow2 --file {0} {1}'
-            .format(image_filename, test_name))
+            .format(TEST_VM_IMAGE, test_name))
         flavor = controller_node.run_cmd(
             'source overcloudrc.v3;'
             'openstack flavor create -f value -c id {}'
