@@ -282,7 +282,7 @@ through more details.
 
 .. code:: bash
 
-    $ sudo ansible-playbook -i default.inv collectd_service.yml
+    $ sudo -H ansible-playbook -i default.inv collectd_service.yml
 
 Check the three containers are running, the output of docker ps should be similar to:
 
