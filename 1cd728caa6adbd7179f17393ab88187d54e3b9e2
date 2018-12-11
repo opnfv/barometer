@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a622d24_0437ade4",
+        "filename": "docker/ansible/roles/config_files/tasks/dpdk.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2018-12-11T10:02:59Z",
+      "side": 1,
+      "message": "The template itself does not contain any jinja tags. So strictly speaking, you could also use the copy module.",
+      "revId": "1cd728caa6adbd7179f17393ab88187d54e3b9e2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
