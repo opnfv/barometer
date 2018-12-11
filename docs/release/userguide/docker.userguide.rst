@@ -342,11 +342,14 @@ To make some changes when a container is running run:
 
 List of default plugins for collectd container
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. note::
+   The dpdk plugins dpdkevents and dpdkstat were tested with DPDK v16.11.
 
 By default the collectd is started with default configuration which includes the followin plugins:
    * csv, contextswitch, cpu, cpufreq, df, disk, ethstat, ipc, irq, load, memory, numa, processes,
      swap, turbostat, uuid, uptime, exec, hugepages, intel_pmu, ipmi, write_kafka, logfile, mcelog,
-     network, intel_rdt, rrdtool, snmp_agent, syslog, virt, ovs_stats, ovs_events
+     network, intel_rdt, rrdtool, snmp_agent, syslog, virt, ovs_stats, ovs_events, dpdkevents,
+     dpdkstat
 
 Some of the plugins are loaded depending on specific system requirements and can be omitted if
 dependency is not met, this is the case for:
@@ -391,7 +394,7 @@ plugins tags
   The following tags can be used to enable/disable plugins: csv, contextswitch, cpu,
   cpufreq, df, disk, ethstat, ipc, irq, load, memory, numa, processes, swap, turbostat,
   uptime, exec, hugepages, ipmi, kafka, logfile, mcelogs, network, pmu, rdt, rrdtool,
-  snmp, syslog, virt, ovs_stats, ovs_events, uuid.
+  snmp, syslog, virt, ovs_stats, ovs_events, uuid, dpdkevents, dpdkstat.
 
 Installing Docker
 -----------------
