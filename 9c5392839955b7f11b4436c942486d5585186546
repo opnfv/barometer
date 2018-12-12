@@ -16,6 +16,24 @@
       "revId": "9c5392839955b7f11b4436c942486d5585186546",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a622d24_8779ff95",
+        "filename": "baro_tests/local_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1719
+      },
+      "writtenOn": "2018-12-12T07:03:17Z",
+      "side": 1,
+      "message": "I\u0027ll fix violation of the following change, which includes \u0027Rationale: tmp directories are risky. They are world writable and easily guessed\u0027.\nhttps://gerrit.opnfv.org/gerrit/#/c/65489/\n\nSorry, I forgot to write it in the commit message...\nI\u0027ll change the message.",
+      "parentUuid": "1a622d24_c425b5ac",
+      "revId": "9c5392839955b7f11b4436c942486d5585186546",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
