@@ -182,6 +182,12 @@ To install Ansible 2.6.3 on Centos:
     $ sudo yum install python-pip
     $ sudo -H pip install 'ansible==2.6.3'
 
+.. note::
+   When using multi-node-setup, please make sure that 'python' package is
+   installed on all of the target nodes (ansible during 'Gathering facts'
+   phase is using python2 and it may not be installed by default on some
+   distributions - e.g. on Ubuntu 16.04 it has to be installed manually)
+
 Clone barometer repo
 ^^^^^^^^^^^^^^^^^^^^
 
