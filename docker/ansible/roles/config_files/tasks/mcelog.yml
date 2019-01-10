@@ -22,6 +22,20 @@
   tags:
      - mcelogs
 
+- name: check if mcelog present
+  shell: which mcelog > /dev/null
+  register: mcelog_present
+  ignore_errors: "true"
+  when: install_mcelog|default(false)|bool
+  tags:
+     - mcelogs
+
+- name: build mcelog from sources if not in package
+  import_tasks: make_mcelog.yml
+  when: mcelog_present|failed and install_mcelog|default(false)|bool
+  tags:
+     - mcelogs
+
 - name: start mcelog daemon if not running
   service:
      name: mcelog
