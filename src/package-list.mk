@@ -19,13 +19,26 @@ KAFKA_TAG ?= v0.9.5
 
 # collectd section
 COLLECTD_URL ?= https://github.com/collectd/collectd
-# there are 2 collectd flavors:
-# -"collectd" - based on stable collect release
-# -"collectd-master" - development version, based on master branch
-ifdef COLLECTD_USE_MASTER
-	COLLECTD_TAG ?= master
-else
+
+# there are 3 collectd flavors:
+# -"stable" - based on stable collectd release
+# -"master" - development version, based on master branch
+# -"experimental" - it is based on master branch as above and includes
+#                   set pull requests with experimental features
+ifeq ($(COLLECTD_FLAVOR), stable)
+# using latest stable release
 	COLLECTD_TAG ?= collectd-5.8
+	SAMPLE_CONF_VARIANT_NAME = collectd_sample_configs
+else
+# 'master' and 'experimental' collectd flavors are both using
+# code from master branch
+	COLLECTD_TAG ?= master
+	SAMPLE_CONF_VARIANT_NAME = collectd_sample_configs-master
+ifeq ($(COLLECTD_FLAVOR), experimental)
+# 'experimental' flavor is using additional Pull Requests that
+# are put on top of master release
+	COLLECTD_USE_EXPERIMENTAL_PR ?= y
+endif #end of experimental-branch handling
 endif
 
 COLLECTD_OPENSTACK_URL ?= https://github.com/openstack/collectd-openstack-plugins
