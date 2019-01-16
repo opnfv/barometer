@@ -274,7 +274,7 @@ def test_csv_handles_plugin_data(
     return True
 
 
-def test_localagent_server_set_collectd(compute, file, logger, client):
+def test_dma_server_set_collectd(compute, file, logger, client):
     with open(file, mode='w') as f:
         f.write('# dummy conf\n')
     res = client.set(file)
