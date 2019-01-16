@@ -16,7 +16,7 @@
 
 package common
 
-// redisLabel is prefix of local-agent for redis
+// redisLabel is prefix of DMA for redis
 const redisLabel = "barometer-dma"
 
 // Pool is an interface of DB pool to annotate.

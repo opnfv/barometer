@@ -25,7 +25,7 @@ import time
 import logging
 import config_server
 import tests
-import local_agent
+import dma
 from distutils import version
 from opnfv.deployment import factory
 
@@ -878,8 +878,8 @@ def main(bt_logger=None):
         else:
             pass
 
-    _print_label('Testing LocalAgent on compute nodes')
-    res_agent = local_agent.local_agent_main(logger, conf, computes)
+    _print_label('Testing DMA on compute nodes')
+    res_agent = dma.dma_main(logger, conf, computes)
 
     return 0 if res_overall == 0 and res_agent == 0 else 1
 
