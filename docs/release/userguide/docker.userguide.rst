@@ -181,6 +181,7 @@ To install Ansible 2.6.3 on Centos:
     $ sudo yum install epel-release
     $ sudo yum install python-pip
     $ sudo -H pip install 'ansible==2.6.3'
+    $ sudo yum install git
 
 Clone barometer repo
 ^^^^^^^^^^^^^^^^^^^^
