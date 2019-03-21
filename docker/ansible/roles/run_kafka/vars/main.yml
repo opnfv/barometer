@@ -14,6 +14,6 @@
 ---
 
 zookeeper_hostname: zookeeper
-zookeeper_host_ip: localhost
+zookeeper_host_ip: 127.0.0.1
 
 broker_id: 0
