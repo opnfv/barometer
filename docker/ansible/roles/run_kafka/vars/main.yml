@@ -13,7 +13,7 @@
 # limitations under the License.
 ---
 
-zookeeper_hostname: zookeeper
-zookeeper_host_ip: 127.0.0.1
+zookeeper_hostname: "{{ (groups['zookeeper_hosts']|default({}))[0] | default('localhost') }}"
+zookeeper_host_ip: "{{ hostvars[zookeeper_hostname].ansible_default_ipv4.address }}"
 
-broker_id: 0
+broker_id: "0"

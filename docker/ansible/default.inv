@@ -25,6 +25,10 @@ insert_ipmi_modules=true
 [prometheus_hosts]
 #localhost
 
+[zookeeper_hosts]
+#NOTE: currently one zookeper host is supported
+#hostname
+
 [kafka_hosts]
 #hostname
 

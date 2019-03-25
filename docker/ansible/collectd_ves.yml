@@ -13,7 +13,7 @@
 # limitations under the License.
 ---
 
-- hosts: collectd_hosts kafka_hosts ves_hosts
+- hosts: collectd_hosts kafka_hosts ves_hosts zookeeper_hosts
   become: true
   become_user: root
   gather_facts: true
@@ -26,6 +26,12 @@
   roles:
       - config_files
       - run_collectd
+
+- hosts: zookeeper_hosts
+  become: true
+  become_user: root
+  roles:
+      - run_zookeeper
 
 - hosts: kafka_hosts
   become: true
