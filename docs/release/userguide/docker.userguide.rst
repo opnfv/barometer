@@ -219,15 +219,23 @@ Edit inventory file and add hosts: $barometer_dir/docker/ansible/default.inv
     [prometheus_hosts]
     #localhost
 
+    [zookeeper_hosts]
+    #NOTE: currently one zookeeper host is supported
+    #hostname
+
     [kafka_hosts]
-    #localhost
+    #hostname
 
     [ves_hosts]
-    #localhost
+    #hostname
 
 Change localhost to different hosts where neccessary.
 Hosts for influxdb and grafana are required only for collectd_service.yml.
-Hosts for kafka and ves are required only for collectd_ves.yml.
+Hosts for zookeeper, kafka and ves are required only for collectd_ves.yml.
+
+.. note::
+   Zookeeper, Kafka and VES need to be on the same host, there is no
+   support for multi node setup.
 
 To change host for kafka edit kafka_ip_addr in ./roles/config_files/vars/main.yml.
 
@@ -247,10 +255,9 @@ and insert_ipmi_modules, both variables are independent:
     insert_ipmi_modules=false
 
 .. note::
-   On Ubuntu 18.04 to use mcelog plugin the user has to install mcelog daemon
-   manually ahead of installing from ansible scripts as the deb package is not
-   available in official Ubuntu 18.04 repo. It means that setting install_mcelog
-   to true is ignored.
+   On Ubuntu 18.04 the deb package for mcelog daemon is not available in official
+   Ubuntu repository. In that case ansible scripts will try to download, make and
+   install the daemon from mcelog git repository.
 
 Configure ssh keys
 ^^^^^^^^^^^^^^^^^^
@@ -319,26 +326,23 @@ restart collectd:
 
     $ sudo docker restart bar-collectd
 
-Download collectd+kafka+ves containers
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Before running Kafka an instance of zookeeper is required. See `Run Kafka docker image`_ for notes on how to run it.
-The 'zookeeper_hostname' and 'broker_id' can be set in ./roles/run_kafka/vars/main.yml.
+Download and run collectd+kafka+ves containers
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code:: bash
 
     $ sudo ansible-playbook -i default.inv collectd_ves.yml
 
-Check the three containers are running, the output of docker ps should be similar to:
+Check the containers are running, the output of docker ps should be similar to:
 
 .. code:: bash
 
     $ sudo docker ps
     CONTAINER ID        IMAGE                      COMMAND                  CREATED             STATUS                     PORTS               NAMES
-    8b095ad94ea1        zookeeper:3.4.11           "/docker-entrypoin..."   7 minutes ago       Up 7 minutes                                   awesome_jennings
-    eb8bba3c0b76        opnfv/barometer-ves        "./start_ves_app.s..."   21 minutes ago      Up 6 minutes                                   bar-ves
-    86702a96a68c        opnfv/barometer-kafka      "/src/start_kafka.sh"    21 minutes ago      Up 6 minutes                                   bar-kafka
-    daeeb68ad1d5        opnfv/barometer-collectd   "/run_collectd.sh ..."   13 days ago         Up 6 minutes                                   bar-collectd
+    29035be2dab5        zookeeper:3.4.11           "/docker-entrypoint._"   7 minutes ago       Up 7 minutes                                   bar-zookeeper
+    eb8bba3c0b76        opnfv/barometer-ves        "./start_ves_app.s..."   6 minutes ago       Up 6 minutes                                   bar-ves
+    86702a96a68c        opnfv/barometer-kafka      "/src/start_kafka.sh"    6 minutes ago       Up 6 minutes                                   bar-kafka
+    daeeb68ad1d5        opnfv/barometer-collectd   "/run_collectd.sh ..."   6 minutes ago       Up 6 minutes                                   bar-collectd
 
 
 To make some changes when a container is running run:

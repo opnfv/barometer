@@ -26,7 +26,7 @@ insert_ipmi_modules=true
 #localhost
 
 [zookeeper_hosts]
-#NOTE: currently one zookeper host is supported
+#NOTE: currently one zookeeper host is supported
 #hostname
 
 [kafka_hosts]
