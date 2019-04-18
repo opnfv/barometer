@@ -1,0 +1,397 @@
+# Copyright 2019 OPNFV
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+LoadPlugin snmp_agent
+
+<Plugin snmp_agent>
+# Intel PMU MIB
+  <Table "pmuTable">
+    IndexOID "INTEL-PMU-MIB::pmuGroupIndex"
+    <Data "pmuGroupDescr">
+      <IndexKey>
+        Source "PluginInstance"
+      </IndexKey>
+      Plugin "intel_pmu"
+      OIDs "INTEL-PMU-MIB::pmuGroupDescr"
+    </Data>
+    <Data "pmuL1DCacheLoads">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "L1-dcache-loads"
+      OIDs "INTEL-PMU-MIB::pmuL1DCacheLoads"
+    </Data>
+    <Data "pmuL1DCacheLoadMisses">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "L1-dcache-load-misses"
+      OIDs "INTEL-PMU-MIB::pmuL1DCacheLoadMisses"
+    </Data>
+    <Data "pmuL1DCacheStores">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "L1-dcache-stores"
+      OIDs "INTEL-PMU-MIB::pmuL1DCacheStores"
+    </Data>
+    <Data "pmuL1DCacheStoreMisses">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "L1-dcache-store-misses"
+      OIDs "INTEL-PMU-MIB::pmuL1DCacheStoreMisses"
+    </Data>
+    <Data "pmuL1DCachePrefetches">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "L1-dcache-prefetches"
+      OIDs "INTEL-PMU-MIB::pmuL1DCachePrefetches"
+    </Data>
+    <Data "pmuL1DCachePrefetchMisses">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "L1-dcache-prefetch-misses"
+      OIDs "INTEL-PMU-MIB::pmuL1DCachePrefetchMisses"
+    </Data>
+    <Data "pmuL1ICacheLoads">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "L1-icache-loads"
+      OIDs "INTEL-PMU-MIB::pmuL1ICacheLoads"
+    </Data>
+    <Data "pmuL1ICacheLoadMisses">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "L1-icache-load-misses"
+      OIDs "INTEL-PMU-MIB::pmuL1ICacheLoadMisses"
+    </Data>
+    <Data "pmuL1ICachePrefetches">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "L1-icache-prefetches"
+      OIDs "INTEL-PMU-MIB::pmuL1ICachePrefetches"
+    </Data>
+    <Data "pmuL1ICachePrefetchMisses">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "L1-icache-prefetch-misses"
+      OIDs "INTEL-PMU-MIB::pmuL1ICachePrefetchMisses"
+    </Data>
+    <Data "pmuLLCLoads">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "LLC-loads"
+      OIDs "INTEL-PMU-MIB::pmuLLCLoads"
+    </Data>
+    <Data "pmuLLCLoadMisses">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "LLC-load-misses"
+      OIDs "INTEL-PMU-MIB::pmuLLCLoadMisses"
+    </Data>
+    <Data "pmuLLCStores">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "LLC-stores"
+      OIDs "INTEL-PMU-MIB::pmuLLCStores"
+    </Data>
+    <Data "pmuLLCStoreMisses">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "LLC-store-misses"
+      OIDs "INTEL-PMU-MIB::pmuLLCStoreMisses"
+    </Data>
+    <Data "pmuLLCPrefetches">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "LLC-prefetches"
+      OIDs "INTEL-PMU-MIB::pmuLLCPrefetches"
+    </Data>
+    <Data "pmuLLCPrefetchMisses">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "LLC-prefetch-misses"
+      OIDs "INTEL-PMU-MIB::pmuLLCPrefetchMisses"
+    </Data>
+    <Data "pmuDTLBLoads">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "dTLB-loads"
+      OIDs "INTEL-PMU-MIB::pmuDTLBLoads"
+    </Data>
+    <Data "pmuDTLBLoadMisses">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "dTLB-load-misses"
+      OIDs "INTEL-PMU-MIB::pmuDTLBLoadMisses"
+    </Data>
+    <Data "pmuDTLBStores">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "dTLB-stores"
+      OIDs "INTEL-PMU-MIB::pmuDTLBStores"
+    </Data>
+    <Data "pmuDTLBStoreMisses">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "dTLB-store-misses"
+      OIDs "INTEL-PMU-MIB::pmuDTLBStoreMisses"
+    </Data>
+    <Data "pmuDTLBPrefetches">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "dTLB-prefetches"
+      OIDs "INTEL-PMU-MIB::pmuDTLBPrefetches"
+    </Data>
+    <Data "pmuDTLBPrefetchMisses">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "dTLB-prefetch-misses"
+      OIDs "INTEL-PMU-MIB::pmuDTLBPrefetchMisses"
+    </Data>
+    <Data "pmuITLBLoads">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "iTLB-loads"
+      OIDs "INTEL-PMU-MIB::pmuITLBLoads"
+    </Data>
+    <Data "pmuITLBLoadMisses">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "iTLB-load-misses"
+      OIDs "INTEL-PMU-MIB::pmuITLBLoadMisses"
+    </Data>
+    <Data "pmuBranchLoads">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "branch-loads"
+      OIDs "INTEL-PMU-MIB::pmuBranchLoads"
+    </Data>
+    <Data "pmuBranchLoadMisses">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "branch-load-misses"
+      OIDs "INTEL-PMU-MIB::pmuBranchLoadMisses"
+    </Data>
+    <Data "pmuCpuCycles">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "cpu-cycles"
+      OIDs "INTEL-PMU-MIB::pmuCpuCycles"
+    </Data>
+    <Data "pmuInstructions">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "instructions"
+      OIDs "INTEL-PMU-MIB::pmuInstructions"
+    </Data>
+    <Data "pmuCacheReferences">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "cache-references"
+      OIDs "INTEL-PMU-MIB::pmuCacheReferences"
+    </Data>
+    <Data "pmuCacheMisses">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "cache-misses"
+      OIDs "INTEL-PMU-MIB::pmuCacheMisses"
+    </Data>
+    <Data "pmuBranches">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "branches"
+      OIDs "INTEL-PMU-MIB::pmuBranches"
+    </Data>
+    <Data "pmuBranchMisses">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "branch-misses"
+      OIDs "INTEL-PMU-MIB::pmuBranchMisses"
+    </Data>
+    <Data "pmuBusCycles">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "bus-cycles"
+      OIDs "INTEL-PMU-MIB::pmuBusCycles"
+    </Data>
+    <Data "pmuCpuClock">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "cpu-clock"
+      OIDs "INTEL-PMU-MIB::pmuCpuClock"
+    </Data>
+    <Data "pmuTaskClock">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "task-clock"
+      OIDs "INTEL-PMU-MIB::pmuTaskClock"
+    </Data>
+    <Data "pmuContextSwitches">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "context-switches"
+      OIDs "INTEL-PMU-MIB::pmuContextSwitches"
+    </Data>
+    <Data "pmuCpuMigrations">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "cpu-migrations"
+      OIDs "INTEL-PMU-MIB::pmuCpuMigrations"
+    </Data>
+    <Data "pmuPageFaults">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "page-faults"
+      OIDs "INTEL-PMU-MIB::pmuPageFaults"
+    </Data>
+    <Data "pmuMinorFaults">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "minor-faults"
+      OIDs "INTEL-PMU-MIB::pmuMinorFaults"
+    </Data>
+    <Data "pmuMajorFaults">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "major-faults"
+      OIDs "INTEL-PMU-MIB::pmuMajorFaults"
+    </Data>
+    <Data "pmuAlignmentFaults">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "alignment-faults"
+      OIDs "INTEL-PMU-MIB::pmuAlignmentFaults"
+    </Data>
+    <Data "pmuEmulationFaults">
+      Plugin "intel_pmu"
+      Type "counter"
+      TypeInstance "emulation-faults"
+      OIDs "INTEL-PMU-MIB::pmuEmulationFaults"
+    </Data>
+  </Table>
+# Intel RDT MIB
+  <Table "rdtTable">
+    IndexOID "INTEL-RDT-MIB::rdtGroupIndex"
+    SizeOID "INTEL-RDT-MIB::rdtGroupNumber"
+    <Data "rdtGroupDescr">
+      <IndexKey>
+        Source "PluginInstance"
+      </IndexKey>
+      Plugin "intel_rdt"
+      OIDs "INTEL-RDT-MIB::rdtGroupDescr"
+    </Data>
+    <Data "rdtLlc">
+      Plugin "intel_rdt"
+      Type "bytes"
+      TypeInstance "llc"
+      OIDs "INTEL-RDT-MIB::rdtLlc"
+    </Data>
+    <Data "rdtIpc">
+      Plugin "intel_rdt"
+      Type "ipc"
+      OIDs "INTEL-RDT-MIB::rdtIpc"
+    </Data>
+    <Data "rdtMbmRemote">
+      Plugin "intel_rdt"
+      Type "memory_bandwidth"
+      TypeInstance "remote"
+      OIDs "INTEL-RDT-MIB::rdtMbmRemote"
+    </Data>
+    <Data "rdtMbmLocal">
+      Plugin "intel_rdt"
+      Type "memory_bandwidth"
+      TypeInstance "local"
+      OIDs "INTEL-RDT-MIB::rdtMbmLocal"
+    </Data>
+  </Table>
+# Intel Mcelog MIB
+  <Table "mcelogTable">
+    IndexOID "INTEL-MCELOG-MIB::memoryGroupIndex"
+    <Data "memoryGroupDescr">
+      <IndexKey>
+        Source "PluginInstance"
+      </IndexKey>
+      Plugin "mcelog"
+      OIDs "INTEL-MCELOG-MIB::memoryGroupDescr"
+    </Data>
+    <Data "memoryCorrectedErrors">
+      Plugin "mcelog"
+      Type "errors"
+      TypeInstance "corrected_memory_errors"
+      OIDs "INTEL-MCELOG-MIB::memoryCorrectedErrors"
+    </Data>
+    <Data "memoryCorrectedTimedErrors">
+      Plugin "mcelog"
+      Type "errors"
+      TypeInstance "corrected_memory_errors_in_24h"
+      OIDs "INTEL-MCELOG-MIB::memoryCorrectedTimedErrors"
+    </Data>
+    <Data "memoryUncorrectedErrors">
+      Plugin "mcelog"
+      Type "errors"
+      TypeInstance "uncorrected_memory_errors"
+      OIDs "INTEL-MCELOG-MIB::memoryUncorrectedErrors"
+    </Data>
+    <Data "memoryUncorrectedTimedErrors">
+      Plugin "mcelog"
+      Type "errors"
+      TypeInstance "uncorrected_memory_errors_in_24h"
+      OIDs "INTEL-MCELOG-MIB::memoryUncorrectedTimedErrors"
+    </Data>
+  </Table>
+# Hugepages
+  <Table "hugepagesTable">
+    <Data "hugepagesNode">
+      <IndexKey>
+        Source "PluginInstance"
+      </IndexKey>
+      Plugin "hugepages"
+      OIDs "INTEL-HUGEPAGES-MIB::hugepagesNode"
+    </Data>
+    <Data "hugepagesMemoryFree">
+      Plugin "hugepages"
+      Type "memory"
+      TypeInstance "free"
+      OIDs "INTEL-HUGEPAGES-MIB::hugepagesMemoryFree"
+    </Data>
+    <Data "hugepagesMemoryUsed">
+      Plugin "hugepages"
+      Type "memory"
+      TypeInstance "used"
+      OIDs "INTEL-HUGEPAGES-MIB::hugepagesMemoryUsed"
+    </Data>
+    <Data "hugepagesPagesFree">
+      Plugin "hugepages"
+      Type "vmpage_number"
+      TypeInstance "free"
+      OIDs "INTEL-HUGEPAGES-MIB::hugepagesPagesFree"
+    </Data>
+    <Data "hugepagesPagesUsed">
+      Plugin "hugepages"
+      Type "vmpage_number"
+      TypeInstance "used"
+      OIDs "INTEL-HUGEPAGES-MIB::hugepagesPagesUsed"
+    </Data>
+    <Data "hugepagesPercentFree">
+      Plugin "hugepages"
+      Type "percent"
+      TypeInstance "free"
+      OIDs "INTEL-HUGEPAGES-MIB::hugepagesPercentFree"
+    </Data>
+    <Data "hugepagesPercentUsed">
+      Plugin "hugepages"
+      Type "percent"
+      TypeInstance "used"
+      OIDs "INTEL-HUGEPAGES-MIB::hugepagesPercentUsed"
+    </Data>
+  </Table>
+</Plugin>

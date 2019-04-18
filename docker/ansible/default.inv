@@ -13,6 +13,9 @@ localhost
 [collectd_hosts:vars]
 install_mcelog=true
 insert_ipmi_modules=true
+#to use master or experimental container set the collectd flavor below
+#possible values: stable|master|experimental
+flavor=stable
 
 [influxdb_hosts]
 #hostname or ip must be used.

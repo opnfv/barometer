@@ -50,6 +50,9 @@
 - name: enable logfile plugin
   import_tasks: logfile.yml
 
+- name: enable logparser plugin
+  import_tasks: logparser.yml
+
 - name: enable mcelog plugin
   import_tasks: mcelog.yml
 

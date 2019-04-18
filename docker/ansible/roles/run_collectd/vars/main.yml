@@ -13,18 +13,8 @@
 # limitations under the License.
 ---
 
-- name: enable snmp agent
-  template:
-    src: snmp_agent.conf.j2
-    dest: "{{ config_file_dir }}/snmp_agent.conf"
-  when: flavor|default('stable')|string == 'stable'
-  tags:
-    - snmp
-
-- name: enable snmp agent for master container
-  template:
-    src: master/snmp_agent.conf.j2
-    dest: "{{ config_file_dir }}/snmp_agent.conf"
-  when: flavor|default('stable')|string != 'stable'
-  tags:
-    - snmp
+default_flavor: "{{ flavor|default('stable')|string }}"
+flavor_image_name: "{{ 'barometer-collectd-master' if (default_flavor == 'master') else
+                        'barometer-collectd-experimental' if (default_flavor == 'experimental')
+                        else 'barometer-collectd' }}"
+collectd_image_name: "{{ 'opnfv/' + flavor_image_name }}"

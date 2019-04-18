@@ -24,7 +24,7 @@
 
 - name: Remove bar-collectd image
   docker_image:
-    name: opnfv/barometer-collectd
+    name: "{{ collectd_image_name }}"
     state: absent
   tags:
     - rm_images
@@ -34,7 +34,7 @@
 - name: launch collectd container
   docker_container:
     name: bar-collectd
-    image: opnfv/barometer-collectd
+    image: "{{ collectd_image_name }}"
     volumes:
        - /opt/collectd/etc/collectd.conf.d/:/opt/collectd/etc/collectd.conf.d
        - /var/run:/var/run
