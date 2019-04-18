@@ -1,4 +1,4 @@
-#Copyright 2018-2019 OPNFV and Intel Corporation
+#Copyright 2019 OPNFV and Intel Corporation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,18 +13,11 @@
 # limitations under the License.
 ---
 
-- name: enable snmp agent
+- name: enable logparser plugin
   template:
-    src: snmp_agent.conf.j2
-    dest: "{{ config_file_dir }}/snmp_agent.conf"
-  when: flavor|default('stable')|string == 'stable'
+    src: experimental/logparser.conf.j2
+    dest: "{{ config_file_dir }}/logparser.conf"
+  when: flavor|default('stable')|string == 'experimental'
   tags:
-    - snmp
+    - logparser
 
-- name: enable snmp agent for master container
-  template:
-    src: master/snmp_agent.conf.j2
-    dest: "{{ config_file_dir }}/snmp_agent.conf"
-  when: flavor|default('stable')|string != 'stable'
-  tags:
-    - snmp
