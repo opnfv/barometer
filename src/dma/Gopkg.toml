@@ -28,7 +28,7 @@ ignored = ["golang.org/x/sys/unix"]
 
 [[constraint]]
   name = "github.com/BurntSushi/toml"
-  version = "0.3.0"
+  version = "0.3.1"
 
 [[constraint]]
   name = "github.com/go-redis/redis"
