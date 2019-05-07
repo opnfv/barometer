@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d3d029de_04fd0fa7",
+        "filename": "docker/barometer-collectd-experimental/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2019-05-07T15:45:19Z",
+      "side": 1,
+      "message": "This seems to be unnecessary.",
+      "revId": "48bd4b945262edf8558abd9c0dacdd18fe8ef84b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
