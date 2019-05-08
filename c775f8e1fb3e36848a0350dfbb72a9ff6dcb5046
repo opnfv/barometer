@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b715476_d99991d8",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2019-05-08T11:53:09Z",
+      "side": 1,
+      "message": "Typo?",
+      "revId": "c775f8e1fb3e36848a0350dfbb72a9ff6dcb5046",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
