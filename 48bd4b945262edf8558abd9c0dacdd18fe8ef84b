@@ -16,6 +16,24 @@
       "revId": "48bd4b945262edf8558abd9c0dacdd18fe8ef84b",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a91d329a_5e7e29de",
+        "filename": "docker/barometer-collectd-experimental/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2019-05-08T07:42:24Z",
+      "side": 1,
+      "message": "please explain?",
+      "parentUuid": "d3d029de_04fd0fa7",
+      "revId": "48bd4b945262edf8558abd9c0dacdd18fe8ef84b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
