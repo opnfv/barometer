@@ -39,11 +39,6 @@ ifeq ($(XDG_CACHE_HOME_DIR),)
 XDG_CACHE_HOME_DIR = $(shell echo $$HOME)
 endif
 
-SAMPLE_CONF_VARIANT_NAME = collectd_sample_configs
-ifdef COLLECTD_USE_MASTER
-SAMPLE_CONF_VARIANT_NAME = collectd_sample_configs-master
-endif
-
 CONFIG_CMD += --enable-syslog
 CONFIG_CMD += --enable-logfile
 CONFIG_CMD += --with-libpqos=$(LIBPQOS_DIR)
@@ -73,8 +68,6 @@ config $(WORK_DIR)/Makefile: $(WORK_DIR)/configure
 	@echo "Configure done"
 
 force_make: $(WORK_DIR)/Makefile
-	$(AT)cd $(WORK_DIR) && git pull $(COLLECTD_URL) $(COLLECTD_TAG)
-	@echo "git pull done"
 	$(AT) $(MAKE) -C $(WORK_DIR) $(MORE_MAKE_FLAGS)
 	@echo "Make done"
 
@@ -117,12 +110,10 @@ sanity:
 
 .PHONY: boot
 # boot collectd is the process to produce the script 'configure'
-boot $(WORK_DIR)/configure:
+boot $(WORK_DIR)/configure: $(TAG_DONE_FLAG)
 	@echo "booting up collectd"
 	$(AT)cd $(WORK_DIR); $(BUILD_CMD)
 	@echo "done booting collectd"
-
-boot $(WORK_DIR)/configure: $(TAG_DONE_FLAG)
 
 $(WORK_DIR):
 	$(AT)git clone $(COLLECTD_URL)
@@ -132,5 +123,9 @@ $(TAG_DONE_FLAG): $(WORK_DIR)
 	$(AT)cd collectd; git checkout $(COLLECTD_TAG)
 ifneq ($(PATCH_FILE),)
 	$(AT)cd $(WORK_DIR); patch -p1 < ../$(PATCH_FILE)
+endif
+ifeq ($(COLLECTD_USE_EXPERIMENTAL_PR), y)
+	@echo "Applying experimental pull requests"
+	$(AT)cd $(WORK_DIR); ../collectd_apply_pull_request.sh
 endif
 	$(AT)touch $@
