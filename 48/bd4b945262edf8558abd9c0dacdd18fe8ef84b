@@ -1,0 +1,7 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+2: Matthias Runge <mrunge@redhat.com>
+Submitted-by: Matthias Runge <mrunge@redhat.com>
+Submitted-at: Wed, 08 May 2019 11:55:38 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/67787
+Project: barometer
+Branch: refs/heads/master
