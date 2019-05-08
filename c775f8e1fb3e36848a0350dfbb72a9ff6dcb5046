@@ -16,6 +16,24 @@
       "revId": "c775f8e1fb3e36848a0350dfbb72a9ff6dcb5046",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3785c5df_761147f1",
+        "filename": "docs/release/userguide/docker.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2019-05-08T13:06:06Z",
+      "side": 1,
+      "message": "Good catch, fixed.",
+      "parentUuid": "8b715476_d99991d8",
+      "revId": "c775f8e1fb3e36848a0350dfbb72a9ff6dcb5046",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
