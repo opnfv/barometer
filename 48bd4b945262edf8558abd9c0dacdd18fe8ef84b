@@ -52,6 +52,24 @@
       "revId": "48bd4b945262edf8558abd9c0dacdd18fe8ef84b",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "68283716_46086bb7",
+        "filename": "docker/barometer-collectd-experimental/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7085
+      },
+      "writtenOn": "2019-05-08T07:49:39Z",
+      "side": 1,
+      "message": "Sometimes we need to run exec scripts as root.\nWe do this by placing sudo whiten the script that exec executes.",
+      "parentUuid": "053e0e19_ba6911ab",
+      "revId": "48bd4b945262edf8558abd9c0dacdd18fe8ef84b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
