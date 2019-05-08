@@ -34,6 +34,24 @@
       "revId": "48bd4b945262edf8558abd9c0dacdd18fe8ef84b",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "053e0e19_ba6911ab",
+        "filename": "docker/barometer-collectd-experimental/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2019-05-08T07:45:06Z",
+      "side": 1,
+      "message": "I couldn\u0027t find where sudo is used here.",
+      "parentUuid": "a91d329a_5e7e29de",
+      "revId": "48bd4b945262edf8558abd9c0dacdd18fe8ef84b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
