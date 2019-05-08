@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "77fbeff5_7a1d224a",
+        "filename": "docker/ansible/roles/config_files/tasks/snmp_agent.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2019-05-08T13:00:03Z",
+      "side": 1,
+      "message": "OK, done",
+      "parentUuid": "ac83d29f_a59f82ca",
+      "range": {
+        "startLine": 1,
+        "startChar": 11,
+        "endLine": 1,
+        "endChar": 15
+      },
+      "revId": "f707f79130d34aebc5f311f67c6323a4934c4d2f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "617e4365_fd440a38",
         "filename": "docker/ansible/roles/run_collectd/tasks/main.yml",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2019-05-08T07:54:56Z",
       "side": 1,
       "message": "nit: 2018-2019",
+      "range": {
+        "startLine": 1,
+        "startChar": 11,
+        "endLine": 1,
+        "endChar": 15
+      },
+      "revId": "f707f79130d34aebc5f311f67c6323a4934c4d2f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97867048_ffdfe6d2",
+        "filename": "docker/ansible/roles/run_collectd/tasks/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2019-05-08T13:00:03Z",
+      "side": 1,
+      "message": "OK, done",
+      "parentUuid": "617e4365_fd440a38",
       "range": {
         "startLine": 1,
         "startChar": 11,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "b008a78f_bae0ca10",
+        "filename": "docker/ansible/roles/run_collectd/vars/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2019-05-08T13:00:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cfa54b58_03fe8e94",
+      "range": {
+        "startLine": 17,
+        "startChar": 80,
+        "endLine": 17,
+        "endChar": 87
+      },
+      "revId": "f707f79130d34aebc5f311f67c6323a4934c4d2f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5115eec4_b38ff8a9",
         "filename": "docker/ansible/roles/run_collectd/vars/main.yml",
         "patchSetId": 1
@@ -82,6 +154,30 @@
       "writtenOn": "2019-05-08T07:54:56Z",
       "side": 1,
       "message": "nit: can we keep thus under 80 char?",
+      "range": {
+        "startLine": 18,
+        "startChar": 80,
+        "endLine": 18,
+        "endChar": 95
+      },
+      "revId": "f707f79130d34aebc5f311f67c6323a4934c4d2f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "87564c54_204b50f2",
+        "filename": "docker/ansible/roles/run_collectd/vars/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2019-05-08T13:00:03Z",
+      "side": 1,
+      "message": "Yes, reformatted",
+      "parentUuid": "5115eec4_b38ff8a9",
       "range": {
         "startLine": 18,
         "startChar": 80,
