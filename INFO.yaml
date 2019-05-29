@@ -24,12 +24,12 @@ realtime_discussion:
     channel: '#opnfv-barometer'
 meetings:
     - type: 'gotomeeting+irc'
-      agenda:  # eg: 'https://wiki.opnfv.org/display/'
-      url:  # eg: 'https://global.gotomeeting.com/join/819733085'
+      agenda:  'https://wiki.opnfv.org/display/fastpath/Meetings'
+      url:  'https://zoom.us/j/5014627785'
       server: 'freenode.net'
       channel: '#opnfv-meeting'
       repeats: 'weekly'
-      time:  # eg: '16:00 UTC'
+      time:  'Tuesdays, 16:00 UTC'
 repositories:
     - 'barometer'
     - 'puppet-barometer'
@@ -55,6 +55,10 @@ committers:
       email: 'aasmith@redhat.com'
       company: 'redhat.com'
       id: 'TsaLaGi'
+    - name: 'Kamil Wiatrowski'
+      email: 'kamilx.wiatrowski@intel.com'
+      company: 'imtel.com'
+      id: ''
 tsc:
     # yamllint disable rule:line-length
     approval: ''
