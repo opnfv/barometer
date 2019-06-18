@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8577eaed_6b38e9ab",
+        "filename": "README.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1171
+      },
+      "writtenOn": "2019-06-18T22:16:23Z",
+      "side": 1,
+      "message": "Could we add REST too just to people who are new would understand it supports modern interfaces?",
+      "revId": "973d98671bcef5f133c1aad35b66aafd48316498",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
