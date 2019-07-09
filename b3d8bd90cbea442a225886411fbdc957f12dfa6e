@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce37bdb8_f79ed4a1",
+        "filename": "README.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2019-07-09T15:23:42Z",
+      "side": 1,
+      "message": "You need to add the copyright notice, AFAIK:\n\n.. This work is licensed under a Creative Commons Attribution 4.0 International License.\n.. http://creativecommons.org/licenses/by/4.0\n.. (c) \u003coptionally add copywriters name\u003e",
+      "revId": "b3d8bd90cbea442a225886411fbdc957f12dfa6e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
