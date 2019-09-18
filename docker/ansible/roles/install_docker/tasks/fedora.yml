@@ -1,4 +1,4 @@
-#Copyright 2018 OPNFV and Intel Corporation
+#Copyright 2019 Red Hat
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,33 +13,30 @@
 # limitations under the License.
 ---
 
-- name: set Python interpreter
+- name: Set Python interpreter
   set_fact: ansible_python_interpreter=/usr/bin/python3
 
-- name: update package manager cache
-  tags:
-     - cache_update
+- name: install dependencies for docker
   package:
-     update_cache: yes
-
-- name: install python3
-  package:
-     name: python3
+     name: "{{ packages }}"
      state: present
+  vars:
+     packages:
+        - python3-dnf
+        - python3
+        - libselinux-python
 
-- name: install python3-pip
-  package:
-     name: python3-pip
-     state: present
+- name: set up docker repository
+  command: "dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo && dnf makecache"
 
 - name: install docker-py
-  pip:
-     name: docker-py
+  package:
+     name: python3-docker
      state: present
 
 - name: install docker
   package:
-     name: docker.io
+     name: docker-ce
      state: present
 
 - name: start docker daemon

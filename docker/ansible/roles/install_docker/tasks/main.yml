@@ -24,6 +24,12 @@
   import_tasks: ubuntu.yml
   when: ansible_distribution == "Ubuntu"
 
+- name: install docker for fedora
+  tags:
+    - install_docker
+  import_tasks: fedora.yml
+  when: ansible_distribution == "Fedora"
+
 - name: install docker for centos
   tags:
      - install_docker
