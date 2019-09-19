@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6f37bc6f_4ffb86a3",
+        "filename": "docker/ansible/roles/install_docker/tasks/fedora.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2019-09-19T11:22:28Z",
+      "side": 1,
+      "message": "fedora already carries docker, no need to add the repo.",
+      "revId": "c7909ad1d99c09d28b103f08bb8ebf548be8402a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4bb2a7b_5b43210a",
+        "filename": "docker/ansible/roles/install_docker/tasks/fedora.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2019-09-19T11:22:28Z",
+      "side": 1,
+      "message": "the dnf package is named python3-docker.",
+      "revId": "c7909ad1d99c09d28b103f08bb8ebf548be8402a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a709de08_b0e17469",
+        "filename": "docker/ansible/roles/install_docker/tasks/fedora.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2019-09-19T11:22:28Z",
+      "side": 1,
+      "message": "docker is the package name in fedora",
+      "revId": "c7909ad1d99c09d28b103f08bb8ebf548be8402a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
