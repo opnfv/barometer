@@ -10,3 +10,6 @@ build
 dist
 .tox
 docs/_build/*
+venv/
+.vscode
+.eggs
