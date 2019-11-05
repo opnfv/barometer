@@ -92,6 +92,7 @@ To install Ansible 2.6.3 on Ubuntu:
     $ sudo apt-get install python
     $ sudo apt-get install python-pip
     $ sudo -H pip install 'ansible==2.6.3'
+    $ sudo apt-get install git
 
 The following steps have been verified with Ansible 2.6.3 on Centos 7.5.
 To install Ansible 2.6.3 on Centos:
@@ -130,12 +131,17 @@ Edit inventory file and add hosts: $barometer_dir/docker/ansible/default.inv
     [collectd_hosts:vars]
     install_mcelog=true
     insert_ipmi_modules=true
+    #to use master or experimental container set the collectd flavor below
+    #possible values: stable|master|experimental
+    flavor=stable    
 
     [influxdb_hosts]
-    localhost
+    #hostname or ip must be used.
+    #using localhost will cause issues with collectd network plugin.
+    #hostname
 
     [grafana_hosts]
-    localhost
+    hostname
 
     [prometheus_hosts]
     #localhost
