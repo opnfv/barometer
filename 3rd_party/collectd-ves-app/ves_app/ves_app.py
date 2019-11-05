@@ -15,23 +15,17 @@
 import json
 import sys
 import base64
-import ConfigParser
+import configparser
 import logging
 import argparse
 
 from distutils.util import strtobool
 from kafka import KafkaConsumer
 
-from normalizer import Normalizer
-from normalizer import CollectdValue
+from .normalizer import Normalizer
+from .normalizer import CollectdValue
 
-try:
-    # For Python 3.0 and later
-    import urllib.request as url
-except ImportError:
-    # Fall back to Python 2's urllib2
-    import urllib2 as url
-
+import urllib.request as url
 
 class VESApp(Normalizer):
     """VES Application"""
@@ -110,7 +104,7 @@ class VESApp(Normalizer):
     def init(self, configfile, schema_file):
         if configfile is not None:
             # read VES configuration file if provided
-            config = ConfigParser.ConfigParser()
+            config = configparser.ConfigParser()
             config.optionxform = lambda option: option
             config.read(configfile)
             self.config(config)
