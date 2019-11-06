@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "26c5fe83_988e46be",
+        "filename": "docs/release/userguide/installguide.oneclick.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 7345
+      },
+      "writtenOn": "2019-11-06T09:32:05Z",
+      "side": 1,
+      "message": "please remove trailing whitespace",
+      "range": {
+        "startLine": 136,
+        "startChar": 17,
+        "endLine": 136,
+        "endChar": 21
+      },
+      "revId": "358c0dc0a3b1bcaa6edd893b66e85bf720ea29d5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6eeb06c7_9c929da2",
+        "filename": "docs/release/userguide/installguide.oneclick.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 7345
+      },
+      "writtenOn": "2019-11-06T09:32:05Z",
+      "side": 1,
+      "message": "1) please comment this out by default (to as pair with influxdb above)\n2) do i remember correctly, that grafana should be on same host as influxdb?\nif so, then maybe it would be good to add comment or note about that\nif it\u0027s not the case anymore, please ignore this comment",
+      "range": {
+        "startLine": 144,
+        "startChar": 4,
+        "endLine": 144,
+        "endChar": 12
+      },
+      "revId": "358c0dc0a3b1bcaa6edd893b66e85bf720ea29d5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
