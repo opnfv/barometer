@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a80172d1_ffaace81",
+        "filename": "docs/release/userguide/installguide.oneclick.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2019-11-07T11:32:01Z",
+      "side": 1,
+      "message": "please move this up, to match with influxdb hosts.",
+      "revId": "43c344aa531a98bc8adedf8001000ebed2af3021",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
