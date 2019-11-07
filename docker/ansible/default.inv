@@ -23,8 +23,8 @@ flavor=stable
 #hostname
 
 [grafana_hosts]
-#hostname
 #NOTE: As per current support, Grafana and Influxdb should be same host.
+#hostname
 
 [prometheus_hosts]
 #localhost
