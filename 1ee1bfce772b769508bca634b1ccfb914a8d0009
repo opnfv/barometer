@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2415d599_038a621b",
+        "filename": "src/package-list.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2019-11-11T08:29:03Z",
+      "side": 1,
+      "message": "this is the branch, not the tag",
+      "revId": "1ee1bfce772b769508bca634b1ccfb914a8d0009",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
