@@ -15,9 +15,13 @@
 import json
 import sys
 import base64
-import configparser
 import logging
 import argparse
+
+try:
+    import configparser
+except ImportError:
+    import ConfigParser as configparser
 
 from distutils.util import strtobool
 from kafka import KafkaConsumer
@@ -25,7 +29,12 @@ from kafka import KafkaConsumer
 from .normalizer import Normalizer
 from .normalizer import CollectdValue
 
-import urllib.request as url
+try:
+    # For Python 3.0 and later
+    import urllib.request as url
+except ImportError:
+    # Fall back to Python 2's urllib2
+    import urllib2 as url
 
 class VESApp(Normalizer):
     """VES Application"""
