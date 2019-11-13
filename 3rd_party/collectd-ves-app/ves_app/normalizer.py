@@ -17,7 +17,7 @@
 #   Volodymyr Mytnyk <volodymyrx.mytnyk@intel.com>
 #
 
-from . import yaml
+import yaml
 import logging
 import datetime
 import time
@@ -28,12 +28,15 @@ import re
 
 # import YAML loader
 try:
-    from .yaml import CLoader as Loader
+    from yaml import CLoader as Loader
 except ImportError:
-    from .yaml import Loader
+    from yaml import Loader
 
 # import synchronized queue
-import queue
+try:
+    import queue
+except ImportError:
+    import Queue as queue
 
 
 class Config(object):
