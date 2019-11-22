@@ -282,7 +282,7 @@ To make some changes when a container is running run:
 List of default plugins for collectd container
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. note::
-   The dpdk plugins dpdkevents and dpdkstat were tested with DPDK v16.11.
+   The dpdk plugins dpdkevents and dpdkstat were tested with DPDK v18.11.
 
 By default the collectd is started with default configuration which includes the followin plugins:
    * csv, contextswitch, cpu, cpufreq, df, disk, ethstat, ipc, irq, load, memory, numa, processes,
