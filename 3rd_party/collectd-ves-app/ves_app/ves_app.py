@@ -26,8 +26,8 @@ except ImportError:
 from distutils.util import strtobool
 from kafka import KafkaConsumer
 
-from .normalizer import Normalizer
-from .normalizer import CollectdValue
+from normalizer import Normalizer
+from normalizer import CollectdValue
 
 try:
     # For Python 3.0 and later
