@@ -368,7 +368,7 @@ REST resources are of the form::
     {ServerRoot}/eventListener/v{apiVersion}/{topicName}`
     {ServerRoot}/eventListener/v{apiVersion}/eventBatch`
 
-Within the VES directory (``3rd_party/collectd-ves-app/ves_app``) there is a
+Within the VES directory (``3rd_party/collectd-ves-app/ves_app/config``) there is a
 configuration file called ``ves_app_conf.conf``. The description of the
 configuration options are described below:
 
