@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "32256327_528e8bb8",
+        "filename": "docs/release/userguide/installguide.oneclick.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2019-11-25T13:20:17Z",
+      "side": 1,
+      "message": "dpdkstats\n\nI would like to keep them out of the list, since there is https://github.com/collectd/collectd/blob/master/docs/BUILD.dpdkstat.md\n\nIn short: you should not use it.",
+      "range": {
+        "startLine": 285,
+        "startChar": 43,
+        "endLine": 285,
+        "endChar": 44
+      },
+      "revId": "4fc25349916eca67d27dbf193fc69d1d0afecf3c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
