@@ -22,6 +22,30 @@
       "revId": "4fc25349916eca67d27dbf193fc69d1d0afecf3c",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "19bb2aad_a44d9767",
+        "filename": "docs/release/userguide/installguide.oneclick.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2019-11-26T12:25:36Z",
+      "side": 1,
+      "message": "Perhaps the note should link to this, state that there is an alternative dpdk telemetry plugin in the works, and mention both the tested versions for dpdk{stat,events}, if the user REALLY wants to use these plugins.",
+      "parentUuid": "32256327_528e8bb8",
+      "range": {
+        "startLine": 285,
+        "startChar": 43,
+        "endLine": 285,
+        "endChar": 44
+      },
+      "revId": "4fc25349916eca67d27dbf193fc69d1d0afecf3c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
