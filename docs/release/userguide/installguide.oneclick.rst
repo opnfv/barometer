@@ -191,6 +191,7 @@ Configure ssh keys
 ^^^^^^^^^^^^^^^^^^
 
 Generate ssh keys if not present, otherwise move onto next step.
+ssh keys are required for Ansible to connect the host you use for Barometer Installation.
 
 .. code:: bash
 
