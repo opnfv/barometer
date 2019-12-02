@@ -292,7 +292,7 @@ Clone Barometer repo and start the VES application:
 
     $ git clone https://gerrit.opnfv.org/gerrit/barometer
     $ cd barometer/3rd_party/collectd-ves-app/ves_app
-    $ nohup python ves_app.py --events-schema=host.yaml --config=ves_app_config.conf > ves_app.stdout.log &
+    $ nohup python ves_app.py --events-schema=yaml/host.yaml --config=config/ves_app_config.conf > ves_app.stdout.log &
 
 
 .. figure:: ves-app-host-mode.png
