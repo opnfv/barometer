@@ -4,11 +4,11 @@ project_creation_date: ''
 project_category: ''
 lifecycle_state: ''
 project_lead: &opnfv_barometer_ptl
-    name: 'Matthias Runge'
-    email: 'mrunge@redhat.com'
-    id: 'mrunge'
+    name: 'Emma Foley'
+    email: 'efoley@redhat.com'
+    id: 'efoley'
     company: 'redhat.com'
-    timezone: 'Europe/Berlin'
+    timezone: 'Europe/Dublin'
 primary_contact: *opnfv_barometer_ptl
 issue_tracking:
     type: 'jira'
@@ -55,6 +55,10 @@ committers:
       email: 'aasmith@redhat.com'
       company: 'redhat.com'
       id: 'TsaLaGi'
+    - name: 'Matthias Runge'
+      email: 'mrunge@redhat.com'
+      company: 'redhat.com'
+      id: 'mrunge'
 tsc:
     # yamllint disable rule:line-length
     approval: ''
