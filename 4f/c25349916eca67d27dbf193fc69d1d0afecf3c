@@ -1,0 +1,8 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+2: Matthias Runge <mrunge@redhat.com>
+Code-Review+2: Emma Foley <efoley@redhat.com>
+Submitted-by: Emma Foley <efoley@redhat.com>
+Submitted-at: Thu, 05 Dec 2019 13:00:23 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/c/barometer/+/68958
+Project: barometer
+Branch: refs/heads/master
