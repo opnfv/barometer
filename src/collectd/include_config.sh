@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright 2017 OPNFV
+# Copyright 2016-2019 OPNFV and Intel Corporation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,6 +15,9 @@
 
 # Config file options are changing between releases so we have to store both
 # configurations variants and choose correct one for target collectd version
+#
+# SPDX-License-Identifier: Apache-2.0
+#
 
 if [ -z "$1" ]; then
     echo "Error! Please sample configs variant name as a param!"\
