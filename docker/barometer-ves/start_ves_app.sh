@@ -24,4 +24,4 @@ fi
 #wait for kafka service to be available
 while ! nc $ves_kafka_host  9092  < /dev/null; do sleep 1;  done
 
-python ves_app.py --events-schema="./yaml/$YAML_FILE" --config="./config/ves_app_config.conf"
+python3 ves_app.py --events-schema="./yaml/$YAML_FILE" --config="./config/ves_app_config.conf"
