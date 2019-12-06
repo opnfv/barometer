@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright 2017 OPNFV
+# Copyright 2017-2019 Intel Corporation and OPNFV. All rights reserved. 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,4 +12,5 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 sudo python /usr/local/src/ovs_pmd_stats.py --socket-pid-file /var/run/openvswitch/ovs-vswitchd.pid

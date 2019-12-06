@@ -1,4 +1,4 @@
-# Copyright 2017 OPNFV
+# Copyright 2017-2019 Intel Corporation and OPNFV. All rights reserved. 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,6 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+
 curl -u admin:admin -X POST -H 'content-type: application/json'\
       http://127.0.0.1:3000/api/datasources -d \
       '{"name":"collectd","type":"influxdb","url":"http://localhost:8086","access":"proxy","isDefault":true,"database":"collectd","user":"admin","password":"admin","basicAuth":false}'

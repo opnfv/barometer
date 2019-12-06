@@ -1,5 +1,5 @@
 #! /bin/bash
-# Copyright 2019 OPNFV
+# Copyright 2019 Intel Corporation and OPNFV. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 
 # This files contains list of pull requests to be applied on top
 # of master branch before building collectd included in docker
