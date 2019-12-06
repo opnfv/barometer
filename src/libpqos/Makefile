@@ -40,7 +40,9 @@ INSTALL_TARGET = force_install force_make
 force_make: $(WORK_DIR)
 	$(AT)cd $(WORK_DIR) && git pull $(LIBPQOS_URL) $(LIBPQOS_TAG)
 	@echo "git pull done"
-	$(AT)$(MAKE) -C $(WORK_DIR) $(MORE_MAKE_FLAGS)
+	$(AT)$(MAKE) -C $(WORK_DIR)/lib $(MORE_MAKE_FLAGS)
+	$(AT)$(MAKE) -C $(WORK_DIR)/pqos $(MORE_MAKE_FLAGS)
+	$(AT)$(MAKE) -C $(WORK_DIR)/rdtset $(MORE_MAKE_FLAGS)
 	@echo "Make done"
 
 force_install:

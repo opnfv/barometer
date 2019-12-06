@@ -31,15 +31,30 @@
     - rm_collectd_image
   when: rm_images|default(false)|bool == true
 
-- name: launch collectd container
-  docker_container:
-    name: bar-collectd
-    image: "{{ collectd_image_name }}"
-    volumes:
+- name: check if /sys/fs/resctrl exist
+  stat:
+    path: /sys/fs/resctrl
+  register: resctrl_dir
+
+- name: set list of volumes to bind
+  set_fact:
+    volumes_list:
+
        - /opt/collectd/etc/collectd.conf.d/:/opt/collectd/etc/collectd.conf.d
        - /var/run:/var/run
        - /tmp:/tmp
        - /var/lib/collectd:/var/lib/collectd
+
+- name: add resctrl to container volumes
+  set_fact:
+    volumes_list: "{{ volumes_list + [ '/sys/fs/resctrl:/sys/fs/resctrl' ] }}"
+  when: resctrl_dir.stat.exists
+
+- name: launch collectd container
+  docker_container:
+    name: bar-collectd
+    image: "{{ collectd_image_name }}"
+    volumes: "{{ volumes_list }}"
     command: "/run_collectd.sh"
     detach: yes
     state: started
