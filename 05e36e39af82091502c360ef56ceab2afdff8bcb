@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e60c2fd_831c9b53",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2019-12-09T14:28:30Z",
+      "side": 1,
+      "message": "please break into new line at 80 character limit, or even better at 75 chars.",
+      "revId": "05e36e39af82091502c360ef56ceab2afdff8bcb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7ecaff_38813678",
+        "filename": "docs/release/userguide/installguide.docker.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2019-12-09T14:28:30Z",
+      "side": 1,
+      "message": ".. can be bound",
+      "revId": "05e36e39af82091502c360ef56ceab2afdff8bcb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "17272e40_82b14100",
+        "filename": "docs/release/userguide/installguide.docker.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2019-12-09T14:28:30Z",
+      "side": 1,
+      "message": "please remove the space/tab here.",
+      "revId": "05e36e39af82091502c360ef56ceab2afdff8bcb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "176e62ea_af4e98b9",
+        "filename": "docs/release/userguide/installguide.docker.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2019-12-09T14:28:30Z",
+      "side": 1,
+      "message": ".. can be bound...?",
+      "revId": "05e36e39af82091502c360ef56ceab2afdff8bcb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "54a9f86e_2f11d910",
+        "filename": "docs/release/userguide/installguide.docker.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2019-12-09T14:28:30Z",
+      "side": 1,
+      "message": "same here.",
+      "revId": "05e36e39af82091502c360ef56ceab2afdff8bcb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
