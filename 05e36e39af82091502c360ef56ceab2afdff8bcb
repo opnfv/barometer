@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fa748ac3_56af727c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2019-12-09T14:51:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e60c2fd_831c9b53",
+      "revId": "05e36e39af82091502c360ef56ceab2afdff8bcb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da7ecaff_38813678",
         "filename": "docs/release/userguide/installguide.docker.rst",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2019-12-09T14:28:30Z",
       "side": 1,
       "message": ".. can be bound",
+      "revId": "05e36e39af82091502c360ef56ceab2afdff8bcb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "131c13a8_20d33d3f",
+        "filename": "docs/release/userguide/installguide.docker.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2019-12-09T14:51:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da7ecaff_38813678",
       "revId": "05e36e39af82091502c360ef56ceab2afdff8bcb",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "488b4edb_883a40f4",
+        "filename": "docs/release/userguide/installguide.docker.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2019-12-09T14:51:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17272e40_82b14100",
+      "revId": "05e36e39af82091502c360ef56ceab2afdff8bcb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "176e62ea_af4e98b9",
         "filename": "docs/release/userguide/installguide.docker.rst",
         "patchSetId": 1
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "891d45bb_827c247c",
+        "filename": "docs/release/userguide/installguide.docker.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2019-12-09T14:51:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "176e62ea_af4e98b9",
+      "revId": "05e36e39af82091502c360ef56ceab2afdff8bcb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "54a9f86e_2f11d910",
         "filename": "docs/release/userguide/installguide.docker.rst",
         "patchSetId": 1
@@ -81,6 +153,24 @@
       "writtenOn": "2019-12-09T14:28:30Z",
       "side": 1,
       "message": "same here.",
+      "revId": "05e36e39af82091502c360ef56ceab2afdff8bcb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "219606f8_a01e9377",
+        "filename": "docs/release/userguide/installguide.docker.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2019-12-09T14:51:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54a9f86e_2f11d910",
       "revId": "05e36e39af82091502c360ef56ceab2afdff8bcb",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
