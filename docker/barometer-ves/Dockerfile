@@ -18,9 +18,9 @@ RUN yum update -y && \
                    git \
                    nc
 
-RUN yum install -y python-pip
-RUN pip install pyyaml \
-                kafka-python
+RUN yum install -y python3 python3-pip
+RUN pip3 install pyyaml \
+                 kafka-python
 
 
 ENV VES_DIR /opt/ves
