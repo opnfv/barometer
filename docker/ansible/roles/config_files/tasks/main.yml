@@ -29,6 +29,9 @@
   tags:
     - always
 
+- name: enable capabilities plugin
+  import_tasks: capabilities.yml
+
 - name: enable csv plugin
   import_tasks: csv.yml
 

@@ -25,6 +25,7 @@
 
 PULL_REQUESTS=(
     3045 #logparser
+    3292 #capabilities plugin
     #insert another PR ID here
               )
 
