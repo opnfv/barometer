@@ -1,0 +1,354 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "92b3fd10_ff60fced",
+        "filename": "3rd_party/collectd-ves-app/ves_app/ves_app.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2019-12-12T11:47:13Z",
+      "side": 1,
+      "message": "this should be 2017-2019",
+      "range": {
+        "startLine": 3,
+        "startChar": 19,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "568fe7b6eb145bf68fdb2919f72ffb2e5ff8e705",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "02bf05d7_9c46c17c",
+        "filename": "ci/utility/rpms_check.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2019-12-12T11:47:13Z",
+      "side": 1,
+      "message": "Most of the others have \"\u003cCompany\u003e and OPNFV. All rights reserved.\" please keep it consistent\n\nPlease see [1] for the correct format of the header \n\n[1]https://wiki.opnfv.org/display/DEV/Contribution+Guidelines",
+      "revId": "568fe7b6eb145bf68fdb2919f72ffb2e5ff8e705",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fbf4fd14_ac5894f7",
+        "filename": "ci/utility/rpms_check.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2019-12-12T11:47:13Z",
+      "side": 1,
+      "message": "Remove whitespace",
+      "range": {
+        "startLine": 3,
+        "startChar": 1,
+        "endLine": 3,
+        "endChar": 3
+      },
+      "revId": "568fe7b6eb145bf68fdb2919f72ffb2e5ff8e705",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a5ad0ea_ca0578a1",
+        "filename": "ci/utility/rpms_check.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2019-12-12T11:47:13Z",
+      "side": 1,
+      "message": "IINM, this is used to optional and replaces the URL in L8",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 37
+      },
+      "revId": "568fe7b6eb145bf68fdb2919f72ffb2e5ff8e705",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae21047b_e908a556",
+        "filename": "docker/ansible/roles/run_kafka/vars/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2019-12-12T11:47:13Z",
+      "side": 1,
+      "message": "nit: add a space after the #",
+      "revId": "568fe7b6eb145bf68fdb2919f72ffb2e5ff8e705",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "acadf85c_499c5966",
+        "filename": "docker/ansible/roles/run_prometheus/templates/prometheus.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2019-12-12T11:47:13Z",
+      "side": 1,
+      "message": "nit: space",
+      "revId": "568fe7b6eb145bf68fdb2919f72ffb2e5ff8e705",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9b09c628_b7c2a854",
+        "filename": "src/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2019-12-12T11:47:13Z",
+      "side": 1,
+      "message": "This can be changed to 2016-2019",
+      "range": {
+        "startLine": 4,
+        "startChar": 17,
+        "endLine": 4,
+        "endChar": 27
+      },
+      "revId": "568fe7b6eb145bf68fdb2919f72ffb2e5ff8e705",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ef4f380_2761b9d9",
+        "filename": "src/collectd-openstack-plugins/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2019-12-12T11:47:13Z",
+      "side": 1,
+      "message": "2015-2019",
+      "range": {
+        "startLine": 4,
+        "startChar": 12,
+        "endLine": 4,
+        "endChar": 28
+      },
+      "revId": "568fe7b6eb145bf68fdb2919f72ffb2e5ff8e705",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "66b8bdd9_f21f64fe",
+        "filename": "src/collectd/collectd_sample_configs-master/ovs_pmd_stats.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2019-12-12T11:47:13Z",
+      "side": 1,
+      "message": "this should be 2017-2019",
+      "range": {
+        "startLine": 2,
+        "startChar": 15,
+        "endLine": 2,
+        "endChar": 16
+      },
+      "revId": "568fe7b6eb145bf68fdb2919f72ffb2e5ff8e705",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "59399fe2_5795fb6d",
+        "filename": "src/collectd/collectd_sample_configs-master/write_notification.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2019-12-12T11:47:13Z",
+      "side": 1,
+      "message": "2017-2019",
+      "range": {
+        "startLine": 2,
+        "startChar": 12,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "568fe7b6eb145bf68fdb2919f72ffb2e5ff8e705",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "325002f5_2e8cdefc",
+        "filename": "src/collectd/collectd_sample_configs/ovs_pmd_stats.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2019-12-12T11:47:13Z",
+      "side": 1,
+      "message": "2017-2019",
+      "range": {
+        "startLine": 2,
+        "startChar": 12,
+        "endLine": 2,
+        "endChar": 27
+      },
+      "revId": "568fe7b6eb145bf68fdb2919f72ffb2e5ff8e705",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "77732116_5186fbda",
+        "filename": "src/collectd/collectd_sample_configs/write_notification.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2019-12-12T11:47:13Z",
+      "side": 1,
+      "message": "2017-2019",
+      "range": {
+        "startLine": 2,
+        "startChar": 12,
+        "endLine": 2,
+        "endChar": 28
+      },
+      "revId": "568fe7b6eb145bf68fdb2919f72ffb2e5ff8e705",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "315e97fc_8e3c440d",
+        "filename": "src/collectd/include_config.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2019-12-12T11:47:13Z",
+      "side": 1,
+      "message": "2017-2019",
+      "range": {
+        "startLine": 2,
+        "startChar": 15,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "568fe7b6eb145bf68fdb2919f72ffb2e5ff8e705",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a2c32efd_62e83fbd",
+        "filename": "src/collectd/ovs_pmd_stats_config.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2019-12-12T11:47:13Z",
+      "side": 1,
+      "message": "2017-2019",
+      "range": {
+        "startLine": 2,
+        "startChar": 12,
+        "endLine": 2,
+        "endChar": 27
+      },
+      "revId": "568fe7b6eb145bf68fdb2919f72ffb2e5ff8e705",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "75239572_45514565",
+        "filename": "src/collectd/snmp_mib_config.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2019-12-12T11:47:13Z",
+      "side": 1,
+      "message": "2017-2019",
+      "range": {
+        "startLine": 2,
+        "startChar": 12,
+        "endLine": 2,
+        "endChar": 28
+      },
+      "revId": "568fe7b6eb145bf68fdb2919f72ffb2e5ff8e705",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f27aadc_e56de6bb",
+        "filename": "src/pmu-tools/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2019-12-12T11:47:13Z",
+      "side": 1,
+      "message": "If this is optional, there is no need to add it, or to update this file at all. (Same for files that have similar changes) The license header/copyright years only need to be updated when there\u0027s a new change to the file",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 1
+      },
+      "revId": "568fe7b6eb145bf68fdb2919f72ffb2e5ff8e705",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
