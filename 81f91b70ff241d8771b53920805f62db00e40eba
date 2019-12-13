@@ -1,0 +1,225 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8a96a89e_ec9455fc",
+        "filename": "ci/utility/rpms_check.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2019-12-13T07:53:07Z",
+      "side": 1,
+      "message": "please remove the space at the end of the line.",
+      "revId": "81f91b70ff241d8771b53920805f62db00e40eba",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "37689c87_598a2155",
+        "filename": "docker/ansible/collectd_ves.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2019-12-13T07:53:07Z",
+      "side": 1,
+      "message": "space at the end...",
+      "revId": "81f91b70ff241d8771b53920805f62db00e40eba",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "682a1af7_e6e69d23",
+        "filename": "docker/ansible/roles/config_files/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2019-12-13T07:53:07Z",
+      "side": 1,
+      "message": "space",
+      "revId": "81f91b70ff241d8771b53920805f62db00e40eba",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c6076466_947cac22",
+        "filename": "docker/ansible/roles/config_files/tasks/make_mcelog.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2019-12-13T07:53:07Z",
+      "side": 1,
+      "message": "space",
+      "revId": "81f91b70ff241d8771b53920805f62db00e40eba",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d571358d_3d937779",
+        "filename": "docker/ansible/roles/run_kafka/vars/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2019-12-13T07:53:07Z",
+      "side": 1,
+      "message": "remove the space at the end",
+      "revId": "81f91b70ff241d8771b53920805f62db00e40eba",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0d5b4194_39e18a98",
+        "filename": "docker/ansible/roles/run_prometheus/templates/prometheus.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2019-12-13T07:53:07Z",
+      "side": 1,
+      "message": "same here.",
+      "revId": "81f91b70ff241d8771b53920805f62db00e40eba",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6f4be111_0d777a6e",
+        "filename": "docker/barometer-collectd-experimental/Dockerfile",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2019-12-13T07:53:07Z",
+      "side": 1,
+      "message": "and here",
+      "revId": "81f91b70ff241d8771b53920805f62db00e40eba",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5682defe_9f72cd8d",
+        "filename": "docker/barometer-collectd-experimental/experimental-configs/logparser.conf",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2019-12-13T07:53:07Z",
+      "side": 1,
+      "message": "space at EOL",
+      "revId": "81f91b70ff241d8771b53920805f62db00e40eba",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "63498e6c_a6cb1599",
+        "filename": "docker/barometer-collectd-experimental/run_collectd.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2019-12-13T07:53:07Z",
+      "side": 1,
+      "message": "space EOL?",
+      "revId": "81f91b70ff241d8771b53920805f62db00e40eba",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "51f38d2f_2c8bb5bc",
+        "filename": "docker/barometer-collectd-master/Dockerfile",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2019-12-13T07:53:07Z",
+      "side": 1,
+      "message": "space",
+      "revId": "81f91b70ff241d8771b53920805f62db00e40eba",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f4f97364_711aec55",
+        "filename": "docker/barometer-collectd-master/run_collectd.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2019-12-13T07:53:07Z",
+      "side": 1,
+      "message": "space at EOL",
+      "revId": "81f91b70ff241d8771b53920805f62db00e40eba",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "48bf1ef9_45d5c253",
+        "filename": "docker/barometer-grafana/dashboards/configure_grafana.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2019-12-13T07:53:07Z",
+      "side": 1,
+      "message": "nit, remove the spaces until one space after # to make it consistent with the rest",
+      "revId": "81f91b70ff241d8771b53920805f62db00e40eba",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "272316a9_7a3ebcd8",
+        "filename": "src/collectd/collectd_sample_configs/write_notification.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2019-12-13T07:53:07Z",
+      "side": 1,
+      "message": "What is this???",
+      "revId": "81f91b70ff241d8771b53920805f62db00e40eba",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
