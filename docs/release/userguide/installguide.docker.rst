@@ -377,7 +377,8 @@ Run the collectd stable docker image
    $ cd <BAROMETER_REPO_DIR>
    $ sudo docker run -ti --net=host -v \
    `pwd`/src/collectd/collectd_sample_configs:/opt/collectd/etc/collectd.conf.d \
-   -v /var/run:/var/run -v /tmp:/tmp --privileged opnfv/barometer-collectd
+   -v /var/run:/var/run -v /tmp:/tmp -v /sys/fs/resctrl:/sys/fs/resctrl \
+   --privileged opnfv/barometer-collectd
 
 .. note::
    The docker collectd image contains configuration for all the collectd
@@ -406,6 +407,12 @@ Run the collectd stable docker image
    can be found at:
    https://wiki.opnfv.org/display/fastpath/Barometer-collectd+host+dependencies
 
+   The Resource Control file system (/sys/fs/resctrl) can be bound from host to
+   container only if this directory exists on the host system. Otherwise omit
+   the '-v /sys/fs/resctrl:/sys/fs/resctrl' part in docker run command.
+   More information about resctrl can be found at:
+   https://github.com/intel/intel-cmt-cat/wiki/resctrl
+
 Check your docker image is running
 
 .. code:: bash
@@ -431,7 +438,8 @@ plugins requiring different configuration files)
    $ cd <BAROMETER_REPO_DIR>
    $ sudo docker run -ti --net=host -v \
    `pwd`/src/collectd/collectd_sample_configs-master:/opt/collectd/etc/collectd.conf.d \
-   -v /var/run:/var/run -v /tmp:/tmp --privileged opnfv/barometer-collectd-master
+   -v /var/run:/var/run -v /tmp:/tmp -v /sys/fs/resctrl:/sys/fs/resctrl \
+   --privileged opnfv/barometer-collectd-master
 
 .. note::
    Barometer collectd docker images are sharing some directories with host
@@ -439,6 +447,12 @@ plugins requiring different configuration files)
    at a time. In other words, if you want to try `barometer-collectd-master` or
    `barometer-collectd-experimental` image, please stop instance of
    `barometer-collectd(stable)` image first.
+
+   The Resource Control file system (/sys/fs/resctrl) can be bound from host to
+   container only if this directory exists on the host system. Otherwise omit
+   the '-v /sys/fs/resctrl:/sys/fs/resctrl' part in docker run command.
+   More information about resctrl can be found at:
+   https://github.com/intel/intel-cmt-cat/wiki/resctrl
 
 Run the barometer-collectd-experimental docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -466,8 +480,15 @@ collectd container)
    $ cd <BAROMETER_REPO_DIR>
    $ sudo docker run -ti --net=host -v \
    `pwd`/src/collectd/collectd_sample_configs-master:/opt/collectd/etc/collectd.conf.d \
-   -v /var/run:/var/run -v /tmp:/tmp --privileged \
+   -v /var/run:/var/run -v /tmp:/tmp -v /sys/fs/resctrl:/sys/fs/resctrl --privileged \
    opnfv/barometer-collectd-experimental
+
+.. note::
+   The Resource Control file system (/sys/fs/resctrl) can be bound from host to
+   container only if this directory exists on the host system. Otherwise omit
+   the '-v /sys/fs/resctrl:/sys/fs/resctrl' part in docker run command.
+   More information about resctrl can be found at:
+   https://github.com/intel/intel-cmt-cat/wiki/resctrl
 
 
 Build and Run InfluxDB and Grafana docker images
