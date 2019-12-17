@@ -1,0 +1,9 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+1: Krzysztof Kepka <krzysztof.kepka@intel.com>
+Code-Review+1: sunku ranganath <sunku.ranganath@intel.com>
+Code-Review+2: Emma Foley <efoley@redhat.com>
+Submitted-by: Emma Foley <efoley@redhat.com>
+Submitted-at: Tue, 17 Dec 2019 14:29:11 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/c/barometer/+/69358
+Project: barometer
+Branch: refs/heads/master
