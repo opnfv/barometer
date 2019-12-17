@@ -18,9 +18,13 @@
 import json
 import sys
 import base64
-import ConfigParser
 import logging
 import argparse
+
+try:
+    import configparser
+except ImportError:
+    import ConfigParser as configparser
 
 from distutils.util import strtobool
 from kafka import KafkaConsumer
@@ -34,7 +38,6 @@ try:
 except ImportError:
     # Fall back to Python 2's urllib2
     import urllib2 as url
-
 
 class VESApp(Normalizer):
     """VES Application"""
@@ -113,7 +116,7 @@ class VESApp(Normalizer):
     def init(self, configfile, schema_file):
         if configfile is not None:
             # read VES configuration file if provided
-            config = ConfigParser.ConfigParser()
+            config = configparser.ConfigParser()
             config.optionxform = lambda option: option
             config.read(configfile)
             self.config(config)

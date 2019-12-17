@@ -34,11 +34,9 @@ except ImportError:
 
 # import synchronized queue
 try:
-    # python 2.x
-    import Queue as queue
-except ImportError:
-    # python 3.x
     import queue
+except ImportError:
+    import Queue as queue
 
 
 class Config(object):
@@ -80,7 +78,7 @@ class ItemIterator(object):
         self._collector = collector
         self._index = 0
 
-    def next(self):
+    def __next__(self):
         """Returns next item from the list"""
         if self._index == len(self._items):
             raise StopIteration
@@ -151,7 +149,7 @@ class Collector(object):
     def _check_aging(self):
         """Check aging time for all items"""
         self.lock()
-        for data_hash, data in self._metrics.items():
+        for data_hash, data in list(self._metrics.items()):
             age, item = data
             if ((time.time() - age) >= self._age_timeout):
                 # aging time has expired, remove the item from the collector
@@ -189,7 +187,7 @@ class Collector(object):
         """Returns locked (safe) item iterator"""
         metrics = []
         self.lock()
-        for k, item in self._metrics.items():
+        for k, item in list(self._metrics.items()):
             _, value = item
             for select in select_list:
                 if value.match(**select):
@@ -220,7 +218,7 @@ class CollectdData(object):
 
     def match(self, **kargs):
         # compare the metric
-        for key, value in kargs.items():
+        for key, value in list(kargs.items()):
             if self.is_regular_expression(value):
                 if re.match(value[1:-1], getattr(self, key)) is None:
                     return False
@@ -323,7 +321,7 @@ class Item(yaml.YAMLObject):
 
 class ValueItem(Item):
     """Class to process VlaueItem tag"""
-    yaml_tag = u'!ValueItem'
+    yaml_tag = '!ValueItem'
 
     @classmethod
     def from_yaml(cls, loader, node):
@@ -343,7 +341,7 @@ class ValueItem(Item):
         # if VALUE key isn't given, use default VALUE key
         # format: `VALUE: !Number '{vl.value}'`
         if value_desc is None:
-            value_desc = yaml.ScalarNode(tag=u'!Number', value=u'{vl.value}')
+            value_desc = yaml.ScalarNode(tag='!Number', value='{vl.value}')
         # select collectd metric based on SELECT condition
         metrics = loader.collector.items(select)
         assert len(metrics) < 2, \
@@ -361,7 +359,7 @@ class ValueItem(Item):
 
 class ArrayItem(Item):
     """Class to process ArrayItem tag"""
-    yaml_tag = u'!ArrayItem'
+    yaml_tag = '!ArrayItem'
 
     @classmethod
     def from_yaml(cls, loader, node):
@@ -415,12 +413,12 @@ class ArrayItem(Item):
 
 class Measurements(ArrayItem):
     """Class to process Measurements tag"""
-    yaml_tag = u'!Measurements'
+    yaml_tag = '!Measurements'
 
 
 class Events(Item):
     """Class to process Events tag"""
-    yaml_tag = u'!Events'
+    yaml_tag = '!Events'
 
     @classmethod
     def from_yaml(cls, loader, node):
@@ -441,7 +439,7 @@ class Events(Item):
 
 class Bytes2Kibibytes(yaml.YAMLObject):
     """Class to process Bytes2Kibibytes tag"""
-    yaml_tag = u'!Bytes2Kibibytes'
+    yaml_tag = '!Bytes2Kibibytes'
 
     @classmethod
     def from_yaml(cls, loader, node):
@@ -450,7 +448,7 @@ class Bytes2Kibibytes(yaml.YAMLObject):
 
 class Number(yaml.YAMLObject):
     """Class to process Number tag"""
-    yaml_tag = u'!Number'
+    yaml_tag = '!Number'
 
     @classmethod
     def from_yaml(cls, loader, node):
@@ -462,7 +460,7 @@ class Number(yaml.YAMLObject):
 
 class StripExtraDash(yaml.YAMLObject):
     """Class to process StripExtraDash tag"""
-    yaml_tag = u'!StripExtraDash'
+    yaml_tag = '!StripExtraDash'
 
     @classmethod
     def from_yaml(cls, loader, node):
@@ -471,7 +469,7 @@ class StripExtraDash(yaml.YAMLObject):
 
 class MapValue(yaml.YAMLObject):
     """Class to process MapValue tag"""
-    yaml_tag = u'!MapValue'
+    yaml_tag = '!MapValue'
 
     @classmethod
     def from_yaml(cls, loader, node):
@@ -485,7 +483,7 @@ class MapValue(yaml.YAMLObject):
         assert val is not None, "Mandatory VALUE key isn't set"
         assert val in mapping, \
             'Value "{}" cannot be mapped to any of {} values'.format(
-                val, mapping.keys())
+                val, list(mapping.keys()))
         return mapping[val]
 
 
@@ -514,10 +512,10 @@ class Normalizer(object):
                 measurements.append((key, value))
             if value.tag == Events.yaml_tag:
                 events.append((key, value))
-        measurements_yaml = yaml.MappingNode(u'tag:yaml.org,2002:map',
+        measurements_yaml = yaml.MappingNode('tag:yaml.org,2002:map',
                                              measurements)
         measurements_stream = yaml.serialize(measurements_yaml)
-        events_yaml = yaml.MappingNode(u'tag:yaml.org,2002:map', events)
+        events_yaml = yaml.MappingNode('tag:yaml.org,2002:map', events)
         events_stream = yaml.serialize(events_yaml)
         # return event & measurements definition
         return events_stream, measurements_stream
