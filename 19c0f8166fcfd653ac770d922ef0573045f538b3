@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "685d73e4_6ebced4d",
+        "filename": "src/collectd/collectd_sample_configs-master/ovs_pmd_stats.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2019-12-17T10:54:31Z",
+      "side": 1,
+      "message": "whitespace",
+      "range": {
+        "startLine": 2,
+        "startChar": 71,
+        "endLine": 2,
+        "endChar": 72
+      },
+      "revId": "19c0f8166fcfd653ac770d922ef0573045f538b3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
