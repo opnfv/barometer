@@ -1,0 +1,7 @@
+Code-Review+2: Matthias Runge <mrunge@redhat.com>
+Verified+1: Matthias Runge <mrunge@redhat.com>
+Submitted-by: Matthias Runge <mrunge@redhat.com>
+Submitted-at: Wed, 18 Dec 2019 13:43:49 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/c/barometer/+/69375
+Project: barometer
+Branch: refs/heads/stable/iruya
