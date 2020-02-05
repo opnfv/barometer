@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ecf267b7_bcd8948a",
+        "filename": "src/dpdk/Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-02-05T14:50:44Z",
+      "side": 1,
+      "message": "If I was using this, and wanted an older version of DPDK, I would not want to have to change this.\n\nDoes this work when and older version of DPDK is used?\nIs it possible to add a check for DPDK version so that there is less issue for the users when they change the DPDK version manually?",
+      "range": {
+        "startLine": 89,
+        "startChar": 104,
+        "endLine": 89,
+        "endChar": 110
+      },
+      "revId": "03de9758b2f72459ff0b857cb05e8117b2a50e1c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
