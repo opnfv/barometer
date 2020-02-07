@@ -1,0 +1,7 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+2: Emma Foley <efoley@redhat.com>
+Submitted-by: Emma Foley <efoley@redhat.com>
+Submitted-at: Fri, 07 Feb 2020 17:24:52 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/c/barometer/+/69661
+Project: barometer
+Branch: refs/heads/stable/iruya
