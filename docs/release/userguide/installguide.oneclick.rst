@@ -11,7 +11,10 @@ OPNFV Barometer One Click Install Guide
    :depth: 3
    :local:
 
-The intention of this user guide is to outline how to use the ansible playbooks for a one click installation of Barometer. A more in-depth installation guide is available with the :ref:`Docker user guide <barometer-docker-userguide>`.
+The intention of this user guide is to outline how to use the ansible
+playbooks for a one click installation of Barometer. A more in-depth
+installation guide is available with the
+:ref:`Docker user guide <barometer-docker-userguide>`.
 
 
 One Click Install with Ansible
@@ -25,19 +28,20 @@ Proxy for package manager on host
 
 Proxy URL have to be set in dedicated config file
 
-1. CentOS - /etc/yum.conf
+1. CentOS - ``/etc/yum.conf``
 
 .. code:: bash
 
     proxy=http://your.proxy.domain:1234
 
-2. Ubuntu - /etc/apt/apt.conf
+2. Ubuntu - ``/etc/apt/apt.conf``
 
 .. code:: bash
 
     Acquire::http::Proxy "http://your.proxy.domain:1234"
 
-After update of config file, apt mirrors have to be updated via 'apt-get update'
+After update of config file, apt mirrors have to be updaited via
+``apt-get update``
 
 .. code:: bash
 
@@ -52,24 +56,24 @@ Configuring proxy for packaging system is not enough, also some proxy
 environment variables have to be set in the system before ansible scripts
 can be started.
 Barometer configures docker proxy automatically via ansible task as a part
-of 'one click install' process - user only has to provide proxy URL using common
+of *one click install* process - user only has to provide proxy URL using common
 shell environment variables and ansible will automatically configure proxies
 for docker(to be able to fetch barometer images). Another component used by
 ansible (e.g. pip is used for downloading python dependencies) will also benefit
 from setting proxy variables properly in the system.
 
 Proxy variables used by ansible One Click Install:
-   * http_proxy
-   * https_proxy
-   * ftp_proxy
-   * no_proxy
+   * ``http_proxy``
+   * ``https_proxy``
+   * ``ftp_proxy``
+   * ``no_proxy``
 
 Variables mentioned above have to be visible for superuser (because most
-actions involving ansible-barometer installation require root privileges).
-Proxy variables are commonly defined in '/etc/environment' file (but any other
-place is good as long as variables can be seen by commands using 'su').
+actions involving ``ansible-barometer`` installation require root privileges).
+Proxy variables are commonly defined in ``/etc/environment`` file (but any other
+place is good as long as variables can be seen by commands using ``su``).
 
-Sample proxy configuration in /etc/environment:
+Sample proxy configuration in ``/etc/environment``:
 
 .. code:: bash
 
@@ -106,9 +110,9 @@ To install Ansible 2.6.3 on Centos:
     $ sudo yum install git
 
 .. note::
-   When using multi-node-setup, please make sure that 'python' package is
+   When using multi-node-setup, please make sure that ``python`` package is
    installed on all of the target nodes (ansible during 'Gathering facts'
-   phase is using python2 and it may not be installed by default on some
+   phase is using ``python2`` and it may not be installed by default on some
    distributions - e.g. on Ubuntu 16.04 it has to be installed manually)
 
 Clone barometer repo
@@ -121,7 +125,8 @@ Clone barometer repo
 
 Edit inventory file
 ^^^^^^^^^^^^^^^^^^^
-Edit inventory file and add hosts: $barometer_dir/docker/ansible/default.inv
+Edit inventory file and add hosts:
+``$barometer_dir/docker/ansible/default.inv``
 
 .. code:: bash
 
@@ -158,23 +163,24 @@ Edit inventory file and add hosts: $barometer_dir/docker/ansible/default.inv
     #hostname
 
 Change localhost to different hosts where neccessary.
-Hosts for influxdb and grafana are required only for collectd_service.yml.
-Hosts for zookeeper, kafka and ves are required only for collectd_ves.yml.
+Hosts for influxdb and grafana are required only for ``collectd_service.yml``.
+Hosts for zookeeper, kafka and ves are required only for ``collectd_ves.yml``.
 
 .. note::
    Zookeeper, Kafka and VES need to be on the same host, there is no
    support for multi node setup.
 
-To change host for kafka edit kafka_ip_addr in ./roles/config_files/vars/main.yml.
+To change host for kafka edit ``kafka_ip_addr`` in
+``./roles/config_files/vars/main.yml``.
 
 Additional plugin dependencies
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-By default ansible will try to fulfill dependencies for mcelog and ipmi plugin.
-For mcelog plugin it installs mcelog daemon. For ipmi it tries to insert ipmi_devintf
-and ipmi_si kernel modules.
-This can be changed in inventory file with use of variables install_mcelog
-and insert_ipmi_modules, both variables are independent:
+By default ansible will try to fulfill dependencies for ``mcelog`` and
+``ipmi`` plugin. For ``mcelog`` plugin it installs mcelog daemon. For ipmi it
+tries to insert ``ipmi_devintf`` and ``ipmi_si`` kernel modules.
+This can be changed in inventory file with use of variables ``install_mcelog``
+and ``insert_ipmi_modules``, both variables are independent:
 
 .. code:: bash
 
@@ -198,7 +204,7 @@ ssh keys are required for Ansible to connect the host you use for Barometer Inst
     $ sudo ssh-keygen
 
 Copy ssh key to all target hosts. It requires to provide root password.
-The example is for localhost.
+The example is for ``localhost``.
 
 .. code:: bash
 
@@ -227,7 +233,7 @@ through more details.
 
     $ sudo -H ansible-playbook -i default.inv collectd_service.yml
 
-Check the three containers are running, the output of docker ps should be similar to:
+Check the three containers are running, the output of ``docker ps`` should be similar to:
 
 .. code:: bash
 
@@ -243,12 +249,13 @@ To make some changes when a container is running run:
 
     $ sudo docker exec -ti <CONTAINER ID> /bin/bash
 
-Connect to <host_ip>:3000 with a browser and log into Grafana: admin/admin.
+Connect to ``<host_ip>:3000`` with a browser and log into Grafana: admin/admin.
 For short introduction please see the:
 `Grafana guide <http://docs.grafana.org/guides/getting_started/>`_.
 
-The collectd configuration files can be accessed directly on target system in '/opt/collectd/etc/collectd.conf.d'.
-It can be used for manual changes or enable/disable plugins. If configuration has been modified it is required to
+The collectd configuration files can be accessed directly on target system in
+``/opt/collectd/etc/collectd.conf.d``. It can be used for manual changes or
+enable/disable plugins. If configuration has been modified it is required to
 restart collectd:
 
 .. code:: bash
@@ -262,7 +269,7 @@ Download and run collectd+kafka+ves containers
 
     $ sudo ansible-playbook -i default.inv collectd_ves.yml
 
-Check the containers are running, the output of docker ps should be similar to:
+Check the containers are running, the output of ``docker ps`` should be similar to:
 
 .. code:: bash
 
@@ -285,21 +292,25 @@ List of default plugins for collectd container
 .. note::
    The dpdk plugins dpdkevents and dpdkstat were tested with DPDK v16.11.
 
-By default the collectd is started with default configuration which includes the followin plugins:
-   * csv, contextswitch, cpu, cpufreq, df, disk, ethstat, ipc, irq, load, memory, numa, processes,
-     swap, turbostat, uuid, uptime, exec, hugepages, intel_pmu, ipmi, write_kafka, logfile, mcelog,
-     network, intel_rdt, rrdtool, snmp_agent, syslog, virt, ovs_stats, ovs_events, dpdkevents,
-     dpdkstat
+By default the collectd is started with default configuration which includes
+the followin plugins:
+    * ``csv``, ``contextswitch``, ``cpu``, ``cpufreq``, ``df``, ``disk``,
+      ``ethstat``, ``ipc``, ``irq``, ``load``, ``memory``, ``numa``,
+      ``processes``, ``swap``, ``turbostat``, ``uuid``, ``uptime``, ``exec``,
+      ``hugepages``, ``intel_pmu``, ``ipmi``, ``write_kafka``, ``logfile``,
+      ``mcelog``, ``network``, ``intel_rdt``, ``rrdtool``, ``snmp_agent``,
+      ``syslog``, ``virt``, ``ovs_stats``, ``ovs_events``, ``dpdkevents``,
+      ``dpdkstat``
 
 Some of the plugins are loaded depending on specific system requirements and can be omitted if
 dependency is not met, this is the case for:
-   * hugepages, ipmi, mcelog, intel_rdt, virt, ovs_stats, ovs_events
+   * ``hugepages``, ``ipmi``, ``mcelog``, ``intel_rdt``, ``virt``, ``ovs_stats``, ``ovs_events``
 
 List and description of tags used in ansible scripts
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Tags can be used to run a specific part of the configuration without running the whole playbook.
-To run a specific parts only:
+Tags can be used to run a specific part of the configuration without running
+the whole playbook. To run a specific parts only:
 
 .. code:: bash
 
@@ -313,27 +324,32 @@ To disable some parts or plugins:
 
 List of available tags:
 
-install_docker
+``install_docker``
   Install docker and required dependencies with package manager.
 
-add_docker_proxy
+``add_docker_proxy``
   Configure proxy file for docker service if proxy is set on host environment.
 
-rm_config_dir
+``rm_config_dir``
   Remove collectd config files.
 
-copy_additional_configs
-  Copy additional configuration files to target system. Path to additional configuration
-  is stored in $barometer_dir/docker/ansible/roles/config_files/vars/main.yml as additional_configs_path.
+``copy_additional_configs``
+  Copy additional configuration files to target system. Path to additional
+  configuration is stored in
+  ``$barometer_dir/docker/ansible/roles/config_files/vars/main.yml`` as
+  ``additional_configs_path``.
 
-en_default_all
-  Set of default read plugins: contextswitch, cpu, cpufreq, df, disk, ethstat, ipc, irq,
-  load, memory, numa, processes, swap, turbostat, uptime.
+``en_default_all``
+  Set of default read plugins: ``contextswitch``, ``cpu``, ``cpufreq``, ``df``,
+  ``disk``, ``ethstat``, ``ipc``, ``irq``, ``load``, ``memory``, ``numa``,
+  ``processes``, ``swap``, ``turbostat``, ``uptime``.
 
-plugins tags
-  The following tags can be used to enable/disable plugins: csv, contextswitch, cpu,
-  cpufreq, df, disk, ethstat, ipc, irq, load, memory, numa, processes, swap, turbostat,
-  uptime, exec, hugepages, ipmi, kafka, logfile, mcelogs, network, pmu, rdt, rrdtool,
-  snmp, syslog, virt, ovs_stats, ovs_events, uuid, dpdkevents, dpdkstat.
-
+``plugins tags``
+  The following tags can be used to enable/disable plugins: ``csv``,
+  ``contextswitch``, ``cpu``, ``cpufreq``, ``df``, ``disk,`` ``ethstat``,
+  ``ipc``, ``irq``, ``load``, ``memory``, ``numa``, ``processes``, ``swap``,
+  ``turbostat``, ``uptime``, ``exec``, ``hugepages``, ``ipmi``, ``kafka``,
+  ``logfile``, ``mcelogs``, ``n``etwork``,`` ``pmu``, ``rdt``, ``rrdtool``,
+  ``snmp``, ``syslog``, ``virt``, ``ovs_stats``, ``ovs_events``, ``uuid``,
+  ``dpdkevents``, ``dpdkstat``.
 
