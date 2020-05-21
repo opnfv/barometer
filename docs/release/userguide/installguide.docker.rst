@@ -233,11 +233,11 @@ The output should be something like:
 
 .. code:: bash
 
-   Unable to find image 'hello-world:latest' locally
-   latest: Pulling from library/hello-world
-   5b0f327be733: Pull complete
-   Digest: sha256:07d5f7800dfe37b8c2196c7b1c524c33808ce2e0f74e7aa00e603295ca9a0972
-   Status: Downloaded newer image for hello-world:latest
+   Trying to pull docker.io/library/hello-world...Getting image source signatures
+   Copying blob 0e03bdcc26d7 done
+   Copying config bf756fb1ae done
+   Writing manifest to image destination
+   Storing signatures
 
    Hello from Docker!
    This message shows that your installation appears to be working correctly.
@@ -250,11 +250,14 @@ The output should be something like:
     4. The Docker daemon streamed that output to the Docker client, which sent it
        to your terminal.
 
-To try something more ambitious, you can run an Ubuntu container with:
-
-.. code:: bash
-
+   To try something more ambitious, you can run an Ubuntu container with:
     $ docker run -it ubuntu bash
+
+   Share images, automate workflows, and more with a free Docker ID:
+    https://hub.docker.com/
+
+   For more examples and ideas, visit:
+    https://docs.docker.com/get-started/
 
 Build and Run Collectd Docker Image
 -----------------------------------
@@ -264,22 +267,22 @@ Collectd-barometer flavors
 
 Before starting to build and run the Collectd container, understand the available
 flavors of Collectd containers:
-  * barometer-collectd - stable release, based on collectd 5.8
+  * barometer-collectd - stable release, based on collectd 5.11
   * barometer-collectd-master - release based on collectd 'master' branch
   * barometer-collectd-experimental - release based on collectd 'master'
-    branch that also includes set of experimental(not yet merged into upstream)
+    branch that also includes set of experimental (not yet merged into upstream)
     pull requests
 
 .. note::
    Experimental container is not tested across various OS'es and the stability
    of the container can change. Usage of experimental flavor is at users risk.
 
-Stable barometer-collectd container is intended for work in production
+Stable `barometer-collectd` container is intended for work in production
 environment as it is based on latest collectd official release.
 `Barometer-collectd-master` and `barometer-collectd-experimental` containers
 can be used in order to try new collectd features.
-All flavors are located in `barometer` git repository - respective dockerfiles
-are stored in subdirectories of 'docker/' directory
+All flavors are located in `barometer` git repository - respective Dockerfiles
+are stored in subdirectories of `docker/` directory
 
 
 .. code:: bash
