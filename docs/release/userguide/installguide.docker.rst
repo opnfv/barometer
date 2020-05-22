@@ -153,6 +153,7 @@ Replace <username> above with an appropriate user name.
 
         Retrieving key from https://download.docker.com/linux/centos/gpg
         Importing GPG key 0x621E9F35:
+.. ::
          Userid     : "Docker Release (CE rpm) <docker@docker.com>"
          Fingerprint: 060a 61c5 1b55 8a7f 742b 77aa c52f eb6b 621e 9f35
          From       : https://download.docker.com/linux/centos/gpg
@@ -986,8 +987,8 @@ Run DMA docker image with default configuration
 
 References
 ^^^^^^^^^^
-.. [1] https://docs.docker.com/engine/admin/systemd/#httphttps-proxy
-.. [2] https://docs.docker.com/engine/installation/linux/docker-ce/centos/#install-using-the-repository
+.. [1] https://docs.docker.com/config/daemon/systemd/#httphttps-proxy
+.. [2] https://docs.docker.com/engine/install/centos/#install-using-the-repository
 .. [3] https://docs.docker.com/engine/userguide/
 
 
