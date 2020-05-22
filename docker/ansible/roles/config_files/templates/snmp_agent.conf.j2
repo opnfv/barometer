@@ -12,13 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#LoadPlugin snmp_agent
+LoadPlugin snmp_agent
 <Plugin snmp_agent>
 # Intel PMU MIB
   <Table "pmuTable">
     IndexOID "INTEL-PMU-MIB::pmuGroupIndex"
     <Data "pmuGroupDescr">
-      Instance true
       Plugin "intel_pmu"
       OIDs "INTEL-PMU-MIB::pmuGroupDescr"
     </Data>
@@ -280,7 +279,6 @@
     IndexOID "INTEL-RDT-MIB::rdtGroupIndex"
     SizeOID "INTEL-RDT-MIB::rdtGroupNumber"
     <Data "rdtGroupDescr">
-      Instance true
       Plugin "intel_rdt"
       OIDs "INTEL-RDT-MIB::rdtGroupDescr"
     </Data>
@@ -312,7 +310,6 @@
   <Table "mcelogTable">
     IndexOID "INTEL-MCELOG-MIB::memoryGroupIndex"
     <Data "memoryGroupDescr">
-      Instance true
       Plugin "mcelog"
       OIDs "INTEL-MCELOG-MIB::memoryGroupDescr"
     </Data>
@@ -344,7 +341,6 @@
 # Hugepages
   <Table "hugepagesTable">
     <Data "hugepagesNode">
-      Instance true
       Plugin "hugepages"
       OIDs "INTEL-HUGEPAGES-MIB::hugepagesNode"
     </Data>
