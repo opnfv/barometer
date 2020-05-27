@@ -8,3 +8,4 @@ toml # MIT
 opnfv # Apache-2.0
 functest # Apache-2.0
 xtesting # Apache-2.0
+pika  # BSD

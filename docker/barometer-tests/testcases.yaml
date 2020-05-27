@@ -1,0 +1,21 @@
+---
+tiers:
+    -
+        name: barometer
+        order: 0
+        description: >-
+            Test suites from the Barometer project
+        testcases:
+            -
+                case_name: barometercollectd
+                project_name: barometer
+                criteria: 100
+                blocking: false
+                description: >-
+                    Test suite for the Barometer project. Separate tests verify
+                    the proper configuration and basic functionality of all the
+                    collectd plugins as described in the Project Release Plan
+                dependencies:
+                    - DEPLOY_SCENARIO: 'bar'
+                run:
+                    name: barometercollectd
