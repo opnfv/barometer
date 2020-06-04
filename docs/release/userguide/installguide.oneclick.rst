@@ -290,7 +290,11 @@ To make some changes when a container is running run:
 List of default plugins for collectd container
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. note::
-   The dpdk plugins dpdkevents and dpdkstat were tested with DPDK v16.11.
+   The dpdk plugins dpdkevents and dpdkstat were tested with DPDK v18.11.
+   From Iruya release onwards, Barometer will support only DPDK v18.11 and above.
+   If you would like to use lower versions, you would need to change the Makefile path from
+   '(WORK_DIR)/kernel/linux/kni/Makefile' to (WORK_DIR)/lib/librte_eal/linuxapp/kni/Makefile
+   in '(WORK_DIR)/src/dpdk/Makefile'.
 
 By default the collectd is started with default configuration which includes
 the followin plugins:

@@ -86,13 +86,13 @@ endif
 # CentOS 7.3 specific config changes to compile
 ifeq ($(ID),"centos")
 ifeq ($(VERSION_ID),"7")
-	$(AT)sed -i.bak s@'SRCS-y += ethtool/igb/igb_main.c'@'#SRCS-y += ethtool/igb/igb_main.c'@g $(WORK_DIR)/lib/librte_eal/linuxapp/kni/Makefile
+	$(AT)sed -i.bak s@'SRCS-y += ethtool/igb/igb_main.c'@'#SRCS-y += ethtool/igb/igb_main.c'@g $(WORK_DIR)/kernel/linux/kni/Makefile
 endif
 endif
 # RHEL 7.3 specific config changes to compile
 ifeq ($(ID),"rhel")
 ifeq ($(VERSION_ID),"7.3")
-	$(AT)sed -i.bak s@'SRCS-y += ethtool/igb/igb_main.c'@'#SRCS-y += ethtool/igb/igb_main.c'@g $(WORK_DIR)/lib/librte_eal/linuxapp/kni/Makefile
+	$(AT)sed -i.bak s@'SRCS-y += ethtool/igb/igb_main.c'@'#SRCS-y += ethtool/igb/igb_main.c'@g $(WORK_DIR)/kernel/linux/kni/Makefile
 endif
 endif
 	$(AT)sed -i -e 's/CONFIG_RTE_LIBRTE_KNI=./CONFIG_RTE_LIBRTE_KNI=n/g' $(CONFIG_FILE_LINUXAPP)
