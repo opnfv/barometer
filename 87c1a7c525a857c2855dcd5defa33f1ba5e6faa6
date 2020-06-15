@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "19163aa1_b45a0c31",
+        "filename": "docker/README_collectd",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2020-06-15T09:33:08Z",
+      "side": 1,
+      "message": "please break the line at 79 chars",
+      "revId": "87c1a7c525a857c2855dcd5defa33f1ba5e6faa6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e6aef3c_5a6ceaca",
+        "filename": "docker/README_collectd",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2020-06-15T09:33:08Z",
+      "side": 1,
+      "message": "same here.",
+      "revId": "87c1a7c525a857c2855dcd5defa33f1ba5e6faa6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f86a9e7_c3014ade",
+        "filename": "docker/README_collectd",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2020-06-15T09:33:08Z",
+      "side": 1,
+      "message": "when changing here, can you please also fix indentation and line breaks??",
+      "revId": "87c1a7c525a857c2855dcd5defa33f1ba5e6faa6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b88cdcbe_1bbae30f",
+        "filename": "docker/README_collectd",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2020-06-15T09:33:08Z",
+      "side": 1,
+      "message": "sudo docker build -t opnfv/barometer-collectd-experimental --network\u003dhost \\\n                  -f docker/barometer-collectd-experimental/Dockerfile .",
+      "revId": "87c1a7c525a857c2855dcd5defa33f1ba5e6faa6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7512c421_ba6a9c58",
+        "filename": "docker/README_collectd",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2020-06-15T09:33:08Z",
+      "side": 1,
+      "message": "cp docker/barometer-collectd-experimental/experimental-configs/*.conf \\\n   src/collectd/collectd_sample_configs-master",
+      "revId": "87c1a7c525a857c2855dcd5defa33f1ba5e6faa6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
