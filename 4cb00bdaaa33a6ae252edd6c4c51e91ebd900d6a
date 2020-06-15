@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "91c99998_b7453fc5",
+        "filename": "docker/README_collectd",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7427
+      },
+      "writtenOn": "2020-06-15T16:50:59Z",
+      "side": 1,
+      "message": "You could rephrase it as \u0027the collectd flavors in barometer\u0027",
+      "range": {
+        "startLine": 34,
+        "startChar": 41,
+        "endLine": 34,
+        "endChar": 67
+      },
+      "revId": "4cb00bdaaa33a6ae252edd6c4c51e91ebd900d6a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6509e65_ed997706",
+        "filename": "docker/README_collectd",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7427
+      },
+      "writtenOn": "2020-06-15T16:50:59Z",
+      "side": 1,
+      "message": "You would need to",
+      "range": {
+        "startLine": 36,
+        "startChar": 41,
+        "endLine": 36,
+        "endChar": 47
+      },
+      "revId": "4cb00bdaaa33a6ae252edd6c4c51e91ebd900d6a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cbe9b318_d2ec871d",
+        "filename": "docker/README_collectd",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7427
+      },
+      "writtenOn": "2020-06-15T16:50:59Z",
+      "side": 1,
+      "message": "To build docker container based on stable collectd release",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 67
+      },
+      "revId": "4cb00bdaaa33a6ae252edd6c4c51e91ebd900d6a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab0546b8_aa161028",
+        "filename": "docker/README_collectd",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7427
+      },
+      "writtenOn": "2020-06-15T16:50:59Z",
+      "side": 1,
+      "message": "To run the container from built image",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 24
+      },
+      "revId": "4cb00bdaaa33a6ae252edd6c4c51e91ebd900d6a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae69a8b7_e30c3271",
+        "filename": "docker/README_collectd",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7427
+      },
+      "writtenOn": "2020-06-15T16:50:59Z",
+      "side": 1,
+      "message": "To run the container from built image",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 20
+      },
+      "revId": "4cb00bdaaa33a6ae252edd6c4c51e91ebd900d6a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
