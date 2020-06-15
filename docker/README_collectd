@@ -10,38 +10,49 @@ Table of content:
 2. SYSTEM REQUIREMENTS
 3. INSTALLATION NOTES - barometer-collectd
 4. INSTALLATION NOTES - barometer-collectd-master
-5. ADDITIONAL STEPS
+5. INSTALLATION NOTES - barometer-collectd-experimental
+6. ADDITIONAL STEPS
 
 ------------------------------------------------------------------------------
 1. DESCRIPTION
 
 This Dockerfile provides instruction for building collect in isolated container.
-There are currently two variants of collectd container:
+There are currently three variants of collectd container:
  - barometer-collectd - it is based on stable collect release
  - barometer-collectd-master - development container that is based on
    latest 'master' branch for collectd project. It contains all available
    collectd plugins and features that are available on 'master' branch but
    some issues with configuration or stability may occur
-
+ - barometer-collectd-experimental – new container, with selected patches,
+   that are not accepted/merged yet on Collectd Master
 ------------------------------------------------------------------------------
 2. SYSTEM REQUIREMENTS
 
   Docker >= 17.06.0-ce
 
+  NOTE: Barometer collectd docker images are sharing some directories with host (e.g. /tmp) therefore
+  only one of collectd barometer flavors can be run at a time. In other words, if you want to try
+  barometer-collectd-master or barometer-collectd-experimental image, please stop instance of
+  barometer-collectd(stable) image first.
+
 ------------------------------------------------------------------------------
 3. INSTALLATION NOTES: barometer-collectd (stable container)
 
-To build docker container, that is based on stable collectd release, run:
-sudo docker build -f ./docker/barometer-collectd/Dockerfile ./docker/barometer-collectd
-from barometer folder.
+If you wish to use a pre-built barometer image, you can pull the barometer image
+from https://hub.docker.com/r/opnfv/barometer-collectd. Run:
+docker pull opnfv/barometer-collectd
 
-sudo docker images # get docker image id
+To build docker container, that is based on stable collectd release, run:
+sudo docker build -t opnfv/barometer-collectd --network=host -f docker/barometer-collectd/Dockerfile .
+from barometer folder
+
+To run the builded image run:
 sudo docker run -ti --net=host -v `pwd`/src/collectd/collectd_sample_configs:/opt/collectd/etc/collectd.conf.d \
--v /var/run:/var/run -v /tmp:/tmp --privileged <image id>
+-v /var/run:/var/run -v /tmp:/tmp -v --privileged opnfv/barometer-collectd
 
 To make some changes run
 sudo docker run -ti --net=host -v `pwd`/src/collectd/collectd_sample_configs:/opt/collectd/etc/collectd.conf.d \
--v /var/run:/var/run -v /tmp:/tmp --privileged --entrypoint=/bin/bash <image id>
+-v /var/run:/var/run -v /tmp:/tmp -v --privileged --entrypoint=/bin/bash opnfv/barometer-collectd
 
 /opt/collectd/sbin/collectd -f
 
@@ -49,25 +60,45 @@ sudo docker run -ti --net=host -v `pwd`/src/collectd/collectd_sample_configs:/op
 4. INSTALLATION NOTES: barometer-collectd-master (development container)
 
 To build docker barometer-collectd-master container run (it is based on master branch from collectd):
-sudo docker build -f ./docker/barometer-collectd-master/Dockerfile .
+sudo docker build -t opnfv/barometer-collectd-master --network=host -f docker/barometer-collectd-master/Dockerfile .
 from root barometer folder.
 
 To run builded image run
-sudo docker images # get docker image id
 sudo docker run -ti --net=host -v `pwd`/src/collectd/collectd_sample_configs-master:/opt/collectd/etc/collectd.conf.d \
--v /var/run:/var/run -v /tmp:/tmp --privileged <image id>
+-v /var/run:/var/run -v /tmp:/tmp -v --privileged opnfv/barometer-collectd-master
 
 NOTE: barometer-collectd-master container uses a different sample configurations files
 compared to regular barometer-collectd container (src/collectd/collectd_sample_configs-master)
 
 To make some changes run
 sudo docker run -ti --net=host -v `pwd`/src/collectd/collectd_sample_configs-master:/opt/collectd/etc/collectd.conf.d \
--v /var/run:/var/run -v /tmp:/tmp --privileged --entrypoint=/bin/bash <image id>
+-v /var/run:/var/run -v /tmp:/tmp -v --privileged --entrypoint=/bin/bash opnfv/barometer-collectd-master
 
 /opt/collectd/sbin/collectd -f
 
 ------------------------------------------------------------------------------
-5. ADDITIONAL STEPS
+5. INSTALLATION NOTES: barometer-collectd-experimental (experimental container)
+
+To build docker barometer-collectd-experimental container run (with patches not accepted/merged yet on Collectd Master):
+sudo docker build -t opnfv/barometer-collectd-experimental --network=host -f docker/barometer-collectd-experimental/Dockerfile .
+from root barometer folder.
+
+Copy the content of docker/barometer-collectd-experimental/experimental-configs to src/collectd/collectd_sample_configs-master
+directory before first run of experimental container. Run:
+cp docker/barometer-collectd-experimental/experimental-configs/*.conf src/collectd/collectd_sample_configs-master
+
+To run builded image run
+sudo docker run -ti --net=host -v `pwd`/src/collectd/collectd_sample_configs-master:/opt/collectd/etc/collectd.conf.d \
+-v /var/run:/var/run -v /tmp:/tmp -v --privileged opnfv/barometer-collectd-experimental
+
+To make some changes run
+sudo docker run -ti --net=host -v `pwd`/src/collectd/collectd_sample_configs-master:/opt/collectd/etc/collectd.conf.d \
+-v /var/run:/var/run -v /tmp:/tmp -v --privileged --entrypoint=/bin/bash opnfv/barometer-collectd-experimental
+
+/opt/collectd/sbin/collectd -f
+
+------------------------------------------------------------------------------
+6. ADDITIONAL STEPS
 
 To check if container works properly additional packages should be installed
 on host system.
