@@ -34,6 +34,24 @@
       "revId": "ae81af6c2ab44328afd6ee29a75e3be34c2d071c",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "520348c1_3a99d4de",
+        "filename": "docker/README_collectd",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-06-16T14:13:48Z",
+      "side": 1,
+      "message": "Keep the indents smaller.\nWe can make an exception for the 79 character limit in this case where it can\u0027t be split",
+      "parentUuid": "f06c85b4_b275ed6e",
+      "revId": "ae81af6c2ab44328afd6ee29a75e3be34c2d071c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
     }
   ]
 }
