@@ -16,6 +16,24 @@
       "revId": "ae81af6c2ab44328afd6ee29a75e3be34c2d071c",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f06c85b4_b275ed6e",
+        "filename": "docker/README_collectd",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7633
+      },
+      "writtenOn": "2020-06-16T11:25:42Z",
+      "side": 1,
+      "message": "Hi Matthias, Thanks for the review.\nThis whole line in itself takes 79 characters.Initially, I was hoping of doing something like this:\nsudo docker run -ti --net\u003dhost \\\n                -v `pwd`/src/collectd/collectd_sample_configs:/opt/collectd/etc/collectd.conf.d \\\n                -v /var/run:/var/run \\\n                -v /tmp:/tmp --privileged opnfv/barometer-collectd\nBut this goes past the 79 char limit and I dont have any other ideas around it.\nCan you please share an example of how it should be done?",
+      "parentUuid": "d6fe6773_227c6baf",
+      "revId": "ae81af6c2ab44328afd6ee29a75e3be34c2d071c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
     }
   ]
 }
