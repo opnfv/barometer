@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d6fe6773_227c6baf",
+        "filename": "docker/README_collectd",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2020-06-16T06:44:56Z",
+      "side": 1,
+      "message": "can you add indents here too? That way, it is more readable.",
+      "revId": "ae81af6c2ab44328afd6ee29a75e3be34c2d071c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
