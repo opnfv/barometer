@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "adfbe493_e0f110d0",
+        "filename": "docker/README_collectd",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7632
+      },
+      "writtenOn": "2020-06-17T18:46:34Z",
+      "side": 1,
+      "message": "Ya, I think I had it a little messed up too. Sorry 😊 👍",
+      "parentUuid": "a9319c01_112a2b4d",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 23
+      },
+      "revId": "15ba8b4fe044f0893e0cabc21832d66d9a69eb72",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "61a8d3e1_08a8ed71",
         "filename": "docker/README_collectd",
         "patchSetId": 4
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "Haven\u0027t changed them. Lets get back to it in a separate review maybe?",
       "parentUuid": "61a8d3e1_08a8ed71",
+      "range": {
+        "startLine": 119,
+        "startChar": 3,
+        "endLine": 119,
+        "endChar": 19
+      },
+      "revId": "15ba8b4fe044f0893e0cabc21832d66d9a69eb72",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "79bac9d2_82499bd0",
+        "filename": "docker/README_collectd",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 7632
+      },
+      "writtenOn": "2020-06-17T18:46:34Z",
+      "side": 1,
+      "message": "I just mean we could add in the details of the dpdk config change or the change in the command for the master with the /sys/fsctl here? what do you think ?",
+      "parentUuid": "24dad5b9_98b3601d",
       "range": {
         "startLine": 119,
         "startChar": 3,
