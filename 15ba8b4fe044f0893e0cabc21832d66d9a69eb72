@@ -141,6 +141,30 @@
       "revId": "15ba8b4fe044f0893e0cabc21832d66d9a69eb72",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a4102fba_f05ec5b8",
+        "filename": "docker/README_collectd",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 7633
+      },
+      "writtenOn": "2020-06-18T10:17:35Z",
+      "side": 1,
+      "message": "The sys/fsctl component was not there in the original command to begin with, that\u0027s why I skipped it. Makes sense?",
+      "parentUuid": "79bac9d2_82499bd0",
+      "range": {
+        "startLine": 119,
+        "startChar": 3,
+        "endLine": 119,
+        "endChar": 19
+      },
+      "revId": "15ba8b4fe044f0893e0cabc21832d66d9a69eb72",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
