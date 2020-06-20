@@ -1,0 +1,25 @@
+These tests are intended to be ran automatically by OPNFV Jenkins Job. The Job
+will be triggered whenever a PR has been merged for this plugin in collectd
+github and status of the will be reported back via Jenkins.
+
+## Steps to Run Tests
+1. Build the barometer-collectd-latest image
+    `sudo docker build -t opnfv/barometer-collectd-latest --network=host \
+                       -f docker/barometer-collectd-latest/Dockerfile .`
+2. Run the barometer-collectd-latest container with test_plugins folder mounted
+   and entrypoint as "/bin/bash":
+   `sudo docker run -ti --net=host \
+        -v `pwd`/src/collectd/collectd_sample_configs-latest:/opt/collectd/etc/collectd.conf.d \
+        -v /var/run:/var/run -v /tmp:/tmp -v `pwd`/plugin_test:/tests --privileged \
+        --entrypoint=/bin/bash  opnfv/barometer-collectd-latest`
+3. `cd /tests`
+4. Install pytest and the subprocess32 dependency required to start and stop the
+   collect process through python:
+   `pip install subprocess32`
+   `pip install pytest --ignore-installed`
+5. To run tests run:
+  `py.test -s -v`
+
+NOTE: subprocess32 is the backport of the subprocess standard library module
+      from Python 3.2 - 3.5 for use on Python 2. Since the centos container
+      has Python 2.7, it is needed until we add Python 3 to centos image
