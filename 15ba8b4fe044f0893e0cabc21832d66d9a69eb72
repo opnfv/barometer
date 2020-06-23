@@ -189,6 +189,30 @@
       "revId": "15ba8b4fe044f0893e0cabc21832d66d9a69eb72",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "742b3c48_de6e9deb",
+        "filename": "docker/README_collectd",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 7633
+      },
+      "writtenOn": "2020-06-23T11:32:33Z",
+      "side": 1,
+      "message": "I have added a line to the Description section of the readme stating the same. Please let me know if something else is needed.",
+      "parentUuid": "77d9fc55_ed8d8604",
+      "range": {
+        "startLine": 119,
+        "startChar": 3,
+        "endLine": 119,
+        "endChar": 19
+      },
+      "revId": "15ba8b4fe044f0893e0cabc21832d66d9a69eb72",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
