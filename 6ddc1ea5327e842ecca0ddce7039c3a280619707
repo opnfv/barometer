@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5740ed8a_dd04fc97",
+        "filename": "plugin_test/Steps-to-run.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7427
+      },
+      "writtenOn": "2020-06-23T20:03:32Z",
+      "side": 1,
+      "message": "Add a note here which states like, theses tests intended to be ran automatically by OPNFV Jenkins Job. The Job will be triggered whenever there is a PR has been merged for this plugin in collectd github and results will be published back.",
+      "range": {
+        "startLine": 1,
+        "startChar": 1,
+        "endLine": 1,
+        "endChar": 21
+      },
+      "revId": "6ddc1ea5327e842ecca0ddce7039c3a280619707",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca7c12a2_8232be0e",
+        "filename": "plugin_test/Steps-to-run.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7427
+      },
+      "writtenOn": "2020-06-23T20:03:32Z",
+      "side": 1,
+      "message": "Can you add the command you used to build the image ?",
+      "range": {
+        "startLine": 3,
+        "startChar": 3,
+        "endLine": 3,
+        "endChar": 44
+      },
+      "revId": "6ddc1ea5327e842ecca0ddce7039c3a280619707",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
