@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9cb6310b_e223ec68",
+        "filename": "plugin_test/Steps-to-run.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7633
+      },
+      "writtenOn": "2020-06-25T09:45:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5740ed8a_dd04fc97",
+      "range": {
+        "startLine": 1,
+        "startChar": 1,
+        "endLine": 1,
+        "endChar": 21
+      },
+      "revId": "6ddc1ea5327e842ecca0ddce7039c3a280619707",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ca7c12a2_8232be0e",
         "filename": "plugin_test/Steps-to-run.md",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "6ddc1ea5327e842ecca0ddce7039c3a280619707",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "504c7575_26fd9b7b",
+        "filename": "plugin_test/Steps-to-run.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7633
+      },
+      "writtenOn": "2020-06-25T09:45:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca7c12a2_8232be0e",
+      "range": {
+        "startLine": 3,
+        "startChar": 3,
+        "endLine": 3,
+        "endChar": 44
+      },
+      "revId": "6ddc1ea5327e842ecca0ddce7039c3a280619707",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
