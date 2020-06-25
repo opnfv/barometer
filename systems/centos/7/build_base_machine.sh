@@ -62,6 +62,6 @@ jansson-devel
 # install epel release required for git-review
 epel-release
 libvirt-python
-python2-pip
+python3-pip
 numactl-devel
 " | grep -v ^#)
