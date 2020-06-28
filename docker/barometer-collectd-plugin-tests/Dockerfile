@@ -15,6 +15,8 @@ ENV tests /src/barometer/docker/barometer-collectd-plugin-tests
 WORKDIR ${repos_dir}
 RUN mkdir -p ${repos_dir}/barometer
 COPY . ${repos_dir}/barometer
+COPY docker/barometer-collectd-plugin-tests/collectd_apply_pull_request.sh \
+     ${repos_dir}/barometer/src/collectd/
 
 
 WORKDIR ${repos_dir}/barometer/systems
