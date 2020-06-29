@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b5e2fc85_31f87174",
+        "filename": "plugin_test/Steps-to-run.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7633
+      },
+      "writtenOn": "2020-06-29T04:41:53Z",
+      "side": 1,
+      "message": "The tests runs inside the master container for now. Vani has a PR  open that builds a test image to run the tests as well. We will also have an automated script which changes the folder and runs test.",
+      "parentUuid": "3e94acd0_b14eec02",
+      "range": {
+        "startLine": 15,
+        "startChar": 3,
+        "endLine": 15,
+        "endChar": 14
+      },
+      "revId": "c44e348d750f8ee804dc20037e035534020c9c9f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9ef726c5_6c93db3c",
         "filename": "plugin_test/Steps-to-run.md",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2020-06-26T23:56:43Z",
       "side": 1,
       "message": "Please add a note on What is the expected result here ? where should the user see the results.",
+      "range": {
+        "startLine": 19,
+        "startChar": 3,
+        "endLine": 19,
+        "endChar": 70
+      },
+      "revId": "c44e348d750f8ee804dc20037e035534020c9c9f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60dff9f6_7ada720c",
+        "filename": "plugin_test/Steps-to-run.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7633
+      },
+      "writtenOn": "2020-06-29T04:41:53Z",
+      "side": 1,
+      "message": "Currently,  failed tests are reported to the console in case there are any. I will follow up with more verbose outputs which shows the tests running and the output. We can also have a testing framework like pytest which takes care of this by itself. Any ideas or thoughts how this should look like  and improve?",
+      "parentUuid": "9ef726c5_6c93db3c",
       "range": {
         "startLine": 19,
         "startChar": 3,
