@@ -937,8 +937,8 @@ Limitations
 .. _`VES`: https://wiki.opnfv.org/display/fastpath/VES+plugin+updates
 .. _`VES shema definition`: https://gerrit.onap.org/r/gitweb?p=demo.git;a=tree;f=vnfs/VES5.0/evel/evel-test-collector/docs/att_interface_definition;hb=refs/heads/master
 .. _`PyYAML documentation`: https://pyyaml.org/wiki/PyYAMLDocumentation
-.. _`collectd plugin description`: https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
-.. _`collectd data types file`: https://github.com/collectd/collectd/blob/master/src/types.db
-.. _`collectd data types description`: https://github.com/collectd/collectd/blob/master/src/types.db.pod
+.. _`collectd plugin description`: https://github.com/collectd/collectd/blob/main/src/collectd.conf.pod
+.. _`collectd data types file`: https://github.com/collectd/collectd/blob/main/src/types.db
+.. _`collectd data types description`: https://github.com/collectd/collectd/blob/main/src/types.db.pod
 .. _`python regular expression syntax`: https://docs.python.org/2/library/re.html#regular-expression-syntax
 .. _`Kafka collectd plugin`: https://collectd.org/wiki/index.php/Plugin:Write_Kafka

@@ -19,8 +19,8 @@ This Dockerfile provides instruction for building collect in isolated container.
 There are currently two variants of collectd container:
  - barometer-collectd - it is based on stable collect release
  - barometer-collectd-master - development container that is based on
-   latest 'master' branch for collectd project. It contains all available
-   collectd plugins and features that are available on 'master' branch but
+   latest 'main' branch for collectd project. It contains all available
+   collectd plugins and features that are available on 'main' branch but
    some issues with configuration or stability may occur
 
 ------------------------------------------------------------------------------
@@ -48,7 +48,7 @@ sudo docker run -ti --net=host -v `pwd`/src/collectd/collectd_sample_configs:/op
 ------------------------------------------------------------------------------
 4. INSTALLATION NOTES: barometer-collectd-master (development container)
 
-To build docker barometer-collectd-master container run (it is based on master branch from collectd):
+To build docker barometer-collectd-master container run (it is based on main branch from collectd):
 sudo docker build -f ./docker/barometer-collectd-master/Dockerfile .
 from root barometer folder.
 

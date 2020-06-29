@@ -15,7 +15,7 @@
 #
 
 # This files contains list of pull requests to be applied on top
-# of master branch before building collectd included in docker
+# of main branch before building collectd included in docker
 # collectd-experimental container
 
 # Space/newline separated list of pull requests IDs

@@ -269,8 +269,8 @@ Collectd-barometer flavors
 Before starting to build and run the Collectd container, understand the available
 flavors of Collectd containers:
   * barometer-collectd - stable release, based on collectd 5.11
-  * barometer-collectd-master - release based on collectd 'master' branch
-  * barometer-collectd-experimental - release based on collectd 'master'
+  * barometer-collectd-master - release based on collectd 'main' branch
+  * barometer-collectd-experimental - release based on collectd 'main'
     branch that also includes set of experimental (not yet merged into upstream)
     pull requests
 

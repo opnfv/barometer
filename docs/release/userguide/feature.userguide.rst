@@ -62,12 +62,13 @@ Barometer has enabled the following collectd plugins:
   from collectd and translates requested values from collectd's internal format
   to SNMP format. Supports SNMP: get, getnext and walk requests.
 
-All the plugins above are available on the collectd master, except for the
-Gnocchi and Aodh plugins as they are Python-based plugins and only C plugins
-are accepted by the collectd community. The Gnocchi and Aodh plugins live in
-the OpenStack repositories.
+All the plugins above are available on the collectd main branch, except for
+the Gnocchi and Aodh plugins as they are Python-based plugins and only C
+plugins are accepted by the collectd community. The Gnocchi and Aodh plugins
+live in the OpenStack repositories.
 
-Other plugins existing as a pull request into collectd master:
+.. TODO: Update this to reflect merging of these PRs
+Other plugins existing as a pull request into collectd main:
 
 * *Legacy/IPMI*: A read plugin that reports platform thermals, voltages,
   fanspeed, current, flow, power etc. Also, the plugin monitors Intelligent
@@ -103,7 +104,7 @@ Collectd capabilities and usage
 
 Building all Barometer upstreamed plugins from scratch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The plugins that have been merged to the collectd master branch can all be
+The plugins that have been merged to the collectd main branch can all be
 built and configured through the barometer repository.
 
 .. note::
@@ -164,14 +165,14 @@ DPDK plugins
 ^^^^^^^^^^^^^
 Repo: https://github.com/collectd/collectd
 
-Branch: master
+Branch: main
 
 Dependencies: DPDK (http://dpdk.org/)
 
 .. note:: DPDK statistics plugin requires DPDK version 16.04 or later.
 
 To build and install DPDK to /usr please see:
-https://github.com/collectd/collectd/blob/master/docs/BUILD.dpdkstat.md
+https://github.com/collectd/collectd/blob/main/docs/BUILD.dpdkstat.md
 
 Building and installing collectd:
 
@@ -254,7 +255,7 @@ include:
  hexadecimal bitmask of the cores to run on).
 
 For more information on the plugin parameters, please see:
-https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
+https://github.com/collectd/collectd/blob/main/src/collectd.conf.pod
 
 .. note:: dpdkstat plugin initialization time depends on read interval. It
  requires 5 read cycles to set up internal buffers and states, during that time
@@ -307,7 +308,7 @@ Hugepages Plugin
 ^^^^^^^^^^^^^^^^^
 Repo: https://github.com/collectd/collectd
 
-Branch: master
+Branch: main
 
 Dependencies: None, but assumes hugepages are configured.
 
@@ -347,13 +348,13 @@ include:
     </Plugin>
 
 For more information on the plugin parameters, please see:
-https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
+https://github.com/collectd/collectd/blob/main/src/collectd.conf.pod
 
 Intel PMU Plugin
 ^^^^^^^^^^^^^^^^
 Repo: https://github.com/collectd/collectd
 
-Branch: master
+Branch: main
 
 Dependencies:
 
@@ -381,7 +382,7 @@ CPU event list json file:
 
 .. code:: bash
 
-    $ wget https://raw.githubusercontent.com/andikleen/pmu-tools/master/event_download.py
+    $ wget https://raw.githubusercontent.com/andikleen/pmu-tools/main/event_download.py
     $ python event_download.py
 
 This will download the json files to the location: $HOME/.cache/pmu-events/. If you don't want to
@@ -443,7 +444,7 @@ are monitored separately. To limit monitoring to cores 0-7 set the option as sho
     Cores "[0-7]"
 
 For more information on the plugin parameters, please see:
-https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
+https://github.com/collectd/collectd/blob/main/src/collectd.conf.pod
 
 .. note::
 
@@ -458,7 +459,7 @@ Intel RDT Plugin
 ^^^^^^^^^^^^^^^^
 Repo: https://github.com/collectd/collectd
 
-Branch: master
+Branch: main
 
 Dependencies:
 
@@ -506,7 +507,7 @@ include:
     </Plugin>
 
 For more information on the plugin parameters, please see:
-https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
+https://github.com/collectd/collectd/blob/main/src/collectd.conf.pod
 
 IPMI Plugin
 ^^^^^^^^^^^^
@@ -607,7 +608,7 @@ To configure the IPMI plugin you need to modify the file to include:
   dispatch the values to collectd and send SEL notifications.
 
 For more information on the IPMI plugin parameters and SEL feature configuration,
-please see: https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
+please see: https://github.com/collectd/collectd/blob/main/src/collectd.conf.pod
 
 Extended analog sensors support doesn't require additional configuration. The usual
 collectd IPMI documentation can be used:
@@ -624,7 +625,7 @@ Mcelog Plugin
 ^^^^^^^^^^^^^^
 Repo: https://github.com/collectd/collectd
 
-Branch: master
+Branch: main
 
 Dependencies: mcelog
 
@@ -723,7 +724,7 @@ include:
     </Plugin>
 
 For more information on the plugin parameters, please see:
-https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
+https://github.com/collectd/collectd/blob/main/src/collectd.conf.pod
 
 Simulating a Machine Check Exception can be done in one of 3 ways:
 
@@ -822,7 +823,7 @@ Open vSwitch Plugins
 ^^^^^^^^^^^^^^^^^^^^^
 OvS Plugins Repo: https://github.com/collectd/collectd
 
-OvS Plugins Branch: master
+OvS Plugins Branch: main
 
 OvS Events MIBs: The SNMP OVS interface link status is provided by standard
 IF-MIB (http://www.net-snmp.org/docs/mibs/IF-MIB.txt)
@@ -856,7 +857,7 @@ Clone and install the collectd ovs plugin:
 
     $ git clone $REPO
     $ cd collectd
-    $ git checkout master
+    $ git checkout main
     $ ./build.sh
     $ ./configure --enable-syslog --enable-logfile --enable-debug
     $ make
@@ -895,7 +896,7 @@ to include:
     </Plugin>
 
 For more information on the plugin parameters, please see:
-https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
+https://github.com/collectd/collectd/blob/main/src/collectd.conf.pod
 
 OVS PMD stats
 ^^^^^^^^^^^^^^
@@ -934,7 +935,7 @@ SNMP Agent Plugin
 ^^^^^^^^^^^^^^^^^
 Repo: https://github.com/collectd/collectd
 
-Branch: master
+Branch: main
 
 Dependencies: NET-SNMP library
 
@@ -1072,7 +1073,7 @@ The ``snmpwalk`` command can be used to validate the collectd configuration:
   retreived using standard IF-MIB tables.
 
 For more information on the plugin parameters, please see:
-https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
+https://github.com/collectd/collectd/blob/main/src/collectd.conf.pod
 
 For more details on AgentX subagent, please see:
 http://www.net-snmp.org/tutorial/tutorial-5/toolkit/demon/
@@ -1083,7 +1084,7 @@ virt plugin
 ^^^^^^^^^^^^
 Repo: https://github.com/collectd/collectd
 
-Branch: master
+Branch: main
 
 Dependencies: libvirt (https://libvirt.org/), libxml2
 
@@ -1216,7 +1217,7 @@ statistics are disabled. They can be enabled with ``ExtraStats`` option.
     </Plugin>
 
 For more information on the plugin parameters, please see:
-https://github.com/collectd/collectd/blob/master/src/collectd.conf.pod
+https://github.com/collectd/collectd/blob/main/src/collectd.conf.pod
 
 .. _install-collectd-as-a-service:
 
@@ -1364,7 +1365,7 @@ Security
 References
 ^^^^^^^^^^^
 .. [1] https://collectd.org/wiki/index.php/Naming_schema
-.. [2] https://github.com/collectd/collectd/blob/master/src/daemon/plugin.h
+.. [2] https://github.com/collectd/collectd/blob/main/src/daemon/plugin.h
 .. [3] https://collectd.org/wiki/index.php/Value_list_t
 .. [4] https://collectd.org/wiki/index.php/Data_set
 .. [5] https://collectd.org/documentation/manpages/types.db.5.shtml
