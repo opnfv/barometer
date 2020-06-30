@@ -246,6 +246,24 @@
       "revId": "f089c81a395a4de0ef2a46f46bfb6e93d24ced47",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d755f59_3000f9b3",
+        "filename": "systems/centos/7/build_base_machine.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7632
+      },
+      "writtenOn": "2020-06-30T12:37:50Z",
+      "side": 1,
+      "message": "I will just go though everything \u0026 make sure it\u0027s all python3 complaint and then update this in a separate review.",
+      "parentUuid": "4a6f0c66_93605f0e",
+      "revId": "f089c81a395a4de0ef2a46f46bfb6e93d24ced47",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
     }
   ]
 }
