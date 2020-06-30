@@ -1,0 +1,209 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c262e341_2bac6a19",
+        "filename": "docker/barometer-collectd-plugin-tests/Dockerfile",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-06-30T11:28:14Z",
+      "side": 1,
+      "message": "This looks the same as the existing collectd container. If the differences are minimal, you could inherit from that instead of duplicating the docker file.",
+      "revId": "f089c81a395a4de0ef2a46f46bfb6e93d24ced47",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e1105c8_63ea4e36",
+        "filename": "docker/barometer-collectd-plugin-tests/collectd_apply_pull_request.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-06-30T11:28:14Z",
+      "side": 1,
+      "message": "Duplicating the file is not the way to go here, because that increases the maintenance costs.\nI would suggest modifying this to parse a command line argument or look for an environment variable named ``COLLECTD_PULL_REQUESTS``, and then set the PULL_REQUESTS value based on that, if it is defined.\n\nThis maintains backwards compatibility with the experimental container (as you would default to whatever is here, if no arg is passed), and allows you to reuse the docker/barometer-collectd-experimental/collectd-apply_pull_requests.sh script for testing.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 15
+      },
+      "revId": "f089c81a395a4de0ef2a46f46bfb6e93d24ced47",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f369851_91018b48",
+        "filename": "docker/barometer-collectd-plugin-tests/run_tests.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-06-30T11:28:14Z",
+      "side": 1,
+      "message": "nit: whitespace",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 1
+      },
+      "revId": "f089c81a395a4de0ef2a46f46bfb6e93d24ced47",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e8c1619_4709ea71",
+        "filename": "docker/barometer-collectd-plugin-tests/test_cases/logparser_tests.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-06-30T11:28:14Z",
+      "side": 1,
+      "message": "You need licensing headers in all the files.\n\nhttps://wiki.opnfv.org/display/DEV/Contribution+Guidelines#ContributionGuidelines-GeneralCodeheaders",
+      "revId": "f089c81a395a4de0ef2a46f46bfb6e93d24ced47",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67639b56_04f44d96",
+        "filename": "docker/barometer-collectd-plugin-tests/test_cases/logparser_tests.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-06-30T11:28:14Z",
+      "side": 1,
+      "message": "Be mindful of whitespace.",
+      "range": {
+        "startLine": 2,
+        "startChar": 9,
+        "endLine": 2,
+        "endChar": 10
+      },
+      "revId": "f089c81a395a4de0ef2a46f46bfb6e93d24ced47",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb8ac91e_f4a22613",
+        "filename": "docker/barometer-collectd-plugin-tests/test_steps.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-06-30T11:28:14Z",
+      "side": 1,
+      "message": "We use ReStructured Text for the markup in OPNFV\n\nhttps://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html",
+      "revId": "f089c81a395a4de0ef2a46f46bfb6e93d24ced47",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33fde371_234b51c9",
+        "filename": "src/collectd/collectd_sample_configs-master/dpdkevents.conf.bak",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-06-30T11:28:14Z",
+      "side": 1,
+      "message": "This is unrelated to the current tests",
+      "revId": "f089c81a395a4de0ef2a46f46bfb6e93d24ced47",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9b8c5c9_f8221b4d",
+        "filename": "src/collectd/collectd_sample_configs-master/dpdkstat.conf.bak",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-06-30T11:28:14Z",
+      "side": 1,
+      "message": "unrelated, please remove",
+      "revId": "f089c81a395a4de0ef2a46f46bfb6e93d24ced47",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2dd94b04_111142b3",
+        "filename": "src/collectd/collectd_sample_configs-master/ovs_events.conf.bak",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-06-30T11:28:14Z",
+      "side": 1,
+      "message": "Remove this as well.",
+      "revId": "f089c81a395a4de0ef2a46f46bfb6e93d24ced47",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c3a031a_3eba9af1",
+        "filename": "src/collectd/collectd_sample_configs-master/ovs_stats.conf.bak",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-06-30T11:28:14Z",
+      "side": 1,
+      "message": "Remove this file, it is unrelated and unneeded.",
+      "revId": "f089c81a395a4de0ef2a46f46bfb6e93d24ced47",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a6f0c66_93605f0e",
+        "filename": "systems/centos/7/build_base_machine.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-06-30T11:28:14Z",
+      "side": 1,
+      "message": "This is not strictly related to this change. If this is required for the containers to run in general, it should be added as a separate change",
+      "revId": "f089c81a395a4de0ef2a46f46bfb6e93d24ced47",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
