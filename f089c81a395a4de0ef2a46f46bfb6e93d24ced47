@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6d3d40a6_e4bedc73",
+        "filename": "docker/barometer-collectd-plugin-tests/Dockerfile",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7632
+      },
+      "writtenOn": "2020-06-30T12:32:34Z",
+      "side": 1,
+      "message": "yes for now theres barely any changes but I was thinking we cache some of the dependencies, or keep a CentOS docker image build and the apply collectd (using the environment variable) and cache some other dependencies as well ?\nsince the build time for the containers is quite high",
+      "parentUuid": "c262e341_2bac6a19",
+      "revId": "f089c81a395a4de0ef2a46f46bfb6e93d24ced47",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7e1105c8_63ea4e36",
         "filename": "docker/barometer-collectd-plugin-tests/collectd_apply_pull_request.sh",
         "patchSetId": 3
