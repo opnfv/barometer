@@ -20,7 +20,7 @@ RUN yum update -y && \
         git config --global http.sslVerify false
 
 ENV DOCKER y
-ENV COLLECTD_FLAVOR master
+ENV COLLECTD_FLAVOR latest
 ENV WITH_DPDK y
 ENV repos_dir /src
 ENV openstack_plugins /src/barometer/src/collectd-openstack-plugins
@@ -39,7 +39,7 @@ RUN make && \
         pip install --upgrade pip && \
         pip install -r ${openstack_plugins}/collectd-openstack-plugins/requirements.txt
 
-COPY docker/barometer-collectd-master/run_collectd.sh /run_collectd.sh
+COPY docker/barometer-collectd-latest/run_collectd.sh /run_collectd.sh
 RUN chmod +x /run_collectd.sh
 
 ENTRYPOINT ["/run_collectd.sh"]

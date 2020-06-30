@@ -15,7 +15,7 @@
 
 default_flavor: "{{ flavor|default('stable')|string }}"
 flavor_image_name: "{{
-         'barometer-collectd-master' if (default_flavor == 'master') else
+         'barometer-collectd-latest' if (default_flavor == 'latest') else
          'barometer-collectd-experimental' if (default_flavor == 'experimental')
          else 'barometer-collectd' }}"
 collectd_image_name: "{{ 'opnfv/' + flavor_image_name }}"

@@ -269,7 +269,7 @@ Collectd-barometer flavors
 Before starting to build and run the Collectd container, understand the available
 flavors of Collectd containers:
   * barometer-collectd - stable release, based on collectd 5.11
-  * barometer-collectd-master - release based on collectd 'main' branch
+  * barometer-collectd-latest - release based on collectd 'main' branch
   * barometer-collectd-experimental - release based on collectd 'main'
     branch that also includes set of experimental (not yet merged into upstream)
     pull requests
@@ -280,7 +280,7 @@ flavors of Collectd containers:
 
 Stable `barometer-collectd` container is intended for work in production
 environment as it is based on latest collectd official release.
-`Barometer-collectd-master` and `barometer-collectd-experimental` containers
+`barometer-collectd-latest` and `barometer-collectd-experimental` containers
 can be used in order to try new collectd features.
 All flavors are located in `barometer` git repository - respective Dockerfiles
 are stored in subdirectories of `docker/` directory
@@ -291,7 +291,7 @@ are stored in subdirectories of `docker/` directory
     $ git clone https://gerrit.opnfv.org/gerrit/barometer
     $ ls barometer/docker|grep collectd
     barometer-collectd
-    barometer-collectd-master
+    barometer-collectd-latest
     barometer-collectd-experimental
 
 .. note::
@@ -338,23 +338,23 @@ Output should contain a barometer-collectd image:
    hello-world                  latest              05a3bd381fc2        4 weeks ago         1.84kB
 
 .. note::
-   If you do not plan to use collectd-master and collectd-experimental barometer
+   If you do not plan to use collectd-latest and collectd-experimental barometer
    containers, then you can proceed directly to section `Run the collectd stable docker image`_
 
 
-Build collectd-master container
+Build collectd-latest container
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code:: bash
 
     $ cd <BAROMETER_REPO_DIR>
-    $ sudo docker build -t opnfv/barometer-collectd-master \
+    $ sudo docker build -t opnfv/barometer-collectd-latest \
      --build-arg http_proxy=`echo $http_proxy` \
      --build-arg https_proxy=`echo $https_proxy` --network=host -f \
-     docker/barometer-collectd-master/Dockerfile .
+     docker/barometer-collectd-latest/Dockerfile .
 
 .. note::
-   For `barometer-collectd-master` and `barometer-collectd-experimental` containers
+   For `barometer-collectd-latest` and `barometer-collectd-experimental` containers
    proxy parameters should be passed only if system is behind an HTTP or HTTPS
    proxy server (same as for stable collectd container)
 
@@ -370,7 +370,7 @@ Build collectd-experimental container
      --network=host -f docker/barometer-collectd-experimental/Dockerfile .
 
 .. note::
-   For `barometer-collectd-master` and `barometer-collectd-experimental` containers
+   For `barometer-collectd-latest` and `barometer-collectd-experimental` containers
    proxy parameters should be passed only if system is behind an HTTP or HTTPS
    proxy server (same as for stable collectd container)
 
@@ -429,9 +429,9 @@ To make some changes when the container is running run:
 
    sudo docker exec -ti <CONTAINER ID> /bin/bash
 
-Run the barometer-collectd-master docker image
+Run the barometer-collectd-latest docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Run command for `barometer-collectd-master` container is very similar to command
+Run command for `barometer-collectd-latest` container is very similar to command
 used for stable container - the only differences are name of the image
 and location of the sample configuration files(as different version of collectd
 plugins requiring different configuration files)
@@ -441,14 +441,14 @@ plugins requiring different configuration files)
 
    $ cd <BAROMETER_REPO_DIR>
    $ sudo docker run -ti --net=host -v \
-   `pwd`/src/collectd/collectd_sample_configs-master:/opt/collectd/etc/collectd.conf.d \
+   `pwd`/src/collectd/collectd_sample_configs-latest:/opt/collectd/etc/collectd.conf.d \
    -v /var/run:/var/run -v /tmp:/tmp -v /sys/fs/resctrl:/sys/fs/resctrl \
-   --privileged opnfv/barometer-collectd-master
+   --privileged opnfv/barometer-collectd-latest
 
 .. note::
    Barometer collectd docker images are sharing some directories with host
    (e.g. /tmp) therefore only one of collectd barometer flavors can be run
-   at a time. In other words, if you want to try `barometer-collectd-master` or
+   at a time. In other words, if you want to try `barometer-collectd-latest` or
    `barometer-collectd-experimental` image, please stop instance of
    `barometer-collectd(stable)` image first.
 
@@ -461,29 +461,29 @@ plugins requiring different configuration files)
 Run the barometer-collectd-experimental docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Barometer-collectd-experimental container shares default configuration files
-with 'barometer-collectd-master' equivalent but some of experimental pull
+with 'barometer-collectd-latest' equivalent but some of experimental pull
 requests may require modified configuration. Additional configuration files that
 are required specifically by experimental container can be found in
 `docker/barometer-collectd-experimental/experimental-configs/`
 directory. Content of this directory (all \*.conf files) should be copied to
-`src/collectd/collectd_sample_configs-master` directory before first run of
+`src/collectd/collectd_sample_configs-latest` directory before first run of
 experimental container.
 
 .. code:: bash
 
    $ cd <BAROMETER_REPO_DIR>
    $ cp docker/barometer-collectd-experimental/experimental-configs/*.conf \
-     src/collectd/collectd_sample_configs-master
+     src/collectd/collectd_sample_configs-latest
 
 When configuration files are up to date for experimental container, it can be
-launched using following command (almost identical to run-command for 'master'
-collectd container)
+launched using following command (almost identical to run-command for
+``latest`` collectd container)
 
 .. code:: bash
 
    $ cd <BAROMETER_REPO_DIR>
    $ sudo docker run -ti --net=host -v \
-   `pwd`/src/collectd/collectd_sample_configs-master:/opt/collectd/etc/collectd.conf.d \
+   `pwd`/src/collectd/collectd_sample_configs-latest:/opt/collectd/etc/collectd.conf.d \
    -v /var/run:/var/run -v /tmp:/tmp -v /sys/fs/resctrl:/sys/fs/resctrl --privileged \
    opnfv/barometer-collectd-experimental
 

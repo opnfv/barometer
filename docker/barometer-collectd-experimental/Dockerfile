@@ -34,7 +34,7 @@ COPY docker/barometer-collectd-experimental/collectd_apply_pull_request.sh \
 # copying additional experimental configs on top of configs for 'main'
 # branch release
 COPY docker/barometer-collectd-experimental/experimental-configs/* \
-     ${repos_dir}/barometer/src/collectd/collectd_sample_configs-master/
+     ${repos_dir}/barometer/src/collectd/collectd_sample_configs-latest/
 
 WORKDIR ${repos_dir}/barometer/systems
 RUN sh ./build_base_machine.sh && \

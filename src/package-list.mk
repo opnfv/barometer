@@ -22,7 +22,7 @@ COLLECTD_URL ?= https://github.com/collectd/collectd
 
 # there are 3 collectd flavors:
 # -"stable" - based on stable collectd release
-# -"master" - development version, based on main branch
+# -"latest" - development version, based on main branch
 # -"experimental" - it is based on main branch as above and includes
 #                   set pull requests with experimental features
 ifeq ($(COLLECTD_FLAVOR), stable)
@@ -30,10 +30,10 @@ ifeq ($(COLLECTD_FLAVOR), stable)
 	COLLECTD_TAG ?= collectd-5.11
 	SAMPLE_CONF_VARIANT_NAME = collectd_sample_configs
 else
-# 'master' and 'experimental' collectd flavors are both using
+# 'latest' and 'experimental' collectd flavors are both using
 # code from main branch
 	COLLECTD_TAG ?= main
-	SAMPLE_CONF_VARIANT_NAME = collectd_sample_configs-master
+	SAMPLE_CONF_VARIANT_NAME = collectd_sample_configs-latest
 ifeq ($(COLLECTD_FLAVOR), experimental)
 # 'experimental' flavor is using additional Pull Requests that
 # are put on top of main release
