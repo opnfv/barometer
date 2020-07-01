@@ -75,7 +75,7 @@ apt-get -y install \
     linux-libc-dev \
     default-jdk \
     protobuf-c-compiler \
-    python-dev \
+    python3-dev \
     openvswitch-switch \
     mcelog
 
