@@ -46,6 +46,30 @@
       "revId": "0b33ff5d9d1358f5e2b8f53fffc72324b5cd4c40",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4050332_9d2a2e89",
+        "filename": "docker/README_collectd",
+        "patchSetId": 6
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-07-01T10:44:56Z",
+      "side": 1,
+      "message": "I\u0027ve put them up already:\n https://gerrit.opnfv.org/gerrit/c/barometer/+/70412\n https://gerrit.opnfv.org/gerrit/c/barometer/+/70413\n\nPlease feel welcome to review and test",
+      "parentUuid": "1217a4ca_cd86fcbe",
+      "range": {
+        "startLine": 97,
+        "startChar": 32,
+        "endLine": 97,
+        "endChar": 38
+      },
+      "revId": "0b33ff5d9d1358f5e2b8f53fffc72324b5cd4c40",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
     }
   ]
 }
