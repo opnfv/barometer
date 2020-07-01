@@ -22,6 +22,30 @@
       "revId": "0b33ff5d9d1358f5e2b8f53fffc72324b5cd4c40",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1217a4ca_cd86fcbe",
+        "filename": "docker/README_collectd",
+        "patchSetId": 6
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 7633
+      },
+      "writtenOn": "2020-07-01T07:00:34Z",
+      "side": 1,
+      "message": "I have made the change. While we are at it, I would be happy to make changes for master -\u003e main at barometer docs as well. Please let me know if the process for this would be any different.",
+      "parentUuid": "2fca8bf6_8a0281bf",
+      "range": {
+        "startLine": 97,
+        "startChar": 32,
+        "endLine": 97,
+        "endChar": 38
+      },
+      "revId": "0b33ff5d9d1358f5e2b8f53fffc72324b5cd4c40",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
     }
   ]
 }
