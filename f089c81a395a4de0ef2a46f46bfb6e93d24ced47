@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "c52dbe7b_2b32dc43",
+        "filename": "docker/barometer-collectd-plugin-tests/Dockerfile",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-07-01T10:44:27Z",
+      "side": 1,
+      "message": "Sounds good.",
+      "parentUuid": "6d3d40a6_e4bedc73",
+      "revId": "f089c81a395a4de0ef2a46f46bfb6e93d24ced47",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7e1105c8_63ea4e36",
         "filename": "docker/barometer-collectd-plugin-tests/collectd_apply_pull_request.sh",
         "patchSetId": 3
@@ -72,6 +90,30 @@
       "side": 1,
       "message": "Sorry about the missing headers, white spaces \u0026 committing the .bak files, I was a little unser about everything in this git-review.\n\nI think I understand this now, but just to confirm, jenkins will be used to set the environment variable and then this file should get them (sha id, PR etc) and use that to checkout the repo?",
       "parentUuid": "7e1105c8_63ea4e36",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 15
+      },
+      "revId": "f089c81a395a4de0ef2a46f46bfb6e93d24ced47",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a55f67f4_cff0769b",
+        "filename": "docker/barometer-collectd-plugin-tests/collectd_apply_pull_request.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-07-01T10:44:27Z",
+      "side": 1,
+      "message": "In the CI case, Jenkins will need to get get the PR ID, etc, but I\u0027m guessing that should be included in the metadata from github.\n\nI have a preference towards an argument passed via the command line. I recommend that you have a default value as well.\nSetting a default in bash is straightforward.\n\n# parse the args from the cli\n# https://dzone.com/articles/bash-snippet-parsing-command-line-arguments-and-as\n\nPULL_REQUESTS\u003d\"${COLLECTD_PULL_REQUESTS:-DEFAULT_PRS}\"",
+      "parentUuid": "00f3e69f_faa763fc",
       "range": {
         "startLine": 27,
         "startChar": 0,
