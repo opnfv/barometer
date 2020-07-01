@@ -16,6 +16,24 @@
       "revId": "f6bad3ff064f7277f5575b9e7d2a0bfb0c4bb85e",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f697db9_cbdd263b",
+        "filename": "docker/barometer-collectd-experimental/Dockerfile",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7632
+      },
+      "writtenOn": "2020-07-01T13:46:13Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "65f891a5_f4be331e",
+      "revId": "f6bad3ff064f7277f5575b9e7d2a0bfb0c4bb85e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
