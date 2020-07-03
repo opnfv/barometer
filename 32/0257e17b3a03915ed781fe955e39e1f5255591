@@ -1,0 +1,11 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+1: vani singh <vanisingh@live.co.uk>
+Code-Review+1: sunku ranganath <sunku.ranganath@intel.com>
+Code-Review+1: Jabir Kanhira Kadavathu <jabir.kanhira.kadavathu@intel.com>
+Code-Review+2: Matthias Runge <mrunge@redhat.com>
+Code-Review+2: Emma Foley <efoley@redhat.com>
+Submitted-by: Emma Foley <efoley@redhat.com>
+Submitted-at: Fri, 03 Jul 2020 09:56:45 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/c/barometer/+/70412
+Project: barometer
+Branch: refs/heads/master
