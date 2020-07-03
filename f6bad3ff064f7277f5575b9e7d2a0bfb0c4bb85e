@@ -34,6 +34,24 @@
       "revId": "f6bad3ff064f7277f5575b9e7d2a0bfb0c4bb85e",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce19d970_7adf3bd4",
+        "filename": "docker/barometer-collectd-experimental/Dockerfile",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-07-03T09:56:34Z",
+      "side": 0,
+      "message": "In case anyone reads this and was wondering what it does:\n\nCOLLECTD_FLAVOUR refers to the container flavour for the barometer-collectd containers.",
+      "parentUuid": "7f697db9_cbdd263b",
+      "revId": "f6bad3ff064f7277f5575b9e7d2a0bfb0c4bb85e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
