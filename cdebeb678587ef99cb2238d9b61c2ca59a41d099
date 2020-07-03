@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b2bbb194_1263daa0",
+        "filename": "systems/centos/7/build_base_machine.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2020-07-03T08:11:29Z",
+      "side": 1,
+      "message": "did you test this? Where did this package come from?\n\nBase python in centos 7 is python 2.",
+      "revId": "cdebeb678587ef99cb2238d9b61c2ca59a41d099",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
