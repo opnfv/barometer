@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d70bb19a_0cd57dc2",
+        "filename": "docker/README_collectd",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-07-03T10:03:19Z",
+      "side": 1,
+      "message": "Instances of *-master vs *-latest will be the source of the merge conflict.\n\nYou need to rebase on master.\n\n$ git fetch origin\n$ git rebase -i origin/master\n\n`git status` gives an output about both files being changed, so edit the file and update anything that is marked with something like this: \n   \u003c\u003c\u003c\u003c\u003c\u003c\u003c\u003c\u003c\u003c\n   4. INSTALLATION NOTES - barometer-collectd-master\n   \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\n   4. INSTALLATION NOTES - barometer-collectd-latest\n   \u003e\u003e\u003e\u003e\u003e\u003e\u003e\u003e\u003e\u003e\n\nYou should remove the incorrect version, then remove the \u003c\u003c\u003c, \u003e\u003e\u003e, \u003d\u003d\u003d markup\n\nThen ``git add`` the file, ``git rebase --continue`` and continue to follow any prompts to repeat this or edit files until you see the \"Rebase successfully completed\" message and ``git status`` no longer indicates that you are rebasing. After that, you can continue as normal",
+      "range": {
+        "startLine": 12,
+        "startChar": 43,
+        "endLine": 12,
+        "endChar": 49
+      },
+      "revId": "851be0688a3ce1f1644f68e004d5b1da46185735",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
