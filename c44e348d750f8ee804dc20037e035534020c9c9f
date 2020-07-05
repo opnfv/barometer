@@ -139,6 +139,54 @@
       "revId": "c44e348d750f8ee804dc20037e035534020c9c9f",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60933adc_8984fd50",
+        "filename": "plugin_test/Steps-to-run.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 7633
+      },
+      "writtenOn": "2020-07-05T16:13:02Z",
+      "side": 1,
+      "message": "Cofigure jenkins pipeline to report the test results back. We will probably use pytest or unittest framework. Investigating which one plays well with jenkins",
+      "parentUuid": "bc21e771_c4567aaf",
+      "range": {
+        "startLine": 20,
+        "startChar": 4,
+        "endLine": 20,
+        "endChar": 12
+      },
+      "revId": "c44e348d750f8ee804dc20037e035534020c9c9f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc79cfb7_a38567da",
+        "filename": "plugin_test/Steps-to-run.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 7633
+      },
+      "writtenOn": "2020-07-05T16:13:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca9ba2bc_a3419988",
+      "range": {
+        "startLine": 20,
+        "startChar": 16,
+        "endLine": 20,
+        "endChar": 27
+      },
+      "revId": "c44e348d750f8ee804dc20037e035534020c9c9f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
