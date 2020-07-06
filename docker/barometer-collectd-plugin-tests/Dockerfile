@@ -1,29 +1,16 @@
-FROM centos:7
-RUN yum update -y && \
-        yum install -y which sudo git && \
-        yum clean all && \
-        git config --global http.sslVerify false
+FROM opnfv/barometer-collectd-tests-base:latest
 
-ENV DOCKER y
-ENV COLLECTD_FLAVOR master
+ENV COLLECTD_FLAVOR experimental
 ENV WITH_DPDK y
-ENV repos_dir /src
 ENV openstack_plugins /src/barometer/src/collectd-openstack-plugins
 ENV tests /src/barometer/docker/barometer-collectd-plugin-tests
 
-
-WORKDIR ${repos_dir}
-RUN mkdir -p ${repos_dir}/barometer
-COPY . ${repos_dir}/barometer
 COPY docker/barometer-collectd-plugin-tests/collectd_apply_pull_request.sh \
      ${repos_dir}/barometer/src/collectd/
 
-
-WORKDIR ${repos_dir}/barometer/systems
-RUN sh ./build_base_machine.sh && \
-        useradd -ms /bin/bash collectd_exec && \
-        echo "collectd_exec ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-
+WORKDIR ${repos_dir}/barometer/src/collectd/
+RUN chmod +x collectd_apply_pull_request.sh
+CMD ["/.collectd_apply_pull_request.sh 3045"]
 
 WORKDIR ${openstack_plugins}
 RUN make && \
@@ -37,5 +24,5 @@ RUN chmod +x /run_collectd.sh
 
 ENTRYPOINT ["/run_collectd.sh"]
 
-#here we will execute the python file run_tests.py
-RUN python3 ${tests}/run_tests.py
+WORKDIR tests
+#RUN python3 ${tests}/run_tests.py

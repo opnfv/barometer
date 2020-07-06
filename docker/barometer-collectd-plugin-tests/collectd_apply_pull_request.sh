@@ -1,22 +1,12 @@
 #! /bin/bash
-# Copyright 2019 Intel Corporation and OPNFV. All rights reserved.
+##############################################################################
+# Copyright (c) 2017 <Company or Individual> and others.
 #
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
 # http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
-
-# This files contains list of pull requests to be applied on top
-# of master branch before building collectd included in docker
-# collectd-experimental container
+##############################################################################
 
 # Space/newline separated list of pull requests IDs
 # for example:
@@ -24,10 +14,25 @@
 #                3028 #other PR
 #                )
 
-PULL_REQUESTS=(
-    3045 #logparser
-    #insert another PR ID here
-              )
+
+# Parse for the cli inputs for PRs
+PULL_REQUESTS=()
+i=1;
+j=$#;
+while [ $i -le $j ]
+do
+    PULL_REQUESTS[i]="$1"
+    i=$((i + 1));
+    shift 1;
+done
+
+echo ${PULL_REQUESTS[*]}
+if [ ${#PULL_REQUESTS[@]} -eq 0 ]; then
+       PULL_REQUESTS=(
+        3046 #logparser
+        #insert another PR ID here
+    )
+fi
 
 # during rebasing/merging git requires email & name to be set
 git config user.email "barometer-experimental@container"
