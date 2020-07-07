@@ -187,6 +187,30 @@
       "revId": "c44e348d750f8ee804dc20037e035534020c9c9f",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "16683766_5b7c791d",
+        "filename": "plugin_test/Steps-to-run.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 7427
+      },
+      "writtenOn": "2020-07-07T22:09:39Z",
+      "side": 1,
+      "message": "Hopefully You could address these comments in the demo you both planned next week.",
+      "parentUuid": "60933adc_8984fd50",
+      "range": {
+        "startLine": 20,
+        "startChar": 4,
+        "endLine": 20,
+        "endChar": 12
+      },
+      "revId": "c44e348d750f8ee804dc20037e035534020c9c9f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
     }
   ]
 }
