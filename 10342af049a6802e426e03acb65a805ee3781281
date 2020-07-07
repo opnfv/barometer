@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8477b286_d42a508a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7632
+      },
+      "writtenOn": "2020-07-07T12:42:25Z",
+      "side": 1,
+      "message": "thanks ! will make sure I follow this in future",
+      "parentUuid": "65649a9f_21b0f4cf",
+      "revId": "10342af049a6802e426e03acb65a805ee3781281",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "780a0f66_36b02ae7",
         "filename": "/COMMIT_MSG",
         "patchSetId": 2
@@ -30,6 +48,30 @@
       "writtenOn": "2020-07-07T10:44:09Z",
       "side": 1,
       "message": "This looks like an update for https://gerrit.opnfv.org/gerrit/c/barometer/+/70482.\n\nPlease update the Change-Id this to match the previous change.\n   Change-Id: I334c6644be88396832c94127ecf62cfb37ff191f\nThen you can upload a revision on the original patchsets.\n\nOnce that is done, please abandon this one.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 52
+      },
+      "revId": "10342af049a6802e426e03acb65a805ee3781281",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c41a1799_86acb8ed",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7632
+      },
+      "writtenOn": "2020-07-07T12:42:25Z",
+      "side": 1,
+      "message": "yes it is, sorry about this thanks 😊",
+      "parentUuid": "780a0f66_36b02ae7",
       "range": {
         "startLine": 15,
         "startChar": 0,
