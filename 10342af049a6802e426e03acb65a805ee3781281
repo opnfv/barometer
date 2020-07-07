@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "65649a9f_21b0f4cf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2020-07-07T08:06:43Z",
+      "side": 1,
+      "message": "Please remove the \u0027-\u0027 from the commit summary and start with an upper case character.",
+      "revId": "10342af049a6802e426e03acb65a805ee3781281",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04d78d0e_ff04d673",
+        "filename": "docker/barometer-collectd-plugin-tests/Dockerfile",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2020-07-07T08:06:43Z",
+      "side": 1,
+      "message": "remove the comment?",
+      "revId": "10342af049a6802e426e03acb65a805ee3781281",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d35af681_5dac1f91",
+        "filename": "docker/barometer-collectd-plugin-tests/Dockerfile.base",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2020-07-07T08:06:43Z",
+      "side": 1,
+      "message": "same here about copyright and company.",
+      "revId": "10342af049a6802e426e03acb65a805ee3781281",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0aa9db22_8fa7374c",
+        "filename": "docker/barometer-collectd-plugin-tests/collectd_apply_pull_request.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2020-07-07T08:06:43Z",
+      "side": 1,
+      "message": "when adding a copyright: fix the year and add a company or individual \u003d\u003d you.\n\n(or remove the copyright header).\n\nMaddind a license (below is fine).",
+      "revId": "10342af049a6802e426e03acb65a805ee3781281",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fe8be1c_b1b18289",
+        "filename": "docker/barometer-collectd-plugin-tests/plugin_configs/noload_logparser.conf",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2020-07-07T08:06:43Z",
+      "side": 1,
+      "message": "and here.",
+      "revId": "10342af049a6802e426e03acb65a805ee3781281",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9547c82a_35fb14a9",
+        "filename": "docker/barometer-collectd-plugin-tests/run_collectd.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2020-07-07T08:06:43Z",
+      "side": 1,
+      "message": "here. as well, please fix or remove copyright.",
+      "revId": "10342af049a6802e426e03acb65a805ee3781281",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e37f147_cbc54536",
+        "filename": "docker/barometer-collectd-plugin-tests/run_tests.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2020-07-07T08:06:43Z",
+      "side": 1,
+      "message": "fix or remove....",
+      "revId": "10342af049a6802e426e03acb65a805ee3781281",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16fe3408_4a0c8067",
+        "filename": "docker/barometer-collectd-plugin-tests/test_cases/logparser_tests.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2020-07-07T08:06:43Z",
+      "side": 1,
+      "message": "fix or remove copyright",
+      "revId": "10342af049a6802e426e03acb65a805ee3781281",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
