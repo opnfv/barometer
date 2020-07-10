@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "08143e17_6dd36145",
+        "filename": "docker/ansible/roles/run_collectd/vars/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-07-10T17:32:07Z",
+      "side": 1,
+      "message": "I think this one is the one you meant to change. We expect to have three images in dockerhub.\n\nThe change to rename the barometer-collectd-master -\u003e barometer-collectd-latest should go in releng AFAIK, which has the container publishing job[1].\n\n[1] https://github.com/opnfv/releng/blob/fce5787bc9e526e8ca473eb1304a7cc41b2f2c95/jjb/releng/opnfv-docker.yaml#L61-L66",
+      "range": {
+        "startLine": 20,
+        "startChar": 15,
+        "endLine": 20,
+        "endChar": 33
+      },
+      "revId": "acb0be16e0a71fcaf884c3c58400fd226f55b631",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
