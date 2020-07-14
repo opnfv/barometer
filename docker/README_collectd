@@ -9,7 +9,7 @@ Table of content:
 1. DESCRIPTION
 2. SYSTEM REQUIREMENTS
 3. INSTALLATION NOTES - barometer-collectd
-4. INSTALLATION NOTES - barometer-collectd-latest
+4. INSTALLATION NOTES - barometer-collectd-master
 5. ADDITIONAL STEPS
 
 ------------------------------------------------------------------------------
@@ -18,7 +18,7 @@ Table of content:
 This Dockerfile provides instruction for building collect in isolated container.
 There are currently two variants of collectd container:
  - barometer-collectd - it is based on stable collect release
- - barometer-collectd-latest - development container that is based on
+ - barometer-collectd-master - development container that is based on
    latest 'main' branch for collectd project. It contains all available
    collectd plugins and features that are available on 'main' branch but
    some issues with configuration or stability may occur
@@ -46,22 +46,22 @@ sudo docker run -ti --net=host -v `pwd`/src/collectd/collectd_sample_configs:/op
 /opt/collectd/sbin/collectd -f
 
 ------------------------------------------------------------------------------
-4. INSTALLATION NOTES: barometer-collectd-latest (development container)
+4. INSTALLATION NOTES: barometer-collectd-master (development container)
 
-To build docker barometer-collectd-latest container run (it is based on main branch from collectd):
-sudo docker build -f ./docker/barometer-collectd-latest/Dockerfile .
+To build docker barometer-collectd-master container run (it is based on main branch from collectd):
+sudo docker build -f ./docker/barometer-collectd-master/Dockerfile .
 from root barometer folder.
 
 To run builded image run
 sudo docker images # get docker image id
-sudo docker run -ti --net=host -v `pwd`/src/collectd/collectd_sample_configs-latest:/opt/collectd/etc/collectd.conf.d \
+sudo docker run -ti --net=host -v `pwd`/src/collectd/collectd_sample_configs-master:/opt/collectd/etc/collectd.conf.d \
 -v /var/run:/var/run -v /tmp:/tmp --privileged <image id>
 
-NOTE: barometer-collectd-latest container uses a different sample configurations files
-compared to regular barometer-collectd container (src/collectd/collectd_sample_configs-latest)
+NOTE: barometer-collectd-master container uses a different sample configurations files
+compared to regular barometer-collectd container (src/collectd/collectd_sample_configs-master)
 
 To make some changes run
-sudo docker run -ti --net=host -v `pwd`/src/collectd/collectd_sample_configs-latest:/opt/collectd/etc/collectd.conf.d \
+sudo docker run -ti --net=host -v `pwd`/src/collectd/collectd_sample_configs-master:/opt/collectd/etc/collectd.conf.d \
 -v /var/run:/var/run -v /tmp:/tmp --privileged --entrypoint=/bin/bash <image id>
 
 /opt/collectd/sbin/collectd -f

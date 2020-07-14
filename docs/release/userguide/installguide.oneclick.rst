@@ -128,7 +128,6 @@ Edit inventory file
 Edit inventory file and add hosts:
 ``$barometer_dir/docker/ansible/default.inv``
 
-.. TODO:: Use include file directive to add the docker/ansible/default.inv file here
 .. code:: bash
 
     [collectd_hosts]
@@ -137,8 +136,8 @@ Edit inventory file and add hosts:
     [collectd_hosts:vars]
     install_mcelog=true
     insert_ipmi_modules=true
-    # to use latest or experimental container set the collectd flavor below
-    # possible values: stable|latest|experimental
+    #to use master or experimental container set the collectd flavor below
+    #possible values: stable|master|experimental
     flavor=stable
 
     [influxdb_hosts]
