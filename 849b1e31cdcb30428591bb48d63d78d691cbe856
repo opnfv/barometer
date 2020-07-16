@@ -46,6 +46,53 @@
       "revId": "849b1e31cdcb30428591bb48d63d78d691cbe856",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61739482_bdee33bf",
+        "filename": "docker/ansible/roles/run_collectd/vars/main.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 7427
+      },
+      "writtenOn": "2020-07-16T18:58:48Z",
+      "side": 1,
+      "message": "I don\u0027t see a necessity to have \u0027barometer-collectd-tests\u0027 here to be added. I believe we could run the tests without mentioning the flavor here.",
+      "parentUuid": "8ae48c46_538a2d3e",
+      "range": {
+        "startLine": 20,
+        "startChar": 9,
+        "endLine": 20,
+        "endChar": 13
+      },
+      "revId": "849b1e31cdcb30428591bb48d63d78d691cbe856",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c35ce32c_5b1e87f1",
+        "filename": "docker/barometer-collectd-plugin-tests/collectd_apply_pull_request.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7427
+      },
+      "writtenOn": "2020-07-16T18:58:48Z",
+      "side": 1,
+      "message": "Just curious to know whether any criteria that you followed for setting up this git config ? \nIf the plugin tests belongs to master or main, will this git config change accordingly ?",
+      "range": {
+        "startLine": 38,
+        "startChar": 22,
+        "endLine": 38,
+        "endChar": 55
+      },
+      "revId": "849b1e31cdcb30428591bb48d63d78d691cbe856",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
     }
   ]
 }
