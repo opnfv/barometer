@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "9ebcb751_4e746a8d",
+        "filename": "docker/ansible/roles/run_collectd/vars/main.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7427
+      },
+      "writtenOn": "2020-07-17T16:55:04Z",
+      "side": 1,
+      "message": "this is back to \u0027master\u0027",
+      "range": {
+        "startLine": 18,
+        "startChar": 29,
+        "endLine": 18,
+        "endChar": 35
+      },
+      "revId": "849b1e31cdcb30428591bb48d63d78d691cbe856",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f4122bfb_0a87ed80",
         "filename": "docker/ansible/roles/run_collectd/vars/main.yml",
         "patchSetId": 8
@@ -108,6 +131,30 @@
       "side": 1,
       "message": "no .. I didn\u0027t think that way .. I guess we could have an environment variable that tells jenkins which branch to run the tests on, if the tests folder was available in the branches ... \n\nor even which flavour ?\n\nas for here ... I think this file could just apply the PR for collectd.\n\nor do you think its better to incorporate this here ?",
       "parentUuid": "c35ce32c_5b1e87f1",
+      "range": {
+        "startLine": 38,
+        "startChar": 22,
+        "endLine": 38,
+        "endChar": 55
+      },
+      "revId": "849b1e31cdcb30428591bb48d63d78d691cbe856",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23a11c97_b51e993e",
+        "filename": "docker/barometer-collectd-plugin-tests/collectd_apply_pull_request.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7427
+      },
+      "writtenOn": "2020-07-17T16:55:04Z",
+      "side": 1,
+      "message": "Ok. As long it does its intended job, it\u0027s good enough then.",
+      "parentUuid": "de760d54_bc13085d",
       "range": {
         "startLine": 38,
         "startChar": 22,
