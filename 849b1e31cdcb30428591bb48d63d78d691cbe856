@@ -96,6 +96,53 @@
     },
     {
       "key": {
+        "uuid": "f9f8786d_bbd0da5c",
+        "filename": "docker/ansible/roles/run_collectd/vars/main.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-08-11T17:37:34Z",
+      "side": 1,
+      "message": "I agree, IF you want to use ansible for running the tests, then add it to a separate role.\nWe can probably run the tests without ansible",
+      "parentUuid": "61739482_bdee33bf",
+      "range": {
+        "startLine": 20,
+        "startChar": 9,
+        "endLine": 20,
+        "endChar": 13
+      },
+      "revId": "849b1e31cdcb30428591bb48d63d78d691cbe856",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89e7d04a_605f59ed",
+        "filename": "docker/barometer-collectd-plugin-tests/collectd_apply_pull_request.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-08-11T17:37:34Z",
+      "side": 1,
+      "message": "As discussed in the Barometer meeting today, for the tests, we only want one PR to be added at a time, so there is no need to have a list of PRs. This should take a single number for the PR, instead of a list",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 2
+      },
+      "revId": "849b1e31cdcb30428591bb48d63d78d691cbe856",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c35ce32c_5b1e87f1",
         "filename": "docker/barometer-collectd-plugin-tests/collectd_apply_pull_request.sh",
         "patchSetId": 8
@@ -160,6 +207,144 @@
         "startChar": 22,
         "endLine": 38,
         "endChar": 55
+      },
+      "revId": "849b1e31cdcb30428591bb48d63d78d691cbe856",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3146d2a2_509a58b9",
+        "filename": "docker/barometer-collectd-plugin-tests/collectd_apply_pull_request.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-08-11T17:37:34Z",
+      "side": 1,
+      "message": "This script should only apply a single PR (see above)",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 4
+      },
+      "revId": "849b1e31cdcb30428591bb48d63d78d691cbe856",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14f7ae57_8ee4c792",
+        "filename": "docker/barometer-collectd-plugin-tests/test_steps.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-08-11T17:37:34Z",
+      "side": 1,
+      "message": "We use rst in most of the docs.\n\nThis needs to have a copyright header added",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 15
+      },
+      "revId": "849b1e31cdcb30428591bb48d63d78d691cbe856",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d5e1228_03f30b75",
+        "filename": "docker/barometer-collectd/Dockerfile",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-08-11T17:37:34Z",
+      "side": 1,
+      "message": "The dockerfile for baromter-collectd should not be modified, as we still want people to be able to use that as before.\n\nAny changes to this should be made in a derived docker file,",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 13
+      },
+      "revId": "849b1e31cdcb30428591bb48d63d78d691cbe856",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7345b915_89e8c46f",
+        "filename": "plugin_test/test_logparserconf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-08-11T17:37:34Z",
+      "side": 1,
+      "message": "nit: Personally, I would use str.format[1] for this instead.\n\n[1] https://docs.python.org/3/library/stdtypes.html#str.format",
+      "range": {
+        "startLine": 25,
+        "startChar": 27,
+        "endLine": 25,
+        "endChar": 50
+      },
+      "revId": "849b1e31cdcb30428591bb48d63d78d691cbe856",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61fd01e0_a330161a",
+        "filename": "plugin_test/test_logparserconf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-08-11T17:37:34Z",
+      "side": 1,
+      "message": "str.format",
+      "range": {
+        "startLine": 31,
+        "startChar": 27,
+        "endLine": 31,
+        "endChar": 55
+      },
+      "revId": "849b1e31cdcb30428591bb48d63d78d691cbe856",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2f13a88_df47a4a8",
+        "filename": "systems/centos/7/build_base_machine.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-08-11T17:37:34Z",
+      "side": 1,
+      "message": "I would add this as a separate change, since this is relevant for more than just the tests.\n\nI\u0027ll consider this optional though",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 11
       },
       "revId": "849b1e31cdcb30428591bb48d63d78d691cbe856",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
