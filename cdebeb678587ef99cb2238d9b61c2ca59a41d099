@@ -34,6 +34,24 @@
       "revId": "cdebeb678587ef99cb2238d9b61c2ca59a41d099",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ede7b392_ba0d79aa",
+        "filename": "systems/centos/7/build_base_machine.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7633
+      },
+      "writtenOn": "2020-08-17T06:54:31Z",
+      "side": 1,
+      "message": "Yeah this is not required. There is nothing like libvert python3. Its libvert python and version 6 works with python 3",
+      "parentUuid": "ad510147_8bfb4e22",
+      "revId": "cdebeb678587ef99cb2238d9b61c2ca59a41d099",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
     }
   ]
 }
