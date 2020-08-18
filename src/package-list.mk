@@ -32,7 +32,7 @@ ifeq ($(COLLECTD_FLAVOR), stable)
 else
 # 'master' and 'experimental' collectd flavors are both using
 # code from main branch
-	COLLECTD_TAG ?= c04df5303019761b986b0f85fa1e9731a63d22b5
+	COLLECTD_TAG ?= main
 	SAMPLE_CONF_VARIANT_NAME = collectd_sample_configs-master
 ifeq ($(COLLECTD_FLAVOR), experimental)
 # 'experimental' flavor is using additional Pull Requests that
