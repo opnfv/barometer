@@ -1,0 +1,187 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "de01ee45_a4b3736e",
+        "filename": "docker/barometer-collectd-plugin-tests/run_collectd.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-08-18T20:20:17Z",
+      "side": 1,
+      "message": "This should just be 2020, same for the other files",
+      "range": {
+        "startLine": 2,
+        "startChar": 11,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "13d2a9a02c89ed740ec1f43756fae54346e498b8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a07d6333_41856c68",
+        "filename": "docker/barometer-collectd-plugin-tests/run_collectd.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-08-18T20:20:17Z",
+      "side": 1,
+      "message": "lines 21-32 are not required, since they configure collectd to be run as a service. \n\nLine 35 runs collectd as a process instead.\n\nThese two approaches are mutually exclusive.",
+      "revId": "13d2a9a02c89ed740ec1f43756fae54346e498b8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "775401d5_2b3022c4",
+        "filename": "docker/barometer-collectd-plugin-tests/run_test.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-08-18T20:20:17Z",
+      "side": 1,
+      "message": "nit: I would put the -v at the start of the following lines, so that the arg and it\u0027s param are together.\n\ne.g.\n\n  ... --net\u003dhost \\\n   -v host_dir:container_dir \\\n   -v /var/log/:/var/log \\\n\netc",
+      "revId": "13d2a9a02c89ed740ec1f43756fae54346e498b8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fccbafdb_8ebc2657",
+        "filename": "docker/barometer-collectd-plugin-tests/run_test.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-08-18T20:20:17Z",
+      "side": 1,
+      "message": "This should be /var/log, not /bin/log, surely.\n\nI\u0027m guessing you\u0027re mounting the log dir so that the generated logs are accessible outside the container.",
+      "revId": "13d2a9a02c89ed740ec1f43756fae54346e498b8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5cdb95dc_28577f49",
+        "filename": "docker/barometer-collectd-plugin-tests/test_steps.rst",
+        "patchSetId": 12
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-08-18T20:20:17Z",
+      "side": 1,
+      "message": "same comment as previously, -v at the start of the next line, not the end of this one",
+      "range": {
+        "startLine": 54,
+        "startChar": 36,
+        "endLine": 54,
+        "endChar": 40
+      },
+      "revId": "13d2a9a02c89ed740ec1f43756fae54346e498b8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9584adfb_9919abed",
+        "filename": "plugin_test/configs/noload_logparser.conf",
+        "patchSetId": 12
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-08-18T20:20:17Z",
+      "side": 1,
+      "message": "You should also make sure that AutoLoadPlugin is false, otherwise, the plugin will get loaded if a \u003cPlugin xxx\u003e \u003c/Plugin\u003e lock is found\n \nhttps://collectd.org/documentation/manpages/collectd.conf.5.shtml#global_options",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 22
+      },
+      "revId": "13d2a9a02c89ed740ec1f43756fae54346e498b8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e153e35_cc5f36b5",
+        "filename": "plugin_test/configs/noload_logparser.conf",
+        "patchSetId": 12
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-08-18T20:20:17Z",
+      "side": 1,
+      "message": "Should this be /var/...?",
+      "range": {
+        "startLine": 18,
+        "startChar": 12,
+        "endLine": 18,
+        "endChar": 15
+      },
+      "revId": "13d2a9a02c89ed740ec1f43756fae54346e498b8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e10efa8e_401e1c5f",
+        "filename": "plugin_test/test_logparser.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-08-18T20:20:17Z",
+      "side": 1,
+      "message": "Get rid of the shell\u003dTrue parameter. IIRC you can need to pass the \"pwd\" as [\"pwd\"] instead.",
+      "range": {
+        "startLine": 58,
+        "startChar": 39,
+        "endLine": 58,
+        "endChar": 44
+      },
+      "revId": "13d2a9a02c89ed740ec1f43756fae54346e498b8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4021921_6fb84fac",
+        "filename": "plugin_test/utils/AER_test1",
+        "patchSetId": 12
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-08-18T20:20:17Z",
+      "side": 1,
+      "message": "if this isn\u0027t being used, it should be removed.\n\nArguably, all testcases should be removed and introduced in a separate change from the test container/infra, but that is a lot of work to suggest. \n\nI will suggest removing any error injection-related content for now, and adding it to a separate patch, so the work isn\u0027t lost, but also so that it doesn\u0027t block this change",
+      "revId": "13d2a9a02c89ed740ec1f43756fae54346e498b8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
