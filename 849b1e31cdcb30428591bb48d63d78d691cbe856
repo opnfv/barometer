@@ -283,6 +283,30 @@
     },
     {
       "key": {
+        "uuid": "d41fb720_a0083b29",
+        "filename": "docker/barometer-collectd/Dockerfile",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7633
+      },
+      "writtenOn": "2020-08-20T17:21:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d5e1228_03f30b75",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 13
+      },
+      "revId": "849b1e31cdcb30428591bb48d63d78d691cbe856",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7345b915_89e8c46f",
         "filename": "plugin_test/test_logparserconf.py",
         "patchSetId": 8
