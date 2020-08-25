@@ -6,7 +6,7 @@
 # dpdk section
 # DPDK_URL ?= git://dpdk.org/dpdk
 DPDK_URL ?= http://dpdk.org/git/dpdk
-DPDK_TAG ?= v18.11
+DPDK_TAG ?= v19.11
 
 LIBPQOS_URL ?= https://github.com/01org/intel-cmt-cat.git
 LIBPQOS_TAG ?= master

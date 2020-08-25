@@ -34,14 +34,14 @@ TAG_DONE_FLAG = $(WORK_DIR)/.$(DPDK_TAG).tag.done
 
 # VHOST configuration options are stored in different files based on DPDK version
 # v1.2.3r0-v1.6.0r2 - configuration inside config/defconfig_x86_64-default-linuxapp-gcc
-# v1.7.0-rc1-v2.2.0 - configuration inside config/common_linuxapp
-# v16 and newer - configuration split between config/common_linuxapp and config/common_base
+# v1.7.0-rc1-v2.2.0 - configuration inside config/common_linux
+# v16 and newer - configuration split between config/common_linux and config/common_base
 DPDK_TAG_MAJOR = $(shell echo $(DPDK_TAG) | cut -d. -f1)
 DPDK_TAG_MINOR = $(shell echo $(DPDK_TAG) | cut -d. -f2)
 ifeq ($(DPDK_TAG_MAJOR),v1)
 ifeq ($(DPDK_TAG_MINOR), $(filter $(DPDK_TAG_MINOR), 7 8))
     DPDK_TARGET = x86_64-native-linuxapp-gcc
-    CONFIG_FILE_LINUXAPP = $(WORK_DIR)/config/common_linuxapp
+    CONFIG_FILE_LINUXAPP = $(WORK_DIR)/config/common_linux
 else
     DPDK_TARGET = x86_64-default-linuxapp-gcc
     CONFIG_FILE_LINUXAPP = $(WORK_DIR)/config/defconfig_x86_64-default-linuxapp-gcc
@@ -49,11 +49,11 @@ endif
 else
 ifeq ($(DPDK_TAG_MAJOR),v2)
     DPDK_TARGET = x86_64-native-linuxapp-gcc
-    CONFIG_FILE_LINUXAPP = $(WORK_DIR)/config/common_linuxapp
+    CONFIG_FILE_LINUXAPP = $(WORK_DIR)/config/common_linux
 else
     DPDK_TARGET = x86_64-native-linuxapp-gcc
     CONFIG_FILE_BASE = $(WORK_DIR)/config/common_base
-    CONFIG_FILE_LINUXAPP = $(WORK_DIR)/config/common_linuxapp
+    CONFIG_FILE_LINUXAPP = $(WORK_DIR)/config/common_linux
 endif
 endif
 
