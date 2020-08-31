@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e94f84bb_a2c83baf",
+        "filename": "plugin_test/configs/noload_logparser.conf",
+        "patchSetId": 14
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-08-31T11:07:24Z",
+      "side": 1,
+      "message": "Use collectd.log, collectd-\u003ctest name\u003e.log",
+      "range": {
+        "startLine": 18,
+        "startChar": 20,
+        "endLine": 18,
+        "endChar": 26
+      },
+      "revId": "837aa57c8f134fd6290626e971c2ff77273c40d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "463104b1_b6145b22",
+        "filename": "plugin_test/utils/AER_test1",
+        "patchSetId": 14
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-08-31T11:07:24Z",
+      "side": 1,
+      "message": "Did you get aer-inject to work? \n\nIf it\u0027s not going to be used in the tests, remove the related conf from the test.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 17
+      },
+      "revId": "837aa57c8f134fd6290626e971c2ff77273c40d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
