@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2025393e_ddb04903",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1171
+      },
+      "writtenOn": "2020-09-23T18:27:38Z",
+      "side": 1,
+      "message": "We need to mention how this plugin is different from dpdkstat and dpdkevents plugin and minimum DPDK version this works on.",
+      "revId": "267b52fb2c7399fbac42902e2aa2a5c05104d494",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3cfacb26_fd3e3c64",
+        "filename": "src/collectd/collectd_sample_configs-master/dpdk_telemetry.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1171
+      },
+      "writtenOn": "2020-09-23T18:27:38Z",
+      "side": 1,
+      "message": "It would be good to add a default collection interval here, based on recommendation from DPDK team.",
+      "revId": "267b52fb2c7399fbac42902e2aa2a5c05104d494",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
