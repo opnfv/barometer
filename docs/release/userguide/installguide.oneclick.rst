@@ -302,14 +302,14 @@ List of default plugins for collectd container
     3.Change the Makefile path from '(WORKDIR)/kernel/linux/kni/Makefile' to (WORKDIR)/lib/librte_eal/linuxapp/kni/Makefile in '(WORK_DIR)/src/dpdk/Makefile'.
 
 By default the collectd is started with default configuration which includes
-the followin plugins:
+the following plugins:
     * ``csv``, ``contextswitch``, ``cpu``, ``cpufreq``, ``df``, ``disk``,
       ``ethstat``, ``ipc``, ``irq``, ``load``, ``memory``, ``numa``,
       ``processes``, ``swap``, ``turbostat``, ``uuid``, ``uptime``, ``exec``,
       ``hugepages``, ``intel_pmu``, ``ipmi``, ``write_kafka``, ``logfile``,
       ``mcelog``, ``network``, ``intel_rdt``, ``rrdtool``, ``snmp_agent``,
       ``syslog``, ``virt``, ``ovs_stats``, ``ovs_events``, ``dpdkevents``,
-      ``dpdkstat``
+      ``dpdkstat``, ``dpdk_telemetry``
 
 Some of the plugins are loaded depending on specific system requirements and can be omitted if
 dependency is not met, this is the case for:
@@ -360,5 +360,5 @@ List of available tags:
   ``turbostat``, ``uptime``, ``exec``, ``hugepages``, ``ipmi``, ``kafka``,
   ``logfile``, ``mcelogs``, ``n``etwork``,`` ``pmu``, ``rdt``, ``rrdtool``,
   ``snmp``, ``syslog``, ``virt``, ``ovs_stats``, ``ovs_events``, ``uuid``,
-  ``dpdkevents``, ``dpdkstat``.
+  ``dpdkevents``, ``dpdkstat``, ``dpdk_telemetry``.
 
