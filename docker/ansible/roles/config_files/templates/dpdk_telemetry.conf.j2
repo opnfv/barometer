@@ -1,5 +1,5 @@
-#Copyright 2018 OPNFV and Intel Corporation
-#
+#Copyright 2020 OPNFV and Intel Corporation
+# 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -11,25 +11,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
----
 
-- name: enable dpdkstat plugin
-  template:
-    src: dpdkstat.conf.j2
-    dest: "{{ config_file_dir }}/dpdkstat.conf"
-  tags:
-    - dpdkstat
+LoadPlugin dpdk_telemetry
 
-- name: enable dpdkevents plugin
-  template:
-    src: dpdkevents.conf.j2
-    dest: "{{ config_file_dir }}/dpdkevents.conf"
-  tags:
-    - dpdkevents
-
-- name: enable dpdk_telemetry plugin
-  template:
-    src: dpdk_telemetry.conf.j2
-    dest: "{{ config_file_dir }}/dpdk_telemetry.conf"
-  tags:
-    - dpdk_telemetry
+<Plugin dpdk_telemetry>
+       ClientSocketPath "/var/run/.client"
+       DpdkSocketPath "/var/run/dpdk/rte/telemetry"
+</Plugin>
