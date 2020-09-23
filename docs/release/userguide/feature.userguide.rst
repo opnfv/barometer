@@ -26,6 +26,21 @@ Barometer has enabled the following collectd plugins:
 * *dpdkevents plugin*:  A read plugin that retrieves DPDK link status and DPDK
   forwarding cores liveliness status (DPDK Keep Alive).
 
+* *dpdk_telemetry plugin*:  A read plugin to collect dpdk interface stats and
+  application or global stats from dpdk telemetry library. Both 'dpdkstat' and
+  'dpdk_telemetry' plugins provides dpdk NIC Stats, but only 'dpdk_telemetry'
+  provides the DPDK Application stats. So in other words, 'dpdk_telemetry' is
+  an advanced version of dpdkstat. This plugin don't deal with dpdk events.
+  So not in related with 'dpdkevents' plugin. The mimimum dpdk version required
+  to use this plugin is 19.08.
+
+.. note::
+  dpdpkstat and dpdk_telemetry should not be used together. Use dpdk_telemetry
+  if your version of dpdk supports it (i.e. DPDK >= 19.08) and use dpdkstat otherwise.
+  dpdkstat, dpdkevents and dpdk_telemetry plugins should only be used if your dpdk
+  application doesn't already have more relevant metrics available(e.g.ovs_stats).
+  
+
 * `gnocchi plugin`_: A write plugin that pushes the retrieved stats to
   Gnocchi. It's capable of pushing any stats read through collectd to
   Gnocchi, not just the DPDK stats.
@@ -303,6 +318,10 @@ http://dpdk.org/doc/guides/prog_guide/multi_proc_support.html
   will not be available in the OS. It affects the SNMP write plugin as those
   ports will not be present in standard IF-MIB. Thus, additional work is
   required to be done to support DPDK ports and statistics.
+
+**DPDK telemetry plugin**
+
+Please refer https://wiki.opnfv.org/display/fastpath/DPDK+Telemetry+Plugin
 
 Hugepages Plugin
 ^^^^^^^^^^^^^^^^^
