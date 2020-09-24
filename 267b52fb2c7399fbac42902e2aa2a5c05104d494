@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fc12ae30_04cee628",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2020-09-24T06:10:37Z",
+      "side": 1,
+      "message": "yes please. Also when looking at dpdkstats and dpdkevents, maybe it\u0027s time to get rid of them? There is still the note in collectd that the use of dpdkstats is not recommended.\nThat applies e.g for OpenStack deployments.",
+      "parentUuid": "2025393e_ddb04903",
+      "revId": "267b52fb2c7399fbac42902e2aa2a5c05104d494",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3cfacb26_fd3e3c64",
         "filename": "src/collectd/collectd_sample_configs-master/dpdk_telemetry.conf",
         "patchSetId": 1
