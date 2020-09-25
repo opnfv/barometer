@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "48ef53fa_0feeff35",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1171
+      },
+      "writtenOn": "2020-09-25T00:29:43Z",
+      "side": 1,
+      "message": "Please indicate minimum DPDK version necessary.",
+      "revId": "0feadc52d77a4bb828c5bce2faaed0fb6c5849c6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
