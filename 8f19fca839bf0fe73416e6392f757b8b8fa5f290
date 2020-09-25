@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ac18b40_926fd988",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2020-09-25T07:30:20Z",
+      "side": 1,
+      "message": "Missing space between \u0027stats.\u0027 and \u0027So\u0027.",
+      "revId": "8f19fca839bf0fe73416e6392f757b8b8fa5f290",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
