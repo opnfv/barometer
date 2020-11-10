@@ -34,7 +34,7 @@
   template:
     src: "ovs_stats.conf.j2"
     dest: "{{ config_file_dir }}/ovs_stats.conf"
-  when: vswitchd_running|succeeded and dbsock_exists|succeeded
+  when: (vswitchd_running is succeeded) and (dbsock_exists is succeeded)
   tags:
    - ovs_stats
 
@@ -42,7 +42,7 @@
   template:
     src: "ovs_events.conf.j2"
     dest: "{{ config_file_dir }}/ovs_events.conf"
-  when: vswitchd_running|succeeded and dbsock_exists|succeeded
+  when: (vswitchd_running is succeeded) and (dbsock_exists is succeeded)
   tags:
     - ovs_events
 

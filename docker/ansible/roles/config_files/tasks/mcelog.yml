@@ -33,7 +33,7 @@
 
 - name: build mcelog from sources if not in package
   import_tasks: make_mcelog.yml
-  when: mcelog_present|failed and install_mcelog|default(false)|bool
+  when: (mcelog_present is failed) and (install_mcelog|default(false)|bool)
   tags:
      - mcelogs
 
@@ -73,6 +73,6 @@
   template:
     src: mcelog.conf.j2
     dest: "{{ config_file_dir }}/mcelog.conf"
-  when: mcelog_running|succeeded and mcelog_exists|succeeded and mcelog_client_exists|succeeded
+  when: (mcelog_running is succeeded) and (mcelog_exists is succeeded) and (mcelog_client_exists is succeeded)
   tags:
-    - mcelogs
+          - mcelogs
