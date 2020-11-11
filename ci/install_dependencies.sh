@@ -27,7 +27,8 @@ sudo yum -y install git
 
 sudo yum -y install rpm-build \
 	libcap-devel xfsprogs-devel iptables-devel \
-	libmemcached-devel gtk2-devel libvirt-devel
+	libmemcached-devel gtk2-devel libvirt-devel \
+	ganglia-devel mysql-devel qpid-proton-c-devel
 
 # For DMA component
 sudo yum -y install hiredis-devel
