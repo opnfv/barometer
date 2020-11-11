@@ -27,7 +27,7 @@ COLLECTD_URL ?= https://github.com/collectd/collectd
 #                   set pull requests with experimental features
 ifeq ($(COLLECTD_FLAVOR), stable)
 # using latest stable release
-	COLLECTD_TAG ?= collectd-5.11
+	COLLECTD_TAG ?= collectd-5.12
 	SAMPLE_CONF_VARIANT_NAME = collectd_sample_configs
 else
 # 'master' and 'experimental' collectd flavors are both using

@@ -22,18 +22,20 @@
 #   Martin Klozik, Intel Corporation.
 #   Maryam Tahhan, Intel Corporation.
 # Synchronize package index files
-yum -y update
+dnf -y update
 
 # For collectd
-yum install -y yum-utils
-yum install -y epel-release
-yum-builddep -y collectd
+dnf install -y yum-utils
+dnf install -y epel-release
+dnf install -y centos-release-opstools
+dnf builddep -y collectd
+
+# For CentOS 8, a lot of the dependencies are from PowerTools repo
+dnf install -y 'dnf-command(config-manager)' &&  dnf config-manager --set-enabled PowerTools
 
 # Install required packages
-yum -y install $(echo "
+dnf -y install $(echo "
 
-#kernel-devel
-#kernel-headers
 make
 gcc
 gcc-c++
@@ -43,7 +45,7 @@ flex
 bison
 libtool
 pkg-config
-git
+git-core
 rpm-build
 libcap-devel
 xfsprogs-devel
@@ -58,11 +60,26 @@ net-snmp-devel
 hiredis-devel
 libmicrohttpd-devel
 jansson-devel
-dpdk-18.11
+dpdk-19.11
+
+libpcap-devel
+lua-devel
+OpenIPMI-devel
+libmnl-devel
+librabbitmq-devel
+iproute-static
+libatasmart-devel
+librdkafka-devel
+yajl-devel
+protobuf-c-devel
+rrdtool-devel
+intel-cmt-cat
+librdkafka-devel
 
 # install epel release required for git-review
 epel-release
-libvirt-python
+python3-libvirt
 python3-pip
+python36-devel
 numactl-devel
 " | grep -v ^#)
