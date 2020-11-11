@@ -15,7 +15,7 @@ PMUTOOLS_URL ?= https://github.com/andikleen/pmu-tools
 PMUTOOLS_TAG ?= master
 
 KAFKA_URL ?= https://github.com/edenhill/librdkafka.git
-KAFKA_TAG ?= v0.9.5
+KAFKA_TAG ?= v1.5.2
 
 # collectd section
 COLLECTD_URL ?= https://github.com/collectd/collectd
@@ -27,7 +27,7 @@ COLLECTD_URL ?= https://github.com/collectd/collectd
 #                   set pull requests with experimental features
 ifeq ($(COLLECTD_FLAVOR), stable)
 # using latest stable release
-	COLLECTD_TAG ?= collectd-5.11
+	COLLECTD_TAG ?= collectd-5.12
 	SAMPLE_CONF_VARIANT_NAME = collectd_sample_configs
 else
 # 'master' and 'experimental' collectd flavors are both using
@@ -40,6 +40,3 @@ ifeq ($(COLLECTD_FLAVOR), experimental)
 	COLLECTD_USE_EXPERIMENTAL_PR ?= y
 endif #end of experimental-branch handling
 endif
-
-COLLECTD_OPENSTACK_URL ?= https://github.com/openstack/collectd-openstack-plugins
-COLLECTD_OPENSTACK_TAG ?= stable/pike
