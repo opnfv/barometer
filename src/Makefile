@@ -35,14 +35,14 @@ with-dpdk:
 export WITH_DPDK
 
 include mk/master.mk
+# TODO(elfoley) Later on, we can re-enable build from source as a user configured option
 SUBDIRS =
-ifdef WITH_DPDK
-SUBDIRS += dpdk
-endif
-SUBDIRS += libpqos
-SUBDIRS += pmu-tools
-SUBDIRS += librdkafka
+#ifdef WITH_DPDK
+#SUBDIRS += dpdk
+#endif
+#SUBDIRS += libpqos
+#SUBDIRS += pmu-tools
+#SUBDIRS += librdkafka
 SUBDIRS += collectd
-SUBDIRS += collectd-openstack-plugins
 
 include mk/make-subsys.mk
