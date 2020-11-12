@@ -32,7 +32,7 @@
   template:
     src: rdt.conf.j2
     dest: "{{ config_file_dir }}/rdt.conf"
-  when: rdt_result|succeeded and virt_file.stat.exists == False
+  when: (rdt_result is succeeded) and (virt_file.stat.exists == False)
   tags:
     - rdt
 

@@ -28,6 +28,6 @@
   template:
     src: hugepages.conf.j2
     dest: "{{ config_file_dir }}//hugepages.conf"
-  when: hugepages_result|succeeded
+  when: hugepages_result is succeeded
   tags:
     - hugepages

@@ -31,7 +31,7 @@
   command: "modprobe ipmi_devintf"
   register: ipmi_devintf
   ignore_errors: true
-  when: ipmi_devintf|failed and insert_ipmi_modules|default(false)|bool
+  when: (ipmi_devintf is failed) and (insert_ipmi_modules|default(false)|bool)
   tags:
      - ipmi
 
@@ -39,7 +39,7 @@
   command: "modprobe ipmi_si"
   register: ipmi_devsi
   ignore_errors: true
-  when: ipmi_devsi|failed and insert_ipmi_modules|default(false)|bool
+  when: (ipmi_devsi is failed) and (insert_ipmi_modules|default(false)|bool)
   tags:
      - ipmi
 
@@ -55,7 +55,7 @@
   template:
     src: ipmi.conf.j2
     dest: "{{ config_file_dir }}/0_ipmi.conf"
-  when: ipmi0_exists|succeeded and ipmi_devintf|succeeded and ipmi_devsi|succeeded
+  when: (ipmi0_exists is succeeded) and (ipmi_devintf is succeeded) and (ipmi_devsi is succeeded)
   tags:
     - ipmi
 
