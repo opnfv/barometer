@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6a67fda2_853bbae1",
+        "filename": "systems/centos/8/build_base_machine.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2020-11-16T14:33:43Z",
+      "side": 1,
+      "message": "dnf install -y dnf-utils",
+      "revId": "7eefdc175954810379ca825a24ddf23fb4390cb2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9f38b01_8f6d9e61",
+        "filename": "systems/centos/8/build_base_machine.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2020-11-16T14:33:43Z",
+      "side": 1,
+      "message": "dnf builddep installs builddeps for collectd (for the packaged version)",
+      "revId": "7eefdc175954810379ca825a24ddf23fb4390cb2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97b92acd_4a36cc23",
+        "filename": "systems/centos/8/build_base_machine.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2020-11-16T14:33:43Z",
+      "side": 1,
+      "message": "git-core",
+      "revId": "7eefdc175954810379ca825a24ddf23fb4390cb2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ca6d8b8_bccdbe02",
+        "filename": "systems/centos/8/build_base_machine.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2020-11-16T14:33:43Z",
+      "side": 1,
+      "message": "this was already included above",
+      "revId": "7eefdc175954810379ca825a24ddf23fb4390cb2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
