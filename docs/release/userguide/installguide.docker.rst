@@ -46,7 +46,7 @@ the barometer plugins.
 
 .. note::
    The Dockerfile is available in the docker/barometer-collectd directory in the barometer repo.
-   The Dockerfile builds a CentOS 7 docker image.
+   The Dockerfile builds a CentOS 8 docker image.
    The container MUST be run as a privileged container.
 
 Collectd is a daemon which collects system performance statistics periodically
@@ -271,8 +271,8 @@ flavors of Collectd containers:
   * barometer-collectd - stable release, based on collectd 5.11
   * barometer-collectd-latest - release based on collectd 'main' branch
   * barometer-collectd-experimental - release based on collectd 'main'
-    branch that also includes set of experimental (not yet merged into upstream)
-    pull requests
+    branch that can also include a set of experimental (not yet merged into
+    upstream) pull requests
 
 .. note::
    Experimental container is not tested across various OS'es and the stability
@@ -359,8 +359,14 @@ Build barometer-collectd-latest container
    proxy parameters should be passed only if system is behind an HTTP or HTTPS
    proxy server (same as for stable collectd container)
 
-Build collectd-experimental container
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Build barometer-collectd-experimental container
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The barometer-collectd-experimental container use the ``main`` branch of
+collectd, but allows the user to apply a number of pull requests, which are
+passed via the COLLECTD_PULL_REQUESTS build arg, which is passed to docker as
+shown in the example below.
+COLLECTD_PULL_REQUESTS should be a comma-delimited string of pull request IDs.
 
 .. code:: bash
 
@@ -368,6 +374,7 @@ Build collectd-experimental container
     $ sudo docker build -t opnfv/barometer-collectd-experimental \
      --build-arg http_proxy=`echo $http_proxy` \
      --build-arg https_proxy=`echo $https_proxy` \
+     --build-arg COLLECTD_PULL_REQUESTS=1234,5678 \
      --network=host -f docker/barometer-collectd-experimental/Dockerfile .
 
 .. note::
