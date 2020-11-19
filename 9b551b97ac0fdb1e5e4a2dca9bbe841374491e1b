@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "72ce41ba_7090c81a",
+        "filename": "docker/barometer-collectd/Dockerfile",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2020-11-19T06:50:12Z",
+      "side": 1,
+      "message": "dnf dnf dnf",
+      "revId": "9b551b97ac0fdb1e5e4a2dca9bbe841374491e1b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e3ea5ca_31220922",
+        "filename": "systems/centos/7/build_base_machine.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2020-11-19T06:50:12Z",
+      "side": 1,
+      "message": "dnf",
+      "revId": "9b551b97ac0fdb1e5e4a2dca9bbe841374491e1b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58f3e5c5_2ebb30d9",
+        "filename": "systems/centos/7/build_base_machine.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2020-11-19T06:50:12Z",
+      "side": 1,
+      "message": "dnf",
+      "revId": "9b551b97ac0fdb1e5e4a2dca9bbe841374491e1b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
