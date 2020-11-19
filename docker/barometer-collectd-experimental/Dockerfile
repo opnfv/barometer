@@ -21,6 +21,7 @@ RUN dnf update -y && \
 
 ENV DOCKER y
 ENV COLLECTD_FLAVOR experimental
+ARG COLLECTD_PULL_REQUESTS
 ENV WITH_DPDK y
 ENV repos_dir /src
 

@@ -18,17 +18,17 @@
 # of main branch before building collectd included in docker
 # collectd-experimental container
 
-# Space/newline separated list of pull requests IDs
+# Use this script with a COLLECTD_PULL_REQUESTS variable defined
 # for example:
-# PULL_REQUESTS=(3027 #reimplement delay rate
-#                3028 #other PR
-#                )
+# COLLECTD_PULL_REQUESTS="3027,3028" ./collectd_apply_pull_request.sh
 
-PULL_REQUESTS=(
-    3045 #logparser
-    3292 #capabilities plugin
-    #insert another PR ID here
-              )
+if [ -z "$COLLECTD_PULL_REQUESTS" ];
+then
+	echo "COLLECTD_PULL_REQUESTS is unset, exiting"
+	exit
+fi
+
+IFS=', ' read -a PULL_REQUESTS <<< "$COLLECTD_PULL_REQUESTS"
 
 # during rebasing/merging git requires email & name to be set
 git config user.email "barometer-experimental@container"
