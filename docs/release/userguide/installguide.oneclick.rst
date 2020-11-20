@@ -308,13 +308,21 @@ the following plugins:
       ``processes``, ``swap``, ``turbostat``, ``uuid``, ``uptime``, ``exec``,
       ``hugepages``, ``intel_pmu``, ``ipmi``, ``write_kafka``, ``logfile``,
       ``mcelog``, ``network``, ``intel_rdt``, ``rrdtool``, ``snmp_agent``,
-      ``syslog``, ``virt``, ``ovs_stats``, ``ovs_events``, ``dpdkevents``,
-      ``dpdkstat``, ``dpdk_telemetry``
+      ``syslog``, ``virt``, ``ovs_stats``, ``ovs_events``, ``dpdk_telemetry``
 
 .. note::
    Some of the plugins are loaded depending on specific system requirements and can be omitted if
    dependency is not met, this is the case for:
    * ``hugepages``, ``ipmi``, ``mcelog``, ``intel_rdt``, ``virt``, ``ovs_stats``, ``ovs_events`` 
+
+.. note::
+   The ``dpdkstat`` and ``dpdkevents`` plugins are disabled by default (in
+   favour of the ``dpdk_telemetry`` plugin) and need to be explicitly enabled
+   in order to use them:
+
+   .. code:: bash
+
+   $ sudo ansible-playbook -i default.inv collectd_service.yml --tags "all,dpdkstats,dpdkevents"
 
 List and description of tags used in ansible scripts
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
