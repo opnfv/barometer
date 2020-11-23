@@ -14,10 +14,8 @@
 ---
 
 - name: enable capabilities plugin
-  template:
-    src: capabilities.conf.j2
-    dest: "{{ config_file_dir }}/capabilities.conf"
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['capabilities']) | unique }}"
   tags:
     - capabilities
-
 

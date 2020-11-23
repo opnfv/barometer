@@ -29,9 +29,8 @@
     - rdt
 
 - name: enable rdt plugin
-  template:
-    src: rdt.conf.j2
-    dest: "{{ config_file_dir }}/rdt.conf"
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['intel_rdt']) | unique }}"
   when: (rdt_result is succeeded) and (virt_file.stat.exists == False)
   tags:
     - rdt
