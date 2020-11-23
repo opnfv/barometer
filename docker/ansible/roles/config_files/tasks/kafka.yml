@@ -13,9 +13,11 @@
 # limitations under the License.
 ---
 
-- name: enable kafka plugin
-  template:
-    src: kafka.conf.j2
-    dest: "{{ config_file_dir }}/kafka.conf"
+- name: enable kafka plugin with collectd_config
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | default([]) | union(['write_kafka']) | unique }}"
+    collectd_plugin_write_kafka_kafka_hosts:
+      - "{{ kafka_ip_addr }}:{{ kafka_port }}"
+    collectd_plugin_write_kafka_topics: '{{ collectd_plugin_write_kafka_topics | default({}) | combine({ kafka_topic: { "format": "JSON" }}) }}'
   tags:
     - kafka

@@ -14,26 +14,24 @@
 ---
 
 - name: Enable network plugin
-  template:
-    src: network.conf.j2
-    dest: "{{ config_file_dir }}/network.conf"
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins + [\"network\"] }}"
   tags:
      - network
 
 - name: Add network port if defined
-  lineinfile:
-    dest: "{{ config_file_dir }}/network.conf"
-    insertafter: Plugin network
-    line: "    Server \"{{ network_ip_addr }}\" \"{{ network_port }}\""
+  set_fact:
+    collectd_plugin_network_server: "{{ collectd_plugin_network_server | default([]) | union([{
+        'name': network_ip_addr,
+        'port': network_port,
+      }]) }}"
   when: network_ip_addr is defined
   tags:
    - network
 
 - name: Modify network.conf to add influxdb_hosts
-  lineinfile:
-    dest: "{{ config_file_dir }}/network.conf"
-    insertafter: Plugin network
-    line: "    Server \"{{ item }}\" \"{{ influx_network_port }}\""
+  set_fact:
+    collectd_plugin_network_server: "{{ collectd_plugin_network_server | default([]) | union([{ 'name': item, 'port': influx_network_port }]) }}"
   with_items: "{{ groups['influxdb_hosts'] }}"
   tags:
    - network
