@@ -37,7 +37,7 @@
   import_tasks: csv.yml
 
 - name: enable default plugins
-  import_tasks: default_read_plugins.yml
+  import_tasks: default_read_import.yml
 
 - name: enable dpdk plugins
   import_tasks: dpdk.yml
