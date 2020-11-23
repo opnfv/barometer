@@ -14,8 +14,7 @@
 ---
 
 - name: enable uuid plugin
-  template:
-    src: uuid.conf.j2
-    dest: "{{ config_file_dir }}/uuid.conf"
+  set_fact:
+     collectd_plugins: "{{ collectd_plugins + ['uuid'] | unique }}"
   tags:
     - uuid

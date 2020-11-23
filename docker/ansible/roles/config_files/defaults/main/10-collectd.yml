@@ -1,0 +1,4 @@
+---
+collectd_plugins: []
+collectd_interval: "{{ interval_value }}"
+collectd_hostname: "{{ inventory_hostname }}"

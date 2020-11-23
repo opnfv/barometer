@@ -1,4 +1,4 @@
-#Copyright 2018 OPNFV and Intel Corporation
+#Copyright 2018-20 OPNFV and Intel Corporation, Red Hat
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -25,9 +25,8 @@
     - hugepages
 
 - name: enable hugepages plugin
-  template:
-    src: hugepages.conf.j2
-    dest: "{{ config_file_dir }}//hugepages.conf"
+  set_fact:
+     collectd_plugins: "{{ collectd_plugins + ['hugepages'] | unique }}"
   when: hugepages_result is succeeded
   tags:
     - hugepages

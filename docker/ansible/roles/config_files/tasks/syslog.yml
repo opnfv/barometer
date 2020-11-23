@@ -14,9 +14,8 @@
 ---
 
 - name: enable syslog plugin
-  template:
-    src: syslog.conf.j2
-    dest: "{{ config_file_dir }}/syslog.conf"
+  set_fact:
+     collectd_plugins: "{{ collectd_plugins + ['syslog'] | unique }}"
   tags:
     - syslog
 

@@ -14,9 +14,8 @@
 ---
 
 - name: enable logfile plugin
-  template:
-    src: logfile.conf.j2
-    dest: "{{ config_file_dir }}/logfile.conf"
+  set_fact:
+     collectd_plugins: "{{ collectd_plugins + ['logfile'] | unique }}"
   tags:
     - logfile
 
