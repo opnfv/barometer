@@ -12,8 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
-
-#directory paths
 config_file_dir: "/opt/collectd/etc/collectd.conf.d/"
 csv_log_dir: "/var/lib/collectd/csv"
 logfile_dir: "/var/log/"
