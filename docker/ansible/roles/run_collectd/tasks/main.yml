@@ -40,7 +40,7 @@
   set_fact:
     volumes_list:
 
-       - /opt/collectd/etc/collectd.conf.d/:/opt/collectd/etc/collectd.conf.d
+       - /opt/collectd/etc/:/opt/collectd/etc/
        - /var/run:/var/run
        - /tmp:/tmp
        - /var/lib/collectd:/var/lib/collectd

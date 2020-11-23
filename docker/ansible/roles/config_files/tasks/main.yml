@@ -31,10 +31,16 @@
     - always
 
 - name: enable capabilities plugin
-  import_tasks: capabilities.yml
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['capabilities']) | unique }}"
+  tags:
+    - capabilities
 
 - name: enable csv plugin
-  import_tasks: csv.yml
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['csv']) | unique }}"
+  tags:
+    - csv
 
 - name: enable default plugins
   import_tasks: default_read_import.yml
@@ -46,13 +52,31 @@
   import_tasks: exec.yml
 
 - name: enable hugepages plugin
-  import_tasks: hugepages.yml
+  block:
+    - name: check if hugepages folders exist on host
+      stat:
+        path: "{{ item }}"
+      register: hugepages_result
+      ignore_errors: "true"
+      with_items:
+        /sys/devices/system/node
+        /sys/kernel/mm/hugepages
+
+    - name: enable hugepages plugin
+      set_fact:
+        collectd_plugins: "{{ collectd_plugins | union(['hugepages']) | unique }}"
+      when: hugepages_result is succeeded
+  tags:
+    - hugepages
 
 - name: enable kafka plugin
   import_tasks: kafka.yml
 
 - name: enable logfile plugin
-  import_tasks: logfile.yml
+  set_fact:
+     collectd_plugins: "{{ collectd_plugins + ['logfile'] | unique }}"
+  tags:
+    - logfile
 
 - name: enable logparser plugin
   import_tasks: logparser.yml
@@ -64,11 +88,17 @@
   import_tasks: network.yml
 
 - name: enable prometheus plugin
-  import_tasks: prometheus.yml
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['write_prometheus']) | unique }}"
   when: groups['prometheus_hosts'] is defined
+  tags:
+    - prometheus
 
-- name: enable pmu plugin
-  import_tasks: pmu.yml
+- name: enable intel_pmu plugin
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['intel_pmu']) | unique }}"
+  tags:
+    - pmu
 
 - name: enable rdt plugin
   import_tasks: rdt.yml
@@ -80,7 +110,13 @@
   import_tasks: snmp_agent.yml
 
 - name: enable syslog plugin
-  import_tasks: syslog.yml
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['syslog']) | unique }}"
+  tags:
+    - syslog
+
+- name: enable vswitch plugins
+  import_tasks: vswitch.yml
 
 - name: enable virt plugin
   import_tasks: virt.yml
@@ -89,7 +125,42 @@
   include: ipmi.yml
 
 - name: enable uuid plugin
-  include: uuid.yml
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['uuid']) | unique }}"
+  tags:
+    - uuid
+
+- name: Enable unixsock plugin
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['unixsock']) | unique }}"
+  tags:
+    - unixsock
 
 - name: copy additional config files
   include: additional_configs.yml
+
+- name: configure plugins
+  include_role:
+    name: collectd_config
+  vars:
+    collectd_conf_output_dir: /tmp/collectd.conf.d
+  tags:
+    - always
+    - en_default_all
+
+- name: "Copy the generated plugin configs"
+  shell:
+    sudo cp /tmp/collectd.conf.d/*.conf {{ config_file_dir }} && sudo cp /tmp/collectd.conf {{ config_file_dir }}/../collectd.conf
+  tags:
+    - always
+    - en_default_all
+
+- name: Update config file location
+  lineinfile:
+    path: "{{ config_file_dir }}../collectd.conf"
+    regexp: "^(.*)/tmp/collectd.conf.d(.*)$"
+    line: '\1{{ config_file_dir }}\2'
+    backrefs: yes
+  tags:
+    - always
+    - en_default_all

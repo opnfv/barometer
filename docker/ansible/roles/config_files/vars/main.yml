@@ -1,62 +1,48 @@
-#Copyright 2018 OPNFV and Intel Corporation
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
 ---
+collectd_plugins: []
+collectd_interval: "{{ interval_value }}"
+collectd_hostname: "{{ inventory_hostname }}"
 
-#directory paths
-config_file_dir: "/opt/collectd/etc/collectd.conf.d/"
-csv_log_dir: "/var/lib/collectd/csv"
-logfile_dir: "/var/log/"
+collectd_plugin_capabilities_port: "9564"
 
-#global default interval
-interval_value: 10
+collectd_plugin_csv_datadir: "{{ csv_log_dir }}"
+collectd_plugin_csv_storerates: False
 
-#influx network port
-influx_network_port: 25826
+collectd_plugin_dpdk_telemetry_client_socket_path: "/var/run/.client"
+collectd_plugin_dpdk_telemetry_dpdk_socket_path: "/var/run/dpdk/rte/telemetry"
 
-#network plugin vars
-#network_port: 25826
-#network_ip_addr: localhost
+collectd_plugin_exec_exec:
+  - user: "collectd_exec"
+    exec: "/src/barometer/src/collectd/collectd_sample_configs/ovs_pmd_stats.sh"
+collectd_plugin_exec_notification:
+  - user: "collectd_exec"
+    notification_exec: "/src/barometer/src/collectd/collectd_sample_configs/write_notification.sh"
 
-#prometheus plugin vars
-prometheus_port: 9103
+collectd_plugin_hugepages_report_per_node_hp: True
+collectd_plugin_hugepages_report_root_hp: True
+collectd_plugin_hugepages_values_pages: True
+collectd_plugin_hugepages_values_bytes: False
+collectd_plugin_hugepages_values_percentage: False
 
-#ovs event and stats plugin vars
-ovs_event_interval: 1
-ovs_event_ip_addr: localhost
-ovs_event_port: 6640
-ovs_stats_interval: 1
-ovs_stats_ip_addr: localhost
-ovs_stats_port: 6640
+collectd_plugin_intel_pmu_report_hardware_cache_events: True
+collectd_plugin_intel_pmu_report_kernel_pmu_events: True
+collectd_plugin_intel_pmu_report_software_events: True
+collectd_plugin_intel_pmu_cores: ["0-4"]
 
-#rdt plugin vars
-rdt_interval: 1
+collectd_plugin_intel_rdt_cores: [""]
+collectd_plugin_intel_rdt_interval: "{{ rdt_interval }}"
 
-#kafka plugin vars
-kafka_ip_addr: localhost
-kafka_port: 9092
-kafka_topic: collectd
+collectd_plugin_logfile_loglevel: "{{ logfile_log_level }}"
+collectd_plugin_logfile_file: "{{ logfile_dir }}/collectd.log"
+collectd_plugin_logfile_timestamp: True
 
-#logfile plugin vars
-logfile_log_level: info
+collectd_plugin_ovs_events_dispatch_values: True
+collectd_plugin_ovs_events_send_notification: True
 
-#syslog plugin vars
-syslog_log_level: info
+collectd_plugin_write_kafka_hosts:
+  - "{{ kafka_ip_addr }}:{{ kafka_port }}"
+collectd_plugin_write_kafka_topics: '{{ { kafka_topic: { "format": "JSON" }} }}'
+ 
+collectd_plugin_write_prometheus_port: "{{ prometheus_port }}"
 
-#rrd plugin vars
-rrdtool_db_dir: "/var/lib/collectd/rrd"
-cache_flush: 120
-write_per_sec: 50
-
-#additional configuration files path
-additional_configs_path: ""
+collectd_plugin_syslog_loglevel: "{{ syslog_log_level }}"
