@@ -13,12 +13,20 @@
 # limitations under the License.
 ---
 
+- name: copy default template to system
+  template:
+    src: default_read_plugins.conf.j2
+    dest: "{{ config_file_dir }}/default_read_plugins.conf"
+  tags:
+   - always
+
 - name: enable contextswitch  plugin
   replace:
       path: "{{ config_file_dir }}/default_read_plugins.conf"
       regexp: '(\s+)#LoadPlugin contextswitch(\s+.*)?$'
       replace: '\1LoadPlugin contextswitch\2'
   tags:
+    - en_default_all
     - contextswitch
 
 - name: enable cpu plugin
@@ -27,6 +35,7 @@
       regexp: '(\s+)#LoadPlugin cpu(\s+.*)?$'
       replace: '\1LoadPlugin cpu\2'
   tags:
+    - en_default_all
     - cpu
 
 - name: enable cpufreq plugin
@@ -35,6 +44,7 @@
       regexp: '(\s+)#LoadPlugin cpufreq(\s+.*)?$'
       replace: '\1LoadPlugin cpufreq\2'
   tags:
+    - en_default_all
     - cpufreq
 
 - name: enable df plugin
@@ -43,6 +53,7 @@
       regexp: '(\s+)#LoadPlugin df(\s+.*)?$'
       replace: '\1LoadPlugin df\2'
   tags:
+    - en_default_all
     - df
 
 - name: enable disk plugin
@@ -51,6 +62,7 @@
       regexp: '(\s+)#LoadPlugin disk(\s+.*)?$'
       replace: '\1LoadPlugin disk\2'
   tags:
+    - en_default_all
     - disk
 
 - name: enable ethstat plugin
@@ -59,6 +71,7 @@
       regexp: '(\s+)#LoadPlugin ethstat(\s+.*)?$'
       replace: '\1LoadPlugin ethstat\2'
   tags:
+    - en_default_all
     - ethstat
 
 - name: enable ipc plugin
@@ -67,6 +80,7 @@
       regexp: '(\s+)#LoadPlugin ipc(\s+.*)?$'
       replace: '\1LoadPlugin ipc\2'
   tags:
+    - en_default_all
     - ipc
 
 - name: enable irq plugin
@@ -75,6 +89,7 @@
       regexp: '(\s+)#LoadPlugin irq(\s+.*)?$'
       replace: '\1LoadPlugin irq\2'
   tags:
+    - en_default_all
     - irq
 
 - name: enable load plugin
@@ -83,6 +98,7 @@
       regexp: '(\s+)#LoadPlugin load(\s+.*)?$'
       replace: '\1LoadPlugin load\2'
   tags:
+    - en_default_all
     - load
 
 - name: enable memory plugin
@@ -91,6 +107,7 @@
       regexp: '(\s+)#LoadPlugin memory(\s+.*)?$'
       replace: '\1LoadPlugin memory\2'
   tags:
+    - en_default_all
     - memory
 
 - name: enable numa plugin
@@ -99,6 +116,7 @@
       regexp: '(\s+)#LoadPlugin numa(\s+.*)?$'
       replace: '\1LoadPlugin numa\2'
   tags:
+    - en_default_all
     - numa
 
 - name: enable processes plugin
@@ -107,6 +125,7 @@
       regexp: '(\s+)#LoadPlugin processes(\s+.*)?$'
       replace: '\1LoadPlugin processes\2'
   tags:
+    - en_default_all
     - processes
 
 - name: enable swap plugin
@@ -115,6 +134,7 @@
       regexp: '(\s+)#LoadPlugin swap(\s+.*)?$'
       replace: '\1LoadPlugin swap\2'
   tags:
+    - en_default_all
     - swap
 
 - name: enable turbostat plugin
@@ -123,6 +143,7 @@
       regexp: '(\s+)#LoadPlugin turbostat(\s+.*)?$'
       replace: '\1LoadPlugin turbostat\2'
   tags:
+    - en_default_all
     - turbostat
 
 - name: enable uptime plugin
@@ -131,4 +152,5 @@
       regexp: '(\s+)#LoadPlugin uptime(\s+.*)?$'
       replace: '\1LoadPlugin uptime\2'
   tags:
+    - en_default_all
     - uptime
