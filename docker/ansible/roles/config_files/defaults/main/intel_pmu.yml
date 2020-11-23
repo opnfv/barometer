@@ -1,0 +1,5 @@
+---
+collectd_plugin_intelpmu_reporthardwarecacheevents: True
+collectd_plugin_intelpmu_reportkernelpmuevents: True
+collectd_plugin_intelpmu_reportsoftwareevents: True
+collectd_plugin_intelpmu_cores: ["0-4"]

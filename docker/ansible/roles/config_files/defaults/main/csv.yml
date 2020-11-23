@@ -1,0 +1,3 @@
+---
+collectd_plugin_csv_datadir: "{{ csv_log_dir }}"
+collectd_plugin_csv_storerates: False

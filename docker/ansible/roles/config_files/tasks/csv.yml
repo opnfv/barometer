@@ -14,9 +14,9 @@
 ---
 
 - name: enable csv plugin
-  template:
-    src: csv.conf.j2
-    dest: "{{ config_file_dir }}/csv.conf"
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins + ['csv'] | unique }}"
+    #collectd_plugin_csv_datadir: "{{ csv_log_dir }}"
   tags:
     - csv
 

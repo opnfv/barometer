@@ -14,10 +14,8 @@
 ---
 
 - name: enable capabilities plugin
-  template:
-    src: experimental/capabilities.conf.j2
-    dest: "{{ config_file_dir }}/capabilities.conf"
-  when: flavor|default('stable')|string == 'experimental'
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins + ['capabilities'] | unique }}"
   tags:
     - capabilities
 

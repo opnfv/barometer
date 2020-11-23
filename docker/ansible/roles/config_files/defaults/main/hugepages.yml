@@ -1,0 +1,6 @@
+---
+collectd_plugin_hugepages_report_per_node_hp: True
+collectd_plugin_hugepages_report_root_hp: True
+collectd_plugin_hugepages_values_pages: True
+collectd_plugin_hugepages_values_bytes: False
+collectd_plugin_hugepages_values_percentage: False

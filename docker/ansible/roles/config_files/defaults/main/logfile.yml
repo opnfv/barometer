@@ -1,0 +1,4 @@
+---
+collectd_plugin_logfile_loglevel: "{{ logfile_log_level }}"
+collectd_plugin_logfile_file: "{{ logfile_dir }}/collectd.log"
+collectd_plugin_logfile_timestamp: True

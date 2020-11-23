@@ -14,8 +14,7 @@
 ---
 
 - name: enable prometheus plugin
-  template:
-    src: prometheus.conf.j2
-    dest: "{{ config_file_dir }}/prometheus.conf"
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins + ['write_prometheus'] | unique }}"
   tags:
      - prometheus
