@@ -21,16 +21,14 @@
    - virt
 
 - name: (virt) check if rdt  is enabled
-  stat:
-      path: "{{ config_file_dir }}/rdt.conf"
-  register: rdt_file
+  set_fact:
+    rdt_enabled: true
   tags:
-    - virt
+    - rdt
 
 - name: enable virt plugin
-  template:
-    src: virt.conf.j2
-    dest: "{{ config_file_dir }}/virt.conf"
-  when: libvirt_result is succeeded and rdt_file.stat.exists == False
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['virt']) | unique }}"
+  when: libvirt_result is succeeded and not (rdt_enabled | default(false))
   tags:
    - virt
