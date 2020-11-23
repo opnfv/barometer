@@ -52,9 +52,8 @@
      - ipmi
 
 - name: enable ipmi plugin
-  template:
-    src: ipmi.conf.j2
-    dest: "{{ config_file_dir }}/0_ipmi.conf"
+  set_fact:
+    collectd_plugins: '{{ collectd_plugins | union(["ipmi"]) | unique }}'
   when: (ipmi0_exists is succeeded) and (ipmi_devintf is succeeded) and (ipmi_devsi is succeeded)
   tags:
     - ipmi

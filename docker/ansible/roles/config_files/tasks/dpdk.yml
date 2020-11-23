@@ -31,8 +31,7 @@
     - dpdkevents
 
 - name: enable dpdk_telemetry plugin
-  template:
-    src: dpdk_telemetry.conf.j2
-    dest: "{{ config_file_dir }}/dpdk_telemetry.conf"
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins + [\"dpdk_telemetry\"] }}"
   tags:
     - dpdk_telemetry
