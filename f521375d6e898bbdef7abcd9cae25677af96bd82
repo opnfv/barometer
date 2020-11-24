@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee34bace_665e8a14",
+        "filename": "docker/barometer-collectd-experimental/collectd_apply_pull_request.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2020-11-24T17:23:15Z",
+      "side": 1,
+      "message": "now this is \"latest branch\", right?",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 60
+      },
+      "revId": "f521375d6e898bbdef7abcd9cae25677af96bd82",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
