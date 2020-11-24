@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "814842e2_72b79070",
+        "filename": "systems/centos/8/build_base_machine.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2020-11-24T16:58:56Z",
+      "side": 1,
+      "message": "Consider updating the contributor\u0027s list :-)",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 33
+      },
+      "revId": "2847e052aef84d97b674aee3a655c55091844925",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
