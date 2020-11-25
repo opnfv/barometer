@@ -22,6 +22,30 @@
       "revId": "f521375d6e898bbdef7abcd9cae25677af96bd82",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c694f5af_1910c039",
+        "filename": "docker/barometer-collectd-experimental/collectd_apply_pull_request.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2020-11-25T18:12:18Z",
+      "side": 1,
+      "message": "Collectd branch is main.\nPreviously, this container was barometer-collectd-master, named for the branch.\nWhen we updated to use the newly renamed \"main\" branch, the container names didn\u0027t make sense, so the name \"-latest\" was chosen.",
+      "parentUuid": "ee34bace_665e8a14",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 60
+      },
+      "revId": "f521375d6e898bbdef7abcd9cae25677af96bd82",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
