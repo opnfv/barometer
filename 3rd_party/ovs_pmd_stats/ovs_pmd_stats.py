@@ -101,9 +101,8 @@ for el in array:
         plugin_instance = el[:-1].replace(' ', '_')
     else:
         type_instance = el.split(':')[0].replace(' ', "_")
-        value = el.split(':')[1].split(' ')[0]
+        value = el.split(':')[1].strip().split(' ')[0]
         print('PUTVAL %s/%s-%s/%s-%s N:%s' % (HOSTNAME, PROG_NAME, plugin_instance, TYPE, type_instance, value))
 
 # close socket
 sock.close()
-
