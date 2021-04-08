@@ -28,10 +28,11 @@ dnf -y update
 dnf install -y yum-utils
 dnf install -y epel-release
 dnf install -y centos-release-opstools
-dnf builddep -y collectd
 
 # For CentOS 8, a lot of the dependencies are from PowerTools repo
-dnf install -y 'dnf-command(config-manager)' &&  dnf config-manager --set-enabled PowerTools
+dnf install -y 'dnf-command(config-manager)' &&  dnf config-manager --set-enabled powertools
+
+dnf builddep -y collectd
 
 # CentOS 8 doesn't have intel-cmt-cat-devel packaged, so use the version from CentOS7
 dnf install -y http://mirror.centos.org/centos/7/os/x86_64/Packages/intel-cmt-cat-3.0.1-1.el7.x86_64.rpm \
@@ -75,7 +76,7 @@ librdkafka-devel
 yajl-devel
 protobuf-c-devel
 rrdtool-devel
-dpdk-19.11
+dpdk-19.11.3
 qpid-proton-c-devel
 
 #install epel release required for git-review
