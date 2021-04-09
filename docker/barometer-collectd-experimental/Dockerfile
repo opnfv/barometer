@@ -15,21 +15,19 @@
 
 FROM centos:8
 RUN dnf update -y && \
-        dnf install -y which sudo git && \
+        dnf install -y which sudo git-core && \
         dnf clean all && \
         git config --global http.sslVerify false
 
+ARG COLLECTD_FLAVOR=experimental
+ARG COLLECTD_PULL_REQUESTS=
+ARG WITH_DPDK=n
 ENV DOCKER y
-ENV COLLECTD_FLAVOR experimental
-ARG COLLECTD_PULL_REQUESTS
-ENV WITH_DPDK y
 ENV repos_dir /src
 
 WORKDIR ${repos_dir}
 RUN mkdir -p ${repos_dir}/barometer
 COPY . ${repos_dir}/barometer
-COPY docker/barometer-collectd-experimental/collectd_apply_pull_request.sh \
-     ${repos_dir}/barometer/src/collectd/
 
 # copying additional experimental configs on top of configs for 'main'
 # branch release
