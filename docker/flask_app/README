@@ -1,0 +1,45 @@
+To build this run:
+  sudo docker build -t my-flask-app .
+
+To run the app and see collectd metrics:
+
+  sudo docker run -d --net=host  my-flask-app
+  OR
+  sudo docker run -d -p 5000:5000  my-flask-app
+
+and configure collectd to use the write_http plugin:
+
+ LoadPlugin write_http
+
+ <Plugin "write_http">
+   <Node "example">
+     URL "http://127.0.0.1:5000"
+     Format Command
+     # Format JSON
+   </Node>
+ </Plugin>
+
+Format Command is used to make the output more readable for humans.
+You can also use JSON. 
+
+Later the server will do something more useful.
+To view the metrics that are being sent by collectd, run::
+
+   sudo docker inspect <container_id>
+   #OR
+   sudo docker logs <container_id>
+
+Metrics from collectd-5.x will use PUTVAL
+Metrics from collectd-6.x will use PUTMETRIC
+
+Sample output::
+
+  127.0.0.1 - - [21/Apr/2021 19:31:49] "POST / HTTP/1.1" 200 -
+  PUTVAL fbae30cc-2f20-11b2-a85c-819293100691/turbostat-cpu00/gauge-TSC interval=10.000 1619029909.268:2112.02271161789
+  PUTVAL fbae30cc-2f20-11b2-a85c-819293100691/turbostat-cpu00/frequency-busy interval=10.000 1619029909.268:1613.51555288381
+  PUTVAL fbae30cc-2f20-11b2-a85c-819293100691/turbostat-cpu00/percent-c1 interval=10.000 1619029909.268:86.2353665532377
+  PUTVAL fbae30cc-2f20-11b2-a85c-819293100691/turbostat-cpu00/frequency-average interval=10.000 1619029909.268:222.094501460956
+  PUTVAL fbae30cc-2f20-11b2-a85c-819293100691/turbostat-pkg00/temperature interval=10.000 1619029909.268:53
+  PUTVAL fbae30cc-2f20-11b2-a85c-819293100691/turbostat-pkg00/temperature-tcc_activation interval=10.000 1619029909.268:100
+  PUTVAL fbae30cc-2f20-11b2-a85c-819293100691/turbostat-cpu04/frequency-average interval=10.000 1619029909.268:206.978572579757
+  
