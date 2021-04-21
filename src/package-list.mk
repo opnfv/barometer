@@ -20,23 +20,35 @@ KAFKA_TAG ?= v1.5.2
 # collectd section
 COLLECTD_URL ?= https://github.com/collectd/collectd
 
-# there are 3 collectd flavors:
+# there are 4 collectd flavors:
 # -"stable" - based on stable collectd release
 # -"latest" - development version, based on main branch
 # -"experimental" - it is based on main branch as above and includes
 #                   set pull requests with experimental features
+# -"collectd-6" - based on the collectd 6.0 branch
 ifeq ($(COLLECTD_FLAVOR), stable)
-# using latest stable release
+# using the most recent stable release
 	COLLECTD_TAG ?= collectd-5.12
 	SAMPLE_CONF_VARIANT_NAME = collectd_sample_configs
-else
-# 'latest' and 'experimental' collectd flavors are both using
-# code from main branch
+endif
+ifeq ($(COLLECTD_FLAVOR), latest)
+# collectd code from main branch
 	COLLECTD_TAG ?= main
 	SAMPLE_CONF_VARIANT_NAME = collectd_sample_configs-latest
+endif
 ifeq ($(COLLECTD_FLAVOR), experimental)
 # 'experimental' flavor is using additional Pull Requests that
 # are put on top of main release
+	COLLECTD_TAG ?= main
+	SAMPLE_CONF_VARIANT_NAME = collectd_sample_configs-latest
 	COLLECTD_USE_EXPERIMENTAL_PR ?= y
 endif #end of experimental-branch handling
-endif
+ifeq ($(COLLECTD_FLAVOR), collectd-6)
+# 'collectd-6' flavor is using collectd-6.0 branch
+	COLLECTD_TAG ?= collectd-6.0
+	SAMPLE_CONF_VARIANT_NAME = collectd_sample_configs-latest
+	COLLECTD_USE_EXPERIMENTAL_PR ?= y
+endif #end of collectd-6.0-branch handling
+
+@echo "Using COLLECTD_TAG: $(COLLECTD_TAG)"
+@echo "Using SAMPLE_CONF_VARIANT_NAME: $(SAMPLE_CONF_VARIANT_NAME)"
