@@ -15,7 +15,7 @@
 
 FROM centos:8
 RUN dnf update -y && \
-        dnf install -y which sudo git && \
+        dnf install -y which sudo git-core && \
         dnf clean all && \
         git config --global http.sslVerify false
 
