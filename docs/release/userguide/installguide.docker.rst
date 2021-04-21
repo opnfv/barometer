@@ -382,6 +382,44 @@ COLLECTD_PULL_REQUESTS should be a comma-delimited string of pull request IDs.
    proxy parameters should be passed only if system is behind an HTTP or HTTPS
    proxy server (same as for stable collectd container)
 
+Build collectd-6
+^^^^^^^^^^^^^^^^
+
+The barometer-collectd-experimental Dockerfile can be used to build
+collectd-6.0, which is currently under development. In order to do this, the
+``COLLECTD_FLAVOR`` build arg can be passed to the docker build command.
+The optional ``COLLECTD_PULL_REQUESTS`` arg can be passed as well, to test
+proposed patches to collectd.
+
+.. code:: bash
+
+   $ cd <BAROMETER_REPO_DIR>
+   $ sudo docker build -t opnfv/barometer-collectd-6 \
+     --build-arg COLLECTD_FLAVOR=collectd-6 \
+     --build-arg COLLECTD_PULL_REQUESTS=1234,5678 \
+     --network=host -f docker/barometer-collectd-experimental/Dockerfile .
+
+The instructions for running the collectd-6 container are the same as for the
+collectd-experimental container.
+
+There are a few useful build args that can be used to further customise the
+collectd-6 build::
+
+* COLLECTD_CONFIG_CMD_ARGS
+  For testing with new plugins for collectd-6, as un-ported plugins are
+  disabled by default.
+  This new option lets the ./configure command be run with extra args,
+  e.g. --enable-cpu --enable-<my-newly-ported-plugin>, which means that
+  plugin can be enabled for the PR that is being tested.
+
+* COLLECTD_TAG
+  This overrides the default tag selected by the flavors, and allows checking
+  out out an arbitrary branch (e.g. PR branch instead of using the
+  ``COLLECTD_PULL_REQUESTS`` arg, which rebases each PR on top of the
+  nominal branch.
+  To check out a PR, use the following args with the docker build command:
+  ``--build-arg COLLECTD_TAG=pull/<PR_ID>/head``
+
 Run the collectd stable docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. code:: bash
