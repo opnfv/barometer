@@ -2,7 +2,8 @@
 #
 # Build a base machine for RHEL distro
 #
-# Copyright 2016-2019 Intel Corporation and OPNFV. All rights reserved.
+# Copyright 2016-2021 Intel Corporation, Anuket and others.
+# All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,6 +22,7 @@
 #   Aihua Li, Huawei Technologies.
 #   Martin Klozik, Intel Corporation.
 #   Maryam Tahhan, Intel Corporation.
+#   Emma Foley, Red Hat.
 # Synchronize package index files
 yum -y update
 
@@ -43,7 +45,8 @@ flex
 bison
 libtool
 pkg-config
-git
+git-core
+sudo
 rpm-build
 libcap-devel
 xfsprogs-devel

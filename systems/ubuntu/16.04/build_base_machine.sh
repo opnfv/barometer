@@ -15,9 +15,13 @@
 #
 
 set -eux
-apt-get -y install build-essential dh-autoreconf fakeroot  devscripts dpkg-dev git wget
 
-apt-get -y install \
+export DEBIAN_FRONTEND=noninteractive
+
+apt-get -yq update
+apt-get -yq install build-essential dh-autoreconf fakeroot devscripts dpkg-dev git-core wget sudo
+
+apt-get -yq install \
     debhelper dpkg-dev po-debconf dh-systemd dh-strip-nondeterminism \
     bison flex autotools-dev libltdl-dev pkg-config \
     iptables-dev \
