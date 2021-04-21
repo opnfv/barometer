@@ -40,6 +40,60 @@ ifeq ($(XDG_CACHE_HOME_DIR),)
 XDG_CACHE_HOME_DIR = $(shell echo $$HOME)
 endif
 
+ifeq ($(COLLECTD_FLAVOR),collectd-6)
+CONFIG_CMD += --enable-cpu
+CONFIG_CMD += --enable-interface
+CONFIG_CMD += --enable-memory
+CONFIG_CMD += --enable-ping
+CONFIG_CMD += --enable-uptime
+
+CONFIG_CMD += --disable-aggregation
+CONFIG_CMD += --disable-amqp
+CONFIG_CMD += --disable-amqp1
+CONFIG_CMD += --disable-barometer
+CONFIG_CMD += --disable-check_uptime
+CONFIG_CMD += --disable-csv
+CONFIG_CMD += --disable-curl_xml
+CONFIG_CMD += --disable-gmond
+CONFIG_CMD += --disable-grpc
+CONFIG_CMD += --disable-java
+CONFIG_CMD += --disable-lua
+CONFIG_CMD += --disable-match_empty_counter
+CONFIG_CMD += --disable-match_hashed
+CONFIG_CMD += --disable-match_regex
+CONFIG_CMD += --disable-match_timediff
+CONFIG_CMD += --disable-match_value
+CONFIG_CMD += --disable-modbus
+CONFIG_CMD += --disable-mqtt
+CONFIG_CMD += --disable-network
+CONFIG_CMD += --disable-openldap
+CONFIG_CMD += --disable-perl
+CONFIG_CMD += --disable-postgresql
+CONFIG_CMD += --disable-python
+CONFIG_CMD += --disable-redis
+CONFIG_CMD += --disable-rrdcached
+CONFIG_CMD += --disable-rrdtool
+CONFIG_CMD += --disable-snmp
+CONFIG_CMD += --disable-snmp_agent
+CONFIG_CMD += --disable-statsd
+CONFIG_CMD += --disable-target_notification
+CONFIG_CMD += --disable-target_replace
+CONFIG_CMD += --disable-target_scale
+CONFIG_CMD += --disable-target_set
+CONFIG_CMD += --disable-target_v5upgrade
+CONFIG_CMD += --disable-threshold
+CONFIG_CMD += --disable-write_graphite
+CONFIG_CMD += --disable-write_influxdb_udp
+CONFIG_CMD += --disable-write_kafka
+CONFIG_CMD += --disable-write_mongodb
+CONFIG_CMD += --disable-write_prometheus
+CONFIG_CMD += --disable-write_redis
+CONFIG_CMD += --disable-write_riemann
+CONFIG_CMD += --disable-write_sensu
+CONFIG_CMD += --disable-write_syslog
+CONFIG_CMD += --disable-write_tsdb
+CONFIG_CMD += --enable-debug
+else
 CONFIG_CMD += --enable-syslog
 CONFIG_CMD += --enable-logfile
 CONFIG_CMD += --with-libpqos=$(LIBPQOS_DIR)
@@ -52,9 +106,13 @@ CONFIG_CMD += --enable-write_redis
 CONFIG_CMD += --disable-perl
 CONFIG_CMD += --with-librdkafka=/usr
 CONFIG_CMD += --disable-lvm
+endif
+
 ifdef WITH_DPDK
 CONFIG_CMD += LIBDPDK_CFLAGS='-mssse3'
 endif
+
+CONFIG_CMD += $(COLLECTD_CONFIG_CMD_ARGS)
 
 .PHONY: install force_install config force_make
 
@@ -65,6 +123,7 @@ all: force_make
 	@echo "Finished making $(WORK_DIR)"
 
 config $(WORK_DIR)/Makefile: $(WORK_DIR)/configure
+	@echo "Configuring with: " $(CONFIG_CMD)
 	$(AT)cd $(WORK_DIR); $(CONFIG_CMD)
 	@echo "Configure done"
 
