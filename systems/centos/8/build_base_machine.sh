@@ -2,7 +2,8 @@
 #
 # Build a base machine for CentOS distro
 #
-# Copyright 2017-2019 Intel Corporation and OPNFV. All rights reserved.
+# Copyright 2017-2021 Intel Corporation, Anuket and others.
+# All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,6 +22,7 @@
 #   Aihua Li, Huawei Technologies.
 #   Martin Klozik, Intel Corporation.
 #   Maryam Tahhan, Intel Corporation.
+#   Emma Foley, Red Hat.
 # Synchronize package index files
 dnf -y update
 
@@ -51,6 +53,7 @@ bison
 libtool
 pkg-config
 git-core
+sudo
 rpm-build
 libcap-devel
 xfsprogs-devel
@@ -78,6 +81,9 @@ protobuf-c-devel
 rrdtool-devel
 dpdk-19.11.3
 qpid-proton-c-devel
+
+# ping collectd-6
+liboping-devel
 
 #install epel release required for git-review
 epel-release
