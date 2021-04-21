@@ -1,0 +1,3 @@
+containers:
+  - |
+    Add a flask app for testing collectd using metrics sent via write_http plugin.
