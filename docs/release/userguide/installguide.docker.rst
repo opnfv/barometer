@@ -382,6 +382,23 @@ COLLECTD_PULL_REQUESTS should be a comma-delimited string of pull request IDs.
    proxy parameters should be passed only if system is behind an HTTP or HTTPS
    proxy server (same as for stable collectd container)
 
+The barometer-collectd-experimental Dockerfile can be used to build
+collectd-6.0, which is currently under development. In order to do this, the
+``COLLECTD_FLAVOR`` build arg can be passed to the docker build command.
+The optional ``COLLECTD_PULL_REQUESTS`` arg can be passed as well, to test
+proposed patches to collectd.
+
+.. code:: bash
+
+   $ cd <BAROMETER_REPO_DIR>
+   $ sudo docker build -t opnfv/barometer-collectd-6 \
+     --build-arg COLLECTD_FLAVOR=collectd-6 \
+     --build-arg COLLECTD_PULL_REQUESTS=1234,5678 \
+     --network=host -f docker/barometer-collectd-experimental/Dockerfile .
+
+The instructions for running the collectd-6 container are the same as for the
+collectd-experimental container.
+
 Run the collectd stable docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. code:: bash
