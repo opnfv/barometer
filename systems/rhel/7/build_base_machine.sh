@@ -43,7 +43,8 @@ flex
 bison
 libtool
 pkg-config
-git
+git-core
+sudo
 rpm-build
 libcap-devel
 xfsprogs-devel

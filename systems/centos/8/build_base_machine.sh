@@ -51,6 +51,7 @@ bison
 libtool
 pkg-config
 git-core
+sudo
 rpm-build
 libcap-devel
 xfsprogs-devel
@@ -78,6 +79,9 @@ protobuf-c-devel
 rrdtool-devel
 dpdk-19.11.3
 qpid-proton-c-devel
+
+# ping collectd-6
+liboping-devel
 
 #install epel release required for git-review
 epel-release

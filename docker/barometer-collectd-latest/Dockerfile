@@ -14,17 +14,12 @@
 #
 
 FROM centos:8
-RUN dnf update -y && \
-        dnf install -y which sudo git && \
-        dnf clean all && \
-        git config --global http.sslVerify false
 
+ARG COLLECTD_FLAVOR=latest
+ARG WITH_DPDK=y
 ENV DOCKER y
-ENV COLLECTD_FLAVOR latest
-ENV WITH_DPDK y
 ENV repos_dir /src
 
-WORKDIR ${repos_dir}
 RUN mkdir -p ${repos_dir}/barometer
 COPY . ${repos_dir}/barometer
 
