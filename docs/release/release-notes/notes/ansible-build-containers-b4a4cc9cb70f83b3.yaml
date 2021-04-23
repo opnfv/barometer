@@ -1,0 +1,11 @@
+release_summary: >
+    Add ansible playbook for building the containers locally.
+ansible:
+  - | 
+    Added a playbook and role for building the collectd containers locally.
+    This automates the actions described in the docker install guide. The
+    ``barometer-collectd``, ``barometer-collectd-latest`` and the
+    ``barometer-collectd-experimental`` containers are now easier to build
+    locally. The ``barometer-collectd-6`` and
+    ``barometer-collectd-experimental`` containers can also be built with
+    arbirtary PRs applied, to aid in testing locally. 
