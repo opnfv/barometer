@@ -1,0 +1,9 @@
+---
+# ansible-playbook collectd_build.yml
+#
+- hosts: localhost
+  become: true
+  tasks:
+    - name: Build collectd containers
+      include_role:
+        name: build_collectd
