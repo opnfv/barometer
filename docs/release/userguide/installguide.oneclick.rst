@@ -231,6 +231,36 @@ Verify that key is added and password is not required to connect.
    example. For multinode installation keys need to be copied for each node:
    [collectd_hostname], [influxdb_hostname] etc.
 
+Build the Collectd containers
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This is an optional step, if you do not wish to build the containers locally, please continue to `Download and run Collectd+Influxdb+Grafana containers`_.
+This step will build the container images locally, allowing for testing of new changes to collectd.
+This is particularly useful for the ``experimental`` flavour for testing PRs, and for building a ``collectd-6`` container.
+
+To run the playbook and build the containers, run::
+    sudo ansible-playbook docker/ansible/collectd_build.yml
+
+By default, all contaienrs will be built.
+Since this can take a while, it is recommended that you choose a flavor to build using tags::
+
+    sudo ansible-playbook docker/ansible/collectd_build.yml --tags='collectd-6,latest'
+
+The available tags are:
+
+* *stable* builds the ``barometer-collectd`` image
+* *latest* builds the ``barometer-collectd-latest`` image
+* *experimental* builds the ``barometer-collectd-experimental`` container, with optional PRs
+* *collectd-6* builds the ``baromter-collectd-6`` container, with optional PR(s)
+
+* *flask_test* builds a small webapp that displays the metrics sent via the write_http plugin
+
+.. note::
+   The flask_test tag must be explicitly enabled.
+   This can be done either through the ``--tags='flask_test'`` (to build just
+   this container) or with ``--tags=all`` to build this and all the other
+   containers as well.
+
 Download and run Collectd+Influxdb+Grafana containers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
