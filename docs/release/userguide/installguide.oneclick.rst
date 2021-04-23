@@ -231,6 +231,23 @@ Verify that key is added and password is not required to connect.
    example. For multinode installation keys need to be copied for each node:
    [collectd_hostname], [influxdb_hostname] etc.
 
+Build the Collectd containers
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This is an optional step, if you do not wish to build the containers locally, please continue to `Download and run Collectd+Influxdb+Grafana containers`_.
+This step will build the container images locally, allowing for testing of new changes to collectd.
+This is particularly useful for the ``experimental`` flavour for testing PRs, and for building a ``collectd-6`` container.
+
+To run the playbook and build the containers, run::
+    sudo ansible-playbook docker/ansible/collectd_build.yml
+
+By default, all contaienrs will be built.
+Since this can take a while, it is recommended that you choose a flavor to build using tags
+    sudo ansible-playbook docker/ansible/collectd_build.yml --tags='collectd-6,'
+
+
+
+
 Download and run Collectd+Influxdb+Grafana containers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
