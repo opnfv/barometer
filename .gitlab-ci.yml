@@ -1,0 +1,165 @@
+---
+include:
+  - project: anuket/releng
+    file: '/gitlab-templates/RTD.gitlab-ci.yml'
+  - project: anuket/releng
+    file: '/gitlab-templates/Docker.gitlab-ci.yml'
+  - project: anuket/releng
+    file: '/gitlab-templates/GoogleStorage.gitlab-ci.yml'
+
+variables:
+  DOCKER_REGISTRY: docker.io
+
+.barometer-build-script: &barometer-build-script
+  before_script:
+    - ./systems/centos/8/build_base_machine.sh
+  script:
+    - pwd
+    - cd src
+    - |
+        echo -e "\e[0Ksection_start:`date +%s`:make_clobber\r\e[0KMake Clobber"
+        make clobber
+        echo -e "\e[0Ksection_end:`date +%s`:make_clobber\r\e[0K"
+    - |
+        echo -e "\e[0Ksection_start:`date +%s`:make\r\e[0KMake"
+        make
+        echo -e "\e[0Ksection_end:`date +%s`:make\r\e[0K"
+
+# Docker Builds
+docker-build-collectd:
+  extends: .docker-build-and-push
+  variables:
+    DOCKER_IMAGE: "$DOCKER_ORGANIZATION/barometer-collectd"
+    DOCKER_BUILDCONTEXT: "docker/barometer-collectd"
+    DOCKER_FILEPATH: "docker/barometer-collectd/Dockerfile"
+
+docker-build-collectd-latest:
+  extends: .docker-build-and-push
+  variables:
+    DOCKER_IMAGE: "$DOCKER_ORGANIZATION/barometer-collectd-latest"
+    DOCKER_FILEPATH: "docker/barometer-collectd-latest/Dockerfile"
+
+docker-build-dma:
+  extends: .docker-build-and-push
+  # Failing since 2019
+  allow_failure: true
+  variables:
+    DOCKER_IMAGE: "$DOCKER_ORGANIZATION/barometer-dma"
+    DOCKER_BUILDCONTEXT: "docker/barometer-dma"
+    DOCKER_FILEPATH: "docker/barometer-dma/Dockerfile"
+
+docker-build-collectd-experimental:
+  extends: .docker-build-and-push
+  variables:
+    DOCKER_IMAGE: "$DOCKER_ORGANIZATION/barometer-collectd-latest"
+    DOCKER_FILEPATH: "docker/barometer-collectd-experimental/Dockerfile"
+
+docker-build-grafana:
+  extends: .docker-build-and-push
+  variables:
+    DOCKER_IMAGE: "$DOCKER_ORGANIZATION/barometer-grafana"
+    DOCKER_BUILDCONTEXT: "docker/barometer-grafana"
+    DOCKER_FILEPATH: "docker/barometer-grafana/Dockerfile"
+
+docker-build-influxdb:
+  extends: .docker-build-and-push
+  variables:
+    DOCKER_IMAGE: "$DOCKER_ORGANIZATION/barometer-influxdb"
+    DOCKER_BUILDCONTEXT: "docker/barometer-influxdb"
+    DOCKER_FILEPATH: "docker/barometer-influxdb/Dockerfile"
+
+docker-build-kafka:
+  extends: .docker-build-and-push
+  variables:
+    DOCKER_IMAGE: "$DOCKER_ORGANIZATION/barometer-kafka"
+    DOCKER_BUILDCONTEXT: "docker/barometer-kafka"
+    DOCKER_FILEPATH: "docker/barometer-kafka/Dockerfile"
+
+docker-build-ves:
+  extends: .docker-build-and-push
+  variables:
+    DOCKER_IMAGE: "$DOCKER_ORGANIZATION/barometer-ves"
+    DOCKER_BUILDCONTEXT: "docker/barometer-ves"
+    DOCKER_FILEPATH: "docker/barometer-ves/Dockerfile"
+
+docker-build-snmp:
+  extends: .docker-build-and-push
+  variables:
+    DOCKER_IMAGE: "$DOCKER_ORGANIZATION/barometer-snmp"
+    DOCKER_BUILDCONTEXT: "docker/barometer-snmp"
+    DOCKER_FILEPATH: "docker/barometer-snmp/Dockerfile"
+
+# Build jobs
+barometer-build:
+  image: centos:8
+  stage: deploy
+  <<: *barometer-build-script
+  variables:
+    DOCKER: y
+  rules:
+    - changes:
+        - "docs/**"
+        - .gitignore
+      when: never
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: never
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+# Scheduled Jobs
+barometer-daily:
+  image: centos:8
+  stage: build
+  <<: *barometer-build-script
+  variables:
+    DOCKER: y
+  script:
+    - !reference [.gsutil-install, script]
+    - cd ci/
+    - ./barometer-build.sh
+    - ./barometer-upload-artifact.sh
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $BAROMETER_SCHEDULE == "true"
+
+barometer-plugins-test:
+  image: docker:latest
+  stage: test
+  interruptible: true
+  # Build has been failing for awhile
+  allow_failure: true
+  needs: []
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_TOKEN" $DOCKER_REGISTRY
+  script:
+    - docker pull $DOCKER_ORGANIZATION/barometer-collectd-tests:latest || true
+    - docker pull $DOCKER_ORGANIZATION/barometer-collectd-tests-base:latest || true
+    - >
+        docker build
+        -t $DOCKER_ORGANIZATION/barometer-collectd-tests-base
+        -f docker/barometer-collectd-plugin-tests/Dockerfile.base
+        --network=host
+        .
+    - >
+        docker build
+        -t $DOCKER_ORGANIZATION/barometer-collectd-tests
+        -f docker/barometer-collectd-plugin-tests/Dockerfile
+        --network=host
+        .
+    - >
+        docker run
+        -t
+        -v `pwd`/src/collectd/collectd_sample_configs-master:/opt/collectd/etc/collectd.conf.d
+        -v /var/run:/var/run
+        -v /tmp:/tmp
+        -v `pwd`/plugin_test:/tests
+        --net=host
+        --privileged
+        $DOCKER_ORGANIZATION/barometer-collectd-tests:latest
+    - docker container rm $(sudo docker container ls -aq)
+    - docker rmi $DOCKER_ORGANIZATION/barometer-collectd-tests:latest
+    - docker rmi $DOCKER_ORGANIZATION/barometer-collectd-tests-base:latest
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $BAROMETER_SCHEDULE == "true"
