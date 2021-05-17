@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "556b6925_d0f18fb7",
+        "filename": ".gitlab-ci.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2021-05-17T12:02:42Z",
+      "side": 1,
+      "message": "The scripts being run in L120-121 are in releng, not in Barometer. Do these scripts need to be moved, or are they included by some magic when the releng gitlab configs are included in lines 2-8?\n\nbarometer-upload-artifact.sh includes some interacting with Google Cloud storage, IINM, and perhaps there\u0027s some helper/template in releng that we should utilise for the artifact upload.",
+      "revId": "6f310f6e74546b7fcda7e1ba8b54b9b3e47b2662",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
