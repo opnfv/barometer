@@ -25,7 +25,8 @@ include ../mk/master.mk
 include ../package-list.mk
 
 WORK_DIR = collectd
-TAG_DONE_FLAG = $(WORK_DIR)/.$(COLLECTD_TAG).done
+# $COLLECTD_TAG can contain "/", which is being replaced with "-" here
+TAG_DONE_FLAG := $(WORK_DIR)/.$(subst /,-,"$(COLLECTD_TAG)").done
 BUILD_CMD = ./build.sh
 CONFIG_CMD =
 CONFIG_CMD += ./configure
@@ -121,7 +122,7 @@ $(WORK_DIR):
 
 $(TAG_DONE_FLAG): $(WORK_DIR)
 	@echo "Checking out collectd from tag: $(COLLECTD_TAG)"
-	$(AT)cd collectd; git checkout $(COLLECTD_TAG)
+	$(AT)cd collectd; git fetch origin $(COLLECTD_TAG); git checkout FETCH_HEAD
 ifneq ($(PATCH_FILE),)
 	$(AT)cd $(WORK_DIR); patch -p1 < ../$(PATCH_FILE)
 endif
