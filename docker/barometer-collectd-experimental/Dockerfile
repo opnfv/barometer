@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-FROM centos:8
+FROM centos:8 as builder
 
 ARG COLLECTD_FLAVOR=experimental
 ARG COLLECTD_PULL_REQUESTS
@@ -34,7 +34,23 @@ RUN ./build_base_machine.sh && \
         useradd -ms /bin/bash collectd_exec && \
         echo "collectd_exec ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
+FROM centos:8
+
 COPY docker/barometer-collectd-experimental/run_collectd.sh /run_collectd.sh
 RUN chmod +x /run_collectd.sh
+
+COPY --from=builder /opt/collectd /opt/collectd
+
+# This is a very long command, but don't fear, there is a reason. This gets the dependencies for the copied binaries and installs them.
+# (1) gets the dependencies for the .so files for each plugin
+# (2) narrows the result to the deps that aren't found
+# (3) extracts the name of the library
+# (4) gets the list of packages that provide the libraries
+# (5) gets the first two lines of each stanza (repo name and package name/description)
+# (6) removes the repo line
+# (7) removes the package version, platform and arch from the package name (e.g. my-package-1.2.3-4.el8.i686) - because the package returned was for the wrong arch initially.
+#                   /-----(4)----\/----------------(1)-----------------\ /-----(2)--------\ /--------(3)--------\ /------------------(5)----------------\ /-----(6)------\ /----------(7)----------\
+RUN dnf install -y $(dnf provides $(ldd /opt/collectd/lib/collectd/*.so | grep "not found" | awk '{ print $1 }') | grep --no-group-separator -B 1 "Repo" | grep -v "Repo" | sed 's/-[0-9]\+\..*$//g' ) && \
+	dnf clean all && rm -rf /var/cache/dnf
 
 ENTRYPOINT ["/run_collectd.sh"]
