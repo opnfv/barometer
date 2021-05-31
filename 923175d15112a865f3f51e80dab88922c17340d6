@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f1e6ef1_d57f3838",
+        "filename": "systems/centos/8/build_base_machine.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2021-05-31T07:58:25Z",
+      "side": 1,
+      "message": "strictly, this should be required before as well.... not sure why this didn\u0027t cause issues before.",
+      "revId": "923175d15112a865f3f51e80dab88922c17340d6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
