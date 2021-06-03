@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. (c) OPNFV, Intel Corporation and others.
+.. (c) Anuket, Intel Corporation and others.
 
 DPDK Enhancements
 ==================
@@ -167,4 +167,4 @@ Through extending the dpdkstat plugin for collectd with KA functionality, and
 integrating the extended plugin with Monasca for high performing, resilient,
 and scalable fault detection.
 
-.. _L2 Forwarding Sample Application (in Real and Virtualized Environments): http://dpdk.org/doc/guides/sample_app_ug/l2_forward_real_virtual.html
+.. _L2 Forwarding Sample Application (in Real and Virtualized Environments): http://doc.dpdk.org/guides/sample_app_ug/l2_forward_real_virtual.html

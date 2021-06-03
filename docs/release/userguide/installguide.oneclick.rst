@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. (c) <optionally add copywriters name>
+.. (c) Anuket and others
 .. _barometer-oneclick-userguide:
 
 =======================================
@@ -251,7 +251,7 @@ To make some changes when a container is running run:
 
 Connect to ``<host_ip>:3000`` with a browser and log into Grafana: admin/admin.
 For short introduction please see the:
-`Grafana guide <http://docs.grafana.org/guides/getting_started/>`_.
+`Grafana guide <https://grafana.com/docs/grafana/latest/guides/getting_started/>`_.
 
 The collectd configuration files can be accessed directly on target system in
 ``/opt/collectd/etc/collectd.conf.d``. It can be used for manual changes or

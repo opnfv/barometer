@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. (c) OPNFV, Intel Corporation and others.
+.. (c) Anuket, Intel Corporation and others.
 .. _barometer-ves-userguide:
 
 ==========================
@@ -932,9 +932,9 @@ Limitations
    definition and the format is descibed in the document.
 
 
-.. _collectd: http://collectd.org/
+.. _collectd: https://collectd.org/
 .. _Kafka: https://kafka.apache.org/
-.. _`VES`: https://wiki.opnfv.org/display/fastpath/VES+plugin+updates
+.. _`VES`: https://wiki.anuket.io/display/HOME/VES+plugin+updates
 .. _`VES shema definition`: https://gerrit.onap.org/r/gitweb?p=demo.git;a=tree;f=vnfs/VES5.0/evel/evel-test-collector/docs/att_interface_definition;hb=refs/heads/master
 .. _`PyYAML documentation`: https://pyyaml.org/wiki/PyYAMLDocumentation
 .. _`collectd plugin description`: https://github.com/collectd/collectd/blob/main/src/collectd.conf.pod
