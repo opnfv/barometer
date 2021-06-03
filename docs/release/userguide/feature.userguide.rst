@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. (c) <optionally add copywriters name>
+.. (c) Anuket and others
 
 ===================================
 OPNFV Barometer User Guide
@@ -182,7 +182,7 @@ Repo: https://github.com/collectd/collectd
 
 Branch: main
 
-Dependencies: DPDK (http://dpdk.org/)
+Dependencies: DPDK (https://dpdk.org/)
 
 .. note:: DPDK statistics plugin requires DPDK version 16.04 or later.
 
@@ -299,7 +299,7 @@ To fully enable ASLR:
     and only when all implications of this change have been understood.
 
 For more information on multi-process support, please see:
-http://dpdk.org/doc/guides/prog_guide/multi_proc_support.html
+http://doc.dpdk.org/guides/prog_guide/multi_proc_support.html
 
 **DPDK stats plugin limitations:**
 
@@ -321,7 +321,7 @@ http://dpdk.org/doc/guides/prog_guide/multi_proc_support.html
 
 **DPDK telemetry plugin**
 
-Please refer https://wiki.opnfv.org/display/fastpath/DPDK+Telemetry+Plugin
+Please refer to https://wiki.anuket.io/display/HOME/DPDK+Telemetry+Plugin
 
 Hugepages Plugin
 ^^^^^^^^^^^^^^^^^
@@ -482,14 +482,14 @@ Branch: main
 
 Dependencies:
 
-  * PQoS/Intel RDT library https://github.com/01org/intel-cmt-cat.git
+  * PQoS/Intel RDT library https://github.com/intel/intel-cmt-cat
   * msr kernel module
 
 Building and installing PQoS/Intel RDT library:
 
 .. code:: bash
 
-    $ git clone https://github.com/01org/intel-cmt-cat.git
+    $ git clone https://github.com/intel/intel-cmt-cat
     $ cd intel-cmt-cat
     $ make
     $ make install PREFIX=/usr
@@ -638,7 +638,7 @@ collectd IPMI documentation can be used:
 IPMI documentation:
 
 - https://www.kernel.org/doc/Documentation/IPMI.txt
-- http://www.intel.com/content/www/us/en/servers/ipmi/ipmi-second-gen-interface-spec-v2-rev1-1.html
+- https://www.intel.com/content/www/us/en/products/docs/servers/ipmi/ipmi-second-gen-interface-spec-v2-rev1-1.html
 
 Mcelog Plugin
 ^^^^^^^^^^^^^^
@@ -856,7 +856,7 @@ On Centos, install the dependencies and Open vSwitch:
     $ sudo yum install yajl-devel
 
 Steps to install Open vSwtich can be found at
-http://docs.openvswitch.org/en/latest/intro/install/fedora/
+https://docs.openvswitch.org/en/latest/intro/install/fedora/
 
 Start the Open vSwitch service:
 
@@ -1133,7 +1133,7 @@ metrics depends on running libvirt daemon version.
 .. note:: Please keep in mind that RDT metrics (part of *Performance monitoring
     events*) have to be supported by hardware. For more details on hardware support,
     please see:
-    https://github.com/01org/intel-cmt-cat
+    https://github.com/intel/intel-cmt-cat
 
     Additionally perf metrics **cannot** be collected if *Intel RDT* plugin is enabled.
 
@@ -1377,7 +1377,7 @@ Security
     * `CVE-2010-4336`_ fixed https://mailman.verplant.org/pipermail/collectd/2010-November/004277.html
         in Version 4.10.2.
 
-  * http://www.cvedetails.com/product/20310/Collectd-Collectd.html?vendor_id=11242
+  * https://www.cvedetails.com/product/20310/Collectd-Collectd.html?vendor_id=11242
 
 * It's recommended to only use collectd plugins from signed packages.
 
@@ -1394,8 +1394,8 @@ References
 .. _Barometer OPNFV Summit demo: https://prezi.com/kjv6o8ixs6se/software-fastpath-service-quality-metrics-demo/
 .. _gnocchi plugin: https://github.com/openstack/collectd-openstack-plugins/tree/stable/ocata/
 .. _aodh plugin: https://github.com/openstack/collectd-openstack-plugins/tree/stable/ocata/
-.. _collectd-openstack-plugins GSG: https://github.com/openstack/collectd-openstack-plugins/blob/master/doc/source/GSG.rst
-.. _grafana guide: https://wiki.opnfv.org/display/fastpath/Installing+and+configuring+InfluxDB+and+Grafana+to+display+metrics+with+collectd
+.. _collectd-openstack-plugins GSG: https://opendev.org/x/collectd-openstack-plugins/src/branch/master/doc/source/GSG.rst
+.. _grafana guide: https://wiki.anuket.io/display/HOME/Installing+and+configuring+InfluxDB+and+Grafana+to+display+metrics+with+collectd 
 .. _CVE-2017-7401: https://www.cvedetails.com/cve/CVE-2017-7401/
 .. _CVE-2016-6254: https://www.cvedetails.com/cve/CVE-2016-6254/
 .. _CVE-2010-4336: https://www.cvedetails.com/cve/CVE-2010-4336/
