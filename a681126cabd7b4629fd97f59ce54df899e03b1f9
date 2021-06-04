@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "69d4cd06_07106103",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2021-06-04T06:21:42Z",
+      "side": 1,
+      "message": "https://doc.dpdk.org/guides/prog_guide/multi_proc_support.html",
+      "revId": "a681126cabd7b4629fd97f59ce54df899e03b1f9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
