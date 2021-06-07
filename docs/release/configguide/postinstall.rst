@@ -6,6 +6,8 @@ Barometer post installation procedures
 ======================================
 This document describes briefly the methods of validating the Barometer installation.
 
+.. TODO: Update this to include reference to containers rather than an Openstack deployment.
+
 Automated post installation activities
 --------------------------------------
 The Barometer test-suite in Functest is called ``barometercollectd`` and is part of the ``Features``

@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. (c) OPNFV, Intel Corporation and others.
+.. (c) Anuket, Intel Corporation and others.
 
 =========
 Barometer
@@ -77,6 +77,6 @@ Indices
 =======
 * :ref:`search`
 
-.. _Barometer: https://wiki.opnfv.org/display/fastpath
-.. _collectd: http://collectd.org/
+.. _Barometer: https://wiki.anuket.io/display/HOME/Barometer
+.. _collectd: https://collectd.org/
 

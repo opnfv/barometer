@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. (c) OPNFV, Intel Corporation and others.
+.. (c) Anuket, Intel Corporation and others.
 
 Problem Statement
 ------------------
@@ -16,7 +16,7 @@ useful information as possible off the platform so that faults and errors in
 the NFVI can be detected promptly and reported to the appropriate fault
 management entity.
 
-The OPNFV platform (NFVI) requires functionality to:
+The Anuket platform (NFVI) requires functionality to:
 
 * Create a low latency, high performance packet processing path (fast path)
   through the NFVI that VNFs can take advantage of;

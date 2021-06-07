@@ -1,11 +1,11 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. (c) <optionally add copywriters name>
+.. (c) Anuket and others
 .. _barometer-docker-userguide:
 
-====================================
-OPNFV Barometer Docker Install Guide
-====================================
+=====================================
+Anuket Barometer Docker Install Guide
+=====================================
 
 .. contents::
    :depth: 3
@@ -455,7 +455,7 @@ Run the collectd stable docker image
 
    List of barometer-collectd dependencies on host for various plugins
    can be found at:
-   https://wiki.opnfv.org/display/fastpath/Barometer-collectd+host+dependencies
+   https://wiki.anuket.io/display/HOME/Barometer-collectd+host+dependencies
 
    The Resource Control file system (/sys/fs/resctrl) can be bound from host to
    container only if this directory exists on the host system. Otherwise omit

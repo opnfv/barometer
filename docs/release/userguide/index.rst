@@ -2,10 +2,10 @@
 
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. (c) Intel and OPNFV
+.. (c) Intel, Anuket and others
 
 ===========================
-OPNFV Barometer User Guide
+Anuket Barometer User Guide
 ===========================
 
 .. The feature user guide should provide an OPNFV user with enough information to
