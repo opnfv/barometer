@@ -76,7 +76,7 @@ librdkafka-devel
 yajl-devel
 protobuf-c-devel
 rrdtool-devel
-dpdk-19.11.3
+dpdk-20.11
 qpid-proton-c-devel
 
 #install epel release required for git-review
