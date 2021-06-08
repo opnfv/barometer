@@ -79,7 +79,7 @@ librdkafka-devel
 yajl-devel
 protobuf-c-devel
 rrdtool-devel
-dpdk-19.11.3
+#dpdk-19.11.3
 qpid-proton-c-devel
 
 # ping collectd-6
