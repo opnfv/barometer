@@ -1,0 +1,6 @@
+ansible:
+  - |
+    Update the config_files role to use `collectd_config role <https://www.github.com/infrawatch/collectd-config-ansible-role>`_, to generate the configs for collectd.
+    This simplifies the config egneration playbook and removes all teh templates from the role, which are duplicates of the samples configs, and generally not configurable.
+    This makes it easier to add in configs for new plugins and to modify the configs that are generated.
+    Previously, the number of config options was limited. Now, all the configurations are easier to modify from the command line.
