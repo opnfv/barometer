@@ -1,4 +1,4 @@
-#Copyright 2018 OPNFV and Intel Corporation
+# Copyright 2018-21 Anuket, Intel Corporation and others
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,51 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
-
-#directory paths
-config_file_dir: "/opt/collectd/etc/collectd.conf.d/"
-csv_log_dir: "/var/lib/collectd/csv"
-logfile_dir: "/var/log/"
-
-#global default interval
-interval_value: 10
-
-#influx network port
-influx_network_port: 25826
-
-#network plugin vars
-#network_port: 25826
-#network_ip_addr: localhost
-
-#prometheus plugin vars
-prometheus_port: 9103
-
-#ovs event and stats plugin vars
-ovs_event_interval: 1
-ovs_event_ip_addr: localhost
-ovs_event_port: 6640
-ovs_stats_interval: 1
-ovs_stats_ip_addr: localhost
-ovs_stats_port: 6640
-
-#rdt plugin vars
-rdt_interval: 1
-
-#kafka plugin vars
-kafka_ip_addr: localhost
-kafka_port: 9092
-kafka_topic: collectd
-
-#logfile plugin vars
-logfile_log_level: info
-
-#syslog plugin vars
-syslog_log_level: info
-
-#rrd plugin vars
-rrdtool_db_dir: "/var/lib/collectd/rrd"
-cache_flush: 120
-write_per_sec: 50
-
-#additional configuration files path
-additional_configs_path: ""
+collectd_plugins: []
+collectd_interval: "{{ interval_value }}"
+collectd_hostname: "{{ inventory_hostname }}"
