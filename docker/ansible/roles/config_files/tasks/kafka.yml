@@ -1,4 +1,4 @@
-#Copyright 2018 OPNFV and Intel Corporation
+# Copyright 2018-21 Anuket, Intel Corporation and others
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,9 +13,8 @@
 # limitations under the License.
 ---
 
-- name: enable kafka plugin
-  template:
-    src: kafka.conf.j2
-    dest: "{{ config_file_dir }}/kafka.conf"
+- name: enable kafka plugin with collectd_config
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['write_kafka']) | unique }}"
   tags:
     - kafka
