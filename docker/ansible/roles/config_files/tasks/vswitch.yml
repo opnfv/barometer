@@ -1,4 +1,4 @@
-#Copyright 2018 OPNFV and Intel Corporation
+# Copyright 2018-21 Anuket, Intel Corporation and others
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -31,17 +31,21 @@
      - ovs_events
 
 - name: enable ovs_stats plugin
-  template:
-    src: "ovs_stats.conf.j2"
-    dest: "{{ config_file_dir }}/ovs_stats.conf"
+  set_fact:
+    collectd_plugins: '{{ collectd_plugins | union(["ovs_stats"]) | unique }}'
+    collectd_plugin_ovs_stats_port: "{{ ovs_stats_port if ovs_stats_port is defined else omit }}"
+    collectd_plugin_ovs_stats_address: "{{ ovs_stats_ip_addr if ovs_stats_ip_addr is defined else omit }}"
+    collectd_plugin_ovs_stats_interval: "{{ ovs_stats_interval if ovs_stats_interval is defined else omit }}"
   when: (vswitchd_running is succeeded) and (dbsock_exists is succeeded)
   tags:
-   - ovs_stats
+    - ovs_stats
 
 - name: enable ovs_events plugin
-  template:
-    src: "ovs_events.conf.j2"
-    dest: "{{ config_file_dir }}/ovs_events.conf"
+  set_fact:
+    collectd_plugins: '{{ collectd_plugins | union(["ovs_events"]) | unique }}'
+    collectd_plugin_ovs_events_interval: "{{ ovs_events_interval if ovs_events is defined else omit }}"
+    collectd_plugin_ovs_events_address: "{{ ovs_events_ip_addr if ovs_events_ip_addr is defined else omit }}"
+    collectd_plugin_ovs_events_port: "{{ ovs_events_port if ovs_events_port is defined else omit }}"
   when: (vswitchd_running is succeeded) and (dbsock_exists is succeeded)
   tags:
     - ovs_events
