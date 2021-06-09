@@ -83,6 +83,9 @@
 - name: enable syslog plugin
   import_tasks: syslog.yml
 
+- name: enable ovs plugins
+  import_tasks: ovs.yml
+
 - name: enable virt plugin
   import_tasks: virt.yml
 
@@ -101,12 +104,22 @@
     - always
     - en_default_all
 
-- name: "Copy the generated plugin configs"
-  shell:
-    sudo cp /tmp/collectd.conf.d/*.conf {{ config_file_dir }} && sudo cp /tmp/collectd.conf {{ config_file_dir }}/../collectd.conf
+- name: Copy the generated plugin configs
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - { src: "/tmp/collectd.conf.d/", dest: "{{ config_file_dir }}" }
+    - { src: "/tmp/collectd.conf", dest: "{{ config_file_dir }}/../collectd.conf" }
   tags:
     - always
     - en_default_all
+
+- name: Update TypesDB location
+  lineinfile:
+    path: "{{ config_file_dir }}../collectd.conf"
+    regexp: '^TypesDB "/usr/share/collectd/types.db"$'
+    line: 'TypesDB "/opt/collectd/share/collectd/types.db"'
 
 - name: Update config file location
   lineinfile:

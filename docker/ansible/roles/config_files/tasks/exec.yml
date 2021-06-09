@@ -1,4 +1,4 @@
-#Copyright 2018 OPNFV and Intel Corporation
+# Copyright 2018-21 Anuket, Intel Corporation and others
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,10 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
-
 - name: enable exec plugin
-  template:
-    src: exec.conf.j2
-    dest: "{{ config_file_dir }}/exec.conf"
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['exec']) | unique }}"
   tags:
     - exec
