@@ -1,4 +1,4 @@
-#Copyright 2018 OPNFV and Intel Corporation
+# Copyright 2018-21 OPNFV, Intel Corporation and Red Hat
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,145 +12,107 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
-
-- name: copy default template to system
-  template:
-    src: default_read_plugins.conf.j2
-    dest: "{{ config_file_dir }}/default_read_plugins.conf"
-  tags:
-   - always
-
 - name: enable contextswitch  plugin
-  replace:
-      path: "{{ config_file_dir }}/default_read_plugins.conf"
-      regexp: '(\s+)#LoadPlugin contextswitch(\s+.*)?$'
-      replace: '\1LoadPlugin contextswitch\2'
+  set_fact:
+     collectd_plugins: "{{ collectd_plugins | union(['contextswitch']) | unique }}"
   tags:
     - en_default_all
     - contextswitch
 
 - name: enable cpu plugin
-  replace:
-      path: "{{ config_file_dir }}/default_read_plugins.conf"
-      regexp: '(\s+)#LoadPlugin cpu(\s+.*)?$'
-      replace: '\1LoadPlugin cpu\2'
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['cpu']) | unique }}"
   tags:
     - en_default_all
     - cpu
 
 - name: enable cpufreq plugin
-  replace:
-      path: "{{ config_file_dir }}/default_read_plugins.conf"
-      regexp: '(\s+)#LoadPlugin cpufreq(\s+.*)?$'
-      replace: '\1LoadPlugin cpufreq\2'
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['cpufreq']) | unique }}"
   tags:
     - en_default_all
     - cpufreq
 
 - name: enable df plugin
-  replace:
-      path: "{{ config_file_dir }}/default_read_plugins.conf"
-      regexp: '(\s+)#LoadPlugin df(\s+.*)?$'
-      replace: '\1LoadPlugin df\2'
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['df']) | unique }}"
   tags:
     - en_default_all
     - df
 
 - name: enable disk plugin
-  replace:
-      path: "{{ config_file_dir }}/default_read_plugins.conf"
-      regexp: '(\s+)#LoadPlugin disk(\s+.*)?$'
-      replace: '\1LoadPlugin disk\2'
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['disk']) | unique }}"
   tags:
     - en_default_all
     - disk
 
 - name: enable ethstat plugin
-  replace:
-      path: "{{ config_file_dir }}/default_read_plugins.conf"
-      regexp: '(\s+)#LoadPlugin ethstat(\s+.*)?$'
-      replace: '\1LoadPlugin ethstat\2'
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['ethstat']) | unique }}"
   tags:
     - en_default_all
     - ethstat
 
 - name: enable ipc plugin
-  replace:
-      path: "{{ config_file_dir }}/default_read_plugins.conf"
-      regexp: '(\s+)#LoadPlugin ipc(\s+.*)?$'
-      replace: '\1LoadPlugin ipc\2'
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['ipc']) | unique }}"
   tags:
     - en_default_all
     - ipc
 
 - name: enable irq plugin
-  replace:
-      path: "{{ config_file_dir }}/default_read_plugins.conf"
-      regexp: '(\s+)#LoadPlugin irq(\s+.*)?$'
-      replace: '\1LoadPlugin irq\2'
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['irq']) | unique }}"
   tags:
     - en_default_all
     - irq
 
 - name: enable load plugin
-  replace:
-      path: "{{ config_file_dir }}/default_read_plugins.conf"
-      regexp: '(\s+)#LoadPlugin load(\s+.*)?$'
-      replace: '\1LoadPlugin load\2'
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['load']) | unique }}"
   tags:
     - en_default_all
     - load
 
 - name: enable memory plugin
-  replace:
-      path: "{{ config_file_dir }}/default_read_plugins.conf"
-      regexp: '(\s+)#LoadPlugin memory(\s+.*)?$'
-      replace: '\1LoadPlugin memory\2'
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['memory']) | unique }}"
   tags:
     - en_default_all
     - memory
 
 - name: enable numa plugin
-  replace:
-      path: "{{ config_file_dir }}/default_read_plugins.conf"
-      regexp: '(\s+)#LoadPlugin numa(\s+.*)?$'
-      replace: '\1LoadPlugin numa\2'
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['numa']) | unique }}"
   tags:
     - en_default_all
     - numa
 
 - name: enable processes plugin
-  replace:
-      path: "{{ config_file_dir }}/default_read_plugins.conf"
-      regexp: '(\s+)#LoadPlugin processes(\s+.*)?$'
-      replace: '\1LoadPlugin processes\2'
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['processes']) | unique }}"
   tags:
     - en_default_all
     - processes
 
 - name: enable swap plugin
-  replace:
-      path: "{{ config_file_dir }}/default_read_plugins.conf"
-      regexp: '(\s+)#LoadPlugin swap(\s+.*)?$'
-      replace: '\1LoadPlugin swap\2'
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['swap']) | unique }}"
   tags:
     - en_default_all
     - swap
 
 - name: enable turbostat plugin
-  replace:
-      path: "{{ config_file_dir }}/default_read_plugins.conf"
-      regexp: '(\s+)#LoadPlugin turbostat(\s+.*)?$'
-      replace: '\1LoadPlugin turbostat\2'
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['turbostat']) | unique }}"
   tags:
     - en_default_all
     - turbostat
 
 - name: enable uptime plugin
-  replace:
-      path: "{{ config_file_dir }}/default_read_plugins.conf"
-      regexp: '(\s+)#LoadPlugin uptime(\s+.*)?$'
-      replace: '\1LoadPlugin uptime\2'
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['uptime']) | unique }}"
   tags:
     - en_default_all
     - uptime
