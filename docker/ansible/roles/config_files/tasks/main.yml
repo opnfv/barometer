@@ -83,6 +83,9 @@
 - name: enable syslog plugin
   import_tasks: syslog.yml
 
+- name: enable ovs plugins
+  import_tasks: ovs.yml
+
 - name: enable virt plugin
   import_tasks: virt.yml
 
