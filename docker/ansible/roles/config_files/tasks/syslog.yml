@@ -1,4 +1,4 @@
-#Copyright 2018 OPNFV and Intel Corporation
+# Copyright 2018-21 Anuket, Intel Corporation and others
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,9 +14,8 @@
 ---
 
 - name: enable syslog plugin
-  template:
-    src: syslog.conf.j2
-    dest: "{{ config_file_dir }}/syslog.conf"
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['syslog']) | unique }}"
   tags:
     - syslog
 
