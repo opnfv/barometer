@@ -1,4 +1,5 @@
-# Copyright 2018-2019 Intel Corporation and OPNFV. All rights reserved.
+# Copyright 2018-2021 Intel Corporation, Anuket and others.
+# All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -90,6 +91,32 @@
 
 - name: enable uuid plugin
   include: uuid.yml
+
+- name: configure plugins
+  include_role:
+    name: collectd_config
+  vars:
+    collectd_conf_output_dir: /tmp/collectd.conf.d
+  tags:
+    - always
+    - en_default_all
+
+- name: "Copy the generated plugin configs"
+  shell:
+    sudo cp /tmp/collectd.conf.d/*.conf {{ config_file_dir }} && sudo cp /tmp/collectd.conf {{ config_file_dir }}/../collectd.conf
+  tags:
+    - always
+    - en_default_all
+
+- name: Update config file location
+  lineinfile:
+    path: "{{ config_file_dir }}../collectd.conf"
+    regexp: "^(.*)/tmp/collectd.conf.d(.*)$"
+    line: '\1{{ config_file_dir }}\2'
+    backrefs: yes
+  tags:
+    - always
+    - en_default_all
 
 - name: copy additional config files
   include: additional_configs.yml
