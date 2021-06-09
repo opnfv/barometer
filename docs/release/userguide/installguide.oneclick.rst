@@ -121,7 +121,16 @@ Clone barometer repo
 .. code:: bash
 
     $ git clone https://gerrit.opnfv.org/gerrit/barometer
-    $ cd barometer/docker/ansible
+    $ cd barometer
+
+Install ansible dependencies
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To run the ansible playbooks for the one-click install, additional dependencies are needed.
+There are listed in requirements.yml and can be installed using::
+
+  $ ansible-galaxy install -r $barometer_dir/requirements.yml
+
 
 Edit inventory file
 ^^^^^^^^^^^^^^^^^^^
