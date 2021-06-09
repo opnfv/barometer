@@ -1,0 +1,4 @@
+---
+- src: http://github.com/infrawatch/collectd-config-ansible-role
+  version: master
+  name: collectd_config
