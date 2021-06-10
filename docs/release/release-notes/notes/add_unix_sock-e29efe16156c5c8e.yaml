@@ -1,0 +1,11 @@
+release_summary: >
+    Added unixsock plugin to one-click install.
+ansible:
+  - |
+    Added `unixsock <https://collectd.org/documentation/manpages/collectd-unixsock.5.shtml>`_
+    plugin to one-click install, which allows the user to interact with collectd using the
+    ``collectdctl`` command in the bar-collectd-* containers.
+    The unixsock plugin is useful for debugging issues in collectd, and can
+    be used to verify that metrics are being collected without having to
+    create CSV files or log into the container.
+

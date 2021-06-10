@@ -382,7 +382,7 @@ List of available tags:
   ``contextswitch``, ``cpu``, ``cpufreq``, ``df``, ``disk,`` ``ethstat``,
   ``ipc``, ``irq``, ``load``, ``memory``, ``numa``, ``processes``, ``swap``,
   ``turbostat``, ``uptime``, ``exec``, ``hugepages``, ``ipmi``, ``kafka``,
-  ``logfile``, ``mcelogs``, ``network``, ``pmu``, ``rdt``, ``rrdtool``,
-  ``snmp``, ``syslog``, ``virt``, ``ovs_stats``, ``ovs_events``, ``uuid``,
-  ``dpdkevents``, ``dpdkstat``, ``dpdk_telemetry``.
+  ``logfile``, ``mcelog``, ``network``, ``pmu``, ``rdt``, ``rrdtool``,
+  ``snmp``, ``syslog``, ``unixsock``, ``virt``, ``ovs_stats``, ``ovs_events``,
+  ``uuid``, ``dpdkevents``, ``dpdkstat``, ``dpdk_telemetry``.
 
