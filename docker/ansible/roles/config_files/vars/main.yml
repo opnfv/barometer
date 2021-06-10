@@ -42,12 +42,18 @@ collectd_plugin_intel_pmu_report_kernel_pmu_events: True
 collectd_plugin_intel_pmu_report_software_events: True
 collectd_plugin_intel_pmu_cores: ["0-4"]
 
+collectd_plugin_intel_rdt_cores: [""]
+collectd_plugin_intel_rdt_interval: "{{ rdt_interval }}"
+
 collectd_plugin_logfile_loglevel: "{{ logfile_log_level }}"
 collectd_plugin_logfile_file: "{{ logfile_dir }}/collectd.log"
 collectd_plugin_logfile_timestamp: True
 
 collectd_plugin_ovs_events_dispatch_values: True
 collectd_plugin_ovs_events_send_notification: True
+
+collectd_plugin_virt_extra_stats: "cpu_util disk disk_err domain_state fs_info job_stats_background pcpu perf vcpupin"
+collectd_plugin_virt_refresh_interval: 60
 
 collectd_plugin_write_kafka_hosts:
   - "{{ kafka_ip_addr }}:{{ kafka_port }}"
