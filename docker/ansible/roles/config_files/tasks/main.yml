@@ -92,6 +92,12 @@
 - name: enable ipmi plugin
   include: ipmi.yml
 
+- name: Enable unixsock plugin
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['unixsock']) | unique }}"
+  tags:
+    - unixsock
+
 - name: enable uuid plugin
   include: uuid.yml
 
