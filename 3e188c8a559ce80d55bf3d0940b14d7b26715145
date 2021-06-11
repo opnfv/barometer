@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0a9c4721_8e058b56",
+        "filename": "docker/barometer-collectd-experimental/Dockerfile",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2021-06-11T16:33:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1ee6bf6b_2c049b35",
+      "revId": "3e188c8a559ce80d55bf3d0940b14d7b26715145",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bce6c6ce_a44ec330",
         "filename": "docker/barometer-collectd-experimental/Dockerfile",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2021-06-10T14:34:56Z",
       "side": 1,
       "message": "Not all libs can be found with dnf provides. For example for me nothing is returned for `libqpid-proton.so`. The correct package name is `qpid-proton-c`. There are also few other such cases. At the moment I do not have other idea for auto resolution of all required dependencies.",
+      "revId": "3e188c8a559ce80d55bf3d0940b14d7b26715145",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e552047_a7397b71",
+        "filename": "docker/barometer-collectd-experimental/Dockerfile",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2021-06-11T16:33:07Z",
+      "side": 1,
+      "message": "The brute force solution here is to install those missing packages explicitly. I don\u0027t like this solution because those packages were installed in the builder container, so should exist and be findable.\n\nI think there might be a discrepancy in the repos that are enabled in the builder vs the final container. I am going to also copy over /etc/yum.repos.d/ to the final container before trying to install the deps.",
+      "parentUuid": "bce6c6ce_a44ec330",
       "revId": "3e188c8a559ce80d55bf3d0940b14d7b26715145",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": true
