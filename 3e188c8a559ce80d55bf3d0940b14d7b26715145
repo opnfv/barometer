@@ -69,6 +69,24 @@
       "revId": "3e188c8a559ce80d55bf3d0940b14d7b26715145",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92718883_fcb70854",
+        "filename": "docker/barometer-collectd-experimental/Dockerfile",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2021-06-15T12:28:42Z",
+      "side": 1,
+      "message": "I think I found the issue. Nothing is returned if *.so is used, but I get results for /usr/lib64/*.so",
+      "parentUuid": "3e552047_a7397b71",
+      "revId": "3e188c8a559ce80d55bf3d0940b14d7b26715145",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
     }
   ]
 }
