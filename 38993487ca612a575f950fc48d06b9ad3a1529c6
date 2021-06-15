@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e81bc586_8d2d50aa",
+        "filename": "docker/ansible/default.inv",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2021-06-15T15:37:01Z",
+      "side": 1,
+      "message": "s/below/below./",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 74
+      },
+      "revId": "38993487ca612a575f950fc48d06b9ad3a1529c6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
