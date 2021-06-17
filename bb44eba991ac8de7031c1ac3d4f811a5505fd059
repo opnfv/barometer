@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fdf9665e_5b79d183",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2021-06-17T12:28:44Z",
+      "side": 1,
+      "message": "okay, once you are here, would you fix collectd_config ?",
+      "revId": "bb44eba991ac8de7031c1ac3d4f811a5505fd059",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
