@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "26def602_74afa876",
+        "filename": ".gitlab-ci.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2021-06-18T13:58:58Z",
+      "side": 1,
+      "message": "I believe we do, or at least the issue was brought up to the TSC a few months ago, and there was a resolution found.",
+      "parentUuid": "e6f2e655_40ea1426",
+      "revId": "6f310f6e74546b7fcda7e1ba8b54b9b3e47b2662",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "556b6925_d0f18fb7",
         "filename": ".gitlab-ci.yml",
         "patchSetId": 1
