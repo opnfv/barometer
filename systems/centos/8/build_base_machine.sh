@@ -23,6 +23,7 @@
 #   Martin Klozik, Intel Corporation.
 #   Maryam Tahhan, Intel Corporation.
 #   Emma Foley, Red Hat.
+
 # Synchronize package index files
 dnf -y update
 
@@ -34,11 +35,14 @@ dnf install -y centos-release-opstools
 # For CentOS 8, a lot of the dependencies are from PowerTools repo
 dnf install -y 'dnf-command(config-manager)' &&  dnf config-manager --set-enabled powertools
 
+# Exclude varnish because it does not pass security/vulnerabilities checks
 dnf builddep -y collectd
 
-# CentOS 8 doesn't have intel-cmt-cat-devel packaged, so use the version from CentOS7
-dnf install -y http://mirror.centos.org/centos/7/os/x86_64/Packages/intel-cmt-cat-3.0.1-1.el7.x86_64.rpm \
-     http://mirror.centos.org/centos/7/os/x86_64/Packages/intel-cmt-cat-devel-3.0.1-1.el7.x86_64.rpm
+# Remove some packages due to security issues
+dnf -y remove $(echo "
+varnish
+varnish-devel
+" | grep -v ^#)
 
 # Install required packages
 dnf -y install $(echo "
@@ -53,7 +57,6 @@ bison
 libtool
 pkg-config
 git-core
-sudo
 rpm-build
 libcap-devel
 xfsprogs-devel
@@ -79,16 +82,14 @@ librdkafka-devel
 yajl-devel
 protobuf-c-devel
 rrdtool-devel
-dpdk-20.11
+dpdk-19.11.3
 qpid-proton-c-devel
-
-# ping collectd-6
-liboping-devel
 
 #install epel release required for git-review
 epel-release
-python3-libvirt
 python3-pip
 python36-devel
 numactl-devel
+intel-cmt-cat
+intel-cmt-cat-devel
 " | grep -v ^#)
