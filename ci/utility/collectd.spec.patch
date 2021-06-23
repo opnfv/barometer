@@ -1,0 +1,86 @@
+diff --git a/contrib/redhat/collectd.spec b/contrib/redhat/collectd.spec
+index 4721d47f..187c6a68 100644
+--- a/contrib/redhat/collectd.spec
++++ b/contrib/redhat/collectd.spec
+@@ -96,6 +96,7 @@
+ %define with_mbmon 0%{!?_without_mbmon:1}
+ %define with_mcelog 0%{!?_without_mcelog:1}
+ %define with_md 0%{!?_without_md:1}
++%define with_mdevents 0%{!?_without_mdevents:1}
+ %define with_memcachec 0%{!?_without_memcachec:1}
+ %define with_memcached 0%{!?_without_memcached:1}
+ %define with_memory 0%{!?_without_memory:1}
+@@ -154,7 +155,7 @@
+ %define with_uptime 0%{!?_without_uptime:1}
+ %define with_users 0%{!?_without_users:1}
+ %define with_uuid 0%{!?_without_uuid:1}
+-%define with_varnish 0%{!?_without_varnish:1}
++%define with_varnish 0%{!?_without_varnish:0}
+ %define with_virt 0%{!?_without_virt:1}
+ %define with_vmem 0%{!?_without_vmem:1}
+ %define with_vserver 0%{!?_without_vserver:1}
+@@ -195,7 +196,7 @@
+ # plugin intel_pmu disabled, requires libjevents
+ %define with_intel_pmu 0%{!?_without_intel_pmu:0}
+ # plugin intel_rdt disabled, requires intel-cmt-cat
+-%define with_intel_rdt 0%{!?_without_intel_rdt:0}
++%define with_intel_rdt 0%{!?_without_intel_rdt:1}
+ # plugin mic disabled, requires Mic
+ %define with_mic 0%{!?_without_mic:0}
+ # plugin netapp disabled, requires libnetapp
+@@ -643,7 +644,7 @@ The modbus plugin collects values from Modbus/TCP enabled devices
+ Summary:	MySQL plugin for collectd
+ Group:		System Environment/Daemons
+ Requires:	%{name}%{?_isa} = %{version}-%{release}
+-BuildRequires:	mysql-devel
++BuildRequires:  mariadb-connector-c-devel
+ %description mysql
+ MySQL querying plugin. This plugin provides data of issued commands, called
+ handlers and database traffic.
+@@ -1503,6 +1504,12 @@ Collectd utilities
+ %define _with_md --disable-md
+ %endif
+
++%if %{with_mdevents}
++%define _with_mdevents --enable-mdevents
++%else
++%define _with_mdevents --disable-mdevents
++%endif
++
+ %if %{with_memcachec}
+ %define _with_memcachec --enable-memcachec
+ %else
+@@ -2117,6 +2124,7 @@ Collectd utilities
+ 	%{?_with_grpc} \
+ 	%{?_with_hddtemp} \
+ 	%{?_with_hugepages} \
++	--disable-infiniband \
+ 	%{?_with_intel_pmu} \
+ 	%{?_with_intel_rdt} \
+ 	%{?_with_interface} \
+@@ -2137,6 +2145,7 @@ Collectd utilities
+ 	%{?_with_mbmon} \
+ 	%{?_with_mcelog} \
+ 	%{?_with_md} \
++	%{?_with_mdevents} \
+ 	%{?_with_memcachec} \
+ 	%{?_with_memcached} \
+ 	%{?_with_memory} \
+@@ -2146,6 +2155,7 @@ Collectd utilities
+ 	%{?_with_multimeter} \
+ 	%{?_with_mysql} \
+ 	%{?_with_netapp} \
++	--disable-netstat_udp \
+ 	%{?_with_netlink} \
+ 	%{?_with_network} \
+ 	%{?_with_nfs} \
+@@ -2453,6 +2463,9 @@ fi
+ %if %{with_md}
+ %{_libdir}/%{name}/md.so
+ %endif
++%if %{with_mdevents}
++%{_libdir}/%{name}/mdevents.so
++%endif
+ %if %{with_memcached}
+ %{_libdir}/%{name}/memcached.so
+ %endif

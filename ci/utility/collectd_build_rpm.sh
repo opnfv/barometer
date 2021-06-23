@@ -32,14 +32,12 @@ make dist
 
 cp $COLLECTD_DIR/collectd-$VERSION.tar.bz2 $RPM_WORKDIR/SOURCES/
 
-sed	--regexp-extended \
-	--in-place=".bak" \
-	--expression="s/Version:\s+\S+$/Version:       $VERSION/g" \
-	$COLLECTD_DIR/contrib/redhat/collectd.spec
+git apply $DIR/collectd.spec.patch
 
 sed	--regexp-extended \
-	--in-place \
-	--expression="s/without_intel_rdt:[0-9]/without_intel_rdt:1/g" \
+	--in-place=".bak" \
+	--expression="s/Version:\s+\S+$/Version:	$VERSION/g" \
 	$COLLECTD_DIR/contrib/redhat/collectd.spec
 
 rpmbuild --define "_topdir $RPM_WORKDIR" -bb $COLLECTD_DIR/contrib/redhat/collectd.spec
+
