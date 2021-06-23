@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright 2017 Intel Corporation
+# Copyright 2017-21 Anuket, Intel Corporation and others
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,25 +16,25 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $DIR/utility/package-list.sh
 
-# For collectd
-sudo yum install -y yum-utils
-sudo yum install -y epel-release
-sudo yum-builddep -y collectd
+# Reuse build_base_machine.sh for this distro, to install the reuired packages
+# Detect OS name and version from systemd based os-release file
+. /etc/os-release
+distro_dir="$DIR/../systems/$ID/$VERSION_ID"
 
-sudo yum -y install autoconf automake flex bison libtool pkg-config
+# build base system using OS specific scripts
+if [ -d "$distro_dir" ] && [ -e "$distro_dir/build_base_machine.sh" ]; then
+    sudo $distro_dir/build_base_machine.sh || ( echo "$distro_dir/build_base_machine.sh failed" && exit 1 )
+else
+    "$distro_dir is not supported"
+    exit 1
+fi
 
-sudo yum -y install git
-
-sudo yum -y install rpm-build \
-	libcap-devel xfsprogs-devel iptables-devel \
-	libmemcached-devel gtk2-devel libvirt-devel \
-	ganglia-devel mysql-devel qpid-proton-c-devel
+sudo yum -y install \
+       libesmtp-devel protobuf-devel jevents-devel \
+       mariadb-connector-c-devel
 
 # For DMA component
 sudo yum -y install hiredis-devel
-
-# For intel-cmt-cat
-sudo yum -y install wget
 
 # For RPM build
 mkdir -p $RPM_WORKDIR/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
