@@ -36,9 +36,12 @@ dnf install -y 'dnf-command(config-manager)' &&  dnf config-manager --set-enable
 
 dnf builddep -y collectd
 
-# CentOS 8 doesn't have intel-cmt-cat-devel packaged, so use the version from CentOS7
-dnf install -y http://mirror.centos.org/centos/7/os/x86_64/Packages/intel-cmt-cat-3.0.1-1.el7.x86_64.rpm \
-     http://mirror.centos.org/centos/7/os/x86_64/Packages/intel-cmt-cat-devel-3.0.1-1.el7.x86_64.rpm
+# Remove some packages due to security issues
+# Exclude varnish because it does not pass security/vulnerabilities checks
+dnf -y remove $(echo "
+varnish
+varnish-devel
+" | grep -v ^#)
 
 # Install required packages
 dnf -y install $(echo "
@@ -87,8 +90,9 @@ liboping-devel
 
 #install epel release required for git-review
 epel-release
-python3-libvirt
 python3-pip
 python36-devel
 numactl-devel
+intel-cmt-cat
+intel-cmt-cat-devel
 " | grep -v ^#)
