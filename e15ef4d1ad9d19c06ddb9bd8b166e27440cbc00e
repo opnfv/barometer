@@ -16,6 +16,24 @@
       "revId": "e15ef4d1ad9d19c06ddb9bd8b166e27440cbc00e",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8829abae_ef272721",
+        "filename": "systems/centos/8/build_base_machine.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2021-06-23T16:21:38Z",
+      "side": 1,
+      "message": "That would be this repo, right [1], mirrored from [2]?\n\n[1] https://github.com/centos-opstools/collectd\n[2] https://review.rdoproject.org/r/q/project:centos-opstools/collectd?",
+      "parentUuid": "209837c9_00561740",
+      "revId": "e15ef4d1ad9d19c06ddb9bd8b166e27440cbc00e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
     }
   ]
 }
