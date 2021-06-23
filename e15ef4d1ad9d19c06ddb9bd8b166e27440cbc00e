@@ -34,6 +34,24 @@
       "revId": "e15ef4d1ad9d19c06ddb9bd8b166e27440cbc00e",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d18ad0d_3a079d2b",
+        "filename": "systems/centos/8/build_base_machine.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2021-06-23T16:26:59Z",
+      "side": 1,
+      "message": "yes. that\u0027s the one.",
+      "parentUuid": "8829abae_ef272721",
+      "revId": "e15ef4d1ad9d19c06ddb9bd8b166e27440cbc00e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
     }
   ]
 }
