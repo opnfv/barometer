@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3aed0129_a97e3674",
+        "filename": "systems/centos/8/build_base_machine.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2021-06-23T12:45:56Z",
+      "side": 1,
+      "message": "lease move this comment to line 40, since it doesn\u0027t make sense here.",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 1
+      },
+      "revId": "1d6fb9f9afb8013c4d03d7587912ee7c3c97d4e4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
