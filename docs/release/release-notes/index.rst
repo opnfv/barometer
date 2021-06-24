@@ -11,5 +11,6 @@ Anuket Barometer Release Notes
 .. toctree::
    :maxdepth: 1
 
+   kali-release-notes
    release-notes
 
