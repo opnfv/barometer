@@ -142,6 +142,24 @@
       "revId": "e15ef4d1ad9d19c06ddb9bd8b166e27440cbc00e",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d8d51be_49a13117",
+        "filename": "systems/centos/8/build_base_machine.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2021-06-25T12:46:58Z",
+      "side": 1,
+      "message": "This can be worked around in two ways (perhaps more):\n\n* don\u0027t enable epel so we get the collectd version from opstoools\n  I don\u0027t think this is the issue, as the version in epel is 5.8 vs 5.11 in opstools.\n  I need to validate that we still get all required dependencies though\n\n* Use the spec file in collectd/contrib/redhat/ (after patching) to install the deps. (According to the docs, this is possible, but I need to double check\n  This potentially requires a bit of a bigger change to move things around.\n  However, I was considering using the build_rpm.sh script in the container images for a split build already, so some refactor would be fine.",
+      "parentUuid": "92361f22_446e6b01",
+      "revId": "e15ef4d1ad9d19c06ddb9bd8b166e27440cbc00e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
     }
   ]
 }
