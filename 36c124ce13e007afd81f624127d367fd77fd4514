@@ -34,6 +34,24 @@
       "revId": "36c124ce13e007afd81f624127d367fd77fd4514",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6b6d112_bfd6a5d9",
+        "filename": "ci/install_dependencies.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2021-06-25T11:08:53Z",
+      "side": 1,
+      "message": "Most of those were there before, presumably from before those packages were included as dependencies for the upstream collectd package.\nmysql-devel/mariadb-connector-c-devel are because the dependency appears to have changed from the upstream version. \nI am going to check that the epel version doesn\u0027t conflict with the opstools version, and try to clean this up. I\u0027ll spin another patch for collectd.spec to disable the packages that we don\u0027t want from this.",
+      "parentUuid": "f5c19e62_88121523",
+      "revId": "36c124ce13e007afd81f624127d367fd77fd4514",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
     }
   ]
 }
