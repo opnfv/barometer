@@ -181,6 +181,24 @@
     },
     {
       "key": {
+        "uuid": "95d7afb2_ece5e254",
+        "filename": "systems/centos/8/build_base_machine.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2021-06-25T14:11:14Z",
+      "side": 1,
+      "message": "I gave it a try, and after removing epel-release the `dnf builddep collectd` does not give results at all: \"no package matched: collectd\".\nIt seems that something is missing or something else should be done to fully enable centos-release-opstools?",
+      "parentUuid": "854eba51_33c5f70e",
+      "revId": "e15ef4d1ad9d19c06ddb9bd8b166e27440cbc00e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8f66702f_2ad2e943",
         "filename": "systems/centos/8/build_base_machine.sh",
         "patchSetId": 7
