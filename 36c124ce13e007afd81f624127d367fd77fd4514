@@ -16,6 +16,24 @@
       "revId": "36c124ce13e007afd81f624127d367fd77fd4514",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5c19e62_88121523",
+        "filename": "ci/install_dependencies.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2021-06-25T07:34:12Z",
+      "side": 1,
+      "message": "you should not install via --skip-broken and --allowerasing. That may lead to unexpected results.\n\nI agree, ideally all of these would be installed by build_base_machine. But, if the distriburion does not include the subpackage, one could install the additional dependencies here.\n\nI don\u0027t think we are building ganglia, and if we do, we probably should stop doing it.",
+      "parentUuid": "66d9fc14_a7d98dd1",
+      "revId": "36c124ce13e007afd81f624127d367fd77fd4514",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
     }
   ]
 }
