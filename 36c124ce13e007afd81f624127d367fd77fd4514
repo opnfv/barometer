@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "66d9fc14_a7d98dd1",
+        "filename": "ci/install_dependencies.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2021-06-25T06:20:38Z",
+      "side": 1,
+      "message": "I\u0027m curious what is special about those packages, some of them seems to be redundant and are installed by build_base_machine.sh. Is this some list of possibly missing dependencies?",
+      "revId": "36c124ce13e007afd81f624127d367fd77fd4514",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
