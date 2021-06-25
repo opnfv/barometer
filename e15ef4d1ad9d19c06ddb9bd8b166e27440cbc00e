@@ -106,6 +106,24 @@
       "revId": "e15ef4d1ad9d19c06ddb9bd8b166e27440cbc00e",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d63cf0c1_99f1170b",
+        "filename": "systems/centos/8/build_base_machine.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7425
+      },
+      "writtenOn": "2021-06-25T07:17:28Z",
+      "side": 1,
+      "message": "What is listed as build dependency.\n\nTo get a fix for the varnish issue, you\u0027d dnf update; depending on the issue, collectd would have to be rebuilt (if the varnish plugin was enabled and built).",
+      "parentUuid": "5a3808d0_e398319f",
+      "revId": "e15ef4d1ad9d19c06ddb9bd8b166e27440cbc00e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
     }
   ]
 }
