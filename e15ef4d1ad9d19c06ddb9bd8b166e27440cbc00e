@@ -124,6 +124,24 @@
       "revId": "e15ef4d1ad9d19c06ddb9bd8b166e27440cbc00e",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92361f22_446e6b01",
+        "filename": "systems/centos/8/build_base_machine.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6511
+      },
+      "writtenOn": "2021-06-25T07:31:45Z",
+      "side": 1,
+      "message": "So my understanding is that spec file is available from epel and centos-opstools. Since in opstools it is disabled, it means it has to be enabled in epel?\nDnf update does not help, because for CentOS 8 only affected version is available (6.0.6-2.module_el8.3.0+399+10bd7ebd from appstream). The update seems to be available only for subscribed RHEL users.",
+      "parentUuid": "d63cf0c1_99f1170b",
+      "revId": "e15ef4d1ad9d19c06ddb9bd8b166e27440cbc00e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
     }
   ]
 }
