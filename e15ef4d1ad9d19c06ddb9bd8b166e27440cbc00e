@@ -160,6 +160,41 @@
       "revId": "e15ef4d1ad9d19c06ddb9bd8b166e27440cbc00e",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "854eba51_33c5f70e",
+        "filename": "systems/centos/8/build_base_machine.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2021-06-25T12:59:18Z",
+      "side": 1,
+      "message": "* Removing epel-release worked for the varnish issue, and it is no longer installed.\n\nNow, when the script tries to remove varnish and varnish-devel, the are flagged as not present.\n\nI think the older version (collectd-5.8 from epel) of collectd was being used by `dnf builddep collectd`.\n\n\nIMHO, this patch should be re-spun and remove `dnf install -y epel-release` on lines 31 and 91/92.\n\nThe title can be \"Remove older packages that are causing security issues\"\n\n@Slawomir, I\u0027m happy to respin this patch to do the changes, it you\u0027re okay with that.",
+      "parentUuid": "7d8d51be_49a13117",
+      "revId": "e15ef4d1ad9d19c06ddb9bd8b166e27440cbc00e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f66702f_2ad2e943",
+        "filename": "systems/centos/8/build_base_machine.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2021-06-25T12:59:18Z",
+      "side": 1,
+      "message": "Per discussion above, this should be removed",
+      "revId": "e15ef4d1ad9d19c06ddb9bd8b166e27440cbc00e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
     }
   ]
 }
