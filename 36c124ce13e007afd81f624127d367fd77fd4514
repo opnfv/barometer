@@ -52,6 +52,24 @@
       "revId": "36c124ce13e007afd81f624127d367fd77fd4514",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a813cd30_12c647e4",
+        "filename": "ci/install_dependencies.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2021-07-01T20:38:27Z",
+      "side": 1,
+      "message": "Disabling the epel repo, and installing from the opstools/collectd.spec resolved this issue. Now all the expected deps are installed before building the rpm.",
+      "parentUuid": "e6b6d112_bfd6a5d9",
+      "revId": "36c124ce13e007afd81f624127d367fd77fd4514",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
     }
   ]
 }

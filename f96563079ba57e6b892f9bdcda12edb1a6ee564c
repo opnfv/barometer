@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "79a0a5cc_10222040",
+        "filename": "ci/utility/collectd_build_rpm.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2021-07-01T20:38:27Z",
+      "side": 1,
+      "message": "Installing the deps here covers the delta between master and the opstools version.",
+      "revId": "f96563079ba57e6b892f9bdcda12edb1a6ee564c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
