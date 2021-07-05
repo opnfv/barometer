@@ -1,0 +1,17 @@
+unreleased_version_title: 'Lakelse'
+sections:
+  - [ features, New Features ]
+  - [ testing, Testing Notes ]
+  - [ docs, Documentation Updates ]
+  - [ containers, Container updates ]
+  - [ ansible, Ansible playbook updates ]
+  - [ build, Build script updates ]
+  - [ fixes, Normal Bug Fixes ]
+  - [ deprecations, Deprecations ]
+  - [ other, Other Notes ]
+
+branch_name_prefix: stable/
+#release_tag_re: opnfv-((?:v?[\d.ab]|rc)+)
+prelude_section_name: release_summary
+stop_at_branch_base: False
+collapse_pre_releases: False

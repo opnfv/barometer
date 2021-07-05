@@ -1,0 +1,4 @@
+---
+other:
+  - |
+    Add reno and corresponding tox jobs to make compiling release notes easier
