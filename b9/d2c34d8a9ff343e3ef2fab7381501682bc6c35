@@ -1,0 +1,7 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+2: Emma Foley <efoley@redhat.com>
+Submitted-by: Emma Foley <efoley@redhat.com>
+Submitted-at: Mon, 05 Jul 2021 15:16:27 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/c/barometer/+/72605
+Project: barometer
+Branch: refs/heads/stable/kali
