@@ -1,6 +1,6 @@
 # This script is used by the barometer-daily CI job in gitlab.
 # It builds and packages collectd as an RPM
-# After this script is run, the baroemter-daily job runs the
+# After this script is run, the barometer-daily job runs the
 # barometer-upload-artifact.sh script.
 set -x
 
@@ -12,7 +12,6 @@ echo "Starting the build of Barometer RPMs"
 echo "------------------------------------"
 echo
 
-cd ci
 ./install_dependencies.sh
 ./build_rpm.sh
 cp utility/rpms_list $WORKSPACE
