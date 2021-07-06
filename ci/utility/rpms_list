@@ -15,7 +15,6 @@ collectd-debuginfo
 collectd-disk
 collectd-dns
 collectd-email
-collectd-gmond
 collectd-gps
 collectd-hddtemp
 collectd-intel_rdt
