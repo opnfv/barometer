@@ -117,8 +117,8 @@ barometer-daily:
   script:
     - !reference [.gsutil-install, script]
     - cd ci/
-    - ./barometer-build.sh
-    - ./barometer-upload-artifact.sh
+    - . barometer-build.sh
+    - . barometer-upload-artifact.sh
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule" && $BAROMETER_SCHEDULE == "true"
 
