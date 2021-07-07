@@ -15,7 +15,6 @@ echo
 ./install_dependencies.sh
 ./build_rpm.sh
 cp utility/rpms_list $WORKSPACE
-cd $WORKSPACE
 
 # save information regarding artifact into file
 (
