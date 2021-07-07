@@ -25,7 +25,7 @@ else
     exit 1
 fi
 
-for PACKAGENAME in `cat $DIR/rpms_list`
+for PACKAGENAME in `grep -v ^# $DIR/rpms_list`
 do
         if ! grep -q $PACKAGENAME list_of_gen_pack
         then
