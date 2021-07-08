@@ -87,6 +87,24 @@
       "revId": "3e188c8a559ce80d55bf3d0940b14d7b26715145",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71c5a53d_8d12c235",
+        "filename": "docker/barometer-collectd-experimental/Dockerfile",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2021-07-08T10:49:58Z",
+      "side": 1,
+      "message": "The issue is resolved with different approach in later patches",
+      "parentUuid": "92718883_fcb70854",
+      "revId": "3e188c8a559ce80d55bf3d0940b14d7b26715145",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
