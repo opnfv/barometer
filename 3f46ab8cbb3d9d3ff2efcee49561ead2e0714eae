@@ -16,6 +16,24 @@
       "revId": "3f46ab8cbb3d9d3ff2efcee49561ead2e0714eae",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45a602fd_a2ab3e7b",
+        "filename": "docker/ansible/roles/config_files/tasks/main.yml",
+        "patchSetId": 15
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2021-07-08T12:47:44Z",
+      "side": 1,
+      "message": "I used this name to be consistent with the task name, but I can update the whole lot for consistency vs collectd plugin names.",
+      "parentUuid": "2aa3715c_915f4608",
+      "revId": "3f46ab8cbb3d9d3ff2efcee49561ead2e0714eae",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
