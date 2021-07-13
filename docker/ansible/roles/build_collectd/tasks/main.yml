@@ -47,14 +47,13 @@
 
 - name: Build collectd-6
   docker_image:
-    name: "opnfv/barometer-collectd-6{{ '-' + COLLECTD_PULL_REQUESTS if COLLECTD_PULL_REQUESTS is defined }}"
+    name: "opnfv/barometer-collectd-6{{ ( '-' + COLLECTD_PULL_REQUESTS ) if COLLECTD_PULL_REQUESTS | length > 0 else '' }}"
     build:
       path: "{{ playbook_dir }}/../../"
       dockerfile: "docker/barometer-collectd-experimental/Dockerfile"
       args:
         COLLECTD_FLAVOR: collectd-6
         COLLECTD_TAG: "{{ COLLECTD_TAG | default('collectd-6.0') }}"
-        COLLECTD_PULL_REQUESTS: "{{ COLLECTD_PULL_REQUESTS | default(omit) }}"
     source: build
   tags:
     - collectd-6

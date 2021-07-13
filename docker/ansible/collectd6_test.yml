@@ -1,0 +1,142 @@
+---
+# ansible-playbook -e PR=<PRID> collectd6_test.yml
+
+# As well as passing a PRID, a config command should be passable too since
+# a lot of the plugins have been explicitly disabled in the build.
+- hosts: localhost
+  become: true
+  tasks:
+    - name: Set names for containers to be used for testing
+      set_fact:
+        collectd5_container_name: "bar-collectd-latest"
+        collectd6_container_name: "bar-collectd-6{{ '-' + PR if PR is defined }}"
+        flask_container_name: "test-collectd-5-v-6"
+
+    - name: Remove existing containers
+      docker_container:
+        name: "{{ item }}"
+        state: absent
+        force_kill: yes
+      with_items:
+        - "{{ collectd5_container_name }}"
+        - "{{ collectd6_container_name }}"
+        - "{{ flask_container_name }}"
+
+    - name: Get a list of containers
+      command:
+        docker ps -a
+      register: output
+
+    - name: Confirm that existing test containers were removed
+      assert:
+        that:
+          - 'not "{{ collectd5_container_name }}" in output.stdout'
+          - 'not "{{ collectd6_container_name }}" in output.stdout'
+          - 'not "{{ flask_container_name }}" in output.stdout'
+
+    - name: Build collectd containers
+      include_role:
+        name: build_collectd
+      args:
+        apply:
+          tags:
+            - latest
+            - collectd-6
+            - flask_test
+      vars:
+        COLLECTD_PULL_REQUESTS: "{{ PR | default() }}"
+
+    - name: "Set up config for write_http plugin"
+      set_fact:
+        collectd_plugins: "{{ collectd_plugins | default([]) | union(['write_http']) }}"
+        collectd_plugin_write_http_nodes:
+          flask:
+            url: http://localhost:5000
+            format: "Command"
+
+    - name: Generate collectd configs
+      include_role:
+        name: config_files
+
+    # Since I can't skip-tags here, I have to remove the plugins later
+    # TODO(efoley) Add a disable_plugins and enable_plugins list to
+    # roles/config_files, as an alternative to tags.
+    # This alternative is kinda needed anyway, so that it's easier to add extra
+    # plugins instead of using.
+    # ``{{ collectd_plugins | default([]) | union(['the_plugin_i_want_to_enable'])}}``
+    # Tags can stay, since they are convenient, and easier to pass to the
+    # command line than a list of plugins
+    - name: "Remove plugin configs"
+      file:
+        path: "/opt/collectd/etc/collectd.conf.d/{{ item }}.conf"
+        state: absent
+      with_items:
+        - snmp_agent
+        - intel_pmu
+
+    # TODO(efoley): The path here should be parameterised, to a degree, I don't
+    # want it to be repeated. And I shouldn't assume that this is always going
+    # to be the value (unless it is in vars/main instead of defaults/main)
+    - name: "Remove plugin configs (collectd 6)"
+      file:
+        path: "/opt/collectd/etc/collectd.conf.d/{{ item }}.conf"
+        state: absent
+      with_items:
+        - csv
+        - network
+        - rrdtool
+        - write_kafka
+        - write_prometheus
+        - logfile
+
+    - debug:
+        var: PR
+
+    - name: Run the collectd-6 container
+      include_role:
+        name: run_collectd
+      vars:
+        collectd_image_name: "opnfv/barometer-collectd-6{{ '-' + PR if PR is defined }}"
+        collectd_container_name: "{{ collectd6_container_name }}"
+
+    - name: Run the collectd-latest container
+      include_role:
+        name: run_collectd
+      vars:
+        collectd_image_name: opnfv/barometer-collectd-latest
+        collectd_container_name: "{{ collectd5_container_name }}"
+
+    - name: Run the flask test container
+      docker_container:
+        name: "{{ flask_container_name }}"
+        image: test-collectd-write_http
+        detach: yes
+        state: started
+          #network_mode: host
+        published_ports: 5000:5000
+
+    - name: Check output for flask app
+      become: true
+      shell: |
+        docker logs {{ flask_container_name }} {{ '| grep "' + new_plugin + '"' if new_plugin is defined  }} | tail -200
+      register: output
+
+    - debug:
+        var: output.stdout_lines
+
+    - name: Get a list of running containers
+      become: true
+      command:
+        docker ps
+      register: output
+
+    - name: Make sure that the expected containers are running
+      assert:
+        that:
+          - '"{{ collectd6_container_name }}" in output.stdout'
+          - '"{{ collectd5_container_name }}" in output.stdout'
+          - '"{{ flask_container_name }}" in output.stdout'
+
+# Create a small report at the end for collectd versions...
+# Update Apply PRs to check out a branch when it is a single PR
+# OR update these playbooks to use the tag way of checking out a PR
