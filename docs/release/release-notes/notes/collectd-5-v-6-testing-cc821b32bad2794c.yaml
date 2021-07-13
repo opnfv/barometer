@@ -1,0 +1,10 @@
+release_summary: >
+  Testing playbooks were added to compare collectd5 vs collectd6, for the
+  purpose of helping to review new PRs by comparing the generated metrics
+  between versions.
+testing:
+  - |
+    Added a playbook to compare collectd 5 and collectd 6. The playbook uses
+    existing ansible roles to build both collectd 5 and collectd 6 container
+    images, creates a common configuration, then runs the containers and shows
+    the outputs to let the user inspect the metrics and whether they match.
