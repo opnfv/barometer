@@ -15,7 +15,7 @@
 
 - name: remove bar-collectd container
   docker_container:
-    name: bar-collectd
+    name: "{{ collectd_container_name }}"
     state: absent
   tags:
     - rm_containers
@@ -52,7 +52,7 @@
 
 - name: launch collectd container
   docker_container:
-    name: bar-collectd
+    name: "{{ collectd_container_name }}"
     image: "{{ collectd_image_name }}"
     volumes: "{{ volumes_list }}"
     entrypoint: "/run_collectd.sh"

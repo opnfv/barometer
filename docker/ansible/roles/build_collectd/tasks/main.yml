@@ -54,7 +54,7 @@
       args:
         COLLECTD_FLAVOR: collectd-6
         COLLECTD_TAG: "{{ COLLECTD_TAG | default('collectd-6.0') }}"
-        COLLECTD_PULL_REQUESTS: "{{ COLLECTD_PULL_REQUESTS | default(omit) }}"
+        COLLECTD_CONFIG_CMD_ARGS: "{{ COLLECTD_CONFIG_CMD_ARGS if COLLECTD_CONFIG_CMD_ARGS is defined }}"
     source: build
   tags:
     - collectd-6
