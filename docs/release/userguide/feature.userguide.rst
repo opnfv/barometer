@@ -2,9 +2,9 @@
 .. http://creativecommons.org/licenses/by/4.0
 .. (c) Anuket and others
 
-===================================
-OPNFV Barometer User Guide
-===================================
+===========================
+Anuket Barometer User Guide
+===========================
 
 Barometer collectd plugins description
 ---------------------------------------
@@ -111,9 +111,7 @@ Collectd capabilities and usage
 .. Describe the specific capabilities and usage for <XYZ> feature.
 .. Provide enough information that a user will be able to operate the feature on a deployed scenario.
 
-.. note:: Plugins included in the OPNFV E release will be built-in for Apex integration
- and can be configured as shown in the examples below.
-
+.. note::
  The collectd plugins in OPNFV are configured with reasonable defaults, but can
  be overridden.
 
@@ -1242,8 +1240,6 @@ https://github.com/collectd/collectd/blob/main/src/collectd.conf.pod
 
 Installing collectd as a service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-**NOTE**: In an OPNFV installation, collectd is installed and configured as a
-service.
 
 Collectd service scripts are available in the collectd/contrib directory.
 To install collectd as a service:
