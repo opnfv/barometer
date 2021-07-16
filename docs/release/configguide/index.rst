@@ -4,9 +4,9 @@
 .. http://creativecommons.org/licenses/by/4.0
 .. Copyright (c) 2017 Open Platform for NFV Project, Inc. and its contributors
 
-======================================
-OPNFV Barometer configuration Guide
-======================================
+====================================
+Anuket Barometer configuration Guide
+====================================
 
 .. toctree::
     :maxdepth: 3

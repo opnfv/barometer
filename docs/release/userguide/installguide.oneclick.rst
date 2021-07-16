@@ -3,9 +3,9 @@
 .. (c) Anuket and others
 .. _barometer-oneclick-userguide:
 
-=======================================
-OPNFV Barometer One Click Install Guide
-=======================================
+========================================
+Anuket Barometer One Click Install Guide
+========================================
 
 .. contents::
    :depth: 3
