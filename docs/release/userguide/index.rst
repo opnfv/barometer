@@ -8,11 +8,8 @@
 Anuket Barometer User Guide
 ===========================
 
-.. The feature user guide should provide an OPNFV user with enough information to
-.. use the features provided by the feature project in the supported scenarios.
-.. This guide should walk a user through the usage of the features once a scenario
-.. has been deployed and is active according to the installation guide provided
-.. by the installer project.
+.. The feature user guide should provide an Anuket user with enough information
+.. to use the features provided by the feature project.
 
 .. toctree::
    :maxdepth: 1
