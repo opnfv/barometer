@@ -213,48 +213,18 @@ Example of specifying custom paths to DPDK headers and libraries:
 This will install collectd to default folder ``/opt/collectd``. The collectd
 configuration file (``collectd.conf``) can be found at ``/opt/collectd/etc``.
 To configure the dpdkstats plugin you need to modify the configuration file to
-include:
+include (uncomment lines as appropriate):
 
-.. code:: bash
-
-    LoadPlugin dpdkstat
-    <Plugin dpdkstat>
-       Coremask "0xf"
-       ProcessType "secondary"
-       FilePrefix "rte"
-       EnabledPortMask 0xffff
-       PortName "interface1"
-       PortName "interface2"
-    </Plugin>
-
+.. literalinclude:: ../../../src/collectd/collectd_sample_configs/dpdkstat.conf
+   :start-at: LoadPlugin
+   :language: bash
 
 To configure the dpdkevents plugin you need to modify the configuration file to
-include:
+include (uncomment lines as appropriate):
 
-.. code:: bash
-
-    <LoadPlugin dpdkevents>
-      Interval 1
-    </LoadPlugin>
-
-    <Plugin "dpdkevents">
-      <EAL>
-        Coremask "0x1"
-        MemoryChannels "4"
-        FilePrefix "rte"
-      </EAL>
-      <Event "link_status">
-        SendEventsOnUpdate false
-        EnabledPortMask 0xffff
-        SendNotification true
-      </Event>
-      <Event "keep_alive">
-        SendEventsOnUpdate false
-        LCoreMask "0xf"
-        KeepAliveShmName "/dpdk_keepalive_shm_name"
-        SendNotification true
-      </Event>
-    </Plugin>
+.. literalinclude:: ../../../src/collectd/collectd_sample_configs/dpdkevents.conf
+   :start-at: LoadPlugin
+   :language: bash
 
 .. note:: Currently, the DPDK library doesn’t support API to de-initialize
  the DPDK resources allocated on the initialization. It means, the collectd
@@ -353,16 +323,9 @@ configuration file (``collectd.conf``) can be found at ``/opt/collectd/etc``.
 To configure the hugepages plugin you need to modify the configuration file to
 include:
 
-.. code:: bash
-
-    LoadPlugin hugepages
-    <Plugin hugepages>
-        ReportPerNodeHP  true
-        ReportRootHP     true
-        ValuesPages      true
-        ValuesBytes      false
-        ValuesPercentage false
-    </Plugin>
+.. literalinclude:: ../../../src/collectd/collectd_sample_configs/hugepages.conf
+   :start-at: LoadPlugin
+   :language: bash
 
 For more information on the plugin parameters, please see:
 https://github.com/collectd/collectd/blob/main/src/collectd.conf.pod
@@ -422,31 +385,12 @@ configuration file (``collectd.conf``) can be found at ``/opt/collectd/etc``.
 To configure the PMU plugin you need to modify the configuration file to
 include:
 
-.. code:: bash
+.. literalinclude:: ../../../src/collectd/collectd_sample_configs/intel_pmu.conf
+   :start-at: LoadPlugin
+   :language: bash
 
-    <LoadPlugin intel_pmu>
-      Interval 1
-    </LoadPlugin>
-    <Plugin "intel_pmu">
-      ReportHardwareCacheEvents true
-      ReportKernelPMUEvents true
-      ReportSoftwareEvents true
-      Cores ""
-    </Plugin>
-
-If you want to monitor Intel CPU specific CPU events, make sure to enable the
-additional two options shown below:
-
-.. code:: bash
-
-    <Plugin intel_pmu>
-     ReportHardwareCacheEvents true
-     ReportKernelPMUEvents true
-     ReportSoftwareEvents true
-     EventList "$HOME/.cache/pmu-events/GenuineIntel-6-2D-core.json"
-     HardwareEvents "L2_RQSTS.CODE_RD_HIT,L2_RQSTS.CODE_RD_MISS" "L2_RQSTS.ALL_CODE_RD"
-     Cores ""
-    </Plugin>
+If you want to monitor Intel CPU specific CPU events, make sure to uncomment the
+``EventList`` and ``HardwareEvents`` options above.
 
 .. note::
     If you set XDG_CACHE_HOME to anything other than the variable above - you will need to modify
@@ -514,14 +458,9 @@ configuration file (``collectd.conf``) can be found at ``/opt/collectd/etc``.
 To configure the RDT plugin you need to modify the configuration file to
 include:
 
-.. code:: bash
-
-    <LoadPlugin intel_rdt>
-      Interval 1
-    </LoadPlugin>
-    <Plugin "intel_rdt">
-      Cores ""
-    </Plugin>
+.. literalinclude:: ../../../src/collectd/collectd_sample_configs/rdt.conf
+   :start-at: LoadPlugin
+   :language: bash
 
 For more information on the plugin parameters, please see:
 https://github.com/collectd/collectd/blob/main/src/collectd.conf.pod
@@ -727,18 +666,9 @@ configuration file (``collectd.conf``) can be found at ``/opt/collectd/etc``.
 To configure the mcelog plugin you need to modify the configuration file to
 include:
 
-.. code:: bash
-
-    <LoadPlugin mcelog>
-      Interval 1
-    </LoadPlugin>
-    <Plugin mcelog>
-      <Memory>
-        McelogClientSocket "/var/run/mcelog-client"
-        PersistentNotification false
-      </Memory>
-      #McelogLogfile "/var/log/mcelog"
-    </Plugin>
+.. literalinclude:: ../../../src/collectd/collectd_sample_configs/mcelog.conf
+   :start-at: LoadPlugin
+   :language: bash
 
 For more information on the plugin parameters, please see:
 https://github.com/collectd/collectd/blob/main/src/collectd.conf.pod
@@ -882,35 +812,19 @@ Clone and install the collectd ovs plugin:
 
 This will install collectd to default folder ``/opt/collectd``. The collectd
 configuration file (``collectd.conf``) can be found at ``/opt/collectd/etc``.
-To configure the OVS events plugin you need to modify the configuration file to include:
+To configure the OVS events plugin you need to modify the configuration file
+(uncommenting and updating values as appropriate) to include:
 
-.. code:: bash
-
-    <LoadPlugin ovs_events>
-       Interval 1
-    </LoadPlugin>
-    <Plugin ovs_events>
-       Port "6640"
-       Address "127.0.0.1"
-       Socket "/var/run/openvswitch/db.sock"
-       Interfaces "br0" "veth0"
-       SendNotification true
-    </Plugin>
+.. literalinclude:: ../../../src/collectd/collectd_sample_configs/ovs_events.conf
+   :start-at: LoadPlugin
+   :language: bash
 
 To configure the OVS stats plugin you need to modify the configuration file
-to include:
+(uncommenting and updating values as appropriate) to include:
 
-.. code:: bash
-
-    <LoadPlugin ovs_stats>
-       Interval 1
-    </LoadPlugin>
-    <Plugin ovs_stats>
-       Port "6640"
-       Address "127.0.0.1"
-       Socket "/var/run/openvswitch/db.sock"
-       Bridges "br0"
-    </Plugin>
+.. literalinclude:: ../../../src/collectd/collectd_sample_configs/ovs_stats.conf
+   :start-at: LoadPlugin
+   :language: bash
 
 For more information on the plugin parameters, please see:
 https://github.com/collectd/collectd/blob/main/src/collectd.conf.pod
@@ -941,12 +855,11 @@ to include:
 
 .. note:: Exec plugin configuration has to be changed to use appropriate user before starting collectd service.
 
-ovs_pmd_stat.sh calls the script for OVS PMD stats application with its argument:
+``ovs_pmd_stat.sh`` calls the script for OVS PMD stats application with its argument:
 
-.. code:: bash
-
-     sudo python /usr/local/src/ovs_pmd_stats.py" "--socket-pid-file"
-     "/var/run/openvswitch/ovs-vswitchd.pid"
+.. literalinclude:: ../../../src/collectd/collectd_sample_configs/ovs_pmd_stats.sh
+   :start-at: python
+   :language: bash
 
 SNMP Agent Plugin
 ^^^^^^^^^^^^^^^^^
@@ -1271,32 +1184,25 @@ Reload
 
 Additional useful plugins
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 **Exec Plugin** : Can be used to show you when notifications are being
 generated by calling a bash script that dumps notifications to file. (handy
-for debug). Modify /opt/collectd/etc/collectd.conf:
+for debug). Modify ``/opt/collectd/etc/collectd.conf`` to include the
+``NotificationExec`` config option, taking care to add the right directory path
+to the ``write_notification.sh`` script:
 
-.. code:: bash
+.. literalinclude:: ../../../src/collectd/collectd_sample_configs/exec.conf
+   :start-at: LoadPlugin
+   :emphasize-lines: 6
+   :language: bash
 
-   LoadPlugin exec
-   <Plugin exec>
-   #   Exec "user:group" "/path/to/exec"
-      NotificationExec "user" "<path to barometer>/barometer/src/collectd/collectd_sample_configs/write_notification.sh"
-   </Plugin>
+``write_notification.sh`` writes the notification passed from exec through
+STDIN to a file (``/tmp/notifications``):
 
-write_notification.sh (just writes the notification passed from exec through
-STDIN to a file (/tmp/notifications)):
+.. literalinclude:: ../../../src/collectd/collectd_sample_configs/write_notification.sh
+   :start-at: rm -f
+   :language: bash
 
-.. code:: bash
-
-   #!/bin/bash
-   rm -f /tmp/notifications
-   while read x y
-   do
-     echo $x$y >> /tmp/notifications
-   done
-
-output to /tmp/notifications should look like:
+output to ``/tmp/notifications`` should look like:
 
 .. code:: bash
 
