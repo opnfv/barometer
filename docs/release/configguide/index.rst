@@ -9,7 +9,7 @@ Anuket Barometer configuration Guide
 ====================================
 
 .. toctree::
-    :maxdepth: 3
+   :maxdepth: 3
 
    featureconfig
    postinstall
