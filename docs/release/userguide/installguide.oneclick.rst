@@ -292,28 +292,34 @@ List of default plugins for collectd container
 .. note::
    From Jerma release, the supported dpdk version is 19.11
 
-   If you would like to use v18.11, Do the following changes:
-    1.Update the dpdk version to v18.11 in <barometer>/src/package-list.mk
-    2.Replace all 'common_linux' string with 'common_linuxapp' in <barometer>/src/dpdk/Makefile
+   If you would like to use v18.11, make the following changes:
+
+   1. Update the dpdk version to v18.11 in ``<barometer>/src/package-list.mk``
+   2. Replace all ``common_linux`` string with ``common_linuxapp`` in ``<barometer>/src/dpdk/Makefile``
    
-   If you would like to downgrade to a version lower than v18.11, Do the following changes:
-    1.Update the dpdk version to a version lower than v18.11(Eg:- v16.11) in <barometer>/src/package-list.mk
-    2.Replace all 'common_linux' string with 'common_linuxapp' in <barometer>/src/dpdk/Makefile
-    3.Change the Makefile path from '(WORKDIR)/kernel/linux/kni/Makefile' to (WORKDIR)/lib/librte_eal/linuxapp/kni/Makefile in '(WORK_DIR)/src/dpdk/Makefile'.
+   If you would like to downgrade to a version lower than v18.11, make the following changes:
+
+   1. Update the dpdk version to a version lower than v18.11 (e.g.:- v16.11) in ``<barometer>/src/package-list.mk``
+   2. Replace all ``common_linux`` string with ``common_linuxapp`` in ``<barometer>/src/dpdk/Makefile``
+   3. Change the Makefile path from ``(WORKDIR)/kernel/linux/kni/Makefile`` to ``(WORKDIR)/lib/librte_eal/linuxapp/kni/Makefile`` in ``(WORK_DIR)/src/dpdk/Makefile``.
 
 By default the collectd is started with default configuration which includes
 the following plugins:
-    * ``csv``, ``contextswitch``, ``cpu``, ``cpufreq``, ``df``, ``disk``,
-      ``ethstat``, ``ipc``, ``irq``, ``load``, ``memory``, ``numa``,
-      ``processes``, ``swap``, ``turbostat``, ``uuid``, ``uptime``, ``exec``,
-      ``hugepages``, ``intel_pmu``, ``ipmi``, ``write_kafka``, ``logfile``,
-      ``mcelog``, ``network``, ``intel_rdt``, ``rrdtool``, ``snmp_agent``,
-      ``syslog``, ``virt``, ``ovs_stats``, ``ovs_events``, ``dpdk_telemetry``
+
+* ``csv``, ``contextswitch``, ``cpu``, ``cpufreq``, ``df``, ``disk``,
+  ``ethstat``, ``ipc``, ``irq``, ``load``, ``memory``, ``numa``,
+  ``processes``, ``swap``, ``turbostat``, ``uuid``, ``uptime``, ``exec``,
+  ``hugepages``, ``intel_pmu``, ``ipmi``, ``write_kafka``, ``logfile``,
+  ``mcelog``, ``network``, ``intel_rdt``, ``rrdtool``, ``snmp_agent``,
+  ``syslog``, ``virt``, ``ovs_stats``, ``ovs_events``, ``dpdk_telemetry``
 
 .. note::
    Some of the plugins are loaded depending on specific system requirements and can be omitted if
    dependency is not met, this is the case for:
+
    * ``hugepages``, ``ipmi``, ``mcelog``, ``intel_rdt``, ``virt``, ``ovs_stats``, ``ovs_events`` 
+
+   For instructions on how to disable certain plugins see the `List and description of tags used in ansible scripts`_ section.
 
 .. note::
    The ``dpdkstat`` and ``dpdkevents`` plugins are disabled by default (in
@@ -322,7 +328,7 @@ the following plugins:
 
    .. code:: bash
 
-   $ sudo ansible-playbook -i default.inv collectd_service.yml --tags "all,dpdkstats,dpdkevents"
+     $ sudo ansible-playbook -i default.inv collectd_service.yml --tags "all,dpdkstats,dpdkevents"
 
 List and description of tags used in ansible scripts
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -354,7 +360,7 @@ List of available tags:
 ``copy_additional_configs``
   Copy additional configuration files to target system. Path to additional
   configuration is stored in
-  ``$barometer_dir/docker/ansible/roles/config_files/vars/main.yml`` as
+  ``$barometer_dir/docker/ansible/roles/config_files/docs/main.yml`` as
   ``additional_configs_path``.
 
 ``en_default_all``
@@ -367,7 +373,7 @@ List of available tags:
   ``contextswitch``, ``cpu``, ``cpufreq``, ``df``, ``disk,`` ``ethstat``,
   ``ipc``, ``irq``, ``load``, ``memory``, ``numa``, ``processes``, ``swap``,
   ``turbostat``, ``uptime``, ``exec``, ``hugepages``, ``ipmi``, ``kafka``,
-  ``logfile``, ``mcelogs``, ``n``etwork``,`` ``pmu``, ``rdt``, ``rrdtool``,
+  ``logfile``, ``mcelogs``, ``network``, ``pmu``, ``rdt``, ``rrdtool``,
   ``snmp``, ``syslog``, ``virt``, ``ovs_stats``, ``ovs_events``, ``uuid``,
   ``dpdkevents``, ``dpdkstat``, ``dpdk_telemetry``.
 

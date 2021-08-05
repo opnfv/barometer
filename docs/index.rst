@@ -35,7 +35,7 @@ support:
 * Detecting and reporting violations that can be consumed by VNFs
   and higher level management systems (through DPDK Keep Alive).
 
-With Barometer the scope is extended to monitoring the NFVI. The ability to
+With `Barometer`_ the scope is extended to monitoring the NFVI. The ability to
 monitor the Network Function Virtualization Infrastructure (NFVI) where VNFs
 are in operation will be a key part of Service Assurance within an NFV
 environment, in order to enforce SLAs or to detect violations, faults or
@@ -66,7 +66,6 @@ telemetry such as `collectd`_, and relevant Openstack projects.
      :maxdepth: 3
 
      ./release/configguide/index.rst
-     ./release/scenarios/index.rst
      ./release/userguide/index.rst
      ./release/release-notes/index.rst
      ./development/requirements/index.rst
