@@ -268,11 +268,12 @@ Collectd-barometer flavors
 
 Before starting to build and run the Collectd container, understand the available
 flavors of Collectd containers:
-  * barometer-collectd - stable release, based on collectd 5.11
-  * barometer-collectd-latest - release based on collectd 'main' branch
-  * barometer-collectd-experimental - release based on collectd 'main'
-    branch that can also include a set of experimental (not yet merged into
-    upstream) pull requests
+
+* barometer-collectd - stable release, based on collectd 5.12
+* barometer-collectd-latest - release based on collectd 'main' branch
+* barometer-collectd-experimental - release based on collectd 'main'
+  branch that can also include a set of experimental (not yet merged into
+  upstream) pull requests
 
 .. note::
    Experimental container is not tested across various OS'es and the stability
@@ -302,7 +303,7 @@ are stored in subdirectories of `docker/` directory
 Download the collectd docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you wish to use a pre-built barometer image, you can pull the barometer
-image from https://hub.docker.com/r/opnfv/barometer-collectd/
+image from `dockerhub <https://hub.docker.com/r/opnfv/barometer-collectd/>`_
 
 .. code:: bash
 
@@ -403,16 +404,16 @@ The instructions for running the collectd-6 container are the same as for the
 collectd-experimental container.
 
 There are a few useful build args that can be used to further customise the
-collectd-6 build::
+collectd-6 build:
 
-* COLLECTD_CONFIG_CMD_ARGS
+* **COLLECTD_CONFIG_CMD_ARGS**
   For testing with new plugins for collectd-6, as un-ported plugins are
   disabled by default.
   This new option lets the ./configure command be run with extra args,
   e.g. --enable-cpu --enable-<my-newly-ported-plugin>, which means that
   plugin can be enabled for the PR that is being tested.
 
-* COLLECTD_TAG
+* **COLLECTD_TAG**
   This overrides the default tag selected by the flavors, and allows checking
   out out an arbitrary branch (e.g. PR branch instead of using the
   ``COLLECTD_PULL_REQUESTS`` arg, which rebases each PR on top of the
@@ -786,8 +787,8 @@ If you wish to use pre-built barometer project's VES and kafka images, you can p
 images from https://hub.docker.com/r/opnfv/barometer-ves/ and  https://hub.docker.com/r/opnfv/barometer-kafka/
 
 .. note::
-   If your preference is to build images locally please see sections `Build the Kafka Image`_ and
-   `Build VES Image`_
+   If your preference is to build images locally please see sections `Build Kafka Docker Image`_ and
+   `Build VES Docker Image`_
 
 .. code:: bash
 
@@ -999,7 +1000,7 @@ Run DMA docker image
 ^^^^^^^^^^^^^^^^^^^^
 .. note::
 
-Run DMA docker image with default configuration
+  Run DMA docker image with default configuration
 
 .. code:: bash
 
