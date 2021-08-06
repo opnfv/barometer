@@ -1,7 +1,7 @@
+.. _barometer-docker-userguide:
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
 .. (c) Anuket and others
-.. _barometer-docker-userguide:
 
 =====================================
 Anuket Barometer Docker Install Guide
@@ -32,6 +32,8 @@ For steps to build and run VES and Kafka images please see section `Build and Ru
 For overview of running VES application with Kafka please see the :ref:`VES Application User Guide <barometer-ves-userguide>`
 
 For an alternative installation method using ansible, please see the :ref:`Barometer One Click Install Guide <barometer-oneclick-userguide>`. 
+
+For post-installation verification and troubleshooting, please see the :ref:`Barometer post installation guide <barometer-postinstall>`.
 
 Barometer Docker Images Description
 -----------------------------------
