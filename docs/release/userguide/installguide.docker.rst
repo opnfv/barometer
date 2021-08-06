@@ -1,7 +1,7 @@
+.. _barometer-docker-userguide:
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
 .. (c) Anuket and others
-.. _barometer-docker-userguide:
 
 =====================================
 Anuket Barometer Docker Install Guide
@@ -31,7 +31,9 @@ For steps to build and run VES and Kafka images please see section `Build and Ru
 
 For overview of running VES application with Kafka please see the :ref:`VES Application User Guide <barometer-ves-userguide>`
 
-For an alternative installation method using ansible, please see the :ref:`Barometer One Click Install Guide <barometer-oneclick-userguide>`. 
+For an alternative installation method using ansible, please see the :ref:`Barometer One Click Install Guide <barometer-oneclick-userguide>`.
+
+For post-installation verification and troubleshooting, please see the :ref:`Barometer post installation guide <barometer-postinstall>`.
 
 Barometer Docker Images Description
 -----------------------------------
@@ -93,7 +95,7 @@ The Barometer project's VES application and Kafka docker images are based on a C
 docker image has a dependancy on `Zookeeper <https://zookeeper.apache.org/>`_. Kafka must be able to
 connect and register with an instance of Zookeeper that is either running on local or remote host.
 Kafka recieves and stores metrics recieved from Collectd. VES application pulls latest metrics from Kafka
-which it normalizes into VES format for sending to a VES collector. Please see details in 
+which it normalizes into VES format for sending to a VES collector. Please see details in
 :ref:`VES Application User Guide <barometer-ves-userguide>`
 
 Installing Docker
