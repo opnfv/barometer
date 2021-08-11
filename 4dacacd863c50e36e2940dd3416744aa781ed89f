@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6df53f55_9aa5eb97",
+        "filename": "docs/release/configguide/postinstall.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2021-08-11T22:18:21Z",
+      "side": 1,
+      "message": "can you run collectd in a debug mode where it logs all events and grep the log file for the specific text of the corrected memory error as part of this script?",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 63
+      },
+      "revId": "4dacacd863c50e36e2940dd3416744aa781ed89f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fad6be7e_62192c71",
+        "filename": "docs/release/configguide/postinstall.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2021-08-11T22:18:21Z",
+      "side": 1,
+      "message": "does this link need to be formatted like the \"fix links\" documentation I looked at earlier, IOW, between \u003c url \u003e ?",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 108
+      },
+      "revId": "4dacacd863c50e36e2940dd3416744aa781ed89f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
