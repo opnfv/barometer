@@ -1,4 +1,7 @@
 ---
+documentation:
+  - |
+    Release notes are now automatically generated and included in the documentation using `reno <https://docs.openstack.org/reno/latest/index.html>`_.
 other:
   - |
-    Add reno and corresponding tox jobs to make compiling release notes easier
+    Add `reno <https://docs.openstack.org/reno/latest/index.html#>`_ and corresponding tox jobs to make compiling release notes easier
