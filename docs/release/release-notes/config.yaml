@@ -1,3 +1,4 @@
+---
 unreleased_version_title: 'Lakelse'
 sections:
   - [ features, New Features ]
@@ -15,3 +16,37 @@ branch_name_prefix: stable/
 prelude_section_name: release_summary
 stop_at_branch_base: False
 collapse_pre_releases: False
+template: |
+  release_summary: >
+      Add a summary of the change here. All sections (including this one) are
+      optional, and if they are not needed, you can completely remove that section.
+      Each section is rendered separately, this mean you should assume each item
+      below is self-contained, and should not depend on info in any other section.
+      This means repetition is sometimes necessary, and this is okay.
+  features:
+    - |
+      List new features here
+  testing:
+    - |
+      List new testing notes here
+  docs:
+    - |
+      List documentation updates here
+  containers:
+    - |
+      List container updates here
+  ansible:
+    - |
+      List ansible playbook updates here
+  build:
+    - |
+      List build script updates here
+  fixes:
+    - |
+      List normal bug fixes here
+  deprecations:
+    - |
+      List deprecations here
+  other:
+    - |
+      List other notes here

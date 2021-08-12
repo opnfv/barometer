@@ -1,9 +1,9 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
 
-============================
-Barometer Kali Release Notes
-============================
+==================
+Kali Release Notes
+==================
 
 This document provides the release notes for Kali release of Barometer.
 
