@@ -450,8 +450,7 @@ Run the collectd stable docker image
    files should be removed from shared configuration directory
    (`<BAROMETER_REPO_DIR>/src/collectd/collectd_sample_configs/`) prior
    to starting barometer-collectd container. By example: in case of missing
-   `DPDK` functionality on the host, `dpdkstat.conf` and `dpdkevents.conf`
-   should be removed.
+   `DPDK` functionality on the host, `dpdk_telemetry.conf` should be removed.
 
    Sample configurations can be found at:
    https://github.com/opnfv/barometer/tree/master/src/collectd/collectd_sample_configs

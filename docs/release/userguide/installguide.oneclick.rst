@@ -330,15 +330,6 @@ the following plugins:
 
    For instructions on how to disable certain plugins see the `List and description of tags used in ansible scripts`_ section.
 
-.. note::
-   The ``dpdkstat`` and ``dpdkevents`` plugins are disabled by default (in
-   favour of the ``dpdk_telemetry`` plugin) and need to be explicitly enabled
-   in order to use them:
-
-   .. code:: bash
-
-     $ sudo ansible-playbook -i default.inv collectd_service.yml --tags "all,dpdkstats,dpdkevents"
-
 List and description of tags used in ansible scripts
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -384,5 +375,5 @@ List of available tags:
   ``turbostat``, ``uptime``, ``exec``, ``hugepages``, ``ipmi``, ``kafka``,
   ``logfile``, ``mcelog``, ``network``, ``pmu``, ``rdt``, ``rrdtool``,
   ``snmp``, ``syslog``, ``unixsock``, ``virt``, ``ovs_stats``, ``ovs_events``,
-  ``uuid``, ``dpdkevents``, ``dpdkstat``, ``dpdk_telemetry``.
+  ``uuid``, ``dpdk_telemetry``.
 
