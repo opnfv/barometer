@@ -22,6 +22,30 @@
       "revId": "e3c7f359ce345b6afbb8b05de80cac248d130ba7",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f12ec44_b8f3a4e3",
+        "filename": "docs/release/userguide/feature.userguide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 1250,
+      "author": {
+        "id": 2311
+      },
+      "writtenOn": "2021-08-26T20:00:00Z",
+      "side": 1,
+      "message": "The link is in the reference section at line 1300. It links to a prezi, which is still valid, so no update was needed.",
+      "parentUuid": "3c34ebab_ace796df",
+      "range": {
+        "startLine": 1250,
+        "startChar": 44,
+        "endLine": 1250,
+        "endChar": 73
+      },
+      "revId": "e3c7f359ce345b6afbb8b05de80cac248d130ba7",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
     }
   ]
 }
