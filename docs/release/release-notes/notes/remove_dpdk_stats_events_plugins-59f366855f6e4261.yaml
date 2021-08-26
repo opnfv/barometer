@@ -1,0 +1,8 @@
+---
+release_summary: >
+  Remove dpdkstats and dpdkevents from Barometer.
+deprecations:
+  - |
+    The dpdkstats and dpdkevents plugins were removed from Barometer. These
+    plugins are still available in collectd, however, will not be deployed by
+    Barometer. It is recommended that the DPDK telemetry plugin be used instead.

@@ -20,26 +20,15 @@ to support thresholding and notification.
 
 Barometer has enabled the following collectd plugins:
 
-* *dpdkstat plugin*: A read plugin that retrieves stats from the DPDK extended
-  NIC stats API.
-
-* *dpdkevents plugin*:  A read plugin that retrieves DPDK link status and DPDK
-  forwarding cores liveliness status (DPDK Keep Alive).
-
 * *dpdk_telemetry plugin*:  A read plugin to collect dpdk interface stats and
-  application or global stats from dpdk telemetry library. Both 'dpdkstat' and
-  'dpdk_telemetry' plugins provides dpdk NIC Stats, but only 'dpdk_telemetry'
-  provides the DPDK Application stats. So in other words, 'dpdk_telemetry' is
-  an advanced version of dpdkstat. This plugin don't deal with dpdk events.
-  So not in related with 'dpdkevents' plugin. The mimimum dpdk version required
-  to use this plugin is 19.08.
+  application or global stats from dpdk telemetry library. The ``dpdk_telemetry``
+  plugin provides both DPDK NIC Stats and DPDK application stats.
+  This plugin doesn't deal with dpdk events.
+  The mimimum dpdk version required to use this plugin is 19.08.
 
 .. note::
-  dpdpkstat and dpdk_telemetry should not be used together. Use dpdk_telemetry
-  if your version of dpdk supports it (i.e. DPDK >= 19.08) and use dpdkstat otherwise.
-  dpdkstat, dpdkevents and dpdk_telemetry plugins should only be used if your dpdk
-  application doesn't already have more relevant metrics available(e.g.ovs_stats).
-
+  The ``dpdk_telemetry`` plugin should only be used if your dpdk application
+  doesn't already have more relevant metrics available (e.g.ovs_stats).
 
 * `gnocchi plugin`_: A write plugin that pushes the retrieved stats to
   Gnocchi. It's capable of pushing any stats read through collectd to
@@ -173,15 +162,15 @@ collectd, check out the `collectd-openstack-plugins GSG`_.
 Below is the per plugin installation and configuration guide, if you only want
 to install some/particular plugins.
 
-DPDK plugins
-^^^^^^^^^^^^^
+DPDK telemetry plugin
+^^^^^^^^^^^^^^^^^^^^^
 Repo: https://github.com/collectd/collectd
 
 Branch: main
 
-Dependencies: `DPDK <https://www.dpdk.org/>`_
+Dependencies: `DPDK <https://www.dpdk.org/>`_ (runtime), libjansson (compile-time)
 
-.. note:: DPDK statistics plugin requires DPDK version 16.04 or later.
+.. note:: DPDK telemetry plugin requires DPDK version 19.08 or later.
 
 To build and install DPDK to /usr please see:
 https://github.com/collectd/collectd/blob/main/docs/BUILD.dpdkstat.md
@@ -197,83 +186,35 @@ Building and installing collectd:
     $ make
     $ sudo make install
 
-.. note:: If DPDK was installed in a non standard location you will need to
-    specify paths to the header files and libraries using *LIBDPDK_CPPFLAGS* and
-    *LIBDPDK_LDFLAGS*. You will also need to add the DPDK library symbols to the
-    shared library path using *ldconfig*. Note that this update to the shared
-    library path is not persistant (i.e. it will not survive a reboot).
-
-Example of specifying custom paths to DPDK headers and libraries:
-
-.. code:: bash
-
-    $ ./configure LIBDPDK_CPPFLAGS="path to DPDK header files" LIBDPDK_LDFLAGS="path to DPDK libraries"
-
 This will install collectd to default folder ``/opt/collectd``. The collectd
 configuration file (``collectd.conf``) can be found at ``/opt/collectd/etc``.
-To configure the dpdkstats plugin you need to modify the configuration file to
+
+To configure the dpdk_telemetry plugin you need to modify the configuration file to
 include:
 
 .. code:: bash
 
-    LoadPlugin dpdkstat
-    <Plugin dpdkstat>
-       Coremask "0xf"
-       ProcessType "secondary"
-       FilePrefix "rte"
-       EnabledPortMask 0xffff
-       PortName "interface1"
-       PortName "interface2"
+    LoadPlugin dpdk_telemetry
+    <Plugin dpdk_telemetry>
+      #ClientSocketPath "/var/run/.client"
+      #DpdkSocketPath "/var/run/dpdk/rte/telemetry"
     </Plugin>
 
-
-To configure the dpdkevents plugin you need to modify the configuration file to
-include:
-
-.. code:: bash
-
-    <LoadPlugin dpdkevents>
-      Interval 1
-    </LoadPlugin>
-
-    <Plugin "dpdkevents">
-      <EAL>
-        Coremask "0x1"
-        MemoryChannels "4"
-        FilePrefix "rte"
-      </EAL>
-      <Event "link_status">
-        SendEventsOnUpdate false
-        EnabledPortMask 0xffff
-        SendNotification true
-      </Event>
-      <Event "keep_alive">
-        SendEventsOnUpdate false
-        LCoreMask "0xf"
-        KeepAliveShmName "/dpdk_keepalive_shm_name"
-        SendNotification true
-      </Event>
-    </Plugin>
-
-.. note:: Currently, the DPDK library doesn’t support API to de-initialize
- the DPDK resources allocated on the initialization. It means, the collectd
- plugin will not be able to release the allocated DPDK resources
- (locks/memory/pci bindings etc.) correctly on collectd shutdown or reinitialize
- the DPDK library if primary DPDK process is restarted. The only way to release
- those resources is to terminate the process itself. For this reason, the plugin
- forks off a separate collectd process. This child process becomes a secondary
- DPDK process which can be run on specific CPU cores configured by user through
- collectd configuration file (“Coremask” EAL configuration option, the
- hexadecimal bitmask of the cores to run on).
+The plugin uses default values (as shown) for the socket paths, if you use different values,
+uncomment and update ``ClientSocketPath`` and ``DpdkSocketPath`` as required.
 
 For more information on the plugin parameters, please see:
 https://github.com/collectd/collectd/blob/main/src/collectd.conf.pod
 
-.. note:: dpdkstat plugin initialization time depends on read interval. It
- requires 5 read cycles to set up internal buffers and states, during that time
- no statistics are submitted. Also, if plugin is running and the number of DPDK
- ports is increased, internal buffers are resized. That requires 3 read cycles
- and no port statistics are submitted during that time.
+.. note::
+
+   To gather metrics from a DPDK application, telemetry needs to be enabled.
+   This can be done by setting the ``CONFIG_RTE_LIBRTE_TELEMETRY=y`` config flag.
+   The application then needs to be run with the ``--telemetry`` EAL option, e.g.
+   ::
+     $dpdk/app/testpmd --telemetry  -l 2,3,4 -n 4  
+
+For more information on the ``dpdk_telemetry`` plugin, see the `anuket wiki <https://wiki.anuket.io/display/HOME/DPDK+Telemetry+Plugin>`_.
 
 The Address-Space Layout Randomization (ASLR) security feature in Linux should be
 disabled, in order for the same hugepage memory mappings to be present in all
@@ -298,27 +239,6 @@ To fully enable ASLR:
 For more information on multi-process support, please see:
 https://doc.dpdk.org/guides/prog_guide/multi_proc_support.html
 
-**DPDK stats plugin limitations:**
-
-1. The DPDK primary process application should use the same version of DPDK
-   that collectd DPDK plugin is using;
-
-2. L2 statistics are only supported;
-
-3. The plugin has been tested on Intel NIC’s only.
-
-**DPDK stats known issues:**
-
-* DPDK port visibility
-
-  When network port controlled by Linux is bound to DPDK driver, the port
-  will not be available in the OS. It affects the SNMP write plugin as those
-  ports will not be present in standard IF-MIB. Thus, additional work is
-  required to be done to support DPDK ports and statistics.
-
-**DPDK telemetry plugin**
-
-Please refer to https://wiki.anuket.io/display/HOME/DPDK+Telemetry+Plugin
 
 Hugepages Plugin
 ^^^^^^^^^^^^^^^^^
