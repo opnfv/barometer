@@ -1,0 +1,6 @@
+release_summary: >
+    Enable the Logparser plugin by default when using one-click install.
+ansible:
+  - |
+    The logparser plugin is now rendered for all flavours.
+    The Logparser plugin has been part of collectd since 5.11, however, the ansible playbooks had it marked as experimental, and would not deploy it by default.

@@ -319,8 +319,9 @@ the following plugins:
   ``ethstat``, ``ipc``, ``irq``, ``load``, ``memory``, ``numa``,
   ``processes``, ``swap``, ``turbostat``, ``uuid``, ``uptime``, ``exec``,
   ``hugepages``, ``intel_pmu``, ``ipmi``, ``write_kafka``, ``logfile``,
-  ``mcelog``, ``network``, ``intel_rdt``, ``rrdtool``, ``snmp_agent``,
-  ``syslog``, ``virt``, ``ovs_stats``, ``ovs_events``, ``dpdk_telemetry``
+  ``logparser``, ``mcelog``, ``network``, ``intel_rdt``, ``rrdtool``,
+  ``snmp_agent``, ``syslog``, ``virt``, ``ovs_stats``, ``ovs_events``,
+  ``dpdk_telemetry``.
 
 .. note::
    Some of the plugins are loaded depending on specific system requirements and can be omitted if
@@ -382,7 +383,7 @@ List of available tags:
   ``contextswitch``, ``cpu``, ``cpufreq``, ``df``, ``disk,`` ``ethstat``,
   ``ipc``, ``irq``, ``load``, ``memory``, ``numa``, ``processes``, ``swap``,
   ``turbostat``, ``uptime``, ``exec``, ``hugepages``, ``ipmi``, ``kafka``,
-  ``logfile``, ``mcelog``, ``network``, ``pmu``, ``rdt``, ``rrdtool``,
-  ``snmp``, ``syslog``, ``unixsock``, ``virt``, ``ovs_stats``, ``ovs_events``,
-  ``uuid``, ``dpdkevents``, ``dpdkstat``, ``dpdk_telemetry``.
+  ``logfile``, ``logparser``, ``mcelog``, ``network``, ``pmu``, ``rdt``,
+  ``rrdtool``, ``snmp``, ``syslog``, ``unixsock``, ``virt``, ``ovs_stats``,
+  ``ovs_events``, ``uuid``, ``dpdkevents``, ``dpdkstat``, ``dpdk_telemetry``.
 

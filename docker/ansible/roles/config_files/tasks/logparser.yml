@@ -1,4 +1,4 @@
-#Copyright 2019 OPNFV and Intel Corporation
+# Copyright 2019-21 Anuket, Intel Corporation, and others
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,9 +15,8 @@
 
 - name: enable logparser plugin
   template:
-    src: experimental/logparser.conf.j2
+    src: logparser.conf.j2
     dest: "{{ config_file_dir }}/logparser.conf"
-  when: flavor|default('stable')|string == 'experimental'
   tags:
     - logparser
 
