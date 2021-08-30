@@ -1,4 +1,4 @@
-#Copyright 2018 OPNFV and Intel Corporation
+# Copyright 2018-21 Anuket, Intel Corporation and others
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -31,8 +31,7 @@
     - dpdkevents
 
 - name: enable dpdk_telemetry plugin
-  template:
-    src: dpdk_telemetry.conf.j2
-    dest: "{{ config_file_dir }}/dpdk_telemetry.conf"
+  set_fact:
+    collectd_plugins: "{{ collectd_plugins | union(['dpdk_telemetry']) | unique }}"
   tags:
     - dpdk_telemetry
