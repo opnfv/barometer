@@ -1,0 +1,6 @@
+containers:
+  - |
+    Grafana container was updated to support both jiffies and percent for cpu metrics.
+fixes:
+  - |
+    Update the grafana dashboard to show metrics in both jffies and percent, depending on what is configured.
