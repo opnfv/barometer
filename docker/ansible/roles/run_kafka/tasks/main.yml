@@ -1,4 +1,4 @@
-#Copyright 2018 OPNFV and Intel Corporation
+# Copyright 2018-21 Anuket, Intel Corporation and others
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,19 +22,19 @@
     - remove_bar-kafka
   when: rm_containers|default(false)|bool == true
 
-- name: Remove opnfv/barometer-kafka  image
+- name: Remove anuket/barometer-kafka image
   docker_image:
-    name: opnfv/barometer-kafka
+    name: anuket/barometer-kafka
     state: absent
   tags:
     - remove_images
     - remove_kafka_image
   when: rm_images|default(false)|bool == true
 
-- name: launch opnfv/barometer-kafka container
+- name: launch anuket/barometer-kafka container
   docker_container:
     name: bar-kafka
-    image: opnfv/barometer-kafka
+    image: anuket/barometer-kafka
     env:
        zookeeper_node: "{{ zookeeper_hostname }}"
        broker_id: "{{ broker_id }}"

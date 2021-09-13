@@ -247,10 +247,10 @@ Check the three containers are running, the output of ``docker ps`` should be si
 .. code:: bash
 
     $ sudo docker ps
-    CONTAINER ID        IMAGE                      COMMAND                  CREATED             STATUS              PORTS               NAMES
-    a033aeea180d        opnfv/barometer-grafana    "/run.sh"                9 days ago          Up 7 minutes                            bar-grafana
-    1bca2e4562ab        opnfv/barometer-influxdb   "/entrypoint.sh in..."   9 days ago          Up 7 minutes                            bar-influxdb
-    daeeb68ad1d5        opnfv/barometer-collectd   "/run_collectd.sh ..."   9 days ago          Up 7 minutes                            bar-collectd
+    CONTAINER ID   IMAGE                       COMMAND                  CREATED             STATUS         PORTS     NAMES
+    4c2143fb6bbd   anuket/barometer-grafana    "/run.sh"                59 minutes ago      Up 4 minutes             bar-grafana
+    5e356cb1cb04   anuket/barometer-influxdb   "/entrypoint.sh infl…"   59 minutes ago      Up 4 minutes             bar-influxdb
+    2ddac8db21e2   anuket/barometer-collectd   "/run_collectd.sh"       About an hour ago   Up 4 minutes             bar-collectd
 
 To make some changes when a container is running run:
 
@@ -284,10 +284,10 @@ Check the containers are running, the output of ``docker ps`` should be similar 
 
     $ sudo docker ps
     CONTAINER ID        IMAGE                      COMMAND                  CREATED             STATUS                     PORTS               NAMES
-    29035be2dab5        zookeeper:3.4.11           "/docker-entrypoint._"   7 minutes ago       Up 7 minutes                                   bar-zookeeper
-    eb8bba3c0b76        opnfv/barometer-ves        "./start_ves_app.s..."   6 minutes ago       Up 6 minutes                                   bar-ves
-    86702a96a68c        opnfv/barometer-kafka      "/src/start_kafka.sh"    6 minutes ago       Up 6 minutes                                   bar-kafka
-    daeeb68ad1d5        opnfv/barometer-collectd   "/run_collectd.sh ..."   6 minutes ago       Up 6 minutes                                   bar-collectd
+    d041d8fff849        zookeeper:3.4.11           "/docker-entrypoint.…"   2 minutes ago       Up 2 minutes                                   bar-zookeeper
+    da67b81274bc        anuket/barometer-ves       "./start_ves_app.sh …"   2 minutes ago       Up 2 minutes                                   bar-ves
+    2c25e0c79f93        anuket/barometer-kafka     "/src/start_kafka.sh"    2 minutes ago       Up 2 minutes                                   bar-kafka
+    b161260c90ed        anuket/barometer-collectd  "/run_collectd.sh"       2 minutes ago       Up 2 minutes                                   bar-collectd
 
 
 To make some changes when a container is running run:

@@ -1,4 +1,4 @@
-#Copyright 2018 OPNFV and Intel Corporation
+# Copyright 2018-21 Anuket, Intel Corporation and others
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,19 +22,19 @@
     - remove_bar-ves
   when: rm_containers|default(false)|bool == true
 
-- name: Remove opnfv/barometer-ves image
+- name: Remove anuket/barometer-ves image
   docker_image:
     state: absent
-    name: opnfv/barometer-ves
+    name: anuket/barometer-ves
   tags:
     - remove_images
     - remove_ves_image
   when: rm_images|default(false)|bool == true
 
-- name: launch opnfv/barometer-ves container
+- name: launch anuket/barometer-ves container
   docker_container:
     name: bar-ves
-    image: opnfv/barometer-ves
+    image: anuket/barometer-ves
     detach: yes
     state: started
     restart: yes

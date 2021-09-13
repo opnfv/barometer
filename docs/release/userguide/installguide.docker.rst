@@ -12,14 +12,14 @@ Anuket Barometer Docker Install Guide
    :local:
 
 The intention of this user guide is to outline how to install and test the Barometer project's
-docker images. The `OPNFV docker hub <https://hub.docker.com/u/opnfv/?page=1>`_ contains 5 docker
+docker images. The `Anuket docker hub <https://hub.docker.com/u/anuket/>`_ contains 5 docker
 images from the Barometer project:
 
- 1. `Collectd docker image <https://hub.docker.com/r/opnfv/barometer-collectd/>`_
- 2. `Influxdb docker image <https://hub.docker.com/r/opnfv/barometer-influxdb/>`_
- 3. `Grafana docker image <https://hub.docker.com/r/opnfv/barometer-grafana/>`_
- 4. `Kafka docker image <https://hub.docker.com/r/opnfv/barometer-kafka/>`_
- 5. `VES application docker image <https://hub.docker.com/r/opnfv/barometer-ves/>`_
+ 1. `Collectd docker image <https://hub.docker.com/r/anuket/barometer-collectd/>`_
+ 2. `Influxdb docker image <https://hub.docker.com/r/anuket/barometer-influxdb/>`_
+ 3. `Grafana docker image <https://hub.docker.com/r/anuket/barometer-grafana/>`_
+ 4. `Kafka docker image <https://hub.docker.com/r/anuket/barometer-kafka>`_
+ 5. `VES application docker image <https://hub.docker.com/r/anuket/barometer-ves/>`_
 
 For description of images please see section `Barometer Docker Images Description`_
 
@@ -305,11 +305,11 @@ are stored in subdirectories of `docker/` directory
 Download the collectd docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you wish to use a pre-built barometer image, you can pull the barometer
-image from `dockerhub <https://hub.docker.com/r/opnfv/barometer-collectd/>`_
+image from `dockerhub <https://hub.docker.com/r/anuket/barometer-collectd/>`_
 
 .. code:: bash
 
-    $ docker pull opnfv/barometer-collectd
+    $ docker pull anuket/barometer-collectd
 
 Build stable collectd container
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -317,7 +317,7 @@ Build stable collectd container
 .. code:: bash
 
     $ cd <BAROMETER_REPO_DIR>/docker/barometer-collectd
-    $ sudo docker build -t opnfv/barometer-collectd --build-arg http_proxy=`echo $http_proxy` \
+    $ sudo docker build -t anuket/barometer-collectd --build-arg http_proxy=`echo $http_proxy` \
       --build-arg https_proxy=`echo $https_proxy` --network=host -f Dockerfile .
 
 .. note::
@@ -330,12 +330,12 @@ Check the docker images:
 
    $ sudo docker images
 
-Output should contain a barometer-collectd image:
+Output should contain a ``barometer-collectd`` image:
 
 .. code::
 
    REPOSITORY                   TAG                 IMAGE ID            CREATED             SIZE
-   opnfv/barometer-collectd     latest              05f2a3edd96b        3 hours ago         1.2GB
+   anuket/barometer-collectd    latest              39f5e0972178        2 months ago        1.28GB
    centos                       7                   196e0ce0c9fb        4 weeks ago         197MB
    centos                       latest              196e0ce0c9fb        4 weeks ago         197MB
    hello-world                  latest              05a3bd381fc2        4 weeks ago         1.84kB
@@ -352,7 +352,7 @@ Build barometer-collectd-latest container
 .. code:: bash
 
     $ cd <BAROMETER_REPO_DIR>
-    $ sudo docker build -t opnfv/barometer-collectd-latest \
+    $ sudo docker build -t anuket/barometer-collectd-latest \
      --build-arg http_proxy=`echo $http_proxy` \
      --build-arg https_proxy=`echo $https_proxy` --network=host -f \
      docker/barometer-collectd-latest/Dockerfile .
@@ -374,7 +374,7 @@ COLLECTD_PULL_REQUESTS should be a comma-delimited string of pull request IDs.
 .. code:: bash
 
     $ cd <BAROMETER_REPO_DIR>
-    $ sudo docker build -t opnfv/barometer-collectd-experimental \
+    $ sudo docker build -t anuket/barometer-collectd-experimental \
      --build-arg http_proxy=`echo $http_proxy` \
      --build-arg https_proxy=`echo $https_proxy` \
      --build-arg COLLECTD_PULL_REQUESTS=1234,5678 \
@@ -397,7 +397,7 @@ proposed patches to collectd.
 .. code:: bash
 
    $ cd <BAROMETER_REPO_DIR>
-   $ sudo docker build -t opnfv/barometer-collectd-6 \
+   $ sudo docker build -t anuket/barometer-collectd-6 \
      --build-arg COLLECTD_FLAVOR=collectd-6 \
      --build-arg COLLECTD_PULL_REQUESTS=1234,5678 \
      --network=host -f docker/barometer-collectd-experimental/Dockerfile .
@@ -431,7 +431,7 @@ Run the collectd stable docker image
    $ sudo docker run -ti --net=host -v \
    `pwd`/src/collectd/collectd_sample_configs:/opt/collectd/etc/collectd.conf.d \
    -v /var/run:/var/run -v /tmp:/tmp -v /sys/fs/resctrl:/sys/fs/resctrl \
-   --privileged opnfv/barometer-collectd
+   --privileged anuket/barometer-collectd
 
 .. note::
    The docker collectd image contains configuration for all the collectd
@@ -491,7 +491,7 @@ collectd plugins requiring different configuration files)
    $ sudo docker run -ti --net=host -v \
    `pwd`/src/collectd/collectd_sample_configs-latest:/opt/collectd/etc/collectd.conf.d \
    -v /var/run:/var/run -v /tmp:/tmp -v /sys/fs/resctrl:/sys/fs/resctrl \
-   --privileged opnfv/barometer-collectd-latest
+   --privileged anuket/barometer-collectd-latest
 
 .. note::
    Barometer collectd docker images are sharing some directories with host
@@ -533,7 +533,7 @@ collectd container)
    $ sudo docker run -ti --net=host -v \
    `pwd`/src/collectd/collectd_sample_configs-latest:/opt/collectd/etc/collectd.conf.d \
    -v /var/run:/var/run -v /tmp:/tmp -v /sys/fs/resctrl:/sys/fs/resctrl --privileged \
-   opnfv/barometer-collectd-experimental
+   anuket/barometer-collectd-experimental
 
 .. note::
    The Resource Control file system (/sys/fs/resctrl) can be bound from host to
@@ -571,7 +571,7 @@ volume folder been mounted. Appropriate example are given in section `Run the Gr
 Download the InfluxDB and Grafana docker images
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you wish to use pre-built barometer project's influxdb and grafana images, you can pull the
-images from https://hub.docker.com/r/opnfv/barometer-influxdb/ and https://hub.docker.com/r/opnfv/barometer-grafana/
+images from https://hub.docker.com/r/anuket/barometer-influxdb/ and https://hub.docker.com/r/anuket/barometer-grafana/
 
 .. note::
    If your preference is to build images locally please see sections `Build InfluxDB Docker Image`_ and
@@ -579,8 +579,8 @@ images from https://hub.docker.com/r/opnfv/barometer-influxdb/ and https://hub.d
 
 .. code:: bash
 
-    $ docker pull opnfv/barometer-influxdb
-    $ docker pull opnfv/barometer-grafana
+    $ docker pull anuket/barometer-influxdb
+    $ docker pull anuket/barometer-grafana
 
 .. note::
    If you have pulled the pre-built barometer-influxdb and barometer-grafana images there is no
@@ -596,7 +596,7 @@ Build influxdb image from Dockerfile
 .. code:: bash
 
   $ cd barometer/docker/barometer-influxdb
-  $ sudo docker build -t opnfv/barometer-influxdb --build-arg http_proxy=`echo $http_proxy` \
+  $ sudo docker build -t anuket/barometer-influxdb --build-arg http_proxy=`echo $http_proxy` \
     --build-arg https_proxy=`echo $https_proxy` --network=host -f Dockerfile .
 
 .. note::
@@ -614,7 +614,7 @@ Output should contain an influxdb image:
 .. code::
 
    REPOSITORY                   TAG                 IMAGE ID            CREATED            SIZE
-   opnfv/barometer-influxdb     latest              1e4623a59fe5        3 days ago         191MB
+   anuket/barometer-influxdb    latest              c5a09a117067        2 months ago       191MB
 
 Build Grafana docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -624,7 +624,7 @@ Build Grafana image from Dockerfile
 .. code:: bash
 
   $ cd barometer/docker/barometer-grafana
-  $ sudo docker build -t opnfv/barometer-grafana --build-arg http_proxy=`echo $http_proxy` \
+  $ sudo docker build -t anuket/barometer-grafana --build-arg http_proxy=`echo $http_proxy` \
     --build-arg https_proxy=`echo $https_proxy` -f Dockerfile .
 
 .. note::
@@ -642,7 +642,7 @@ Output should contain an influxdb image:
 .. code::
 
    REPOSITORY                   TAG                 IMAGE ID            CREATED             SIZE
-   opnfv/barometer-grafana      latest              05f2a3edd96b        3 hours ago         1.2GB
+   anuket/barometer-grafana     latest              3724ab87f0b1        2 months ago        284MB
 
 Run the Influxdb and Grafana Images
 -----------------------------------
@@ -652,7 +652,7 @@ Run the InfluxDB docker image
 .. code:: bash
 
    $ sudo docker run -tid -v /var/lib/influxdb:/var/lib/influxdb --net=host\
-    --name bar-influxdb opnfv/barometer-influxdb
+    --name bar-influxdb anuket/barometer-influxdb
 
 Check your docker image is running
 
@@ -713,7 +713,7 @@ changing output location is required:
       $ cd <BAROMETER_REPO_DIR>
       $ sudo docker run -ti --name bar-collectd --net=host -v \
       `pwd`/src/collectd/collectd_sample_configs:/opt/collectd/etc/collectd.conf.d \
-      -v /var/run:/var/run -v /tmp:/tmp --privileged opnfv/barometer-collectd
+      -v /var/run:/var/run -v /tmp:/tmp --privileged anuket/barometer-collectd
 
 Now collectd container will be sending data to InfluxDB container located on
 remote Host pointed by IP configured in step 3.
@@ -728,7 +728,7 @@ Connecting to an influxdb instance running on local system and adding own custom
    $ cd <BAROMETER_REPO_DIR>
    $ sudo docker run -tid -v /var/lib/grafana:/var/lib/grafana \
      -v ${PWD}/docker/barometer-grafana/dashboards:/opt/grafana/dashboards \
-     --name bar-grafana --net=host opnfv/barometer-grafana
+     --name bar-grafana --net=host anuket/barometer-grafana
 
 Connecting to an influxdb instance running on remote system with hostname of someserver and IP address
 of 192.168.121.111
@@ -737,7 +737,7 @@ of 192.168.121.111
 
    $ sudo docker run -tid -v /var/lib/grafana:/var/lib/grafana --net=host -e \
      influxdb_host=someserver --add-host someserver:192.168.121.111 --name \
-     bar-grafana opnfv/barometer-grafana
+     bar-grafana anuket/barometer-grafana
 
 Check your docker image is running
 
@@ -785,7 +785,7 @@ Download VES and Kafka docker images
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If you wish to use pre-built barometer project's VES and kafka images, you can pull the
-images from https://hub.docker.com/r/opnfv/barometer-ves/ and  https://hub.docker.com/r/opnfv/barometer-kafka/
+images from https://hub.docker.com/r/anuket/barometer-ves/ and  https://hub.docker.com/r/anuket/barometer-kafka/
 
 .. note::
    If your preference is to build images locally please see sections `Build Kafka Docker Image`_ and
@@ -793,8 +793,8 @@ images from https://hub.docker.com/r/opnfv/barometer-ves/ and  https://hub.docke
 
 .. code:: bash
 
-    $ docker pull opnfv/barometer-kafka
-    $ docker pull opnfv/barometer-ves
+    $ docker pull anuket/barometer-kafka
+    $ docker pull anuket/barometer-ves
 
 .. note::
    If you have pulled the pre-built images there is no requirement to complete steps outlined
@@ -809,7 +809,7 @@ Build Kafka docker image:
 .. code:: bash
 
     $ cd barometer/docker/barometer-kafka
-    $ sudo docker build -t opnfv/barometer-kafka --build-arg http_proxy=`echo $http_proxy` \
+    $ sudo docker build -t anuket/barometer-kafka --build-arg http_proxy=`echo $http_proxy` \
       --build-arg https_proxy=`echo $https_proxy` -f Dockerfile .
 
 .. note::
@@ -827,7 +827,7 @@ Output should contain a barometer image:
 .. code::
 
    REPOSITORY                TAG                 IMAGE ID            CREATED             SIZE
-   opnfv/barometer-kafka     latest              05f2a3edd96b        3 hours ago         1.2GB
+   anuket/barometer-kafka    latest              75a0860b8d6e        2 months ago        902MB
 
 Build VES docker image
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -837,7 +837,7 @@ Build VES application docker image:
 .. code:: bash
 
     $ cd barometer/docker/barometer-ves
-    $ sudo docker build -t opnfv/barometer-ves --build-arg http_proxy=`echo $http_proxy` \
+    $ sudo docker build -t anuket/barometer-ves --build-arg http_proxy=`echo $http_proxy` \
       --build-arg https_proxy=`echo $https_proxy` -f Dockerfile .
 
 .. note::
@@ -855,7 +855,7 @@ Output should contain a barometer image:
 .. code::
 
    REPOSITORY                TAG                 IMAGE ID            CREATED             SIZE
-   opnfv/barometer-ves       latest              05f2a3edd96b        3 hours ago         1.2GB
+   anuket/barometer-ves      latest              36a4a953e1b4        2 months ago        723MB
 
 Run Kafka docker image
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -880,7 +880,7 @@ Run kafka docker image which connects with a zookeeper instance running on same 
 
 .. code:: bash
 
-   $ sudo docker run -tid --net=host -p 9092:9092 opnfv/barometer-kafka
+   $ sudo docker run -tid --net=host -p 9092:9092 anuket/barometer-kafka
 
 
 Run kafka docker image which connects with a zookeeper instance running on a node with IP address of
@@ -889,7 +889,7 @@ Run kafka docker image which connects with a zookeeper instance running on a nod
 .. code:: bash
 
    $ sudo docker run -tid --net=host -p 9092:9092 --env broker_id=1 --env zookeeper_node=zookeeper --add-host \
-     zookeeper:192.168.121.111 opnfv/barometer-kafka
+     zookeeper:192.168.121.111 anuket/barometer-kafka
 
 Run VES Application docker image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -906,13 +906,13 @@ Run VES docker image with default configuration
 
 .. code:: bash
 
-   $ sudo docker run -tid --net=host opnfv/barometer-ves
+   $ sudo docker run -tid --net=host anuket/barometer-ves
 
 Run VES docker image with guest.yaml files from barometer/3rd_party/collectd-ves-app/ves_app/yaml/
 
 .. code:: bash
 
-   $ sudo docker run -tid --net=host opnfv/barometer-ves guest.yaml
+   $ sudo docker run -tid --net=host anuket/barometer-ves guest.yaml
 
 
 Run VES docker image with using custom config and yaml files. In example below yaml/ folder cotains
@@ -921,7 +921,7 @@ file named custom.yaml
 .. code:: bash
 
    $ sudo docker run -tid --net=host -v ${PWD}/custom.config:/opt/ves/config/ves_app_config.conf \
-     -v ${PWD}/yaml/:/opt/ves/yaml/ opnfv/barometer-ves custom.yaml
+     -v ${PWD}/yaml/:/opt/ves/yaml/ anuket/barometer-ves custom.yaml
 
 Run VES Test Collector application
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

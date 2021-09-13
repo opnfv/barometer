@@ -1,4 +1,4 @@
-#Copyright 2018 OPNFV and Intel Corporation
+# Copyright 2018-21 Anuket, Intel Corporation and others
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,9 +22,9 @@
     - rm_influxdb_cont
   when: rm_containers|default(false)|bool == true
 
-- name: Remove opnfv/barometer-influxdb image
+- name: Remove barometer-influxdb image
   docker_image:
-    name: opnfv/barometer-influxdb
+    name: anuket/barometer-influxdb
     state: absent
   tags:
     - rm_images
@@ -34,7 +34,7 @@
 - name: launch barometer-influxdb container
   docker_container:
     name: bar-influxdb
-    image: opnfv/barometer-influxdb
+    image: anuket/barometer-influxdb
     volumes:
        - /var/lib/influxdb:/var/lib/influxdb
     exposed:

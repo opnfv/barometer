@@ -1,4 +1,4 @@
-#Copyright 2018 OPNFV and Intel Corporation
+# Copyright 2018-21 Anuket, Intel Corporation and others
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@
 - name: Remove barometer-grafana image
   docker_image:
     state: absent
-    name: opnfv/barometer-grafana
+    name: anuket/barometer-grafana
   tags:
     - rm_images
     - rm_grafana_image
@@ -40,7 +40,7 @@
 - name: launch barometer-grafana container
   docker_container:
     name: bar-grafana
-    image: opnfv/barometer-grafana
+    image: anuket/barometer-grafana
     volumes:
        - /var/lib/grafana:/var/lib/grafana
     ports:
