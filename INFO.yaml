@@ -3,38 +3,36 @@ project: 'Barometer'
 project_creation_date: ''
 project_category: ''
 lifecycle_state: ''
-project_lead: &opnfv_barometer_ptl
+project_lead: &anuket_barometer_ptl
     name: 'Emma Foley'
     email: 'efoley@redhat.com'
     id: 'efoley'
     company: 'redhat.com'
     timezone: 'Europe/Dublin'
-primary_contact: *opnfv_barometer_ptl
+primary_contact: *anuket_barometer_ptl
 issue_tracking:
     type: 'jira'
-    url: 'https://jira.opnfv.org/projects/barometer'
+    url: 'https://jira.anuket.io/projects/barometer'
     key: 'barometer'
 mailing_list:
-    type: 'mailman2'
-    url: 'opnfv-tech-discuss@lists.opnfv.org'
-    tag: '[barometer]'
+    type: 'groups.io'
+    url: 'anuket-tech-discuss@lists.anuket.io'
+    tag: '#barometer'
 realtime_discussion:
-    type: irc
-    server: 'freenode.net'
-    channel: '#opnfv-barometer'
+    type: slack
+    server: 'anuketworkspace.slack.com'
+    channel: '#barometer'
 meetings:
-    - type: 'gotomeeting+irc'
-      agenda:  # eg: 'https://wiki.opnfv.org/display/'
-      url:  # eg: 'https://global.gotomeeting.com/join/819733085'
-      server: 'freenode.net'
-      channel: '#opnfv-meeting'
+    - type: 'zoom'
+      agenda: 'https://wiki.anuket.io/display/HOME/Meetings'
+      url: 'https://zoom.us/j/92950950555?pwd=K2tWZWovWXJWTmNuZHIxNGlZWkpHQT0'
       repeats: 'weekly'
-      time:  # eg: '16:00 UTC'
+      time: '17:00 Europe/Dublin'
 repositories:
     - 'barometer'
     - 'puppet-barometer'
 committers:
-    - <<: *opnfv_barometer_ptl
+    - <<: *anuket_barometer_ptl
     - name: 'Maryam Tahhan'
       email: 'maryam.tahhan@intel.com'
       company: 'intel.com'
