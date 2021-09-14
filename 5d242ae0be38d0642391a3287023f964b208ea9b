@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0d43dc8a_534f9118",
+        "filename": "INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2021-09-14T12:37:50Z",
+      "side": 1,
+      "message": "May as well clean up the committers list too, maryam, calin, ...",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 1
+      },
+      "revId": "5d242ae0be38d0642391a3287023f964b208ea9b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
