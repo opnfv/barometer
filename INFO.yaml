@@ -33,10 +33,6 @@ repositories:
     - 'puppet-barometer'
 committers:
     - <<: *anuket_barometer_ptl
-    - name: 'Maryam Tahhan'
-      email: 'maryam.tahhan@intel.com'
-      company: 'intel.com'
-      id: 'maryamtahhan'
     - name: 'Al Morton'
       email: 'acmorton@att.com'
       company: 'att.com'
