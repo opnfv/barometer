@@ -1,0 +1,12 @@
+release_summary: >
+    Since the anuket dockerhub repository was created, and containers are being pushed to there, instructions and build scripts have been updated to reflect this.
+docs:
+  - |
+    Docs have been updated to use anuket/ repository in dockerhub.
+    Container build instructions now use anuket/ prefix to tag images.
+containers:
+  - |
+    Containers are now pulled from anuket/ repository in dockerhub.
+ansible:
+  - |
+    Containers are now pulled from anuker/ repository in dockerhub.
