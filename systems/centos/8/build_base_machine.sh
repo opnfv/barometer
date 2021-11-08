@@ -52,6 +52,7 @@ pkg-config
 git-core
 sudo
 rpm-build
+which
 libcap-devel
 xfsprogs-devel
 iptables-devel
