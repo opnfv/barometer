@@ -35,8 +35,16 @@ IFS=', ' read -a PULL_REQUESTS <<< "$COLLECTD_PULL_REQUESTS"
 git config user.email "barometer-experimental@container"
 git config user.name "BarometerExperimental"
 
-for PR_ID in "${PULL_REQUESTS[@]}"
-do
-    echo "Applying pull request $PR_ID"
-    git pull --rebase origin pull/$PR_ID/head
-done
+# If there's a single PR listed, just check it out
+if [ "${#PULL_REQUESTS[@]}" -eq "1" ];
+then
+	echo "Checking out pull request $COLLECTD_PULL_REQUESTS"
+	git fetch origin pull/$COLLECTD_PULL_REQUESTS/head && git checkout FETCH_HEAD
+else
+# if there are multiple PRs, rebase them on top of the checked out branch
+	for PR_ID in "${PULL_REQUESTS[@]}"
+	do
+		echo "Applying pull request $PR_ID"
+		git pull --rebase origin pull/$PR_ID/head
+	done
+fi
