@@ -1,0 +1,3 @@
+build:
+  - |
+    Update collectd_apply_pull_request.sh to rebase only if multiple chanegs are selected. The script will checkout the PR branch if there's only one PR_ID passed.
