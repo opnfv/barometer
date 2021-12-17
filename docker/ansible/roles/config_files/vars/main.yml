@@ -18,6 +18,9 @@ collectd_hostname: "{{ inventory_hostname }}"
 
 collectd_plugin_capabilities_port: "9564"
 
+collectd_plugin_cpu_valuespercentage: False
+collectd_plugin_cpu_reportbystate: True
+
 collectd_plugin_csv_datadir: "{{ csv_log_dir }}"
 collectd_plugin_csv_storerates: False
 
