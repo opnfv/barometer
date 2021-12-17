@@ -12,6 +12,7 @@ Anuket Barometer Release Notes
    :maxdepth: 1
 
    unreleased
+   lakelse-release-notes
    kali-release-notes
    old-release-notes
 
