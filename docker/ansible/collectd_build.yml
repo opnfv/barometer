@@ -1,4 +1,4 @@
-# Copyright 2019-21 Anuket, Intel Corporation and others
+# Copyright 2021 Anuket and others
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,12 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
-
-collectd_container_name: "bar-collectd"
-default_flavor: "{{ flavor|default('stable')|string }}"
-flavor_image_name: "{{
-         'barometer-collectd-latest' if (default_flavor == 'master' or default_flavor == 'latest') else
-         'barometer-collectd-experimental' if (default_flavor == 'experimental') else
-         'barometer-collectd-6' if (default_flavor == 'collectd-6')
-         else 'barometer-collectd' }}"
-collectd_image_name: "{{ 'anuket/' + flavor_image_name }}"
+# ansible-playbook collectd_build.yml
+#
+- hosts: localhost
+  become: true
+  become_user: root
+  gather_facts: true
+  roles:
+    - name: build_collectd
