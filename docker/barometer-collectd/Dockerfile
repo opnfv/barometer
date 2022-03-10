@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-FROM centos:8
+FROM quay.io/centos/centos:stream8
 RUN dnf update -y && \
         dnf install -y which sudo git-core && \
         dnf clean all && \

@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-FROM centos:8 as builder
+FROM quay.io/centos/centos:stream8 as builder
 
 ARG COLLECTD_FLAVOR=experimental
 ARG COLLECTD_PULL_REQUESTS
@@ -32,7 +32,7 @@ WORKDIR ${repos_dir}/barometer/systems
 RUN ./build_base_machine.sh && \
         dnf clean all && rm -rf /var/cache/dnf
 
-FROM centos:8
+FROM quay.io/centos/centos:stream8
 
 COPY docker/barometer-collectd-experimental/run_collectd.sh /run_collectd.sh
 RUN chmod +x /run_collectd.sh

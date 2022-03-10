@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-FROM centos:8
+FROM quay.io/centos/centos:stream8
 
 ARG COLLECTD_FLAVOR=latest
 ARG WITH_DPDK=y
