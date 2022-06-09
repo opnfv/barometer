@@ -14,7 +14,7 @@
 ---
 - name: Build stable container
   docker_image:
-    name: opnfv/barometer-collectd
+    name: anuket/barometer-collectd
     build:
       path: "{{ playbook_dir }}/../barometer-collectd/"
     source: build
@@ -23,7 +23,7 @@
 
 - name: Build the latest container
   docker_image:
-    name: opnfv/barometer-collectd-latest
+    name: anuket/barometer-collectd-latest
     build:
       path: "{{ playbook_dir }}/../../"
       dockerfile: "docker/barometer-collectd-latest/Dockerfile"
@@ -33,7 +33,7 @@
 
 - name: Build collectd-experimental
   docker_image:
-    name: opnfv/barometer-collectd-experimental
+    name: anuket/barometer-collectd-experimental
     build:
       path: "{{ playbook_dir }}/../../"
       dockerfile: "docker/barometer-collectd-experimental/Dockerfile"
@@ -47,7 +47,7 @@
 
 - name: Build collectd-6
   docker_image:
-    name: "opnfv/barometer-collectd-6{{ ( '-' + COLLECTD_PULL_REQUESTS ) if COLLECTD_PULL_REQUESTS is defined else '' }}"
+    name: "anuket/barometer-collectd-6{{ ( '-' + COLLECTD_PULL_REQUESTS ) if COLLECTD_PULL_REQUESTS is defined else '' }}"
     build:
       path: "{{ playbook_dir }}/../../"
       dockerfile: "docker/barometer-collectd-experimental/Dockerfile"
