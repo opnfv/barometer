@@ -24,7 +24,7 @@
      packages:
         - python3-dnf
         - python3
-        - libselinux-python
+        - python3-libselinux
 
 - name: set up docker repository
   command: "dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo && dnf makecache"
